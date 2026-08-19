@@ -272,11 +272,14 @@
   "Revision pairs are a one-position shift: the -05/-06 board moves a designator up one row from the -01 thru -04 board (D8->D9, D9->D10, C9->C10, J8->J9). Any build must declare which revision it describes.",
   "Revision convention confirmed verbatim on the drawing: red designators are for -05/-06 assemblies; the LS174 example is F10 on -01 thru -04 and F11 on -05/-06.",
   "Sheet 01A is the Video Power Supply wiring diagram (034633-01) \u2014 cabinet wiring, no game-board ICs. Sheet 01B is the microcomputer: clock, reset, watchdog. Designators are board-wide across sheets: D4/LS74, B5/LS04, B6/LS14 and C6/LS00 appear identically on 01B and 02A, which independently corroborates the sheet 2A reading.",
-  "Sheet 02B is Inputs/Outputs: player input muxes and the sound section (555 thump oscillator, 566 VCO for the saucer). Text references N7 (sound bit code) and M10 (control-signal latch)."
+  "Sheet 02B is Inputs/Outputs: player input muxes and the sound section (555 thump oscillator, 566 VCO for the saucer). Text references N7 (sound bit code) and M10 (control-signal latch).",
+  "Sheet 01B carries the full memory map: vector RAM 4000-47FF, vector ROM 5000-57FF, program 6800-7FFF, with switch and sound registers from 2003 to 3E00.",
+  "Program ROMs are Atari-numbered 035131-035135 at J2, N2, H2, M2, F2; further ROM positions run off the right of this crop and are not yet read."
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
-  "F8 is a rate multiplier on the main sheet and a 035904 PROM inside the '-06 PCB ONLY' block. The -06 section is additional circuitry, so designators there may not map onto other revisions."
+  "F8 is a rate multiplier on the main sheet and a 035904 PROM inside the '-06 PCB ONLY' block. The -06 section is additional circuitry, so designators there may not map onto other revisions.",
+  "L8: read as a 74LS42 decoder on sheet 2A, but sheet 01B's power text names 'operational amplifiers P11 and L8' in the audio output. One of the two is wrong, or the designator is reused across board areas. Needs a physical board."
  ],
  "sheet1B": {
   "D5": {
@@ -288,11 +291,59 @@
    "note": "not an IC"
   },
   "C4": {
-   "part": "counter (part not yet read)",
-   "note": "manual text: 'counters C4 and B4'"
+   "part": "9316",
+   "note": "clock divider: 6MHz / 3MHz / 1.5MHz"
   },
   "B4": {
-   "part": "counter (part not yet read)"
+   "part": "74LS393",
+   "note": "clock divider: 3kHz / 12kHz"
+  },
+  "C3": {
+   "part": "6502A",
+   "note": "Atari 90-6013. Drawing warns: MPU runs at 1.5MHz so it MUST be a 6502A; a plain 6502 tops out at 1MHz and is not compatible."
+  },
+  "B2": {
+   "part": "74LS244",
+   "note": "address buffer; split pads allow an LS245 substitution"
+  },
+  "C2": {
+   "part": "74LS244",
+   "note": "address buffer"
+  },
+  "E3": {
+   "part": "74LS245",
+   "note": "data bus transceiver"
+  },
+  "E2": {
+   "part": "2114",
+   "note": "Atari 90-7033, MPU RAM"
+  },
+  "D2": {
+   "part": "2114",
+   "note": "Atari 90-7033, MPU RAM"
+  },
+  "P5": {
+   "part": "74LS86"
+  },
+  "J2": {
+   "part": "ROM 035131",
+   "note": "program ROM"
+  },
+  "N2": {
+   "part": "ROM 035132"
+  },
+  "H2": {
+   "part": "ROM 035133"
+  },
+  "M2": {
+   "part": "ROM 035134"
+  },
+  "F2": {
+   "part": "ROM 035135"
+  },
+  "C5": {
+   "part": "counter",
+   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms"
   }
  },
  "sheet2B": {
@@ -315,7 +366,7 @@
   },
   "N11": {
    "part": "74LS174",
-   "note": "coin counter data latch"
+   "note": "74LS174 hex flip-flop shared across functions: coin-counter latch on sheet 02B and the RAMSEL latch on 01B. Different bits of one package, not a conflicting reading."
   },
   "N9": {
    "part": "7406",
