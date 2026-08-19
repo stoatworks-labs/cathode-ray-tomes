@@ -232,8 +232,8 @@
   },
   "D12": {
    "part": "74LS374",
-   "alt": "Q11",
-   "note": "X DAC latch"
+   "alt": null,
+   "note": "X DAC latch. Earlier read gave 'Q11' as the alternate designator; sheet 02B shows Q11 is a 2N6044 coin-counter driver, so that alternate was a misread and has been withdrawn."
   },
   "B16": {
    "part": "74LS374",
@@ -271,7 +271,8 @@
   "ROM/PROM substitution table: ROM 035127 at N/P3; PROM 035129 at K4, 035130 at L4, with a split pad bridged at K/L3.",
   "Revision pairs are a one-position shift: the -05/-06 board moves a designator up one row from the -01 thru -04 board (D8->D9, D9->D10, C9->C10, J8->J9). Any build must declare which revision it describes.",
   "Revision convention confirmed verbatim on the drawing: red designators are for -05/-06 assemblies; the LS174 example is F10 on -01 thru -04 and F11 on -05/-06.",
-  "Sheet 01A is the Video Power Supply wiring diagram (034633-01) \u2014 cabinet wiring, no game-board ICs. Sheet 01B is the microcomputer: clock, reset, watchdog. Designators are board-wide across sheets: D4/LS74, B5/LS04, B6/LS14 and C6/LS00 appear identically on 01B and 02A, which independently corroborates the sheet 2A reading."
+  "Sheet 01A is the Video Power Supply wiring diagram (034633-01) \u2014 cabinet wiring, no game-board ICs. Sheet 01B is the microcomputer: clock, reset, watchdog. Designators are board-wide across sheets: D4/LS74, B5/LS04, B6/LS14 and C6/LS00 appear identically on 01B and 02A, which independently corroborates the sheet 2A reading.",
+  "Sheet 02B is Inputs/Outputs: player input muxes and the sound section (555 thump oscillator, 566 VCO for the saucer). Text references N7 (sound bit code) and M10 (control-signal latch)."
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
@@ -293,5 +294,61 @@
   "B4": {
    "part": "counter (part not yet read)"
   }
- }
+ },
+ "sheet2B": {
+  "L10": {
+   "part": "74LS251",
+   "alt": "L11",
+   "note": "player input mux, SINP0"
+  },
+  "J10": {
+   "part": "74LS251",
+   "alt": "J11",
+   "note": "coin door / control panel mux, SINP1"
+  },
+  "P11": {
+   "part": "LM324",
+   "note": "audio mixer; all sounds mixed in 1/4 of P11"
+  },
+  "P12": {
+   "part": "LM324"
+  },
+  "N11": {
+   "part": "74LS174",
+   "note": "coin counter data latch"
+  },
+  "N9": {
+   "part": "7406",
+   "note": "open-collector inverter"
+  },
+  "N10": {
+   "part": "7406"
+  },
+  "M12": {
+   "part": "DIP switch",
+   "note": "option switches"
+  },
+  "D11": {
+   "part": "DAC",
+   "note": "X axis; text: 'the DACs (D11 and B11)'"
+  },
+  "B11": {
+   "part": "DAC",
+   "note": "Y axis"
+  },
+  "D12": {
+   "part": "CD4016B",
+   "note": "analogue switch, video output"
+  },
+  "D13": {
+   "part": "CD4016B"
+  },
+  "E12": {
+   "part": "op-amp",
+   "note": "video output stage"
+  }
+ },
+ "corrections": [
+  "sheet2A D12: alternate designator 'Q11' withdrawn \u2014 Q11 is a transistor on sheet 02B. Caught by cross-sheet checking, not by re-reading the same sheet."
+ ]
 }
