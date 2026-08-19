@@ -139,3 +139,112 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ---------------------------------------------------------------------------
+# Pin numbers
+# ---------------------------------------------------------------------------
+
+def _digit_blobs(ink, wires, lo=5, hi=34):
+    """Small ink blobs that are not wire: candidate digits."""
+    body = ink & ~ndimage.binary_dilation(wires, np.ones((3, 3)))
+    lab, n = ndimage.label(ndimage.binary_dilation(body, np.ones((2, 2))))
+    out = []
+    for i, sl in enumerate(ndimage.find_objects(lab), 1):
+        h = sl[0].stop - sl[0].start
+        w = sl[1].stop - sl[1].start
+        if lo <= h <= hi and 3 <= w <= hi:
+            out.append((sl[0].start, sl[1].start, sl[0].stop, sl[1].stop))
+    return out
+
+def _group_digits(blobs, gap=14, overlap=0.5):
+    """Merge adjacent blobs into multi-digit numbers ('1' + '3' -> '13').
+
+    Grouping on centre distance splits two-digit numbers when the glyphs sit at
+    slightly different heights — and those are the pins that matter most (10-16
+    carry the supplies). Vertical *overlap* is the robust test: digits of one
+    number share almost all of their height.
+    """
+    blobs = sorted(blobs, key=lambda b: (b[1], b[0]))
+    used, out = set(), []
+    for i, b in enumerate(blobs):
+        if i in used:
+            continue
+        cur = list(b)
+        used.add(i)
+        changed = True
+        while changed:
+            changed = False
+            for j, c in enumerate(blobs):
+                if j in used:
+                    continue
+                inter = min(cur[2], c[2]) - max(cur[0], c[0])
+                shorter = min(cur[2] - cur[0], c[2] - c[0])
+                if shorter <= 0 or inter / shorter < overlap:
+                    continue
+                if -4 <= (c[1] - cur[3]) <= gap:      # to the right, adjacent
+                    cur = [min(cur[0], c[0]), cur[1], max(cur[2], c[2]), c[3]]
+                    used.add(j)
+                    changed = True
+        out.append(tuple(cur))
+    return out
+
+def ocr_digits(ink, box, scale=6, pad=3):
+    """OCR a digit group. These glyphs are ~10px tall, so upscale first and
+    constrain tesseract to digits — unconstrained it hallucinates letters."""
+    import subprocess, tempfile, os as _os
+    from PIL import Image as _Image
+    y0, x0, y1, x1 = box
+    crop = ink[max(0, y0 - pad):y1 + pad, max(0, x0 - pad):x1 + pad]
+    if crop.size == 0:
+        return None, 0.0
+    img = _Image.fromarray((~crop).astype(np.uint8) * 255).convert("L")
+    img = img.resize((img.width * scale, img.height * scale), _Image.LANCZOS)
+    tmp = tempfile.mktemp(suffix=".png")
+    img.save(tmp)
+    try:
+        r = subprocess.run(
+            ["tesseract", tmp, "stdout", "--psm", "8", "-c",
+             "tessedit_char_whitelist=0123456789", "-c", "classify_bln_numeric_mode=1"],
+            capture_output=True, text=True, timeout=20)
+        txt = "".join(ch for ch in r.stdout if ch.isdigit())
+        return (txt or None), (1.0 if txt else 0.0)
+    except Exception:
+        return None, 0.0
+    finally:
+        try: _os.unlink(tmp)
+        except OSError: pass
+
+def pin_candidates(ink, wires, boxes, lab, keep, near=60, reach=26):
+    """Associate each component-adjacent net with a nearby pin number.
+
+    Returns {component_index: [{"net": id, "pin": "12", "dist": px}]}. A missing
+    or wrong reading is expected — the validator decides what to believe.
+    """
+    groups = _group_digits(_digit_blobs(ink, wires))
+    out = {}
+    for bi, (y0, x0, y1, x1) in enumerate(boxes):
+        found = []
+        for g in groups:
+            gy = (g[0] + g[2]) / 2
+            gx = (g[1] + g[3]) / 2
+            # digits sit just outside the component outline
+            dx = max(x0 - gx, gx - x1, 0)
+            dy = max(y0 - gy, gy - y1, 0)
+            # Pin numbers sit just outside the gate body, beside the stub —
+            # sometimes overlapping the outline, so digits inside the box count.
+            if dx > near or dy > near:
+                continue
+            ring = lab[max(0, int(gy) - reach):int(gy) + reach,
+                       max(0, int(gx) - reach):int(gx) + reach]
+            nets = {int(v) for v in np.unique(ring) if int(v) in keep}
+            if not nets:
+                continue
+            txt, conf = ocr_digits(ink, g)
+            if not txt:
+                continue
+            found.append({"net": sorted(nets)[0], "pin": txt,
+                          "dist": int(max(dx, dy)), "conf": conf})
+        if found:
+            out[bi] = found
+    return out
