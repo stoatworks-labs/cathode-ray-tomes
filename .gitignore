@@ -1,0 +1,26 @@
+# Local ingest cache: source PDFs, rendered page images, OCR text.
+cache/
+node_modules/
+.wrangler/
+
+# Upstream corpus dump and everything derived from it. All regenerable:
+#   curl -s -o data/machines.raw.json https://arcadertfm.com/machines.json
+#   python3 tools/build_index.py && python3 tools/build_search.py
+# The postings shards in particular are OCR'd text from third-party scans and
+# grow to tens of MB — they belong in KV, not in git.
+data/machines.raw.json
+data/machine/
+data/index/
+data/ingest-state.json
+
+# KiCad build outputs (the copies the site serves live under web/boards/).
+kicad/*/export/
+kicad/*/*-backups/
+*.kicad_prl
+
+# Traced vector derivatives of third-party scans — build artefacts, not source.
+web/boards/*/vec/
+
+# Python
+__pycache__/
+*.pyc

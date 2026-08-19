@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cathode-ray-tomes",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-01",
+  "observability": { "enabled": true },
+
+  // Custom domain (zone cathode-ray-tomes.com is active on this account).
+  "routes": [
+    { "pattern": "cathode-ray-tomes.com", "custom_domain": true },
+    { "pattern": "www.cathode-ray-tomes.com", "custom_domain": true }
+  ],
+
+  // Static site (browse UI, viewers) is served from ./web.
+  "assets": {
+    "directory": "./web",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+
+  // Corpus: browse indexes, per-machine records and the rendered documents.
+  "kv_namespaces": [
+    { "binding": "INDEX", "id": "33984ecf889c488c85903a3e2148bb37" }
+  ],
+
+  "vars": {
+    "SITE_NAME": "Cathode Ray Tomes",
+    "UPSTREAM": "https://files.arcadertfm.com"
+  }
+}
