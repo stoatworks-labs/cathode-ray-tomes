@@ -52,6 +52,34 @@ Figures remain the open question: they are the real payload, and vectorising the
 cheaper than raster. The plan is figure crops for a curated set, kept under the
 20,000-file Workers Assets cap, so R2 stays unnecessary.
 
+## The Pong board
+
+`tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
+`tools/pong_power_nets.py` wires the rails; `tools/pong_signal_nets.py` holds the
+hand-traced signal nets. All three want KiCAD's bundled Python (they need pcbnew):
+
+    /Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3
+
+pcbnew quirks that cost real time:
+
+- **`board.Remove()` corrupts SWIG's type registry for the rest of the process.**
+  Every later `FootprintLoad()` returns a bare `SwigPyObject` and attribute access
+  fails. Never clear a board — rebuild it from `pcbnew.NewBoard()`.
+- **`PCB_IO_MGR.FindPlugin()` returns a manager-owned object** that gets freed
+  mid-run. Construct `PCB_IO_KICAD_SEXPR()` and keep the reference.
+- **`NETINFO_ITEM(board, name)` without a net code** serialises as `(net "NAME")`
+  with no number, which KiCAD reads as no net at all. Pass an explicit code.
+- **IBOM omits nets unless `--include-nets` is passed** — the output is
+  indistinguishable from having no netlist, which sends you debugging the wrong
+  thing entirely.
+- IBOM compresses `pcbdata`, so grepping the generated HTML for a net name finds
+  nothing even when the net is present. Check in the browser via `pcbdata`.
+
+Tracing is done against the 500 dpi render and cross-checked on datasheet gate
+mapping: a 7427 gate 2 is pins 3/4/5 into 6, a 7425 gate 2 is 9/10/12/13 into 8.
+A misread pin number therefore shows up as a gate that cannot exist, which is the
+main defence against quietly wrong connectivity.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV

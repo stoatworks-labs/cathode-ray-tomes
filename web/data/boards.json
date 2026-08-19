@@ -6,8 +6,8 @@
     "year": "1972",
     "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
     "devices": 100,
-    "netsTraced": false,
-    "status": "Component complement is complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions, plus 34 discrete parts. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on pins 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are not yet traced from schematic 002826, so net highlighting covers the power rails only.",
+    "netsTraced": "partial",
+    "status": "Component complement complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions plus 34 discretes. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are traced by hand from schematic 002826 Rev E and currently cover the video output chain only \u2014 8 nets: VBLANK, 4V, NET, HVID, VVID, VIDEO and the two intermediate sums. The rest of the sheet is not yet traced, so net highlighting is partial.",
     "svg": "/boards/pong/schematic.svg",
     "bom": "/boards/pong/bom.csv",
     "ibom": "/boards/pong/pong-ibom.html"

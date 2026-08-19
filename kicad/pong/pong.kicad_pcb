@@ -1310,6 +1310,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "4V")
 			(uuid "73cc250c-122c-43e8-9979-1fead4100363")
 		)
 		(pad "4" thru_hole circle
@@ -1318,6 +1319,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "VBLANK")
 			(uuid "e42fca7f-589b-4824-9046-b15b6fe8bd6f")
 		)
 		(pad "5" thru_hole circle
@@ -1334,6 +1336,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "NET")
 			(uuid "fece6f09-ec36-4abe-9d74-33047aea099f")
 		)
 		(pad "7" thru_hole circle
@@ -9457,6 +9460,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "VIDEO_SUM")
 			(uuid "035a3dea-9d31-48cb-b130-c7c9d38ea4bd")
 		)
 		(pad "9" thru_hole circle
@@ -9473,6 +9477,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "NET")
 			(uuid "75e3eb6b-9ed3-4945-a151-b75382aa895f")
 		)
 		(pad "11" thru_hole circle
@@ -9497,6 +9502,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "HV_SUM")
 			(uuid "4f9869ef-8a3d-4174-bbc0-5454eb9568b3")
 		)
 		(pad "14" thru_hole circle
@@ -9756,6 +9762,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "HV_SUM")
 			(uuid "ff700e33-fff5-4e22-b877-987026438069")
 		)
 		(pad "5" thru_hole circle
@@ -9764,6 +9771,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "VVID")
 			(uuid "d38b00e2-108c-4fd3-8242-e343ad824567")
 		)
 		(pad "6" thru_hole circle
@@ -9772,6 +9780,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "HVID")
 			(uuid "66dbe025-b68a-4bf7-ae18-9056a31a90e8")
 		)
 		(pad "7" thru_hole circle
@@ -10663,6 +10672,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "VIDEO")
 			(uuid "8f3da890-350a-4c3a-a615-af3fec9e2fdb")
 		)
 		(pad "13" thru_hole circle
@@ -10671,6 +10681,7 @@
 			(drill 0.8)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
+			(net "VIDEO_SUM")
 			(uuid "7c6defef-1b21-4a28-b209-22ede148fab7")
 		)
 		(pad "14" thru_hole circle
