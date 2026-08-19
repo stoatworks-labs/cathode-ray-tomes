@@ -16,17 +16,14 @@
     { "pattern": "www.cathode-ray-tomes.com", "custom_domain": true }
   ],
 
-  // Static site (browse UI, viewers) is served from ./web.
+  // Everything ships here: the UI *and* the corpus (web/data), so a deploy
+  // publishes code and data together. Rebuild web/data with
+  // `python3 tools/build_assets.py` before deploying.
   "assets": {
     "directory": "./web",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
-
-  // Corpus: browse indexes, per-machine records and the rendered documents.
-  "kv_namespaces": [
-    { "binding": "INDEX", "id": "33984ecf889c488c85903a3e2148bb37" }
-  ],
 
   "vars": {
     "SITE_NAME": "Cathode Ray Tomes",

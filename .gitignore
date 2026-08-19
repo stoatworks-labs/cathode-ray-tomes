@@ -21,6 +21,9 @@ kicad/*/*-backups/
 # Traced vector derivatives of third-party scans — build artefacts, not source.
 web/boards/*/vec/
 
+# web/data/ IS tracked: it is the deployed corpus. Rebuild it from the
+# pipeline with tools/build_assets.py.
+
 # Python
 __pycache__/
 *.pyc
