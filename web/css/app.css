@@ -231,3 +231,10 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
   white-space: nowrap; font-family: var(--mono);
 }
 .textview .pg-sep a { margin-left: 10px; text-transform: none; letter-spacing: 0; }
+
+/* ---- embedded interactive board view ---- */
+iframe.ibom {
+  width: 100%; height: 78vh; min-height: 460px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); display: block;
+}

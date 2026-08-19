@@ -404,6 +404,12 @@ async function board(slug) {
     <p class="sub">${esc(b.mfr || "")}${b.year ? " · " + esc(b.year) : ""}
       ${b.drawing ? ` · drawing <code>${esc(b.drawing)}</code>` : ""}</p>
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
+    ${b.ibom ? `<h2>Board</h2>
+    <p class="sub">Every device at its position on the board, cross-linked to the bill of
+       materials — click a row to find the part, or a part to find the row.</p>
+    <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
+    <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
+
     <h2>Schematic</h2>
     <div class="zoombar">
       <button id="zi">+</button><button id="zo">−</button><button id="zr">reset</button>
