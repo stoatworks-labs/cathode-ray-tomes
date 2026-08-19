@@ -229,7 +229,9 @@ async function reader(id) {
     <div class="docbar">
       <input id="find" placeholder="Search inside this manual…" autocomplete="off">
       <span class="hits" id="hits"></span>
+      ${doc.parts ? `<button id="showparts" class="chip">Parts list (${doc.parts})</button>` : ""}
     </div>
+    <div id="partsbox"></div>
 
     <div class="reader wide">
       <div class="side">
@@ -327,6 +329,36 @@ async function reader(id) {
     const top = seps.filter((s) => s.getBoundingClientRect().top < 120).pop();
     if (top) { cur = +top.id.slice(1); highlightToc(); }
   }, { passive: true });
+
+  // Parts list, recovered from the manual's own illustrated parts pages.
+  const partsBtn = document.getElementById("showparts");
+  if (partsBtn) {
+    let rows = null, open = false;
+    partsBtn.onclick = async () => {
+      const box = document.getElementById("partsbox");
+      open = !open;
+      partsBtn.classList.toggle("on", open);
+      if (!open) { box.innerHTML = ""; return; }
+      box.innerHTML = '<div class="spin">Loading parts…</div>';
+      if (!rows) rows = await api("parts/" + id);
+      box.innerHTML = `
+        <div class="panel" style="padding:0;overflow:auto;margin-bottom:18px">
+          <table class="bom"><thead><tr>
+            <th>Item</th><th>Part number</th><th>Description</th><th>Page</th>
+          </tr></thead><tbody>
+          ${rows.map((r) => `<tr>
+            <td class="q">${esc(r.item)}</td>
+            <td class="refs">${esc(r.part)}</td>
+            <td>${esc(r.desc)}</td>
+            <td class="q"><a href="#" data-p="${r.page}">p${r.page}</a></td>
+          </tr>`).join("")}
+          </tbody></table>
+        </div>`;
+      box.querySelectorAll("a[data-p]").forEach((a) => {
+        a.onclick = (e) => { e.preventDefault(); goto(+a.dataset.p); };
+      });
+    };
+  }
 
   draw();
   highlightToc();

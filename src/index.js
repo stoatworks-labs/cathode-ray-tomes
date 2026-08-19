@@ -111,6 +111,15 @@ async function handleApi(url, env, request) {
     return json({ ...body, title, type, machine, machineName, src, schematic });
   }
 
+  // /api/parts/<docId> — bill of materials recovered from a manual's own
+  // illustrated parts list.
+  if (p.startsWith("parts/")) {
+    const id = p.slice("parts/".length);
+    if (!/^[a-f0-9]{12}$/.test(id)) return notFound("bad doc id");
+    const rows = await asset(env, request, `/data/parts/${id}.json`);
+    return rows ? json(rows) : notFound("no parts list for this document");
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};
