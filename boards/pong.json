@@ -1,0 +1,267 @@
+{
+ "slug": "pong",
+ "name": "Pong (Rev E)",
+ "mfr": "Atari",
+ "year": "1972",
+ "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
+ "note": "Grid topology is exact, read from assembly drawing A001433 Rev E. The drawing is not dimensioned, so pitch is standard 1.0in x 0.75in DIP spacing, which puts the board at roughly the 9.5in x 6.5in of the original.",
+ "size": {
+  "w": 247,
+  "h": 165
+ },
+ "grid": {
+  "rows": "HGFEDCBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 20.0,
+  "rotation": 90
+ },
+ "ics": {
+  "H1": "7400",
+  "H2": "74107",
+  "H3": "7474",
+  "H4": "7400",
+  "H5": "7400",
+  "H6": "7420",
+  "H7": "9316",
+  "G1": "7402",
+  "G2": "7427",
+  "G3": "7400",
+  "G4": "555",
+  "G5": "7410",
+  "G6": "74107",
+  "G7": "9316",
+  "F1": "7433",
+  "F2": "7425",
+  "F3": "74107",
+  "F4": "555",
+  "F5": "7402",
+  "F6": "74107",
+  "F7": "7430",
+  "F8": "7493",
+  "F9": "7493",
+  "E1": "7400",
+  "E2": "7410",
+  "E3": "7427",
+  "E4": "7404",
+  "E5": "7427",
+  "E6": "7400",
+  "E7": "7474",
+  "E8": "7493",
+  "E9": "7493",
+  "D1": "7404",
+  "D2": "7402",
+  "D3": "7430",
+  "D4": "7410",
+  "D5": "7410",
+  "D6": "74153",
+  "D7": "7490",
+  "D8": "7410",
+  "D9": "74107",
+  "C1": "7400",
+  "C2": "7474",
+  "C3": "7400",
+  "C4": "7410",
+  "C5": "7448",
+  "C6": "74153",
+  "C7": "7490",
+  "C8": "74107",
+  "C9": "7404",
+  "B2": "7400",
+  "B3": "9316",
+  "B4": "7483",
+  "B5": "7474",
+  "B6": "7450",
+  "B7": "7400",
+  "B8": "7493",
+  "B9": "555",
+  "A2": "74107",
+  "A3": "9316",
+  "A4": "7486",
+  "A5": "7474",
+  "A6": "7450",
+  "A7": "7420",
+  "A8": "7493",
+  "A9": "555"
+ },
+ "decoupling": {
+  "value": "0.1uF",
+  "count": 9,
+  "y": 9.0,
+  "footprint": "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P5.00mm"
+ },
+ "resistors": [
+  {
+   "ref": "R1",
+   "value": "2.2M"
+  },
+  {
+   "ref": "R2",
+   "value": "330K"
+  },
+  {
+   "ref": "R3",
+   "value": "2.2K"
+  },
+  {
+   "ref": "R4",
+   "value": "1K"
+  },
+  {
+   "ref": "R5",
+   "value": "1M"
+  },
+  {
+   "ref": "R6",
+   "value": "330R"
+  },
+  {
+   "ref": "R7",
+   "value": "330R"
+  },
+  {
+   "ref": "R8",
+   "value": "100R"
+  },
+  {
+   "ref": "R9",
+   "value": "5.6K"
+  },
+  {
+   "ref": "R10",
+   "value": "50K"
+  }
+ ],
+ "resistor_layout": {
+  "x": 214.0,
+  "y0": 24.0,
+  "dy": 6.0,
+  "rotation": 90,
+  "footprint": "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal"
+ },
+ "discretes": [
+  {
+   "ref": "VR1",
+   "value": "LM309K",
+   "footprint": "Package_TO_SOT_THT:TO-3",
+   "x": 238,
+   "y": 28,
+   "rot": 0
+  },
+  {
+   "ref": "C1",
+   "value": "8000uF",
+   "footprint": "Capacitor_THT:CP_Radial_D16.0mm_P7.50mm",
+   "x": 238,
+   "y": 62,
+   "rot": 0
+  },
+  {
+   "ref": "C2",
+   "value": "470uF",
+   "footprint": "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm",
+   "x": 238,
+   "y": 82,
+   "rot": 0
+  },
+  {
+   "ref": "D1",
+   "value": "1N4001",
+   "footprint": "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+   "x": 238,
+   "y": 96,
+   "rot": 90
+  },
+  {
+   "ref": "D2",
+   "value": "1N4001",
+   "footprint": "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+   "x": 238,
+   "y": 104,
+   "rot": 90
+  },
+  {
+   "ref": "D3",
+   "value": "1N4001",
+   "footprint": "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+   "x": 238,
+   "y": 112,
+   "rot": 90
+  },
+  {
+   "ref": "D4",
+   "value": "1N4001",
+   "footprint": "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal",
+   "x": 238,
+   "y": 120,
+   "rot": 90
+  },
+  {
+   "ref": "D5",
+   "value": "1N914",
+   "footprint": "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal",
+   "x": 238,
+   "y": 128,
+   "rot": 90
+  },
+  {
+   "ref": "Q1",
+   "value": "2N3643",
+   "footprint": "Package_TO_SOT_THT:TO-92-2",
+   "x": 226,
+   "y": 140,
+   "rot": 0
+  },
+  {
+   "ref": "Q2",
+   "value": "2N3644",
+   "footprint": "Package_TO_SOT_THT:TO-92-2",
+   "x": 232,
+   "y": 140,
+   "rot": 0
+  },
+  {
+   "ref": "RV1",
+   "value": "50K POT (Player 1)",
+   "footprint": "Potentiometer_THT:Potentiometer_Alpha_RD901F-40-00D_Single_Vertical",
+   "x": 210,
+   "y": 150,
+   "rot": 0
+  },
+  {
+   "ref": "RV2",
+   "value": "50K POT (Player 2)",
+   "footprint": "Potentiometer_THT:Potentiometer_Alpha_RD901F-40-00D_Single_Vertical",
+   "x": 228,
+   "y": 150,
+   "rot": 0
+  },
+  {
+   "ref": "C12",
+   "value": "1.0uF",
+   "footprint": "Capacitor_THT:C_Disc_D7.5mm_W2.5mm_P5.00mm",
+   "x": 120,
+   "y": 158,
+   "rot": 0
+  },
+  {
+   "ref": "C13",
+   "value": "5.0uF",
+   "footprint": "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm",
+   "x": 134,
+   "y": 158,
+   "rot": 0
+  }
+ ],
+ "connectors": [
+  {
+   "ref": "J1",
+   "value": "Edge Connector",
+   "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x15_P2.54mm_Vertical",
+   "x": 8.0,
+   "y": 60.0,
+   "rot": 0
+  }
+ ]
+}

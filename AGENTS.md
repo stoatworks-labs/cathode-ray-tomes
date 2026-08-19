@@ -81,6 +81,26 @@ built by hand from TI datasheets. Note KiCAD omits no-connect pins, so its
 symbol legitimately has fewer pins than the package: a 7493 is DIP-14 with four
 NCs. Only an *excess* of pins is a contradiction.
 
+## Adding a board
+
+`boards/<slug>.json` describes a board's component grid; `tools/build_board.py
+<slug>` turns it into a .kicad_pcb. Packages are derived from the pin count in
+`devices.py`, so a 555 becomes DIP-8 and a 9316 DIP-16 without being told.
+Adding a machine is therefore data entry — *once you have the grid map*.
+
+Getting the grid map is the part that does not automate. It comes from a
+component-location drawing, read by eye. Pong has one (assembly drawing
+A001433, every IC at a labelled A-H x 1-9 cell). Not every manual does:
+
+- **Breakout TM-058** carries a PCB parts list (page 55, A004533-01) giving IC
+  *types* — 7400, 7408, 7432, 74192, 9316, 82S16 RAM and so on — but OCR
+  garbles the reference designators and there is no grid. The ink-heavy pages
+  in that manual are the **Motorola XM501 monitor** schematic, not the game
+  board. A BOM is recoverable; a layout is not, from this document alone.
+
+So the realistic unit of work per board is: find a component-location drawing,
+read it once, write the JSON. Everything after that is scripted.
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
