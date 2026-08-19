@@ -5,6 +5,11 @@
   "compatibility_date": "2026-08-01",
   "observability": { "enabled": true },
 
+  // Keep the workers.dev hostname live alongside the custom domain: it is a
+  // useful fallback when a network's web filter blocks the (newly registered)
+  // apex domain.
+  "workers_dev": true,
+
   // Custom domain (zone cathode-ray-tomes.com is active on this account).
   "routes": [
     { "pattern": "cathode-ray-tomes.com", "custom_domain": true },
