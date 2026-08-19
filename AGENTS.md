@@ -52,6 +52,35 @@ Figures remain the open question: they are the real payload, and vectorising the
 cheaper than raster. The plan is figure crops for a curated set, kept under the
 20,000-file Workers Assets cap, so R2 stays unnecessary.
 
+## Extracting connectivity from the scans
+
+Hand-tracing does not scale to 506 schematic documents, so there is a pipeline
+for recovering it from the images:
+
+    tools/extract_nets.py    topology from the scan (CV, no OCR)
+    tools/devices.py         pinouts and gate structure — the constraint set
+    tools/check_devices.py   cross-checks that table against KiCAD's symbols
+    tools/validate_nets.py   rejects electrically impossible readings
+
+The load-bearing idea: **pin numbers are the unreliable part, and the fix is
+not better OCR.** A candidate reading is trusted because the circuit it implies
+is possible, not because the digits looked clear. Supply pins must carry
+supply, pin numbers must exist on the package, two totem-pole outputs must not
+share a net, and — the strongest constraint — gates must be coherent. A 7427
+output misread as pin 8 instead of 6 passes every per-pin check, because 8 is
+also an output; what exposes it is gate 3 driving with nothing feeding it while
+gate 2 has inputs and no output.
+
+Measured against the hand-traced video chain: the correct netlist passes with
+zero errors, and four injected OCR-style faults (6→8, 14→4, an out-of-range
+pin, two outputs shorted) are all caught.
+
+`check_devices.py` verifies 17 of 20 parts against KiCAD's library. The three
+it cannot (555, 7425, 7450) are the symbols KiCAD does not ship — the same ones
+built by hand from TI datasheets. Note KiCAD omits no-connect pins, so its
+symbol legitimately has fewer pins than the package: a 7493 is DIP-14 with four
+NCs. Only an *excess* of pins is a contradiction.
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
