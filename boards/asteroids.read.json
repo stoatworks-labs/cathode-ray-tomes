@@ -270,10 +270,28 @@
  "notes": [
   "ROM/PROM substitution table: ROM 035127 at N/P3; PROM 035129 at K4, 035130 at L4, with a split pad bridged at K/L3.",
   "Revision pairs are a one-position shift: the -05/-06 board moves a designator up one row from the -01 thru -04 board (D8->D9, D9->D10, C9->C10, J8->J9). Any build must declare which revision it describes.",
-  "Revision convention confirmed verbatim on the drawing: red designators are for -05/-06 assemblies; the LS174 example is F10 on -01 thru -04 and F11 on -05/-06."
+  "Revision convention confirmed verbatim on the drawing: red designators are for -05/-06 assemblies; the LS174 example is F10 on -01 thru -04 and F11 on -05/-06.",
+  "Sheet 01A is the Video Power Supply wiring diagram (034633-01) \u2014 cabinet wiring, no game-board ICs. Sheet 01B is the microcomputer: clock, reset, watchdog. Designators are board-wide across sheets: D4/LS74, B5/LS04, B6/LS14 and C6/LS00 appear identically on 01B and 02A, which independently corroborates the sheet 2A reading."
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
   "F8 is a rate multiplier on the main sheet and a 035904 PROM inside the '-06 PCB ONLY' block. The -06 section is additional circuitry, so designators there may not map onto other revisions."
- ]
+ ],
+ "sheet1B": {
+  "D5": {
+   "part": "74LS393",
+   "note": "watchdog counter"
+  },
+  "Y1": {
+   "part": "crystal 12.096MHz",
+   "note": "not an IC"
+  },
+  "C4": {
+   "part": "counter (part not yet read)",
+   "note": "manual text: 'counters C4 and B4'"
+  },
+  "B4": {
+   "part": "counter (part not yet read)"
+  }
+ }
 }
