@@ -1,0 +1,16 @@
+{
+ "slug": "asteroids",
+ "name": "Asteroids (rev 4)",
+ "mfr": "Atari",
+ "year": "1979",
+ "status": "source located, complement not yet read",
+ "layout_source": "DP-143 drawing package, sheets 01A/01B/02A/02B (4 sheets per revision)",
+ "grid": "letter+number designators, A2..L12 seen; larger than Pong's A-H x 1-9",
+ "findings": [
+  "Each IC block on the drawing carries both its grid designator and its part number.",
+  "Designators are recoverable by OCR (92 found on sheet 2 side A); the hand-lettered part numbers are not (1 of ~40).",
+  "The technical manual contains no designator-to-part table, so the parts must be read from the drawings.",
+  "Reference designations differ by PCB revision: red designators apply to -05/-06 boards, black to -01 thru -04. The same chip is C10 on one and C11 on the other. Any conversion must state which revision it describes."
+ ],
+ "estimate": "~100 ICs across 4 sheets, read by eye"
+}
