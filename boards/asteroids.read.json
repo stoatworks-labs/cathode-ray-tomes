@@ -150,11 +150,6 @@
    "alt": "L6",
    "note": "second LS04 package"
   },
-  "L8": {
-   "part": "74LS42",
-   "alt": "L9",
-   "note": "decoder"
-  },
   "D6": {
    "part": "74LS04",
    "note": "inverter to BLANK"
@@ -275,11 +270,11 @@
   "Sheet 02B is Inputs/Outputs: player input muxes and the sound section (555 thump oscillator, 566 VCO for the saucer). Text references N7 (sound bit code) and M10 (control-signal latch).",
   "Sheet 01B carries the full memory map: vector RAM 4000-47FF, vector ROM 5000-57FF, program 6800-7FFF, with switch and sound registers from 2003 to 3E00.",
   "Program ROMs are Atari-numbered 035131-035135 at J2, N2, H2, M2, F2; further ROM positions run off the right of this crop and are not yet read.",
-  "Board assembly numbers are 034986-01 thru -06; sheet 01B is rev H for -01 thru -04 and rev B for -05/-06. There is no single 'Asteroids board': the program memory alone has four distinct configurations, so boards/asteroids.json must target one named revision."
+  "Board assembly numbers are 034986-01 thru -06; sheet 01B is rev H for -01 thru -04 and rev B for -05/-06. There is no single 'Asteroids board': the program memory alone has four distinct configurations, so boards/asteroids.json must target one named revision.",
+  "D12 means different things on different revisions: a CD4016B on -01 thru -04, and the AD561J DAC on -05/-06. Designator reuse across revisions, not a misread."
  ],
  "conflicts": [
-  "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
-  "L8: read as a 74LS42 decoder on sheet 2A, but sheet 01B's power text names 'operational amplifiers P11 and L8' in the audio output. One of the two is wrong, or the designator is reused across board areas. Needs a physical board."
+  "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board."
  ],
  "sheet1B": {
   "D5": {
@@ -384,12 +379,14 @@
    "note": "option switches"
   },
   "D11": {
-   "part": "DAC",
-   "note": "X axis; text: 'the DACs (D11 and B11)'"
+   "part": "AD561J",
+   "alt": "D12",
+   "note": "X DAC; drawing states D11 on -01 thru -04, D12 on -05/-06"
   },
   "B11": {
-   "part": "DAC",
-   "note": "Y axis"
+   "part": "AD561J",
+   "alt": "B12",
+   "note": "Y DAC"
   },
   "D12": {
    "part": "CD4016B",
@@ -401,6 +398,31 @@
   "E12": {
    "part": "op-amp",
    "note": "video output stage"
+  },
+  "M10": {
+   "part": "74LS259",
+   "alt": "M11",
+   "note": "sound control latch"
+  },
+  "M9": {
+   "part": "CD4016B",
+   "alt": "M10",
+   "note": "analogue switch"
+  },
+  "M8": {
+   "part": "NE555",
+   "alt": "M9",
+   "note": "saucer fire VCO"
+  },
+  "L9b": {
+   "part": "NE555",
+   "alt": "L10",
+   "note": "ship fire VCO"
+  },
+  "L8": {
+   "part": "LM324",
+   "alt": "L9",
+   "note": "audio op-amps; corroborated by sheet 01B text"
   }
  },
  "corrections": [
@@ -440,6 +462,7 @@
   }
  },
  "resolved": [
-  "F8 (rate multiplier vs 035904 PROM) is RESOLVED, and both readings were right. The Asteroids parts list names 'A034986-05 Game PCB Assembly (with 7497 Rate Multipliers)' and 'A034986-06 ... (with PROM)'. The -06 board replaces the rate multipliers with PROMs, which is exactly what the '-06 PCB ONLY' block on the drawing shows. Confirmed from a different document entirely."
+  "F8 (rate multiplier vs 035904 PROM) is RESOLVED, and both readings were right. The Asteroids parts list names 'A034986-05 Game PCB Assembly (with 7497 Rate Multipliers)' and 'A034986-06 ... (with PROM)'. The -06 board replaces the rate multipliers with PROMs, which is exactly what the '-06 PCB ONLY' block on the drawing shows. Confirmed from a different document entirely.",
+  "L8 is an LM324 audio op-amp, not an LS42 decoder. Corroborated twice \u2014 the sound section shows four LM324 sections labelled L8/L9, and sheet 01B's power notes name 'operational amplifiers P11 and L8'. The sheet 2A reading was wrong and is withdrawn."
  ]
 }

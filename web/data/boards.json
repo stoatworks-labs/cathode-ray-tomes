@@ -1,15 +1,67 @@
 [
-  {
-    "slug": "pong",
-    "name": "Pong (Rev E)",
-    "mfr": "Atari",
-    "year": "1972",
-    "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
-    "devices": 100,
-    "netsTraced": "partial",
-    "status": "Component complement complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions plus 34 discretes. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are traced by hand from schematic 002826 Rev E and currently cover the video output chain only \u2014 8 nets: VBLANK, 4V, NET, HVID, VVID, VIDEO and the two intermediate sums. The rest of the sheet is not yet traced, so net highlighting is partial.",
-    "svg": "/boards/pong/schematic.svg",
-    "bom": "/boards/pong/bom.csv",
-    "ibom": "/boards/pong/pong-ibom.html"
-  }
+ {
+  "slug": "pong",
+  "name": "Pong (Rev E)",
+  "mfr": "Atari",
+  "year": "1972",
+  "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
+  "devices": 100,
+  "netsTraced": "partial",
+  "status": "Component complement complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions plus 34 discretes. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are traced by hand from schematic 002826 Rev E and currently cover the video output chain only \u2014 8 nets: VBLANK, 4V, NET, HVID, VVID, VIDEO and the two intermediate sums. The rest of the sheet is not yet traced, so net highlighting is partial.",
+  "svg": "/boards/pong/schematic.svg",
+  "bom": "/boards/pong/bom.csv",
+  "ibom": "/boards/pong/pong-ibom.html"
+ },
+ {
+  "slug": "asteroids-03",
+  "name": "Asteroids (034986-03)",
+  "mfr": "Atari",
+  "year": "1979",
+  "machine": "asteroid",
+  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
+  "devices": 109,
+  "netsTraced": false,
+  "status": "Eleven PROMs. Rate multipliers fitted. 109 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+  "ibom": "/boards/asteroids-03/asteroids-03-ibom.html",
+  "bom": "/boards/asteroids-03/bom.csv"
+ },
+ {
+  "slug": "asteroids-04",
+  "name": "Asteroids (034986-04)",
+  "mfr": "Atari",
+  "year": "1979",
+  "machine": "asteroid",
+  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
+  "devices": 105,
+  "netsTraced": false,
+  "status": "Three ROMs replace the eleven PROMs. Rate multipliers fitted. 105 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+  "ibom": "/boards/asteroids-04/asteroids-04-ibom.html",
+  "bom": "/boards/asteroids-04/bom.csv"
+ },
+ {
+  "slug": "asteroids-05",
+  "name": "Asteroids (034986-05)",
+  "mfr": "Atari",
+  "year": "1979",
+  "machine": "asteroid",
+  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
+  "devices": 100,
+  "netsTraced": false,
+  "status": "Designators shift one position. 7497 rate multipliers fitted, per the parts list entry 'Game PCB Assembly (with 7497 Rate Multipliers)'. 100 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+  "ibom": "/boards/asteroids-05/asteroids-05-ibom.html",
+  "bom": "/boards/asteroids-05/bom.csv"
+ },
+ {
+  "slug": "asteroids-06",
+  "name": "Asteroids (034986-06)",
+  "mfr": "Atari",
+  "year": "1979",
+  "machine": "asteroid",
+  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
+  "devices": 100,
+  "netsTraced": false,
+  "status": "Designators shift one position. Rate multipliers replaced by 035904/035905 PROMs, per the drawing's '-06 PCB ONLY' block and the parts list entry 'Game PCB Assembly (with PROM)'. 100 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+  "ibom": "/boards/asteroids-06/asteroids-06-ibom.html",
+  "bom": "/boards/asteroids-06/bom.csv"
+ }
 ]
