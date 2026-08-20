@@ -139,6 +139,8 @@ async function machine(slug) {
   const boardList = await api("boards").catch(() => []);
   const kb = boardList.find((b) => b.slug === slug);
 
+  loadDiagnostics(slug);
+
   const cpu = (m.cpu || []).map((c) => `${esc(c.n)}${c.mhz ? ` @ ${c.mhz} MHz` : ""}`).join("<br>") || "—";
   const aud = (m.audio || []).map((a) => `${esc(a.n)}${a.mhz ? ` @ ${a.mhz} MHz` : ""}`).join("<br>") || "—";
   const disp = (m.display || []).map((d) =>
@@ -164,6 +166,8 @@ async function machine(slug) {
       <dt>Players</dt><dd>${inp.p ?? "—"}${inp.co ? ` · ${inp.co} coin slots` : ""}</dd>
       <dt>Controls</dt><dd>${ctrl}</dd>
     </dl></div>
+
+    <div id="diag"></div>
 
     <h2>Documents (${(m.docs || []).length})</h2>
     ${docSections(m.docs || [])}
@@ -210,6 +214,27 @@ function docSections(docs) {
           ${d.sections && d.pages >= 3 ? `<span class="badge">${d.sections} sections</span>` : ""}
           ${d.schematic ? '<span class="badge doc">schematic</span>' : ""}
         </a>`).join("")}</div>`).join("");
+}
+
+/** Diagnostic sections for a machine — where someone with a dead board starts. */
+async function loadDiagnostics(slug) {
+  const rows = await api("diagnostics/" + encodeURIComponent(slug)).catch(() => []);
+  const box = document.getElementById("diag");
+  if (!box || !rows.length) return;
+  const byKind = {};
+  rows.forEach((r) => (byKind[r.kind] = byKind[r.kind] || []).push(r));
+  box.innerHTML = `<h2>Diagnostics &amp; service (${rows.length})</h2>
+    ${Object.entries(byKind).map(([kind, rs]) => `
+      <div class="panel" style="margin-bottom:10px">
+        <strong>${esc(kind)}</strong>
+        <div class="rows" style="margin-top:8px">${rs.slice(0, 12).map((r) => `
+          <a class="row" href="/doc/${r.doc}#p${r.page}">
+            <span class="nm">${esc(r.section)}</span>
+            <span class="grow"></span>
+            <span class="meta">${esc(prettyTitle(r.title))}</span>
+            <span class="badge">p${r.page}</span>
+          </a>`).join("")}</div>
+      </div>`).join("")}`;
 }
 
 /* ---------- manual reader ---------- */
@@ -362,6 +387,10 @@ async function reader(id) {
 
   draw();
   highlightToc();
+
+  // Deep link from the diagnostics index: /doc/<id>#p11 lands on that page.
+  const anchor = location.hash.match(/^#p(\d+)$/);
+  if (anchor) setTimeout(() => goto(+anchor[1]), 60);
 }
 
 /* ---------- corpus-wide search ---------- */

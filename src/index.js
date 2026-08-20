@@ -140,6 +140,15 @@ async function handleApi(url, env, request) {
     return idx ? json(idx) : notFound("no signal index for this board");
   }
 
+  // /api/diagnostics/<machine> — the self-test, troubleshooting and adjustment
+  // sections across that machine's manuals, deep-linked to the page.
+  if (p.startsWith("diagnostics/")) {
+    const slug = decodeURIComponent(p.slice("diagnostics/".length));
+    if (!/^[a-z0-9][a-z0-9._-]*$/i.test(slug)) return notFound("bad slug");
+    const rows = await asset(env, request, `/data/diagnostics/${slug}.json`);
+    return rows ? json(rows) : json([]);
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};
