@@ -167,6 +167,15 @@ async function handleApi(url, env, request) {
     return rec ? json(rec) : json(null);
   }
 
+  // /api/related/<board> — other boards that share hardware with this one.
+  // A known-good sibling is often the fastest way to confirm a fault.
+  if (p.startsWith("related/")) {
+    const b = p.slice("related/".length);
+    if (!/^[a-z0-9-]{1,40}$/.test(b)) return notFound("bad board");
+    const rows = await asset(env, request, `/data/related/${b}.json`);
+    return json(rows || []);
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};

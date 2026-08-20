@@ -517,6 +517,8 @@ async function board(slug) {
     <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
     <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
 
+    <div id="related"></div>
+
     <h2>Find a chip</h2>
     <div class="searchbar">
       <input id="chipq" placeholder="Board position or part — e.g. C4, 74LS157, state machine…" autocomplete="off">
@@ -538,6 +540,20 @@ async function board(slug) {
         <th data-k="refs">References (board grid position)</th>
       </tr></thead><tbody id="bom"></tbody></table>
     </div>`;
+
+  /* Related boards — a known-good sibling is often the fastest confirmation. */
+  api("related/" + slug).then((rows) => {
+    const box = document.getElementById("related");
+    if (!box || !rows.length) return;
+    box.innerHTML = `<h2>Related hardware</h2>
+      <div class="rows">${rows.map((r) => `
+        ${r.board ? `<a class="row" href="/board/${esc(r.board)}">` : '<div class="row">'}
+          <span class="nm">${esc(r.name)}</span>
+          <span class="badge doc">${esc(r.kind)}</span>
+          <span class="grow"></span>
+          <span class="meta">${esc(r.detail)}</span>
+        ${r.board ? "</a>" : "</div>"}`).join("")}</div>`;
+  }).catch(() => {});
 
   /* chip lookup — "what is at C4, and what does it do?" */
   const chipq = document.getElementById("chipq");
