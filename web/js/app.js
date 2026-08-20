@@ -467,25 +467,35 @@ async function board(slug) {
   /* chip lookup — "what is at C4, and what does it do?" */
   const chipq = document.getElementById("chipq");
   if (chipq) {
-    let idx = null;
+    let idx = null, sig = null;
     const out = document.getElementById("chipout");
     chipq.oninput = async () => {
       const q = chipq.value.trim().toLowerCase();
       if (!q) { out.innerHTML = ""; return; }
       if (!idx) idx = await api("chips/" + slug).catch(() => ({}));
+      if (!sig) sig = await api("signals/" + slug).catch(() => ({}));
       const hits = Object.entries(idx).filter(([d, v]) =>
         d.toLowerCase() === q || d.toLowerCase().startsWith(q) ||
         (v.part || "").toLowerCase().includes(q) ||
         (v.section || "").toLowerCase().includes(q)).slice(0, 40);
-      out.innerHTML = hits.length ? `<div class="rows">${hits.map(([d, v]) => `
+      const sigHits = Object.entries(sig).filter(([n]) =>
+        n.toLowerCase().includes(q)).slice(0, 12);
+      const sigHtml = sigHits.length ? `<h2>Signals</h2><div class="rows">${sigHits.map(([n, where]) => `
+          <div class="row">
+            <span class="nm mono">${esc(n)}</span>
+            <span class="meta">appears on ${Object.keys(where).map(esc).join(", ")}</span>
+            <span class="grow"></span>
+            <span class="badge">${Object.values(where).reduce((a, b) => a + b, 0)} refs</span>
+          </div>`).join("")}</div>` : "";
+      out.innerHTML = (hits.length ? `<div class="rows">${hits.map(([d, v]) => `
           <div class="row">
             <span class="nm mono">${esc(d)}</span>
             <span class="badge doc">${esc(v.part)}</span>
             <span class="meta">${esc(v.section || "")}</span>
             <span class="grow"></span>
             ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
-          </div>`).join("")}</div>`
-        : `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
+          </div>`).join("")}</div>` : "") + sigHtml
+        || `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
     };
   }
 

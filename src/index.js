@@ -130,6 +130,16 @@ async function handleApi(url, env, request) {
     return idx ? json(idx) : notFound("no chip index for this board");
   }
 
+  // /api/signals/<board> — signal name -> which sheets it appears on. Answers
+  // "where do I look for VBLANK", which is the first step in chasing a symptom
+  // back to a probe point.
+  if (p.startsWith("signals/")) {
+    const b = p.slice("signals/".length);
+    if (!/^[a-z0-9-]{1,40}$/.test(b)) return notFound("bad board");
+    const idx = await asset(env, request, `/data/signals/${b}.json`);
+    return idx ? json(idx) : notFound("no signal index for this board");
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};
