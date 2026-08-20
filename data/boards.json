@@ -63,5 +63,18 @@
   "status": "Designators shift one position. Rate multipliers replaced by 035904/035905 PROMs, per the drawing's '-06 PCB ONLY' block and the parts list entry 'Game PCB Assembly (with PROM)'. 100 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
   "ibom": "/boards/asteroids-06/asteroids-06-ibom.html",
   "bom": "/boards/asteroids-06/bom.csv"
+ },
+ {
+  "slug": "battlezone",
+  "name": "Battlezone",
+  "mfr": "Atari",
+  "year": "1980",
+  "machine": "bzone",
+  "drawing": "DP-156 drawing package, sheet 02A",
+  "devices": 23,
+  "netsTraced": false,
+  "status": "23 devices read from sheet 02A (clock, MPU, address decode, RAM). A board map for diagnosis, not a complete bill of materials.",
+  "ibom": "/boards/battlezone/battlezone-ibom.html",
+  "bom": "/boards/battlezone/bom.csv"
  }
 ]

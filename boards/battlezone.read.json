@@ -1,0 +1,127 @@
+{
+ "machine": "bzone",
+ "name": "Battlezone",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-156 drawing package",
+ "sheets": {
+  "02A": {
+   "P5": {
+    "part": "74S04",
+    "section": "Clock"
+   },
+   "N4": {
+    "part": "74193",
+    "section": "Clock",
+    "note": "12MHz down counter"
+   },
+   "N5": {
+    "part": "74LS393",
+    "section": "Clock",
+    "note": "3kHz / 12kHz"
+   },
+   "P8": {
+    "part": "74LS08",
+    "section": "Clock",
+    "note": "E3MHZ / E6MHZ gating"
+   },
+   "B6": {
+    "part": "74LS14",
+    "section": "Power Reset and Watchdog"
+   },
+   "L5": {
+    "part": "74LS08",
+    "section": "Power Reset and Watchdog",
+    "note": "watchdog disable"
+   },
+   "J4": {
+    "part": "74LS00",
+    "section": "Power Reset and Watchdog"
+   },
+   "M4": {
+    "part": "74LS393",
+    "section": "Power Reset and Watchdog",
+    "note": "watchdog counter"
+   },
+   "L10": {
+    "part": "74LS74",
+    "section": "Power Reset and Watchdog"
+   },
+   "L3": {
+    "part": "6502A",
+    "section": "Microprocessor",
+    "note": "Atari 90-6013; drawn spanning L/M/N3"
+   },
+   "N2": {
+    "part": "74LS244",
+    "section": "Microprocessor",
+    "note": "address buffer A8-A12"
+   },
+   "K3": {
+    "part": "74LS244",
+    "section": "Microprocessor",
+    "note": "address buffer A0-A7"
+   },
+   "P4": {
+    "part": "74LS245",
+    "section": "Microprocessor",
+    "note": "data bus transceiver; AM83048 alternate with different pin numbering"
+   },
+   "K2": {
+    "part": "74S04",
+    "section": "Microprocessor"
+   },
+   "L2": {
+    "part": "74LS32",
+    "section": "Microprocessor"
+   },
+   "M2": {
+    "part": "74LS139",
+    "section": "Address Decode",
+    "note": "PMEMH/PMEML/VMEM and ROM0-5 select"
+   },
+   "C4": {
+    "part": "74LS139",
+    "section": "Address Decode",
+    "note": "I/O and RAM select"
+   },
+   "K5": {
+    "part": "74LS139",
+    "section": "Address Decode",
+    "note": "VGRST, WDCLR, VGGO, COINCK, OPT0/1, SINP"
+   },
+   "J5": {
+    "part": "74LS32",
+    "section": "Address Decode"
+   },
+   "K4": {
+    "part": "74LS10",
+    "section": "Address Decode"
+   },
+   "M7": {
+    "part": "74LS02",
+    "section": "Address Decode",
+    "note": "DATA ENABLE"
+   },
+   "H2": {
+    "part": "2114",
+    "section": "RAM Memory",
+    "note": "Atari 90-7033"
+   },
+   "J2": {
+    "part": "2114",
+    "section": "RAM Memory",
+    "note": "Atari 90-7033"
+   }
+  }
+ },
+ "notes": [
+  "Two 12.096 MHz crystals (Y1, Y2) with an alternate clock circuit drawn dashed \u2014 the board was built both ways.",
+  "Clock tree: 12MHz -> N4 (74193) -> 6/3/1.5MHz, and N5 (LS393) -> 3kHz/12kHz. E3MHZ and E6MHZ are gated through P8.",
+  "Same MPU as Asteroids \u2014 Atari 90-6013 (6502A) \u2014 and the same LS245/AM83048 transceiver substitution with alternate pin numbering.",
+  "A 50-pin test connector is fitted, marked 'FOR ATARI MANUFACTURING ONLY', bringing out the full address and data bus plus DATA DISABLE.",
+  "J19 (24-pin) carries the buffered bus to the Auxiliary Math Box PCB: EDB0-7, EAB0-6, ER/WB, EI/O, EPHI2 and the E6MHZ/E12KHZ/E3MHZ clocks.",
+  "Decode chain: M2 splits program/vector memory, C4 selects RAM vs I/O, K5 fans out to VGRST, WDCLR, VGGO, COINCK, OPT0/1 and SINP."
+ ],
+ "conflicts": []
+}
