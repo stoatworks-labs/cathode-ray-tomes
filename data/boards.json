@@ -130,6 +130,19 @@
   "ibom": "/boards/pong/pong-ibom.html"
  },
  {
+  "slug": "red-baron",
+  "name": "Red Baron",
+  "mfr": "Atari",
+  "year": "1980",
+  "machine": "redbaron",
+  "drawing": "DP-169 drawing package, sheet 02A",
+  "devices": 10,
+  "netsTraced": false,
+  "status": "10 devices from sheet 02A (clock, power reset, watchdog), read directly and found identical to Battlezone. A board map for diagnosis, not a complete bill of materials.",
+  "ibom": "/boards/red-baron/red-baron-ibom.html",
+  "bom": "/boards/red-baron/bom.csv"
+ },
+ {
   "slug": "tempest",
   "name": "Tempest",
   "mfr": "Atari",

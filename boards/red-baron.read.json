@@ -1,0 +1,63 @@
+{
+ "machine": "redbaron",
+ "name": "Red Baron",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-169 drawing package",
+ "sheets": {
+  "02A": {
+   "P5": {
+    "part": "74S04",
+    "section": "Clock"
+   },
+   "N4": {
+    "part": "74193",
+    "section": "Clock",
+    "note": "12MHz down counter"
+   },
+   "N5": {
+    "part": "74LS393",
+    "section": "Clock",
+    "note": "3kHz / 12kHz"
+   },
+   "P8": {
+    "part": "74LS08",
+    "section": "Clock",
+    "note": "E3MHZ / E6MHZ gating"
+   },
+   "B6": {
+    "part": "74LS14",
+    "section": "Power Reset and Watchdog"
+   },
+   "L5": {
+    "part": "74LS08",
+    "section": "Power Reset and Watchdog",
+    "note": "watchdog disable"
+   },
+   "J4": {
+    "part": "74LS00",
+    "section": "Power Reset and Watchdog"
+   },
+   "M4": {
+    "part": "74LS393",
+    "section": "Power Reset and Watchdog",
+    "note": "watchdog counter"
+   },
+   "L10": {
+    "part": "74LS74",
+    "section": "Power Reset and Watchdog"
+   },
+   "R9": {
+    "part": "74S04",
+    "section": "Clock",
+    "note": "oscillator buffer"
+   }
+  }
+ },
+ "notes": [
+  "Red Baron and Battlezone are the same hardware platform. The clock, power reset and watchdog sections were read directly off Red Baron's DP-169 sheet 02A and are identical to Battlezone's DP-156 sheet 02A \u2014 same designators, same parts: P5/74S04, N4/74193, N5/74LS393, P8/74LS08, B6/74LS14, L5/74LS08, J4/74LS00, M4/74LS393, L10/74LS74. This was verified chip by chip rather than assumed from the shared Math Box.",
+  "Both also use the same Auxiliary Math Box PCB, so Battlezone's 68 signature codes apply here and a known-good board from either game can check the other.",
+  "Dual 12.096 MHz crystals Y1/Y2 with an alternate oscillator drawn dashed, exactly as on Battlezone \u2014 the board was built both ways."
+ ],
+ "conflicts": []
+}
