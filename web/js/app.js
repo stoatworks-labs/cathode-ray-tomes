@@ -442,6 +442,12 @@ async function board(slug) {
     <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
     <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
 
+    <h2>Find a chip</h2>
+    <div class="searchbar">
+      <input id="chipq" placeholder="Board position or part — e.g. C4, 74LS157, state machine…" autocomplete="off">
+    </div>
+    <div id="chipout"></div>
+
     <h2>Schematic</h2>
     <div class="zoombar">
       <button id="zi">+</button><button id="zo">−</button><button id="zr">reset</button>
@@ -457,6 +463,31 @@ async function board(slug) {
         <th data-k="refs">References (board grid position)</th>
       </tr></thead><tbody id="bom"></tbody></table>
     </div>`;
+
+  /* chip lookup — "what is at C4, and what does it do?" */
+  const chipq = document.getElementById("chipq");
+  if (chipq) {
+    let idx = null;
+    const out = document.getElementById("chipout");
+    chipq.oninput = async () => {
+      const q = chipq.value.trim().toLowerCase();
+      if (!q) { out.innerHTML = ""; return; }
+      if (!idx) idx = await api("chips/" + slug).catch(() => ({}));
+      const hits = Object.entries(idx).filter(([d, v]) =>
+        d.toLowerCase() === q || d.toLowerCase().startsWith(q) ||
+        (v.part || "").toLowerCase().includes(q) ||
+        (v.section || "").toLowerCase().includes(q)).slice(0, 40);
+      out.innerHTML = hits.length ? `<div class="rows">${hits.map(([d, v]) => `
+          <div class="row">
+            <span class="nm mono">${esc(d)}</span>
+            <span class="badge doc">${esc(v.part)}</span>
+            <span class="meta">${esc(v.section || "")}</span>
+            <span class="grow"></span>
+            ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
+          </div>`).join("")}</div>`
+        : `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
+    };
+  }
 
   /* pan + zoom */
   const wrap = document.getElementById("wrap"), img = document.getElementById("svg");

@@ -1,265 +1,336 @@
 {
  "sheet2A": {
   "D4": {
-   "part": "74LS74"
+   "part": "74LS74",
+   "section": "Vector Generator Program Counter"
   },
   "B9": {
-   "part": "74LS32"
+   "part": "74LS32",
+   "section": "Vector Generator Program Counter"
   },
   "K6": {
-   "part": "74LS08"
+   "part": "74LS08",
+   "section": "Vector Generator Program Counter"
   },
   "K5": {
-   "part": "74LS191"
+   "part": "74LS191",
+   "section": "Vector Generator Program Counter"
   },
   "F4": {
-   "part": "74LS670"
+   "part": "74LS670",
+   "section": "Vector Generator Program Counter"
   },
   "H4": {
-   "part": "74LS670"
+   "part": "74LS670",
+   "section": "Vector Generator Program Counter"
   },
   "J4": {
-   "part": "74LS670"
+   "part": "74LS670",
+   "section": "Vector Generator Program Counter"
   },
   "B8": {
    "part": "74LS08",
-   "alt": "B9"
+   "alt": "B9",
+   "section": "Vector Generator Program Counter"
   },
   "B5": {
-   "part": "74LS04"
+   "part": "74LS04",
+   "section": "Vector Generator Program Counter"
   },
   "C6": {
-   "part": "74LS00"
+   "part": "74LS00",
+   "section": "Vector Generator Program Counter"
   },
   "F5": {
-   "part": "74LS193"
+   "part": "74LS193",
+   "section": "Vector Generator Program Counter"
   },
   "H5": {
-   "part": "74LS193"
+   "part": "74LS193",
+   "section": "Vector Generator Program Counter"
   },
   "J5": {
-   "part": "74LS193"
+   "part": "74LS193",
+   "section": "Vector Generator Program Counter"
   },
   "H6": {
-   "part": "74LS367"
+   "part": "74LS367",
+   "section": "Vector Generator Program Counter"
   },
   "J6": {
-   "part": "74LS367"
+   "part": "74LS367",
+   "section": "Vector Generator Program Counter"
   },
   "K3": {
-   "part": "74LS157"
+   "part": "74LS157",
+   "section": "Memory Address Selector"
   },
   "J3": {
-   "part": "74LS157"
+   "part": "74LS157",
+   "section": "Memory Address Selector"
   },
   "H3": {
-   "part": "74LS157"
+   "part": "74LS157",
+   "section": "Memory Address Selector"
   },
   "F3": {
-   "part": "74LS157"
+   "part": "74LS157",
+   "section": "Memory Address Selector"
   },
   "M5": {
-   "part": "74LS32"
+   "part": "74LS32",
+   "section": "Memory Address Selector"
   },
   "L3": {
-   "part": "74LS139"
+   "part": "74LS139",
+   "section": "Memory Address Selector"
   },
   "L5": {
-   "part": "74LS04"
+   "part": "74LS04",
+   "section": "Memory Address Selector"
   },
   "R4": {
    "part": "2114",
-   "note": "Atari 90-7033, vector generator RAM"
+   "note": "Atari 90-7033, vector generator RAM",
+   "section": "Vector Generator RAM"
   },
   "P4": {
    "part": "2114",
-   "note": "Atari 90-7033"
+   "note": "Atari 90-7033",
+   "section": "Vector Generator RAM"
   },
   "M4": {
    "part": "2114",
-   "note": "Atari 90-7033"
+   "note": "Atari 90-7033",
+   "section": "Vector Generator RAM"
   },
   "N4": {
    "part": "2114",
-   "note": "Atari 90-7033"
+   "note": "Atari 90-7033",
+   "section": "Vector Generator RAM"
   },
   "K4": {
    "part": "83S185",
-   "note": "vector ROM, see table"
+   "note": "vector ROM, see table",
+   "section": "Vector Generator ROM"
   },
   "L4": {
    "part": "83S185",
-   "note": "vector ROM, see table"
+   "note": "vector ROM, see table",
+   "section": "Vector Generator ROM"
   },
   "N3": {
    "part": "8316E",
-   "note": "vector ROM N/P3, see table"
+   "note": "vector ROM N/P3, see table",
+   "section": "Vector Generator ROM"
   },
   "R2": {
    "part": "74LS245",
    "alt_part": "AM83048",
-   "note": "data buffer; pin numbering differs if AM83048 fitted"
+   "note": "data buffer; pin numbering differs if AM83048 fitted",
+   "section": "Vector Generator Data Buffer"
   },
   "K7": {
    "part": "74LS273",
-   "note": "data latch 3"
+   "note": "data latch 3",
+   "section": "Vector Generator Memory Data Latches"
   },
   "J7": {
    "part": "74LS273",
-   "note": "data latch 2"
+   "note": "data latch 2",
+   "section": "Vector Generator Memory Data Latches"
   },
   "F7": {
    "part": "74LS273",
-   "note": "data latch 1"
+   "note": "data latch 1",
+   "section": "Vector Generator Memory Data Latches"
   },
   "H7": {
    "part": "74LS273",
-   "note": "data latch 0"
+   "note": "data latch 0",
+   "section": "Vector Generator Memory Data Latches"
   },
   "B10": {
    "part": "74LS32",
-   "alt": "B9"
+   "alt": "B9",
+   "section": "Vector Generator Memory Data Latches"
   },
   "N5": {
-   "part": "74LS00"
+   "part": "74LS00",
+   "section": "State Machine"
   },
   "R8": {
-   "part": "74LS74"
+   "part": "74LS74",
+   "section": "State Machine"
   },
   "A7": {
-   "part": "74LS74"
+   "part": "74LS74",
+   "section": "State Machine"
   },
   "C8": {
    "part": "82S129",
-   "note": "Atari 034002, state machine PROM"
+   "note": "Atari 034002, state machine PROM",
+   "section": "State Machine"
   },
   "D8": {
    "part": "74LS174",
    "alt": "D9",
-   "note": "manual text calls this 'latch D8'"
+   "note": "manual text calls this 'latch D8'",
+   "section": "State Machine"
   },
   "E6": {
-   "part": "74LS08"
+   "part": "74LS08",
+   "section": "State Machine"
   },
   "A8": {
    "part": "74LS10",
-   "alt": "A9"
+   "alt": "A9",
+   "section": "State Machine"
   },
   "L5b": {
    "part": "74LS04",
    "alt": "L6",
-   "note": "second LS04 package"
+   "note": "second LS04 package",
+   "section": "Memory Address Selector"
   },
   "D6": {
    "part": "74LS04",
-   "note": "inverter to BLANK"
+   "note": "inverter to BLANK",
+   "section": "State Machine"
   },
   "A10": {
-   "part": "74LS109"
+   "part": "74LS109",
+   "section": "State Machine"
   },
   "B6": {
-   "part": "74LS14"
+   "part": "74LS14",
+   "section": "State Machine"
   },
   "M7": {
-   "part": "74LS175"
+   "part": "74LS175",
+   "section": "Vector Timer"
   },
   "N6": {
-   "part": "74LS32"
+   "part": "74LS32",
+   "section": "State Machine"
   },
   "E5": {
-   "part": "74LS20"
+   "part": "74LS20",
+   "section": "State Machine"
   },
   "F6": {
-   "part": "74LS157"
+   "part": "74LS157",
+   "section": "Vector Timer"
   },
   "M6": {
    "part": "74LS83",
-   "note": "adder"
+   "note": "adder",
+   "section": "Vector Timer"
   },
   "E7": {
    "part": "74LS42",
-   "note": "decoder"
+   "note": "decoder",
+   "section": "Vector Timer"
   },
   "D7": {
-   "part": "74LS191"
+   "part": "74LS191",
+   "section": "Vector Timer"
   },
   "C7": {
-   "part": "74LS191"
+   "part": "74LS191",
+   "section": "Vector Timer"
   },
   "B7": {
-   "part": "74LS191"
+   "part": "74LS191",
+   "section": "Vector Timer"
   },
   "J8": {
    "part": "74LS97",
    "alt": "J9",
-   "note": "rate multiplier"
+   "note": "rate multiplier",
+   "section": "X and Y Position Counters"
   },
   "K8": {
    "part": "74LS97",
    "alt": "K9",
-   "note": "rate multiplier"
+   "note": "rate multiplier",
+   "section": "X and Y Position Counters"
   },
   "E9": {
    "part": "74LS191",
-   "alt": "E10"
+   "alt": "E10",
+   "section": "X and Y Position Counters"
   },
   "D9b": {
    "part": "74LS191",
    "alt": "D10",
-   "note": "X/Y position counter"
+   "note": "X/Y position counter",
+   "section": "X and Y Position Counters"
   },
   "C9": {
    "part": "74LS191",
-   "alt": "C10"
+   "alt": "C10",
+   "section": "X and Y Position Counters"
   },
   "H10": {
    "part": "74LS04",
-   "alt": "H11"
+   "alt": "H11",
+   "section": "X and Y Position Counters"
   },
   "C10": {
    "part": "74LS157",
    "alt": "C11",
-   "note": "Y DAC mux"
+   "note": "Y DAC mux",
+   "section": "X and Y Position Counters"
   },
   "E10b": {
    "part": "74LS157",
-   "alt": "E11"
+   "alt": "E11",
+   "section": "X and Y Position Counters"
   },
   "D12": {
    "part": "74LS374",
    "alt": null,
-   "note": "X DAC latch. Earlier read gave 'Q11' as the alternate designator; sheet 02B shows Q11 is a 2N6044 coin-counter driver, so that alternate was a misread and has been withdrawn."
+   "note": "X DAC latch. Earlier read gave 'Q11' as the alternate designator; sheet 02B shows Q11 is a 2N6044 coin-counter driver, so that alternate was a misread and has been withdrawn.",
+   "section": "X and Y Position Counters"
   },
   "B16": {
    "part": "74LS374",
-   "note": "Y DAC latch (designator uncertain)"
+   "note": "Y DAC latch (designator uncertain)",
+   "section": "X and Y Position Counters"
   },
   "F10": {
    "part": "74LS174",
    "alt": "F11",
-   "note": "drawing cites this exact chip as the revision example"
+   "note": "drawing cites this exact chip as the revision example",
+   "section": "X and Y Position Counters"
   },
   "H8": {
    "part": "74LS97",
    "alt": "H9",
-   "note": "Y rate multiplier"
+   "note": "Y rate multiplier",
+   "section": "X and Y Position Counters"
   },
   "F8": {
    "part": "74LS97",
    "alt": "F9",
-   "note": "Y rate multiplier on -01 thru -05"
+   "note": "Y rate multiplier on -01 thru -05",
+   "section": "X and Y Position Counters"
   },
   "J9b": {
    "part": "74LS191",
-   "alt": "J10"
+   "alt": "J10",
+   "section": "X and Y Position Counters"
   },
   "H9": {
    "part": "74LS191",
-   "alt": "H10"
+   "alt": "H10",
+   "section": "X and Y Position Counters"
   },
   "F9": {
    "part": "74LS191",
-   "alt": "F10"
+   "alt": "F10",
+   "section": "X and Y Position Counters"
   }
  },
  "notes": [
@@ -279,150 +350,185 @@
  "sheet1B": {
   "D5": {
    "part": "74LS393",
-   "note": "watchdog counter"
+   "note": "watchdog counter",
+   "section": "Power Reset and Watchdog"
   },
   "Y1": {
    "part": "crystal 12.096MHz",
-   "note": "not an IC"
+   "note": "not an IC",
+   "section": "Clock Circuit"
   },
   "C4": {
    "part": "9316",
-   "note": "clock divider: 6MHz / 3MHz / 1.5MHz"
+   "note": "clock divider: 6MHz / 3MHz / 1.5MHz",
+   "section": "Clock Circuit"
   },
   "B4": {
    "part": "74LS393",
-   "note": "clock divider: 3kHz / 12kHz"
+   "note": "clock divider: 3kHz / 12kHz",
+   "section": "Clock Circuit"
   },
   "C3": {
    "part": "6502A",
-   "note": "Atari 90-6013. Drawing warns: MPU runs at 1.5MHz so it MUST be a 6502A; a plain 6502 tops out at 1MHz and is not compatible."
+   "note": "Atari 90-6013. Drawing warns: MPU runs at 1.5MHz so it MUST be a 6502A; a plain 6502 tops out at 1MHz and is not compatible.",
+   "section": "MPU Circuitry"
   },
   "B2": {
    "part": "74LS244",
-   "note": "address buffer; split pads allow an LS245 substitution"
+   "note": "address buffer; split pads allow an LS245 substitution",
+   "section": "MPU Circuitry"
   },
   "C2": {
    "part": "74LS244",
-   "note": "address buffer"
+   "note": "address buffer",
+   "section": "MPU Circuitry"
   },
   "E3": {
    "part": "74LS245",
-   "note": "data bus transceiver"
+   "note": "data bus transceiver",
+   "section": "MPU Circuitry"
   },
   "E2": {
    "part": "2114",
-   "note": "Atari 90-7033, MPU RAM"
+   "note": "Atari 90-7033, MPU RAM",
+   "section": "RAM Circuitry"
   },
   "D2": {
    "part": "2114",
-   "note": "Atari 90-7033, MPU RAM"
+   "note": "Atari 90-7033, MPU RAM",
+   "section": "RAM Circuitry"
   },
   "P5": {
-   "part": "74LS86"
+   "part": "74LS86",
+   "section": "RAM Circuitry"
   },
   "J2": {
    "part": "ROM 035131",
-   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+   "section": "ROM/PROM Circuitry"
   },
   "N2": {
    "part": "ROM 035132",
-   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+   "section": "ROM/PROM Circuitry"
   },
   "H2": {
    "part": "ROM 035133",
-   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+   "section": "ROM/PROM Circuitry"
   },
   "M2": {
    "part": "ROM 035134",
-   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+   "section": "ROM/PROM Circuitry"
   },
   "F2": {
    "part": "ROM 035135",
-   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+   "section": "ROM/PROM Circuitry"
   },
   "C5": {
    "part": "counter",
-   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms"
+   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms",
+   "section": "NMI Counter"
   }
  },
  "sheet2B": {
   "L10": {
    "part": "74LS251",
    "alt": "L11",
-   "note": "player input mux, SINP0"
+   "note": "player input mux, SINP0",
+   "section": "Player Input Circuitry"
   },
   "J10": {
    "part": "74LS251",
    "alt": "J11",
-   "note": "coin door / control panel mux, SINP1"
+   "note": "coin door / control panel mux, SINP1",
+   "section": "Player Input Circuitry"
   },
   "P11": {
    "part": "LM324",
-   "note": "audio mixer; all sounds mixed in 1/4 of P11"
+   "note": "audio mixer; all sounds mixed in 1/4 of P11",
+   "section": "Audio Output"
   },
   "P12": {
-   "part": "LM324"
+   "part": "LM324",
+   "section": "Audio Output"
   },
   "N11": {
    "part": "74LS174",
-   "note": "74LS174 hex flip-flop shared across functions: coin-counter latch on sheet 02B and the RAMSEL latch on 01B. Different bits of one package, not a conflicting reading."
+   "note": "74LS174 hex flip-flop shared across functions: coin-counter latch on sheet 02B and the RAMSEL latch on 01B. Different bits of one package, not a conflicting reading.",
+   "section": "Coin Counter / LED Output"
   },
   "N9": {
    "part": "7406",
-   "note": "open-collector inverter"
+   "note": "open-collector inverter",
+   "section": "Coin Counter / LED Output"
   },
   "N10": {
-   "part": "7406"
+   "part": "7406",
+   "section": "Coin Counter / LED Output"
   },
   "M12": {
    "part": "DIP switch",
-   "note": "option switches"
+   "note": "option switches",
+   "section": "Option Switches"
   },
   "D11": {
    "part": "AD561J",
    "alt": "D12",
-   "note": "X DAC; drawing states D11 on -01 thru -04, D12 on -05/-06"
+   "note": "X DAC; drawing states D11 on -01 thru -04, D12 on -05/-06",
+   "section": "Video Outputs"
   },
   "B11": {
    "part": "AD561J",
    "alt": "B12",
-   "note": "Y DAC"
+   "note": "Y DAC",
+   "section": "Video Outputs"
   },
   "D12": {
    "part": "CD4016B",
-   "note": "analogue switch, video output"
+   "note": "analogue switch, video output",
+   "section": "X and Y Position Counters"
   },
   "D13": {
-   "part": "CD4016B"
+   "part": "CD4016B",
+   "section": "Video Outputs"
   },
   "E12": {
    "part": "op-amp",
-   "note": "video output stage"
+   "note": "video output stage",
+   "section": "Video Outputs"
   },
   "M10": {
    "part": "74LS259",
    "alt": "M11",
-   "note": "sound control latch"
+   "note": "sound control latch",
+   "section": "Sound"
   },
   "M9": {
    "part": "CD4016B",
    "alt": "M10",
-   "note": "analogue switch"
+   "note": "analogue switch",
+   "section": "Sound"
   },
   "M8": {
    "part": "NE555",
    "alt": "M9",
-   "note": "saucer fire VCO"
+   "note": "saucer fire VCO",
+   "section": "Sound"
   },
   "L9b": {
    "part": "NE555",
    "alt": "L10",
-   "note": "ship fire VCO"
+   "note": "ship fire VCO",
+   "section": "Sound"
   },
   "L8": {
    "part": "LM324",
    "alt": "L9",
-   "note": "audio op-amps; corroborated by sheet 01B text"
+   "note": "audio op-amps; corroborated by sheet 01B text",
+   "section": "Audio Output"
   }
  },
  "corrections": [

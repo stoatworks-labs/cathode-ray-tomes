@@ -7,6 +7,13 @@
 
 Modern, searchable editions of arcade service documentation.
 
+**The purpose is troubleshooting, not reproduction.** The board conversions here
+are diagnostic aids — they answer "which chip is at C4, what does it do, and am I
+even looking at the right revision" — rather than attempts at a complete clone.
+A partial complement that gets you to the right chip is useful; a complete one
+that is wrong about your board revision is not. That is why Asteroids ships as
+four separate boards rather than one averaged guess.
+
 Arcade service manuals survive almost entirely as flat scans — page images with no text
 layer, no structure, and no way to search them. Cathode Ray Tomes rebuilds them as web documents:
 every page OCR'd and searchable, every machine cross-referenced against its hardware

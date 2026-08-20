@@ -13,6 +13,7 @@ versioned and published together.
   web/data/doc/<id>.json        rendered document (blocks + outline)
   web/data/postings/<n>.json    search postings, sharded by leading character
   web/data/parts/<id>.json      parts list recovered from a manual
+  web/data/chips/<board>.json   designator -> part, function and revision
 """
 import json, os, shutil, glob
 
@@ -51,6 +52,9 @@ def main():
 
     for p in glob.glob(os.path.join(ROOT, "data", "parts", "*.json")):
         total += copy(p, os.path.join(OUT, "parts", os.path.basename(p))); files += 1
+
+    for p in glob.glob(os.path.join(ROOT, "data", "chips", "*.json")):
+        total += copy(p, os.path.join(OUT, "chips", os.path.basename(p))); files += 1
 
     print(f"{files:,} files, {total/1e6:.1f} MB -> web/data/")
     if files > 19000:

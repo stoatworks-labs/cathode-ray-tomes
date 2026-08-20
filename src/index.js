@@ -120,6 +120,16 @@ async function handleApi(url, env, request) {
     return rows ? json(rows) : notFound("no parts list for this document");
   }
 
+  // /api/chips/<board> — designator -> part, functional block and the
+  // equivalent designator on the other revision. This is the lookup a repairer
+  // actually makes: "what is at C4, and what does it do?"
+  if (p.startsWith("chips/")) {
+    const b = p.slice("chips/".length);
+    if (!/^[a-z0-9-]{1,40}$/.test(b)) return notFound("bad board");
+    const idx = await asset(env, request, `/data/chips/${b}.json`);
+    return idx ? json(idx) : notFound("no chip index for this board");
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};

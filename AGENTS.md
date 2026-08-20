@@ -81,6 +81,19 @@ built by hand from TI datasheets. Note KiCAD omits no-connect pins, so its
 symbol legitimately has fewer pins than the package: a 7493 is DIP-14 with four
 NCs. Only an *excess* of pins is a contradiction.
 
+## What the board conversions are for
+
+Diagnosis, not cloning. The test of a board conversion here is whether it helps
+someone with a dead PCB find the right chip — so completeness of the bill of
+materials matters far less than being right about designators, revisions and
+function. A 105-of-180 complement that correctly says "C8 is the state machine
+PROM on a -03 board" earns its keep; a complete BOM that silently describes the
+wrong revision does not.
+
+This is why conflicts get logged rather than guessed, why every board names its
+revision, and why devices carry a functional block rather than just a part
+number.
+
 ## Adding a board
 
 `boards/<slug>.json` describes a board's component grid; `tools/build_board.py
