@@ -1,0 +1,75 @@
+{
+ "machine": "centiped",
+ "name": "Centipede",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-182 drawing package",
+ "sheets": {
+  "01B": {
+   "P2": {
+    "part": "74LS163A",
+    "section": "Synchronizer",
+    "note": "horizontal counter"
+   },
+   "N2": {
+    "part": "74LS163A",
+    "section": "Synchronizer"
+   },
+   "M2": {
+    "part": "74LS163A",
+    "section": "Synchronizer"
+   },
+   "P3": {
+    "part": "74LS163A",
+    "section": "Synchronizer",
+    "note": "vertical counter"
+   },
+   "N3": {
+    "part": "74LS163A",
+    "section": "Synchronizer"
+   },
+   "N1": {
+    "part": "74S04",
+    "section": "Synchronizer",
+    "note": "clock inverters"
+   },
+   "K3": {
+    "part": "74LS04",
+    "section": "Synchronizer"
+   },
+   "K4": {
+    "part": "74LS08",
+    "section": "Synchronizer"
+   },
+   "M3": {
+    "part": "74LS74",
+    "section": "Synchronizer",
+    "note": "HSYNC generation"
+   },
+   "M4": {
+    "part": "74LS75",
+    "section": "Synchronizer"
+   },
+   "L3": {
+    "part": "74LS10",
+    "section": "Synchronizer",
+    "note": "PLOAD"
+   },
+   "P4": {
+    "part": "82S123",
+    "section": "Synchronizer",
+    "note": "vertical timing PROM: VBLANK, 128V..1V"
+   },
+   "C2": {
+    "part": "6502",
+    "section": "Microprocessor",
+    "note": "MPU; the CAT Box procedure has you remove C2 from the PCB"
+   }
+  }
+ },
+ "notes": [
+  "The drawings carry a full CAT Box signature-analysis procedure. Each device has a setup box on the sheet giving exactly where to clip START, STOP and CLOCK \u2014 e.g. for P2: START P2 pin 11, STOP P2 pin 11, CLK N1 pin 6 \u2014 and the signatures are printed next to the signal point they belong to.",
+  "Preliminary set-up removes power, harness, PCB and the MPU at C2, then jumpers pins 37-39 on the MPU socket and connects the CAT Box flex cable to the test edge connector."
+ ],
+ "conflicts": []
+}
