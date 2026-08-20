@@ -1,0 +1,57 @@
+{
+ "machine": "astdelux",
+ "name": "Asteroids Deluxe",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-165 drawing package",
+ "sheets": {
+  "clock-reset": {
+   "B4": {
+    "part": "7404",
+    "section": "Clock Circuit",
+    "note": "12.096 MHz oscillator inverters"
+   },
+   "C3": {
+    "part": "9316",
+    "section": "Clock Circuit",
+    "note": "6 / 3 / 1.5 MHz"
+   },
+   "B3": {
+    "part": "74LS393",
+    "section": "Clock Circuit",
+    "note": "3 kHz / 12 kHz"
+   },
+   "B5": {
+    "part": "74LS14",
+    "section": "Power Reset",
+    "note": "reset schmitt buffers"
+   },
+   "C5": {
+    "part": "74LS00",
+    "section": "Watchdog",
+    "note": "WDCLR"
+   },
+   "D4": {
+    "part": "74LS393",
+    "section": "Watchdog",
+    "note": "watchdog counter; counts to 128 at 3 kHz"
+   },
+   "D3": {
+    "part": "74LS74",
+    "section": "Power Reset",
+    "note": "reset flip-flop, preset by C22 charging"
+   },
+   "E5": {
+    "part": "74LS08",
+    "section": "Watchdog",
+    "note": "watchdog disable"
+   }
+  }
+ },
+ "notes": [
+  "Asteroids Deluxe is a relayout of Asteroids, not a new design: the clock, reset and watchdog circuits are identical part for part, with every designator shifted one position. Asteroids B5/C4/B4/B6/C6/D5/D4/E6 become Deluxe B4/C3/B3/B5/C5/D4/D3/E5. If you know one board you can navigate the other by subtracting one from the row number \u2014 but do not assume it, because the shift is what will send you to the wrong chip.",
+  "Same MPU warning as the rest of the family: 1.5 MHz operation means the part must be a 6502A, not a 6502.",
+  "Power-up sequence: C22 charging holds RESET low via D3 and clears D4; at about 1.5 VDC the preset and clear are released, D4 counts to 128 at 3 kHz and RESET goes high. A board stuck in reset points at C22, D3 or D4."
+ ],
+ "conflicts": []
+}
