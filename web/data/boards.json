@@ -102,5 +102,18 @@
   "svg": "/boards/pong/schematic.svg",
   "bom": "/boards/pong/bom.csv",
   "ibom": "/boards/pong/pong-ibom.html"
+ },
+ {
+  "slug": "tempest",
+  "name": "Tempest",
+  "mfr": "Atari",
+  "year": "1981",
+  "machine": "tempest",
+  "drawing": "DP-190 drawing package, sheets 02A and 02B",
+  "devices": 18,
+  "netsTraced": false,
+  "status": "18 devices from sheets 02A and 02B (clock, power reset, watchdog, option switches, coin door, vector DAC). A board map for diagnosis, not a complete bill of materials.",
+  "ibom": "/boards/tempest/tempest-ibom.html",
+  "bom": "/boards/tempest/bom.csv"
  }
 ]

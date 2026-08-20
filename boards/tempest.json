@@ -1,0 +1,41 @@
+{
+ "slug": "tempest",
+ "name": "Tempest",
+ "mfr": "Atari",
+ "year": "1981",
+ "machine": "tempest",
+ "drawing": "DP-190 drawing package, sheets 02A and 02B",
+ "coverage": "18 devices from sheets 02A and 02B (clock, power reset, watchdog, option switches, coin door, vector DAC). A board map for diagnosis, not a complete bill of materials.",
+ "size": {
+  "w": 300,
+  "h": 300
+ },
+ "grid": {
+  "rows": "RQPNMLKJHGFEDCBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 18.0,
+  "rotation": 90
+ },
+ "ics": {
+  "A6": "74S04",
+  "C4": "74193",
+  "F3": "74S08",
+  "B4": "74LS393",
+  "K11": "TL082",
+  "L6": "74LS14",
+  "E6": "74LS14",
+  "A4": "74LS08",
+  "K9": "74LS00",
+  "D4": "74LS393",
+  "N13": "8-position DIP switch",
+  "L12": "8-position DIP switch",
+  "N12": "74LS244",
+  "M12": "74LS244",
+  "R9": "74LS244",
+  "J11": "74LS04",
+  "N6": "74S04",
+  "D10": "DAC-08"
+ }
+}

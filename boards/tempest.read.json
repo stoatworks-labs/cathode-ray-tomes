@@ -1,0 +1,110 @@
+{
+ "machine": "tempest",
+ "name": "Tempest",
+ "mfr": "Atari",
+ "year": "1981",
+ "drawing": "DP-190 drawing package",
+ "sheets": {
+  "02A": {
+   "A6": {
+    "part": "74S04",
+    "section": "Clock Circuit",
+    "note": "12.096 MHz oscillator and E24KHZ"
+   },
+   "C4": {
+    "part": "74193",
+    "section": "Clock Circuit",
+    "note": "12MHz down to 6/3/1.5 MHz"
+   },
+   "F3": {
+    "part": "74S08",
+    "section": "Clock Circuit",
+    "note": "E3MHZ and E6MHZ gating to J19"
+   },
+   "B4": {
+    "part": "74LS393",
+    "section": "Clock Circuit",
+    "note": "3 kHz and 24 kHz"
+   },
+   "K11": {
+    "part": "TL082",
+    "section": "Power Reset",
+    "note": "power-on reset comparator"
+   },
+   "L6": {
+    "part": "74LS14",
+    "section": "Power Reset"
+   },
+   "E6": {
+    "part": "74LS14",
+    "section": "Power Reset",
+    "note": "PWR ON RESET"
+   },
+   "A4": {
+    "part": "74LS08",
+    "section": "Watchdog",
+    "note": "watchdog disable"
+   },
+   "K9": {
+    "part": "74LS00",
+    "section": "Watchdog",
+    "note": "WDCLR"
+   },
+   "D4": {
+    "part": "74LS393",
+    "section": "Watchdog",
+    "note": "watchdog counter"
+   }
+  },
+  "02B": {
+   "N13": {
+    "part": "8-position DIP switch",
+    "section": "Option Switches",
+    "note": "option bank 0, read via OPT0"
+   },
+   "L12": {
+    "part": "8-position DIP switch",
+    "section": "Option Switches",
+    "note": "option bank 1, read via OPT1"
+   },
+   "N12": {
+    "part": "74LS244",
+    "section": "Option Switches",
+    "note": "reads N13 onto DB0-DB7"
+   },
+   "M12": {
+    "part": "74LS244",
+    "section": "Option Switches",
+    "note": "reads L12 onto DB0-DB7"
+   },
+   "R9": {
+    "part": "74LS244",
+    "section": "Coin Door Inputs",
+    "note": "DIAG STEP, SELF TEST, SLAM, coin L/C/R, 3KHZ, HALT"
+   },
+   "J11": {
+    "part": "74LS04",
+    "section": "Option Switches",
+    "note": "OPT0/OPT1 enable"
+   },
+   "N6": {
+    "part": "74S04",
+    "section": "Coin Door Inputs",
+    "note": "SINP"
+   },
+   "D10": {
+    "part": "DAC-08",
+    "section": "Analog Vector Generator",
+    "note": "X-Y output DAC"
+   }
+  }
+ },
+ "notes": [
+  "Symbols on these sheets: a square is the edge connector J20, a hexagon the interconnect J19, and an arrow a test point \u2014 so probe points are marked explicitly on the drawing.",
+  "Same MPU warning as Asteroids and Battlezone: the game clocks at 1.5 MHz so the part must be a 6502A. A plain 6502 tops out at 1 MHz and will not run.",
+  "Clock tree is near-identical to Battlezone: 12.096 MHz crystal into a 74193 for 6/3/1.5 MHz, and an LS393 for 3 kHz and 24 kHz.",
+  "A physical 'DIAG STEP' test pad is marked on the board next to the coin door input network \u2014 a probe point, not just a signal name.",
+  "The input architecture is identical to Battlezone: two 8-position DIP banks each read onto the data bus through its own LS244 under OPT0/OPT1, with a third LS244 for the coin door plus 3KHZ and HALT. Knowing one Atari board of this era gets you most of the way round another."
+ ],
+ "conflicts": []
+}
