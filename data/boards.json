@@ -89,5 +89,18 @@
   "status": "13 devices read from sheet 01B (synchronizer and MPU). A board map for diagnosis, not a complete bill of materials.",
   "ibom": "/boards/centipede/centipede-ibom.html",
   "bom": "/boards/centipede/bom.csv"
+ },
+ {
+  "slug": "missile-command",
+  "name": "Missile Command",
+  "mfr": "Atari",
+  "year": "1980",
+  "machine": "missile",
+  "drawing": "DP-147 drawing package, sync sheet",
+  "devices": 14,
+  "netsTraced": false,
+  "status": "14 devices from the sync sheet (clock, H and V counters, sync generation). A board map for diagnosis, not a complete bill of materials.",
+  "ibom": "/boards/missile-command/missile-command-ibom.html",
+  "bom": "/boards/missile-command/bom.csv"
  }
 ]
