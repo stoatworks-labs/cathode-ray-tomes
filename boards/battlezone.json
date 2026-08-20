@@ -3,8 +3,8 @@
  "name": "Battlezone",
  "mfr": "Atari",
  "year": "1980",
- "drawing": "DP-156 drawing package, sheet 02A",
- "coverage": "23 devices read from sheet 02A (clock, MPU, address decode, RAM). A board map for diagnosis, not a complete bill of materials.",
+ "drawing": "DP-156 drawing package, sheets 02A and 02B",
+ "coverage": "31 devices from sheets 02A and 02B (clock, MPU, address decode, RAM, option switches, coin door, vector DAC). A board map for diagnosis, not a complete bill of materials.",
  "size": {
   "w": 300,
   "h": 300
@@ -40,6 +40,14 @@
   "K4": "74LS10",
   "M7": "74LS02",
   "H2": "2114",
-  "J2": "2114"
+  "J2": "2114",
+  "M10": "8-position DIP switch",
+  "P10": "8-position DIP switch",
+  "N11": "74LS244",
+  "P11": "74LS244",
+  "R11": "74LS244",
+  "R9": "74S04",
+  "C9": "DAC-08",
+  "C8": "74LS273"
  }
 }

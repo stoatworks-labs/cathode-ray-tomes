@@ -1,18 +1,5 @@
 [
  {
-  "slug": "pong",
-  "name": "Pong (Rev E)",
-  "mfr": "Atari",
-  "year": "1972",
-  "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
-  "devices": 100,
-  "netsTraced": "partial",
-  "status": "Component complement complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions plus 34 discretes. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are traced by hand from schematic 002826 Rev E and currently cover the video output chain only \u2014 8 nets: VBLANK, 4V, NET, HVID, VVID, VIDEO and the two intermediate sums. The rest of the sheet is not yet traced, so net highlighting is partial.",
-  "svg": "/boards/pong/schematic.svg",
-  "bom": "/boards/pong/bom.csv",
-  "ibom": "/boards/pong/pong-ibom.html"
- },
- {
   "slug": "asteroids-03",
   "name": "Asteroids (034986-03)",
   "mfr": "Atari",
@@ -70,10 +57,10 @@
   "mfr": "Atari",
   "year": "1980",
   "machine": "bzone",
-  "drawing": "DP-156 drawing package, sheet 02A",
-  "devices": 23,
+  "drawing": "DP-156 drawing package, sheets 02A and 02B",
+  "devices": 31,
   "netsTraced": false,
-  "status": "23 devices read from sheet 02A (clock, MPU, address decode, RAM). A board map for diagnosis, not a complete bill of materials.",
+  "status": "31 devices from sheets 02A and 02B (clock, MPU, address decode, RAM, option switches, coin door, vector DAC). A board map for diagnosis, not a complete bill of materials.",
   "ibom": "/boards/battlezone/battlezone-ibom.html",
   "bom": "/boards/battlezone/bom.csv"
  },
@@ -83,10 +70,10 @@
   "mfr": "Atari",
   "year": "1980",
   "machine": "centiped",
-  "drawing": "DP-182 drawing package, sheet 01B",
-  "devices": 13,
+  "drawing": "DP-182 drawing package, sheets 01B and 02A",
+  "devices": 23,
   "netsTraced": false,
-  "status": "13 devices read from sheet 01B (synchronizer and MPU). A board map for diagnosis, not a complete bill of materials.",
+  "status": "23 devices read from sheets 01B and 02A (synchroniser, MPU, playfield address selector and playfield RAM). A board map for diagnosis, not a complete bill of materials.",
   "ibom": "/boards/centipede/centipede-ibom.html",
   "bom": "/boards/centipede/bom.csv"
  },
@@ -102,5 +89,18 @@
   "status": "14 devices from the sync sheet (clock, H and V counters, sync generation). A board map for diagnosis, not a complete bill of materials.",
   "ibom": "/boards/missile-command/missile-command-ibom.html",
   "bom": "/boards/missile-command/bom.csv"
+ },
+ {
+  "slug": "pong",
+  "name": "Pong (Rev E)",
+  "mfr": "Atari",
+  "year": "1972",
+  "drawing": "002826 Rev E (schematic) / A001433 Rev E (assembly)",
+  "devices": 100,
+  "netsTraced": "partial",
+  "status": "Component complement complete and verified against Atari assembly drawing A001433 Rev E \u2014 all 66 ICs at their board grid positions plus 34 discretes. The +5V and GND rails are wired and verified against each device's datasheet, including the three that break the usual TTL convention (7490/7493 on 5/10, 7483 on 5/12, 555 on 8/1). Signal nets are traced by hand from schematic 002826 Rev E and currently cover the video output chain only \u2014 8 nets: VBLANK, 4V, NET, HVID, VVID, VIDEO and the two intermediate sums. The rest of the sheet is not yet traced, so net highlighting is partial.",
+  "svg": "/boards/pong/schematic.svg",
+  "bom": "/boards/pong/bom.csv",
+  "ibom": "/boards/pong/pong-ibom.html"
  }
 ]

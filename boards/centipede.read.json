@@ -65,11 +65,57 @@
     "section": "Microprocessor",
     "note": "MPU; the CAT Box procedure has you remove C2 from the PCB"
    }
+  },
+  "02A": {
+   "P7": {
+    "part": "74LS257",
+    "section": "Playfield Address Selector",
+    "note": "PFA4-PFA7 mux"
+   },
+   "P5": {
+    "part": "74LS157",
+    "section": "Playfield Address Selector",
+    "note": "PFA0-PFA3 mux"
+   },
+   "N7": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "M7": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "L7": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "K7": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "N5": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "M5": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "L5": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   },
+   "K5": {
+    "part": "2101A-2",
+    "section": "Playfield RAM"
+   }
   }
  },
  "notes": [
   "The drawings carry a full CAT Box signature-analysis procedure. Each device has a setup box on the sheet giving exactly where to clip START, STOP and CLOCK \u2014 e.g. for P2: START P2 pin 11, STOP P2 pin 11, CLK N1 pin 6 \u2014 and the signatures are printed next to the signal point they belong to.",
-  "Preliminary set-up removes power, harness, PCB and the MPU at C2, then jumpers pins 37-39 on the MPU socket and connects the CAT Box flex cable to the test edge connector."
+  "Preliminary set-up removes power, harness, PCB and the MPU at C2, then jumpers pins 37-39 on the MPU socket and connects the CAT Box flex cable to the test edge connector.",
+  "Playfield RAM test, straight off the drawing: CAT Box preliminary set-up, then TESTER RESET, DBUS SOURCE to ADDR, BYTES to 1024, R/W MODE off, R/W to WRITE, key in 0400, toggle R/W MODE to SINGLE, R/W to READ, toggle again. A lit COMPARE ERROR LED means the ADDRESS display shows the failing location.",
+  "Playfield address selector: 4H low hands the playfield memory to the sync generator (8H/16H/32H/64H on P5, 16V/32V/64V/128V on P7); 4H high hands it to the MPU via AB0-AB9."
  ],
  "conflicts": []
 }

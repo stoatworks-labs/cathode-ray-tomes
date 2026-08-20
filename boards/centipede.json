@@ -3,8 +3,8 @@
  "name": "Centipede",
  "mfr": "Atari",
  "year": "1980",
- "drawing": "DP-182 drawing package, sheet 01B",
- "coverage": "13 devices read from sheet 01B (synchronizer and MPU). A board map for diagnosis, not a complete bill of materials.",
+ "drawing": "DP-182 drawing package, sheets 01B and 02A",
+ "coverage": "23 devices read from sheets 01B and 02A (synchroniser, MPU, playfield address selector and playfield RAM). A board map for diagnosis, not a complete bill of materials.",
  "size": {
   "w": 300,
   "h": 300
@@ -30,6 +30,16 @@
   "M4": "74LS75",
   "L3": "74LS10",
   "P4": "82S123",
-  "C2": "6502"
+  "C2": "6502",
+  "P7": "74LS257",
+  "P5": "74LS157",
+  "N7": "2101A-2",
+  "M7": "2101A-2",
+  "L7": "2101A-2",
+  "K7": "2101A-2",
+  "N5": "2101A-2",
+  "M5": "2101A-2",
+  "L5": "2101A-2",
+  "K5": "2101A-2"
  }
 }

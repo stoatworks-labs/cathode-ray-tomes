@@ -113,6 +113,48 @@
     "section": "RAM Memory",
     "note": "Atari 90-7033"
    }
+  },
+  "02B": {
+   "M10": {
+    "part": "8-position DIP switch",
+    "section": "Option Switches",
+    "note": "option bank 0, read via OPT0"
+   },
+   "P10": {
+    "part": "8-position DIP switch",
+    "section": "Option Switches",
+    "note": "option bank 1, read via OPT1"
+   },
+   "N11": {
+    "part": "74LS244",
+    "section": "Option Switches",
+    "note": "reads M10 onto DB0-DB7"
+   },
+   "P11": {
+    "part": "74LS244",
+    "section": "Option Switches",
+    "note": "reads P10 onto DB0-DB7"
+   },
+   "R11": {
+    "part": "74LS244",
+    "section": "Coin Door Inputs",
+    "note": "DIAG STEP, SELF-TEST, SLAM, coin switches, 3KHZ, HALT"
+   },
+   "R9": {
+    "part": "74S04",
+    "section": "Option Switches",
+    "note": "OPT0/OPT1 enable inverters"
+   },
+   "C9": {
+    "part": "DAC-08",
+    "section": "Analog Vector Generator",
+    "note": "Y-axis DAC"
+   },
+   "C8": {
+    "part": "74LS273",
+    "section": "Analog Vector Generator",
+    "note": "DVY latch"
+   }
   }
  },
  "notes": [
@@ -121,7 +163,8 @@
   "Same MPU as Asteroids \u2014 Atari 90-6013 (6502A) \u2014 and the same LS245/AM83048 transceiver substitution with alternate pin numbering.",
   "A 50-pin test connector is fitted, marked 'FOR ATARI MANUFACTURING ONLY', bringing out the full address and data bus plus DATA DISABLE.",
   "J19 (24-pin) carries the buffered bus to the Auxiliary Math Box PCB: EDB0-7, EAB0-6, ER/WB, EI/O, EPHI2 and the E6MHZ/E12KHZ/E3MHZ clocks.",
-  "Decode chain: M2 splits program/vector memory, C4 selects RAM vs I/O, K5 fans out to VGRST, WDCLR, VGGO, COINCK, OPT0/1 and SINP."
+  "Decode chain: M2 splits program/vector memory, C4 selects RAM vs I/O, K5 fans out to VGRST, WDCLR, VGGO, COINCK, OPT0/1 and SINP.",
+  "Two 8-position option switch banks: M10 (read by N11 via OPT0) and P10 (read by P11 via OPT1), both pulled up through 10k. R11 carries the coin door inputs plus 3KHZ and HALT, so a machine that will not coin up and one that reports the wrong vector-generator state share a buffer."
  ],
  "conflicts": []
 }
