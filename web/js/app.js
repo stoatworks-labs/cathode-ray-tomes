@@ -247,6 +247,7 @@ async function loadSignatures(slug) {
   box.innerHTML = `<h2>Signature analysis</h2>
     <div class="note">Probe a pin, read the four-character code, compare with the
       documented value — a mismatch localises the fault to that node.</div>
+    ${rec.shared ? `<div class="note"><b>Shared hardware.</b> ${esc(rec.shared)}</div>` : ""}
     <div class="rows">${rec.documents.map((d) => `
       <a class="row" href="/doc/${d.doc}">
         <span class="nm">${esc(prettyTitle(d.title))}</span>

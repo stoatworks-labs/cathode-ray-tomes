@@ -1,0 +1,74 @@
+{
+ "machine": "warlords",
+ "name": "Warlords",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-175 drawing package",
+ "sheets": {
+  "sync": {
+   "P4": {
+    "part": "74LS163A",
+    "section": "Sync Generator",
+    "note": "horizontal counter, 1H-16H"
+   },
+   "P5": {
+    "part": "74LS163A",
+    "section": "Sync Generator",
+    "note": "horizontal counter, 8H-64H"
+   },
+   "P6": {
+    "part": "74LS163A",
+    "section": "Sync Generator",
+    "note": "horizontal counter, 128H/256H"
+   },
+   "N6": {
+    "part": "74LS163A",
+    "section": "Sync Generator",
+    "note": "vertical counter, 1V-8V"
+   },
+   "N5": {
+    "part": "74LS163A",
+    "section": "Sync Generator",
+    "note": "vertical counter, 16V-128V"
+   },
+   "P3": {
+    "part": "74S04",
+    "section": "Sync Generator",
+    "note": "6MHz and 256H inverters"
+   },
+   "J6": {
+    "part": "74LS04",
+    "section": "Sync Generator"
+   },
+   "F3": {
+    "part": "74LS10",
+    "section": "Sync Generator"
+   },
+   "M6": {
+    "part": "82S129",
+    "section": "Sync Generator",
+    "note": "sync PROM, addressed by 1V-128V"
+   },
+   "L6": {
+    "part": "74LS175",
+    "section": "Sync Generator",
+    "note": "latches the sync PROM output"
+   },
+   "K6": {
+    "part": "74LS74",
+    "section": "Sync Generator",
+    "note": "VBLANK timing"
+   },
+   "N4": {
+    "part": "74LS74",
+    "section": "Sync Generator",
+    "note": "H-sync timing pulses"
+   }
+  }
+ },
+ "notes": [
+  "Display timing, useful on a scope: 262 horizontal lines per frame, each line 768 clocks of the 12 MHz base, repeating 60 times a second. The 12.096 MHz oscillator is crystal Y1 with transistor Q9 and discretes rather than a packaged part.",
+  "Sync chain: P4/P5/P6 divide 12 MHz down to 1H-256H; 256H inverted clocks the vertical counters N6/N5 for 1V-128V; those address sync PROM M6 whose output is latched by L6. A blank screen with a good 12 MHz at Y1 points down this chain."
+ ],
+ "conflicts": []
+}
