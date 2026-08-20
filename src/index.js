@@ -149,6 +149,15 @@ async function handleApi(url, env, request) {
     return rows ? json(rows) : json([]);
   }
 
+  // /api/signatures/<machine> — signature-analysis material: which documents
+  // carry it, and the codes where they are printed on a drawing sheet.
+  if (p.startsWith("signatures/")) {
+    const slug = decodeURIComponent(p.slice("signatures/".length));
+    if (!/^[a-z0-9][a-z0-9._-]*$/i.test(slug)) return notFound("bad slug");
+    const rec = await asset(env, request, `/data/signatures/${slug}.json`);
+    return rec ? json(rec) : json(null);
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};

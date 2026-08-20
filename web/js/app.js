@@ -140,6 +140,7 @@ async function machine(slug) {
   const kb = boardList.find((b) => b.slug === slug);
 
   loadDiagnostics(slug);
+  loadSignatures(slug);
 
   const cpu = (m.cpu || []).map((c) => `${esc(c.n)}${c.mhz ? ` @ ${c.mhz} MHz` : ""}`).join("<br>") || "—";
   const aud = (m.audio || []).map((a) => `${esc(a.n)}${a.mhz ? ` @ ${a.mhz} MHz` : ""}`).join("<br>") || "—";
@@ -167,6 +168,7 @@ async function machine(slug) {
       <dt>Controls</dt><dd>${ctrl}</dd>
     </dl></div>
 
+    <div id="sigs"></div>
     <div id="diag"></div>
 
     <h2>Documents (${(m.docs || []).length})</h2>
@@ -214,6 +216,30 @@ function docSections(docs) {
           ${d.sections && d.pages >= 3 ? `<span class="badge">${d.sections} sections</span>` : ""}
           ${d.schematic ? '<span class="badge doc">schematic</span>' : ""}
         </a>`).join("")}</div>`).join("");
+}
+
+/** Signature-analysis material: the sharpest fault-localising tool in these
+ *  manuals — probe a pin, compare the four-character code. */
+async function loadSignatures(slug) {
+  const rec = await api("signatures/" + encodeURIComponent(slug)).catch(() => null);
+  const box = document.getElementById("sigs");
+  if (!box || !rec || !rec.documents?.length) return;
+  const devices = Object.entries(rec.byDevice || {});
+  box.innerHTML = `<h2>Signature analysis</h2>
+    <div class="note">Probe a pin, read the four-character code, compare with the
+      documented value — a mismatch localises the fault to that node.</div>
+    <div class="rows">${rec.documents.map((d) => `
+      <a class="row" href="/doc/${d.doc}">
+        <span class="nm">${esc(prettyTitle(d.title))}</span>
+        <span class="grow"></span>
+        <span class="badge">${d.pages} pages</span>
+      </a>`).join("")}</div>
+    ${devices.length ? `<div class="panel" style="margin-top:12px">
+      <strong>Codes read from the drawings</strong>
+      <div class="meta" style="margin:6px 0 10px">${esc(rec.note || "")}</div>
+      <table class="bom"><tbody>${devices.map(([d, codes]) => `
+        <tr><td class="refs">${esc(d)}</td><td>${codes.map(esc).join(" · ")}</td></tr>`).join("")}
+      </tbody></table></div>` : ""}`;
 }
 
 /** Diagnostic sections for a machine — where someone with a dead board starts. */
