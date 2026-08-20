@@ -31,7 +31,11 @@ def from_document(doc):
     rows = []
     for page in doc.get("pages", []):
         txt = page_text(page)
-        if not (HEADER.search(txt) or LIST_PAGE.search(txt)):
+        # Gate on the page's own shape as well as its header: running-header
+        # suppression can remove the "Item Part No." line that used to be the
+        # only anchor, silently dropping otherwise perfectly readable tables.
+        if not (HEADER.search(txt) or LIST_PAGE.search(txt)
+                or len(RECORD.findall(txt)) >= 5):
             continue
         # start after the column header where there is one; it prevents the
         # header itself being parsed as a row

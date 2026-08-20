@@ -279,7 +279,6 @@
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
-  "F8 is a rate multiplier on the main sheet and a 035904 PROM inside the '-06 PCB ONLY' block. The -06 section is additional circuitry, so designators there may not map onto other revisions.",
   "L8: read as a 74LS42 decoder on sheet 2A, but sheet 01B's power text names 'operational amplifiers P11 and L8' in the audio output. One of the two is wrong, or the designator is reused across board areas. Needs a physical board."
  ],
  "sheet1B": {
@@ -439,5 +438,8 @@
    "H2": "035144-02",
    "J2": "035145-02"
   }
- }
+ },
+ "resolved": [
+  "F8 (rate multiplier vs 035904 PROM) is RESOLVED, and both readings were right. The Asteroids parts list names 'A034986-05 Game PCB Assembly (with 7497 Rate Multipliers)' and 'A034986-06 ... (with PROM)'. The -06 board replaces the rate multipliers with PROMs, which is exactly what the '-06 PCB ONLY' block on the drawing shows. Confirmed from a different document entirely."
+ ]
 }
