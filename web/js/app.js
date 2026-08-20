@@ -141,6 +141,7 @@ async function machine(slug) {
 
   loadDiagnostics(slug);
   loadSignatures(slug);
+  loadPower(slug);
 
   const cpu = (m.cpu || []).map((c) => `${esc(c.n)}${c.mhz ? ` @ ${c.mhz} MHz` : ""}`).join("<br>") || "—";
   const aud = (m.audio || []).map((a) => `${esc(a.n)}${a.mhz ? ` @ ${a.mhz} MHz` : ""}`).join("<br>") || "—";
@@ -168,6 +169,7 @@ async function machine(slug) {
       <dt>Controls</dt><dd>${ctrl}</dd>
     </dl></div>
 
+    <div id="power"></div>
     <div id="sigs"></div>
     <div id="diag"></div>
 
@@ -216,6 +218,23 @@ function docSections(docs) {
           ${d.sections && d.pages >= 3 ? `<span class="badge">${d.sections} sections</span>` : ""}
           ${d.schematic ? '<span class="badge doc">schematic</span>' : ""}
         </a>`).join("")}</div>`).join("");
+}
+
+/** Power supply reference — fuses and rails, checked first on a dead machine. */
+async function loadPower(slug) {
+  const p = await api("power/" + encodeURIComponent(slug)).catch(() => null);
+  const box = document.getElementById("power");
+  if (!box || !p) return;
+  const rows = (o) => Object.entries(o || {}).map(([k, v]) =>
+    `<tr><td class="refs">${esc(k)}</td><td>${esc(v)}</td></tr>`).join("");
+  box.innerHTML = `<h2>Power supply — ${esc(p.title || "")}</h2>
+    ${p.note ? `<div class="note">${esc(p.note)}</div>` : ""}
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bom"><tbody>
+        <tr><td colspan="2"><strong>Fuses</strong></td></tr>${rows(p.fuses)}
+        <tr><td colspan="2"><strong>Rails</strong></td></tr>${rows(p.rails)}
+        <tr><td colspan="2"><strong>Mains</strong></td></tr>${rows(p.mains)}
+      </tbody></table></div>`;
 }
 
 /** Signature-analysis material: the sharpest fault-localising tool in these

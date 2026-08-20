@@ -1,0 +1,28 @@
+{
+ "machine": "tempest",
+ "name": "Tempest",
+ "assembly": "037394-01 rev B",
+ "title": "Color X-Y Power Supply",
+ "mains": {
+  "selection": "Voltage selection blocks: violet 100V, yellow 120V, grey 200V, blue 220V, brown 240V",
+  "inlet": "J1 -> FL1 line filter -> F1 -> J2 to on/off and interlock switches",
+  "F1": "7A slow-blow 250V (use 4A slow-blow at 220V and 240V \u2014 European only)"
+ },
+ "fuses": {
+  "F1": "7A SB 250V (4A SB at 220/240V)",
+  "F2": "4A SB 250V",
+  "F3": "20A SB 32V",
+  "F4": "4A SB 250V",
+  "F5": "4A SB 250V",
+  "F6": "4A SB 250V"
+ },
+ "rails": {
+  "J5-1..3": "10.6 VDC",
+  "J5-4,5": "GND",
+  "J5-6,7": "36 VAC centre-tapped",
+  "J5-8,9": "6.1 VAC",
+  "J5-10,11": "50 VAC centre-tapped"
+ },
+ "bulk": "C1 27,000uF at 15V; CR1 MDA3501 bridge",
+ "note": "Thermal cutout on the transformer primary opens at 110 +/- 5 C. A dead machine with good mains and an open F3 (20A, 32V) points at the low-voltage high-current rail rather than the logic supply."
+}

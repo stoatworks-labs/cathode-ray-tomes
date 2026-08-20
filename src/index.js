@@ -158,6 +158,15 @@ async function handleApi(url, env, request) {
     return rec ? json(rec) : json(null);
   }
 
+  // /api/power/<machine> — fuse ratings and expected rails. The first things
+  // checked on a machine that is completely dead.
+  if (p.startsWith("power/")) {
+    const slug = decodeURIComponent(p.slice("power/".length));
+    if (!/^[a-z0-9][a-z0-9._-]*$/i.test(slug)) return notFound("bad slug");
+    const rec = await asset(env, request, `/data/power/${slug}.json`);
+    return rec ? json(rec) : json(null);
+  }
+
   if (p.startsWith("chip/")) {
     const part = decodeURIComponent(p.slice("chip/".length)).toLowerCase();
     const idx = (await index(env, request, "chips")) || {};

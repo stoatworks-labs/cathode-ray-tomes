@@ -65,6 +65,9 @@ def main():
     for p in glob.glob(os.path.join(ROOT, "data", "signatures", "*.json")):
         total += copy(p, os.path.join(OUT, "signatures", os.path.basename(p))); files += 1
 
+    for p in glob.glob(os.path.join(ROOT, "data", "power", "*.json")):
+        total += copy(p, os.path.join(OUT, "power", os.path.basename(p))); files += 1
+
     print(f"{files:,} files, {total/1e6:.1f} MB -> web/data/")
     if files > 19000:
         print("  WARNING: approaching the 20,000-file Workers Assets limit")
