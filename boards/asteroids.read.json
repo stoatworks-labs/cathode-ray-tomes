@@ -274,7 +274,8 @@
   "Sheet 01A is the Video Power Supply wiring diagram (034633-01) \u2014 cabinet wiring, no game-board ICs. Sheet 01B is the microcomputer: clock, reset, watchdog. Designators are board-wide across sheets: D4/LS74, B5/LS04, B6/LS14 and C6/LS00 appear identically on 01B and 02A, which independently corroborates the sheet 2A reading.",
   "Sheet 02B is Inputs/Outputs: player input muxes and the sound section (555 thump oscillator, 566 VCO for the saucer). Text references N7 (sound bit code) and M10 (control-signal latch).",
   "Sheet 01B carries the full memory map: vector RAM 4000-47FF, vector ROM 5000-57FF, program 6800-7FFF, with switch and sound registers from 2003 to 3E00.",
-  "Program ROMs are Atari-numbered 035131-035135 at J2, N2, H2, M2, F2; further ROM positions run off the right of this crop and are not yet read."
+  "Program ROMs are Atari-numbered 035131-035135 at J2, N2, H2, M2, F2; further ROM positions run off the right of this crop and are not yet read.",
+  "Board assembly numbers are 034986-01 thru -06; sheet 01B is rev H for -01 thru -04 and rev B for -05/-06. There is no single 'Asteroids board': the program memory alone has four distinct configurations, so boards/asteroids.json must target one named revision."
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
@@ -327,19 +328,23 @@
   },
   "J2": {
    "part": "ROM 035131",
-   "note": "program ROM"
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
   },
   "N2": {
-   "part": "ROM 035132"
+   "part": "ROM 035132",
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
   },
   "H2": {
-   "part": "ROM 035133"
+   "part": "ROM 035133",
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
   },
   "M2": {
-   "part": "ROM 035134"
+   "part": "ROM 035134",
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
   },
   "F2": {
-   "part": "ROM 035135"
+   "part": "ROM 035135",
+   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision"
   },
   "C5": {
    "part": "counter",
@@ -401,5 +406,38 @@
  },
  "corrections": [
   "sheet2A D12: alternate designator 'Q11' withdrawn \u2014 Q11 is a transistor on sheet 02B. Caught by cross-sheet checking, not by re-reading the same sheet."
- ]
+ ],
+ "memory_by_revision": {
+  "note": "The program memory complement is not shifted between revisions, it is entirely different. Read from the substitution table on sheet 01B.",
+  "-03 (PROMs)": {
+   "J2": "035131-02",
+   "N2": "035132-02",
+   "K1": "035137-02",
+   "N1": "035138-02",
+   "H2": "035133-02",
+   "M2": "035134-02",
+   "J1": "035139-02",
+   "M1": "035140-02",
+   "F2": "035135-02",
+   "L2": "035136-02",
+   "H1": "035141-02"
+  },
+  "-03 alternate (PROMs)": {
+   "J2": "035150-02",
+   "K1": "035153-02",
+   "H2": "035151-02",
+   "J1": "035154-02",
+   "F2": "035152-02"
+  },
+  "-04 (ROMs)": {
+   "C1": "035143-02",
+   "D/E1": "035144-02",
+   "F1": "035145-02"
+  },
+  "-05/-06 (ROMs)": {
+   "E/F2": "035143-02",
+   "H2": "035144-02",
+   "J2": "035145-02"
+  }
+ }
 }
