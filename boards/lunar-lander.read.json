@@ -1,0 +1,45 @@
+{
+ "machine": "llander",
+ "name": "Lunar Lander",
+ "mfr": "Atari",
+ "year": "1979",
+ "drawing": "DP-136 drawing package",
+ "sheets": {
+  "power-audio": {
+   "N5": {
+    "part": "74LS174",
+    "section": "Audio Output",
+    "note": "latches AUD0-AUD5 from the data bus"
+   },
+   "M5": {
+    "part": "74LS32",
+    "section": "Audio Output"
+   },
+   "N6": {
+    "part": "74LS00",
+    "section": "Audio Output"
+   },
+   "M6": {
+    "part": "74LS164",
+    "section": "Audio Output",
+    "note": "noise generator shift register"
+   },
+   "M7": {
+    "part": "74LS164",
+    "section": "Audio Output",
+    "note": "noise generator shift register"
+   },
+   "R7": {
+    "part": "LM324",
+    "section": "Audio Output",
+    "note": "thrust low-pass filter; pins 8 and 14 give equal, opposite-phase thrust and explosion outputs"
+   }
+  }
+ },
+ "notes": [
+  "Four sounds: thrust, explosion, 3 kHz and 6 kHz. All of them are gated by AUD0-AUD5 latched into N5, and the microcomputer only alters them while AUDIO from the address decoder is low. Thrust and explosion are both derived from the noise generators M6 and M7, so a fault in one noise chain kills both sounds.",
+  "The 3 kHz tone doubles as a diagnostic: driven by AUD4 and AUD5, it is used during Self-Test to signal ROM and RAM status audibly.",
+  "Power: 36 VAC in through two full-wave rectifiers \u2014 CR6/CR7 feed the 7915 for -15V, CR8/CR9 the 7815 for +15V, with a 7805 for a separate +5V DAC rail and CR10/CR11 1N756A zeners setting +/-8.2V for the sample and hold. +22V unregulated powers the audio op-amp R7."
+ ],
+ "conflicts": []
+}

@@ -1,0 +1,18 @@
+{
+ "machine": "llander",
+ "name": "Lunar Lander",
+ "title": "On-board regulators",
+ "mains": {
+  "input": "36 VAC on pins X and 20; +5 VDC logic supplied externally on pin 2/B"
+ },
+ "fuses": {},
+ "rails": {
+  "+15V": "7815 from CR8/CR9 rectifier",
+  "-15V": "7915 from CR6/CR7 rectifier",
+  "+5V DAC": "7805, separate from logic +5V",
+  "+8.2V": "CR11 1N756A zener, sample and hold",
+  "-8.2V": "CR10 1N756A zener",
+  "+22V": "unregulated, powers audio op-amp R7"
+ },
+ "note": "The DAC rail is a separate 7805 from the logic +5V, so vector output can fail while the logic runs normally. LED1 (MV5053) indicates logic +5V present."
+}
