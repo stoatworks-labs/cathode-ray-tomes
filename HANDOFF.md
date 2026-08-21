@@ -80,12 +80,13 @@ traps found so far.
 
 ## Open work
 
-**Boards.** Battlezone is done: sheets 1B, 2A, 3A and 3B are read, the game PCB is at
-97 devices and the Auxiliary PCB is a separate map at 36. Sheet 1 Side A is the only one
-left there, and it is cabinet-level — International Power Supply 035887-01, Coin Door
-034988-01, the wiring diagram, and **Regulator/Audio II PCB 035435-02**, which is a third
-board (Q1/Q2/Q3 regulator with remote sensing, R8 sets +5V, two TDA2002AV audio amps at
-gain 10) with a four-step adjustment procedure printed beside it. Worth a read.
+**Boards.** Battlezone's DP-156 is fully read — sheets 1A, 1B, 2A, 2B, 3A, 3B. It turned
+out to be three boards: game PCB 035742 (97 devices), Auxiliary PCB 035678-01 (36, shared
+with Red Baron), and Regulator/Audio II PCB 035435-02, which is discrete and has no board
+map — its notes are in `boards/battlezone-regulator-audio.read.json` and its power story
+in `data/power/bzone.json`. Still unread on sheet 1 Side A: the Coin Door schematic
+(034988-01), International Power Supply (035887-01) and the cabinet wiring diagram
+(036242-01) — cabinet-level, not board-level.
 
 Centipede and Tempest still have unread sheets. Untouched machines with drawing packages:
 Gravitar, Black Widow, Space Duel, Space Invaders, Tank. Asteroids' own complement is

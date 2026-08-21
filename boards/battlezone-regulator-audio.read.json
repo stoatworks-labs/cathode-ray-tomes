@@ -1,0 +1,38 @@
+{
+ "machine": "bzone",
+ "name": "Battlezone Regulator/Audio II PCB",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "DP-156 sheet 1 Side A, Regulator/Audio II PCB Schematic 035435-02 Rev B",
+ "assembly": "035435-02",
+ "coverage": "Read in full from sheet 1 Side A. No board map is published for this one: it is a discrete board that does not use the A-R grid, and its designators are Q1, Q2, Q3, Q5, Q7, Q8, Q9 -- 'Q' is a valid grid row letter, so feeding these to build_board.py would place transistors as if they were grid ICs.",
+ "devices": {
+  "Q1": {"part": "LM305", "section": "Regulator", "note": "voltage regulator, 8-pin can; the reference for the whole +5V logic supply"},
+  "Q2": {"part": "TIP32", "section": "Regulator", "note": "bias transistor for Q3"},
+  "Q3": {"part": "2N3055", "section": "Regulator", "note": "current source power transistor; this is the one that gets hot"},
+  "Q8": {"part": "7812", "section": "Rectifier and rails", "note": "+12VDC, fed through R25 (4R 5W)"},
+  "Q9": {"part": "7905", "section": "Rectifier and rails", "note": "-5VDC, fed through R31 (15R 5W)"},
+  "Q5": {"part": "TDA2002AV", "section": "Audio", "note": "first audio amplifier, gain of ten, into J8 speaker output"},
+  "Q7": {"part": "TDA2002AV", "section": "Audio", "note": "second, independent audio amplifier, same circuit and gain"},
+  "CR5-CR8": {"part": "A14F x4", "section": "Rectifier and rails", "note": "bridge off the 36VAC input, giving the unregulated +/-22VDC"},
+  "R8": {"part": "1k potentiometer", "section": "Regulator", "note": "the +5V adjustment, with R7 (7.5k) and R6 (2.9k) around it"}
+ },
+ "rails": {
+  "in": "36VAC on J9 pins 4 and 5; +10.3VDC unregulated on J6 pins 3, 5 and 6",
+  "out": "+5V REG and +5V RTN on J7; +12VDC, +22VDC, -22VDC, -5VDC and GND on J10; speaker pairs on J8"
+ },
+ "notes": [
+  "This is a third Battlezone board, separate again from the game PCB (035742) and the Auxiliary PCB (035678-01). It does two unrelated jobs: it regulates the +5V logic supply for the game PCB, and it amplifies the audio coming back from the Auxiliary PCB.",
+  "The regulator senses remotely. +SENSE and -SENSE are high-impedance inputs taken directly from the +5V and ground inputs at the game PCB, so what is regulated is the voltage at the game PCB, not at the regulator -- that is what cancels the IR drop along the harness. It also means a bad harness or dirty edge connector shows up as the regulator's own output climbing while the game PCB still reads 5V.",
+  "Two independent TDA2002AV amplifiers, Q5 and Q7, each with a gain of ten and its own speaker pair on J8. One dead channel is one amplifier, not the sound generation on the Auxiliary PCB.",
+  "The +22V that the Auxiliary PCB's audio output stage runs on comes from here, off the 36VAC bridge -- unregulated."
+ ],
+ "adjustment": {
+  "R8": [
+   "Connect a voltmeter between the +5V and GND test points of the game PCB.",
+   "Adjust R8 on the Regulator/Audio PCB for +5 VDC on the voltmeter.",
+   "Connect a voltmeter between +5V REG and GND on the Regulator/Audio PCB. It must not read more than +5.5 VDC. If it does, clean the edge connectors on both the game PCB and the Regulator/Audio PCB.",
+   "If cleaning does not close the gap, measure GND to GND between the two boards, then +5 REG to +5V between them. That shows which harness wire or connector is dropping the voltage; troubleshoot that one."
+  ]
+ }
+}

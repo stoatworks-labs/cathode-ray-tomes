@@ -1,0 +1,25 @@
+{
+ "machine": "bzone",
+ "name": "Battlezone",
+ "title": "Three boards, three power stories",
+ "mains": {
+  "input": "36 VAC into the Regulator/Audio II PCB (035435-02) on J9 pins 4 and 5, plus +10.3 VDC unregulated on J6",
+  "note": "International Power Supply 035887-01 has a voltage selection block for 100/120/220/250 V; sheet 1 Side A carries its schematic"
+ },
+ "fuses": {},
+ "rails": {
+  "+5V logic": "LM305 (Q1) with 2N3055 pass transistor (Q3) and TIP32 bias (Q2) on the Regulator/Audio II PCB; adjusted at R8 and sensed remotely at the game PCB",
+  "+12V": "7812 (Q8) through a 4R 5W dropper",
+  "-5V": "7905 (Q9) through a 15R 5W dropper",
+  "+/-22V": "unregulated, straight off the 36VAC bridge CR5-CR8; the audio output stage on the Auxiliary PCB runs on the +22V",
+  "+15V / -15V / +5V DAC": "generated on the game PCB itself -- VR3 (7815) and VR2 (7805) off +22VDC, VR1 (7915) off -22VDC, for the analog vector generator"
+ },
+ "indicators": {
+  "CR2 on the game PCB": "MV5053 LED through 150R, +5V present",
+  "CR2 on the Auxiliary PCB": "MV5053 LED through R37 (150R), +5V present -- same designator, different board"
+ },
+ "adjustment": {
+  "R8 (+5V)": "Meter across the game PCB's +5V and GND test points and adjust R8 on the Regulator/Audio II PCB for +5 VDC there, not at the regulator. Then check +5V REG to GND on the Regulator/Audio PCB reads no more than +5.5 VDC; if it reads higher, the gap is harness drop -- clean both sets of edge connectors, then measure GND-to-GND and +5REG-to-+5V between the boards to find which wire is dropping it."
+ },
+ "note": "The regulator senses at the game PCB through high-impedance +SENSE and -SENSE lines, so it cancels the IR drop along the harness. The consequence for diagnosis is that a tired harness makes the regulator's own output rise while the game PCB still measures 5 V -- the fault shows at the regulator, not where it is."
+}
