@@ -70,10 +70,10 @@
   "mfr": "Atari",
   "year": "1980",
   "machine": "bzone",
-  "drawing": "DP-156 drawing package, sheets 02A and 02B",
-  "devices": 31,
+  "drawing": "DP-156 drawing package, sheets 02A, 02B and 03A",
+  "devices": 97,
   "netsTraced": false,
-  "status": "31 devices from sheets 02A and 02B (clock, MPU, address decode, RAM, option switches, coin door, vector DAC). A board map for diagnosis, not a complete bill of materials.",
+  "status": "97 devices from sheets 02A, 02B and 03A -- clock, MPU, address decode, program memory, RAM, option switches, coin door, vector DAC, and the whole digital vector generator (stack and program counter, address selector, vector RAM and ROM, data shifter, state machine, vector timer). Passives, regulators, crystals and the reset switch are read but are not on the IC grid. A board map for diagnosis, not a complete bill of materials.",
   "ibom": "/boards/battlezone/battlezone-ibom.html",
   "bom": "/boards/battlezone/bom.csv"
  },

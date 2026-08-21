@@ -73,7 +73,8 @@
    },
    "L2": {
     "part": "74LS32",
-    "section": "Microprocessor"
+    "section": "Address Decode",
+    "note": "ROM0 and ROM1 selects; same package as the 03A address-selector gate"
    },
    "M2": {
     "part": "74LS139",
@@ -112,6 +113,96 @@
     "part": "2114",
     "section": "RAM Memory",
     "note": "Atari 90-7033"
+   },
+   "P2": {
+    "part": "74LS245",
+    "section": "Microprocessor",
+    "note": "second bus transceiver; DB0-7 pulled up by resistors R1-R6; AM8304B alternate with different pin numbering"
+   },
+   "R125": {
+    "part": "10k resistor",
+    "section": "Address Decode",
+    "note": "DATA DISABLE pull-up; DATA DISABLE and M7 feed J4 to make DATA ENABLE"
+   },
+   "L4": {
+    "part": "74LS161",
+    "section": "NMI Counter",
+    "note": "clocked at 3KHZ, held by TEST, carry out through K2 to NMI -- self-test changes the NMI rate"
+   },
+   "N1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "selected by ROM5"
+   },
+   "L/M1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "spans L1 and M1; selected by ROM4"
+   },
+   "K1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "selected by ROM3"
+   },
+   "J1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "selected by ROM2"
+   },
+   "F/H1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "spans F1 and H1; selected by ROM1"
+   },
+   "E1": {
+    "part": "8316E",
+    "section": "Program Memory",
+    "note": "selected by ROM0"
+   },
+   "SW1": {
+    "part": "pushbutton",
+    "section": "Power Reset and Watchdog",
+    "note": "on-board RESET switch, pulled up by 10k with a 1N914 clamp and 1uF, into two LS14 stages at B6"
+   },
+   "WDDIS": {
+    "part": "jumper",
+    "section": "Power Reset and Watchdog",
+    "note": "watchdog disable; a board that resets every few seconds and a board with this jumper fitted look nothing alike on the bench"
+   },
+   "Y1": {
+    "part": "12.096 MHz crystal",
+    "section": "Clock",
+    "note": "alternate circuit, drawn dashed, with two P5 (74S04) inverters and 330R bias"
+   },
+   "Y2": {
+    "part": "12.096 MHz crystal",
+    "section": "Clock",
+    "note": "main circuit, with Q1 (2N3904), L1 (100uH), 39pF/100pF and a 10k/10k divider"
+   },
+   "Q1": {
+    "part": "2N3904",
+    "section": "Clock",
+    "note": "oscillator transistor for the Y2 circuit"
+   },
+   "VR3": {
+    "part": "7815",
+    "section": "Analog Vector-Generator PCB Power Input",
+    "note": "+15V from +22VDC in on edge pin 3/X"
+   },
+   "VR2": {
+    "part": "7805",
+    "section": "Analog Vector-Generator PCB Power Input",
+    "note": "+5VDAC from the same +22VDC, clamped by CR11 (1N100)"
+   },
+   "VR1": {
+    "part": "7915",
+    "section": "Analog Vector-Generator PCB Power Input",
+    "note": "-15V from -22VDC in on edge pin 4/W"
+   },
+   "CR2": {
+    "part": "MV5053 LED",
+    "section": "Analog Vector-Generator PCB Power Input",
+    "note": "+5V present indicator through a 150R -- the first thing to look at on a dead board"
    }
   },
   "02B": {
@@ -155,16 +246,384 @@
     "section": "Analog Vector Generator",
     "note": "DVY latch"
    }
+  },
+  "03A": {
+   "J6": {
+    "part": "74LS191",
+    "section": "Stack and Program Counter",
+    "note": "stack pointer up/down counter; STROB1, DISRST, OP1, OP2"
+   },
+   "J5": {
+    "part": "74LS32",
+    "section": "Stack and Program Counter",
+    "note": "STROBE0/OP0 and STROBE2/OP2 gating"
+   },
+   "H6": {
+    "part": "74LS670",
+    "section": "Stack and Program Counter",
+    "note": "register file, AVG1-4; 74LS170 alternate"
+   },
+   "F6": {
+    "part": "74LS670",
+    "section": "Stack and Program Counter",
+    "note": "register file, AVG5-8; 74LS170 alternate"
+   },
+   "E6": {
+    "part": "74LS670",
+    "section": "Stack and Program Counter",
+    "note": "register file, AVG9-12; carries WA/RA/WB/RB and GR/GW"
+   },
+   "H7": {
+    "part": "74LS367",
+    "section": "Stack and Program Counter",
+    "note": "DVY0-DVY5 driver, enabled by OP0"
+   },
+   "F7": {
+    "part": "74LS367",
+    "section": "Stack and Program Counter",
+    "note": "DVY6-DVY11 driver, enabled by OP0"
+   },
+   "H5": {
+    "part": "74LS193",
+    "section": "Stack and Program Counter",
+    "note": "program counter AVG1-4"
+   },
+   "F5": {
+    "part": "74LS193",
+    "section": "Stack and Program Counter",
+    "note": "program counter AVG5-8"
+   },
+   "E5": {
+    "part": "74LS193",
+    "section": "Stack and Program Counter",
+    "note": "program counter AVG9-12"
+   },
+   "RP1": {
+    "part": "10k resistor pack",
+    "section": "Stack and Program Counter",
+    "note": "fitted only when 74LS170 is used in place of 74LS670"
+   },
+   "RP2": {
+    "part": "10k resistor pack",
+    "section": "Stack and Program Counter",
+    "note": "fitted only when 74LS170 is used in place of 74LS670"
+   },
+   "D4": {
+    "part": "74LS157",
+    "section": "Vector-Generator Address Selector",
+    "note": "AB11/12 vs AVG11/12 -> AM11/AM12; also gates VW and BUFFEN"
+   },
+   "E4": {
+    "part": "74LS157",
+    "section": "Vector-Generator Address Selector",
+    "note": "AB8-10 vs AVG8-10 -> AM8-AM10"
+   },
+   "F4": {
+    "part": "74LS157",
+    "section": "Vector-Generator Address Selector",
+    "note": "AB4-7 vs AVG4-7 -> AM4-AM7"
+   },
+   "H4": {
+    "part": "74LS157",
+    "section": "Vector-Generator Address Selector",
+    "note": "AB0-3 vs AVG0-3 -> AM0-AM3"
+   },
+   "L2": {
+    "part": "74LS32",
+    "section": "Vector-Generator Address Selector",
+    "note": "PHI2 gating -> VW"
+   },
+   "B4": {
+    "part": "74LS42",
+    "section": "Vector-Generator Address Selector",
+    "note": "VRAM0/1, VRAM2/VROM1L, VRAM3/VROM1M, VROM2L/2M, VROM3L/3M"
+   },
+   "C4": {
+    "part": "74LS139",
+    "section": "Vector-Generator Address Selector",
+    "note": "second half of the 02A decoder; AM11/AM12 -> VROM1, VROM2, VROM3"
+   },
+   "D2": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "C2": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "B2": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "A2": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "D1": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "C1": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "B1": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "A1": {
+    "part": "2114",
+    "section": "Vector-Generator RAM",
+    "note": "Atari 90-7033"
+   },
+   "A3": {
+    "part": "8316E",
+    "section": "Vector-Generator ROM",
+    "note": "mask ROM; 2708 alternate needs the split pads recut"
+   },
+   "B/C3": {
+    "part": "8316E",
+    "section": "Vector-Generator ROM",
+    "note": "spans B3 and C3; 2708 alternate needs the split pads recut"
+   },
+   "E3": {
+    "part": "8316E",
+    "section": "Vector-Generator ROM",
+    "note": "selected by VROM3M"
+   },
+   "F/H3": {
+    "part": "8316E",
+    "section": "Vector-Generator ROM",
+    "note": "spans F3 and H3; selected by VROM2M"
+   },
+   "F2": {
+    "part": "74LS245",
+    "section": "Vector-Generator Data Buffer",
+    "note": "DVG0-7 <-> DB0-7; AM8304B alternate with different pin numbering. DVG0-7 are pulled up by resistors R10-R17 (10k) -- resistors, not the ICs at grid positions R10 and R11"
+   },
+   "A5": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG0-3 -> DVX3"
+   },
+   "A6": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG4-7 -> DVX4-DVX7"
+   },
+   "B5": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG0-3 -> DVX8-DVX11"
+   },
+   "D5": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG0-3 -> DVY0-DVY3"
+   },
+   "D6": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG4-7 -> DVY4-DVY7"
+   },
+   "C5": {
+    "part": "74LS194",
+    "section": "Vector-Generator Data Shifter",
+    "note": "DVG0-3 -> DVY8-DVY11"
+   },
+   "C6": {
+    "part": "74S00",
+    "section": "Vector-Generator Data Shifter",
+    "note": "NORM gated against LATCH0-LATCH3 for the shift-register mode inputs"
+   },
+   "B6": {
+    "part": "74LS14",
+    "section": "Vector-Generator Data Shifter",
+    "note": "LATCH0-LATCH3 inverters; same package as the 02A watchdog"
+   },
+   "K8": {
+    "part": "74LS175",
+    "section": "Vector-Generator Data Latches",
+    "note": "DVY12 and OP0/OP1/OP2, clocked by LATCH1"
+   },
+   "J8": {
+    "part": "74LS175",
+    "section": "Vector-Generator Data Latches",
+    "note": "Z0/Z1/Z2 intensity and DVX12"
+   },
+   "N9": {
+    "part": "74LS02",
+    "section": "State Machine Control",
+    "note": "VGCK gating"
+   },
+   "L10": {
+    "part": "74LS74",
+    "section": "State Machine Control",
+    "note": "second flip-flop of the 02A watchdog package; VGCK from 6MHZ"
+   },
+   "N7": {
+    "part": "74LS27",
+    "section": "State Machine Control",
+    "note": "VMEM and STATE2"
+   },
+   "M7": {
+    "part": "74LS02",
+    "section": "State Machine Control",
+    "note": "cross-coupled latch; same package as the 02A DATA ENABLE gate"
+   },
+   "K9": {
+    "part": "74S02",
+    "section": "State Machine Control",
+    "note": "VGCK"
+   },
+   "L8": {
+    "part": "74S260",
+    "section": "State Machine Control",
+    "note": "VGCK, 3MHZ, 6MHZ"
+   },
+   "L9": {
+    "part": "74LS74",
+    "section": "State Machine Control",
+    "note": "two flip-flops clocked at 12MHZ; STATE3"
+   },
+   "J10": {
+    "part": "74S74",
+    "section": "Vector Timer Control",
+    "note": "NORM"
+   },
+   "B7": {
+    "part": "74S86",
+    "section": "Vector Timer Control",
+    "note": "two XOR gates"
+   },
+   "K10": {
+    "part": "74LS32",
+    "section": "Vector Timer Control",
+    "note": "STATCLK and SCALELD from OP2"
+   },
+   "R9": {
+    "part": "74S04",
+    "section": "Vector Timer Control",
+    "note": "SCALELD inverter; same package as the 02B option-switch enables"
+   },
+   "F9": {
+    "part": "74LS175",
+    "section": "Vector Timer Control",
+    "note": "scale latch, cleared by DISRST"
+   },
+   "F10": {
+    "part": "74LS191",
+    "section": "Vector Timer Control",
+    "note": "scale counter"
+   },
+   "M8": {
+    "part": "74LS32",
+    "section": "Vector Timer Control",
+    "note": "CNTR/VCTR -> GO"
+   },
+   "N8": {
+    "part": "74LS109",
+    "section": "Vector Timer Control",
+    "note": "CNTR latch; STOP and HALT inputs"
+   },
+   "K6": {
+    "part": "74LS161",
+    "section": "Vector Timer",
+    "note": "timer counter, carry K6CO"
+   },
+   "L6": {
+    "part": "74LS161",
+    "section": "Vector Timer",
+    "note": "timer counter, carry L6CO"
+   },
+   "N6": {
+    "part": "74LS161",
+    "section": "Vector Timer",
+    "note": "timer counter, carry N6CO"
+   },
+   "M6": {
+    "part": "74LS161",
+    "section": "Vector Timer",
+    "note": "timer counter"
+   },
+   "L5": {
+    "part": "74LS08",
+    "section": "Vector Timer",
+    "note": "K6CO/L6CO combining; also the DISRST gate in the halt latch"
+   },
+   "J9": {
+    "part": "74LS11",
+    "section": "Vector Timer",
+    "note": "K6CO, L6CO, N6CO"
+   },
+   "M5": {
+    "part": "74LS20",
+    "section": "Vector Timer",
+    "note": "N6CO term"
+   },
+   "J4": {
+    "part": "74LS00",
+    "section": "Vector Timer",
+    "note": "OP1 term; same package as the 02A watchdog gate"
+   },
+   "K4": {
+    "part": "74LS10",
+    "section": "Vector Timer",
+    "note": "KGCO/LGCO -> STOP; same package as the 02A address decode gate"
+   },
+   "K7": {
+    "part": "82S129",
+    "section": "State Machine",
+    "note": "Atari 036408 vector state PROM; OP0/OP1/OP2 in, STATE0-STATE3 out"
+   },
+   "L7": {
+    "part": "74LS174",
+    "section": "State Machine",
+    "note": "state register, cleared by DISRST"
+   },
+   "J7": {
+    "part": "74LS42",
+    "section": "State Machine",
+    "note": "STATE0-2 -> STROBE0-3 and LATCH0-3"
+   },
+   "M9": {
+    "part": "74LS74",
+    "section": "State Machine / Vector Halt Latch",
+    "note": "AVG0 from STATE2 in the first half; the second half is the vector halt latch (HALT set from OP0 by STROBE3, cleared by VGGO)"
+   }
   }
  },
  "notes": [
-  "Two 12.096 MHz crystals (Y1, Y2) with an alternate clock circuit drawn dashed \u2014 the board was built both ways.",
+  "Two 12.096 MHz crystals (Y1, Y2) with an alternate clock circuit drawn dashed — the board was built both ways.",
   "Clock tree: 12MHz -> N4 (74193) -> 6/3/1.5MHz, and N5 (LS393) -> 3kHz/12kHz. E3MHZ and E6MHZ are gated through P8.",
-  "Same MPU as Asteroids \u2014 Atari 90-6013 (6502A) \u2014 and the same LS245/AM83048 transceiver substitution with alternate pin numbering.",
+  "Same MPU as Asteroids — Atari 90-6013 (6502A) — and the same LS245/AM8304B transceiver substitution with alternate pin numbering.",
   "A 50-pin test connector is fitted, marked 'FOR ATARI MANUFACTURING ONLY', bringing out the full address and data bus plus DATA DISABLE.",
   "J19 (24-pin) carries the buffered bus to the Auxiliary Math Box PCB: EDB0-7, EAB0-6, ER/WB, EI/O, EPHI2 and the E6MHZ/E12KHZ/E3MHZ clocks.",
   "Decode chain: M2 splits program/vector memory, C4 selects RAM vs I/O, K5 fans out to VGRST, WDCLR, VGGO, COINCK, OPT0/1 and SINP.",
-  "Two 8-position option switch banks: M10 (read by N11 via OPT0) and P10 (read by P11 via OPT1), both pulled up through 10k. R11 carries the coin door inputs plus 3KHZ and HALT, so a machine that will not coin up and one that reports the wrong vector-generator state share a buffer."
+  "Two 8-position option switch banks: M10 (read by N11 via OPT0) and P10 (read by P11 via OPT1), both pulled up through 10k. R11 carries the coin door inputs plus 3KHZ and HALT, so a machine that will not coin up and one that reports the wrong vector-generator state share a buffer.",
+  "Sheet 3 Side A is the whole digital vector generator, and it is a section of the same 035742-01/-02 game PCB as sheet 2 -- so the designators share one grid. Several packages appear on both sheets using different halves: C4 (LS139), L10 (LS74), M7 (LS02), J4 (LS00), K4 (LS10), B6 (LS14), R9 (S04), K2 (S04).",
+  "Vector state PROM is K7, an 82S129 carrying Atari part 036408. OP0/OP1/OP2 address it and STATE0-STATE3 come out, so a vector generator stuck in one state points at K7, L7 (LS174 state register) or J7 (LS42 strobe/latch decoder) before anything else.",
+  "HALT is latched at M9 from OP0 by STROBE3 and cleared by VGGO, with DISRST from L5 combining RESET and VGRST. That same HALT is what the 02B coin-door buffer R11 reads back, so the self-test HALT indication and the vector generator's own halt are the same signal.",
+  "Vector-generator RAM is eight 2114s (Atari 90-7033) at A1-D1 and A2-D2, chip-selected in pairs from VRAM0, VRAM1, VRAM2/VROM1L and VRAM3/VROM1M.",
+  "Vector-generator ROM is four 8316E mask ROMs at A3, B/C3, E3 and F/H3 -- two of them drawn spanning two grid positions. 2708s can be fitted instead, but the drawing says that needs open pads bridged and connected pads cut in three places.",
+  "Two substitutions on this sheet change the parts fitted, not just the marking: 74LS170 in place of 74LS670 in the stack register file requires resistor packs RP1/RP2 to be installed, and AM8304B in place of 74LS245 at F2 renumbers every pin.",
+  "Program memory is six 8316E mask ROMs on sheet 2 Side A at N1, L/M1, K1, J1, F/H1 and E1, selected by ROM5 down to ROM0 in that left-to-right order. Two of them are drawn spanning two grid positions, the same convention the vector ROMs use on sheet 3.",
+  "The board carries its own power regulation for the analog vector-generator PCB: VR3 (7815) and VR2 (7805) off +22VDC, VR1 (7915) off -22VDC, with CR2 (MV5053) as the +5V present LED. +5V, -5V and +12V arrive already regulated on the edge connector.",
+  "The 'P,R18', 'P,R27' and 'P,R67' annotations scattered across every sheet are pull-ups to +5V through 1k resistors R18, R20, R27 and R67 -- given on sheet 2 Side A in the Power Input block, and nowhere else.",
+  "SW1 is an on-board reset pushbutton, and WDDIS is a watchdog-disable jumper. Both change how a board behaves before any fault is involved, so both are worth checking before chasing a reset loop."
  ],
- "conflicts": []
+ "conflicts": [
+  "Designator namespace collision: on these sheets R9, R10 and R11 are ICs at those grid positions (R9 is a 74S04, R10/R11 are 74LS244s on sheet 2 Side B) and are also ordinary resistor numbers on sheet 2 Side A (R9 and R19 are the 10k pull-ups on the LS244 enables) and sheet 3 Side A (R10-R17 are the data-buffer pull-ups). Nothing on the drawing distinguishes them but the symbol: ICs are boxes or gates with a part number beneath, resistors are zigzags with a value. Not resolvable by renaming -- it has to be read off the symbol every time."
+ ],
+ "corrections": [
+  "The LS245 alternate is AM8304B, not 'AM83048'. Read off both sheets: the sheet 2 Side A note spells out 'AM8304B INSTEAD OF 74LS245, 2 PLACES THIS PAGE', and sheet 3 Side A repeats it at F2. The two places on sheet 2 are P4 and P2 -- P2 was missing from the earlier read entirely.",
+  "The MPU's own designator on the sheet is 'L/M/N 3', not L3 -- it spans three grid positions, the same convention as the L/M1 and F/H1 ROMs and the B/C3 and F/H3 vector ROMs. Recorded here under L3."
+ ]
 }
