@@ -156,6 +156,56 @@ dot-leader entries and mid-sentence fragments are all excluded.
 earlier; run it with `--force` after any change to the classifier, since existing
 outlines are otherwise left alone. A full pass is ~27 docs/min.
 
+## Reading drawing packages
+
+A drawing package is not one board. Battlezone's DP-156 sheets 2 and 3 Side A are
+sections of game PCB 035742; sheet 3 Side B is Auxiliary PCB 035678-01, a
+different board with its own designator grid. **Read the "Section of <part>" line
+in the title block before merging any designators.** C1 on one is not C1 on the
+other, and both boards have a +5V LED called CR2.
+
+The title block's contents list is worth reading first. Battlezone's says sheet 1
+Side B is the Math Box Signature Analysis Procedure — the most useful sheet in
+the package, and one nothing else points at.
+
+**Test-point maps are a completeness check.** Where a package carries a
+signature-analysis figure showing every device with a test point, read the sheet
+first and then check the read against that figure. Doing this on Battlezone found
+two LS161s — the entire microcode program counter — missed on the first pass
+through sheet 3 Side B.
+
+**Printings disagree, and typeset beats hand-lettered.** The 1st and 2nd
+printings of DP-156-03 differ on real values, and one prints a signature column
+in reverse order. Where a procedure sheet gives the same values typeset and per
+device pin, that is the better source. Every conflict logged from the
+hand-lettered sheets was settled this way — never by re-reading the same sheet,
+which is what the house rule already said.
+
+**Signature codes use the analyser's alphabet: 0-9 A C F H P U.** No B, D, E, G,
+S. `extract_signatures.py` already enforces this. It is a genuine constraint on a
+reading — but it only rejects, it does not decide. A code read as "CAPE" is
+certainly wrong, and reasoning "E is illegal, a 5 looks like that, so CAP5" still
+produced the wrong answer: the typeset figure says C4P5. Use the constraint to
+find what needs cross-referencing, not to manufacture the replacement.
+
+Signatures marked with an asterisk are taken with a 1k resistor between the
+analyser's data probe and +5V. Without it those readings do not reproduce, and
+the note appears on only one printing.
+
+## Designator namespaces collide on Atari sheets
+
+`AGENTS.md` already notes that grid designators collide with KiCad refdes. The
+sharper problem is that they collide *on the drawing*: R9, R10 and R11 are ICs at
+those grid positions and also ordinary resistor numbers on the same package;
+Q1 is a grid position and a transistor. Nothing distinguishes them but the symbol
+drawn — a box or gate with a part number beneath, versus a zigzag with a value.
+Not fixable by renaming. Read it off the symbol every time.
+
+`build_board.py` keys `ics` by grid cell, so only real grid positions belong
+there. Passives (VR1, SW1, Y1, Q1, CR2, RP1, R125) must stay out or the build
+throws. Devices drawn spanning two or three cells — `L/M1`, `F/H1`, `B/C3`,
+`H/J2`, `L/M/N3` — go in at their first cell, with the span recorded in the note.
+
 ## Traps that have already bitten
 
 - **Reference-designator collisions.** Atari labels ICs by board grid position (`A2`, `C1`,

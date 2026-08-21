@@ -20,10 +20,10 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 13, across 10 machines |
+| Board maps | 14, across 10 machines |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
-| Signature analysis | 16 machines, 166 codes |
+| Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
 | Parts lists | 192 documents, 11,911 rows |
 
 Corpus ships as **static assets** (`web/data/`, ~11,400 files, 157 MB). No KV, no R2 —
@@ -63,7 +63,11 @@ designators OCR fine (18–34/sheet), hand-lettered part numbers do not (1–9).
 ## Cross-machine findings (verified, in `data/related/`)
 
 - **Red Baron ≡ Battlezone** — clock/reset/watchdog identical chip for chip; shared
-  Auxiliary Math Box PCB, so Battlezone's 68 signature codes apply to both.
+  Auxiliary Math Box PCB (035678-01), now its own board map, so every device position
+  and signature on it applies to both games.
+- **Battlezone's game PCB and Auxiliary PCB are separate boards** — 035742 and
+  035678-01, in one drawing package, with separate designator grids. The Math Box, the
+  POKEY, the control panel inputs and all the sound are on the Auxiliary PCB.
 - **Tempest ≡ Battlezone inputs** — two DIP banks → LS244s under OPT0/OPT1, third LS244
   for coin door with 3KHZ and HALT.
 - **Asteroids Deluxe = Asteroids, designators one row lower** (B5→B4, C4→C3, …).
@@ -76,9 +80,20 @@ traps found so far.
 
 ## Open work
 
-**Boards.** Battlezone, Centipede, Tempest all have unread sheets. Untouched machines
-with drawing packages: Gravitar, Black Widow, Space Duel, Space Invaders, Tank.
-Asteroids' own complement is ~106 of ~180 devices; sheet 02B partly unread.
+**Boards.** Battlezone is done: sheets 1B, 2A, 3A and 3B are read, the game PCB is at
+97 devices and the Auxiliary PCB is a separate map at 36. Sheet 1 Side A is the only one
+left there, and it is cabinet-level — International Power Supply 035887-01, Coin Door
+034988-01, the wiring diagram, and **Regulator/Audio II PCB 035435-02**, which is a third
+board (Q1/Q2/Q3 regulator with remote sensing, R8 sets +5V, two TDA2002AV audio amps at
+gain 10) with a four-step adjustment procedure printed beside it. Worth a read.
+
+Centipede and Tempest still have unread sheets. Untouched machines with drawing packages:
+Gravitar, Black Widow, Space Duel, Space Invaders, Tank. Asteroids' own complement is
+~106 of ~180 devices; sheet 02B partly unread.
+
+**One unresolved Battlezone conflict** (in `boards/battlezone-math-box.read.json`):
+Figure 3 on sheet 1B gives E/D2 pin 22 as `4414`, the Test #3 box on sheet 3B gives the
+same net as `441H`. Both legible, both valid signature strings.
 
 **Two unresolved Asteroids conflicts** (in `boards/asteroids.read.json`): C8 reads as
 both the state-machine PROM and an LS02; both need a physical board to settle.
@@ -93,6 +108,13 @@ scan of sheet 002826 than the archive holds.
 
 **Test-point markers** are drawn as a flag symbol on the sheets — extracting them needs
 shape detection, not OCR. Not started.
+
+**Package sizing is wrong on every board map.** `build_board.py:package_for()` reads pin
+counts from `DEVICES`, which holds 20 Pong-era parts, and falls back to DIP-14 for
+everything else. ~90 part types are in use, so a 24-pin ROM and a 20-pin LS245 both draw
+as 14-pin parts in the KiCad boards and the IBOM views the site links. Fix with a
+packaging-only pin-count table kept *separate* from `DEVICES` — that one is the
+electrical constraint set `validate_nets.py` trusts.
 
 ## Traps that cost real time
 
@@ -110,6 +132,17 @@ shape detection, not OCR. Not started.
   `pcbdata`, so grepping the HTML for a net name finds nothing even when present.
 - **`kicad-cli pcb export bom` does not exist** — it silently exports XAO instead.
 - **zsh does not word-split unquoted variables.** Bash-isms will not behave.
+- **A signature box can be drawn with its header at the bottom**, so its column reads
+  bottom-up. Read one against a known pin order before trusting the sequence.
+- **Two printings of the same sheet genuinely disagree** on values, not just legibility.
+  Where a procedure sheet gives the same signatures typeset and per device pin, prefer it.
+- **The analyser alphabet (0-9 A C F H P U) rejects but does not decide.** "CAPE" is
+  certainly wrong; reasoning it to "CAP5" was also wrong. It is `C4P5`.
+- **`build_board.py` `ics` keys must be grid cells.** Passives (VR1, SW1, Y1, Q1, CR2,
+  RP1, R125) throw; spanning designators (`L/M1`, `H/J2`, `L/M/N3`) go in at their first
+  cell with the span in the note.
+- **`wrangler dev` may not start in a sandboxed shell** (`esbuild spawn EBADF`). Verify
+  the JSON the UI reads and check the live site after deploy instead.
 
 ## House rules being followed
 
