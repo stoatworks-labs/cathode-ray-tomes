@@ -689,3 +689,15 @@ async function about() {
 }
 
 route();
+
+// Offline shell and home-screen install. The manuals themselves are not
+// cached -- see web/sw.js for why. A failure here costs the install prompt and
+// nothing else, and there is nothing a reader could do about it, so it is
+// logged and dropped.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch((error) => {
+      console.warn('offline support unavailable:', error);
+    });
+  });
+}
