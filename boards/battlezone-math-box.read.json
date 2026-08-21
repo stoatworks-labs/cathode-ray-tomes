@@ -5,61 +5,317 @@
  "year": "1980",
  "drawing": "DP-156 sheet 3 Side B, section of 035678-01",
  "assembly": "035678-01",
- "shared_with": ["redbaron"],
- "coverage": "Math Box block only. The Output Latch, Audio Output, Control Panel Inputs and Audio Generator, and Power Input blocks on the same sheet are NOT yet read.",
+ "shared_with": [
+  "redbaron"
+ ],
+ "coverage": "All five blocks on DP-156 sheet 3 Side B read: Math Box, Output Latch, Audio Output, Control Panel Inputs and Audio Generator, and Power Input. Passives are recorded only where they set a rate, a level or an adjustment.",
  "sheets": {
   "03B": {
-   "B1": {"part": "82S123", "section": "Math Box", "note": "Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN"},
-   "C1": {"part": "74LS374", "section": "Math Box", "note": "microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN"},
-   "M1": {"part": "82S129", "section": "Math Box", "note": "Atari 036175; microcode PROM, outputs A0-A3"},
-   "L1": {"part": "82S129", "section": "Math Box", "note": "Atari 036176; microcode PROM, outputs A4-A7"},
-   "K1": {"part": "82S129", "section": "Math Box", "note": "Atari 036177; microcode PROM, outputs A8-A11"},
-   "J1": {"part": "82S129", "section": "Math Box", "note": "Atari 036178; microcode PROM, outputs A12-A15"},
-   "H1": {"part": "82S129", "section": "Math Box", "note": "Atari 036179; microcode PROM, outputs A16-A19"},
-   "F1": {"part": "82S129", "section": "Math Box", "note": "Atari 036180; microcode PROM, highest microcode field"},
-   "K2": {"part": "137004-001", "section": "Math Box", "note": "Atari-marked Am2901 4-bit slice, DIP-40; least significant slice"},
-   "F2": {"part": "137004-001", "section": "Math Box", "note": "Atari-marked Am2901 4-bit slice, DIP-40"},
-   "H/J2": {"part": "137004-001", "section": "Math Box", "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2"},
-   "D/E2": {"part": "137004-001", "section": "Math Box", "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice"},
-   "B4": {"part": "74109", "section": "Math Box", "note": "JK flip-flop; M START"},
-   "C5": {"part": "74LS74", "section": "Math Box", "note": "A12 latched by CLK; produces STOP, cleared by BEGIN"},
-   "C3": {"part": "74LS139", "section": "Math Box", "note": "both halves used; one decodes EAB5/EAB6 to SWITCHES, the other EAB3/EAB4 to YHI and YLO"},
-   "C4": {"part": "74LS32", "section": "Math Box", "note": "ER/WB and EPHI2 gating into M START"},
-   "D3": {"part": "74LS00", "section": "Math Box", "note": "E3MHZ gating; also in the ALU carry path with E5"},
-   "D4": {"part": "74LS02", "section": "Math Box", "note": "M START, CLK and STOP gating"},
-   "D5": {"part": "74S08", "section": "Math Box", "note": "A16 and CLK to A6A3, the C1 latch clock"},
-   "E3": {"part": "74S03", "section": "Math Box", "note": "open-collector, EDB7 pulled up by R2 (1k)"},
-   "E4": {"part": "74LS04", "section": "Math Box", "note": "inverters through the clock and start logic"},
-   "E5": {"part": "74S86", "section": "Math Box", "note": "XOR in the ALU carry path"},
-   "J4": {"part": "74LS20", "section": "Math Box", "note": "EPHI2 and E3MHZ to SACLK3"}
+   "B1": {
+    "part": "82S123",
+    "section": "Math Box",
+    "note": "Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN"
+   },
+   "C1": {
+    "part": "74LS374",
+    "section": "Math Box",
+    "note": "microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN"
+   },
+   "M1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036175; microcode PROM, outputs A0-A3"
+   },
+   "L1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036176; microcode PROM, outputs A4-A7"
+   },
+   "K1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036177; microcode PROM, outputs A8-A11"
+   },
+   "J1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036178; microcode PROM, outputs A12-A15"
+   },
+   "H1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036179; microcode PROM, outputs A16-A19"
+   },
+   "F1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 036180; microcode PROM, highest microcode field"
+   },
+   "K2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; least significant slice"
+   },
+   "F2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40"
+   },
+   "H/J2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2"
+   },
+   "D/E2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice"
+   },
+   "B4": {
+    "part": "74109",
+    "section": "Math Box",
+    "note": "JK flip-flop; M START"
+   },
+   "C5": {
+    "part": "74LS74",
+    "section": "Math Box",
+    "note": "A12 latched by CLK; produces STOP, cleared by BEGIN"
+   },
+   "C3": {
+    "part": "74LS139",
+    "section": "Math Box",
+    "note": "both halves used; one decodes EAB5/EAB6 to SWITCHES, the other EAB3/EAB4 to YHI and YLO"
+   },
+   "C4": {
+    "part": "74LS32",
+    "section": "Math Box",
+    "note": "ER/WB and EPHI2 gating into M START"
+   },
+   "D3": {
+    "part": "74LS00",
+    "section": "Math Box",
+    "note": "E3MHZ gating; also in the ALU carry path with E5"
+   },
+   "D4": {
+    "part": "74LS02",
+    "section": "Math Box",
+    "note": "M START, CLK and STOP gating"
+   },
+   "D5": {
+    "part": "74S08",
+    "section": "Math Box",
+    "note": "A16 and CLK to A6A3, the C1 latch clock"
+   },
+   "E3": {
+    "part": "74S03",
+    "section": "Math Box",
+    "note": "open-collector, EDB7 pulled up by R2 (1k)"
+   },
+   "E4": {
+    "part": "74LS04",
+    "section": "Math Box",
+    "note": "inverters through the clock and start logic"
+   },
+   "E5": {
+    "part": "74S86",
+    "section": "Math Box",
+    "note": "XOR in the ALU carry path"
+   },
+   "J4": {
+    "part": "74LS20",
+    "section": "Math Box",
+    "note": "EPHI2 and E3MHZ to SACLK3"
+   },
+   "M2": {
+    "part": "74LS273",
+    "section": "Output Latch",
+    "note": "latches EDB0-7 into MOTOR EN, SOUND ENABLE, ENGINE REV EN, SHELL L/S, SHELL EN, EXPLO L/S and EXPLO EN -- every sound enable on the board comes from this one chip"
+   },
+   "B/C2": {
+    "part": "C012294-01",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "POKEY, DIP-40, spans B2 and C2; P0-P7 read the control panel switches directly, D0-D7 on EDB, AUD out through R36/C25"
+   },
+   "H5": {
+    "part": "74LS164",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "shift register in the noise generator, fed back through two E5 XOR gates; cleared by SOUND ENABLE"
+   },
+   "F3": {
+    "part": "555",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "engine-rev timer; R10 (100k), R11 (250k pot) and C11 set the rate"
+   },
+   "F4": {
+    "part": "74LS161",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "motor sound divider, held by MOTOR EN"
+   },
+   "F5": {
+    "part": "74LS161",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "second motor sound divider, held by MOTOR EN"
+   },
+   "J5": {
+    "part": "74LS74",
+    "section": "Control Panel Inputs and Audio Generator",
+    "note": "shell and explosion timing flip-flops"
+   },
+   "L4": {
+    "part": "CD4066",
+    "section": "Audio Output",
+    "note": "quad analog switch gating shell, explosion and engine paths"
+   },
+   "J3": {
+    "part": "CD4066",
+    "section": "Audio Output",
+    "note": "quad analog switch, shell and explosion envelope charge/discharge into C9 and C14"
+   },
+   "K5": {
+    "part": "LM324",
+    "section": "Audio Output",
+    "note": "quad op-amp on +22V: shell and explosion shapers, engine shaper, and the summing amp that drives AUD+"
+   },
+   "M5": {
+    "part": "LM324",
+    "section": "Audio Output",
+    "note": "inverts the mix to give AUD-, so the board puts out a differential pair on edge pins 5 and 6 with AUD RETURN on E"
+   },
+   "CR2": {
+    "part": "MV5053 LED",
+    "section": "Power Input",
+    "note": "+5V present indicator through R37 (150R). Same designator as the game PCB LED but a different board -- do not confuse the two"
+   }
   }
  },
  "interconnect": {
   "note": "Circled numbers on this sheet are interconnect-connector pins, not test points -- the drawing's own legend says a square is an edge connector, a circle an interconnect connector, and a rounded shape a test point.",
-  "pins": {"3": "M START", "4": "STOP", "6": "SACLK1", "8": "SACLK3", "9": "SAEN1"}
+  "pins": {
+   "3": "M START",
+   "4": "STOP",
+   "6": "SACLK1",
+   "8": "SACLK3",
+   "9": "SAEN1"
+  }
  },
  "signatures": {
   "note": "Four-digit alphanumeric codes on this sheet are signature-analysis signatures of Math Box test points, in the HP analyser alphabet (0-9 A C F H P U). Unboxed codes are taken during Test #1; boxed ones during the test named on the box. The 2nd printing adds that any code marked with an asterisk is taken with a 1k pull-up between the analyser data probe and +5V -- without that resistor those readings will not reproduce.",
-  "C1_outputs": {"pins": "9,12,6,15,5,16,2,19 (4Q,5Q,3Q,6Q,2Q,7Q,1Q,8Q)",
-                 "codes": ["6U30","5AAH","1C6C","03A7","CU2P","9A06","8A7H","2327"]},
-  "B1_address": {"pins": "14,13,12,11,10 (A4..A0)", "test": "Test #2A",
-                 "codes": ["F722","CAP5","6UAC","3441","2P41 / 2P61 -- see conflicts"]},
-  "B1_data": {"pins": "9,7,6,5,4,3,2,1 (D7..D0)", "test": "Test #2A on the 2nd printing, Test #2B on the 1st",
-              "codes": ["92F3","A856","3050","H8F9","9569","3U53","9F47","4FUF"]},
-  "prom_address_test1": {"pins": "15,1,2,3,4,7,6,5 (A7..A0)", "test": "Test #1, unboxed",
-                         "codes": ["H58A","77F7","85PA","7P25","5CPO","P5PH","725C","96PF"]},
-  "prom_address_test2b": {"pins": "15,1,2,3,4,7,6,5 (A7..A0)", "test": "Test #2B",
-                          "codes": ["92F3","A856","3050","H8F9","9569","3U53","9F47","4FUF"],
-                          "note": "taken from the 2nd printing; the 1st printing prints the same eight codes against the same pins in the opposite order -- see conflicts"},
-  "alu": {"note": "signatures printed under the four 137004-001 slices; asterisked ones need the 1k pull-up",
-          "codes": ["753F","9AFH*","1781","7U19*","11C5*","8631","78AA*","9CPP","809A*"]},
-  "other": ["1441","2883","5107","441H","883A","1074","C646","0600","3784","A6A3","96PF"]
+  "C1_outputs": {
+   "pins": "9,12,6,15,5,16,2,19 (4Q,5Q,3Q,6Q,2Q,7Q,1Q,8Q)",
+   "codes": [
+    "6U30",
+    "5AAH",
+    "1C6C",
+    "03A7",
+    "CU2P",
+    "9A06",
+    "8A7H",
+    "2327"
+   ]
+  },
+  "B1_address": {
+   "pins": "14,13,12,11,10 (A4..A0)",
+   "test": "Test #2A",
+   "codes": [
+    "F722",
+    "CAP5",
+    "6UAC",
+    "3441",
+    "2P41 / 2P61 -- see conflicts"
+   ]
+  },
+  "B1_data": {
+   "pins": "9,7,6,5,4,3,2,1 (D7..D0)",
+   "test": "Test #2A on the 2nd printing, Test #2B on the 1st",
+   "codes": [
+    "92F3",
+    "A856",
+    "3050",
+    "H8F9",
+    "9569",
+    "3U53",
+    "9F47",
+    "4FUF"
+   ]
+  },
+  "prom_address_test1": {
+   "pins": "15,1,2,3,4,7,6,5 (A7..A0)",
+   "test": "Test #1, unboxed",
+   "codes": [
+    "H58A",
+    "77F7",
+    "85PA",
+    "7P25",
+    "5CPO",
+    "P5PH",
+    "725C",
+    "96PF"
+   ]
+  },
+  "prom_address_test2b": {
+   "pins": "15,1,2,3,4,7,6,5 (A7..A0)",
+   "test": "Test #2B",
+   "codes": [
+    "92F3",
+    "A856",
+    "3050",
+    "H8F9",
+    "9569",
+    "3U53",
+    "9F47",
+    "4FUF"
+   ],
+   "note": "taken from the 2nd printing; the 1st printing prints the same eight codes against the same pins in the opposite order -- see conflicts"
+  },
+  "alu": {
+   "note": "signatures printed under the four 137004-001 slices; asterisked ones need the 1k pull-up",
+   "codes": [
+    "753F",
+    "9AFH*",
+    "1781",
+    "7U19*",
+    "11C5*",
+    "8631",
+    "78AA*",
+    "9CPP",
+    "809A*"
+   ]
+  },
+  "other": [
+   "C646",
+   "0600",
+   "C4U4",
+   "CB35*",
+   "CPU8",
+   "753F",
+   "3784",
+   "A6A3",
+   "96PF"
+  ],
+  "edb_test3": {
+   "pins": "EDB7..EDB0",
+   "test": "Test #3",
+   "codes": [
+    "1441",
+    "2883",
+    "5107",
+    "A20P",
+    "441H",
+    "883A",
+    "1074",
+    "20P9"
+   ]
+  }
  },
  "notes": [
   "Sheet 3 Side B is a DIFFERENT PCB from sheets 2 and 3 Side A. Those are sections of the game PCB 035742; this is the Auxiliary PCB 035678-01. The designator grids are separate, so C1 here is not the C1 on the game PCB and the two must never be merged into one board map.",
   "The Math Box is a microcoded bit-slice machine, not a fixed-function circuit: four 137004-001 slices (Atari-marked Am2901) at K2, F2, H/J2 and D/E2 make a 16-bit ALU, sequenced by six 82S129 microcode PROMs at M1, L1, K1, J1, H1 and F1 carrying Atari parts 036175 to 036180 in that order, with an 82S123 at B1 (036174) providing the entry address and C1 (LS374) latching it.",
   "This is the PCB Red Baron shares with Battlezone, so every device position and signature here applies to both games. A known-good board from either checks the other.",
-  "The 2nd printing (Rev B) is the more useful document: it adds signal-flow arrows for each signature test, the ORIGIN markers, the asterisk/1k pull-up note, and the R11 tank-idle adjustment procedure. The 1st printing (Rev A) has none of these."
+  "The 2nd printing (Rev B) is the more useful document: it adds signal-flow arrows for each signature test, the ORIGIN markers, the asterisk/1k pull-up note, and the R11 tank-idle adjustment procedure. The 1st printing (Rev A) has none of these.",
+  "The POKEY (B/C2) lives on this board, not the game PCB, and it reads the control panel switches on its own P0-P7 lines. So the control panel goes through the POKEY while the coin door goes through an LS244 on the game PCB -- two completely different paths for what looks like the same kind of input.",
+  "Sound splits in two at the mixer: shell, explosion and engine are generated on this board by the 4066 switches, the 555 and the LS161 dividers, and are summed into K5 through R25, R28 and R26. Everything else -- radar blip, bump, saucer, saucer disintegrate, missile, bonus and the 1812 Overture -- arrives as one signal from the POKEY through R27. Silence on one group but not the other says which half to look at.",
+  "Audio leaves as a differential pair: K5 drives AUD+ and M5 inverts it for AUD-, on edge pins 5 and 6 with AUD RETURN on E. The output stage runs on +22V, which the board takes in directly on pin 3/X -- so a board with working logic and no sound may simply be missing +22V.",
+  "This PCB has its own +5V LED at CR2 through R37, the same arrangement as the game PCB. Two boards, two power LEDs, both called CR2."
  ],
  "conflicts": [
   "The 1st and 2nd printings disagree about the Test #2B signature box at the microcode PROM address pins. Both print the same eight codes against the same eight pins (15,1,2,3,4,7,6,5 = A7..A0), but in opposite order: the 1st printing gives A7=4FUF ... A0=92F3, the 2nd gives A7=92F3 ... A0=4FUF. The 2nd printing is the one to trust, because its box matches B1's own output box code for code and bit for bit (D7=92F3 down to D0=4FUF), which is the wiring the circuit implies; the 1st printing's order would mean the data bus is reversed between B1 and the PROMs. Recorded from the 2nd printing, and flagged rather than silently corrected.",
@@ -69,5 +325,31 @@
  "corrections": [
   "The signature record in data/signatures/bzone.json describes the shared Math Box device positions as 'L1, K1, J1, H1, F1, E1, D1, C1, J2, F/H2, E2, C/D2, ...'. Read off the drawing, the microcode PROMs are M1, L1, K1, J1, H1, F1 -- one position higher than that list -- and the ALU slices are K2, F2, H/J2, D/E2, not J2, F/H2, E2, C/D2. The published list came from the approximate OCR grouping the file's own note warns about; these positions are read by eye. Sending someone to E1 or D1 for a microcode PROM sends them to the wrong chip.",
   "'CAPE' is not a possible signature -- E is not in the analyser's alphabet (0-9 A C F H P U). The character is a 5 whose lower bowl reproduces as a straight bar on the 1st printing; the 2nd printing prints it clearly. The code is CAP5."
- ]
+ ],
+ "adjustments": {
+  "R11": "250k potentiometer near the centre of the Auxiliary PCB, setting the engine/tank idle rate through the F3 555. The 2nd printing prints the procedure: in play mode the idle should be moderately paced, neither stalling nor racing, and driving the tank forward should raise it. Replacing this PCB means readjusting R11."
+ },
+ "edge": {
+  "control_panel": {
+   "13": "START",
+   "12": "FIRE",
+   "15": "L-FOR",
+   "14": "L-REV",
+   "17": "R-FOR",
+   "16": "R-REV",
+   "note": "each switch line goes through a 1k series resistor into a 0.1uF shunt with a 470R pull-up, so an intermittent control can be a failed filter capacitor rather than a failed switch"
+  },
+  "audio": {
+   "5": "AUD+ OUT",
+   "6": "AUD- OUT",
+   "E": "AUD RETURN"
+  },
+  "power": {
+   "21": "+5V",
+   "2/B": "+5V",
+   "1/A/Z": "+5V RET",
+   "22": "+5V RET",
+   "3/X": "+22V"
+  }
+ }
 }

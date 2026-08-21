@@ -1,0 +1,17 @@
+[
+ {
+  "board": "battlezone",
+  "name": "Battlezone",
+  "kind": "companion PCB",
+  "detail": "This is the Auxiliary PCB 035678-01; Battlezone's game PCB is 035742. They are different boards with separate designator grids, connected by J19 -- the game PCB sends EDB0-7, EAB0-6, ER/WB, EI/O, EPHI2 and the E6MHZ/E12KHZ/E3MHZ clocks across. A designator like C1 means a different chip on each.",
+  "confidence": "verified"
+ },
+ {
+  "board": null,
+  "machine": "redbaron",
+  "name": "Red Baron",
+  "kind": "same PCB",
+  "detail": "Red Baron uses this same Auxiliary PCB, so every device position and signature here applies to both games and a known-good board from either checks the other.",
+  "confidence": "verified"
+ }
+]

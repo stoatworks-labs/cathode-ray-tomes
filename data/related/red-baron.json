@@ -1,1 +1,16 @@
-[{"board":"battlezone","name":"Battlezone","kind":"same platform","detail":"Identical clock, reset and watchdog sections, and the same Auxiliary Math Box PCB. Battlezone's 68 signature codes apply here.","confidence":"verified"}]
+[
+ {
+  "board": "battlezone",
+  "name": "Battlezone",
+  "kind": "same platform",
+  "detail": "Identical clock, reset and watchdog sections, and the same Auxiliary Math Box PCB. Battlezone's 68 signature codes apply here.",
+  "confidence": "verified"
+ },
+ {
+  "board": "battlezone-math-box",
+  "name": "Battlezone Auxiliary Math Box PCB",
+  "kind": "same PCB",
+  "detail": "Red Baron uses this Auxiliary PCB unchanged, so the device positions and signature charts read off Battlezone's DP-156 sheet 3 Side B apply here too.",
+  "confidence": "verified"
+ }
+]
