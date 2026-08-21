@@ -4,7 +4,7 @@
  "mfr": "Atari",
  "year": "1980",
  "drawing": "DP-156 sheet 3 Side B, section of 035678-01",
- "coverage": "34 devices from DP-156 sheet 3 Side B -- the whole sheet: Math Box, Output Latch, Audio Output, Control Panel Inputs and Audio Generator, Power Input. This is the Auxiliary PCB 035678-01, a different board from the Battlezone game PCB, and the board Red Baron shares. Grid positions are read off the drawing; the board outline and pitch are the standard Atari grid, not a measured dimension. A board map for diagnosis, not a complete bill of materials.",
+ "coverage": "36 devices from DP-156 sheet 3 Side B -- the whole sheet: Math Box, Output Latch, Audio Output, Control Panel Inputs and Audio Generator, Power Input, cross-checked against the Figure 1 test-point map on sheet 1 Side B. This is the Auxiliary PCB 035678-01, a different board from the Battlezone game PCB, and the board Red Baron shares. Grid positions are read off the drawing; the board outline and pitch are the standard Atari grid, not a measured dimension. A board map for diagnosis, not a complete bill of materials.",
  "size": {
   "w": 170,
   "h": 265
@@ -38,9 +38,11 @@
   "F3": "555",
   "F4": "74LS161",
   "F5": "74LS161",
+  "E1": "74LS161",
   "E3": "74S03",
   "E4": "74LS04",
   "E5": "74S86",
+  "D1": "74LS161",
   "D2": "137004-001",
   "D3": "74LS00",
   "D4": "74LS02",

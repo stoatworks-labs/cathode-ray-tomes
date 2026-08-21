@@ -106,17 +106,23 @@
   ]
  },
  "codes": [
+  "03A7",
+  "05A6",
   "0600",
+  "0UF0",
   "1074",
   "1090",
+  "11C5",
   "1441",
   "1781",
   "1AA2",
+  "1C6C",
   "20P9",
   "2235",
   "2265",
   "2327",
   "2358",
+  "2381",
   "26A6",
   "2883",
   "2900",
@@ -130,13 +136,20 @@
   "3784",
   "3990",
   "3CAP",
+  "3FU4",
   "3U53",
+  "4414",
   "441H",
   "45A1",
   "4FUF",
+  "4PPF",
+  "5107",
   "5233",
   "5385",
   "58A1",
+  "5AAH",
+  "5CP0",
+  "60H6",
   "6989",
   "6CF6",
   "6PUP",
@@ -147,13 +160,17 @@
   "77F7",
   "78AA",
   "7P25",
+  "7U19",
   "809A",
   "8250",
   "826P",
   "8283",
   "8287",
+  "85PA",
   "8631",
   "883A",
+  "8A7H",
+  "91HA",
   "9238",
   "92C3",
   "92F3",
@@ -161,23 +178,240 @@
   "96PF",
   "96U0",
   "9A08",
+  "9AFH",
+  "9CPP",
   "9F47",
+  "A1F7",
   "A20P",
   "A26P",
+  "A6A3",
   "A856",
   "APPF",
   "C4P5",
+  "C835",
   "CC3A",
+  "CPU8",
   "CU2P",
   "F515",
   "F722",
   "F74F",
   "F765",
+  "H58A",
   "H8F9",
+  "P5PH",
   "P9C1",
-  "PPF6"
+  "PPF6",
+  "UC59"
  ],
- "note": "Signature codes extracted from the drawing sheets. Per-device grouping is approximate — designators are printed upright and codes rotated, so they come from separate OCR passes. Treat the codes as reliable and the grouping as a hint.",
- "shared": "Red Baron uses the same Auxiliary Math Box PCB as Battlezone (Atari 035678-01), so a known-good board from either game checks the other. Device positions read by eye off DP-156 sheet 3 Side B: the six microcode PROMs are M1 (036175), L1 (036176), K1 (036177), J1 (036178), H1 (036179) and F1 (036180); the entry PROM is B1 (036174, 82S123); its address latch is C1 (74LS374); and the ALU is four Atari 137004-001 bit slices at K2, F2, H/J2 and D/E2. An earlier version of this note listed those positions one place out (L1-E1 for the PROMs, J2/F/H2/E2/C/D2 for the slices) -- that came from the approximate OCR grouping described above, and would send you to the wrong chip.",
- "probeNote": "Codes marked with an asterisk on the drawing are taken with a 1k resistor between the signature analyser's data probe and +5V. Without it those readings do not reproduce. The note appears only on the 2nd printing of DP-156-03."
+ "note": "Signature codes extracted from the drawing sheets. Per-device grouping is approximate — designators are printed upright and codes rotated, so they come from separate OCR passes. Treat the codes as reliable and the grouping as a hint. That caveat applies to 'byDevice' only. 'pinMap' is different: it is read by eye off the four typeset figures on DP-156 sheet 1 Side B, which print each signature against the device pin it belongs to, so both the code and the pin are exact there.",
+ "shared": "Red Baron uses the same Auxiliary Math Box PCB as Battlezone (Atari 035678-01), so a known-good board from either game checks the other. Device positions, read off DP-156 sheet 3 Side B and cross-checked against the Figure 1 test-point map on sheet 1 Side B: the six microcode PROMs are M1 (036175), L1 (036176), K1 (036177), J1 (036178), H1 (036179) and F1 (036180); the entry PROM is B1 (036174, 82S123); the microcode program counter is E1 and D1 (two 74LS161s); its address latch is C1 (74LS374); and the ALU is four Atari 137004-001 bit slices at K2, F2, H/J2 and D/E2. An earlier version of this note listed the slices as J2, F/H2, E2 and C/D2 and left M1 out of the device list -- both came from the approximate OCR grouping described above.",
+ "probeNote": "Codes marked with an asterisk on the drawing are taken with a 1k resistor between the signature analyser's data probe and +5V. Without it those readings do not reproduce. The note appears only on the 2nd printing of DP-156-03.",
+ "pinMap": {
+  "test1": {
+   "source": "Figure 1, DP-156 sheet 1 Side B",
+   "devices": {
+    "M1": {
+     "9": "6CF6",
+     "10": "F74F",
+     "11": "1AA2",
+     "12": "58A1"
+    },
+    "L1": {
+     "9": "34C2",
+     "10": "PPF6",
+     "11": "60H6",
+     "12": "05A6"
+    },
+    "K1": {
+     "9": "3FU4",
+     "10": "6989",
+     "11": "UC59",
+     "12": "96U0"
+    },
+    "J1": {
+     "9": "2987",
+     "10": "P9C1",
+     "11": "91HA",
+     "12": "26A6"
+    },
+    "H1": {
+     "9": "A6A3",
+     "10": "3CAP",
+     "11": "0UF0",
+     "12": "4PPF"
+    },
+    "F1": {
+     "9": "F515",
+     "10": "0000",
+     "11": "CPU8",
+     "12": "F765"
+    },
+    "E1": {
+     "11": "5CP0",
+     "12": "P5PH",
+     "13": "725C",
+     "14": "96PF",
+     "15": "826P"
+    },
+    "D1": {
+     "11": "H58A",
+     "12": "77F7",
+     "13": "85PA",
+     "14": "7P25",
+     "15": "3784"
+    },
+    "C1": {
+     "9": "6U30",
+     "12": "5AAH",
+     "6": "1C6C",
+     "15": "03A7",
+     "5": "CU2P",
+     "16": "9A08",
+     "2": "8A7H",
+     "19": "2327"
+    },
+    "K2": {
+     "16": "9AFH",
+     "8": "753F",
+     "22": "CC34",
+     "23": "CC34",
+     "24": "CC34",
+     "25": "CC34",
+     "31": "1781",
+     "34": "A1F7",
+     "36": "CC34",
+     "37": "CC34",
+     "38": "CC34",
+     "39": "CC34"
+    },
+    "H/J2": {
+     "16": "11C5",
+     "8": "78AA",
+     "33": "9CPP"
+    },
+    "F2": {
+     "16": "11C5",
+     "8": "7U19",
+     "22": "CC34",
+     "23": "CC34",
+     "24": "CC34",
+     "25": "CC34",
+     "33": "8631",
+     "36": "CC34",
+     "37": "CC34",
+     "38": "CC34",
+     "39": "CC34"
+    },
+    "E/D2": {
+     "16": "9AFH",
+     "8": "809A"
+    },
+    "E3": {
+     "8": "C835"
+    },
+    "E4": {
+     "10": "CC34"
+    },
+    "E5": {
+     "8": "45A1"
+    },
+    "D3": {
+     "11": "0600"
+    },
+    "D4": {
+     "10": "0000"
+    },
+    "D5": {
+     "8": "A6A3",
+     "6": "CPU8"
+    },
+    "C5": {
+     "8": "92C3",
+     "10": "CC34",
+     "6": "2381",
+     "4": "CC34",
+     "1": "CC34"
+    },
+    "B4": {
+     "7": "CC34",
+     "6": "0000"
+    }
+   }
+  },
+  "test2a": {
+   "source": "Figure 2A, DP-156 sheet 1 Side B (typeset)",
+   "devices": {
+    "B1": {
+     "9": "92F3",
+     "7": "A856",
+     "6": "3050",
+     "5": "H8F9",
+     "4": "9569",
+     "3": "3U53",
+     "2": "9F47",
+     "1": "4FUF",
+     "10": "2P61",
+     "11": "3441",
+     "12": "6UAC",
+     "13": "C4P5",
+     "14": "F722"
+    }
+   }
+  },
+  "test2b": {
+   "source": "Figure 2B, DP-156 sheet 1 Side B (typeset)",
+   "devices": {
+    "E1": {
+     "11": "9569",
+     "12": "3U53",
+     "13": "9F47",
+     "14": "4FUF"
+    },
+    "D1": {
+     "11": "92F3",
+     "12": "A856",
+     "13": "3050",
+     "14": "H8F9"
+    }
+   }
+  },
+  "test3": {
+   "source": "Figure 3, DP-156 sheet 1 Side B (typeset)",
+   "devices": {
+    "H/J2": {
+     "22": "1441",
+     "23": "2883",
+     "24": "5107",
+     "25": "A20P"
+    },
+    "E/D2": {
+     "22": "4414",
+     "23": "883A",
+     "24": "1074",
+     "25": "20P9"
+    }
+   }
+  }
+ },
+ "procedure": {
+  "board": "Auxiliary PCB 035678-01 (shared by Battlezone and Red Baron)",
+  "source": "DP-156 sheet 1 Side B, 'Auxiliary PCB Signature Analysis Procedure'",
+  "equipment": "Atari CAT (Computer-Assisted Troubleshooter), Kurz-Kasch Signature II, or HP 5004A signature analyser. Note on the drawing: of two Kurz-Kasch Signature IIs tried, different START, STOP and CLOCK settings were required -- note your own settings while testing a known-good board.",
+  "harness": "Atari P/N A036836-01, or make one: Molex 7-circuit housing 09-05-7071 x1, 12-circuit housing 09-50-7121 x3, terminals 08-50-0106 x18, three jumper wires with hook connectors on each end, and a 1k-1.5k quarter-watt pull-up resistor.",
+  "connections": {
+   "analyser GND": "harness GND",
+   "START": "STT",
+   "STOP": "STP",
+   "CLOCK": "CLK"
+  },
+  "setup": "Set the Battlezone self-test switch ON; after about three seconds the monitor should show the self-test pattern. Then jumper a 1k resistor between the two test points on the Analog Vector-Generator PCB to ground five times, or until the video display is blank.",
+  "tests": {
+   "1": "Plug the harness Test #1 connector onto the SA header on the Auxiliary PCB. Jumper pin 1 of IC B6 on the Analog Vector-Generator PCB to ground -- this holds RESET to the microprocessor. Verify by probing the +5V test point: it must read CC34. Then probe per Figure 1. The 1k-1.5k resistor runs from +5V on the Auxiliary PCB to the probe tip for this test.",
+   "2A": "Remove the resistor from the probe, plug the Test #2 connector, remove the jumper from pin 1 of B6, verify at the +5V test point, then probe per Figure 2A.",
+   "2B": "Test #2 connector still plugged; remove the jumper from pin 6 of B6 on the Analog Vector-Generator PCB, verify a signature of 72A2, then probe per Figure 2B.",
+   "3": "Plug the Test #3 connector, remove the jumper from pin 6 of B6, verify, then probe per Figure 3."
+  },
+  "isolating": "Find the failing test point on sheet 3 Side B and identify the IC the signature is output from, then check all of that IC's inputs. If every input is correct, the IC is the fault -- but first pull the PCB and check the traces common to that pin, top and bottom, for a short to another trace. If an input is wrong, move to the IC sourcing that input and repeat, working upstream until the failing IC is isolated.",
+  "caveat": "The verification signatures quoted here for tests 2A, 2B and 3 were read from a scan and only 72A2 and the Test #1 CC34 were confirmed at high magnification. Read the sheet before relying on the others."
+ }
 }
