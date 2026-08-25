@@ -100,6 +100,15 @@ same net as `441H`. Both legible, both valid signature strings.
 **Two unresolved Asteroids conflicts** (in `boards/asteroids.read.json`): C8 reads as
 both the state-machine PROM and an LS02; both need a physical board to settle.
 
+**The Asteroids memory complements need one pass over sheet 01B, and it settles four
+things at once.** Both printings of the substitution table show a twelfth -03 PROM
+(035142-02 at L1) and a sixth -03 alternate (035155-02 at L1) that are recorded nowhere;
+and all three of -04, -05 and -06 carry leftover entries at -03 positions while each is
+missing one of its own ROMs. All four look like the same derivation bug. Logged with the
+evidence in `asteroids.read.json` rather than applied — the table is a three-column
+layout that OCR interleaves, and the -05/-06 parts list is written in the shifted
+numbering, so both routes to "fixing" it from the corpus alone are traps.
+
 **The -04 complement contradicts its own status text.** `asteroids-04.json` carries five
 devices at the -03 PROM positions alongside the -04 ROMs and is missing 035144-02 at
 D/E1, while the substitution table, `memory_by_revision` and the board's own status all
