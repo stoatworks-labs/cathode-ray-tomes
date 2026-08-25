@@ -37,6 +37,7 @@ FAMILIES = ["", "LS", "S", "HC", "HCT", "ALS", "AS", "F", "H", "L"]
 SYMBOL_ALIAS = {
     "555": "LM555xN", "NE555": "LM555xN", "CD4016B": "4016",
     "CD4066": "CD4066BE", "DAC-08": "DAC08", "9316": "74LS161",
+    "4016B": "4016",
 }
 
 

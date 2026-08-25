@@ -111,6 +111,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 80px; }
 }
 .badge.doc { border-color: var(--accent); color: var(--accent); }
 .badge.kicad { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+/* Where a chip reading came from. Deliberately quiet — it should be findable
+   without competing with the part number, which is what people came for. */
+.badge.src { font-size: 10px; color: var(--ink-3); border-style: dashed; }
 
 /* ---- machine detail ---- */
 h1 { font-size: 27px; margin: 0 0 4px; line-height: 1.2; }

@@ -101,10 +101,20 @@ in `data/power/bzone.json`. Still unread on sheet 1 Side A: the Coin Door schema
 no board map at all have 15 or more designators available — Monte Carlo 89, Football 82,
 Outlaw 50, Crash 'n Score 48, Sky Diver 42, Orbit 40, Triple Hunt 34, Indy 4 30, Super
 Breakout 20, Soccer 18, Starship 1 15. Existing maps could grow too: Asteroids Deluxe
-8 → 97, Missile Command 14 → 82, Lunar Lander 6 → 63. At 85% none of that can be
-committed as-is, so the open question is what adjudication looks like — probably the
-drawing read staying authoritative where it exists, and the list filling the gaps with
-its provenance recorded per device.
+8 → 97, Missile Command 14 → 82, Lunar Lander 6 → 63. `tools/merge_ic_locations.py` is the adjudication: the drawing read is authoritative
+wherever it exists, the parts lists fill the gaps, a device is taken only where two or
+more printings agree, and every device records its source — which the chip lookup shows.
+
+**Asteroids Deluxe is the first machine through it: 8 devices to 92.** Its four printings
+agree with each other on 100 of 100 designators and with all eight hand-read devices, so
+this is a much better class of evidence than the 85% single-printing figure. 66 devices
+are attested by four printings, 18 by three. Nothing was overwritten: the eight from the
+drawing are unchanged and now marked as confirmed.
+
+Three cells were dropped rather than guessed. `B10`, `D10` and `F10` are each claimed
+twice — a spanning designator from the 74LS157 row against a plain one from another row —
+and there is nothing in the lists to say which is right, so the map has neither. Logged in
+`asteroids-deluxe.read.json`; one look at the drawing recovers all three.
 
 **The cross-check found 21 disagreements on Asteroids**, most repeating across
 independent printings and so not OCR noise. Logged in `asteroids.read.json`. B7, C7 and

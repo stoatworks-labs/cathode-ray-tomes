@@ -157,6 +157,17 @@ not reached. Twelve machines with no board map at all have 15 or more
 designators available, and Monte Carlo, Football, Outlaw, Crash 'n Score and
 Sky Diver have 40 to 89 each.
 
+`tools/merge_ic_locations.py` applies it to a board. The drawing read wins wherever it
+exists, the lists fill gaps, and a device is taken only where two or more printings agree
+— which is a far stronger test than the 85% figure suggests, because the printings agree
+with *each other* almost perfectly when they are readable at all. Every device records
+its source and the chip lookup shows it, so nothing in a repair reference hides where it
+came from.
+
+Two designators can land on one cell — usually a spanning `B/C10` against a plain `B10`
+from a different row. Take neither and report it. Overwriting silently is the same bug
+that put five phantom PROMs on the Asteroids -04 map.
+
 Three traps, all of which cost a wrong measurement before they were found:
 
 - **Rows saying "substitute for item N" carry no locations of their own.**

@@ -585,6 +585,7 @@ async function board(slug) {
             <span class="meta">${esc(v.section || "")}</span>
             <span class="grow"></span>
             ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
+            ${v.source ? `<span class="badge src" title="where this reading comes from">${esc(v.source)}</span>` : ""}
           </div>`).join("")}</div>` : "") + sigHtml
         || `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
     };

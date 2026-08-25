@@ -53,5 +53,8 @@
   "Same MPU warning as the rest of the family: 1.5 MHz operation means the part must be a 6502A, not a 6502.",
   "Power-up sequence: C22 charging holds RESET low via D3 and clears D4; at about 1.5 VDC the preset and clear are released, D4 counts to 128 at 3 kHz and RESET goes high. A board stuck in reset points at C22, D3 or D4."
  ],
- "conflicts": []
+ "conflicts": [
+  "Three cells are claimed twice by the IC parts lists and are therefore absent from the board map: B10 (B/C10 says 74LS157, B10 says 74LS374), D10 (D/E10 74LS157 against D10 74LS374) and F10 (F/H10 74LS157 against F10 74LS174). All three collisions are the same shape \u2014 a spanning designator from the 74LS157 row against a plain designator from another row \u2014 so either those LS157s do not span, or the plain designators are misread. The LS157 row also carries a C10 and an E10 of its own, which a genuine B/C10 span would already cover. One look at the component-location drawing settles it and recovers three devices.",
+  "The 74LS157 row in the Caberat printing reads 'O/E10' where the others read 'D/E10', and 'FiH10' where they read 'F/H10'. Both are rejected rather than guessed: O is not a row on this grid, and 'FiH10' does not parse as a designator at all."
+ ]
 }

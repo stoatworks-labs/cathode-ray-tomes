@@ -1,1 +1,646 @@
-{"B4":{"part":"7404","section":"Clock Circuit","note":"12.096 MHz oscillator inverters","otherRev":null},"C3":{"part":"9316","section":"Clock Circuit","note":"6 / 3 / 1.5 MHz","otherRev":null},"B3":{"part":"74LS393","section":"Clock Circuit","note":"3 kHz / 12 kHz","otherRev":null},"B5":{"part":"74LS14","section":"Power Reset","note":"reset schmitt buffers","otherRev":null},"C5":{"part":"74LS00","section":"Watchdog","note":"WDCLR","otherRev":null},"D4":{"part":"74LS393","section":"Watchdog","note":"watchdog counter; counts to 128 at 3 kHz","otherRev":null},"D3":{"part":"74LS74","section":"Power Reset","note":"reset flip-flop, preset by C22 charging","otherRev":null},"E5":{"part":"74LS08","section":"Watchdog","note":"watchdog disable","otherRev":null}}
+{
+ "A10": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "A6": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "A8": {
+  "part": "74LS10",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "A9": {
+  "part": "74LS109",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B12": {
+  "part": "4016B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B3": {
+  "part": "74LS393",
+  "section": "Clock Circuit",
+  "note": "3 kHz / 12 kHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B4": {
+  "part": "7404",
+  "section": "Clock Circuit",
+  "note": "12.096 MHz oscillator inverters",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B5": {
+  "part": "74LS14",
+  "section": "Power Reset",
+  "note": "reset schmitt buffers",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B6": {
+  "part": "9316",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B8": {
+  "part": "74LS08",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B9": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C10": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "C3": {
+  "part": "9316",
+  "section": "Clock Circuit",
+  "note": "6 / 3 / 1.5 MHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C4": {
+  "part": "9316",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C5": {
+  "part": "74LS00",
+  "section": "Watchdog",
+  "note": "WDCLR",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C6": {
+  "part": "9316",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C7": {
+  "part": "74LS02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D12": {
+  "part": "4016B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D3": {
+  "part": "74LS74",
+  "section": "Power Reset",
+  "note": "reset flip-flop, preset by C22 charging",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D4": {
+  "part": "74LS393",
+  "section": "Watchdog",
+  "note": "watchdog counter; counts to 128 at 3 kHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D5": {
+  "part": "74LS02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D6": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D8": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E10": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E3": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E4": {
+  "part": "74LS20",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E5": {
+  "part": "74LS08",
+  "section": "Watchdog",
+  "note": "watchdog disable",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E6": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E8": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F3": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F4": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F5": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F6": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H10": {
+  "part": "7404",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H3": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H4": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H5": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H6": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J10": {
+  "part": "74LS251",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "J3": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J4": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J5": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J6": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "K4": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K5": {
+  "part": "74LS08",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K6": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K9": {
+  "part": "74LS164",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "L10": {
+  "part": "74LS251",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "L2": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "L4": {
+  "part": "74LS04",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "L5": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "L9": {
+  "part": "74LS374",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M10": {
+  "part": "74LS259",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M4": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M5": {
+  "part": "74LS83",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M6": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M9": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N10": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N4": {
+  "part": "74LS00",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N5": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N6": {
+  "part": "7406",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N8": {
+  "part": "74LS10",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "P1": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "P10": {
+  "part": "74LS02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "P4": {
+  "part": "74LS86",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "P5": {
+  "part": "74LS253",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "P6": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "P7": {
+  "part": "9316",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "P8": {
+  "part": "74LS164",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "P9": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "R11": {
+  "part": "4016B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "R6": {
+  "part": "74LS08",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "R7": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "R8": {
+  "part": "74LS164",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "R9": {
+  "part": "74LS04",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ }
+}

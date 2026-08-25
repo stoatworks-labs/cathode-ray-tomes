@@ -28,6 +28,10 @@ import argparse, glob, json, os, re, sys
 from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from packages import TTL_PINS, TTL_PINS_UNCHECKED
+
+TTL_PINS = {**TTL_PINS, **TTL_PINS_UNCHECKED}
 
 STOCK = re.compile(r'\b37[-\s]?([0-9][0-9A-Z]{2,7})\b')
 TYPE = re.compile(r'\bType\s+([0-9A-Z][0-9A-Z\s.]{2,10}?)\s+[Ii]ntegrated', re.I)
@@ -53,10 +57,47 @@ EQUIVALENT = {"9316": "161", "74161": "161", "4016B": "4016",
               "74LS170": "170", "74LS670": "170"}
 
 
+# A well-formed device name: a 74-series part with a real family, a 4xxx CMOS
+# part, or a lettered part number like LM324 or AD561J. Used only to choose
+# between two OCR readings of the same row, never to reject one.
+CANONICAL = re.compile(
+    r'^(?:74(?:LS|ALS|AS|HCT|HC|S|H|L|F|C)?\d{2,3}[A-Z]?'
+    r'|(?:CD)?4\d{3}[A-Z]?'
+    r'|[A-Z]{2,3}\d{3,4}[A-Z]?'
+    r'|\d{2}S\d{2,3})$')
+
+
+def best_spelling(*candidates):
+    """The cleanest reading of a device name among several OCRs of it.
+
+    A row states its device twice — Atari's stock number and the description —
+    and OCR rarely mangles both the same way. '37-74LS157' against
+    'Type 741.S157' is the common shape: take the one that looks like a real
+    part number, and the longest only as a tie-break.
+    """
+    cands = [c for c in candidates if c]
+    if not cands:
+        return None
+    clean = [c for c in cands if CANONICAL.match(c)]
+    return max(clean or cands, key=len)
+
+
 def device_key(part):
-    """Compare devices by function number, ignoring the logic family."""
+    """Compare devices by function number, ignoring the logic family.
+
+    The family letters are what OCR mangles — '74LS157' comes back as
+    '741S157' and 'LS374' as '18374' — so the number is recovered by asking
+    which trailing digits name a device the packaging table already knows,
+    rather than by trying to parse the family. That keeps a real distinction
+    (a 7400 is '00', not '400') without inventing one for every OCR variant.
+    """
     p = _norm(part)
-    p = EQUIVALENT.get(p, p)
+    if p in EQUIVALENT:
+        return EQUIVALENT[p]
+    for n in (3, 2):
+        tail = p[-n:]
+        if tail.isdigit() and tail in TTL_PINS and len(p) > n:
+            return tail.lstrip("0") or "0"
     m = re.match(r'^(?:74|CD)?[A-Z]*(\d+)[A-Z]?$', p)
     return m.group(1).lstrip("0") if m else p
 
@@ -123,6 +164,7 @@ def rows(fid):
                               f"'Type {t.group(1).strip()}' disagree")
             else:
                 rec["trusted"] = True
+                rec["type"] = best_spelling(_norm(stock), rec["type"])
         else:
             q = re.match(r'\s*(\d{1,2})\b', tail)
             if q:
