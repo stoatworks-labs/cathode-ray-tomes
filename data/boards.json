@@ -71,9 +71,9 @@
   "year": "1980",
   "machine": "bzone",
   "drawing": "DP-156 drawing package, sheets 02A, 02B and 03A",
-  "devices": 97,
+  "devices": 105,
   "netsTraced": false,
-  "status": "97 devices from sheets 02A, 02B and 03A -- clock, MPU, address decode, program memory, RAM, option switches, coin door, vector DAC, and the whole digital vector generator (stack and program counter, address selector, vector RAM and ROM, data shifter, state machine, vector timer). Passives, regulators, crystals and the reset switch are read but are not on the IC grid. A board map for diagnosis, not a complete bill of materials.",
+  "status": "105 devices: 97 read from the drawings and 8 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/battlezone/battlezone-ibom.html",
   "bom": "/boards/battlezone/bom.csv"
  },
@@ -84,9 +84,9 @@
   "year": "1980",
   "machine": "bzone",
   "drawing": "DP-156 sheet 3 Side B, section of 035678-01",
-  "devices": 36,
+  "devices": 37,
   "netsTraced": false,
-  "status": "36 devices from DP-156 sheet 3 Side B -- the whole sheet: Math Box, Output Latch, Audio Output, Control Panel Inputs and Audio Generator, Power Input, cross-checked against the Figure 1 test-point map on sheet 1 Side B. This is the Auxiliary PCB 035678-01, a different board from the Battlezone game PCB, and the board Red Baron shares. Grid positions are read off the drawing; the board outline and pitch are the standard Atari grid, not a measured dimension. A board map for diagnosis, not a complete bill of materials.",
+  "status": "37 devices: 36 read from the drawings and 1 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/battlezone-math-box/battlezone-math-box-ibom.html",
   "bom": "/boards/battlezone-math-box/bom.csv"
  },

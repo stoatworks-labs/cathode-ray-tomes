@@ -37,12 +37,12 @@ def split_designator(desig):
     return head.split("/")[0] + col, desig
 
 
-def harvest(doc_ids):
+def harvest(doc_ids, figure=None):
     """{designator: (part, n_printings)} where the printings agree."""
     per = {}
     for fid in doc_ids:
         try:
-            per[fid] = locations(fid)[0]
+            per[fid] = locations(fid, figure)[0]
         except Exception as e:
             print(f"  ! {fid}: {e}")
     votes = defaultdict(dict)
@@ -65,6 +65,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
     ap.add_argument("--docs", nargs="+", required=True)
+    ap.add_argument("--figure", metavar="REGEX",
+                    help="only rows under a matching parts-list figure "
+                         "heading — needed whenever a manual covers more than "
+                         "one PCB, or the two boards' designators collide")
     ap.add_argument("--allow-single", action="store_true",
                     help="accept a designator attested by only one printing")
     ap.add_argument("--apply", action="store_true")
@@ -76,7 +80,7 @@ def main():
     drawing = dict(board["ics"])
     spans = dict(board.get("spans", {}))
 
-    agreed, split, ndocs = harvest(a.docs)
+    agreed, split, ndocs = harvest(a.docs, a.figure)
     print(f"{ndocs} printings, {len(agreed)} designators agreed, "
           f"{len(split)} split between printings\n")
 
@@ -149,7 +153,13 @@ def main():
 
     cpath = os.path.join(ROOT, "data", "chips", a.slug + ".json")
     chips = json.load(open(cpath)) if os.path.exists(cpath) else {}
-    out = {}
+    # The chip lookup legitimately holds more than `ics` does: crystals,
+    # transistors, resistor packs, test points — devices that are on the board
+    # and worth answering for, but that `build_board.py` cannot place because
+    # they are not on the letter-number grid. Rebuilding from `ics` alone drops
+    # them, which is a silent loss of hand-read work.
+    out = {k: {**v, "source": v.get("source") or "component-location drawing"}
+           for k, v in chips.items() if k not in board["ics"]}
     for cell, part in board["ics"].items():
         prev = chips.get(cell, {})
         if cell in added:
@@ -175,7 +185,10 @@ def main():
                      "note": note.strip(),
                      "otherRev": prev.get("otherRev"), "source": src}
     json.dump(dict(sorted(out.items())), open(cpath, "w"), indent=1)
-    print(f"\nwrote {bpath}\n      {cpath}")
+    offgrid_kept = len(out) - len(board["ics"])
+    print(f"\nwrote {bpath}\n      {cpath}"
+          + (f"\n      {offgrid_kept} off-grid devices kept in the lookup"
+             if offgrid_kept else ""))
 
 
 if __name__ == "__main__":

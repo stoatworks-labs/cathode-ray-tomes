@@ -168,6 +168,17 @@ Two designators can land on one cell — usually a spanning `B/C10` against a pl
 from a different row. Take neither and report it. Overwriting silently is the same bug
 that put five phantom PROMs on the Asteroids -04 map.
 
+**A manual covering more than one PCB gives each its own figure**, and the heading names
+the board — `Figure 25 Battlezone Auxiliary PCB Assembly` against `Figure 26 Battlezone
+Analog Vector-Generator PCB Assembly`. Pass `--figure` to split them. Without it the two
+boards' parts land in one heap and their designators collide, which is the trap already
+recorded above: C1 on one is not C1 on the other, and both have a +5V LED called CR2.
+
+**The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
+test points, everything on the board that is not on the letter-number grid. Rebuilding it
+from `ics` alone drops them. The first run of the Battlezone merge did exactly that and
+lost twelve hand-read devices; `merge_ic_locations.py` now carries them through.
+
 Three traps, all of which cost a wrong measurement before they were found:
 
 - **Rows saying "substitute for item N" carry no locations of their own.**

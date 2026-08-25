@@ -113,6 +113,16 @@ came out unchanged:
 | Asteroids Deluxe | 8 | 92 | 84, from 4 printings agreeing 100/100 | 3 cells dropped, claimed twice |
 | Missile Command | 14 | 83 | 69, from 5 printings agreeing 82/82 | D3 |
 | Lunar Lander | 6 | 60 | 54, from 3 printings | L6, E7, E8 dropped; 9 single-printing |
+| Battlezone | 97 | 105 | 8, from 4 printings | none |
+| Battlezone Auxiliary | 36 | 37 | 1, from 4 printings | none |
+
+**Battlezone is the result worth trusting the method on.** It is the most carefully
+hand-read board here — 97 devices off six sheet sides — and across both its PCBs the
+parts lists confirm 87 of 87 overlapping designators with no disagreement at all. That
+says the harvest is sound *and* that the six-sheet read was, and it makes the 21
+disagreements on Asteroids look much more like errors in that read than noise in the
+lists. Battlezone needs `--figure` because one manual covers both PCBs and their
+designators collide.
 
 The printings agreeing with *each other* is the real evidence, not the 85% single-printing
 figure — Asteroids Deluxe's four agree on 100 of 100 designators and with all eight

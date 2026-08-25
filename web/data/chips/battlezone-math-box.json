@@ -1,1 +1,268 @@
-{"B1":{"part":"82S123","section":"Math Box","note":"Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN","otherRev":null},"C1":{"part":"74LS374","section":"Math Box","note":"microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN","otherRev":null},"M1":{"part":"82S129","section":"Math Box","note":"Atari 036175; microcode PROM, outputs A0-A3","otherRev":null},"L1":{"part":"82S129","section":"Math Box","note":"Atari 036176; microcode PROM, outputs A4-A7","otherRev":null},"K1":{"part":"82S129","section":"Math Box","note":"Atari 036177; microcode PROM, outputs A8-A11","otherRev":null},"J1":{"part":"82S129","section":"Math Box","note":"Atari 036178; microcode PROM, outputs A12-A15","otherRev":null},"H1":{"part":"82S129","section":"Math Box","note":"Atari 036179; microcode PROM, outputs A16-A19","otherRev":null},"F1":{"part":"82S129","section":"Math Box","note":"Atari 036180; microcode PROM, highest microcode field","otherRev":null},"K2":{"part":"137004-001","section":"Math Box","note":"Atari-marked Am2901 4-bit slice, DIP-40; least significant slice","otherRev":null},"F2":{"part":"137004-001","section":"Math Box","note":"Atari-marked Am2901 4-bit slice, DIP-40","otherRev":null},"H2":{"part":"137004-001","section":"Math Box","note":"Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2","otherRev":null},"D2":{"part":"137004-001","section":"Math Box","note":"Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice","otherRev":null},"B4":{"part":"74109","section":"Math Box","note":"JK flip-flop; M START","otherRev":null},"C5":{"part":"74LS74","section":"Math Box","note":"A12 latched by CLK; produces STOP, cleared by BEGIN","otherRev":null},"C3":{"part":"74LS139","section":"Math Box","note":"both halves used; one decodes EAB5/EAB6 to SWITCHES, the other EAB3/EAB4 to YHI and YLO","otherRev":null},"C4":{"part":"74LS32","section":"Math Box","note":"ER/WB and EPHI2 gating into M START","otherRev":null},"D3":{"part":"74LS00","section":"Math Box","note":"E3MHZ gating; also in the ALU carry path with E5","otherRev":null},"D4":{"part":"74LS02","section":"Math Box","note":"M START, CLK and STOP gating","otherRev":null},"D5":{"part":"74S08","section":"Math Box","note":"A16 and CLK to A6A3, the C1 latch clock","otherRev":null},"E3":{"part":"74S03","section":"Math Box","note":"open-collector, EDB7 pulled up by R2 (1k)","otherRev":null},"E4":{"part":"74LS04","section":"Math Box","note":"inverters through the clock and start logic","otherRev":null},"E5":{"part":"74S86","section":"Math Box","note":"XOR in the ALU carry path","otherRev":null},"J4":{"part":"74LS20","section":"Math Box","note":"EPHI2 and E3MHZ to SACLK3","otherRev":null},"M2":{"part":"74LS273","section":"Output Latch","note":"latches EDB0-7 into MOTOR EN, SOUND ENABLE, ENGINE REV EN, SHELL L/S, SHELL EN, EXPLO L/S and EXPLO EN -- every sound enable on the board comes from this one chip","otherRev":null},"B2":{"part":"C012294-01","section":"Control Panel Inputs and Audio Generator","note":"POKEY, DIP-40, spans B2 and C2; P0-P7 read the control panel switches directly, D0-D7 on EDB, AUD out through R36/C25","otherRev":null},"H5":{"part":"74LS164","section":"Control Panel Inputs and Audio Generator","note":"shift register in the noise generator, fed back through two E5 XOR gates; cleared by SOUND ENABLE","otherRev":null},"F3":{"part":"555","section":"Control Panel Inputs and Audio Generator","note":"engine-rev timer; R10 (100k), R11 (250k pot) and C11 set the rate","otherRev":null},"F4":{"part":"74LS161","section":"Control Panel Inputs and Audio Generator","note":"motor sound divider, held by MOTOR EN","otherRev":null},"F5":{"part":"74LS161","section":"Control Panel Inputs and Audio Generator","note":"second motor sound divider, held by MOTOR EN","otherRev":null},"J5":{"part":"74LS74","section":"Control Panel Inputs and Audio Generator","note":"shell and explosion timing flip-flops","otherRev":null},"L4":{"part":"CD4066","section":"Audio Output","note":"quad analog switch gating shell, explosion and engine paths","otherRev":null},"J3":{"part":"CD4066","section":"Audio Output","note":"quad analog switch, shell and explosion envelope charge/discharge into C9 and C14","otherRev":null},"K5":{"part":"LM324","section":"Audio Output","note":"quad op-amp on +22V: shell and explosion shapers, engine shaper, and the summing amp that drives AUD+","otherRev":null},"M5":{"part":"LM324","section":"Audio Output","note":"inverts the mix to give AUD-, so the board puts out a differential pair on edge pins 5 and 6 with AUD RETURN on E","otherRev":null},"CR2":{"part":"MV5053 LED","section":"Power Input","note":"+5V present indicator through R37 (150R). Same designator as the game PCB LED but a different board -- do not confuse the two","otherRev":null},"E1":{"part":"74LS161","section":"Math Box","note":"low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loaded from B1 via LD, clocked by CLK","otherRev":null},"D1":{"part":"74LS161","section":"Math Box","note":"high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7. Loaded from B1 via LD -- B1 supplies the entry address, E1/D1 then step through the microcode","otherRev":null}}
+{
+ "B1": {
+  "part": "82S123",
+  "section": "Math Box",
+  "note": "Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "B2": {
+  "part": "C012294-01",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "POKEY, DIP-40, spans B2 and C2; P0-P7 read the control panel switches directly, D0-D7 on EDB, AUD out through R36/C25",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "B4": {
+  "part": "74109",
+  "section": "Math Box",
+  "note": "JK flip-flop; M START",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C1": {
+  "part": "74LS374",
+  "section": "Math Box",
+  "note": "microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C3": {
+  "part": "74LS139",
+  "section": "Math Box",
+  "note": "both halves used; one decodes EAB5/EAB6 to SWITCHES, the other EAB3/EAB4 to YHI and YLO",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C4": {
+  "part": "74LS32",
+  "section": "Math Box",
+  "note": "ER/WB and EPHI2 gating into M START",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C5": {
+  "part": "74LS74",
+  "section": "Math Box",
+  "note": "A12 latched by CLK; produces STOP, cleared by BEGIN",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "CR2": {
+  "part": "MV5053 LED",
+  "section": "Power Input",
+  "note": "+5V present indicator through R37 (150R). Same designator as the game PCB LED but a different board -- do not confuse the two",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "D1": {
+  "part": "74LS161",
+  "section": "Math Box",
+  "note": "high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7. Loaded from B1 via LD -- B1 supplies the entry address, E1/D1 then step through the microcode",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "D3": {
+  "part": "74LS00",
+  "section": "Math Box",
+  "note": "E3MHZ gating; also in the ALU carry path with E5",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D4": {
+  "part": "74LS02",
+  "section": "Math Box",
+  "note": "M START, CLK and STOP gating",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D5": {
+  "part": "74S08",
+  "section": "Math Box",
+  "note": "A16 and CLK to A6A3, the C1 latch clock",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E1": {
+  "part": "74LS161",
+  "section": "Math Box",
+  "note": "low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loaded from B1 via LD, clocked by CLK",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E3": {
+  "part": "74S03",
+  "section": "Math Box",
+  "note": "open-collector, EDB7 pulled up by R2 (1k)",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "E4": {
+  "part": "74LS04",
+  "section": "Math Box",
+  "note": "inverters through the clock and start logic",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E5": {
+  "part": "74S86",
+  "section": "Math Box",
+  "note": "XOR in the ALU carry path",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036180; microcode PROM, highest microcode field",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "F2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "F3": {
+  "part": "555",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "engine-rev timer; R10 (100k), R11 (250k pot) and C11 set the rate",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "F4": {
+  "part": "74LS161",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "motor sound divider, held by MOTOR EN",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F5": {
+  "part": "74LS161",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "second motor sound divider, held by MOTOR EN",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036179; microcode PROM, outputs A16-A19",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "H2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "H4": {
+  "part": "74LS164",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H5": {
+  "part": "74LS164",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "shift register in the noise generator, fed back through two E5 XOR gates; cleared by SOUND ENABLE",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036178; microcode PROM, outputs A12-A15",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "J3": {
+  "part": "CD4066",
+  "section": "Audio Output",
+  "note": "quad analog switch, shell and explosion envelope charge/discharge into C9 and C14",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "J4": {
+  "part": "74LS20",
+  "section": "Math Box",
+  "note": "EPHI2 and E3MHZ to SACLK3",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J5": {
+  "part": "74LS74",
+  "section": "Control Panel Inputs and Audio Generator",
+  "note": "shell and explosion timing flip-flops",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036177; microcode PROM, outputs A8-A11",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; least significant slice",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K5": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "quad op-amp on +22V: shell and explosion shapers, engine shaper, and the summing amp that drives AUD+",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036176; microcode PROM, outputs A4-A7",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L4": {
+  "part": "CD4066",
+  "section": "Audio Output",
+  "note": "quad analog switch gating shell, explosion and engine paths",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 036175; microcode PROM, outputs A0-A3",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M2": {
+  "part": "74LS273",
+  "section": "Output Latch",
+  "note": "latches EDB0-7 into MOTOR EN, SOUND ENABLE, ENGINE REV EN, SHELL L/S, SHELL EN, EXPLO L/S and EXPLO EN -- every sound enable on the board comes from this one chip",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M5": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "inverts the mix to give AUD-, so the board puts out a differential pair on edge pins 5 and 6 with AUD RETURN on E",
+  "otherRev": null,
+  "source": "component-location drawing"
+ }
+}

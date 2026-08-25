@@ -41,6 +41,13 @@ DESIG = re.compile(r'\b([A-Z](?:/[A-Z])*)\s?(\d{1,2})\b')
 # a row that only names an alternative device carries no locations of its own;
 # reading on past it picks up the *next* row's designators
 SUBSTITUTE = re.compile(r'substitute\s+for|used\s+(?:only\s+)?(?:with|in)\b', re.I)
+# A manual with more than one PCB gives each its own figure, and the heading
+# names the board: 'Figure 25 Battlezone Auxiliary PCB Assembly Parts List'
+# against 'Figure 26 Battlezone Analog Vector-Generator PCB Assembly'. Without
+# this the two boards' parts land in one heap, and their designators collide —
+# C1 on one is not C1 on the other.
+FIGURE = re.compile(r'Figure\s+\d+[^\n]{0,80}?(?:Parts List|PCB Assembly|'
+                    r'Assembly Parts)', re.I)
 
 # Characters OCR confuses inside a stock number. Comparing a normalised form
 # lets '37-74L832' match 'Type 74LS32' without loosening the check to nothing.
@@ -144,8 +151,14 @@ def doc_text(fid):
 
 
 def rows(fid):
-    """Every IC parts-list row in a document, trusted or not."""
+    """Every IC parts-list row in a document, trusted or not.
+
+    Each row carries the figure heading it sits under, so a manual covering
+    several PCBs can be split back into them.
+    """
     txt = doc_text(fid)
+    figures = [(m.start(), " ".join(m.group(0).split()))
+               for m in FIGURE.finditer(txt)]
     out = []
     for m in STOCK.finditer(txt):
         stock = m.group(1)
@@ -154,8 +167,14 @@ def rows(fid):
         if nxt:
             tail = tail[:nxt.start()]
 
+        under = ""
+        for pos, head in figures:
+            if pos < m.start():
+                under = head
+            else:
+                break
         rec = {"stock": stock, "type": None, "desigs": [], "trusted": False,
-               "layout": None, "why": "", "qualified": False,
+               "layout": None, "why": "", "qualified": False, "figure": under,
                "raw": " ".join(tail.split())[:150]}
 
         t = TYPE.search(tail)
@@ -201,11 +220,17 @@ def rows(fid):
     return out
 
 
-def locations(fid):
-    """{designator: type} from the trusted rows only, plus any collision."""
+def locations(fid, figure=None):
+    """{designator: type} from the trusted rows only, plus any collision.
+
+    `figure` is a regex; only rows under a matching figure heading count.
+    """
+    pat = re.compile(figure, re.I) if figure else None
     loc, clash = {}, []
     for r in rows(fid):
         if not r["trusted"]:
+            continue
+        if pat and not pat.search(r.get("figure", "")):
             continue
         for d in r["desigs"]:
             if d in loc and loc[d] != r["type"]:
