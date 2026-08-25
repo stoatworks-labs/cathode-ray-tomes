@@ -25,7 +25,8 @@ from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
-from extract_ic_locations import locations, device_key
+from extract_ic_locations import (locations, device_key, plausible,
+                                  well_formed)
 
 
 def split_designator(desig):
@@ -52,6 +53,16 @@ def harvest(doc_ids, figure=None):
     agreed, split = {}, {}
     for des, v in votes.items():
         keys = {device_key(p) for p in v.values()}
+        if len(keys) > 1:
+            # Before calling it a disagreement, drop the readings that are not
+            # part numbers anyone ever made. '8T28' against '8728' is one
+            # device and an OCR of T as 7, not two printings contradicting
+            # each other — but '74LS42' against '74LS170' is a real split and
+            # must stay one, so this only ever discards the implausible.
+            good = {f: p for f, p in v.items() if plausible(p)}
+            if good and len({device_key(p) for p in good.values()}) == 1:
+                v = good
+                keys = {device_key(p) for p in good.values()}
         if len(keys) == 1:
             # keep the longest spelling seen; the short ones are OCR losing
             # the family letters, and '74LS157' is more use than '157'
@@ -86,8 +97,11 @@ def main():
 
     need = 1 if a.allow_single else 2
     added, confirmed, conflicts, offgrid, thin = {}, [], [], [], []
-    collided = []
+    collided, unnamed = [], []
     for des, (part, n) in sorted(agreed.items()):
+        if not well_formed(part):
+            unnamed.append((des, part))
+            continue
         cell, span = split_designator(des)
         if cell[0] not in rows or not cell[1:].isdigit():
             offgrid.append((des, part))
@@ -121,6 +135,9 @@ def main():
     print(f"  {len(offgrid):>3} skipped, not a cell on this grid")
     print(f"  {len(split):>3} skipped, the printings disagree with each other")
     print(f"  {len(collided):>3} skipped, two designators claim the same cell")
+    print(f"  {len(unnamed):>3} skipped, the device name is not one we can stand behind")
+    for des, part in unnamed:
+        print(f"      unnamed {des}: {part!r}")
     for cell, d1, p1, d2, p2 in collided:
         print(f"      collision at {cell}: {d1}={p1} against {d2}={p2}")
     for cell, was, now, n in conflicts:

@@ -29,7 +29,8 @@ from collections import defaultdict
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
-from packages import TTL_PINS, TTL_PINS_UNCHECKED
+from packages import (TTL_PINS, TTL_PINS_UNCHECKED, PART_PINS,
+                      ATARI_MEMORY)
 
 TTL_PINS = {**TTL_PINS, **TTL_PINS_UNCHECKED}
 
@@ -77,6 +78,38 @@ CANONICAL = re.compile(
 # 74-series logic families. A spelling is only well-formed if what sits between
 # the '74' and the function number is one of these.
 FAMILY = re.compile(r'^74(LS|ALS|AS|HCT|HC|S|H|L|F|C)?(\d{2,3})([A-Z]?)$')
+
+
+# A part number that could actually exist. Beyond the 74-series and 4xxx CMOS
+# forms in CANONICAL, this covers the bipolar and bus parts of the era, which
+# put a letter in the middle: 8T28, 82S129, 9316.
+PLAUSIBLE = re.compile(r'^\d{1,2}[A-Z]\d{2,4}[A-Z]?$')
+
+
+def plausible(part):
+    return bool(CANONICAL.match(part) or PLAUSIBLE.match(part))
+
+
+def well_formed(part):
+    """Is this a name we can actually stand behind?
+
+    Stricter than `plausible`, and the difference is the point. '74874' is a
+    plausible-looking 74-series name — 74 followed by three digits — but its
+    function number is 74, because that is what it ends in, and 874 is not
+    what follows a real family. It is an OCR of 74S74 that both printings
+    happened to make the same way, so nothing else catches it. A device the
+    board map cannot name correctly does not go on the board map.
+    """
+    if part in PART_PINS or part in ATARI_MEMORY:
+        return True
+    if part.startswith("74"):
+        m = FAMILY.match(part)
+        # Test the digits against the vocabulary directly rather than against
+        # device_key, which maps documented equivalents onto each other — the
+        # LS670 is compared as a 170, and asking it to *spell* itself 170
+        # rejected a perfectly good part.
+        return bool(m and m.group(2) in TTL_PINS)
+    return bool(PLAUSIBLE.match(part) or CANONICAL.match(part))
 
 
 def best_spelling(*candidates):

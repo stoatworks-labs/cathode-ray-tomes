@@ -174,6 +174,16 @@ Analog Vector-Generator PCB Assembly`. Pass `--figure` to split them. Without it
 boards' parts land in one heap and their designators collide, which is the trap already
 recorded above: C1 on one is not C1 on the other, and both have a +5V LED called CR2.
 
+**A device the board map cannot name correctly does not go on the board map.**
+`well_formed()` is stricter than "two printings agreed", and it has to be: both printings
+of the Football manual spell L7 as `74874`, which is not a part anyone made — its
+function number is 74, because that is what it ends in, and 874 is not what follows a
+real logic family. It is an OCR of 74S74 that both printings happened to make the same
+way, so cross-printing agreement cannot catch it. The guard tests the digits against the
+packaging table's own vocabulary, which means the harvest can only place parts the table
+can size — a good invariant, and the reason adding a machine sometimes means adding a
+verified row to `packages.py` first.
+
 **The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
 test points, everything on the board that is not on the letter-number grid. Rebuilding it
 from `ics` alone drops them. The first run of the Battlezone merge did exactly that and

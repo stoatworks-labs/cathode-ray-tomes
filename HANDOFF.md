@@ -115,6 +115,17 @@ came out unchanged:
 | Lunar Lander | 6 | 60 | 54, from 3 printings | L6, E7, E8 dropped; 9 single-printing |
 | Battlezone | 97 | 105 | 8, from 4 printings | none |
 | Battlezone Auxiliary | 36 | 37 | 1, from 4 printings | none |
+| **Football** | — | 77 | 77, from 2 printings agreeing 82/82 | L7 unnamed; 4 single-printing |
+
+**Football is the first board here with no drawing read at all**, and it is a fair test of
+whether that is worth publishing. Its two printings agree on all 82 designators with no
+split. The board says plainly that every device came from the parts list and that the
+grid spacing is nominal, and the chip lookup names the source per device. The designators
+are the real content and they are as attested as anything on the hand-read boards.
+
+Its row alphabet is A B C D E F H J K L M N P — skipping G, I, O and Q, exactly as the
+later boards do. That is the convention confirmed on a 1978 game, four years before
+Battlezone.
 
 **Battlezone is the result worth trusting the method on.** It is the most carefully
 hand-read board here — 97 devices off six sheet sides — and across both its PCBs the
