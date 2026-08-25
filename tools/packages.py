@@ -85,9 +85,19 @@ PART_PINS = {
     "DAC-08":     (16, "kicad", "8-bit multiplying DAC"),
     "AD561J":     (16, "datasheet", "10-bit DAC"),
 
+    "137108-001": (8,  "datasheet",
+                   "Atari 137108-001; the Caberat parts list names it TL081CP"),
+
     # 9316 is a Fairchild-numbered 74161 and is already in devices.py as such
     "9316":       (16, "kicad", "synchronous 4-bit counter; == 74161"),
 }
+
+# Not ICs, but they are DIP-bodied and sit on the grid, so the board map has to
+# draw something. n SPST switches in a DIP is 2n pins.
+PART_PINS.update({
+    "4-position DIP switch": (8,  "datasheet", "Atari 66-114P1T, 4-station"),
+    "8-position DIP switch": (16, "datasheet", "8-station DIP switch"),
+})
 
 # Atari mask ROM / PROM part numbers used as the part field on the Asteroids
 # board maps. The manual's substitution table calls the -03 complement PROMs and
@@ -105,12 +115,12 @@ ATARI_MEMORY = {
 # Descriptions that were recorded in place of a part number, because the sheet
 # did not give one. These are data gaps, not packaging gaps: they should be
 # resolved by re-reading, and until then the board map cannot size them.
-UNIDENTIFIED = {
-    "counter":               "function known, part number not on the sheet",
-    "op-amp":                "function known, part number not on the sheet",
-    "DIP switch":            "switch, not an IC — belongs outside `ics`",
-    "8-position DIP switch": "switch, not an IC — belongs outside `ics`",
-}
+# Descriptions recorded in place of a part number, because the sheet did not
+# give one. These are data gaps, not packaging gaps. Kept as a named list
+# rather than deleted: the entries that used to be here — `counter`, `op-amp`
+# and `DIP switch` — were all settled from the parts lists rather than by
+# re-reading the sheet, which is the route worth trying first.
+UNIDENTIFIED = {}
 
 import re
 

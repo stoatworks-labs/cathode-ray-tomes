@@ -438,8 +438,8 @@
    "section": "ROM/PROM Circuitry"
   },
   "C5": {
-   "part": "counter",
-   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms",
+   "part": "9316",
+   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms. Type from the parts list, which the sheet does not give: five printings name a counter at C5 \u2014 '37-9316' in the 6th, 7th and Cocktail 3rd, '37-74LS161' in the 1st and 2nd. The 9316 is Fairchild's 74161, so these are the same part.",
    "section": "NMI Counter"
   }
  },
@@ -480,8 +480,8 @@
    "section": "Coin Counter / LED Output"
   },
   "M12": {
-   "part": "DIP switch",
-   "note": "option switches",
+   "part": "4-position DIP switch",
+   "note": "Option switches. Atari 66-114P1T, '4-Station Single-Throw, Dual-Inline-Package Bit Switch', item 143 at M12 in three printings.",
    "section": "Option Switches"
   },
   "D11": {
@@ -506,8 +506,8 @@
    "section": "Video Outputs"
   },
   "E12": {
-   "part": "op-amp",
-   "note": "video output stage",
+   "part": "137108-001",
+   "note": "Video output op-amp. Type from the parts list, which the sheet does not give: item 130, 'Operational Amplifier Integrated Circuit' at E12 in three printings, and the Caberat manual names it 'Type TL081CP'. The same item also lists a B/C12 location that nothing here accounts for.",
    "section": "Video Outputs"
   },
   "M10": {
@@ -579,6 +579,7 @@
  },
  "resolved": [
   "F8 (rate multiplier vs 035904 PROM) is RESOLVED, and both readings were right. The Asteroids parts list names 'A034986-05 Game PCB Assembly (with 7497 Rate Multipliers)' and 'A034986-06 ... (with PROM)'. The -06 board replaces the rate multipliers with PROMs, which is exactly what the '-06 PCB ONLY' block on the drawing shows. Confirmed from a different document entirely.",
-  "L8 is an LM324 audio op-amp, not an LS42 decoder. Corroborated twice \u2014 the sound section shows four LM324 sections labelled L8/L9, and sheet 01B's power notes name 'operational amplifiers P11 and L8'. The sheet 2A reading was wrong and is withdrawn."
+  "L8 is an LM324 audio op-amp, not an LS42 decoder. Corroborated twice \u2014 the sound section shows four LM324 sections labelled L8/L9, and sheet 01B's power notes name 'operational amplifiers P11 and L8'. The sheet 2A reading was wrong and is withdrawn.",
+  "C5, E12 and M12 were recorded by function because the sheets give no part number for them. The parts lists do, and agree across printings: C5 is a 9316 counter (spelled 74LS161 in the earlier printings \u2014 the same part), E12 is Atari 137108-001, a TL081CP op-amp, and M12 is Atari 66-114P1T, a 4-station DIP switch. All three are cross-document confirmations, not re-readings of the same sheet."
  ]
 }

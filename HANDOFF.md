@@ -161,13 +161,16 @@ the highest pin *number*, since KiCAD omits no-connect pins); the rest rest on t
 drawings or on the part's standard package. All 20 parts in `DEVICES` agree with it.
 What is left:
 
-- **28 devices are sized `unverified`** — the Atari 0351xx ROM/PROM numbers on the
+- **Every device on every board is now sized** — 106 of 106 part types, 694 of 694
+  devices. The four placeholders that used to draw as DIP-14 were settled from the parts
+  lists rather than by re-reading the sheets: C5 is a 9316 counter (spelled 74LS161 in
+  the earlier printings, same part), E12 is Atari 137108-001 — the Caberat manual names
+  it a TL081CP — and M12 is Atari 66-114P1T, a 4-station DIP switch. The 8-station
+  switches on Battlezone and Tempest are DIP-16.
+- **20 devices are sized `unverified`** — the Atari 0351xx ROM/PROM numbers on the
   Asteroids maps, drawn as DIP-24 on the class default. Neither the drawing nor the
-  parts list states a package. Wants one look at a board.
-- **16 devices are unsized** and still draw as DIP-14, but `build_board.py` now names
-  them instead of doing it quietly: `counter` (C5) and `op-amp` (E12) are descriptions
-  recorded where the sheet gave no part number, and `DIP switch` / `8-position DIP
-  switch` are switches that should not be in `ics` at all.
+  parts list states a package. Wants one look at a board. This is the only soft spot
+  left in the packaging table.
 Two geometry bugs fell out of the same pass and are fixed:
 
 - **The grid carried two rows that do not exist.** Atari's alphabet skips G, I, O and Q,
