@@ -88,6 +88,7 @@ def main():
     bpath = os.path.join(ROOT, "boards", a.slug + ".json")
     board = json.load(open(bpath))
     rows = board["grid"]["rows"]
+    cols = board["grid"].get("cols")
     drawing = dict(board["ics"])
     spans = dict(board.get("spans", {}))
 
@@ -104,6 +105,12 @@ def main():
             continue
         cell, span = split_designator(des)
         if cell[0] not in rows or not cell[1:].isdigit():
+            offgrid.append((des, part))
+            continue
+        # Boards are ten or so columns wide. A designator claiming column 28 is
+        # OCR wreckage, not a position, and placing it would stretch the board
+        # to three times its width to hold one phantom.
+        if cols and int(cell[1:]) > cols:
             offgrid.append((des, part))
             continue
         if cell in drawing:

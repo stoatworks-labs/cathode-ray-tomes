@@ -37,7 +37,7 @@ TTL_PINS = {
     "00": 14, "02": 14, "03": 14, "04": 14, "06": 14, "07": 14, "08": 14,
     "10": 14, "125": 14, "166": 16, "195": 16, "399": 16,
     "11": 14, "14": 14, "20": 14, "25": 14, "27": 14, "30": 14, "32": 14,
-    "33": 14, "42": 16, "48": 16, "74": 14, "75": 16, "83": 16, "86": 14,
+    "33": 14, "42": 16, "48": 16, "74": 14, "75": 16, "83": 16, "85": 16, "86": 14, "92": 14, "123": 16, "192": 16,
     "90": 14, "93": 14,
     "107": 14, "109": 16, "139": 16, "151": 16, "153": 16, "157": 16, "160": 16,
     "161": 16, "163": 16, "164": 14, "170": 16, "174": 16, "175": 16,
@@ -92,8 +92,12 @@ PART_PINS = {
     "137108-001": (8,  "datasheet",
                    "Atari 137108-001; the Caberat parts list names it TL081CP"),
 
-    # 9316 is a Fairchild-numbered 74161 and is already in devices.py as such
+    # Fairchild's own numbering for parts the 74-series also carries. 9316 is
+    # already in devices.py under that name; the other two appear on the
+    # mid-70s boards, which predate Atari standardising on 74-series numbers.
     "9316":       (16, "kicad", "synchronous 4-bit counter; == 74161"),
+    "9312":       (16, "kicad", "8-input multiplexer; == 74151"),
+    "9602":       (16, "kicad", "dual retriggerable monostable; == 74123"),
 }
 
 # Not ICs, but they are DIP-bodied and sit on the grid, so the board map has to

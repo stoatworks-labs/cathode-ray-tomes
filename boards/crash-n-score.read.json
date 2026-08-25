@@ -1,0 +1,18 @@
+{
+ "machine": "crash-n-score",
+ "name": "Crash 'n Score",
+ "mfr": "Atari",
+ "year": "1975",
+ "drawing": "TM-048 P.C. Board Assembly parts list",
+ "sheets": {},
+ "notes": [
+  "No component-location drawing has been read for this board. Every device comes from the IC parts list, taken where the technical manual and the preliminary manual agree \u2014 they overlap on 38 designators and agree on all 38. The grid spacing is nominal.",
+  "The row alphabet is A B C D E F H J K L M N P R, skipping G, I, O and Q \u2014 the same convention as every other Atari board here, on a 1975 game.",
+  "Fairchild numbering rather than 74-series: 9312 is the 74151 multiplexer and 9602 the 74123 dual monostable, both on this board alongside plain 7400-series parts. Atari had not standardised on 74-series numbers yet."
+ ],
+ "conflicts": [
+  "This game has two boards \u2014 the manual refers to 'the main PCB' and to a 'steering PCB' for each wheel \u2014 and unlike the later manuals this one gives no figure headings, so the IC rows cannot be attributed to a board automatically. They are treated as the main PCB because both manuals carry one continuous 'P.C. Board Assembly' list with no separate steering section, and because the steering PCBs are described as producing a pair of signals from the wheel rather than as logic boards. If any designator here turns out to be on a steering PCB it is in the wrong place, and only the drawings will say.",
+  "R28 is not placed: the board is ten columns wide and column 28 does not exist, so that reading is OCR wreckage rather than a position.",
+  "18 designators appear in only one of the two manuals and are therefore not placed: B9, C8, E3, E6, F1, F4, H1, H2, H5, J2, K9, L10, L4, L8, N4, N6, R1, R5. R28 is excluded from that count because it was already rejected as off-grid."
+ ]
+}

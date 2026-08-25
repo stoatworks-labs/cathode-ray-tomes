@@ -116,6 +116,7 @@ came out unchanged:
 | Battlezone | 97 | 105 | 8, from 4 printings | none |
 | Battlezone Auxiliary | 36 | 37 | 1, from 4 printings | none |
 | **Football** | — | 77 | 77, from 2 printings agreeing 82/82 | L7 unnamed; 4 single-printing |
+| **Crash 'n Score** | — | 38 | 38, from 2 manuals agreeing 38/38 | R28 off-grid; 18 single-printing |
 
 **Football is the first board here with no drawing read at all**, and it is a fair test of
 whether that is worth publishing. Its two printings agree on all 82 designators with no
@@ -125,7 +126,15 @@ are the real content and they are as attested as anything on the hand-read board
 
 Its row alphabet is A B C D E F H J K L M N P — skipping G, I, O and Q, exactly as the
 later boards do. That is the convention confirmed on a 1978 game, four years before
-Battlezone.
+Battlezone. Crash 'n Score confirms it again on a 1975 one.
+
+**Crash 'n Score carries a caveat the others do not.** The game has a main PCB and a
+steering PCB per wheel, and its manual predates the figure headings that let Battlezone
+be split, so the IC rows cannot be attributed to a board automatically. They are treated
+as the main PCB — both manuals carry one continuous P.C. Board Assembly list with no
+steering section, and the steering PCBs are described as producing a pair of signals
+rather than as logic boards — but that is reasoning, not evidence, and it is logged as
+such.
 
 **Battlezone is the result worth trusting the method on.** It is the most carefully
 hand-read board here — 97 devices off six sheet sides — and across both its PCBs the
