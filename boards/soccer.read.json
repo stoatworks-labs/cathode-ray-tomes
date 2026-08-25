@@ -1,0 +1,15 @@
+{
+ "machine": "soccer",
+ "name": "Soccer",
+ "mfr": "Atari",
+ "year": "1973",
+ "drawing": "TM-144 IC parts list",
+ "sheets": {},
+ "notes": [
+  "Single source. Every one of the 17 devices comes from the IC parts list in TM-144, and that is the only printing of this manual in the corpus that carries the list. No component-location drawing has been read. Nothing here has been checked against a second source, which is the test every other board on this site has passed, and the board page says so.",
+  "The grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing has measured the board. Rows run P to B and columns 1 to 12; the row span is the standard Atari alphabet between the outermost letters seen, so rows with no device on them are still drawn as positions the board has."
+ ],
+ "conflicts": [
+  "1 device name(s) could not be recovered and are not placed: D5 (9321). Each is an OCR of a part number whose function number does not name anything the packaging table knows, and with only one printing there is no second reading to repair it from."
+ ]
+}

@@ -114,6 +114,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 80px; }
 /* Where a chip reading came from. Deliberately quiet — it should be findable
    without competing with the part number, which is what people came for. */
 .badge.src { font-size: 10px; color: var(--ink-3); border-style: dashed; }
+.badge.warn { border-color: var(--warn); color: var(--warn); }
 
 /* ---- machine detail ---- */
 h1 { font-size: 27px; margin: 0 0 4px; line-height: 1.2; }
@@ -167,6 +168,9 @@ table.bom tr:hover { background: var(--surface-2); }
 .note { border-left: 3px solid var(--warn); background: var(--surface); padding: 10px 14px;
         border-radius: 0 var(--radius) var(--radius) 0; font-size: 14px; color: var(--ink-2); margin: 14px 0; }
 .note b { color: var(--warn); }
+/* A board with no cross-check at all. Louder than .note on purpose: it is a
+   claim about how much the whole page is worth, not a footnote to it. */
+.note.warn { border-left-width: 5px; background: color-mix(in srgb, var(--warn) 8%, var(--surface)); }
 .empty { color: var(--ink-3); padding: 40px 0; text-align: center; }
 .spin { color: var(--ink-3); padding: 30px 0; text-align: center; font-size: 14px; }
 footer { border-top: 1px solid var(--line); margin-top: 50px; padding: 20px 16px;

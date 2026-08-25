@@ -26,7 +26,7 @@ from collections import defaultdict
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 from extract_ic_locations import (locations, device_key, plausible,
-                                  well_formed)
+                                  well_formed, best_spelling)
 
 
 def split_designator(desig):
@@ -64,9 +64,11 @@ def harvest(doc_ids, figure=None):
                 v = good
                 keys = {device_key(p) for p in good.values()}
         if len(keys) == 1:
-            # keep the longest spelling seen; the short ones are OCR losing
-            # the family letters, and '74LS157' is more use than '157'
-            agreed[des] = (max(v.values(), key=len), len(v))
+            # Choose between the printings' spellings the same way a single
+            # row chooses between its own two readings. Length is not the
+            # test: '74874' and '74S74' are the same length and only one of
+            # them is a part.
+            agreed[des] = (best_spelling(*v.values()), len(v))
         else:
             split[des] = v
     return agreed, split, len(per)

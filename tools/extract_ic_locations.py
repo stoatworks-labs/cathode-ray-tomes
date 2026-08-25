@@ -38,6 +38,10 @@ STOCK = re.compile(r'\b37[-\s]?([0-9][0-9A-Z]{2,7})\b')
 TYPE = re.compile(r'\bType\s+([0-9A-Z][0-9A-Z\s.]{2,10}?)\s+[Ii]ntegrated', re.I)
 # OCR turns ( ) into { } [ ] often enough to be worth accepting
 PARENS = re.compile(r'[\(\{\[]([^)}\]]{1,140})[\)\}\]]')
+# The count layout names the device in its description too — 'Integrated
+# Circuit, 74S74 L7' — so it has the same two-readings-of-one-row check the
+# paren layout does, and it was going unused.
+INLINE_TYPE = re.compile(r'[Ii]ntegrated\s+Circuit[,.]?\s+([0-9A-Z][0-9A-Z.]{2,8})')
 DESIG = re.compile(r'\b([A-Z](?:/[A-Z])*)\s?(\d{1,2})\b')
 # a row that only names an alternative device carries no locations of its own;
 # reading on past it picks up the *next* row's designators
@@ -112,6 +116,34 @@ def well_formed(part):
     return bool(PLAUSIBLE.match(part) or CANONICAL.match(part))
 
 
+FAMILIES = ("", "LS", "S", "H", "L", "C", "F", "ALS", "AS", "HC", "HCT")
+# The family letters are what OCR destroys, and it destroys them the same two
+# ways every time: L read as 1, S read as 8 or 5.
+UNMANGLE = str.maketrans({"1": "L", "8": "S", "5": "S"})
+
+
+def repair_family(part):
+    """'741808' -> '74LS08'. None if the repair is not unique or not a part.
+
+    The corruption is systematic — 74LS08 comes back as 741808, 74LS74 as
+    74L874, 74S04 as 74504 — and it is safe to undo *only* because the result
+    has to land in the packaging table's vocabulary. Every split of the string
+    into family and function number is tried; the repair is accepted when
+    exactly one of them names a device we know. Anything ambiguous is left
+    alone and the device is not placed.
+    """
+    if not part.startswith("74") or len(part) < 4:
+        return None
+    body, found = part[2:], set()
+    for k in range(0, 4):
+        fam, num = body[:k], body[k:]
+        if not num.isdigit() or num not in TTL_PINS:
+            continue
+        if fam.translate(UNMANGLE) in FAMILIES:
+            found.add("74" + fam.translate(UNMANGLE) + num)
+    return found.pop() if len(found) == 1 else None
+
+
 def best_spelling(*candidates):
     """The cleanest reading of a device name among several OCRs of it.
 
@@ -134,6 +166,9 @@ def best_spelling(*candidates):
             if (m := FAMILY.match(c)) and m.group(2).lstrip("0") == key]
     if good:
         return max(good, key=len)
+    repaired = [r for r in (repair_family(c) for c in cands) if r]
+    if repaired and len(set(repaired)) == 1:
+        return repaired[0]
     clean = [c for c in cands if CANONICAL.match(c)]
     return max(clean or cands, key=len)
 
@@ -239,8 +274,13 @@ def rows(fid):
                 rec["layout"] = "count"
                 rec["type"] = _norm(stock)
                 rec["qty"] = int(q.group(1))
+                body = tail[q.end():]
+                t2 = INLINE_TYPE.search(body)
+                if t2:
+                    rec["type"] = best_spelling(_norm(stock), _norm(t2.group(1)))
+                    body = body[t2.end():]
                 rec["desigs"] = [d.group(1) + d.group(2)
-                                 for d in DESIG.finditer(tail[q.end():])]
+                                 for d in DESIG.finditer(body)]
                 if not rec["desigs"]:
                     rec["why"] = "no designators found"
                 elif rec["qty"] != len(rec["desigs"]):

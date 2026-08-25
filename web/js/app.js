@@ -496,6 +496,7 @@ async function boards() {
         <span class="meta">${esc(b.mfr || "")}${b.year ? " · " + esc(b.year) : ""}</span>
         <span class="grow"></span>
         <span class="badge">${b.devices} devices</span>
+        ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
         <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? "nets traced" : "components only"}</span>
       </a>`).join("")}</div>` : '<div class="empty">No conversions published yet.</div>'}`;
 }
@@ -510,6 +511,12 @@ async function board(slug) {
     <h1>${esc(b.name)} — board</h1>
     <p class="sub">${esc(b.mfr || "")}${b.year ? " · " + esc(b.year) : ""}
       ${b.drawing ? ` · drawing <code>${esc(b.drawing)}</code>` : ""}</p>
+    ${b.singleSource ? `<div class="note warn"><b>Read once, and not cross-checked.</b>
+       Every device on this board comes from a single printing of one manual. Everywhere
+       else on this site a device is only placed when two independent sources agree, and
+       that test does real work — it is what catches an OCR of a part number that looks
+       perfectly plausible on its own. Nothing here has had that test. Treat it as a
+       lead, and check the chip against the board before you act on it.</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
     ${b.ibom ? `<h2>Board</h2>
     <p class="sub">Every device at its position on the board, cross-linked to the bill of

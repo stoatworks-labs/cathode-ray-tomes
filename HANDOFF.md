@@ -118,6 +118,17 @@ came out unchanged:
 | **Football** | — | 77 | 77, from 2 printings agreeing 82/82 | L7 unnamed; 4 single-printing |
 | **Crash 'n Score** | — | 38 | 38, from 2 manuals agreeing 38/38 | R28 off-grid; 18 single-printing |
 
+**Nine more boards are published from a single printing**, flagged as such. Monte Carlo
+79, Outlaw 47, Sky Diver 38, Orbit 37, Indy 4 30, Triple Hunt 29, Super Breakout 18,
+Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
+carries `singleSource: true`, which puts a warning at the top of the board page and a
+badge in the boards list, and the chip lookup still names the source per device. The
+whole site is 25 boards and 1,365 devices.
+
+That leaves the well-formedness guard doing all the work on those nine, since
+cross-printing agreement is unavailable. It rejected 24 device names outright and each
+rejection is listed on the board's own read file.
+
 **Football is the first board here with no drawing read at all**, and it is a fair test of
 whether that is worth publishing. Its two printings agree on all 82 designators with no
 split. The board says plainly that every device came from the parts list and that the

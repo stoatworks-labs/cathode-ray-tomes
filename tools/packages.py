@@ -37,7 +37,8 @@ TTL_PINS = {
     "00": 14, "02": 14, "03": 14, "04": 14, "06": 14, "07": 14, "08": 14,
     "10": 14, "125": 14, "166": 16, "195": 16, "399": 16,
     "11": 14, "14": 14, "20": 14, "25": 14, "27": 14, "30": 14, "32": 14,
-    "33": 14, "42": 16, "48": 16, "74": 14, "75": 16, "83": 16, "85": 16, "86": 14, "92": 14, "123": 16, "192": 16,
+    "33": 14, "42": 16, "48": 16, "74": 14, "75": 16, "76": 16, "83": 16, "85": 16, "86": 14, "92": 14, "95": 14,
+    "96": 16, "123": 16, "156": 16, "192": 16, "241": 20, "279": 16,
     "90": 14, "93": 14,
     "107": 14, "109": 16, "139": 16, "151": 16, "153": 16, "157": 16, "160": 16,
     "161": 16, "163": 16, "164": 14, "170": 16, "174": 16, "175": 16,
@@ -86,6 +87,8 @@ PART_PINS = {
     "4016B":      (14, "kicad", "quad bilateral switch; the parts lists' "
                                 "spelling of the CD4016B"),
     "CD4066":     (14, "kicad", "quad bilateral switch"),
+    "4066":       (14, "kicad", "quad bilateral switch; the parts lists' "
+                                "spelling of the CD4066"),
     "DAC-08":     (16, "kicad", "8-bit multiplying DAC"),
     "AD561J":     (16, "datasheet", "10-bit DAC"),
 
@@ -98,6 +101,13 @@ PART_PINS = {
     "9316":       (16, "kicad", "synchronous 4-bit counter; == 74161"),
     "9312":       (16, "kicad", "8-input multiplexer; == 74151"),
     "9602":       (16, "kicad", "dual retriggerable monostable; == 74123"),
+    "9300":       (16, "datasheet", "4-bit universal shift register"),
+    "9301":       (16, "datasheet", "1-of-10 decoder"),
+    "9322":       (16, "datasheet", "quad 2-input multiplexer"),
+    "9334":       (16, "datasheet", "8-bit addressable latch"),
+    "7489":       (16, "datasheet", "64-bit read/write memory"),
+    "NE556":      (14, "kicad", "dual timer"),
+    "LM723":      (14, "datasheet", "voltage regulator"),
 }
 
 # Not ICs, but they are DIP-bodied and sit on the grid, so the board map has to

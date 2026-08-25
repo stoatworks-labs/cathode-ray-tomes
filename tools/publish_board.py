@@ -62,6 +62,10 @@ def main():
         "drawing": spec.get("drawing") or prev.get("drawing", ""),
         "devices": len(spec["ics"]),
         "netsTraced": spec.get("netsTraced", prev.get("netsTraced", False)),
+        # Boards recovered from a single printing carry no cross-check at all.
+        # The site says so on the page rather than only in the provenance of
+        # each device, because it changes how much the whole map is worth.
+        "singleSource": spec.get("singleSource", prev.get("singleSource", False)),
         "status": compose_status(spec) or prev.get("status", ""),
         "ibom": f"/boards/{a.slug}/{a.slug}-ibom.html",
         "bom": f"/boards/{a.slug}/bom.csv",

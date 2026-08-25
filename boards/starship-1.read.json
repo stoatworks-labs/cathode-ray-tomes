@@ -1,0 +1,16 @@
+{
+ "machine": "starshp1",
+ "name": "Starship 1",
+ "mfr": "Atari",
+ "year": "1977",
+ "drawing": "IPC-085 IC parts list",
+ "sheets": {},
+ "notes": [
+  "Single source. Every one of the 10 devices comes from the IC parts list in IPC-085, and that is the only printing of this manual in the corpus that carries the list. No component-location drawing has been read. Nothing here has been checked against a second source, which is the test every other board on this site has passed, and the board page says so.",
+  "The grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing has measured the board. Rows run R to A and columns 1 to 11; the row span is the standard Atari alphabet between the outermost letters seen, so rows with no device on them are still drawn as positions the board has."
+ ],
+ "conflicts": [
+  "4 device name(s) could not be recovered and are not placed: B11 (8926), B4 (8926), E10 (14081), R10 (14081). Each is an OCR of a part number whose function number does not name anything the packaging table knows, and with only one printing there is no second reading to repair it from.",
+  "1 designator(s) fall outside the board's grid and are not placed: B19 (555)."
+ ]
+}

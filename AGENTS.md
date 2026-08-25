@@ -184,6 +184,19 @@ packaging table's own vocabulary, which means the harvest can only place parts t
 can size — a good invariant, and the reason adding a machine sometimes means adding a
 verified row to `packages.py` first.
 
+**OCR destroys the logic family, and it does it the same two ways every time**: L read as
+1, S read as 8 or 5. `74LS08` comes back as `741808`, `74LS74` as `74L874`, `74S04` as
+`74504`. `repair_family()` undoes it, and it is safe to undo *only* because the result has
+to land in the packaging table's vocabulary — every split of the string into family and
+function number is tried, and the repair is taken when exactly one of them names a device
+we know. Anything ambiguous is left alone and the device is not placed. On Orbit this took
+the board from 16 devices to 37.
+
+**Both layouts state the device twice**, and for a long time only the paren one used it.
+The count layout carries the type in its description as well — `1 Integrated Circuit,
+74S74 L7` — which is what finally identified a device both Football printings spelled
+`74874`. If a row seems to have only one reading of its device, look again.
+
 **The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
 test points, everything on the board that is not on the letter-number grid. Rebuilding it
 from `ics` alone drops them. The first run of the Battlezone merge did exactly that and
