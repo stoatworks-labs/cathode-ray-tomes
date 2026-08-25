@@ -253,6 +253,13 @@ convention and legitimately uses G.
   people search service manuals for. Now 92%, with the index sharded to stay small.
 - **`pgrep -f <script>.py` matches the wait-loop that contains the pattern**, so
   `until ! pgrep -f backfill_structure.py` never exits. Bracket the first character.
+- **`data/chips/<slug>.json` and `boards/<slug>.json` are the same facts twice.** The
+  chip lookup the site reads used to be maintained by hand, and drifted: it showed the
+  sheet's `ROM 035131` at J2 where the board map showed the substitution table's
+  `035131-02`. The Asteroids revisions now emit both from one pipeline. The other boards
+  still have hand-written chip files, and theirs legitimately hold *more* than `ics` —
+  off-grid devices the board map cannot draw — so do not "fix" that by regenerating from
+  `ics` alone.
 - **Most board definitions carry no `machine` of their own.** The link to a machine
   was supplied by `publish_board.py --machine` the first time and lives only in
   `data/boards.json`, so republishing without the flag used to silently unlink the

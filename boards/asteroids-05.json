@@ -3,9 +3,9 @@
  "name": "Asteroids (034986-05)",
  "mfr": "Atari",
  "year": "1979",
- "revision": "Designators shift one position. 7497 rate multipliers fitted, per the parts list entry 'Game PCB Assembly (with 7497 Rate Multipliers)'.",
+ "revision": "Designators shift one position, but the drawing gives the alternate for only 28 of the devices read, so the rest are shown at their -03/-04 positions. 7497 rate multipliers fitted, per the parts list entry 'Game PCB Assembly (with 7497 Rate Multipliers)'.",
  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
- "coverage": "100 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+ "coverage": "97 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
  "size": {
   "w": 300,
   "h": 330
@@ -94,14 +94,9 @@
   "B2": "74LS244",
   "C2": "74LS244",
   "E3": "74LS245",
-  "E2": "2114",
+  "E2": "035143-02",
   "D2": "2114",
   "P5": "74LS86",
-  "J2": "035145-02",
-  "N2": "ROM 035132",
-  "H2": "035144-02",
-  "M2": "ROM 035134",
-  "F2": "ROM 035135",
   "C5": "counter",
   "L11": "74LS251",
   "J11": "74LS251",
@@ -118,6 +113,11 @@
   "M10": "CD4016B",
   "M9": "NE555",
   "L10": "NE555",
-  "L9": "LM324"
+  "L9": "LM324",
+  "H2": "035144-02",
+  "J2": "035145-02"
+ },
+ "spans": {
+  "E2": "E/F2"
  }
 }

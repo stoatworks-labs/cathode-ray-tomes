@@ -5,7 +5,7 @@
  "year": "1979",
  "revision": "Three ROMs replace the eleven PROMs. Rate multipliers fitted.",
  "drawing": "DP-143 drawing package, sheets 01B and 02A/02B",
- "coverage": "105 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
+ "coverage": "101 devices read from the drawings. This is a partial complement \u2014 the sheets have regions not yet read \u2014 so it is a board map, not a complete bill of materials.",
  "size": {
   "w": 300,
   "h": 330
@@ -99,11 +99,6 @@
   "E2": "2114",
   "D2": "2114",
   "P5": "74LS86",
-  "J2": "ROM 035131",
-  "N2": "ROM 035132",
-  "H2": "ROM 035133",
-  "M2": "ROM 035134",
-  "F2": "ROM 035135",
   "C5": "counter",
   "L10": "74LS251",
   "J10": "74LS251",
@@ -123,6 +118,10 @@
   "L9": "NE555",
   "L8": "LM324",
   "C1": "035143-02",
+  "D1": "035144-02",
   "F1": "035145-02"
+ },
+ "spans": {
+  "D1": "D/E1"
  }
 }

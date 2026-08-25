@@ -100,20 +100,41 @@ same net as `441H`. Both legible, both valid signature strings.
 **Two unresolved Asteroids conflicts** (in `boards/asteroids.read.json`): C8 reads as
 both the state-machine PROM and an LS02; both need a physical board to settle.
 
-**The Asteroids memory complements need one pass over sheet 01B, and it settles four
-things at once.** Both printings of the substitution table show a twelfth -03 PROM
-(035142-02 at L1) and a sixth -03 alternate (035155-02 at L1) that are recorded nowhere;
-and all three of -04, -05 and -06 carry leftover entries at -03 positions while each is
-missing one of its own ROMs. All four look like the same derivation bug. Logged with the
-evidence in `asteroids.read.json` rather than applied — the table is a three-column
-layout that OCR interleaves, and the -05/-06 parts list is written in the shifted
-numbering, so both routes to "fixing" it from the corpus alone are traps.
+**The Asteroids revision complements are fixed at the source.**
+`build_asteroids_revisions.py` overlaid each revision's memory onto the base sheet read
+without clearing what that memory *replaces*, so -04, -05 and -06 all carried leftover
+-03 PROM positions; and its grid filter silently dropped any spanning designator, which
+is why each was also missing exactly one of its own ROMs (`D/E1` on -04, `E/F2` on
+-05/-06). Both fixed, and all four revisions now match `memory_by_revision` exactly:
+-03 has eleven PROMs, the rest have three ROMs each.
 
-**The -04 complement contradicts its own status text.** `asteroids-04.json` carries five
-devices at the -03 PROM positions alongside the -04 ROMs and is missing 035144-02 at
-D/E1, while the substitution table, `memory_by_revision` and the board's own status all
-say the -04 has three ROMs where the -03 has eleven PROMs. Looks like the -03 read
-carried over rather than being replaced. Logged; needs sheet 01B's -04 column.
+The generator also emits `data/chips/<slug>.json` now. That file is what the site's
+"which chip is at C4" lookup reads, nothing generated it, and it had drifted — it showed
+the sheet's `ROM 035131` at J2 where the board map showed the table's `035131-02`, and
+it still listed the leftovers. One pipeline, one answer.
+
+It also **reports collisions instead of resolving them silently**, which surfaced three
+that were being decided by dict ordering. All three are logged in `asteroids.read.json`:
+
+- **`B10`'s alternate is recorded as `B9`** — the only one of the 28 alternates that
+  shifts *down*; the other 27 all go up by one. It collides with `B8`→`B9`, so on a
+  -05/-06 board two devices claim B9 and the LS08 is dropped. `B10`→`B11` would fit the
+  pattern and clear the collision, but that is inference, not a reading.
+- **`D12` reads as a 74LS374 on sheet 02A and a CD4016B on 02B**, same block. The maps
+  show the CD4016B, which matches the revision note — but only because 02B is flattened
+  after 02A.
+- **`E2` on -05/-06** is the sheet read's 2114 against the table's `035143-02` at `E/F2`.
+  The table wins, being typeset and revision-specific, so those maps no longer show
+  where the MPU RAM is.
+
+**Only 28 of 106 sheet-read devices carry a -05/-06 alternate**, so most of those two
+maps are early designators. The status text now says so instead of claiming a clean
+shift.
+
+**Still open on sheet 01B:** both printings of the substitution table show a twelfth -03
+PROM (035142-02 at L1) and a sixth -03 alternate (035155-02 at L1) that are recorded
+nowhere. Not applied — the table is a three-column layout that OCR interleaves, and
+reading a column boundary wrong puts a wrong part number into a repair reference.
 
 **The -06 rate multipliers are resolved on paper but not in the data.**
 `asteroids-06.json` still carries `74LS97` at F9/H9/J9/K9 although the `resolved` block
