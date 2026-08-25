@@ -100,6 +100,12 @@ same net as `441H`. Both legible, both valid signature strings.
 **Two unresolved Asteroids conflicts** (in `boards/asteroids.read.json`): C8 reads as
 both the state-machine PROM and an LS02; both need a physical board to settle.
 
+**The -04 complement contradicts its own status text.** `asteroids-04.json` carries five
+devices at the -03 PROM positions alongside the -04 ROMs and is missing 035144-02 at
+D/E1, while the substitution table, `memory_by_revision` and the board's own status all
+say the -04 has three ROMs where the -03 has eleven PROMs. Looks like the -03 read
+carried over rather than being replaced. Logged; needs sheet 01B's -04 column.
+
 **The -06 rate multipliers are resolved on paper but not in the data.**
 `asteroids-06.json` still carries `74LS97` at F9/H9/J9/K9 although the `resolved` block
 and the board's own status text both say the -06 fits 035904/035905 PROMs there. The
@@ -132,11 +138,20 @@ What is left:
   them instead of doing it quietly: `counter` (C5) and `op-amp` (E12) are descriptions
   recorded where the sheet gave no part number, and `DIP switch` / `8-position DIP
   switch` are switches that should not be in `ics` at all.
-- **Devices that span two grid cells are drawn centred on their first cell.** A DIP-40
-  is 2in long against a 0.75in row pitch, so the Math Box's Am2901s and its POKEY
-  overhang symmetrically instead of spanning the two cells the notes name. The span is
-  recorded in prose in the `.read.json` notes and nowhere in the board data; making the
-  map right means promoting it to a field.
+Two geometry bugs fell out of the same pass and are fixed:
+
+- **The grid carried two rows that do not exist.** Atari's alphabet skips G, I, O and Q,
+  and the board definitions listed G and Q, putting every device below F at the wrong
+  height and making `F/H1` look like a three-position span. Confirmed by three
+  independent routes; the reasoning is in `AGENTS.md` and `asteroids.read.json`.
+- **Spanning devices are now placed across the cells they occupy.** `L/M1`, `H/J2`,
+  `L/M/N3` and the rest go in a `spans` map on the board definition and are drawn at the
+  midpoint of the cells the sheet's designator names, instead of hanging a 2in DIP-40
+  symmetrically off one cell. The build rejects a span whose rows are not adjacent.
+
+Still open there: **two of the Math Box's four Am2901 slices carry no span.** H/J2 and
+D/E2 do, K2 and F2 do not, and all four are the same DIP-40 on the same row pitch, so
+all four must span. Logged in `battlezone-math-box.read.json`; needs sheet 3 Side B.
 
 ## Traps that cost real time
 

@@ -220,7 +220,18 @@ Not fixable by renaming. Read it off the symbol every time.
 `build_board.py` keys `ics` by grid cell, so only real grid positions belong
 there. Passives (VR1, SW1, Y1, Q1, CR2, RP1, R125) must stay out or the build
 throws. Devices drawn spanning two or three cells — `L/M1`, `F/H1`, `B/C3`,
-`H/J2`, `L/M/N3` — go in at their first cell, with the span recorded in the note.
+`H/J2`, `L/M/N3` — go in at their first cell, with the sheet's own designator in
+the board's `spans` map so the footprint is placed across the cells it occupies
+rather than hanging off one of them. The build rejects a span whose rows are not
+adjacent, which is usually a sign the grid is wrong rather than the span.
+
+**The grid alphabet skips G, I, O and Q**: A B C D E F H J K L M N P R. The board
+definitions used to carry G and Q as rows, which put every device below F at the
+wrong height. Three independent confirmations — nothing in any read, signature or
+signal record in this repo sits in a G or Q row while both neighbours of each are
+populated; and the sheets' own spanning designators treat F/H and H/J as adjacent
+pairs, which a 24-pin DIP on a 0.75in row pitch requires. Pong predates the
+convention and legitimately uses G.
 
 ## Traps that have already bitten
 

@@ -47,11 +47,31 @@ def build(spec, out_path):
     g = spec["grid"]
     rows = g["rows"]
 
+    # A device drawn across two or three grid cells is keyed at its first cell
+    # (a grid cell is the only thing `ics` may be keyed by), with the sheet's
+    # own designator — `L/M1`, `H/J2`, `L/M/N3` — recorded in `spans`. Placing
+    # it at the first cell would hang a 2in DIP-40 symmetrically across its
+    # neighbour on *both* sides, so the row index is the mean of the cells the
+    # designator actually names.
+    spans = spec.get("spans", {})
+    for cell, desig in spans.items():
+        letters = desig.split(cell[1:])[0].split("/")
+        if cell not in spec["ics"] or letters[0] != cell[0]:
+            raise ValueError(f"span {desig} must be keyed at its first cell, "
+                             f"and that cell must be in `ics`; got {cell}")
+        idx = sorted(rows.index(r) for r in letters)   # raises on a bad row
+        if idx != list(range(idx[0], idx[0] + len(idx))):
+            raise ValueError(f"span {desig} names rows that are not adjacent "
+                             f"on this grid ({rows}) — one of them is likely a "
+                             f"row the board does not actually have")
+
     n_ic = 0
     unsized = {}
     for cell, part in spec["ics"].items():
         row, col = cell[0], int(cell[1:])
-        ri = rows.index(row)
+        letters = spans[cell].split(str(col))[0].split("/") if cell in spans \
+            else [row]
+        ri = sum(rows.index(r) for r in letters) / len(letters)
         x = g["x0"] + (col - 1) * g["col_pitch"]
         y = g["y0"] + ri * g["row_pitch"]
         lib, name, src = package_for(part)
