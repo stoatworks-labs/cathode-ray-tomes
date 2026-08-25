@@ -57,9 +57,17 @@ Rebuild data: `build_doc_stats.py` → `build_parts.py` → `build_search.py` �
 4. `build_board.py <slug>` then `publish_board.py <slug> --machine <machine>`.
 5. `build_assets.py`, commit, push.
 
-**Automated harvesting does not work.** Tested across every Atari drawing package:
-designators OCR fine (18–34/sheet), hand-lettered part numbers do not (1–9).
-`harvest_board.py` exists and returns ~0 pairs. Don't re-litigate this.
+**Automated harvesting does not work — from the drawings.** Tested across every Atari
+drawing package: designators OCR fine (18–34/sheet), hand-lettered part numbers do not
+(1–9). `harvest_board.py` exists and returns ~0 pairs. Don't re-litigate this.
+
+**It does work from the technical manuals.** Their IC parts lists are typeset, and
+`tools/extract_ic_locations.py` recovers 2,721 designator/device pairs across 52
+documents, from the 1,238 of 2,525 rows that pass their own checksum. Measured against
+the Asteroids hand read it is 85% — not good enough to populate a board map unattended,
+and not meant to. It is a second source, so it is worth exactly what a second source is
+worth: it finds where the first one is wrong, and it reaches machines the first one has
+not. See AGENTS.md for the checksums and the three traps.
 
 ## Cross-machine findings (verified, in `data/related/`)
 
@@ -88,6 +96,22 @@ map — its notes are in `boards/battlezone-regulator-audio.read.json` and its p
 in `data/power/bzone.json`. Still unread on sheet 1 Side A: the Coin Door schematic
 (034988-01), International Power Supply (035887-01) and the cabinet wiring diagram
 (036242-01) — cabinet-level, not board-level.
+
+**The parts lists cover machines the drawings have not reached.** Twelve machines with
+no board map at all have 15 or more designators available — Monte Carlo 89, Football 82,
+Outlaw 50, Crash 'n Score 48, Sky Diver 42, Orbit 40, Triple Hunt 34, Indy 4 30, Super
+Breakout 20, Soccer 18, Starship 1 15. Existing maps could grow too: Asteroids Deluxe
+8 → 97, Missile Command 14 → 82, Lunar Lander 6 → 63. At 85% none of that can be
+committed as-is, so the open question is what adjudication looks like — probably the
+drawing read staying authoritative where it exists, and the list filling the gaps with
+its provenance recorded per device.
+
+**The cross-check found 21 disagreements on Asteroids**, most repeating across
+independent printings and so not OCR noise. Logged in `asteroids.read.json`. B7, C7 and
+D7 are the strongest candidates for a bad read rather than a bad list: recorded as
+74LS191, called 74LS161 by four to six printings and 9316 by two more — and the 9316 is
+the 74161, so the list agrees with itself twice. The parts lists also give independent
+support for the LS02 reading of C8, which was already an open conflict.
 
 Centipede and Tempest still have unread sheets. Untouched machines with drawing packages:
 Gravitar, Black Widow, Space Duel, Space Invaders, Tank. Asteroids' own complement is

@@ -130,6 +130,46 @@ A001433, every IC at a labelled A-H x 1-9 cell). Not every manual does:
 So the realistic unit of work per board is: find a component-location drawing,
 read it once, write the JSON. Everything after that is scripted.
 
+## The parts lists are a second source, and they do harvest
+
+The finding above is about the *drawings* and it stands. It does not extend to
+the technical manuals, which carry a typeset IC parts list set in the same type
+as the body text — and that list gives exactly the designator-to-device pairing
+the hand-lettered drawings will not.
+
+`tools/extract_ic_locations.py` reads it. Two layouts, each with its own
+checksum:
+
+    paren   37-74LS00   Type 74LS00 Integrated Circuit (N5, C6)
+    count   37-7400  10 Integrated Circuit 7400  A2,A6,A9,D5,D9,E3,H/J2,L8,R3
+
+The paren layout states the device type twice, as Atari's stock number and
+again in the description, so a row is trusted only when two independent OCR
+reads agree. The count layout states its own device count, so the designators
+must come to that many. 1,238 of 2,525 rows across the corpus pass; the rest
+are reported, never quietly used.
+
+Measured against the Asteroids hand read: **394 of 464 designators agree, 85%**.
+That is not good enough to populate a board map unattended and it is not meant
+to. What it is good for is the two things a second source is always good for —
+finding where the first one is wrong, and covering machines the first one has
+not reached. Twelve machines with no board map at all have 15 or more
+designators available, and Monte Carlo, Football, Outlaw, Crash 'n Score and
+Sky Diver have 40 to 89 each.
+
+Three traps, all of which cost a wrong measurement before they were found:
+
+- **Rows saying "substitute for item N" carry no locations of their own.**
+  Read past one and it picks up the *next* row's designators, which is what
+  made the LS245/AM8304B and LM324/LS170 substitutions look like errors.
+- **A parts list is written in whichever numbering that printing used.**
+  Checking a late-numbered list against an early-numbered board manufactures
+  disagreements that are only the -05/-06 shift. `--cross-check` compares
+  against both numberings for this reason.
+- **Device equivalences must be normalised out first** — 9316 is the 74161,
+  4016B is the CD4016B, AM8304B is the LS245 — or a third of the
+  "disagreements" are two names for one part.
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
