@@ -105,11 +105,23 @@ Breakout 20, Soccer 18, Starship 1 15. Existing maps could grow too: Asteroids D
 wherever it exists, the parts lists fill the gaps, a device is taken only where two or
 more printings agree, and every device records its source — which the chip lookup shows.
 
-**Asteroids Deluxe is the first machine through it: 8 devices to 92.** Its four printings
-agree with each other on 100 of 100 designators and with all eight hand-read devices, so
-this is a much better class of evidence than the 85% single-printing figure. 66 devices
-are attested by four printings, 18 by three. Nothing was overwritten: the eight from the
-drawing are unchanged and now marked as confirmed.
+**Three machines are through it, for +207 devices**, and in each case the drawing read
+came out unchanged:
+
+| | drawing | after | added | disputes |
+|---|---|---|---|---|
+| Asteroids Deluxe | 8 | 92 | 84, from 4 printings agreeing 100/100 | 3 cells dropped, claimed twice |
+| Missile Command | 14 | 83 | 69, from 5 printings agreeing 82/82 | D3 |
+| Lunar Lander | 6 | 60 | 54, from 3 printings | L6, E7, E8 dropped; 9 single-printing |
+
+The printings agreeing with *each other* is the real evidence, not the 85% single-printing
+figure — Asteroids Deluxe's four agree on 100 of 100 designators and with all eight
+hand-read devices.
+
+**Missile Command's D3 is the one to look at.** All five printings call it a 74LS14 where
+the drawing read says 7404. The drawing keeps the cell by the rule, but five-to-one is
+worth a second look, and the two are both hex inverters with the same pinout — exactly
+the pair a drawing makes easy to confuse. The chip lookup shows the dispute on that row.
 
 Three cells were dropped rather than guessed. `B10`, `D10` and `F10` are each claimed
 twice — a spanning designator from the 74LS157 row against a plain one from another row —

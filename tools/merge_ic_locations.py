@@ -131,6 +131,7 @@ def main():
         print("\n(dry run — pass --apply to write)")
         return
 
+    disputed = {c: (now, n) for c, was, now, n in conflicts}
     ics = dict(drawing)
     for cell, (part, n, span) in added.items():
         ics[cell] = part
@@ -158,8 +159,20 @@ def main():
             src = "component-location drawing"
             if cell in confirmed:
                 src += ", confirmed by the parts list"
+        note = prev.get("note", "")
+        # Where the drawing wins a disagreement, the loser goes in the note.
+        # The rule keeps the drawing because it is someone looking at the
+        # board, but a reader at the bench should know that five manuals say
+        # something else about the chip in front of them.
+        if cell in disputed:
+            other, n = disputed[cell]
+            note = (note + " " if note else "") + (
+                f"The IC parts lists call this a {other} "
+                f"({n} printing{'s' if n > 1 else ''}); the drawing says "
+                f"{part}. Unresolved.")
+            src += ", disputed by the parts lists"
         out[cell] = {"part": part, "section": prev.get("section", ""),
-                     "note": prev.get("note", ""),
+                     "note": note.strip(),
                      "otherRev": prev.get("otherRev"), "source": src}
     json.dump(dict(sorted(out.items())), open(cpath, "w"), indent=1)
     print(f"\nwrote {bpath}\n      {cpath}")

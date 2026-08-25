@@ -67,17 +67,33 @@ CANONICAL = re.compile(
     r'|\d{2}S\d{2,3})$')
 
 
+# 74-series logic families. A spelling is only well-formed if what sits between
+# the '74' and the function number is one of these.
+FAMILY = re.compile(r'^74(LS|ALS|AS|HCT|HC|S|H|L|F|C)?(\d{2,3})([A-Z]?)$')
+
+
 def best_spelling(*candidates):
     """The cleanest reading of a device name among several OCRs of it.
 
     A row states its device twice — Atari's stock number and the description —
-    and OCR rarely mangles both the same way. '37-74LS157' against
-    'Type 741.S157' is the common shape: take the one that looks like a real
-    part number, and the longest only as a tie-break.
+    and OCR rarely mangles both the same way, so the two readings can be played
+    against each other.
+
+    Length is the wrong tie-break and cost a wrong answer before this was
+    written: '74S32' misread as '74832' is *longer*, and it parses as a
+    74-series part with function number 832. What exposes it is that its
+    function number is 32 — the digits it actually ends in — and 832 is not
+    what sits after a valid family. So prefer the spelling that decomposes as
+    74 + a real family + this device's own function number.
     """
     cands = [c for c in candidates if c]
     if not cands:
         return None
+    key = device_key(cands[0])
+    good = [c for c in cands
+            if (m := FAMILY.match(c)) and m.group(2).lstrip("0") == key]
+    if good:
+        return max(good, key=len)
     clean = [c for c in cands if CANONICAL.match(c)]
     return max(clean or cands, key=len)
 

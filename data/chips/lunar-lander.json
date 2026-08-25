@@ -1,1 +1,422 @@
-{"N5":{"part":"74LS174","section":"Audio Output","note":"latches AUD0-AUD5 from the data bus","otherRev":null},"M5":{"part":"74LS32","section":"Audio Output","note":"","otherRev":null},"N6":{"part":"74LS00","section":"Audio Output","note":"","otherRev":null},"M6":{"part":"74LS164","section":"Audio Output","note":"noise generator shift register","otherRev":null},"M7":{"part":"74LS164","section":"Audio Output","note":"noise generator shift register","otherRev":null},"R7":{"part":"LM324","section":"Audio Output","note":"thrust low-pass filter; pins 8 and 14 give equal, opposite-phase thrust and explosion outputs","otherRev":null}}
+{
+ "A10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "A7": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "A9": {
+  "part": "74LS109",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B2": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B4": {
+  "part": "74LS393",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B7": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "C10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "C2": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "C7": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "C9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "D10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "D4": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "D5": {
+  "part": "74LS393",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "D7": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "D8": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "D9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "E10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E3": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E4": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "E9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F10": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F3": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F4": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F5": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F6": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F7": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "F9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H3": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H4": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H6": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H7": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J3": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J4": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J5": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J6": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "J7": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "K10": {
+  "part": "74LS251",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "K3": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "K7": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "K8": {
+  "part": "7497",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "L3": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "M10": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "M5": {
+  "part": "74LS32",
+  "section": "Audio Output",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M6": {
+  "part": "74LS164",
+  "section": "Audio Output",
+  "note": "noise generator shift register",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M7": {
+  "part": "74LS164",
+  "section": "Audio Output",
+  "note": "noise generator shift register",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N11": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "N5": {
+  "part": "74LS174",
+  "section": "Audio Output",
+  "note": "latches AUD0-AUD5 from the data bus",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N6": {
+  "part": "74LS00",
+  "section": "Audio Output",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N8": {
+  "part": "74LS253",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "N9": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "P10": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "P9": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "R2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "R7": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "thrust low-pass filter; pins 8 and 14 give equal, opposite-phase thrust and explosion outputs",
+  "otherRev": null,
+  "source": "component-location drawing"
+ }
+}

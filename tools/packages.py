@@ -34,7 +34,8 @@ the extractor trust a net that cannot exist.
 # entry marked `kicad` was read off the KiCAD symbol for some member of the
 # family; check_packages.py re-derives them and fails on a disagreement.
 TTL_PINS = {
-    "00": 14, "02": 14, "03": 14, "04": 14, "06": 14, "08": 14, "10": 14,
+    "00": 14, "02": 14, "03": 14, "04": 14, "06": 14, "07": 14, "08": 14,
+    "10": 14, "125": 14, "166": 16, "195": 16, "399": 16,
     "11": 14, "14": 14, "20": 14, "25": 14, "27": 14, "30": 14, "32": 14,
     "33": 14, "42": 16, "48": 16, "74": 14, "75": 16, "83": 16, "86": 14,
     "90": 14, "93": 14,

@@ -41,5 +41,8 @@
   "The 3 kHz tone doubles as a diagnostic: driven by AUD4 and AUD5, it is used during Self-Test to signal ROM and RAM status audibly.",
   "Power: 36 VAC in through two full-wave rectifiers \u2014 CR6/CR7 feed the 7915 for -15V, CR8/CR9 the 7815 for +15V, with a 7805 for a separate +5V DAC rail and CR10/CR11 1N756A zeners setting +/-8.2V for the sample and hold. +22V unregulated powers the audio op-amp R7."
  ],
- "conflicts": []
+ "conflicts": [
+  "L6, E7 and E8 are absent from the board map because the printings disagree with each other about them: some say 74LS170, others 74LS42. Those are not the same kind of device \u2014 a 4x4 register file against a BCD-to-decimal decoder \u2014 so this is not a family misread and one set of printings is wrong. Nothing is placed until the drawing settles it.",
+  "Nine further designators appear in only one printing and are therefore not placed. Lunar Lander has three printings against Asteroids Deluxe's four, and the 1st printing carries 63 designators where the 3rd carries 28, so single-printing entries here are usually the later printings simply not reprinting the list rather than a disagreement."
+ ]
 }
