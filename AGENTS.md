@@ -10,7 +10,8 @@ Cathode Ray Tomes is three things stacked:
 1. **An ingestion pipeline** (`tools/`) that pulls the ArcadeRTFM PDF corpus, rasterises
    every page, OCRs it, and derives search indexes. Runs locally, output lands in `cache/`.
 2. **A Cloudflare Worker + static app** (`src/`, `web/`) that serves the corpus: browse,
-   read, search. Indexes live in KV, page images and PDFs in R2.
+   read, search. Everything ships as static assets under `web/data/` — no KV, no R2 —
+   so a deploy publishes code and corpus together and the two cannot drift.
 3. **Hand-built KiCad conversions** (`kicad/`) of a few boards, with a schematic and BOM
    viewer in the web app.
 
@@ -24,7 +25,9 @@ The pipeline is batch and offline; the Worker only ever reads what the pipeline 
   STD Wiring Diagrams.pdf` is a real URL. Quote the *path only* — quoting the whole URL
   breaks the scheme. `ingest.py:fetch()` does this correctly.
 - **`files.arcadertfm.com` sends no CORS headers**, so browsers cannot fetch those PDFs
-  cross-origin. Everything is mirrored into R2 and served same-origin.
+  cross-origin. Original scans are therefore not hosted at all: `/pdf/<id>` 302s to the
+  source archive and the browser follows it as a top-level navigation, which CORS does
+  not apply to. Do not add code that tries to `fetch()` one.
 - **The upstream host blocks requests without a User-Agent** (Cloudflare). All fetches set one.
 - **`pdftoppm` on this machine rejects `-r150`** — it needs `-r 150` as two arguments. It
   also numbers pages *without* zero padding, so `p-10.png` sorts before `p-2.png`. Sort
@@ -35,9 +38,13 @@ The pipeline is batch and offline; the Worker only ever reads what the pipeline 
 ## Architecture — why there is no R2
 
 The site serves **HTML manuals**, not scans. Text and structure for the whole corpus is
-~90 MB and lives in KV; the UI is static assets. Mirroring page images would have been
-63,000 files and 8.9 GB, which is what forced R2 in the original design and is no longer
-needed. Original scans are linked out to ArcadeRTFM.
+~157 MB across ~11,400 files and ships as static assets alongside the UI. Mirroring page
+images would have been 63,000 files and 8.9 GB, which is what forced R2 in the original
+design and is no longer needed. Original scans are linked out to ArcadeRTFM.
+
+KV went the same way. Once the indexes were small enough to ship as assets there was
+nothing left for it to hold, and dropping it removed the whole class of bug where a
+deploy published code against a stale index.
 
 Measured before deciding (Asteroids TM-143, 52 pages):
 
@@ -97,8 +104,17 @@ number.
 ## Adding a board
 
 `boards/<slug>.json` describes a board's component grid; `tools/build_board.py
-<slug>` turns it into a .kicad_pcb. Packages are derived from the pin count in
-`devices.py`, so a 555 becomes DIP-8 and a 9316 DIP-16 without being told.
+<slug>` turns it into a .kicad_pcb. Packages come from `tools/packages.py`, which
+is deliberately a different table from `devices.py`: packaging only needs a pin
+count and has to cover every part on every board (~110 of them), while
+`devices.py` carries full verified pinouts for the 20 parts `validate_nets.py`
+reasons about. Mixing them would either starve the board maps or quietly widen
+what the net validator thinks it can check.
+
+`tools/check_packages.py` re-derives every `kicad`-provenance entry from KiCAD's
+symbol library, asserts the two tables agree wherever they overlap, and lists the
+parts a board uses that are still unsized. Run it after touching either table.
+
 Adding a machine is therefore data entry — *once you have the grid map*.
 
 Getting the grid map is the part that does not automate. It comes from a
@@ -226,6 +242,15 @@ throws. Devices drawn spanning two or three cells — `L/M1`, `F/H1`, `B/C3`,
   people search service manuals for. Now 92%, with the index sharded to stay small.
 - **`pgrep -f <script>.py` matches the wait-loop that contains the pattern**, so
   `until ! pgrep -f backfill_structure.py` never exits. Bracket the first character.
+- **Most board definitions carry no `machine` of their own.** The link to a machine
+  was supplied by `publish_board.py --machine` the first time and lives only in
+  `data/boards.json`, so republishing without the flag used to silently unlink the
+  board. `publish_board.py` now falls back to the existing registration; a board
+  page that suddenly has no machine is this bug coming back.
+- **A board's site status is `revision` + `coverage`, joined.** They are separate
+  fields for a reason — one says what makes this board different from its siblings,
+  the other how much of it has been read — and duplicating the revision text into
+  `coverage` to "fix" a short status just makes the next republish print it twice.
 - **Sorting OCR lines by position destroys two-column reading order.** Tesseract already
   resolves columns; re-sorting by y interleaves them. This produced fluent-looking but
   meaningless text ("All five of these leaf switches operate on 5 volts at The exterior of
@@ -237,7 +262,8 @@ throws. Devices drawn spanning two or three cells — `L/M1`, `F/H1`, `B/C3`,
   paginated view, so the default document view came up empty until something else
   triggered a redraw.
 - **API responses had a 1-hour cache TTL** and served stale JSON through several rounds of
-  debugging. Now 60s + stale-while-revalidate; only immutable R2 objects cache hard.
+  debugging. Now `max-age=300, stale-while-revalidate=3600` — short enough that a deploy
+  shows up promptly, since the corpus ships with the code and both move together.
 
 ## Verified vs assumed
 
@@ -264,7 +290,7 @@ throws. Devices drawn spanning two or three cells — `L/M1`, `F/H1`, `B/C3`,
 
 ## Deployment — Workers Builds
 
-The site builds from GitHub (`stoatworks-labs/cathode-ray-tomes`, private) via Cloudflare
+The site builds from GitHub (`stoatworks-labs/cathode-ray-tomes`, public) via Cloudflare
 Workers Builds. Three commands are configured, and the third is the one that bites:
 
 | Setting | Value |
@@ -277,15 +303,14 @@ If the Version command is left as plain `wrangler deploy`, a build on *any* bran
 publishes straight to the live Worker. `versions upload` uploads a preview and leaves
 production alone.
 
-**CI builds the Worker and the static assets only.** The corpus itself — indexes in KV,
-page images and PDFs in R2 — is pushed from a workstation by `tools/publish.sh remote`
-after an ingest run. CI has no access to `cache/` and never needs it.
+**CI builds and deploys whatever is committed under `web/`,** corpus included. There is
+no separate publish step and no out-of-band upload: run `python3 tools/build_assets.py`
+after an ingest or a board change, commit the result, and the push deploys it. CI has no
+access to `cache/` and never needs it.
 
-## Deployment
-
-Not yet deployed. `wrangler.jsonc` carries `PLACEHOLDER_KV_ID` — a real KV namespace and
-the `crt-docs` R2 bucket must be created first. The subdomain is a placeholder pending a
-real domain.
+Live at **cathode-ray-tomes.com**, with `cathode-ray-tomes.allan-sargeant.workers.dev`
+deliberately kept alive beside it — the apex domain is newly registered and some network
+filters block it.
 
 The project was called *Bezel* until it was renamed to **Cathode Ray Tomes**; if you find
 a stray `bezel` string outside `cache/` and `data/index/postings/`, it is a leftover.

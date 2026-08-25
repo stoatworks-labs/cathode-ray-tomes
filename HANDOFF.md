@@ -33,6 +33,7 @@ a deploy publishes code and data together. Repo `.git` is 133 MB as a result.
 
 ```
 tools/     pipeline (ingest, OCR, structure, extraction, board generation)
+           devices.py = verified pinouts (nets); packages.py = pin counts (maps)
 src/       Cloudflare Worker — JSON API over web/data
 web/       static UI + the corpus itself
 boards/    board definitions (data) + *.read.json (hand-read source notes)
@@ -99,6 +100,12 @@ same net as `441H`. Both legible, both valid signature strings.
 **Two unresolved Asteroids conflicts** (in `boards/asteroids.read.json`): C8 reads as
 both the state-machine PROM and an LS02; both need a physical board to settle.
 
+**The -06 rate multipliers are resolved on paper but not in the data.**
+`asteroids-06.json` still carries `74LS97` at F9/H9/J9/K9 although the `resolved` block
+and the board's own status text both say the -06 fits 035904/035905 PROMs there. The
+parts list is a third voice and agrees with neither, giving 035904-01 at F8/H8/J8 and
+035905-01 at E8. Logged in `asteroids.read.json`; needs the -06 block on sheet 02B.
+
 **Net extraction** (`extract_nets.py` + `validate_nets.py`) is a working prototype:
 component detection exact, 82% of pin attachments, but pin-number OCR is 30–50% and
 single-digit biased. The validator catches 4/4 injected faults using device pinouts
@@ -110,12 +117,26 @@ scan of sheet 002826 than the archive holds.
 **Test-point markers** are drawn as a flag symbol on the sheets — extracting them needs
 shape detection, not OCR. Not started.
 
-**Package sizing is wrong on every board map.** `build_board.py:package_for()` reads pin
-counts from `DEVICES`, which holds 20 Pong-era parts, and falls back to DIP-14 for
-everything else. ~90 part types are in use, so a 24-pin ROM and a 20-pin LS245 both draw
-as 14-pin parts in the KiCad boards and the IBOM views the site links. Fix with a
-packaging-only pin-count table kept *separate* from `DEVICES` — that one is the
-electrical constraint set `validate_nets.py` trusts.
+**Package sizing is fixed.** `tools/packages.py` is a packaging-only pin-count table,
+separate from `DEVICES`, covering all 112 part types the board maps use — 688 of 704
+devices are now drawn at their real size, against 704 uniform DIP-14s before. 56 entries
+were re-derived from KiCAD's own symbol library by `tools/check_packages.py` (comparing
+the highest pin *number*, since KiCAD omits no-connect pins); the rest rest on the
+drawings or on the part's standard package. All 20 parts in `DEVICES` agree with it.
+What is left:
+
+- **28 devices are sized `unverified`** — the Atari 0351xx ROM/PROM numbers on the
+  Asteroids maps, drawn as DIP-24 on the class default. Neither the drawing nor the
+  parts list states a package. Wants one look at a board.
+- **16 devices are unsized** and still draw as DIP-14, but `build_board.py` now names
+  them instead of doing it quietly: `counter` (C5) and `op-amp` (E12) are descriptions
+  recorded where the sheet gave no part number, and `DIP switch` / `8-position DIP
+  switch` are switches that should not be in `ics` at all.
+- **Devices that span two grid cells are drawn centred on their first cell.** A DIP-40
+  is 2in long against a 0.75in row pitch, so the Math Box's Am2901s and its POKEY
+  overhang symmetrically instead of spanning the two cells the notes name. The span is
+  recorded in prose in the `.read.json` notes and nowhere in the board data; making the
+  map right means promoting it to a field.
 
 ## Traps that cost real time
 
@@ -142,8 +163,10 @@ electrical constraint set `validate_nets.py` trusts.
 - **`build_board.py` `ics` keys must be grid cells.** Passives (VR1, SW1, Y1, Q1, CR2,
   RP1, R125) throw; spanning designators (`L/M1`, `H/J2`, `L/M/N3`) go in at their first
   cell with the span in the note.
-- **`wrangler dev` may not start in a sandboxed shell** (`esbuild spawn EBADF`). Verify
-  the JSON the UI reads and check the live site after deploy instead.
+- **`wrangler dev` may not start in a sandboxed shell** (`esbuild spawn EBADF`). The
+  corpus and the board views are static assets, so `python3 -m http.server --directory
+  web` serves everything but the Worker's JSON API — enough to check an IBOM page. There
+  is a `static` entry in `.claude/launch.json` for it.
 
 ## House rules being followed
 

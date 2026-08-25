@@ -20,18 +20,11 @@ FPLIB = "/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints"
 MM = pcbnew.FromMM
 
 sys.path.insert(0, os.path.join(ROOT, "tools"))
-from devices import DEVICES
+from packages import package_for
 
 # KiCAD 10 moved footprint loading onto the IO plugin, and the object returned
 # by PCB_IO_MGR.FindPlugin() is manager-owned and gets freed mid-run.
 _IO = pcbnew.PCB_IO_KICAD_SEXPR()
-
-def package_for(part):
-    """Derive the DIP package from the device's pin count."""
-    spec = DEVICES.get(part)
-    if not spec:
-        return "Package_DIP", "DIP-14_W7.62mm"
-    return "Package_DIP", f"DIP-{spec['pins']}_W7.62mm"
 
 def add(board, fpid, ref, value, x, y, rot=0):
     lib, name = fpid.split(":")
@@ -55,12 +48,15 @@ def build(spec, out_path):
     rows = g["rows"]
 
     n_ic = 0
+    unsized = {}
     for cell, part in spec["ics"].items():
         row, col = cell[0], int(cell[1:])
         ri = rows.index(row)
         x = g["x0"] + (col - 1) * g["col_pitch"]
         y = g["y0"] + ri * g["row_pitch"]
-        lib, name = package_for(part)
+        lib, name, src = package_for(part)
+        if src in ("no packaging entry",) or src.startswith("unidentified"):
+            unsized.setdefault(part, []).append(cell)
         add(board, f"{lib}:{name}", f"U{cell}", part, x, y, g.get("rotation", 0))
         n_ic += 1
 
@@ -92,7 +88,7 @@ def build(spec, out_path):
 
     pcbnew.SaveBoard(out_path, board)
     total = len(list(board.GetFootprints()))
-    return n_ic, total
+    return n_ic, total, unsized
 
 def main():
     ap = argparse.ArgumentParser()
@@ -104,13 +100,25 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, a.slug + ".kicad_pcb")
 
-    n_ic, total = build(spec, out)
-    parts = {}
+    n_ic, total, unsized = build(spec, out)
+    parts, packages = {}, {}
     for cell, p in spec["ics"].items():
         parts[p] = parts.get(p, 0) + 1
+        packages[package_for(p)[1]] = packages.get(package_for(p)[1], 0) + 1
     print(f"{spec['name']}: {total} footprints ({n_ic} ICs on the "
           f"{spec['grid']['rows'][-1]}-{spec['grid']['rows'][0]} grid)")
     print(f"  distinct IC types: {len(parts)}")
+    print("  packages: " + ", ".join(
+        f"{k.split('_')[0]}x{v}" for k, v in sorted(
+            packages.items(), key=lambda kv: -kv[1])))
+    # A part with no packaging entry is drawn as a DIP-14, which is the right
+    # thing to do for one unreadable device on an otherwise good board and the
+    # wrong thing to do quietly. Say so.
+    if unsized:
+        n = sum(len(v) for v in unsized.values())
+        print(f"  {n} device(s) drawn as DIP-14 without a packaging entry:")
+        for part, cells in sorted(unsized.items()):
+            print(f"    {part:<24}{', '.join(sorted(cells))}")
     print(f"  -> {out}")
 
 if __name__ == "__main__":

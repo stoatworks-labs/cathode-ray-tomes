@@ -13,6 +13,16 @@ IBOM = os.path.expanduser("~/Documents/KiCad/10.0/3rdparty/plugins/"
                           "org_openscopeproject_InteractiveHtmlBom/"
                           "generate_interactive_bom.py")
 
+def compose_status(spec):
+    """The one-line status the site shows under a board.
+
+    `revision` says what makes this board different from its siblings and
+    `coverage` says how much of it has been read; the site shows them as one
+    sentence, so they are joined here rather than duplicated in the spec.
+    """
+    return " ".join(x for x in (spec.get("revision"), spec.get("coverage")) if x)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
@@ -39,13 +49,20 @@ def main():
             w.writerow([",".join(sorted(ds)), part, len(ds)])
 
     bp = os.path.join(ROOT, "data", "boards.json")
-    boards = [b for b in json.load(open(bp)) if b["slug"] != a.slug]
+    registered = json.load(open(bp))
+    # Most board definitions carry no `machine` of their own — the link was
+    # supplied by --machine the first time round and lives only in boards.json.
+    # Republishing without the flag must not quietly unlink the board.
+    prev = next((b for b in registered if b["slug"] == a.slug), {})
+    boards = [b for b in registered if b["slug"] != a.slug]
     boards.append({
         "slug": a.slug, "name": spec["name"], "mfr": spec.get("mfr", ""),
-        "year": spec.get("year", ""), "machine": a.machine or spec.get("machine", ""),
-        "drawing": spec.get("drawing", ""), "devices": len(spec["ics"]),
-        "netsTraced": spec.get("netsTraced", False),
-        "status": spec.get("coverage", ""),
+        "year": spec.get("year", ""),
+        "machine": a.machine or spec.get("machine") or prev.get("machine", ""),
+        "drawing": spec.get("drawing") or prev.get("drawing", ""),
+        "devices": len(spec["ics"]),
+        "netsTraced": spec.get("netsTraced", prev.get("netsTraced", False)),
+        "status": compose_status(spec) or prev.get("status", ""),
         "ibom": f"/boards/{a.slug}/{a.slug}-ibom.html",
         "bom": f"/boards/{a.slug}/bom.csv",
     })

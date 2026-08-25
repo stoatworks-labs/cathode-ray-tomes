@@ -342,10 +342,12 @@
   "Sheet 01B carries the full memory map: vector RAM 4000-47FF, vector ROM 5000-57FF, program 6800-7FFF, with switch and sound registers from 2003 to 3E00.",
   "Program ROMs are Atari-numbered 035131-035135 at J2, N2, H2, M2, F2; further ROM positions run off the right of this crop and are not yet read.",
   "Board assembly numbers are 034986-01 thru -06; sheet 01B is rev H for -01 thru -04 and rev B for -05/-06. There is no single 'Asteroids board': the program memory alone has four distinct configurations, so boards/asteroids.json must target one named revision.",
-  "D12 means different things on different revisions: a CD4016B on -01 thru -04, and the AD561J DAC on -05/-06. Designator reuse across revisions, not a misread."
+  "D12 means different things on different revisions: a CD4016B on -01 thru -04, and the AD561J DAC on -05/-06. Designator reuse across revisions, not a misread.",
+  "F4, H4 and J4 take either a 74LS670 or a 74LS170 \u2014 both 4x4 register files, both DIP-16, and the parts list carries the substitution explicitly: item 34, a 19-007 10K 8-pin resistor network at RP1/RP2, is 'used only with 74LS170'. The LS170 has open-collector outputs and needs the pull-ups; the LS670 is three-state and does not. So a board with the network fitted and an LS670 in the socket, or the reverse, is a real failure mode and the sockets themselves will not tell you which."
  ],
  "conflicts": [
-  "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board."
+  "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
+  "The -06 rate multiplier resolution is recorded but never applied: boards/asteroids-06.json still carries 74LS97 at F9, H9, J9 and K9, while this file's `resolved` entry and the board's own status text both say the -06 fits PROMs there instead. The parts list is a third voice and does not line up with either: it gives 035904-01 at F8, H8 and J8 (three devices) and 035905-01 at E8, against the four cells the sheet was read as giving. Fixing the part without settling the designators would trade one wrong answer for another, so both need a pass over the -06 PCB block on sheet 02B."
  ],
  "sheet1B": {
   "D5": {
