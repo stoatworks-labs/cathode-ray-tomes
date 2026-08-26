@@ -165,6 +165,50 @@ async function gh(env, path, init = {}) {
   return text ? JSON.parse(text) : null;
 }
 
+async function uploadBlobs(env, repo, files) {
+  const blobs = [];
+  for (const f of files) {
+    const { sha } = await gh(env, `/repos/${repo}/git/blobs`, {
+      method: "POST",
+      body: JSON.stringify({ content: f.base64, encoding: "base64" }),
+    });
+    blobs.push({ path: f.path, mode: "100644", type: "blob", sha });
+  }
+  return blobs;
+}
+
+const QUEUE_README = `# Cathode Ray Tomes — submission queue
+
+Documents sent through the form at https://cathode-ray-tomes.com/submit land here,
+one commit each, under \`incoming/<date>-<machine>-<token>/\`: the files themselves
+plus a \`submission.md\` carrying the provenance the sender gave and a triage
+checklist. Each also opens an issue.
+
+Nothing here is published. A submission reaches the site only once someone has read
+it, confirmed it is what it claims to be, and run it through the ingest pipeline in
+the main repository.
+
+This file exists because a repository with no commits at all cannot be written to
+through git's data API. It was created by the first submission.
+`;
+
+/**
+ * A repository with no commits refuses the git data API outright — blobs
+ * included, so this cannot be handled at the ref. The contents API does work on
+ * an empty repository, so the first submission of a fresh deployment lays down a
+ * README through it and then proceeds normally. No `branch` is sent: on an empty
+ * repository the only branch that can be created is the configured default.
+ */
+async function bootstrapRepo(env, repo) {
+  await gh(env, `/repos/${repo}/contents/README.md`, {
+    method: "PUT",
+    body: JSON.stringify({
+      message: "Open the queue",
+      content: toBase64(new TextEncoder().encode(QUEUE_README)),
+    }),
+  });
+}
+
 /**
  * Commit every file of a submission in one go via the git data API.
  *
@@ -174,13 +218,15 @@ async function gh(env, path, init = {}) {
  * commit objects on retry.
  */
 async function commitFiles(env, repo, branch, files, message) {
-  const blobs = [];
-  for (const f of files) {
-    const { sha } = await gh(env, `/repos/${repo}/git/blobs`, {
-      method: "POST",
-      body: JSON.stringify({ content: f.base64, encoding: "base64" }),
-    });
-    blobs.push({ path: f.path, mode: "100644", type: "blob", sha });
+  let blobs;
+  try {
+    blobs = await uploadBlobs(env, repo, files);
+  } catch (e) {
+    const empty = e instanceof GitHubError && /-> 409\b/.test(e.message) &&
+      /repository is empty/i.test(e.message);
+    if (!empty) throw e;
+    await bootstrapRepo(env, repo);
+    blobs = await uploadBlobs(env, repo, files);
   }
 
   for (let attempt = 0; attempt < 3; attempt++) {

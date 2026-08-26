@@ -452,9 +452,14 @@ Why the decisions are what they are:
   file, which scatters a submission across the log. Blobs go up first, then a tree, then a
   commit, then the ref. The ref update is retried on 409/422 because two submissions can
   land at once; the blobs survive the retry.
-- **An empty queue repo has no ref.** The first submission has to create
-  `refs/heads/main` rather than patch it, with no `parents` and no `base_tree`. This is
-  handled, and it is the path a fresh setup actually takes.
+- **A repo with no commits refuses the git data API entirely.** Not just the ref —
+  `POST /git/blobs` itself answers `409 Git Repository is empty`, so this cannot be
+  handled at the ref, which is where the first attempt put it. The contents API *does*
+  work on an empty repo, so the first submission lays down a README through it and then
+  retries. This is the state every fresh deployment starts in, and it was a live bug:
+  the endpoint went out configured and the first real submission failed on it.
+- **An empty queue repo has no ref either.** Once seeded, the first submission still has
+  to create `refs/heads/main` rather than patch it, with no `parents` and no `base_tree`.
 - **The commit is the submission; the issue is only a handle on it.** If issue creation
   fails the reader is still told it worked, because it did. Do not reorder these.
 - **20 MB a file, 25 MB a submission.** The binding constraint is the Worker's 128 MB of

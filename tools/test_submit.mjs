@@ -129,6 +129,40 @@ await run("empty queue repo (no ref yet)", async () => {
   globalThis.fetch = outer;
 });
 
+await run("repository with no commits at all", async () => {
+  // GitHub refuses the git data API outright on an empty repo — blobs included,
+  // which is *before* the ref, so this cannot be handled at the ref. This is the
+  // state every fresh deployment starts in, and it was a live bug.
+  let seeded = false;
+  const outer = globalThis.fetch;
+  globalThis.fetch = async (url, init) => {
+    const u = String(url);
+    // These branches answer without delegating, so they record themselves.
+    const note = () => calls.push({ url: u, method: init.method || "GET",
+      headers: init.headers || {}, body: init.body ? JSON.parse(init.body) : null });
+    if (/\/git\/blobs$/.test(u) && !seeded) {
+      note();
+      return new Response(JSON.stringify({ message: "Git Repository is empty." }), { status: 409 });
+    }
+    if (/\/contents\/README\.md$/.test(u)) {
+      note();
+      seeded = true;
+      return new Response(JSON.stringify({ commit: { sha: "seed" } }), { status: 201 });
+    }
+    if (/\/git\/ref\/heads\//.test(u) && seeded) return new Response("Not Found", { status: 404 });
+    return outer(url, init);
+  };
+  const res = await handleSubmit(req(good, [["m.pdf", pdf(2)]]), env);
+  const body = await res.json();
+  check("succeeds after seeding", res.status === 200 && body.ok, JSON.stringify(body));
+  const seed = calls.find((c) => /\/contents\/README\.md$/.test(c.url));
+  check("seeded through the contents API", Boolean(seed));
+  check("seed sends no branch", seed && seed.body.branch === undefined);
+  check("blobs retried after seeding", calls.filter((c) => /\/git\/blobs$/.test(c.url)).length === 3);
+  check("the submission itself still committed", calls.some((c) => /\/git\/commits$/.test(c.url)));
+  globalThis.fetch = outer;
+});
+
 await run("issue failure does not fail the submission", async () => {
   const outer = globalThis.fetch;
   globalThis.fetch = async (url, init) => {
