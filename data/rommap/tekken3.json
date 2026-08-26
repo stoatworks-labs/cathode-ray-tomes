@@ -1,0 +1,32 @@
+{
+ "machine": "tekken3",
+ "name": "Tekken 3 (World, TET2/VER.E1)",
+ "mfr": "Namco",
+ "year": "1997",
+ "style": "number-letter",
+ "source": "namco/namcos12.cpp",
+ "docs": 1,
+ "devices": {
+  "2E": {
+   "file": "tet2vere1.2e",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2J": {
+   "file": "tet2vere1.2j",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "11S": {
+   "file": "tet1vere.11s",
+   "size": 524288,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

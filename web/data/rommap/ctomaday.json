@@ -1,0 +1,39 @@
+{
+ "machine": "ctomaday",
+ "name": "Captain Tomaday",
+ "mfr": "Visco",
+ "year": "1999",
+ "style": "letter-number",
+ "source": "snk/neogeo.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "249-c1.c1",
+   "size": 4194304,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "249-v1.v1",
+   "size": 4194304,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "249-c2.c2",
+   "size": 4194304,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V2": {
+   "file": "249-v2.v2",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

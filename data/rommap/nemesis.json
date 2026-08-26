@@ -1,0 +1,74 @@
+{
+ "machine": "nemesis",
+ "name": "Nemesis (ROM version)",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/nemesis.cpp",
+ "docs": 1,
+ "devices": {
+  "9C": {
+   "file": "456-d09.9c",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "12A": {
+   "file": "456-d01.12a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "12C": {
+   "file": "456-d05.12c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "13A": {
+   "file": "456-d02.13a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "13C": {
+   "file": "456-d06.13c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "14A": {
+   "file": "456-d03.14a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "14C": {
+   "file": "456-d07.14c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "15A": {
+   "file": "456-d04.15a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "15C": {
+   "file": "456-d08.15c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

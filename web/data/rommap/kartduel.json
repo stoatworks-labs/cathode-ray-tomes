@@ -1,0 +1,32 @@
+{
+ "machine": "kartduel",
+ "name": "Kart Duel (World, KTD2/VER.A)",
+ "mfr": "Gaps / Namco",
+ "year": "2000",
+ "style": "number-letter",
+ "source": "namco/namcos12.cpp",
+ "docs": 2,
+ "devices": {
+  "2L": {
+   "file": "ktd2vera.2l",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2P": {
+   "file": "ktd2vera.2p",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "11S": {
+   "file": "ktd1vera.11s",
+   "size": 524288,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

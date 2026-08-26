@@ -98,6 +98,7 @@ def cell_sort(cell, style):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--roms", required=True, help="parsed MAME ROM data (json)")
+    ap.add_argument("--parents", help="machine -> parent set, from MAME's GAME macros")
     ap.add_argument("--out", default=os.path.join(ROOT, "data"))
     ap.add_argument("--with-docs-only", action="store_true")
     ap.add_argument("--limit", type=int, default=0)
@@ -113,11 +114,20 @@ def main():
     boards = {b["machine"] for b in
               json.load(open(os.path.join(ROOT, "data/boards.json")))}
 
+    parents = json.load(open(a.parents)) if a.parents else {}
+
     out_dir = os.path.join(a.out, "rommap")
     os.makedirs(out_dir, exist_ok=True)
     index, seen_sig = [], {}
 
-    for name in sorted(sets):
+    # Which set gets to name a shared layout. Alphabetical order put Pac-Man's
+    # board under an obscure bootleg that happened to sort first, so: the set
+    # with the most manuals here wins, then MAME's parent over its clones,
+    # then the name.
+    def rank(n):
+        return (-docs.get(n, 0), 0 if parents.get(n, "?") is None else 1, n)
+
+    for name in sorted(sets, key=rank):
         if a.with_docs_only and name not in docs:
             continue
         m = machines.get(name)

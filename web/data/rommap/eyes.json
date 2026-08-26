@@ -1,0 +1,39 @@
+{
+ "machine": "eyes",
+ "name": "Eyes (US, set 1)",
+ "mfr": "Techstar (Rock-Ola license)",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "pacman/pacman.cpp",
+ "docs": 2,
+ "devices": {
+  "1M": {
+   "file": "82s126.1m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "82s126.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "82s129.4a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7F": {
+   "file": "82s123.7f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

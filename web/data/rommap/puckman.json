@@ -1,0 +1,123 @@
+{
+ "machine": "puckman",
+ "name": "Puck Man (Japan, set 1)",
+ "mfr": "Namco",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "pacman/pacman.cpp",
+ "docs": 6,
+ "devices": {
+  "1M": {
+   "file": "pm1-3.1m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": "82s126"
+  },
+  "3M": {
+   "file": "pm1-2.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": "82s126"
+  },
+  "4A": {
+   "file": "pm1-4.4a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s126"
+  },
+  "5E": {
+   "file": "pm1_chg1.5e",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "pm1_chg3.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "pm1_chg2.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5J": {
+   "file": "pm1_chg4.5j",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "pm1_prg1.6e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6F": {
+   "file": "pm1_prg3.6f",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6H": {
+   "file": "pm1_prg5.6h",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6J": {
+   "file": "pm1_prg7.6j",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "pm1_prg2.6k",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6M": {
+   "file": "pm1_prg4.6m",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6N": {
+   "file": "pm1_prg6.6n",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6P": {
+   "file": "pm1_prg8.6p",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "pm1-1.7f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s123"
+  }
+ }
+}

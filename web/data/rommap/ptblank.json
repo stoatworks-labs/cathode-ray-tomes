@@ -1,0 +1,74 @@
+{
+ "machine": "ptblank",
+ "name": "Point Blank (World, GN2 Rev B, set 1)",
+ "mfr": "Namco",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "namco/namconb1.cpp",
+ "docs": 2,
+ "devices": {
+  "5B": {
+   "file": "gn1_spr0.5b",
+   "size": 131072,
+   "kind": "c75data",
+   "pins": 32,
+   "part": null
+  },
+  "5J": {
+   "file": "gn1-voi0.5j",
+   "size": 2097152,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "5M": {
+   "file": "gn1-sha0.5m",
+   "size": 524288,
+   "kind": "c123tmap:mask",
+   "pins": 32,
+   "part": null
+  },
+  "8J": {
+   "file": "gn1-chr0.8j",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "9J": {
+   "file": "gn1-chr1.9j",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "10J": {
+   "file": "gn1-chr2.10j",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "11J": {
+   "file": "gn1-chr3.11j",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "13B": {
+   "file": "gn2_mprub.13b",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15B": {
+   "file": "gn2_mprlb.15b",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

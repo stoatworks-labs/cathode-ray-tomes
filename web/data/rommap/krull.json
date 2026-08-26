@@ -1,0 +1,46 @@
+{
+ "machine": "krull",
+ "name": "Krull",
+ "mfr": "Gottlieb",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "gottlieb/gottlieb.cpp",
+ "docs": 2,
+ "devices": {
+  "K4": {
+   "file": "gv-105_fg_0.k4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "gv-105_fg_1.k5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "gv-105_fg_2.k6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "gv-105_ram_2.c7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C16": {
+   "file": "gv-105_rom_4.c16",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

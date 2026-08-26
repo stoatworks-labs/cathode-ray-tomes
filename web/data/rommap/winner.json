@@ -1,0 +1,53 @@
+{
+ "machine": "winner",
+ "name": "Winner",
+ "mfr": "Videos A A",
+ "year": "1995?",
+ "style": "number-letter",
+ "source": "misc/videosaa.cpp",
+ "docs": 1,
+ "devices": {
+  "0D": {
+   "file": "68hc705-winner.0d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "winner-msg0.5a",
+   "size": 65536,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "5B": {
+   "file": "winner-video0.5b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "7B": {
+   "file": "winner-video1.7b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "8B": {
+   "file": "winner-video2.8b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "9C": {
+   "file": "palce16v8h-25pc-4.9c",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}
