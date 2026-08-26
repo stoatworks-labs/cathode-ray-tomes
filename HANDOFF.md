@@ -218,10 +218,28 @@ that were being decided by dict ordering. All three are logged in `asteroids.rea
 maps are early designators. The status text now says so instead of claiming a clean
 shift.
 
-**Still open on sheet 01B:** both printings of the substitution table show a twelfth -03
-PROM (035142-02 at L1) and a sixth -03 alternate (035155-02 at L1) that are recorded
-nowhere. Not applied — the table is a three-column layout that OCR interleaves, and
-reading a column boundary wrong puts a wrong part number into a repair reference.
+**Settled since, without needing the sheet read again.** The twelfth -03 PROM is real and
+is in: 035142-02 at L1, with 035155-02 as its alternate. Sheet 01B of the 4th-printing
+drawing package carries `035142-01 L1` directly, six further documents repeat it, and the
+memory map requires it — 6800-7FFF is 6144 bytes, which is exactly twelve 512-byte PROMs
+or three 2K ROMs and nothing else that tiles evenly. Eleven could never have been right.
+
+**The -05/-06 ROM positions were the wrong way round and are corrected.** 035143-02 is at
+J2 and 035145-02 at E/F2, not the reverse; 035144-02 at H2 was right. The 6th and 7th
+printings both list the positions explicitly, and MAME's asteroid driver names its dumps
+`035143-02.j2` and `035145-04e.ef2` — its suffixes are board positions, checked against
+real boards.
+
+**The Atari ROM sizes are no longer a class default.** Item 188 of the parts list is a
+`79-42C24 24-Contact Medium-Insertion-Force Integrated Circuit Socket` fitted at J2, H2,
+E/F2 and N/P3. Socket entries give a package size per position for every socketed device
+in the corpus, and `tools/check_socket_pins.py` now checks the packaging table against
+them: 26 confirmed, none contradicted.
+
+**Missile Command D3 is a 74LS14** and the 7404 reading is withdrawn. All five printings
+give `37-74LS14 Type 74LS14 Integrated Circuit (D3)` with stock number and description
+agreeing, and the same rows put a plain 7414 at J9, so the lists are not blurring the two
+parts.
 
 **The -06 rate multipliers are resolved on paper but not in the data.**
 `asteroids-06.json` still carries `74LS97` at F9/H9/J9/K9 although the `resolved` block

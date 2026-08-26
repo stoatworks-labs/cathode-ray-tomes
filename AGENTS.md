@@ -197,6 +197,16 @@ The count layout carries the type in its description as well — `1 Integrated C
 74S74 L7` — which is what finally identified a device both Football printings spelled
 `74874`. If a row seems to have only one reading of its device, look again.
 
+**The parts lists state package sizes too, and nobody has to infer them.** Atari stocked
+IC sockets by contact count, so a row like `79-42C24  24-Contact Medium-Insertion-Force
+Integrated Circuit Socket (J2, H2, E/F2, N/P3)` names the pin count of every socketed
+position in the same typeset list the devices come from.
+`tools/check_socket_pins.py` checks `packages.py` against them — 26 sizes confirmed and
+none contradicted so far, including the Atari ROMs that were sitting on a class default.
+Target it with `--docs` and `--figure` exactly like the merge: pooling a machine's
+documents fails in the two ways this repo already knows, mixing Battlezone's two PCBs and
+comparing one printing's numbering against another's.
+
 **The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
 test points, everything on the board that is not on the letter-number grid. Rebuilding it
 from `ics` alone drops them. The first run of the Battlezone merge did exactly that and

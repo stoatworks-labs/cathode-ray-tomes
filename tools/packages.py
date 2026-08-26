@@ -118,15 +118,20 @@ PART_PINS.update({
 })
 
 # Atari mask ROM / PROM part numbers used as the part field on the Asteroids
-# board maps. The manual's substitution table calls the -03 complement PROMs and
-# the -04/-05/-06 complement ROMs, but neither the drawing nor the parts list
-# states a package, so the size below is the class default and wants confirming
-# against a board. Logged rather than asserted.
+# board maps. 24 pins is no longer a class default: the manual states it, in
+# the same parts list the devices come from. Item 188 is a '79-42C24
+# 24-Contact Medium-Insertion-Force Integrated Circuit Socket' fitted at J2,
+# H2, E/F2 and N/P3 — the program ROM positions and the vector ROM. The memory
+# map agrees arithmetically: 6800-7FFF is 6144 bytes, which is three 2K ROMs
+# or twelve 512-byte PROMs and nothing else that tiles evenly.
+# tools/check_socket_pins.py re-derives this from the corpus.
 ATARI_MEMORY_PINS = 24
 ATARI_MEMORY = {
     "035131-02", "035132-02", "035133-02", "035134-02", "035135-02",
     "035136-02", "035137-02", "035138-02", "035139-02", "035140-02",
-    "035141-02", "035143-02", "035144-02", "035145-02",
+    "035141-02", "035142-02", "035143-02", "035144-02", "035145-02",
+    "035150-02", "035151-02", "035152-02", "035153-02", "035154-02",
+    "035155-02",
     "ROM 035131", "ROM 035132", "ROM 035133", "ROM 035134", "ROM 035135",
 }
 
@@ -159,7 +164,7 @@ def pins_for(part):
         pins, src, _ = PART_PINS[part]
         return pins, src
     if part in ATARI_MEMORY:
-        return ATARI_MEMORY_PINS, "unverified"
+        return ATARI_MEMORY_PINS, "parts list"
     base = ttl_base(part)
     if base in TTL_PINS:
         return TTL_PINS[base], "kicad"

@@ -345,7 +345,8 @@
   "D12 means different things on different revisions: a CD4016B on -01 thru -04, and the AD561J DAC on -05/-06. Designator reuse across revisions, not a misread.",
   "F4, H4 and J4 take either a 74LS670 or a 74LS170 \u2014 both 4x4 register files, both DIP-16, and the parts list carries the substitution explicitly: item 34, a 19-007 10K 8-pin resistor network at RP1/RP2, is 'used only with 74LS170'. The LS170 has open-collector outputs and needs the pull-ups; the LS670 is three-state and does not. So a board with the network fitted and an LS670 in the socket, or the reverse, is a real failure mode and the sockets themselves will not tell you which.",
   "The grid alphabet on these Atari boards is A B C D E F H J K L M N P R \u2014 it skips G, I, O and Q. Confirmed three ways: no device in any read, signature or signal record anywhere in this repo sits in a G or Q row, while both neighbours of each are populated on the two densest boards (Battlezone P:6 R:2, Asteroids-03 P:4 R:3); and the sheets' own spanning designators treat F and H as adjacent (F/H1, F/H3) and H and J as adjacent (H/J2), which a 24-pin DIP at 1.2in on a 0.75in row pitch requires. The board definitions previously listed G and Q as rows, which put every device below F at the wrong height and made F/H1 look like a three-position span.",
-  "Do not check the -05/-06 board maps against the -05/-06 manual's parts list cell for cell. That parts list is written in the shifted numbering \u2014 it gives the RAM at L2, M2, M4, N4, P4, R4 and the 4-station bit switch at M13, where the -03 map has PROMs at L2/M2 and the switch at M12 \u2014 so a straight comparison manufactures conflicts that are only the one-position shift. Shift the designators first, then compare."
+  "Do not check the -05/-06 board maps against the -05/-06 manual's parts list cell for cell. That parts list is written in the shifted numbering \u2014 it gives the RAM at L2, M2, M4, N4, P4, R4 and the 4-station bit switch at M13, where the -03 map has PROMs at L2/M2 and the switch at M12 \u2014 so a straight comparison manufactures conflicts that are only the one-position shift. Shift the designators first, then compare.",
+  "The program ROMs are 24-pin, and the manual says so itself rather than leaving it to be inferred from the part: item 188 is a '79-42C24 24-Contact Medium-Insertion-Force Integrated Circuit Socket' fitted at J2, H2, E/F2 and N/P3. Socket entries give a package size per position for every socketed device in the corpus; tools/check_socket_pins.py checks the packaging table against them."
  ],
  "conflicts": [
   "C8 reads as 82S129 (state-machine PROM, Atari 034002) in the state machine block and as an LS02 in the -06-only PROM block. Both cannot hold for one revision; needs resolving against a specific board.",
@@ -560,14 +561,16 @@
    "M1": "035140-02",
    "F2": "035135-02",
    "L2": "035136-02",
-   "H1": "035141-02"
+   "H1": "035141-02",
+   "L1": "035142-02"
   },
   "-03 alternate (PROMs)": {
    "J2": "035150-02",
    "K1": "035153-02",
    "H2": "035151-02",
    "J1": "035154-02",
-   "F2": "035152-02"
+   "F2": "035152-02",
+   "L1": "035155-02"
   },
   "-04 (ROMs)": {
    "C1": "035143-02",
@@ -575,14 +578,16 @@
    "F1": "035145-02"
   },
   "-05/-06 (ROMs)": {
-   "E/F2": "035143-02",
+   "J2": "035143-02",
    "H2": "035144-02",
-   "J2": "035145-02"
+   "E/F2": "035145-02"
   }
  },
  "resolved": [
   "F8 (rate multiplier vs 035904 PROM) is RESOLVED, and both readings were right. The Asteroids parts list names 'A034986-05 Game PCB Assembly (with 7497 Rate Multipliers)' and 'A034986-06 ... (with PROM)'. The -06 board replaces the rate multipliers with PROMs, which is exactly what the '-06 PCB ONLY' block on the drawing shows. Confirmed from a different document entirely.",
   "L8 is an LM324 audio op-amp, not an LS42 decoder. Corroborated twice \u2014 the sound section shows four LM324 sections labelled L8/L9, and sheet 01B's power notes name 'operational amplifiers P11 and L8'. The sheet 2A reading was wrong and is withdrawn.",
-  "C5, E12 and M12 were recorded by function because the sheets give no part number for them. The parts lists do, and agree across printings: C5 is a 9316 counter (spelled 74LS161 in the earlier printings \u2014 the same part), E12 is Atari 137108-001, a TL081CP op-amp, and M12 is Atari 66-114P1T, a 4-station DIP switch. All three are cross-document confirmations, not re-readings of the same sheet."
+  "C5, E12 and M12 were recorded by function because the sheets give no part number for them. The parts lists do, and agree across printings: C5 is a 9316 counter (spelled 74LS161 in the earlier printings \u2014 the same part), E12 is Atari 137108-001, a TL081CP op-amp, and M12 is Atari 66-114P1T, a 4-station DIP switch. All three are cross-document confirmations, not re-readings of the same sheet.",
+  "The -05/-06 ROM positions were the wrong way round and are corrected: 035143-02 is at J2 and 035145-02 at E/F2, not the reverse. Three independent sources agree and two of them are in this corpus. The 6th and 7th printings of TM-143 both list '184 035143-02 Programmable Read-Only Memory. (J2) 185 035144-02 ... (H2) 186 035145-02 ... (E/F2)', and MAME's asteroid driver names its dumps 035143-02.j2, 035144-02.h2 and 035145-04e.ef2 \u2014 MAME's suffixes are board positions and are checked against real boards. 035144 at H2 was right in all three. Only the outer two were swapped.",
+  "The -03 complement is twelve PROMs, not eleven, and the alternate is six, not five: 035142-02 sits at L1 and 035155-02 is its alternate. Settled three ways. Sheet 01B of the 4th-printing drawing package carries '035142-01 L1' directly, which is the drawing rather than a manual quoting it. Six further documents in this corpus repeat it. And the memory map requires it arithmetically: program memory is 6800-7FFF, 6144 bytes, which is exactly twelve 512-byte PROMs or three 2K ROMs and nothing else that tiles evenly \u2014 eleven PROMs cannot fill it at any uniform size."
  ]
 }
