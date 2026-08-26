@@ -207,6 +207,20 @@ Target it with `--docs` and `--figure` exactly like the merge: pooling a machine
 documents fails in the two ways this repo already knows, mixing Battlezone's two PCBs and
 comparing one printing's numbering against another's.
 
+**The harvest is Atari-only, and not because of the parts-list format.** It is because
+Atari's reference designators *are* board positions — A1 through R13, the grid silkscreened
+on the PCB — so recovering a designator recovers a location. Every other manufacturer in
+this corpus numbers sequentially: Sega, Nintendo, Konami and the Midways all use U34, U38,
+U42. A perfect harvest of those gives a chip list and no map, because U34 does not say
+where U34 is. Checked across the six largest non-Atari manufacturers here (Sega 174
+documents, Namco 170, Midway 116, Konami 106, Capcom 88, Williams 54): none carries a
+parts list pairing a device with a grid position.
+
+Sega's manuals do pair devices with designators in troubleshooting prose — "look at the
+outputs of U34, a 74LS244" — which is a real source for a chip *list* if that is ever
+wanted. It is not a source for a board map, and building one would need the silkscreen
+layout from somewhere else.
+
 **The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
 test points, everything on the board that is not on the letter-number grid. Rebuilding it
 from `ics` alone drops them. The first run of the Battlezone merge did exactly that and

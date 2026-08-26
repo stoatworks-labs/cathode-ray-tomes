@@ -176,6 +176,12 @@ D7 are the strongest candidates for a bad read rather than a bad list: recorded 
 the 74161, so the list agrees with itself twice. The parts lists also give independent
 support for the LS02 reading of C8, which was already an open conflict.
 
+**Do not go looking for more machines to harvest — the corpus has been swept.** The
+technique is Atari-only, and the reason is not the parts-list format: Atari's designators
+*are* board positions, so recovering one recovers a location. Sega, Namco, Konami,
+Nintendo and both Midways number sequentially (U34, U38), which gives a chip list and no
+map. Checked across all six of the largest non-Atari manufacturers in the corpus.
+
 Centipede and Tempest still have unread sheets. Untouched machines with drawing packages:
 Gravitar, Black Widow, Space Duel, Space Invaders, Tank. Asteroids' own complement is
 ~106 of ~180 devices; sheet 02B partly unread.
