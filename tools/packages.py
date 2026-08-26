@@ -96,6 +96,56 @@ PART_PINS = {
     "137108-001": (8,  "datasheet",
                    "Atari 137108-001; the Caberat parts list names it TL081CP"),
 
+    # --- Atari stock numbers sized from MAME's dump sizes ---
+    # The dump size fixes the device class where the era leaves no room: 32
+    # bytes and 256 bytes are both bipolar PROMs in a 16-pin package. Used only
+    # where every MAME set that carries the part agrees on the size.
+    "034602-01":  (16, "MAME", "256-byte PROM; 19 sets agree"),
+    "035826-01":  (16, "MAME", "32-byte PROM; 9 sets agree"),
+    "036408-01":  (16, "MAME", "256-byte PROM; 6 sets agree"),
+    "036464-01":  (16, "MAME", "32-byte PROM; 2 sets agree"),
+
+    # --- Atari stock numbers, sized from the manuals' own sockets ---
+    # Derived, not asserted: the contact count of the socket at the
+    # positions each part occupies, counted only *within* a single
+    # document. Correlating across documents is not a near miss, it is
+    # wrong — it puts a 2114 in a 40-pin socket, because two printings
+    # number the board differently. Parts that disagreed with themselves
+    # are absent rather than guessed, which is why 90-7033 is not here.
+    "035127-02":    (24, "socket", "ROM; 2 documents' socket entries agree"),
+    "035143-02":    (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "035144-02":    (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "036174-01":    (16, "socket", "PROM; 2 documents' socket entries agree"),
+    "036179-01":    (16, "socket", "PROM; 4 documents' socket entries agree"),
+    "036430-01":    (24, "socket", "ROM; 2 documents' socket entries agree"),
+    "036431-01":    (24, "socket", "ROM; 3 documents' socket entries agree"),
+    "036432-01":    (24, "socket", "ROM; 3 documents' socket entries agree"),
+    "036433-02":    (24, "socket", "ROM; 3 documents' socket entries agree"),
+    "036799-01":    (24, "socket", "ROM; 4 documents' socket entries agree"),
+    "036800-01":    (24, "socket", "ROM; 4 documents' socket entries agree"),
+    "136002-101":   (24, "socket", "PROM; 3 documents' socket entries agree"),
+    "136002-111":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136002-112":   (24, "socket", "PROM; 3 documents' socket entries agree"),
+    "136002-125":   (16, "socket", "PROM; 4 documents' socket entries agree"),
+    "136002-126":   (16, "socket", "PROM; 3 documents' socket entries agree"),
+    "136002-127":   (24, "socket", "PROM; 3 documents' socket entries agree"),
+    "136002-128":   (24, "socket", "PROM; 4 documents' socket entries agree"),
+    "136002-129":   (24, "socket", "PROM; 4 documents' socket entries agree"),
+    "136002-130":   (24, "socket", "PROM; 4 documents' socket entries agree"),
+    "136002-131":   (24, "socket", "PROM; 3 documents' socket entries agree"),
+    "136002-132":   (24, "socket", "PROM; 4 documents' socket entries agree"),
+    "136006-102":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136006-103":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136006-104":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136006-106":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136006-107":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "136006-201":   (24, "socket", "PROM; 2 documents' socket entries agree"),
+    "137161-001":   (22, "socket", "ROM; 3 documents' socket entries agree"),
+    "137170-001":   (24, "socket", "ROM; 2 documents' socket entries agree"),
+    "137211-001":   (24, "socket", "RAM; 2 documents' socket entries agree"),
+    "90-6010":      (40, "socket", "MPU; 3 documents' socket entries agree"),
+    "90-6013":      (40, "socket", "MPU; 39 documents' socket entries agree"),
+
     # Fairchild's own numbering for parts the 74-series also carries. 9316 is
     # already in devices.py under that name; the other two appear on the
     # mid-70s boards, which predate Atari standardising on 74-series numbers.
