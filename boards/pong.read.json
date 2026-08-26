@@ -1,0 +1,15 @@
+{
+ "machine": "pong",
+ "name": "Pong (Rev E)",
+ "mfr": "Atari",
+ "year": "1972",
+ "drawing": "assembly drawing A001433 Rev E, schematic 002826 Rev E",
+ "sheets": {},
+ "notes": [
+  "MAME models this exact board component by component in src/mame/atari/nl_pong.cpp (BSD-3-Clause, copyright Couriersud), and names its devices by the board's own grid positions \u2014 'c9f' is gate f of the chip at C9. It names 63 of the 66 chips on this map and agrees with 62 of them. That is an independent confirmation of a hand read done from assembly drawing A001433, by a source that shares nothing with it."
+ ],
+ "conflicts": [
+  "F1 is the one disagreement. This map has a 7433, a quad 2-input NOR buffer; MAME's netlist models a 7493, a 4-bit binary counter. Those are not a misread of one another \u2014 different function, different pin count of used pins \u2014 so one of the two is wrong about F1 and the drawing is the place to settle it.",
+  "The full netlist could not be recovered and is not attempted here. MAME's connectivity is mostly implicit in the order of a device's arguments, and resolving which of a 7400's two inputs an argument feeds needs the argument-order semantics of MAME's netlist device library, which this repo does not have. Taking only the connections that are unambiguous without it \u2014 NET_C groups and single-input devices \u2014 yields 7 nets, fewer than the 8 already traced by hand. Guessing the rest would produce a netlist that looks complete and is wrong in places, and validate_nets.py would not catch an input swapped between two equivalent pins."
+ ]
+}
