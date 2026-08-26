@@ -1,0 +1,144 @@
+{
+ "machine": "dmndrby",
+ "name": "Diamond Derby (Win bet, newer)",
+ "mfr": "Electrocoin",
+ "year": "1994",
+ "style": "letter-number",
+ "source": "snk/dmndrby.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "ddprom1.c1",
+   "size": 256,
+   "kind": "proms2",
+   "pins": 16,
+   "part": null
+  },
+  "E1": {
+   "file": "dd01.e1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K1": {
+   "file": "ddprom5.k1",
+   "size": 256,
+   "kind": "proms2",
+   "pins": 16,
+   "part": null
+  },
+  "E2": {
+   "file": "dd02.e2",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "N2": {
+   "file": "dd19.n2",
+   "size": 8192,
+   "kind": "track",
+   "pins": 24,
+   "part": null
+  },
+  "N3": {
+   "file": "dd20.n3",
+   "size": 8192,
+   "kind": "track",
+   "pins": 24,
+   "part": null
+  },
+  "E4": {
+   "file": "dd17.e4",
+   "size": 8192,
+   "kind": "horses",
+   "pins": 24,
+   "part": null
+  },
+  "N4": {
+   "file": "dd21.n4",
+   "size": 8192,
+   "kind": "track",
+   "pins": 24,
+   "part": null
+  },
+  "E5": {
+   "file": "dd18.e5",
+   "size": 4096,
+   "kind": "horses",
+   "pins": 24,
+   "part": null
+  },
+  "H5": {
+   "file": "ddprom3.h5",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J5": {
+   "file": "ddprom2.j5",
+   "size": 256,
+   "kind": "proms3",
+   "pins": 16,
+   "part": null
+  },
+  "M6": {
+   "file": "dd04.m6",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N6": {
+   "file": "dd22.n6",
+   "size": 8192,
+   "kind": "racetrack_data",
+   "pins": 24,
+   "part": null
+  },
+  "M7": {
+   "file": "dd05.m7",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N7": {
+   "file": "dd23.n7",
+   "size": 8192,
+   "kind": "racetrack_data",
+   "pins": 24,
+   "part": null
+  },
+  "M8": {
+   "file": "dd06.m8",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J9": {
+   "file": "dd03.j9",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "H10": {
+   "file": "ddprom4.h10",
+   "size": 256,
+   "kind": "proms2",
+   "pins": 16,
+   "part": null
+  },
+  "M12": {
+   "file": "ddprom6.m12",
+   "size": 256,
+   "kind": "proms3",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

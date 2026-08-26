@@ -1,0 +1,95 @@
+{
+ "machine": "sraider",
+ "name": "Space Raider",
+ "mfr": "Universal",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "universal/sraider.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "srpr10-3.c1",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M2": {
+   "file": "sraid-s7.m2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "N2": {
+   "file": "sraid-s8.n2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L3": {
+   "file": "srpr10-2.l3",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M4": {
+   "file": "sraid1.m4",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N4": {
+   "file": "sraid2.n4",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "R4": {
+   "file": "sraid3.r4",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F6": {
+   "file": "sraid-s9.f6",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "H6": {
+   "file": "sraid-s4.h6",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "J6": {
+   "file": "sraid-s5.j6",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "sraid-s0.k6",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L6": {
+   "file": "sraid-s6.l6",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

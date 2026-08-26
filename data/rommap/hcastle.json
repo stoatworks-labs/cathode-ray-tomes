@@ -1,0 +1,81 @@
+{
+ "machine": "hcastle",
+ "name": "Haunted Castle (version M)",
+ "mfr": "Konami",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "konami/hcastle.cpp",
+ "docs": 1,
+ "devices": {
+  "E4": {
+   "file": "768e01.e4",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "J5": {
+   "file": "768c04.j5",
+   "size": 524288,
+   "kind": "k007121_2",
+   "pins": 32,
+   "part": null
+  },
+  "J6": {
+   "file": "768c05.j6",
+   "size": 524288,
+   "kind": "k007121_2",
+   "pins": 32,
+   "part": null
+  },
+  "K8": {
+   "file": "b06.k8",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K12": {
+   "file": "m03.k12",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "E17": {
+   "file": "768c07.e17",
+   "size": 524288,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  },
+  "G19": {
+   "file": "768c08.g19",
+   "size": 524288,
+   "kind": "k007121_1",
+   "pins": 32,
+   "part": null
+  },
+  "G21": {
+   "file": "768c09.g21",
+   "size": 524288,
+   "kind": "k007121_1",
+   "pins": 32,
+   "part": null
+  },
+  "J21": {
+   "file": "768c13.j21",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J22": {
+   "file": "768c14.j22",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

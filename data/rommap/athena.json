@@ -1,0 +1,109 @@
+{
+ "machine": "athena",
+ "name": "Athena",
+ "mfr": "SNK",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "2.1b",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "1.1c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2B": {
+   "file": "p10.2b",
+   "size": 32768,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2C": {
+   "file": "3.2c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "p11.2d",
+   "size": 16384,
+   "kind": "tx_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2P": {
+   "file": "p7.2p",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2S": {
+   "file": "p8.2s",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2T": {
+   "file": "p9.2t",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "4M": {
+   "file": "p2.4m",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4P": {
+   "file": "p1.4p",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "6G": {
+   "file": "p5.6g",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6K": {
+   "file": "p6.6k",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "8M": {
+   "file": "p4.8m",
+   "size": 32768,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "8P": {
+   "file": "p3.8p",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

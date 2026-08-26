@@ -1,0 +1,32 @@
+{
+ "machine": "cmast97",
+ "name": "Cherry Master '97 (V1.7, set 1)",
+ "mfr": "Dyna",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "C8": {
+   "file": "82s135.c8",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C9": {
+   "file": "82s135.c9",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F10": {
+   "file": "c97.f10",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

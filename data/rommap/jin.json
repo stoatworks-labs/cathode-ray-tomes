@@ -1,0 +1,60 @@
+{
+ "machine": "jin",
+ "name": "Jin",
+ "mfr": "Falcon",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "williams/williams.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "jin.1a",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1L": {
+   "file": "jin.1l",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3F": {
+   "file": "jin15.3f",
+   "size": 2048,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "jin14.4c",
+   "size": 4096,
+   "kind": "banked",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "jin11.6c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "jin13.6d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "jin12.7c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

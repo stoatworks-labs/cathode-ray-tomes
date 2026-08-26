@@ -1,0 +1,46 @@
+{
+ "machine": "mplanets",
+ "name": "Mad Planets",
+ "mfr": "Gottlieb",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "gottlieb/gottlieb.cpp",
+ "docs": 1,
+ "devices": {
+  "K4": {
+   "file": "fg0.k4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "fg1.k5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "fg2.k6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E13": {
+   "file": "bg1.e13",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C16": {
+   "file": "rom4.c16",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

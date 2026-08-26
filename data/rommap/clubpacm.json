@@ -1,0 +1,74 @@
+{
+ "machine": "clubpacm",
+ "name": "Pacman Club / Club Lambada (Argentina)",
+ "mfr": "hack (Miky SRL)",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "pacman/pacman.cpp",
+ "docs": 0,
+ "devices": {
+  "1M": {
+   "file": "m7611.1m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "m7611.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "m7611.4a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5E": {
+   "file": "12.5e",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "13.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "14.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5J": {
+   "file": "15.5j",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6F": {
+   "file": "prg.6f",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7F": {
+   "file": "n82s123n.7f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

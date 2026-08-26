@@ -1,0 +1,67 @@
+{
+ "machine": "frenzy",
+ "name": "Frenzy (revision RA1)",
+ "mfr": "Stern Electronics",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "stern/berzerk.cpp",
+ "docs": 2,
+ "devices": {
+  "1C": {
+   "file": "e169-1cvo.1c",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "frenzy_ra1_rom1.1d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2C": {
+   "file": "e169-2cvo.2c",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "frenzy_ra1_rom2.3d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "frenzy_ra1_rom5.5c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "frenzy_ra1_rom3.5d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "frenzy_ra1_rom4.6d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "frenzy_decoder_6ea1.6e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

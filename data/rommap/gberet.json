@@ -1,0 +1,88 @@
+{
+ "machine": "gberet",
+ "name": "Green Beret",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/gberet.cpp",
+ "docs": 2,
+ "devices": {
+  "2F": {
+   "file": "577h09.2f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3E": {
+   "file": "577l04.3e",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "3F": {
+   "file": "577l07.3f",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4E": {
+   "file": "577l05.4e",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4F": {
+   "file": "577l08.4f",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5E": {
+   "file": "577l06.5e",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5F": {
+   "file": "577h10.5f",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6F": {
+   "file": "577h11.6f",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7C": {
+   "file": "577l01.7c",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8C": {
+   "file": "577l02.8c",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "10C": {
+   "file": "577l03.10c",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

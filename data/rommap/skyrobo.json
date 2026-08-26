@@ -1,0 +1,67 @@
+{
+ "machine": "skyrobo",
+ "name": "Sky Robo",
+ "mfr": "Nichibutsu",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "nichibutsu/armedf.cpp",
+ "docs": 0,
+ "devices": {
+  "6A": {
+   "file": "11.6a",
+   "size": 65536,
+   "kind": "background",
+   "pins": 32,
+   "part": null
+  },
+  "8A": {
+   "file": "12.8a",
+   "size": 65536,
+   "kind": "background",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "9.8d",
+   "size": 131072,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "9D": {
+   "file": "10.9d",
+   "size": 131072,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "13F": {
+   "file": "5.13f",
+   "size": 131072,
+   "kind": "foreground",
+   "pins": 32,
+   "part": null
+  },
+  "13H": {
+   "file": "tf.13h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15F": {
+   "file": "6.15f",
+   "size": 65536,
+   "kind": "foreground",
+   "pins": 32,
+   "part": null
+  },
+  "17K": {
+   "file": "8.17k",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

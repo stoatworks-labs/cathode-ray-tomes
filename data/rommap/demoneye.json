@@ -1,0 +1,32 @@
+{
+ "machine": "demoneye",
+ "name": "Demoneye-X",
+ "mfr": "Irem",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "irem/redalert.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "demoneye.1a",
+   "size": 512,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6S": {
+   "file": "demoneye.6s",
+   "size": 4096,
+   "kind": "soundboard:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "7S": {
+   "file": "demoneye.7s",
+   "size": 4096,
+   "kind": "soundboard:audiocpu",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

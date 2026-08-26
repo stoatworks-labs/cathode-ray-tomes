@@ -1,0 +1,53 @@
+{
+ "machine": "hdrivair",
+ "name": "Hard Drivin's Airborne (prototype, rev 2.7)",
+ "mfr": "Atari Games",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "atari/harddriv.cpp",
+ "docs": 0,
+ "devices": {
+  "0H": {
+   "file": "stest.0h",
+   "size": 131072,
+   "kind": "mainpcb:maincpu",
+   "pins": 32,
+   "part": null
+  },
+  "0L": {
+   "file": "stest.0l",
+   "size": 131072,
+   "kind": "mainpcb:maincpu",
+   "pins": 32,
+   "part": null
+  },
+  "1H": {
+   "file": "objects.1h",
+   "size": 131072,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "1L": {
+   "file": "objects.1l",
+   "size": 131072,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "2H": {
+   "file": "objects.2h",
+   "size": 131072,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "2L": {
+   "file": "objects.2l",
+   "size": 131072,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

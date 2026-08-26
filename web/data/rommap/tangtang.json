@@ -1,0 +1,39 @@
+{
+ "machine": "tangtang",
+ "name": "Tang Tang (ver. 0526, 26/05/2000, set 1)",
+ "mfr": "ESD",
+ "year": "2000",
+ "style": "letter-number",
+ "source": "misc/esd16.cpp",
+ "docs": 0,
+ "devices": {
+  "CU02": {
+   "file": "esd2.cu02",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "CU03": {
+   "file": "esd1.cu03",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SU06": {
+   "file": "esd3.su06",
+   "size": 262144,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "SU10": {
+   "file": "esd4.su10",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

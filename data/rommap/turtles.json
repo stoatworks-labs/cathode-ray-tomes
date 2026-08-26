@@ -1,0 +1,74 @@
+{
+ "machine": "turtles",
+ "name": "Turtles",
+ "mfr": "Konami (Stern Electronics license)",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 1,
+ "devices": {
+  "2C": {
+   "file": "turt_vid.2c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2E": {
+   "file": "turt_vid.2e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2F": {
+   "file": "turt_vid.2f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "turt_vid.2h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2J": {
+   "file": "turt_vid.2j",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "turt_snd.5c",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "turt_snd.5d",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "turt_vid.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "turt_vid.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

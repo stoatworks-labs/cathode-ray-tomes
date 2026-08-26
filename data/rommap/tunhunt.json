@@ -1,0 +1,67 @@
+{
+ "machine": "tunhunt",
+ "name": "Tunnel Hunt",
+ "mfr": "Atari",
+ "year": "1979",
+ "style": "letter-number",
+ "source": "atari/tunhunt.cpp",
+ "docs": 1,
+ "devices": {
+  "EF1": {
+   "file": "005.ef1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "FH1": {
+   "file": "004.fh1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "K1": {
+   "file": "002.k1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "LM1": {
+   "file": "001.lm1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N4": {
+   "file": "015.n4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H9": {
+   "file": "018.h9",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "C10": {
+   "file": "019.c10",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C11": {
+   "file": "014.c11",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

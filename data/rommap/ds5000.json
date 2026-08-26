@@ -1,0 +1,291 @@
+{
+ "machine": "ds5000",
+ "name": "DS-5000 Driving Simulator",
+ "mfr": "Namco / Mitsubishi",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "namco/ds5000.cpp",
+ "docs": 0,
+ "devices": {
+  "2E": {
+   "file": "3prom1.2e",
+   "size": 204,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "4C": {
+   "file": "3ppgn1.4c",
+   "size": 329,
+   "kind": "pgn_plds",
+   "pins": null,
+   "part": null
+  },
+  "4T": {
+   "file": "dsk1-voi0.4t",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "5C": {
+   "file": "3prom2.5c",
+   "size": 329,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "5F": {
+   "file": "3prom3.5f",
+   "size": 329,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "6B": {
+   "file": "3pobj2.6b",
+   "size": 329,
+   "kind": "obj_plds",
+   "pins": null,
+   "part": null
+  },
+  "6C": {
+   "file": "3prom4.6c",
+   "size": 279,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "6F": {
+   "file": "3prom5.6f",
+   "size": 279,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "6T": {
+   "file": "dsk1-voi1.6t",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "7T": {
+   "file": "dsk1-voi2.7t",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "8A": {
+   "file": "dss2_a0l.8a",
+   "size": 131072,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "8F": {
+   "file": "dsw2_b4l.8f",
+   "size": 131072,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "9A": {
+   "file": "dsk1_prglb.9a",
+   "size": 131072,
+   "kind": "subcpu",
+   "pins": 32,
+   "part": null
+  },
+  "9C": {
+   "file": "dsk1_prgub.9c",
+   "size": 131072,
+   "kind": "subcpu",
+   "pins": 32,
+   "part": null
+  },
+  "9E": {
+   "file": "3p68k5.9e",
+   "size": 204,
+   "kind": "cpu68k_plds",
+   "pins": null,
+   "part": null
+  },
+  "9F": {
+   "file": "dsw2_b5l.9f",
+   "size": 131072,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "9K": {
+   "file": "3p68k1.9k",
+   "size": 204,
+   "kind": "cpu68k_plds",
+   "pins": null,
+   "part": null
+  },
+  "9R": {
+   "file": "3prom6.9r",
+   "size": 329,
+   "kind": "rom_plds",
+   "pins": null,
+   "part": null
+  },
+  "9T": {
+   "file": "dsk1-voi3.9t",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "dss2_a2l.10a",
+   "size": 262144,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "10F": {
+   "file": "dsw2_b6l.10f",
+   "size": 262144,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "dss2_a3l.11a",
+   "size": 524288,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "11F": {
+   "file": "dsw2_b7l.11f",
+   "size": 524288,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "11R": {
+   "file": "3p68k2.11r",
+   "size": 279,
+   "kind": "cpu68k_plds",
+   "pins": null,
+   "part": null
+  },
+  "12A": {
+   "file": "dss2_a0u.12a",
+   "size": 131072,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "12F": {
+   "file": "dsw2_b4u.12f",
+   "size": 131072,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "12R": {
+   "file": "3p0201.12r",
+   "size": 329,
+   "kind": "cpu020_plds",
+   "pins": null,
+   "part": null
+  },
+  "13A": {
+   "file": "dss2_a1u.13a",
+   "size": 131072,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "13F": {
+   "file": "dsw2_b5u.13f",
+   "size": 131072,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "14A": {
+   "file": "dss2_a2u.14a",
+   "size": 262144,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "14B": {
+   "file": "dsk1_prog2.14b",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14F": {
+   "file": "dsw2_b6u.14f",
+   "size": 262144,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "15A": {
+   "file": "dss2_a3u.15a",
+   "size": 524288,
+   "kind": "dsp1",
+   "pins": 32,
+   "part": null
+  },
+  "15F": {
+   "file": "dsw2_b7u.15f",
+   "size": 524288,
+   "kind": "dsp2",
+   "pins": 32,
+   "part": null
+  },
+  "17C": {
+   "file": "3pdsp1.17c",
+   "size": 204,
+   "kind": "dsp_plds",
+   "pins": null,
+   "part": null
+  },
+  "17D": {
+   "file": "3pdsp5.17d",
+   "size": 279,
+   "kind": "dsp_plds",
+   "pins": null,
+   "part": null
+  },
+  "18B": {
+   "file": "dsk1_prog3.18b",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "21N": {
+   "file": "3pobj3.21n",
+   "size": 329,
+   "kind": "obj_plds",
+   "pins": null,
+   "part": null
+  },
+  "22J": {
+   "file": "3pobj4.22j",
+   "size": 329,
+   "kind": "obj_plds",
+   "pins": null,
+   "part": null
+  },
+  "22K": {
+   "file": "3pobj5.22k",
+   "size": 329,
+   "kind": "obj_plds",
+   "pins": null,
+   "part": null
+  }
+ }
+}

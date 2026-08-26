@@ -1,0 +1,60 @@
+{
+ "machine": "maya",
+ "name": "Maya (set 1)",
+ "mfr": "Promat",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "dynax/dynax.cpp",
+ "docs": 0,
+ "devices": {
+  "5B": {
+   "file": "prom2.5b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6B": {
+   "file": "prom1.6b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15E": {
+   "file": "2.15e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15G": {
+   "file": "5.15g",
+   "size": 262144,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "17E": {
+   "file": "1.17e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "17G": {
+   "file": "4.17g",
+   "size": 262144,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "18G": {
+   "file": "3.18g",
+   "size": 262144,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

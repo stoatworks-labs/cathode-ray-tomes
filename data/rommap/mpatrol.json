@@ -1,0 +1,109 @@
+{
+ "machine": "mpatrol",
+ "name": "Moon Patrol",
+ "mfr": "Irem",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "irem/m52.cpp",
+ "docs": 3,
+ "devices": {
+  "1A": {
+   "file": "mp-s1.1a",
+   "size": 4096,
+   "kind": "irem_audio:iremsound",
+   "pins": 24,
+   "part": null
+  },
+  "1F": {
+   "file": "mpc-1.1f",
+   "size": 32,
+   "kind": "spr_pal",
+   "pins": 16,
+   "part": null
+  },
+  "1M": {
+   "file": "mpc-3.1m",
+   "size": 32,
+   "kind": "bg_pal",
+   "pins": 16,
+   "part": null
+  },
+  "2A": {
+   "file": "mpc-4.2a",
+   "size": 512,
+   "kind": "tx_pal",
+   "pins": 16,
+   "part": null
+  },
+  "2H": {
+   "file": "mpc-2.2h",
+   "size": 256,
+   "kind": "spr_clut",
+   "pins": 16,
+   "part": null
+  },
+  "3E": {
+   "file": "mpe-5.3e",
+   "size": 4096,
+   "kind": "tx",
+   "pins": 24,
+   "part": null
+  },
+  "3F": {
+   "file": "mpe-4.3f",
+   "size": 4096,
+   "kind": "tx",
+   "pins": 24,
+   "part": null
+  },
+  "3H": {
+   "file": "mpe-3.3h",
+   "size": 4096,
+   "kind": "bg2",
+   "pins": 24,
+   "part": null
+  },
+  "3J": {
+   "file": "mpa-4.3j",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3K": {
+   "file": "mpa-3.3k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "mpa-2.3l",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3M": {
+   "file": "mpa-1.3m",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3N": {
+   "file": "mpb-1.3n",
+   "size": 4096,
+   "kind": "sp",
+   "pins": 24,
+   "part": null
+  },
+  "7H": {
+   "file": "mp_7621-5.7h",
+   "size": 512,
+   "kind": "unkprom",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

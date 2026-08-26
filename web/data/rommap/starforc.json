@@ -1,0 +1,130 @@
+{
+ "machine": "starforc",
+ "name": "Star Force",
+ "mfr": "Tehkan",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "tecmo/senjyo.cpp",
+ "docs": 1,
+ "devices": {
+  "2FH": {
+   "file": "7.2fh",
+   "size": 4096,
+   "kind": "fgtiles",
+   "pins": 24,
+   "part": null
+  },
+  "3FH": {
+   "file": "8.3fh",
+   "size": 4096,
+   "kind": "fgtiles",
+   "pins": 24,
+   "part": null
+  },
+  "3HJ": {
+   "file": "1.3hj",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3MN": {
+   "file": "2.3mn",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "3P": {
+   "file": "3.3p",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8DE": {
+   "file": "10.8de",
+   "size": 8192,
+   "kind": "bgtiles2",
+   "pins": 24,
+   "part": null
+  },
+  "8JK": {
+   "file": "13.8jk",
+   "size": 8192,
+   "kind": "bgtiles1",
+   "pins": 24,
+   "part": null
+  },
+  "8LM": {
+   "file": "4.8lm",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8PQ": {
+   "file": "16.8pq",
+   "size": 4096,
+   "kind": "bgtiles3",
+   "pins": 24,
+   "part": null
+  },
+  "9DE": {
+   "file": "11.9de",
+   "size": 8192,
+   "kind": "bgtiles2",
+   "pins": 24,
+   "part": null
+  },
+  "9JK": {
+   "file": "14.9jk",
+   "size": 8192,
+   "kind": "bgtiles1",
+   "pins": 24,
+   "part": null
+  },
+  "9LM": {
+   "file": "5.9lm",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9PQ": {
+   "file": "17.9pq",
+   "size": 4096,
+   "kind": "bgtiles3",
+   "pins": 24,
+   "part": null
+  },
+  "10DE": {
+   "file": "12.10de",
+   "size": 8192,
+   "kind": "bgtiles2",
+   "pins": 24,
+   "part": null
+  },
+  "10JK": {
+   "file": "15.10jk",
+   "size": 8192,
+   "kind": "bgtiles1",
+   "pins": 24,
+   "part": null
+  },
+  "10LM": {
+   "file": "6.10lm",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "10PQ": {
+   "file": "18.10pq",
+   "size": 4096,
+   "kind": "bgtiles3",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

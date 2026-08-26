@@ -1,0 +1,39 @@
+{
+ "machine": "aladdin",
+ "name": "The Aladdin (V1.2U)",
+ "mfr": "Dyna",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "dyna/dyna_dc4000.cpp",
+ "docs": 0,
+ "devices": {
+  "H2": {
+   "file": "538000_as_27c080.h2",
+   "size": 1048576,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "H14": {
+   "file": "mb7114h.h14",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H15": {
+   "file": "mb7114h.h15",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H16": {
+   "file": "mb7114h.h16",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

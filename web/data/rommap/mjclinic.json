@@ -1,0 +1,53 @@
+{
+ "machine": "mjclinic",
+ "name": "Mahjong Clinic (Japan, set 1)",
+ "mfr": "Home Data",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "misc/homedata.cpp",
+ "docs": 0,
+ "devices": {
+  "1G": {
+   "file": "x80_a03.1g",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1L": {
+   "file": "x80_a06.1l",
+   "size": 32768,
+   "kind": "PROM",
+   "pins": 28,
+   "part": null
+  },
+  "1M": {
+   "file": "x80_a07.1m",
+   "size": 32768,
+   "kind": "PROM",
+   "pins": 28,
+   "part": null
+  },
+  "6G": {
+   "file": "x80_g01.6g",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "11K": {
+   "file": "x80_a10.11k",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "13A": {
+   "file": "x80_a08.13a",
+   "size": 131072,
+   "kind": "blit_rom",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

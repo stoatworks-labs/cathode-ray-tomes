@@ -1,0 +1,81 @@
+{
+ "machine": "firebeas",
+ "name": "Firebeast (prototype)",
+ "mfr": "Atari",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "atari/cloud9.cpp",
+ "docs": 0,
+ "devices": {
+  "J2": {
+   "file": "6000.j2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "KL2": {
+   "file": "8000.kl2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "LM2": {
+   "file": "a000.lm2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N2": {
+   "file": "c000.n2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M8": {
+   "file": "63s141.m8",
+   "size": 256,
+   "kind": "unkproms",
+   "pins": 16,
+   "part": null
+  },
+  "E10": {
+   "file": "63s141.e10",
+   "size": 256,
+   "kind": "syncprom",
+   "pins": 16,
+   "part": null
+  },
+  "M10": {
+   "file": "63s141.m10",
+   "size": 256,
+   "kind": "unkproms",
+   "pins": 16,
+   "part": null
+  },
+  "M12": {
+   "file": "mo6000.m12",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "N12": {
+   "file": "mo4000.n12",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "R12": {
+   "file": "mo0000.r12",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

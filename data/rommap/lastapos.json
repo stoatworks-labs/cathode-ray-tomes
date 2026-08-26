@@ -1,0 +1,81 @@
+{
+ "machine": "lastapos",
+ "name": "The Last Apostle Puppetshow",
+ "mfr": "Home Data",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "misc/homedata.cpp",
+ "docs": 0,
+ "devices": {
+  "F1": {
+   "file": "x82a16.f1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "F2": {
+   "file": "x82a15.f2",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "F4": {
+   "file": "e82a12.f4",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "L4": {
+   "file": "x82a19.l4",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "F5": {
+   "file": "e82a11.f5",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "E9": {
+   "file": "e82a17.e9",
+   "size": 32768,
+   "kind": "PROM",
+   "pins": 28,
+   "part": null
+  },
+  "E12": {
+   "file": "e82a18.e12",
+   "size": 32768,
+   "kind": "PROM",
+   "pins": 28,
+   "part": null
+  },
+  "J14": {
+   "file": "e82a01.j14",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "E19": {
+   "file": "x82a02.e19",
+   "size": 262144,
+   "kind": "blit_rom",
+   "pins": 32,
+   "part": null
+  },
+  "E20": {
+   "file": "x82a04.e20",
+   "size": 262144,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

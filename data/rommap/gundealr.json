@@ -1,0 +1,39 @@
+{
+ "machine": "gundealr",
+ "name": "Gun Dealer",
+ "mfr": "Dooyong",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "dooyong/gundealr.cpp",
+ "docs": 0,
+ "devices": {
+  "3J": {
+   "file": "1.3j",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6B": {
+   "file": "2.6b",
+   "size": 131072,
+   "kind": "fgtiles",
+   "pins": 32,
+   "part": null
+  },
+  "6P": {
+   "file": "3.6p",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "7L": {
+   "file": "82s135.7l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

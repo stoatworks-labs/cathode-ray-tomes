@@ -1,0 +1,60 @@
+{
+ "machine": "wizwarz",
+ "name": "Wiz Warz (prototype)",
+ "mfr": "Mylstar",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "gottlieb/gottlieb.cpp",
+ "docs": 0,
+ "devices": {
+  "K2": {
+   "file": "gv110_drom1_snd_2732.k2",
+   "size": 4096,
+   "kind": "r2sound:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "N3": {
+   "file": "gv110_yrom1_snd_2732.n3",
+   "size": 4096,
+   "kind": "r2sound:speechcpu",
+   "pins": 24,
+   "part": null
+  },
+  "K4": {
+   "file": "gv110_fg0_2764.k4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "gv110_fg1_2764.k5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "gv110_fg2_2764.k6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E13": {
+   "file": "gv110_bg1_2732.e13",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C16": {
+   "file": "gv110_rom4_2764.c16",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "npcramen",
+ "name": "Neo Print - Chicken Ramen (Japan)",
+ "mfr": "SNK",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "l009-c1 pstm-romc.c1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "l009-ep1 neo-mvs progbk1.ep1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "l009-c2 pstm-romc.c2",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

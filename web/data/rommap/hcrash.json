@@ -1,0 +1,60 @@
+{
+ "machine": "hcrash",
+ "name": "Hyper Crash (version D)",
+ "mfr": "Konami",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "konami/nemesis.cpp",
+ "docs": 0,
+ "devices": {
+  "N2": {
+   "file": "790-c09.n2",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "J4": {
+   "file": "790-c08.j4",
+   "size": 16384,
+   "kind": "vlm",
+   "pins": 28,
+   "part": null
+  },
+  "S7": {
+   "file": "790-c05.s7",
+   "size": 65536,
+   "kind": "maindata",
+   "pins": 32,
+   "part": null
+  },
+  "T7": {
+   "file": "790-d06.t7",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "S9": {
+   "file": "790-c02.s9",
+   "size": 65536,
+   "kind": "maindata",
+   "pins": 32,
+   "part": null
+  },
+  "T9": {
+   "file": "790-d03.t9",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "M10": {
+   "file": "790-c01.m10",
+   "size": 131072,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

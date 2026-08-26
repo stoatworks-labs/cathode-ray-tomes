@@ -1,0 +1,60 @@
+{
+ "machine": "sabotenb",
+ "name": "Saboten Bombers (set 1)",
+ "mfr": "NMK / Tecmo",
+ "year": "1992",
+ "style": "letter-number",
+ "source": "nmk/nmk16.cpp",
+ "docs": 0,
+ "devices": {
+  "SB1": {
+   "file": "ic76.sb1",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SB2": {
+   "file": "ic75.sb2",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SB3": {
+   "file": "ic35.sb3",
+   "size": 65536,
+   "kind": "fgtile",
+   "pins": 32,
+   "part": null
+  },
+  "SB4": {
+   "file": "ic32.sb4",
+   "size": 2097152,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "SB5": {
+   "file": "ic100.sb5",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "SB6": {
+   "file": "ic30.sb6",
+   "size": 1048576,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  },
+  "SB7": {
+   "file": "ic27.sb7",
+   "size": 1048576,
+   "kind": "oki2",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

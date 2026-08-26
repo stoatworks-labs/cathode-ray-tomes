@@ -1,0 +1,32 @@
+{
+ "machine": "indy4",
+ "name": "Indy 4",
+ "mfr": "Atari/Kee",
+ "year": "1976",
+ "style": "letter-number",
+ "source": "atari/atarittl.cpp",
+ "docs": 1,
+ "devices": {
+  "F4": {
+   "file": "005503.f4",
+   "size": 512,
+   "kind": "racetrack",
+   "pins": 16,
+   "part": null
+  },
+  "E5": {
+   "file": "005502.e5",
+   "size": 32,
+   "kind": "checkpoint",
+   "pins": 16,
+   "part": null
+  },
+  "F7": {
+   "file": "003187.f7",
+   "size": 32,
+   "kind": "motion",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

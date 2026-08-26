@@ -1,0 +1,130 @@
+{
+ "machine": "chelnov",
+ "name": "Atomic Runner Chelnov (World)",
+ "mfr": "Data East Corporation",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "dataeast/karnov.cpp",
+ "docs": 1,
+ "devices": {
+  "F3": {
+   "file": "ee05-.f3",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "C5": {
+   "file": "ee00-e.c5",
+   "size": 32768,
+   "kind": "char",
+   "pins": 28,
+   "part": null
+  },
+  "L6": {
+   "file": "ee-16.l6",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "F8": {
+   "file": "ee12-.f8",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "K8": {
+   "file": "ee-17.k8",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "F9": {
+   "file": "ee13-.f9",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "F13": {
+   "file": "ee14-.f13",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J13": {
+   "file": "ee06-e.j13",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J14": {
+   "file": "ee07.j14",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K14": {
+   "file": "ee-e.k14",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "C15": {
+   "file": "ee01-.c15",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "F15": {
+   "file": "ee15-.f15",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J16": {
+   "file": "ee08-e.j16",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J17": {
+   "file": "ee09-e.j17",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C18": {
+   "file": "ee02-.c18",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J18": {
+   "file": "ee10.j18",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J19": {
+   "file": "ee11-e.j19",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

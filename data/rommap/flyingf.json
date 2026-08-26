@@ -1,0 +1,32 @@
+{
+ "machine": "flyingf",
+ "name": "Flying Fortress",
+ "mfr": "Electra",
+ "year": "1976",
+ "style": "number-letter",
+ "source": "misc/electra.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "b-2.1a",
+   "size": 256,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "1D": {
+   "file": "prom.1d",
+   "size": 32,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "b-1.2b",
+   "size": 256,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

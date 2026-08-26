@@ -1,0 +1,32 @@
+{
+ "machine": "kicker",
+ "name": "Kicker",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "konami/shaolins.cpp",
+ "docs": 2,
+ "devices": {
+  "H14": {
+   "file": "477k01.h14",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "H15": {
+   "file": "477k02.h15",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "F16": {
+   "file": "477j08.f16",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

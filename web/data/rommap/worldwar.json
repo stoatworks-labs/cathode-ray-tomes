@@ -1,0 +1,200 @@
+{
+ "machine": "worldwar",
+ "name": "World Wars (World?)",
+ "mfr": "SNK",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "ww14.1a",
+   "size": 65536,
+   "kind": "bg_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "1B": {
+   "file": "ww13.1b",
+   "size": 65536,
+   "kind": "bg_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "1D": {
+   "file": "1.1d",
+   "size": 4096,
+   "kind": "rjproms",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "ww11.1e",
+   "size": 65536,
+   "kind": "bg_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "1K": {
+   "file": "1.1k",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "2.1l",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "1.2d",
+   "size": 4096,
+   "kind": "rjproms",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "3.2l",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "ww6.3a",
+   "size": 32768,
+   "kind": "tx_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3B": {
+   "file": "ww7.3b",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3D": {
+   "file": "ww8.3d",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3E": {
+   "file": "ww9.3e",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3G": {
+   "file": "ww10.3g",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "4P": {
+   "file": "ww4.4p",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5E": {
+   "file": "p4.5e",
+   "size": 65536,
+   "kind": "ym2",
+   "pins": 32,
+   "part": null
+  },
+  "5G": {
+   "file": "p5.5g",
+   "size": 65536,
+   "kind": "ym2",
+   "pins": 32,
+   "part": null
+  },
+  "5H": {
+   "file": "horizon.5h",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "7H": {
+   "file": "vertical.7h",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "ww3.7k",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "7P": {
+   "file": "ww21.7p",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "7S": {
+   "file": "ww22.7s",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "8H": {
+   "file": "ww19.8h",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "ww20.8k",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "8M": {
+   "file": "ww15.8m",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "8N": {
+   "file": "ww16.8n",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "8P": {
+   "file": "ww5.8p",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "8S": {
+   "file": "ww18.8s",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "machine": "mrsdyna",
+ "name": "Mrs. Dynamite",
+ "mfr": "Universal",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "universal/sraider.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "mrsd-10-3.c1",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F1": {
+   "file": "mrsd-8203a-m4.f1",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F2": {
+   "file": "mrsd-8203a-n4.f2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F3": {
+   "file": "mrsd-8203a-r4.f3",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L3": {
+   "file": "mrsd-10-2.l3",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F4": {
+   "file": "mrsd-8203a-h6.f4",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "F5": {
+   "file": "mrsd-8203a-j6.f5",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "F6": {
+   "file": "mrsd-8203a-l6.f6",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "F7": {
+   "file": "mrsd-8203b-m2.f7",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F8": {
+   "file": "mrsd-8203b-n2.f8",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F10": {
+   "file": "mrsd-8203b-k6.f10",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F11": {
+   "file": "mrsd-8203b-l6.f11",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

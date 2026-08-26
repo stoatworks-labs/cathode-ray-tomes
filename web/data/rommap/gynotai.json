@@ -1,0 +1,53 @@
+{
+ "machine": "gynotai",
+ "name": "Gynotai (Japan)",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcond1.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "gy1sub0.1d",
+   "size": 524288,
+   "kind": "mcu",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "gy1voice.7c",
+   "size": 2097152,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10E": {
+   "file": "gy1cg0.10e",
+   "size": 4194304,
+   "kind": "ygv608",
+   "pins": 32,
+   "part": null
+  },
+  "10F": {
+   "file": "gy1cg1.10f",
+   "size": 4194304,
+   "kind": "ygv608",
+   "pins": 32,
+   "part": null
+  },
+  "13E": {
+   "file": "gy1main1.13e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14E": {
+   "file": "gy1main0.14e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

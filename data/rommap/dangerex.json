@@ -1,0 +1,270 @@
+{
+ "machine": "dangerex",
+ "name": "Danger Express (prototype)",
+ "mfr": "Atari Games",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "atari/atarig42.cpp",
+ "docs": 0,
+ "devices": {
+  "2P": {
+   "file": "dx2p-0l.2p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "2S": {
+   "file": "dx2s-0h.2s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "136089-1012.3f",
+   "size": 2688,
+   "kind": "asic65:asic65cpu",
+   "pins": null,
+   "part": null
+  },
+  "3P": {
+   "file": "dx3p-1l.3p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "3S": {
+   "file": "dx3s-1h.3s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "4P": {
+   "file": "dx4p-2l.4p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "4S": {
+   "file": "dx4s-2h.4s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "5C": {
+   "file": "dx-eeprom.5c",
+   "size": 2048,
+   "kind": "eeprom",
+   "pins": 24,
+   "part": null
+  },
+  "5P": {
+   "file": "dx5p-3l.5p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "5S": {
+   "file": "dx5s-3h.5s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "6P": {
+   "file": "dx6p-4l.6p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "6S": {
+   "file": "dx6s-4h.6s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7H": {
+   "file": "dx9s-7h.7h",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7L": {
+   "file": "dx9p-7l.7l",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7P": {
+   "file": "dx7p-5l.7p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7S": {
+   "file": "dx7s-5h.7s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "8C": {
+   "file": "dx8c-0l.8c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "dx8d-0h.8d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8P": {
+   "file": "dx8p-6l.8p",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "8S": {
+   "file": "dx8s-6h.8s",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "9C": {
+   "file": "dx9c-1l.9c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9D": {
+   "file": "dx9d-1h.9d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "12C": {
+   "file": "dx12c-5.12c",
+   "size": 16384,
+   "kind": "jsa:cpu",
+   "pins": 28,
+   "part": null
+  },
+  "12E": {
+   "file": "dx12e-3.12e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "15E": {
+   "file": "dx15e-2.15e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "17E": {
+   "file": "dx17e-1.17e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "19E": {
+   "file": "dx19e-0.19e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "20C": {
+   "file": "dxc80-20c.20c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20D": {
+   "file": "dxc115-20d.20d",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20P": {
+   "file": "092-1001.20p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "21C": {
+   "file": "dxc81-22-21c.21c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "21D": {
+   "file": "dxc116-20-21d.21d",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "21P": {
+   "file": "092-1003.21p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "22C": {
+   "file": "dx82-22c.22c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22D": {
+   "file": "dxc117-22d.22d",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22J": {
+   "file": "dxc187-22j.22j",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22P": {
+   "file": "092-1002.22p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

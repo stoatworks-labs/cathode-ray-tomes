@@ -1,0 +1,60 @@
+{
+ "machine": "gpilots",
+ "name": "Ghost Pilots (NGM-020 ~ NGH-020)",
+ "mfr": "SNK",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "snk/neogeo.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "020-c1.c1",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "020-c2.c2",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "020-c3.c3",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C4": {
+   "file": "020-c4.c4",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V11": {
+   "file": "020-v11.v11",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "V12": {
+   "file": "020-v12.v12",
+   "size": 524288,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "V21": {
+   "file": "020-v21.v21",
+   "size": 524288,
+   "kind": "cslot1:ymsnd:adpcmb",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

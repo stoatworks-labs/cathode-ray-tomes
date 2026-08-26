@@ -1,0 +1,46 @@
+{
+ "machine": "falcnwld",
+ "name": "Falcons Wild - Wild Card 1991 (TVG)",
+ "mfr": "TVG",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "misc/goldnpkr.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "fw1.2a",
+   "size": 8192,
+   "kind": "temp",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "fw2.4a",
+   "size": 8192,
+   "kind": "temp",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "fw3.5a",
+   "size": 8192,
+   "kind": "temp",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "dm74s287n.7d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12A": {
+   "file": "nosticker.12a",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

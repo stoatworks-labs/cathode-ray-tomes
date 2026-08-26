@@ -1,0 +1,123 @@
+{
+ "machine": "primrage",
+ "name": "Primal Rage (version 2.3, Jan 1995)",
+ "mfr": "Atari Games",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "atari/atarigt.cpp",
+ "docs": 4,
+ "devices": {
+  "2V": {
+   "file": "136102-2100a_mol0.2v",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "2W": {
+   "file": "136102-2101a_moh0.2w",
+   "size": 524288,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "rage_136102-1045b_dspsub.11a",
+   "size": 524288,
+   "kind": "cage:boot",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "136102-0075_dspsub.11c",
+   "size": 2097152,
+   "kind": "cage",
+   "pins": 32,
+   "part": null
+  },
+  "11E": {
+   "file": "136102-0077_dspsub.11e",
+   "size": 2097152,
+   "kind": "cage",
+   "pins": 32,
+   "part": null
+  },
+  "13S": {
+   "file": "136094-0001a.13s",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "14S": {
+   "file": "136094-0002a.14s",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15S": {
+   "file": "136094-0003a.15s",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "22P": {
+   "file": "rage_136102-1078a_alpha.22p",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "24L": {
+   "file": "rage_136102-2041a_pgmll.24l",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "25N": {
+   "file": "rage_136102-0050a_pf0l.25n",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "26L": {
+   "file": "rage_136102-2042a_pgmlm.26l",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "27N": {
+   "file": "rage_136102-0051a_pf0m.27n",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "28L": {
+   "file": "rage_136102-2043a_pgmum.28l",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "28N": {
+   "file": "rage_136102-0052a_pf0h.28n",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "29L": {
+   "file": "rage_136102-2044a_pgmuu.29l",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "machine": "flipjack",
+ "name": "Flipper Jack",
+ "mfr": "Jackson Co., Ltd.",
+ "year": "1983?",
+ "style": "letter-number",
+ "source": "misc/flipjack.cpp",
+ "docs": 0,
+ "devices": {
+  "F5": {
+   "file": "4.f5",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L5": {
+   "file": "1.l5",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M5": {
+   "file": "2.m5",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S5": {
+   "file": "s.s5",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "F6": {
+   "file": "r.f6",
+   "size": 8192,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "H6": {
+   "file": "b.h6",
+   "size": 8192,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "L6": {
+   "file": "cg.l6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F8": {
+   "file": "m3-7611-5.f8",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

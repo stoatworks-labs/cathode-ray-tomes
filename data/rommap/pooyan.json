@@ -1,0 +1,67 @@
+{
+ "machine": "pooyan",
+ "name": "Pooyan",
+ "mfr": "Konami",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "konami/pooyan.cpp",
+ "docs": 2,
+ "devices": {
+  "4A": {
+   "file": "1.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "2.5a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "3.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "4.7a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8A": {
+   "file": "xx.8a",
+   "size": 4096,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  },
+  "9A": {
+   "file": "6.9a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "9G": {
+   "file": "7.9g",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "10G": {
+   "file": "8.10g",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

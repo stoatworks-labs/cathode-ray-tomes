@@ -14,6 +14,8 @@ versioned and published together.
   web/data/postings/<n>.json    search postings, sharded by leading character
   web/data/parts/<id>.json      parts list recovered from a manual
   web/data/chips/<board>.json   designator -> part, function and revision
+  web/data/rommaps.json         index of ROM maps recovered from MAME
+  web/data/rommap/<machine>.json  ROM positions for one machine
 """
 import json, os, shutil, glob
 
@@ -36,6 +38,7 @@ def main():
         ("docs.json",     "data/index/docs.json"),
         ("chips.json",    "data/index/chips.json"),
         ("boards.json",   "data/boards.json"),
+        ("rommaps.json",  "data/rommaps.json"),
     ]:
         p = os.path.join(ROOT, src)
         if os.path.exists(p):
@@ -70,6 +73,9 @@ def main():
 
     for p in glob.glob(os.path.join(ROOT, "data", "related", "*.json")):
         total += copy(p, os.path.join(OUT, "related", os.path.basename(p))); files += 1
+
+    for p in glob.glob(os.path.join(ROOT, "data", "rommap", "*.json")):
+        total += copy(p, os.path.join(OUT, "rommap", os.path.basename(p))); files += 1
 
     print(f"{files:,} files, {total/1e6:.1f} MB -> web/data/")
     if files > 19000:

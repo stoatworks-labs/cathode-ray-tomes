@@ -1,0 +1,67 @@
+{
+ "machine": "rjammer",
+ "name": "Roller Jammer",
+ "mfr": "Nichibutsu / Alice",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "nichibutsu/tubep.cpp",
+ "docs": 2,
+ "devices": {
+  "1D": {
+   "file": "tp-s1.1d",
+   "size": 8192,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "tp-s2.2d",
+   "size": 8192,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "tp-s3.4d",
+   "size": 8192,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "tp-b1.6d",
+   "size": 8192,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "11B": {
+   "file": "tp-b5.11b",
+   "size": 8192,
+   "kind": "background",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "tp-b2.11d",
+   "size": 8192,
+   "kind": "background",
+   "pins": 24,
+   "part": null
+  },
+  "13D": {
+   "file": "tp-b3.13d",
+   "size": 4096,
+   "kind": "background",
+   "pins": 24,
+   "part": null
+  },
+  "19C": {
+   "file": "tp-b4.19c",
+   "size": 8192,
+   "kind": "background",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

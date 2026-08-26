@@ -1,0 +1,32 @@
+{
+ "machine": "cntsteer",
+ "name": "Counter Steer (Japan)",
+ "mfr": "Data East Corporation",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "dataeast/cntsteer.cpp",
+ "docs": 0,
+ "devices": {
+  "J4": {
+   "file": "by21.j4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J5": {
+   "file": "by22.j5",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J6": {
+   "file": "by23.j6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

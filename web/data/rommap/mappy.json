@@ -1,0 +1,81 @@
+{
+ "machine": "mappy",
+ "name": "Mappy (US)",
+ "mfr": "Namco",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "namco/mappy.cpp",
+ "docs": 1,
+ "devices": {
+  "1B": {
+   "file": "mpx_1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "mp1_2.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "mpx_3.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "mp1_4.1k",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "mp1_5.3b",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3M": {
+   "file": "mp1_6.3m",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3N": {
+   "file": "mp1_7.3n",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "mp1-6.4c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5B": {
+   "file": "mp1-5.5b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "mp1-7.5k",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

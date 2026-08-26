@@ -1,0 +1,53 @@
+{
+ "machine": "rockclim",
+ "name": "Rock Climber",
+ "mfr": "Taito",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "galaxian/galaxian_rockclim.cpp",
+ "docs": 0,
+ "devices": {
+  "F4": {
+   "file": "lc11.f4",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G5": {
+   "file": "lc13.g5",
+   "size": 4096,
+   "kind": "bg_gfx",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "lc09.c7",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "G7": {
+   "file": "lc14.g7",
+   "size": 4096,
+   "kind": "bg_gfx",
+   "pins": 24,
+   "part": null
+  },
+  "C9": {
+   "file": "lc10.c9",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E9": {
+   "file": "lc12.e9",
+   "size": 32,
+   "kind": "bg_proms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

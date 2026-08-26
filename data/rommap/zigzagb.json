@@ -1,0 +1,53 @@
+{
+ "machine": "zigzagb",
+ "name": "Zig Zag (bootleg Dig Dug conversion on Galaxian hardware, set 1)",
+ "mfr": "bootleg (LAX)",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "1H": {
+   "file": "zz_6.1h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "zz_5.1k",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "zz_d4.7f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7H": {
+   "file": "zz_d3.7h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "zz_d2.7k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7L": {
+   "file": "zz_d1.7l",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

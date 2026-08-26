@@ -1,0 +1,81 @@
+{
+ "machine": "chinsan",
+ "name": "Ganbare Chinsan Ooshoubu (MC-8123A, 317-5012)",
+ "mfr": "Sanritsu",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "sanritsu/chinsan.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "mm60.2c",
+   "size": 32,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7D": {
+   "file": "mm00.7d",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7K": {
+   "file": "mm20.7k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "mm01.8d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "mm21.8k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "9K": {
+   "file": "mm22.9k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "9M": {
+   "file": "mm61.9m",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9N": {
+   "file": "mm62.9n",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10N": {
+   "file": "mm63.10n",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "13D": {
+   "file": "mm40.13d",
+   "size": 65536,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

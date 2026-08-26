@@ -1,0 +1,39 @@
+{
+ "machine": "mangchi",
+ "name": "Mang-Chi",
+ "mfr": "Afega",
+ "year": "2000",
+ "style": "letter-number",
+ "source": "nmk/nmk16.cpp",
+ "docs": 0,
+ "devices": {
+  "UC1": {
+   "file": "afega4.uc1",
+   "size": 524288,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UC6": {
+   "file": "afega5.uc6",
+   "size": 524288,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UC11": {
+   "file": "afega6.uc11",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "UC14": {
+   "file": "afega7.uc14",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

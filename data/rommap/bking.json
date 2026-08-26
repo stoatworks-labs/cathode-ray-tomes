@@ -1,0 +1,88 @@
+{
+ "machine": "bking",
+ "name": "Birdie King",
+ "mfr": "Taito Corporation",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "taito/bking.cpp",
+ "docs": 1,
+ "devices": {
+  "C2": {
+   "file": "dm04.c2",
+   "size": 32,
+   "kind": "collision_detection",
+   "pins": 16,
+   "part": null
+  },
+  "F4": {
+   "file": "dm_17.f4",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "F5": {
+   "file": "dm_16.f5",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E7": {
+   "file": "dm_02.e7",
+   "size": 2048,
+   "kind": "ball1",
+   "pins": 24,
+   "part": null
+  },
+  "F7": {
+   "file": "dm_15.f7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F8": {
+   "file": "dm_14.f8",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E9": {
+   "file": "dm_02.e9",
+   "size": 2048,
+   "kind": "ball2",
+   "pins": 24,
+   "part": null
+  },
+  "E10": {
+   "file": "dm_01.e10",
+   "size": 2048,
+   "kind": "crow",
+   "pins": 24,
+   "part": null
+  },
+  "F10": {
+   "file": "dm_13.f10",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F11": {
+   "file": "dm_12.f11",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F13": {
+   "file": "dm_11.f13",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

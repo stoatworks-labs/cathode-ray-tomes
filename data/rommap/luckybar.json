@@ -1,0 +1,32 @@
+{
+ "machine": "luckybar",
+ "name": "Lucky Bar (W-4 with MC68705 MCU)",
+ "mfr": "<unknown>",
+ "year": "198?",
+ "style": "letter-number",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "F3": {
+   "file": "82s129.f3",
+   "size": 256,
+   "kind": "unkprom",
+   "pins": 16,
+   "part": null
+  },
+  "G13": {
+   "file": "82s129.g13",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G14": {
+   "file": "82s129.g14",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,263 @@
+{
+ "machine": "roadriot",
+ "name": "Road Riot 4WD (04 Dec 1991, conversion kit)",
+ "mfr": "Atari Games",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "atari/atarig42.cpp",
+ "docs": 6,
+ "devices": {
+  "2P": {
+   "file": "136089-1017.2p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "2S": {
+   "file": "136089-1018.2s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "136089-1012.3f",
+   "size": 2688,
+   "kind": "asic65:asic65cpu",
+   "pins": null,
+   "part": null
+  },
+  "3P": {
+   "file": "136089-1019.3p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "3S": {
+   "file": "136089-1020.3s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "4E": {
+   "file": "136087-1025.4e",
+   "size": 65536,
+   "kind": "commcpu",
+   "pins": 32,
+   "part": null
+  },
+  "4P": {
+   "file": "136089-1021.4p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "4S": {
+   "file": "136089-1022.4s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "5C": {
+   "file": "roadriot-eeprom.5c",
+   "size": 2048,
+   "kind": "eeprom",
+   "pins": 24,
+   "part": null
+  },
+  "5P": {
+   "file": "136089-1023.5p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "5S": {
+   "file": "136089-1024.5s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "6P": {
+   "file": "136089-1025.6p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "6S": {
+   "file": "136089-1026.6s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7P": {
+   "file": "136089-1027.7p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "7S": {
+   "file": "136089-1028.7s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "8C": {
+   "file": "136089-3213.8c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "136089-3214.8d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8P": {
+   "file": "136089-1029.8p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "8S": {
+   "file": "136089-1030.8s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "9C": {
+   "file": "136089-2015.9c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9D": {
+   "file": "136089-2016.9d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9P": {
+   "file": "136089-1031.9p",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "9S": {
+   "file": "136089-1032.9s",
+   "size": 131072,
+   "kind": "rle",
+   "pins": 32,
+   "part": null
+  },
+  "12C": {
+   "file": "136089-1047.12c",
+   "size": 65536,
+   "kind": "jsa:cpu",
+   "pins": 32,
+   "part": null
+  },
+  "12E": {
+   "file": "136089-1051.12e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "15E": {
+   "file": "136089-1050.15e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "17E": {
+   "file": "136089-1049.17e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "19E": {
+   "file": "136089-1048.19e",
+   "size": 131072,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "20C": {
+   "file": "136089-1042.20c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20D": {
+   "file": "136089-1040.20d",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20P": {
+   "file": "136089-1001.20p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "21P": {
+   "file": "136089-1003.21p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "22C": {
+   "file": "136089-1038.22c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22D": {
+   "file": "136089-1041.22d",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22J": {
+   "file": "136089-1046.22j",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22P": {
+   "file": "136089-1002.22p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,130 @@
+{
+ "machine": "bking2",
+ "name": "Birdie King 2",
+ "mfr": "Taito Corporation",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "taito/bking.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "dm_04.2c",
+   "size": 32,
+   "kind": "collision_detection",
+   "pins": 16,
+   "part": null
+  },
+  "2D": {
+   "file": "dm_03.2d",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2F": {
+   "file": "ad6_08.2f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "ad6_16.4d",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "4F": {
+   "file": "ad6_07.4f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "ad6_14.5a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "ad6_06.5f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "ad6_13.7a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "ad6_05.7f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8A": {
+   "file": "ad6_12.8a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "8F": {
+   "file": "ad6_04.8f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10A": {
+   "file": "ad6_11.10a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "10F": {
+   "file": "ad6_03.10f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11A": {
+   "file": "ad6_10.11a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "11F": {
+   "file": "ad6_02.11f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "13A": {
+   "file": "ad6_09.13a",
+   "size": 4096,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "13F": {
+   "file": "ad6_01.13f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

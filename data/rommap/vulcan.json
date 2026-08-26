@@ -1,0 +1,88 @@
+{
+ "machine": "vulcan",
+ "name": "Vulcan Venture (new)",
+ "mfr": "Konami",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "konami/twin16.cpp",
+ "docs": 0,
+ "devices": {
+  "4N": {
+   "file": "785_w04.4n",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4R": {
+   "file": "785_w08.4r",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5A": {
+   "file": "785_f01.5a",
+   "size": 131072,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  },
+  "6N": {
+   "file": "785_w05.6n",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6R": {
+   "file": "785_w09.6r",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "785_f02.7c",
+   "size": 131072,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "8N": {
+   "file": "785_p06.8n",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "8S": {
+   "file": "785_p12.8s",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "785_g03.10a",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "10N": {
+   "file": "785_p07.10n",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "10S": {
+   "file": "785_p13.10s",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

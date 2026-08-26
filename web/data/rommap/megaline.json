@@ -1,0 +1,60 @@
+{
+ "machine": "megaline",
+ "name": "Mega Lines (Wing W-7 System)",
+ "mfr": "Fun World",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "J1": {
+   "file": "13.j1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K1": {
+   "file": "14.k1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "R1": {
+   "file": "18.r1",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M3": {
+   "file": "tbp24s10.m3",
+   "size": 256,
+   "kind": "unkprom",
+   "pins": 16,
+   "part": null
+  },
+  "F4": {
+   "file": "tbp24s10n.f4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H4": {
+   "file": "tbp24s10n.h4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J4": {
+   "file": "n82s123an.j4",
+   "size": 32,
+   "kind": "proms2",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

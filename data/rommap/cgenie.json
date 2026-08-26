@@ -1,0 +1,39 @@
+{
+ "machine": "cgenie",
+ "name": "Colour Genie EG2000",
+ "mfr": "EACA",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "eaca/cgenie.cpp",
+ "docs": 0,
+ "devices": {
+  "Z1": {
+   "file": "cg_rom1.z1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "Z2": {
+   "file": "cg_rom2.z2",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "Z3": {
+   "file": "cg_rom3.z3",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "Z4": {
+   "file": "cg_rom4.z4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

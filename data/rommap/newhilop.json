@@ -1,0 +1,32 @@
+{
+ "machine": "newhilop",
+ "name": "New Hi-Low Poker",
+ "mfr": "Song Won?",
+ "year": "198?",
+ "style": "number-letter",
+ "source": "misc/norautp.cpp",
+ "docs": 0,
+ "devices": {
+  "3A": {
+   "file": "new_hi-low.3a",
+   "size": 65536,
+   "kind": "gfx_data",
+   "pins": 32,
+   "part": null
+  },
+  "3E": {
+   "file": "new_hi-low.3e",
+   "size": 65536,
+   "kind": "cpu_data",
+   "pins": 32,
+   "part": null
+  },
+  "4D": {
+   "file": "82s129.4d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "bjourney",
+ "name": "Blue's Journey / Raguy (ALM-001 ~ ALH-001)",
+ "mfr": "Alpha Denshi Co.",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "snk/neogeo.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "022-c1.c1",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "022-c2.c2",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "022-c3.c3",
+   "size": 524288,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C4": {
+   "file": "022-c4.c4",
+   "size": 524288,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V11": {
+   "file": "022-v11.v11",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "V22": {
+   "file": "022-v22.v22",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,382 @@
+{
+ "machine": "cheyenne",
+ "name": "Cheyenne (version 1.0)",
+ "mfr": "Exidy",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "exidy/exidy440.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "cyl-1.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "cyl-1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "cyl-1.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "cyl-1.1e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "cya-1.1h",
+   "size": 8192,
+   "kind": "440audio:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "cya-1.1k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "cya-1.1l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "cya-1.1m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "cya-1.1n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1P": {
+   "file": "cya-1.1p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "cya-1.1r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "xbl.2h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "cya-1.2k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "cya-1.2l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "cya-1.2m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "cya-1.2n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "cya-1.2p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2R": {
+   "file": "cya-1.2r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2S": {
+   "file": "cya-1.2s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2T": {
+   "file": "cya-1.2t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "cyl-1.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "cyl-1.3b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "cyl-1.3d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "cyl-1.3e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "cyl-1.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "cyl-1.4b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "cyl-1.4d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "cyl-1.4e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "xbl.4k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "xbl.5k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "cyl-1.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "cyl-1.6b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "cyl-1.6d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "cyl-1.6e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "xbl.6k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7B": {
+   "file": "cyl-1.7b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "cyl-1.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "cyl-1.7d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "cyl-1.7e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "xbl.7k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "cyl-1.8b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "cyl-1.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "cyl-1.8d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "cyl-1.8e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "xbl.8k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "xbl.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "10B": {
+   "file": "cyl-1.10b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10C": {
+   "file": "cyl-1.10c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10D": {
+   "file": "cyl-1.10d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10E": {
+   "file": "cyl-1.10e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "cyl-1.11c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11E": {
+   "file": "cyl-1.11e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12H": {
+   "file": "xbl.12h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

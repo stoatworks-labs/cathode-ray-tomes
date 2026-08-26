@@ -1,0 +1,32 @@
+{
+ "machine": "pma",
+ "name": "PMA Poker",
+ "mfr": "PMA",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "misc/norautp.cpp",
+ "docs": 0,
+ "devices": {
+  "J2": {
+   "file": "pma.j2",
+   "size": 2048,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "E4": {
+   "file": "pma.e4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E5": {
+   "file": "pma.e5",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

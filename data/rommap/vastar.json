@@ -1,0 +1,39 @@
+{
+ "machine": "vastar",
+ "name": "Vastar (set 1)",
+ "mfr": "Orca (Sesame Japan license)",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/vastar.cpp",
+ "docs": 0,
+ "devices": {
+  "6M": {
+   "file": "tbp24s10.6m",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "6P": {
+   "file": "tbp24s10.6p",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "6S": {
+   "file": "tbp24s10.6s",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "8N": {
+   "file": "tbp24s10.8n",
+   "size": 256,
+   "kind": "vasvid:unkprom",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "machine": "berzerk",
+ "name": "Berzerk (revision RC31A)",
+ "mfr": "Stern Electronics",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "stern/berzerk.cpp",
+ "docs": 1,
+ "devices": {
+  "1C": {
+   "file": "berzerk_rc31_1c.rom0.1c",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "berzerk_rc31_1d.rom1.1d",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2C": {
+   "file": "berzerk_r_vo_2c.2c",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "berzerk_rc31_3d.rom2.3d",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "berzerk_rc31a_5c.rom5.5c",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "berzerk_rc31_5d.rom3.5d",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "berzerk_rc31_6d.rom4.6d",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

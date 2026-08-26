@@ -1,0 +1,74 @@
+{
+ "machine": "superpac",
+ "name": "Super Pac-Man",
+ "mfr": "Namco",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "namco/mappy.cpp",
+ "docs": 5,
+ "devices": {
+  "1B": {
+   "file": "sp1-1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "sp1-2.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "spc-3.1k",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "sp1-6.3c",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3F": {
+   "file": "spv-2.3f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "superpac.3l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "superpac.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4C": {
+   "file": "superpac.4c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4E": {
+   "file": "superpac.4e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

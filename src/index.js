@@ -224,6 +224,19 @@ async function handleApi(url, env, request) {
     return json({ query: q, terms, total: ranked.length, results: ranked.slice(0, limit) });
   }
 
+  // /api/rommaps and /api/rommap/<machine> — ROM positions recovered from
+  // MAME's romset filenames. A different and much weaker thing than a board
+  // map: memory devices only, one source, no cross-check.
+  if (p === "rommaps") {
+    return json((await index(env, request, "rommaps")) || []);
+  }
+  const rm = url.pathname.match(/^\/api\/rommap\/([a-z0-9_-]{1,40})$/);
+  if (rm) {
+    const r = await env.ASSETS.fetch(
+      new Request(new URL(`/data/rommap/${rm[1]}.json`, url), request));
+    return r.ok ? json(await r.json()) : notFound("no ROM map for this machine");
+  }
+
   if (p === "boards") {
     return json((await index(env, request, "boards")) || []);
   }

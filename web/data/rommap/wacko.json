@@ -1,0 +1,102 @@
+{
+ "machine": "wacko",
+ "name": "Wacko",
+ "mfr": "Bally Midway",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "bally/mcr.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "wackovid.1a",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "wackovid.1b",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "wackovid.1d",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "wackovid.1e",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "wackocpu.2d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "wackocpu.3d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3G": {
+   "file": "wackocpu.3g",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "wackocpu.4d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4G": {
+   "file": "wackocpu.4g",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "wackocpu.5d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "wackosnd.7a",
+   "size": 4096,
+   "kind": "ssio:cpu",
+   "pins": 24,
+   "part": null
+  },
+  "8A": {
+   "file": "wackosnd.8a",
+   "size": 4096,
+   "kind": "ssio:cpu",
+   "pins": 24,
+   "part": null
+  },
+  "9A": {
+   "file": "wackosnd.9a",
+   "size": 4096,
+   "kind": "ssio:cpu",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

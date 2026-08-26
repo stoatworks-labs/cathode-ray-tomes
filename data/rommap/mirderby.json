@@ -1,0 +1,67 @@
+{
+ "machine": "mirderby",
+ "name": "Miracle Derby (Japan)",
+ "mfr": "Home Data / Ascot",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "misc/mirderby.cpp",
+ "docs": 0,
+ "devices": {
+  "1G": {
+   "file": "x70_a11.1g",
+   "size": 8192,
+   "kind": "x70coin_rom",
+   "pins": 24,
+   "part": null
+  },
+  "5G": {
+   "file": "x70_a04.5g",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "6L": {
+   "file": "x70a09.6l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7L": {
+   "file": "x70a08.7l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8G": {
+   "file": "x70_a03.8g",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8L": {
+   "file": "x70a07.8l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12E": {
+   "file": "x70_b02.12e",
+   "size": 32768,
+   "kind": "main_rom",
+   "pins": 28,
+   "part": null
+  },
+  "14E": {
+   "file": "x70_c01.14e",
+   "size": 65536,
+   "kind": "sub_rom",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

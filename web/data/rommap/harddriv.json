@@ -1,0 +1,81 @@
+{
+ "machine": "harddriv",
+ "name": "Hard Drivin' (cockpit, rev 7)",
+ "mfr": "Atari Games",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "atari/harddriv.cpp",
+ "docs": 4,
+ "devices": {
+  "10H": {
+   "file": "136052-1101.10h",
+   "size": 65536,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "10J": {
+   "file": "136052-1102.10j",
+   "size": 65536,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "10K": {
+   "file": "136052-1103.10k",
+   "size": 65536,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "10L": {
+   "file": "136052-1104.10l",
+   "size": 65536,
+   "kind": "mainpcb:user1",
+   "pins": 32,
+   "part": null
+  },
+  "30A": {
+   "file": "136052-1126.30a",
+   "size": 65536,
+   "kind": "mainpcb:harddriv_sound:serialroms",
+   "pins": 32,
+   "part": null
+  },
+  "45A": {
+   "file": "136052-1125.45a",
+   "size": 65536,
+   "kind": "mainpcb:harddriv_sound:serialroms",
+   "pins": 32,
+   "part": null
+  },
+  "45N": {
+   "file": "136052-1121.45n",
+   "size": 32768,
+   "kind": "mainpcb:harddriv_sound:soundcpu",
+   "pins": 28,
+   "part": null
+  },
+  "55A": {
+   "file": "136052-1124.55a",
+   "size": 65536,
+   "kind": "mainpcb:harddriv_sound:serialroms",
+   "pins": 32,
+   "part": null
+  },
+  "65A": {
+   "file": "136052-1123.65a",
+   "size": 65536,
+   "kind": "mainpcb:harddriv_sound:serialroms",
+   "pins": 32,
+   "part": null
+  },
+  "70N": {
+   "file": "136052-1122.70n",
+   "size": 32768,
+   "kind": "mainpcb:harddriv_sound:soundcpu",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "hotsmash",
+ "name": "Vs. Hot Smash",
+ "mfr": "Kaneko / Taito",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "taito/superqix.cpp",
+ "docs": 0,
+ "devices": {
+  "1N": {
+   "file": "b18-01.1n",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "1R": {
+   "file": "b18-02.1r",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "1T": {
+   "file": "b18-03.1t",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "6BC": {
+   "file": "b18-04.6bc",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7H": {
+   "file": "b18-05.7h",
+   "size": 32768,
+   "kind": "sound samples",
+   "pins": 28,
+   "part": null
+  },
+  "7K": {
+   "file": "b18-06.7k",
+   "size": 2048,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

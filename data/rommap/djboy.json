@@ -1,0 +1,109 @@
+{
+ "machine": "djboy",
+ "name": "DJ Boy (World)",
+ "mfr": "Kaneko",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "kaneko/djboy.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "bs06.1b",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1D": {
+   "file": "bs002.1d",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1F": {
+   "file": "bs001.1f",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1H": {
+   "file": "bs000.1h",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1K": {
+   "file": "bs003.1k",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1S": {
+   "file": "bs004.1s",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1U": {
+   "file": "bs005.1u",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "4B": {
+   "file": "djboy.4b",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4D": {
+   "file": "bs100.4d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5J": {
+   "file": "bs203.5j",
+   "size": 262144,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "5Y": {
+   "file": "djboy.5y",
+   "size": 65536,
+   "kind": "subcpu",
+   "pins": 32,
+   "part": null
+  },
+  "6W": {
+   "file": "bs101.6w",
+   "size": 131072,
+   "kind": "subcpu",
+   "pins": 32,
+   "part": null
+  },
+  "8C": {
+   "file": "bs200.8c",
+   "size": 131072,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "9S": {
+   "file": "beast.9s",
+   "size": 4096,
+   "kind": "beast",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

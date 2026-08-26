@@ -1,0 +1,74 @@
+{
+ "machine": "bcruzm12",
+ "name": "Battle Cruiser M-12",
+ "mfr": "Sigma Enterprises Inc.",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/marineb.cpp",
+ "docs": 0,
+ "devices": {
+  "6K": {
+   "file": "bcm12col.6k",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7K": {
+   "file": "bcm12col.7k",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12AB": {
+   "file": "d-84_1.12ab",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12B": {
+   "file": "d-84_2.12b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12C": {
+   "file": "d-84_3.12c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "17EF": {
+   "file": "d-84_4.17ef",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "17F": {
+   "file": "d-84_5.17f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "17FH": {
+   "file": "d-84_6.17fh",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "17H": {
+   "file": "d-84_7.17h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

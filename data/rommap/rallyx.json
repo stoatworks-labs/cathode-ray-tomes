@@ -1,0 +1,81 @@
+{
+ "machine": "rallyx",
+ "name": "Rally X (32k Ver.?)",
+ "mfr": "Namco",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "namco/rallyx.cpp",
+ "docs": 2,
+ "devices": {
+  "1E": {
+   "file": "rallyxn.1e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "rallyxn.1h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "rallyxn.1k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "rx1-4.2m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3P": {
+   "file": "rx1-5.3p",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4N": {
+   "file": "rx1-2.4n",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7K": {
+   "file": "rx1-3.7k",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8M": {
+   "file": "rx1-6.8m",
+   "size": 256,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "8P": {
+   "file": "rx1-7.8p",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11N": {
+   "file": "rx1-1.11n",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

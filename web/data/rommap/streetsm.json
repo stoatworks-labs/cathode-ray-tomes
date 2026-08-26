@@ -1,0 +1,60 @@
+{
+ "machine": "streetsm",
+ "name": "Street Smart (US version 2)",
+ "mfr": "SNK",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "snk/snk68.cpp",
+ "docs": 1,
+ "devices": {
+  "1N": {
+   "file": "pl20l10a.1n",
+   "size": 204,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "14H": {
+   "file": "s2-1ver2.14h",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14K": {
+   "file": "s2-2ver2.14k",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16C": {
+   "file": "s2-5.16c",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "18D": {
+   "file": "s2-6.18d",
+   "size": 131072,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "25L": {
+   "file": "s2-9.25l",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "25M": {
+   "file": "s2-10.25m",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

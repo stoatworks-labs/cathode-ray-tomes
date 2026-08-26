@@ -1,0 +1,60 @@
+{
+ "machine": "guts",
+ "name": "Guts n' Glory (prototype)",
+ "mfr": "Atari Games",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "atari/eprom.cpp",
+ "docs": 0,
+ "devices": {
+  "1E": {
+   "file": "guts-adpcm1.1e",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "1F": {
+   "file": "guts-adpcm0.1f",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "10C": {
+   "file": "guts-snd.10c",
+   "size": 65536,
+   "kind": "jsa:cpu",
+   "pins": 32,
+   "part": null
+  },
+  "40A": {
+   "file": "guts-lo0.40a",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "40B": {
+   "file": "guts-lo1.40b",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "50A": {
+   "file": "guts-hi0.50a",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "50B": {
+   "file": "guts-hi1.50b",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

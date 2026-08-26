@@ -1,0 +1,102 @@
+{
+ "machine": "repulse",
+ "name": "Repulse",
+ "mfr": "Crux / Sega",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "orca/kyugo.cpp",
+ "docs": 1,
+ "devices": {
+  "1F": {
+   "file": "r.1f",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1H": {
+   "file": "g.1h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1J": {
+   "file": "b.1j",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2C": {
+   "file": "m1.2c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "8.6a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "7A": {
+   "file": "9.7a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8A": {
+   "file": "10.8a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9A": {
+   "file": "11.9a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9H": {
+   "file": "15.9h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "10A": {
+   "file": "12.10a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "10H": {
+   "file": "16.10h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11A": {
+   "file": "13.11a",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "11H": {
+   "file": "17.11h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

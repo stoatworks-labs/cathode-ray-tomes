@@ -1,0 +1,46 @@
+{
+ "machine": "cupsoc",
+ "name": "Seibu Cup Soccer (set 1)",
+ "mfr": "Seibu Kaihatsu",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "seibu/legionna.cpp",
+ "docs": 0,
+ "devices": {
+  "4Y": {
+   "file": "back-1.4y",
+   "size": 1048576,
+   "kind": "back",
+   "pins": 32,
+   "part": null
+  },
+  "6Y": {
+   "file": "back-2.6y",
+   "size": 524288,
+   "kind": "fore",
+   "pins": 32,
+   "part": null
+  },
+  "7A": {
+   "file": "seibu8.7a",
+   "size": 262144,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "8A": {
+   "file": "seibu7.8a",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "8C": {
+   "file": "obj.8c",
+   "size": 1048576,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

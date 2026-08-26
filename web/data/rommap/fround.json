@@ -1,0 +1,32 @@
+{
+ "machine": "fround",
+ "name": "The Final Round (version M)",
+ "mfr": "Konami",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "konami/twin16.cpp",
+ "docs": 1,
+ "devices": {
+  "5A": {
+   "file": "870_c01.5a",
+   "size": 131072,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "870_c02.7c",
+   "size": 131072,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "870_f03.10a",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

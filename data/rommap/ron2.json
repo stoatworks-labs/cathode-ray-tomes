@@ -1,0 +1,116 @@
+{
+ "machine": "ron2",
+ "name": "Futari Mahjong Ron II",
+ "mfr": "Sanritsu",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "sanritsu/ron.cpp",
+ "docs": 0,
+ "devices": {
+  "1N": {
+   "file": "82s123_5.1n",
+   "size": 32,
+   "kind": "color_prom",
+   "pins": 16,
+   "part": null
+  },
+  "2M": {
+   "file": "82s129_4.2m",
+   "size": 256,
+   "kind": "clut_proms",
+   "pins": 16,
+   "part": null
+  },
+  "2N": {
+   "file": "82s129_3.2n",
+   "size": 256,
+   "kind": "clut_proms",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "r0_mu.4a",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "r0_v0.4c",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "r0__b.4k",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4L": {
+   "file": "r0_a2.4l",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "r0_a1.4n",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "82s123_1.6b",
+   "size": 32,
+   "kind": "unk_proms",
+   "pins": 16,
+   "part": null
+  },
+  "6C": {
+   "file": "82s123_2.6c",
+   "size": 32,
+   "kind": "unk_proms",
+   "pins": 16,
+   "part": null
+  },
+  "8H": {
+   "file": "r0__5.8h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "9H": {
+   "file": "r0__1.9h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "9K": {
+   "file": "r0__2.9k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "9L": {
+   "file": "r0__3.9l",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "9N": {
+   "file": "r0__4.9n",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "cabal",
+ "name": "Cabal (World, Joystick)",
+ "mfr": "TAD Corporation",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "seibu/cabal.cpp",
+ "docs": 1,
+ "devices": {
+  "4J": {
+   "file": "prom10.4j",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6H": {
+   "file": "11.6h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6J": {
+   "file": "10.6j",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7H": {
+   "file": "13.7h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7J": {
+   "file": "12.7j",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8E": {
+   "file": "prom05.8e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

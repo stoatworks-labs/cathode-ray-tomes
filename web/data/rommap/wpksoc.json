@@ -1,0 +1,74 @@
+{
+ "machine": "wpksoc",
+ "name": "World PK Soccer",
+ "mfr": "Jaleco",
+ "year": "1995",
+ "style": "letter-number",
+ "source": "irem/m107.cpp",
+ "docs": 0,
+ "devices": {
+  "C00": {
+   "file": "pk-c00-os.c00",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "DA0": {
+   "file": "pk-da0.da0",
+   "size": 524288,
+   "kind": "irem",
+   "pins": 32,
+   "part": null
+  },
+  "H0": {
+   "file": "pk-h0-eur-d.h0",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L0": {
+   "file": "pk-l0-eur-d.l0",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SH0": {
+   "file": "pk-sh0.sh0",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "SL0": {
+   "file": "pk-sl0.sl0",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "C01": {
+   "file": "pk-c01-os.c01",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C10": {
+   "file": "pk-c10-os.c10",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C11": {
+   "file": "pk-c11-os.c11",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

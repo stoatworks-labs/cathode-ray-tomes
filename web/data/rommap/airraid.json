@@ -1,0 +1,46 @@
+{
+ "machine": "airraid",
+ "name": "Air Raid (Single PCB)",
+ "mfr": "Seibu Kaihatsu",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "seibu/airraid.cpp",
+ "docs": 0,
+ "devices": {
+  "6F": {
+   "file": "5.6f",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "4.7f",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "13E": {
+   "file": "3.13e",
+   "size": 8192,
+   "kind": "airraid_vid:tx_gfx",
+   "pins": 24,
+   "part": null
+  },
+  "16J": {
+   "file": "1.16j",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "19J": {
+   "file": "2.19j",
+   "size": 65536,
+   "kind": "maindata",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

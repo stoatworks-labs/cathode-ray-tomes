@@ -1,0 +1,32 @@
+{
+ "machine": "enmadaio",
+ "name": "Enma Daio (Japan)",
+ "mfr": "Toaplan / Taito",
+ "year": "1993",
+ "style": "letter-number",
+ "source": "toaplan/enmadaio.cpp",
+ "docs": 0,
+ "devices": {
+  "C8": {
+   "file": "03n_u53.c8",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C18": {
+   "file": "rom5_u31.c18",
+   "size": 1048576,
+   "kind": "gp9001",
+   "pins": 32,
+   "part": null
+  },
+  "C19": {
+   "file": "rom4_u30.c19",
+   "size": 1048576,
+   "kind": "gp9001",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

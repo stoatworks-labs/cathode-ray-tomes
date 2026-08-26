@@ -1,0 +1,32 @@
+{
+ "machine": "dreambal",
+ "name": "Dream Ball (Japan V2.4)",
+ "mfr": "NDK / Data East",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "dataeast/dreambal.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "mm_00-2.1c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "12B": {
+   "file": "mm_01-1.12b",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12F": {
+   "file": "mm_01-1.12f",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

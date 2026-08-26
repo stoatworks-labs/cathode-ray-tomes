@@ -1,0 +1,74 @@
+{
+ "machine": "dogfight",
+ "name": "Dog Fight (Thunderbolt)",
+ "mfr": "Orca / Thunderbolt",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/zodiack.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "mmi6331.2a",
+   "size": 32,
+   "kind": "videopcb:proms",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "mmi6331.2b",
+   "size": 32,
+   "kind": "videopcb:proms",
+   "pins": 16,
+   "part": null
+  },
+  "3S": {
+   "file": "df-6.3s",
+   "size": 2048,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  },
+  "4F": {
+   "file": "df-2.4f",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4H": {
+   "file": "df-3.4h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4M": {
+   "file": "df-4.4m",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "df-5.4n",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7N": {
+   "file": "df-7.7n",
+   "size": 4096,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  },
+  "7R": {
+   "file": "df-8.7r",
+   "size": 4096,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

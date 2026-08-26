@@ -1,0 +1,39 @@
+{
+ "machine": "tactcian",
+ "name": "Tactician (set 1)",
+ "mfr": "Konami (Sega license)",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "namco/rallyx.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "tacticia.c1",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "S1": {
+   "file": "tacticia.s1",
+   "size": 4096,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  },
+  "C2": {
+   "file": "tacticia.c2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "S2": {
+   "file": "tacticia.s2",
+   "size": 4096,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

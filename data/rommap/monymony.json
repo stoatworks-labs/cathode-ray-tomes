@@ -1,0 +1,95 @@
+{
+ "machine": "monymony",
+ "name": "Money Money (set 1)",
+ "mfr": "Zaccaria",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "zaccaria/zaccaria.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "cpu1.1a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "cpu2.1b",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "cpu3.1c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "cpu4.1d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "bg3.1e",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1F": {
+   "file": "bg2.1f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1G": {
+   "file": "snd7.1g",
+   "size": 4096,
+   "kind": "audiopcb:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "snd8.1h",
+   "size": 4096,
+   "kind": "audiopcb:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "2A": {
+   "file": "cpu5.2a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2C": {
+   "file": "cpu6.2c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "bg1.2d",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "2G": {
+   "file": "snd13.2g",
+   "size": 8192,
+   "kind": "audiopcb:melodycpu",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "machine": "salmndr2",
+ "name": "Salamander 2 (ver JAA)",
+ "mfr": "Konami",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "konami/konamigx.cpp",
+ "docs": 1,
+ "devices": {
+  "7C": {
+   "file": "521-a05.7c",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "7G": {
+   "file": "521-a13.7g",
+   "size": 1048576,
+   "kind": "k054539",
+   "pins": 32,
+   "part": null
+  },
+  "9C": {
+   "file": "521-a04.9c",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "9G": {
+   "file": "521-a12.9g",
+   "size": 2097152,
+   "kind": "k054539",
+   "pins": 32,
+   "part": null
+  },
+  "13C": {
+   "file": "521-a13.13c",
+   "size": 2097152,
+   "kind": "k056832",
+   "pins": 32,
+   "part": null
+  },
+  "15H": {
+   "file": "521-a11.15h",
+   "size": 1048576,
+   "kind": "k056832",
+   "pins": 32,
+   "part": null
+  },
+  "17H": {
+   "file": "521-a09.17h",
+   "size": 2097152,
+   "kind": "k056832",
+   "pins": 32,
+   "part": null
+  },
+  "25G": {
+   "file": "521-a08.25g",
+   "size": 2097152,
+   "kind": "k055673",
+   "pins": 32,
+   "part": null
+  },
+  "27B": {
+   "file": "521jaa03.27b",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "28G": {
+   "file": "521-a07.28g",
+   "size": 2097152,
+   "kind": "k055673",
+   "pins": 32,
+   "part": null
+  },
+  "30G": {
+   "file": "521-a06.30g",
+   "size": 2097152,
+   "kind": "k055673",
+   "pins": 32,
+   "part": null
+  },
+  "31B": {
+   "file": "521jaa02.31b",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

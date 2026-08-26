@@ -1,0 +1,81 @@
+{
+ "machine": "cheekyms",
+ "name": "Cheeky Mouse",
+ "mfr": "Universal",
+ "year": "1980",
+ "style": "letter-number",
+ "source": "universal/cheekyms.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "cm01.c1",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C2": {
+   "file": "cm02.c2",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C5": {
+   "file": "cm03.c5",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N5": {
+   "file": "cm07.n5",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C6": {
+   "file": "cm04.c6",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N6": {
+   "file": "cm08.n6",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "cm05.c7",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C8": {
+   "file": "cm06.c8",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M8": {
+   "file": "cm.m8",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M9": {
+   "file": "cm.m9",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

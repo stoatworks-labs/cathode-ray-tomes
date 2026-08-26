@@ -1,0 +1,102 @@
+{
+ "machine": "chkun",
+ "name": "Chance Kun (Japan)",
+ "mfr": "Peni",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "konami/timeplt.cpp",
+ "docs": 0,
+ "devices": {
+  "1H": {
+   "file": "2.1h",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "mb7114e.2b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2J": {
+   "file": "3.2j",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3L": {
+   "file": "15.3l",
+   "size": 8192,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "13.4d",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8H": {
+   "file": "14.8h",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8K": {
+   "file": "v1.8k",
+   "size": 65536,
+   "kind": "tc8830f",
+   "pins": 32,
+   "part": null
+  },
+  "9F": {
+   "file": "b.9f",
+   "size": 235,
+   "kind": "pld",
+   "pins": null,
+   "part": null
+  },
+  "9K": {
+   "file": "v2.9k",
+   "size": 65536,
+   "kind": "tc8830f",
+   "pins": 32,
+   "part": null
+  },
+  "10H": {
+   "file": "4.10h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "14A": {
+   "file": "12.14a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "16A": {
+   "file": "n1.16a",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "16C": {
+   "file": "a.16c",
+   "size": 235,
+   "kind": "pld",
+   "pins": null,
+   "part": null
+  }
+ }
+}

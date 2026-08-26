@@ -1,0 +1,32 @@
+{
+ "machine": "pandoras",
+ "name": "Pandora's Palace",
+ "mfr": "Konami / Interlogic",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "konami/pandoras.cpp",
+ "docs": 2,
+ "devices": {
+  "2A": {
+   "file": "pandora.2a",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "16B": {
+   "file": "pandora.16b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "17G": {
+   "file": "pandora.17g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

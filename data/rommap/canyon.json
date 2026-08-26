@@ -1,0 +1,32 @@
+{
+ "machine": "canyon",
+ "name": "Canyon Bomber",
+ "mfr": "Atari",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/canyon.cpp",
+ "docs": 1,
+ "devices": {
+  "N5": {
+   "file": "9505-01.n5",
+   "size": 256,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "J6": {
+   "file": "9491-01.j6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "N8": {
+   "file": "9492-01.n8",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

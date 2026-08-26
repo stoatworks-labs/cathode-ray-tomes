@@ -1,0 +1,39 @@
+{
+ "machine": "cgang",
+ "name": "Cosmo Gang (US)",
+ "mfr": "Namco (Data East license)",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "namco/cgang.cpp",
+ "docs": 1,
+ "devices": {
+  "4B": {
+   "file": "cg1_sp0b.4b",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "4J": {
+   "file": "cg1_mp0d.4j",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "cg2_9c_e02a.9c",
+   "size": 131072,
+   "kind": "adpcm0",
+   "pins": 32,
+   "part": null
+  },
+  "9E": {
+   "file": "cg2_9e_586e.9e",
+   "size": 131072,
+   "kind": "adpcm1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

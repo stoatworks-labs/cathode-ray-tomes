@@ -221,6 +221,28 @@ outputs of U34, a 74LS244" — which is a real source for a chip *list* if that 
 wanted. It is not a source for a board map, and building one would need the silkscreen
 layout from somewhere else.
 
+## ROM maps are a different asset from board maps
+
+`data/rommap/` holds 1,469 of them, built by `tools/build_rommaps.py` from the board
+positions MAME records in its romset filenames — `036409-01.n1`, `pm1_prg1.6e`,
+`136047-1108.5jh`. Those suffixes come from real dumped boards, so they are good
+evidence for where a memory device sits.
+
+They are **not** board maps and must not be merged with `boards/`. A ROM map names the
+fifteen-to-forty socketed memory devices on a board of sixty to a hundred and fifty and
+says nothing about the rest; it has one source and no cross-check. The board maps are
+read off component-location drawings, carry per-device provenance, and have been checked
+against parts lists, socket entries and MAME. Keeping them apart is why the site can be
+honest about both, and the warning sits on every ROM map page.
+
+Two grid conventions appear and both are kept as the board writes them: letter-first for
+Atari and most US boards (N1, F/H1, L/M/N3), number-first for Namco, Konami and most
+Japanese boards (6E, 12D, 7LM). `i` and `o` are skipped by every convention here because
+they read as 1 and 0.
+
+Clones share a layout, so sets are folded together by position signature — 350 further
+sets matched one already written and produced no second page.
+
 **The chip lookup holds more than `ics` does** — crystals, transistors, resistor packs,
 test points, everything on the board that is not on the letter-number grid. Rebuilding it
 from `ics` alone drops them. The first run of the Battlezone merge did exactly that and

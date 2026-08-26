@@ -1,0 +1,39 @@
+{
+ "machine": "vstetris",
+ "name": "Vs. Tetris",
+ "mfr": "Academysoft-Elorg",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "nintendo/vsnes.cpp",
+ "docs": 0,
+ "devices": {
+  "6A": {
+   "file": "e000.6a",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "c000.6b",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "a000.6c",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "8B": {
+   "file": "char.8b",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

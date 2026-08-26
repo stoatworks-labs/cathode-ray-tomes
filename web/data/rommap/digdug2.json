@@ -1,0 +1,74 @@
+{
+ "machine": "digdug2",
+ "name": "Dig Dug II (New Ver.)",
+ "mfr": "Namco",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "namco/mappy.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "d23_1.1b",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "1D": {
+   "file": "d23_3.1d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "1K": {
+   "file": "d21_4.1k",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "d21_5.3b",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3M": {
+   "file": "d21_6.3m",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "3N": {
+   "file": "d21_7.3n",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4C": {
+   "file": "d21-6.4c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5B": {
+   "file": "d21-5.5b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "d21-7.5k",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "pcktgal",
+ "name": "Pocket Gal (Japan)",
+ "mfr": "Data East Corporation",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "dataeast/pcktgal.cpp",
+ "docs": 0,
+ "devices": {
+  "F2": {
+   "file": "eb03.f2",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "J7": {
+   "file": "eb04.j7",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K14": {
+   "file": "eb05.k14",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 20,
+   "part": "82s147"
+  },
+  "K15": {
+   "file": "eb06.k15",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s131"
+  }
+ }
+}

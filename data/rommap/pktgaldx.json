@@ -1,0 +1,53 @@
+{
+ "machine": "pktgaldx",
+ "name": "Pocket Gal Deluxe (Europe v3.00)",
+ "mfr": "Data East Corporation",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "dataeast/pktgaldx.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "maz-00.1b",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "2H": {
+   "file": "maz-02.2h",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "3B": {
+   "file": "maz-01.3b",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12A": {
+   "file": "ke00-2.12a",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "13F": {
+   "file": "maz-03.13f",
+   "size": 1048576,
+   "kind": "oki2",
+   "pins": 32,
+   "part": null
+  },
+  "14F": {
+   "file": "ke01.14f",
+   "size": 131072,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,130 @@
+{
+ "machine": "cobracom",
+ "name": "Cobra-Command (World/US revision 5)",
+ "mfr": "Data East Corporation",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "dataeast/cobracom.cpp",
+ "docs": 0,
+ "devices": {
+  "1F": {
+   "file": "el10-4.1f",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "2A": {
+   "file": "el00-4.2a",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "el01-4.3a",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "5A": {
+   "file": "el02-4.5a",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "5J": {
+   "file": "el11-5.5j",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "6A": {
+   "file": "el03-4.6a",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "7D": {
+   "file": "el08.7d",
+   "size": 32768,
+   "kind": "tiles2",
+   "pins": 28,
+   "part": null
+  },
+  "7J": {
+   "file": "el12-4.7j",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "9D": {
+   "file": "el09.9d",
+   "size": 32768,
+   "kind": "tiles2",
+   "pins": 28,
+   "part": null
+  },
+  "9J": {
+   "file": "el13.9j",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "12F": {
+   "file": "eh15.12f",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "13A": {
+   "file": "el04.13a",
+   "size": 65536,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  },
+  "14J": {
+   "file": "el14.14j",
+   "size": 32768,
+   "kind": "char",
+   "pins": 28,
+   "part": null
+  },
+  "15A": {
+   "file": "el05.15a",
+   "size": 65536,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  },
+  "16A": {
+   "file": "el06.16a",
+   "size": 65536,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  },
+  "16H": {
+   "file": "pt-0.16h",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "18A": {
+   "file": "el07.18a",
+   "size": 65536,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

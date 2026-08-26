@@ -1,0 +1,74 @@
+{
+ "machine": "istellar2",
+ "name": "Inter Stellar Zangus (Laser Fantasy vol. 2)",
+ "mfr": "Funai/Gakken",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "misc/istellar.cpp",
+ "docs": 0,
+ "devices": {
+  "E1": {
+   "file": "rom4.e1",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F1": {
+   "file": "rom3.f1",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "G1": {
+   "file": "rom2.g1",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J1": {
+   "file": "rom1.j1",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "M1": {
+   "file": "rom13.m1",
+   "size": 8192,
+   "kind": "unsorted_roms",
+   "pins": 24,
+   "part": null
+  },
+  "G5": {
+   "file": "rom9.g5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "H5": {
+   "file": "rom8.h5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J5": {
+   "file": "rom7.j5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C6": {
+   "file": "green.c6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "airwolf",
+ "name": "Airwolf",
+ "mfr": "Kyugo",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "orca/kyugo.cpp",
+ "docs": 1,
+ "devices": {
+  "2C": {
+   "file": "m1.2c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2J": {
+   "file": "pal16l8a.2j",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "2S": {
+   "file": "b.2s",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4A": {
+   "file": "f.4a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "e.6a",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7S": {
+   "file": "a.7s",
+   "size": 32768,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "8A": {
+   "file": "d.8a",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "9J": {
+   "file": "epl12p6a.9j",
+   "size": 52,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "9K": {
+   "file": "epl12p6a.9k",
+   "size": 52,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "10A": {
+   "file": "c.10a",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

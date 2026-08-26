@@ -1,0 +1,32 @@
+{
+ "machine": "cryptklr",
+ "name": "Crypt Killer (GQ420 UAA)",
+ "mfr": "Konami",
+ "year": "1995",
+ "style": "number-letter",
+ "source": "konami/konamigq.cpp",
+ "docs": 0,
+ "devices": {
+  "2G": {
+   "file": "420a01.2g",
+   "size": 524288,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "3M": {
+   "file": "420a02.3m",
+   "size": 524288,
+   "kind": "k054539",
+   "pins": 32,
+   "part": null
+  },
+  "27P": {
+   "file": "420b03.27p",
+   "size": 524288,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

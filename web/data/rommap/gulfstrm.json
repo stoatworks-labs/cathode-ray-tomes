@@ -1,0 +1,88 @@
+{
+ "machine": "gulfstrm",
+ "name": "Gulf Storm (set 1)",
+ "mfr": "Dooyong",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "dooyong/dooyong.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "16.c1",
+   "size": 131072,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "E1": {
+   "file": "17.e1",
+   "size": 131072,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "L4": {
+   "file": "1.l4",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "S4": {
+   "file": "2.s4",
+   "size": 32768,
+   "kind": "tx",
+   "pins": 28,
+   "part": null
+  },
+  "C5": {
+   "file": "3.c5",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "E8": {
+   "file": "8.e8",
+   "size": 65536,
+   "kind": "bg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "N8": {
+   "file": "10.n8",
+   "size": 65536,
+   "kind": "fg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "R8": {
+   "file": "12.r8",
+   "size": 131072,
+   "kind": "fg0",
+   "pins": 32,
+   "part": null
+  },
+  "E9": {
+   "file": "9.e9",
+   "size": 65536,
+   "kind": "bg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "N9": {
+   "file": "11.n9",
+   "size": 65536,
+   "kind": "fg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "R9": {
+   "file": "13.r9",
+   "size": 131072,
+   "kind": "fg0",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

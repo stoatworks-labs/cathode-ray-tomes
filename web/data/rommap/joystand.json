@@ -1,0 +1,46 @@
+{
+ "machine": "joystand",
+ "name": "Joy Stand Private",
+ "mfr": "Yuvo",
+ "year": "1997",
+ "style": "number-letter",
+ "source": "misc/joystand.cpp",
+ "docs": 0,
+ "devices": {
+  "1F": {
+   "file": "jsp-sub.1f",
+   "size": 279,
+   "kind": "pld",
+   "pins": null,
+   "part": null
+  },
+  "2G": {
+   "file": "yuvo_jsp007a.2g",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "2J": {
+   "file": "yuvo_jsp005.2j",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "4G": {
+   "file": "yuvo_jsp008a.4g",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "4J": {
+   "file": "yuvo_jsp006.4j",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

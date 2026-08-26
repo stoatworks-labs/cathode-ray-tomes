@@ -1,0 +1,375 @@
+{
+ "machine": "chiller",
+ "name": "Chiller (version 3.0)",
+ "mfr": "Exidy",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "exidy/exidy440.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "chl3.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "chl3.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "chl3.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "chl3.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "cha3.1h",
+   "size": 4096,
+   "kind": "440audio:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "cha3.1k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "cha3.1l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "cha3.1m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "cha3.1n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1P": {
+   "file": "cha3.1p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "cha3.1r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1S": {
+   "file": "cha3.1s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1T": {
+   "file": "cha3.1t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "xbl.2h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "cha3.2k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "cha3.2l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "cha3.2m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "cha3.2n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "cha3.2p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2R": {
+   "file": "cha3.2r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2S": {
+   "file": "cha3.2s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2T": {
+   "file": "cha3.2t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "chl3.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "chl3.3b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "chl3.3c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "chl3.3d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "chl3.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "chl3.4b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "chl3.4c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "chl3.4d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "xbl.4k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "xbl.5k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "chl3.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "chl3.6b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "chl3.6c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "chl3.6d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "xbl.6k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7B": {
+   "file": "chl3.7b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "chl3.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "chl3.7d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "xbl.7k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "chl3.8b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "chl3.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "chl3.8d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "xbl.8k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "xbl.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "10B": {
+   "file": "chl3.10b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10C": {
+   "file": "chl3.10c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10D": {
+   "file": "chl3.10d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "chl3.11c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "chl3.11d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12H": {
+   "file": "xbl.12h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

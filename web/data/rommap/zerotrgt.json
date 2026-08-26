@@ -1,0 +1,144 @@
+{
+ "machine": "zerotrgt",
+ "name": "Zero Target (World, CW)",
+ "mfr": "Data East Corporation",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "dataeast/cntsteer.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "cw00.c1",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "C4": {
+   "file": "cw01.c4",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "J4": {
+   "file": "cw09.j4",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "J6": {
+   "file": "cw10.j6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "6301-in.k6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J7": {
+   "file": "cw11.j7",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "K7": {
+   "file": "mb7118h.k7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J9": {
+   "file": "cw12.j9",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J10": {
+   "file": "cw13.j10",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "F12": {
+   "file": "pal10h8.f12",
+   "size": 44,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "J12": {
+   "file": "cw14.j12",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J13": {
+   "file": "cw15.j13",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "C14": {
+   "file": "cw02.c14",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "E14": {
+   "file": "pal10h8.e14",
+   "size": 44,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "C15": {
+   "file": "cw03.c15",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "J15": {
+   "file": "cw16.j15",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "H16": {
+   "file": "cw05.h16",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "C17": {
+   "file": "cw04.c17",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "F17": {
+   "file": "pal12l6.f17",
+   "size": 52,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "88games",
+ "name": "'88 Games",
+ "mfr": "Konami",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "konami/88games.cpp",
+ "docs": 0,
+ "devices": {
+  "G3": {
+   "file": "861.g3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K16": {
+   "file": "861m02.k16",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K18": {
+   "file": "861m01.k18",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "machine": "arknoid2",
+ "name": "Arkanoid - Revenge of DOH (World)",
+ "mfr": "Taito Corporation Japan",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "taito/tnzs.cpp",
+ "docs": 0,
+ "devices": {
+  "3E": {
+   "file": "b08__13.3e",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "3G": {
+   "file": "b08__09.3g",
+   "size": 2048,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "b08-04.4a",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "7A": {
+   "file": "b08-03.7a",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "b08-02.10a",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "b08__05.11c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "13A": {
+   "file": "b08-01.13a",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "15F": {
+   "file": "b08-08.15f",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "16F": {
+   "file": "b08-07.16f",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

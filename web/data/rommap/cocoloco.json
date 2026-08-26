@@ -1,0 +1,32 @@
+{
+ "machine": "cocoloco",
+ "name": "Coco Loco (set 1)",
+ "mfr": "Petaco S.A.",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "misc/cocoloco.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "coco1-e.c1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E1": {
+   "file": "coco1-g.e1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C10": {
+   "file": "prom.c10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

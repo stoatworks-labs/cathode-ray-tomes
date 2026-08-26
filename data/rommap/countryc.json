@@ -1,0 +1,123 @@
+{
+ "machine": "countryc",
+ "name": "Country Club",
+ "mfr": "SNK",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1E": {
+   "file": "cc11.1e",
+   "size": 16384,
+   "kind": "tx_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "1F": {
+   "file": "cc1.1f",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "2C": {
+   "file": "cc12.2c",
+   "size": 16384,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2D": {
+   "file": "cc13.2d",
+   "size": 16384,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2E": {
+   "file": "cc2.2e",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "2G": {
+   "file": "cc3.2g",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "2H": {
+   "file": "cc4.2h",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "4E": {
+   "file": "cc5.4e",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4G": {
+   "file": "cc6.4g",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4H": {
+   "file": "cc7.4h",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5F": {
+   "file": "cc1.5f",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5G": {
+   "file": "cc2.5g",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "cc3.5h",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "cc8.7e",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "7G": {
+   "file": "cc9.7g",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "7H": {
+   "file": "cc10.7h",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

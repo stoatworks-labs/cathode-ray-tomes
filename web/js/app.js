@@ -31,6 +31,8 @@ const routes = [
   [/^\/doc\/([a-f0-9]{12})$/, reader],
   [/^\/search\/?$/, search],
   [/^\/boards\/?$/, boards],
+  [/^\/roms\/?$/, rommaps],
+  [/^\/rom\/(.+)$/, rommap],
   [/^\/board\/(.+)$/, board],
   [/^\/about\/?$/, about],
 ];
@@ -499,6 +501,68 @@ async function boards() {
         ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
         <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? "nets traced" : "components only"}</span>
       </a>`).join("")}</div>` : '<div class="empty">No conversions published yet.</div>'}`;
+}
+
+/* ---------- ROM maps recovered from MAME ----------
+   A weaker asset than a board map and kept separate from them on purpose:
+   memory devices only, from one source, with nothing cross-checked. */
+async function rommaps() {
+  const list = await api("rommaps");
+  const withDoc = list.filter((r) => r.docs);
+  app.innerHTML = `
+    <h1>ROM maps</h1>
+    <p class="sub">Which memory device sits at which position, for ${list.length}
+       machines — recovered from the board positions MAME records in its romset
+       filenames.</p>
+    <div class="note warn"><b>Memory devices only.</b> A ROM map names the ROMs,
+       PROMs and PLDs on a board and nothing else, so most of the board is missing
+       from it. It comes from one source and has not been cross-checked against a
+       drawing. The <a href="/boards">board maps</a> are the other thing: read off
+       component-location drawings, every device carrying its own provenance.</div>
+    <p class="sub">${withDoc.length} of these are machines whose manual is also on
+       this site.</p>
+    <div class="rows">${list.slice(0, 400).map((r) => `
+      <a class="row" href="/rom/${esc(r.machine)}">
+        <span class="nm">${esc(r.name)}</span>
+        <span class="meta">${esc(r.mfr || "")}${r.year ? " · " + esc(r.year) : ""}</span>
+        <span class="grow"></span>
+        ${r.docs ? `<span class="badge doc">${r.docs} manual${r.docs > 1 ? "s" : ""}</span>` : ""}
+        ${r.hasBoard ? `<span class="badge kicad">board map</span>` : ""}
+        <span class="badge">${r.devices} devices</span>
+      </a>`).join("")}</div>
+    ${list.length > 400 ? `<p class="sub">Showing the first 400 of ${list.length};
+       search finds the rest.</p>` : ""}`;
+}
+
+async function rommap(machine) {
+  const r = await api("rommap/" + machine);
+  const rows = Object.entries(r.devices);
+  const kinds = [...new Set(rows.map(([, d]) => d.kind))];
+  app.innerHTML = `
+    <h1>${esc(r.name)} — ROM map</h1>
+    <p class="sub">${esc(r.mfr || "")}${r.year ? " · " + esc(r.year) : ""} ·
+       ${rows.length} memory devices · positions written
+       ${r.style === "letter-number" ? "letter-first (N1)" : "number-first (6E)"}</p>
+    <div class="note warn"><b>Memory devices only, and not cross-checked.</b>
+       These positions come from the filenames MAME records for this machine's
+       romset, which are taken from real dumped boards. Everything on the board
+       that is not a ROM, PROM or PLD is absent, and nothing here has been checked
+       against a component-location drawing.</div>
+    ${r.docs ? `<p class="sub"><a href="/search?q=${encodeURIComponent(r.name)}">
+       ${r.docs} manual${r.docs > 1 ? "s" : ""} for this machine</a> are on the site.</p>` : ""}
+    <h2>Devices</h2>
+    <div class="rows">${rows.map(([cell, d]) => `
+      <div class="row">
+        <span class="nm mono">${esc(cell)}</span>
+        <span class="badge doc">${esc(d.kind || "?")}</span>
+        <span class="meta mono">${esc(d.file)}</span>
+        <span class="grow"></span>
+        ${d.size ? `<span class="badge">${d.size >= 1024 ? (d.size / 1024) + "K" : d.size + "B"}</span>` : ""}
+        ${d.pins ? `<span class="badge">DIP-${d.pins}</span>` : ""}
+        ${d.part ? `<span class="badge">${esc(d.part)}</span>` : ""}
+      </div>`).join("")}</div>
+    <p class="sub">Device classes present: ${kinds.map(esc).join(", ")}.
+       Source: MAME <code>${esc(r.source)}</code>.</p>`;
 }
 
 /* ---------- board: schematic + BOM ---------- */

@@ -1,0 +1,81 @@
+{
+ "machine": "dblewing",
+ "name": "Double Wings (set 1)",
+ "mfr": "Mitchell",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "dataeast/dblewing.cpp",
+ "docs": 1,
+ "devices": {
+  "1F": {
+   "file": "pal16l8-vg-00.1f",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "1H": {
+   "file": "pal16l8-vg-01.1h",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "3D": {
+   "file": "kp_00-.3d",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5D": {
+   "file": "kp_01-.5d",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8H": {
+   "file": "mbe-02.8h",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10H": {
+   "file": "kp_02-.10h",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "11B": {
+   "file": "pal16r8-vg-02.11b",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "14A": {
+   "file": "mbe-00.14a",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16A": {
+   "file": "mbe-01.16a",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16H": {
+   "file": "kp_03-.16h",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "machine": "r2dtank",
+ "name": "R2D Tank",
+ "mfr": "Sigma Enterprises Inc.",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "sigma/r2dtank.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "r2d2.1a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "r2d1.1c",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2A": {
+   "file": "r2d4.2a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2C": {
+   "file": "r2d3.2c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7L": {
+   "file": "r2d5.7l",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

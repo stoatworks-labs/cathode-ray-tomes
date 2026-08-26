@@ -1,0 +1,88 @@
+{
+ "machine": "hopmappy",
+ "name": "Hopping Mappy",
+ "mfr": "Namco",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "namco/namcos86.cpp",
+ "docs": 0,
+ "devices": {
+  "3R": {
+   "file": "hm1-1.3r",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3S": {
+   "file": "hm1-2.3s",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4R": {
+   "file": "hm1_5.4r",
+   "size": 16384,
+   "kind": "tiles_1",
+   "pins": 28,
+   "part": null
+  },
+  "4V": {
+   "file": "hm1-3.4v",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5V": {
+   "file": "hm1-4.5v",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "hm1_3.6b",
+   "size": 8192,
+   "kind": "mcusub",
+   "pins": 24,
+   "part": null
+  },
+  "6U": {
+   "file": "hm1-5.6u",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7R": {
+   "file": "hm1_6.7r",
+   "size": 16384,
+   "kind": "tiles_0",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "hm1_1.9c",
+   "size": 32768,
+   "kind": "cpu1",
+   "pins": 28,
+   "part": null
+  },
+  "12C": {
+   "file": "hm1_2.12c",
+   "size": 16384,
+   "kind": "cpu2",
+   "pins": 28,
+   "part": null
+  },
+  "12H": {
+   "file": "hm1_4.12h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

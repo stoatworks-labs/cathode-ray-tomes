@@ -1,0 +1,39 @@
+{
+ "machine": "cb4",
+ "name": "Cherry Bonus IV (V5.0)",
+ "mfr": "Dyna",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "2G": {
+   "file": "5mk.2g",
+   "size": 65536,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  },
+  "4J": {
+   "file": "cb4.4j",
+   "size": 262144,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "9B": {
+   "file": "82s147.9b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11B": {
+   "file": "82s147.11b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

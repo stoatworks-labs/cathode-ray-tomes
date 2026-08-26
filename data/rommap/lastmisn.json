@@ -1,0 +1,116 @@
+{
+ "machine": "lastmisn",
+ "name": "Last Mission (World revision 8)",
+ "mfr": "Data East Corporation",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "dataeast/lastmisn.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "last_mission_dl01-.2a",
+   "size": 8192,
+   "kind": "char",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "last_mission_dl05-.5h",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "7H": {
+   "file": "last_mission_dl04-5.7h",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "8F": {
+   "file": "last_mission_dl13-.8f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "dl-14.9c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9F": {
+   "file": "last_mission_dl12-.9f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12K": {
+   "file": "last_mission_dl09-.12k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "13F": {
+   "file": "last_mission_dl11-.13f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13H": {
+   "file": "last_mission_dl03-8.13h",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "14K": {
+   "file": "last_mission_dl08-.14k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "15K": {
+   "file": "last_mission_dl07-.15k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16F": {
+   "file": "last_mission_dl10-.16f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "17K": {
+   "file": "last_mission_dl06-.17k",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "18A": {
+   "file": "last_mission_dl00-e.18a",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "18H": {
+   "file": "last_mission_dl02-5.18h",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

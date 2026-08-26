@@ -1,0 +1,53 @@
+{
+ "machine": "dingo",
+ "name": "Dingo",
+ "mfr": "Ashby Computers and Graphics Ltd. (Jaleco license)",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "H1": {
+   "file": "001.h1",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K1": {
+   "file": "002.k1",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L6": {
+   "file": "18s030.l6",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "003.e7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H7": {
+   "file": "004.h7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J7": {
+   "file": "005.j7",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

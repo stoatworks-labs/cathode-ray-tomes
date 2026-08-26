@@ -1,0 +1,39 @@
+{
+ "machine": "ts28",
+ "name": "Endura TS-28",
+ "mfr": "Falco",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "falco/falcots28.cpp",
+ "docs": 0,
+ "devices": {
+  "F3": {
+   "file": "chargen.f3",
+   "size": 4096,
+   "kind": "chargen",
+   "pins": 24,
+   "part": null
+  },
+  "H7": {
+   "file": "82s123.h7",
+   "size": 32,
+   "kind": "prom",
+   "pins": 16,
+   "part": null
+  },
+  "E27": {
+   "file": "endura_v100_0.e27",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E28": {
+   "file": "endura_v100_1.e28",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

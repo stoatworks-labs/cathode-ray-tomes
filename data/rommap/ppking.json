@@ -1,0 +1,67 @@
+{
+ "machine": "ppking",
+ "name": "Ping-Pong King",
+ "mfr": "Taito America Corporation",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "taito/gladiatr.cpp",
+ "docs": 0,
+ "devices": {
+  "1J": {
+   "file": "q0_12.1j",
+   "size": 8192,
+   "kind": "bg_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "q0_13.1k",
+   "size": 8192,
+   "kind": "bg_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "q0_14.1m",
+   "size": 8192,
+   "kind": "bg_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "q0_15.1r",
+   "size": 8192,
+   "kind": "tx_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "5M": {
+   "file": "q0_18.5m",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5N": {
+   "file": "q0_19.5n",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "q0_16.6e",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "6F": {
+   "file": "q0_17.6f",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

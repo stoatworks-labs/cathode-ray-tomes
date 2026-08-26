@@ -1,0 +1,32 @@
+{
+ "machine": "exerion",
+ "name": "Exerion",
+ "mfr": "Jaleco",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "jaleco/exerion.cpp",
+ "docs": 1,
+ "devices": {
+  "E1": {
+   "file": "exerion.e1",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K4": {
+   "file": "exerion.k4",
+   "size": 256,
+   "kind": "bg_char_mixer_prom",
+   "pins": 16,
+   "part": null
+  },
+  "H10": {
+   "file": "exerion.h10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

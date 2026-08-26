@@ -1,0 +1,60 @@
+{
+ "machine": "ironhors",
+ "name": "Iron Horse (version K)",
+ "mfr": "Konami",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "konami/ironhors.cpp",
+ "docs": 1,
+ "devices": {
+  "06F": {
+   "file": "560_h04.06f",
+   "size": 32768,
+   "kind": "gfx",
+   "pins": 28,
+   "part": null
+  },
+  "07F": {
+   "file": "560_h05.07f",
+   "size": 32768,
+   "kind": "gfx",
+   "pins": 28,
+   "part": null
+  },
+  "08F": {
+   "file": "560_h06.08f",
+   "size": 32768,
+   "kind": "gfx",
+   "pins": 28,
+   "part": null
+  },
+  "09F": {
+   "file": "560_h07.09f",
+   "size": 32768,
+   "kind": "gfx",
+   "pins": 28,
+   "part": null
+  },
+  "10C": {
+   "file": "560_h01.10c",
+   "size": 16384,
+   "kind": "soundcpu",
+   "pins": 28,
+   "part": null
+  },
+  "12C": {
+   "file": "560_k02.12c",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "13C": {
+   "file": "560_k03.13c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "machine": "daifugo",
+ "name": "Daifugo (Japan)",
+ "mfr": "Seta Kikaku / Sega (Esco Trading Co license)",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "seta/speedatk.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "ca2_1.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "ca2_2.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "ca2_3.1e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "ca2_4.1h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "tbp24s10.6k",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7C": {
+   "file": "ca1_5.7c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "ca1_6.7d",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "ca1_7.7e",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7L": {
+   "file": "tbp18s030.7l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

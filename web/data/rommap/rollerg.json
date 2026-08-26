@@ -1,0 +1,53 @@
+{
+ "machine": "rollerg",
+ "name": "Rollergames (US)",
+ "mfr": "Konami",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "konami/rollerg.cpp",
+ "docs": 0,
+ "devices": {
+  "K2": {
+   "file": "999h06.k2",
+   "size": 1048576,
+   "kind": "k053244",
+   "pins": 32,
+   "part": null
+  },
+  "C5": {
+   "file": "999h09.c5",
+   "size": 524288,
+   "kind": "k053260",
+   "pins": 32,
+   "part": null
+  },
+  "G7": {
+   "file": "999m02.g7",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K8": {
+   "file": "999h05.k8",
+   "size": 1048576,
+   "kind": "k053244",
+   "pins": 32,
+   "part": null
+  },
+  "E11": {
+   "file": "999m01.e11",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "F23": {
+   "file": "999h04.f23",
+   "size": 262144,
+   "kind": "k051316",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

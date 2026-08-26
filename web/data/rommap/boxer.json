@@ -1,0 +1,46 @@
+{
+ "machine": "boxer",
+ "name": "Boxer (prototype)",
+ "mfr": "Atari",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/boxer.cpp",
+ "docs": 0,
+ "devices": {
+  "K2": {
+   "file": "9417.k2",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M3": {
+   "file": "9402.m3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L7": {
+   "file": "bx115u.l7",
+   "size": 512,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "C8": {
+   "file": "bx137l.c8",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M8": {
+   "file": "bx137u.m8",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

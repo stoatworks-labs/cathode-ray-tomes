@@ -1,0 +1,39 @@
+{
+ "machine": "hitme",
+ "name": "Hit Me (set 1)",
+ "mfr": "Ramtek",
+ "year": "1976",
+ "style": "letter-number",
+ "source": "ramtek/hitme.cpp",
+ "docs": 2,
+ "devices": {
+  "C7": {
+   "file": "hm-2-2.c7",
+   "size": 512,
+   "kind": "program",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "hm1-6.e7",
+   "size": 512,
+   "kind": "program",
+   "pins": 16,
+   "part": null
+  },
+  "F7": {
+   "file": "hm2-8.f7",
+   "size": 512,
+   "kind": "program",
+   "pins": 16,
+   "part": null
+  },
+  "H7": {
+   "file": "hmcg.h7",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

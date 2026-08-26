@@ -1,0 +1,39 @@
+{
+ "machine": "bottom9",
+ "name": "Bottom of the Ninth (version T)",
+ "mfr": "Konami",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "konami/bottom9.cpp",
+ "docs": 1,
+ "devices": {
+  "G8": {
+   "file": "891j01.g8",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "K15": {
+   "file": "891-t02.k15",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K17": {
+   "file": "891n03.k17",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "F23": {
+   "file": "891b11.f23",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

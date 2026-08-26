@@ -1,0 +1,46 @@
+{
+ "machine": "shettle",
+ "name": "Alone Shettle Crew",
+ "mfr": "New Digimatic",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "nichibutsu/shettle.cpp",
+ "docs": 0,
+ "devices": {
+  "2F": {
+   "file": "prom-4.2f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "6331"
+  },
+  "3R": {
+   "file": "prom-5.3r",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4H": {
+   "file": "prom-6.4h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5D": {
+   "file": "0.5d",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7B": {
+   "file": "prom-7.7b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

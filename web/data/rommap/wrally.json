@@ -1,0 +1,39 @@
+{
+ "machine": "wrally",
+ "name": "World Rally Championship (version 1.0, checksum DE0D, 08 Nov 1993)",
+ "mfr": "Gaelco",
+ "year": "1993",
+ "style": "letter-number",
+ "source": "gaelco/wrally.cpp",
+ "docs": 0,
+ "devices": {
+  "C01": {
+   "file": "worldr14.c01",
+   "size": 524288,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "C03": {
+   "file": "worldr15.c03",
+   "size": 524288,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "H15": {
+   "file": "tibpal20l8-25cnt.h15",
+   "size": 741,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "H21": {
+   "file": "gal16v8-25lnc.h21",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

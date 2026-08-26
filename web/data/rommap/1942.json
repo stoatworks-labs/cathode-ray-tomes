@@ -1,0 +1,137 @@
+{
+ "machine": "1942",
+ "name": "1942 (Revision B)",
+ "mfr": "Capcom",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "capcom/1942.cpp",
+ "docs": 3,
+ "devices": {
+  "F1": {
+   "file": "sb-0.f1",
+   "size": 256,
+   "kind": "charprom",
+   "pins": 16,
+   "part": null
+  },
+  "L1": {
+   "file": "sr-14.l1",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "N1": {
+   "file": "sr-16.n1",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "F2": {
+   "file": "sr-02.f2",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L2": {
+   "file": "sr-15.l2",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "N2": {
+   "file": "sr-17.n2",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "K3": {
+   "file": "sb-8.k3",
+   "size": 256,
+   "kind": "sprprom",
+   "pins": 16,
+   "part": null
+  },
+  "M3": {
+   "file": "srb-03.m3",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "M4": {
+   "file": "srb-04.m4",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "M5": {
+   "file": "srb-05.m5",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "K6": {
+   "file": "sb-1.k6",
+   "size": 256,
+   "kind": "irqprom",
+   "pins": 16,
+   "part": null
+  },
+  "M6": {
+   "file": "srb-06.m6",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M7": {
+   "file": "srb-07.m7",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "E8": {
+   "file": "sb-5.e8",
+   "size": 256,
+   "kind": "palproms",
+   "pins": 16,
+   "part": null
+  },
+  "E9": {
+   "file": "sb-6.e9",
+   "size": 256,
+   "kind": "palproms",
+   "pins": 16,
+   "part": null
+  },
+  "E10": {
+   "file": "sb-7.e10",
+   "size": 256,
+   "kind": "palproms",
+   "pins": 16,
+   "part": null
+  },
+  "C11": {
+   "file": "sr-01.c11",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "M11": {
+   "file": "sb-9.m11",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

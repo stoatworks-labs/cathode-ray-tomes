@@ -1,0 +1,39 @@
+{
+ "machine": "cit101e",
+ "name": "CIT-101e Video Terminal",
+ "mfr": "C. Itoh Electronics",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "citoh/cit101.cpp",
+ "docs": 0,
+ "devices": {
+  "3G": {
+   "file": "cit-101e_char_gen.3g",
+   "size": 4096,
+   "kind": "chargen",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "101e_v12c__12.7a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "101e_v12c__3.7c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "101e_v12c__ab.7f",
+   "size": 8192,
+   "kind": "banked",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "pang3",
+ "name": "Pang! 3 (Europe 950601)",
+ "mfr": "Mitchell",
+ "year": "1995",
+ "style": "number-letter",
+ "source": "capcom/cps1.cpp",
+ "docs": 1,
+ "devices": {
+  "1F": {
+   "file": "cp1b1f.1f",
+   "size": 279,
+   "kind": "bboardplds",
+   "pins": null,
+   "part": null
+  },
+  "2C": {
+   "file": "pa3-01m.2c",
+   "size": 1048576,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "pa3-07m.2f",
+   "size": 1048576,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "cp1b8k.8k",
+   "size": 279,
+   "kind": "bboardplds",
+   "pins": null,
+   "part": null
+  },
+  "9K": {
+   "file": "cp1b9ka.9k",
+   "size": 279,
+   "kind": "bboardplds",
+   "pins": null,
+   "part": null
+  },
+  "10D": {
+   "file": "pa3_05.10d",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "10L": {
+   "file": "pa3e_16a.10l",
+   "size": 524288,
+   "kind": "?",
+   "pins": 32,
+   "part": null
+  },
+  "11D": {
+   "file": "pa3_06.11d",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "11F": {
+   "file": "pa3_11.11f",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "11L": {
+   "file": "pa3e_17a.11l",
+   "size": 524288,
+   "kind": "?",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

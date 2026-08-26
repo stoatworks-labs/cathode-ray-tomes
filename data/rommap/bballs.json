@@ -1,0 +1,81 @@
+{
+ "machine": "bballs",
+ "name": "Bouncing Balls",
+ "mfr": "Comad",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "capcom/tigeroad.cpp",
+ "docs": 0,
+ "devices": {
+  "H1": {
+   "file": "bb6.h1",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J1": {
+   "file": "bb8.j1",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "H2": {
+   "file": "bb7.h2",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J2": {
+   "file": "bb9.j2",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "N4": {
+   "file": "bb13.n4",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "L6": {
+   "file": "bb10.l6",
+   "size": 32768,
+   "kind": "bgmap",
+   "pins": 28,
+   "part": null
+  },
+  "E9": {
+   "file": "bb_prom.e9",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "L17": {
+   "file": "bb11.l17",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M17": {
+   "file": "bb12.m17",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "G20": {
+   "file": "bb1.g20",
+   "size": 32768,
+   "kind": "text",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

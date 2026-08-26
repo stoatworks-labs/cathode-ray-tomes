@@ -1,0 +1,39 @@
+{
+ "machine": "tempest",
+ "name": "Tempest (rev 3, Revised Hardware)",
+ "mfr": "Atari",
+ "year": "1980",
+ "style": "letter-number",
+ "source": "atari/tempest.cpp",
+ "docs": 37,
+ "devices": {
+  "F1": {
+   "file": "136002-134.f1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J1": {
+   "file": "136002-235.j1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "LM1": {
+   "file": "136002-136.lm1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "NP3": {
+   "file": "136002-138.np3",
+   "size": 4096,
+   "kind": "vectorrom",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

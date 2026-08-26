@@ -1,0 +1,53 @@
+{
+ "machine": "cball",
+ "name": "Cannonball (Atari, prototype)",
+ "mfr": "Atari",
+ "year": "1976",
+ "style": "number-letter",
+ "source": "atari/cball.cpp",
+ "docs": 0,
+ "devices": {
+  "1J": {
+   "file": "canball.1j",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "canball.1k",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "canball.1l",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5K": {
+   "file": "canball.5k",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "6H": {
+   "file": "canball.6h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6L": {
+   "file": "canball.6l",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

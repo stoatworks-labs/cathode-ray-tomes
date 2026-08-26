@@ -1,0 +1,60 @@
+{
+ "machine": "abcheck",
+ "name": "Abnormal Check",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcond1.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "an1sub.1d",
+   "size": 524288,
+   "kind": "mcu",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "an1voice.7c",
+   "size": 2097152,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10E": {
+   "file": "an1cg0.10e",
+   "size": 4194304,
+   "kind": "ygv608",
+   "pins": 32,
+   "part": null
+  },
+  "10F": {
+   "file": "an1cg1.10f",
+   "size": 4194304,
+   "kind": "ygv608",
+   "pins": 32,
+   "part": null
+  },
+  "12E": {
+   "file": "at28c16.12e",
+   "size": 2048,
+   "kind": "at28c16",
+   "pins": 24,
+   "part": null
+  },
+  "13E": {
+   "file": "an1main1b.13e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14E": {
+   "file": "an1main0b.14e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

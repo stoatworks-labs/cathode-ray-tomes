@@ -1,0 +1,88 @@
+{
+ "machine": "cutyline",
+ "name": "Cuty Line (LC-88, ver.1.01)",
+ "mfr": "Dyna",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "1E": {
+   "file": "50.1e",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "2E": {
+   "file": "60.2e",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "2F": {
+   "file": "3.2f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "1.2h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "70.3e",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "3F": {
+   "file": "4.3f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3H": {
+   "file": "2.3h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "9E": {
+   "file": "9.9e",
+   "size": 256,
+   "kind": "proms2",
+   "pins": 16,
+   "part": null
+  },
+  "10C": {
+   "file": "8.10c",
+   "size": 65536,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "15C": {
+   "file": "15.15c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "16C": {
+   "file": "16.16c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

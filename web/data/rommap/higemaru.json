@@ -1,0 +1,81 @@
+{
+ "machine": "higemaru",
+ "name": "Pirate Ship Higemaru",
+ "mfr": "Capcom",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "capcom/higemaru.cpp",
+ "docs": 0,
+ "devices": {
+  "M1": {
+   "file": "hg3.m1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M4": {
+   "file": "hgb5.m4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L6": {
+   "file": "hgb3.l6",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H7": {
+   "file": "hgb1.h7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K7": {
+   "file": "hgb2.k7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L9": {
+   "file": "hgb4.l9",
+   "size": 256,
+   "kind": "irqprom",
+   "pins": 16,
+   "part": null
+  },
+  "M11": {
+   "file": "hg7.m11",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M12": {
+   "file": "hg5.m12",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C14": {
+   "file": "hg1.c14",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E14": {
+   "file": "hg2.e14",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

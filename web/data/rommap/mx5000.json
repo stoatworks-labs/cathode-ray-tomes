@@ -1,0 +1,39 @@
+{
+ "machine": "mx5000",
+ "name": "MX5000 (version U)",
+ "mfr": "Konami",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "konami/flkatck.cpp",
+ "docs": 0,
+ "devices": {
+  "5E": {
+   "file": "gx669f03.5e",
+   "size": 524288,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "gx669f04.11a",
+   "size": 262144,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  },
+  "16B": {
+   "file": "669_m02.16b",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "16C": {
+   "file": "669_u01.16c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

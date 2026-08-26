@@ -1,0 +1,39 @@
+{
+ "machine": "megadpkr",
+ "name": "Mega Double Poker (conversion kit, version 2.3 MD)",
+ "mfr": "Blitz System",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "misc/goldnpkr.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "car3.2a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "car2.4a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "car1.5a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "m3-7611-5.7d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

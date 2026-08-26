@@ -1,0 +1,88 @@
+{
+ "machine": "ladybug",
+ "name": "Lady Bug",
+ "mfr": "Universal",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "universal/ladybug.cpp",
+ "docs": 1,
+ "devices": {
+  "K1": {
+   "file": "10-2.k1",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C4": {
+   "file": "l1.c4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E4": {
+   "file": "l3.e4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F4": {
+   "file": "10-1.f4",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H4": {
+   "file": "l4.h4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J4": {
+   "file": "l5.j4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "K4": {
+   "file": "l6.k4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F7": {
+   "file": "l9.f7",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "H7": {
+   "file": "l0.h7",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L7": {
+   "file": "l8.l7",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M7": {
+   "file": "l7.m7",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

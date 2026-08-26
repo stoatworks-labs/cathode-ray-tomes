@@ -1,0 +1,53 @@
+{
+ "machine": "jokrlady",
+ "name": "Joker Lady",
+ "mfr": "Videos A A",
+ "year": "1995?",
+ "style": "number-letter",
+ "source": "misc/videosaa.cpp",
+ "docs": 0,
+ "devices": {
+  "0D": {
+   "file": "68hc705-jokerlady.0d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "jokerlady-msg0.5a",
+   "size": 65536,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "5B": {
+   "file": "jokerlady-video0.5b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "7B": {
+   "file": "jokerlady-video1.7b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "8B": {
+   "file": "jokerlady-video2.8b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "9C": {
+   "file": "st16as15hb1.9c",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

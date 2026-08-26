@@ -1,0 +1,193 @@
+{
+ "machine": "winrun",
+ "name": "Winning Run (World) (89/06/06, Ver.09)",
+ "mfr": "Namco",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "namco/namcos21.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "wr1-d0l.1a",
+   "size": 131072,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "1B": {
+   "file": "wr1-d1l.1b",
+   "size": 131072,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "1K": {
+   "file": "wr2-mplb.1k",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "1L": {
+   "file": "wr1-gp1u.1l",
+   "size": 131072,
+   "kind": "gpu",
+   "pins": 32,
+   "part": null
+  },
+  "1P": {
+   "file": "wr1-gd0u-2.1p",
+   "size": 262144,
+   "kind": "gdata",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "wr1-d0u.3a",
+   "size": 131072,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "3B": {
+   "file": "wr1-d1u.3b",
+   "size": 131072,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "3K": {
+   "file": "wr2-mpub.3k",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3L": {
+   "file": "wr1-gp1l.3l",
+   "size": 131072,
+   "kind": "gpu",
+   "pins": 32,
+   "part": null
+  },
+  "3P": {
+   "file": "wr1-gd0l-2.3p",
+   "size": 262144,
+   "kind": "gdata",
+   "pins": 32,
+   "part": null
+  },
+  "3W": {
+   "file": "sys87b-2.3w",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "4B": {
+   "file": "wr1-spl.4b",
+   "size": 131072,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "4J": {
+   "file": "wr-d2.4j",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "4P": {
+   "file": "wr-g2b.4p",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "4S": {
+   "file": "wr-g3.4s",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "6B": {
+   "file": "wr1-spu.6b",
+   "size": 131072,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "6P": {
+   "file": "wr-c1.6p",
+   "size": 64,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "7C": {
+   "file": "wr1-snd0.7c",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "7F": {
+   "file": "wr-g4.7f",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "8D": {
+   "file": "wr1-pt0l.8d",
+   "size": 131072,
+   "kind": "namcos21dsp:point16",
+   "pins": 32,
+   "part": null
+  },
+  "8J": {
+   "file": "wr1-pt0u.8j",
+   "size": 131072,
+   "kind": "namcos21dsp:point16",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "wr-c2.8k",
+   "size": 64,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "11B": {
+   "file": "wr-voi-0.11b",
+   "size": 262144,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "wr-voi-1.11c",
+   "size": 262144,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "11D": {
+   "file": "wr-voi-2.11d",
+   "size": 262144,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "11E": {
+   "file": "wr-voi-3.11e",
+   "size": 262144,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

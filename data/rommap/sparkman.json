@@ -1,0 +1,67 @@
+{
+ "machine": "sparkman",
+ "name": "Spark Man (v2.0, set 1)",
+ "mfr": "SunA",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "suna/suna8.cpp",
+ "docs": 0,
+ "devices": {
+  "R1": {
+   "file": "p1.r1",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "T1": {
+   "file": "p2.t1",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "R2": {
+   "file": "p4.r2",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "T2": {
+   "file": "p5.t2",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "E7": {
+   "file": "sparkman.e7",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "G7": {
+   "file": "10.g7",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "G8": {
+   "file": "12.g8",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "H11": {
+   "file": "14.h11",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "machine": "dkong3",
+ "name": "Donkey Kong 3 (US)",
+ "mfr": "Nintendo of America",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "nintendo/dkong.cpp",
+ "docs": 1,
+ "devices": {
+  "1C": {
+   "file": "dkc1-c.1c",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1D": {
+   "file": "dkc1-c.1d",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2N": {
+   "file": "dkc1-v.2n",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3N": {
+   "file": "dk3v.3n",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3P": {
+   "file": "dk3v.3p",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5E": {
+   "file": "dkc1-v.5e",
+   "size": 32,
+   "kind": "adrdecode",
+   "pins": 16,
+   "part": null
+  },
+  "5L": {
+   "file": "dk3c.5l",
+   "size": 8192,
+   "kind": "rp2a03a",
+   "pins": 24,
+   "part": null
+  },
+  "6H": {
+   "file": "dk3c.6h",
+   "size": 8192,
+   "kind": "rp2a03b",
+   "pins": 24,
+   "part": null
+  },
+  "7B": {
+   "file": "dk3c.7b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "dk3c.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "dk3c.7d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "dk3c.7e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "dk3v.7f",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "drgpunch",
+ "name": "Dragon Punch (Japan, ver. 1.30)",
+ "mfr": "Dynax",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "dynax/dynax.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "2406.1c",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "2405.3c",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "3D": {
+   "file": "2401.3d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5A": {
+   "file": "2408.5a",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "5C": {
+   "file": "2404.5c",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "6A": {
+   "file": "2407.6a",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "6C": {
+   "file": "2403.6c",
+   "size": 131072,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "6D": {
+   "file": "2402.6d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "17G": {
+   "file": "1.17g",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "18G": {
+   "file": "2.18g",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

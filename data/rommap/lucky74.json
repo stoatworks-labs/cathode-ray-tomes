@@ -1,0 +1,39 @@
+{
+ "machine": "lucky74",
+ "name": "Lucky 74 (bootleg, set 1)",
+ "mfr": "Wing Co., Ltd.",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "wing/lucky74.cpp",
+ "docs": 0,
+ "devices": {
+  "C6": {
+   "file": "luckyprom.c6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E6": {
+   "file": "luckyprom.e6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C7": {
+   "file": "luckyprom.c7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "luckyprom.e7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

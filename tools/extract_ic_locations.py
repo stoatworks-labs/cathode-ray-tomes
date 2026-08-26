@@ -45,6 +45,55 @@ PARENS = re.compile(r'[\(\{\[]([^)}\]]{1,140})[\)\}\]]')
 # The count layout names the device in its description too — 'Integrated
 # Circuit, 74S74 L7' — so it has the same two-readings-of-one-row check the
 # paren layout does, and it was going unused.
+# Memory and the MPU are stocked under Atari's own part numbers, not as
+# 37-series IC stock, so the rows above never see them. That is why Centipede's
+# ROMs and Red Baron's whole complement were missing. Same typeset list, same
+# shape — part number, description, positions — and the description names the
+# device class, which is what fixes the package.
+MEMORY = re.compile(
+    r'\b((?:\d{2}-\d{4}|\d{6}-\d{2,3}|[A-Z]\d{6}-\d{2}))\s+'
+    r'((?:Programmable\s+)?(?:Read-Only|Random-Access)\s+Memory|Microprocessor|'
+    r'Read/Write\s+Memory)[^(]{0,40}\(([^)]{1,110})\)', re.I)
+
+MEMORY_CLASS = {
+    "microprocessor": "mpu",
+    "read-only memory": "rom",
+    "programmable read-only memory": "prom",
+    "random-access memory": "ram",
+    "read/write memory": "ram",
+}
+
+
+def memory_rows(fid, figure=None):
+    """[(part, class, [cells], span_by_cell)] for the memory rows of a document."""
+    txt = doc_text(fid)
+    figs = [(m.start(), " ".join(m.group(0).split()))
+            for m in FIGURE.finditer(txt)]
+    pat = re.compile(figure, re.I) if figure else None
+    out = []
+    for m in MEMORY.finditer(txt):
+        if pat:
+            under = ""
+            for pos, head in figs:
+                if pos < m.start():
+                    under = head
+                else:
+                    break
+            if not pat.search(under):
+                continue
+        kind = MEMORY_CLASS.get(" ".join(m.group(2).split()).lower())
+        if not kind:
+            continue
+        cells = []
+        for d in DESIG.finditer(m.group(3)):
+            if d.group(2) == "0":          # column 0 does not exist
+                continue
+            cells.append(d.group(1) + d.group(2))
+        if cells:
+            out.append((m.group(1), kind, cells))
+    return out
+
+
 INLINE_TYPE = re.compile(r'[Ii]ntegrated\s+Circuit[,.]?\s+([0-9A-Z][0-9A-Z.]{2,8})')
 DESIG = re.compile(r'\b([A-Z](?:/[A-Z])*)\s?(\d{1,2})\b')
 # a row that only names an alternative device carries no locations of its own;

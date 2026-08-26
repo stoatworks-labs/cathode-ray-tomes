@@ -1,0 +1,53 @@
+{
+ "machine": "wizzquiz",
+ "name": "Wizz Quiz (Konami version)",
+ "mfr": "Zilec-Zenitone (Konami license)",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/trackfld.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "zandz.2c",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "rom.11c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "14C": {
+   "file": "rom.14c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "14H": {
+   "file": "rom.14h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "15H": {
+   "file": "rom.15h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "16H": {
+   "file": "rom.16h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

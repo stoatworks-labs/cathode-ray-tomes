@@ -1,0 +1,32 @@
+{
+ "machine": "slotcarn",
+ "name": "Slot Carnival",
+ "mfr": "Wing Co., Ltd.",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "wing/slotcarn.cpp",
+ "docs": 0,
+ "devices": {
+  "E8": {
+   "file": "rom3.e8",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E9": {
+   "file": "rom2.e9",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E10": {
+   "file": "rom1.e10",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "clshroad",
+ "name": "Clash-Road",
+ "mfr": "Woodplace Inc.",
+ "year": "1986",
+ "style": "letter-number",
+ "source": "nichibutsu/clshroad.cpp",
+ "docs": 0,
+ "devices": {
+  "G4": {
+   "file": "clashrd.g4",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G7": {
+   "file": "clashrd.g7",
+   "size": 256,
+   "kind": "custom:soundproms",
+   "pins": 16,
+   "part": null
+  },
+  "G8": {
+   "file": "clashrd.g8",
+   "size": 256,
+   "kind": "custom:soundproms",
+   "pins": 16,
+   "part": null
+  },
+  "G10": {
+   "file": "clashrd.g10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

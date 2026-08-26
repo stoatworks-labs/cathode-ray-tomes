@@ -1,0 +1,137 @@
+{
+ "machine": "aso",
+ "name": "ASO - Armored Scrum Object",
+ "mfr": "SNK",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "p6.1d",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "1H": {
+   "file": "p14.1h",
+   "size": 8192,
+   "kind": "tx_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "p5.2d",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "2F": {
+   "file": "p9.2f",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "3D": {
+   "file": "p4.3d",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "3F": {
+   "file": "p8.3f",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "4F": {
+   "file": "p7.4f",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "5D": {
+   "file": "p3.5d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7D": {
+   "file": "p2.7d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8D": {
+   "file": "p1.8d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8H": {
+   "file": "p13.8h",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "9H": {
+   "file": "p12.9h",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "11H": {
+   "file": "p11.11h",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "12F": {
+   "file": "mb7122h.12f",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "13F": {
+   "file": "mb7122h.13f",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "14F": {
+   "file": "mb7122h.14f",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "14H": {
+   "file": "p10.14h",
+   "size": 32768,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "15B": {
+   "file": "pal16r6a.15b",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "exvania",
+ "name": "Exvania (World)",
+ "mfr": "Namco",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "namco/namcona1.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "ex1-ma0l.2c",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "ex1-ma0u.2f",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "ex1-ma1l.3c",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "ex1-ma1u.3f",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "4C": {
+   "file": "ex2-ep0l.4c",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4F": {
+   "file": "ex2-ep0u.4f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

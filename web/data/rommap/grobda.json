@@ -1,0 +1,88 @@
+{
+ "machine": "grobda",
+ "name": "Grobda (New Ver.)",
+ "mfr": "Namco",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "namco/mappy.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "gr2-1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "gr2-2.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "gr2-3.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "gr1-4.1k",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "gr1-7.3c",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "gr1-6.3e",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3F": {
+   "file": "gr1-5.3f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "gr1-4.3l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "gr1-3.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4C": {
+   "file": "gr1-6.4c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4E": {
+   "file": "gr1-5.4e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

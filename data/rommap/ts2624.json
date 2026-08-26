@@ -1,0 +1,32 @@
+{
+ "machine": "ts2624",
+ "name": "TS-2624",
+ "mfr": "Falco Data Products",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "falco/falcots.cpp",
+ "docs": 0,
+ "devices": {
+  "9C": {
+   "file": "msel64b.9c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "74s288"
+  },
+  "12F": {
+   "file": "prom.12f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "74s288"
+  },
+  "13D": {
+   "file": "prom.13d",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "74s288"
+  }
+ }
+}

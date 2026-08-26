@@ -1,0 +1,46 @@
+{
+ "machine": "bazooka",
+ "name": "Bazooka",
+ "mfr": "Project Support Engineering",
+ "year": "1976",
+ "style": "letter-number",
+ "source": "misc/pse.cpp",
+ "docs": 1,
+ "devices": {
+  "K1": {
+   "file": "bd2.k1",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "E2": {
+   "file": "bd1.e2",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "K4": {
+   "file": "bd2.k4",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "E6": {
+   "file": "bd2.e6",
+   "size": 32,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "bd2.e7",
+   "size": 32,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

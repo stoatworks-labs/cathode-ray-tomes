@@ -1,0 +1,67 @@
+{
+ "machine": "ultratnk",
+ "name": "Ultra Tank",
+ "mfr": "Atari (Kee Games)",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/ultratnk.cpp",
+ "docs": 1,
+ "devices": {
+  "K1": {
+   "file": "030181.k1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L1": {
+   "file": "030183.l1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J6": {
+   "file": "30172-01.j6",
+   "size": 512,
+   "kind": "playfield",
+   "pins": 16,
+   "part": null
+  },
+  "K6": {
+   "file": "30177-01.k6",
+   "size": 1024,
+   "kind": "motion",
+   "pins": 24,
+   "part": null
+  },
+  "L6": {
+   "file": "30176-01.l6",
+   "size": 1024,
+   "kind": "motion",
+   "pins": 24,
+   "part": null
+  },
+  "M6": {
+   "file": "30175-01.m6",
+   "size": 1024,
+   "kind": "motion",
+   "pins": 24,
+   "part": null
+  },
+  "N6": {
+   "file": "30174-01.n6",
+   "size": 1024,
+   "kind": "motion",
+   "pins": 24,
+   "part": null
+  },
+  "J10": {
+   "file": "30218-01.j10",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

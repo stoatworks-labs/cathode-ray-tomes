@@ -1,0 +1,67 @@
+{
+ "machine": "eldoradd",
+ "name": "El Dorado (V5.1DR)",
+ "mfr": "Dyna",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "dyna/dyna_dc4000.cpp",
+ "docs": 0,
+ "devices": {
+  "1H": {
+   "file": "1h_el3_tms27c040.1h",
+   "size": 524288,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "2H": {
+   "file": "2h_el3_tms27c040.2h",
+   "size": 524288,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "9F": {
+   "file": "gal16v8.9f",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "11E": {
+   "file": "pal16l8.11e",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "13F": {
+   "file": "pal16l8.13f",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "15D": {
+   "file": "51d_el3_m27c512.15d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15G": {
+   "file": "eg_82s135.15g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15H": {
+   "file": "eh_82s135.15h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

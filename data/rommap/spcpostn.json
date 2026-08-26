@@ -1,0 +1,53 @@
+{
+ "machine": "spcpostn",
+ "name": "Space Position (Japan)",
+ "mfr": "Sega / Nasco",
+ "year": "1986",
+ "style": "letter-number",
+ "source": "sega/angelkds.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "epr-10120.c1",
+   "size": 32768,
+   "kind": "banked_roms",
+   "pins": 28,
+   "part": null
+  },
+  "C2": {
+   "file": "epr-10121.c2",
+   "size": 32768,
+   "kind": "banked_roms",
+   "pins": 28,
+   "part": null
+  },
+  "C3": {
+   "file": "epr-10122.c3",
+   "size": 32768,
+   "kind": "banked_roms",
+   "pins": 28,
+   "part": null
+  },
+  "C4": {
+   "file": "epr-10123.c4",
+   "size": 32768,
+   "kind": "banked_roms",
+   "pins": 28,
+   "part": null
+  },
+  "C5": {
+   "file": "epr-10124.c5",
+   "size": 32768,
+   "kind": "banked_roms",
+   "pins": 28,
+   "part": null
+  },
+  "C10": {
+   "file": "epr-10125.c10",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

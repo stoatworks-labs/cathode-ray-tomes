@@ -1,0 +1,88 @@
+{
+ "machine": "pbobblen",
+ "name": "Puzzle Bobble / Bust-A-Move (Neo-Geo, NGM-083)",
+ "mfr": "Taito",
+ "year": "1994",
+ "style": "letter-number",
+ "source": "snk/neogeo.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "068-c1.c1",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "d96-07.ep1",
+   "size": 524288,
+   "kind": "cslot1:maincpu",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "068-v1.v1",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "068-c2.c2",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V2": {
+   "file": "068-v2.v2",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "068-c3.c3",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V3": {
+   "file": "d96-01.v3",
+   "size": 1048576,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C4": {
+   "file": "068-c4.c4",
+   "size": 1048576,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "V4": {
+   "file": "d96-05.v4",
+   "size": 524288,
+   "kind": "cslot1:ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C5": {
+   "file": "d96-02.c5",
+   "size": 524288,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  },
+  "C6": {
+   "file": "d96-03.c6",
+   "size": 524288,
+   "kind": "cslot1:sprites",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

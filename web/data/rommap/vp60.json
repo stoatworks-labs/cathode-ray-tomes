@@ -1,0 +1,32 @@
+{
+ "machine": "vp60",
+ "name": "Viewpoint 60",
+ "mfr": "ADDS",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "adds/vp60.cpp",
+ "docs": 0,
+ "devices": {
+  "UB1": {
+   "file": "p8051.ub1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "UC1": {
+   "file": "pgm.uc1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "UC4": {
+   "file": "font.uc4",
+   "size": 4096,
+   "kind": "chargen",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,130 @@
+{
+ "machine": "tnk3",
+ "name": "T.N.K III (US)",
+ "mfr": "SNK",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1E": {
+   "file": "p14.1e",
+   "size": 8192,
+   "kind": "tx_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "2E": {
+   "file": "p4.2e",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "2F": {
+   "file": "p5.2f",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "2H": {
+   "file": "p6.2h",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "3C": {
+   "file": "p13.3c",
+   "size": 16384,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3D": {
+   "file": "p12.3d",
+   "size": 16384,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "4E": {
+   "file": "p1.4e",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4F": {
+   "file": "p2.4f",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4H": {
+   "file": "p3.4h",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5F": {
+   "file": "2.5f",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5G": {
+   "file": "1.5g",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "0.5h",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "p11.6d",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6F": {
+   "file": "p10.6f",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "7E": {
+   "file": "p9.7e",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "7F": {
+   "file": "p8.7f",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "7H": {
+   "file": "p7.7h",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

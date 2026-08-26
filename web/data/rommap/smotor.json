@@ -1,0 +1,53 @@
+{
+ "machine": "smotor",
+ "name": "Super Motor (prototype)",
+ "mfr": "Duintronic",
+ "year": "19??",
+ "style": "letter-number",
+ "source": "misc/smotor.cpp",
+ "docs": 0,
+ "devices": {
+  "L2": {
+   "file": "3_gal16v8.l2",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "G3": {
+   "file": "3_27c512.g3",
+   "size": 65536,
+   "kind": "bgmap",
+   "pins": 32,
+   "part": null
+  },
+  "K3": {
+   "file": "2_gal16v8.k3",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "J4": {
+   "file": "82s129.j4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K4": {
+   "file": "82s129.k4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L4": {
+   "file": "82s129.l4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

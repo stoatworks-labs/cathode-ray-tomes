@@ -1,0 +1,39 @@
+{
+ "machine": "darkmist",
+ "name": "The Lost Castle In Darkmist",
+ "mfr": "Seibu Kaihatsu (Taito license)",
+ "year": "1986",
+ "style": "letter-number",
+ "source": "seibu/darkmist.cpp",
+ "docs": 1,
+ "devices": {
+  "L1": {
+   "file": "63s281n.l1",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M7": {
+   "file": "63s281n.m7",
+   "size": 256,
+   "kind": "bg_clut",
+   "pins": 16,
+   "part": null
+  },
+  "F11": {
+   "file": "63s281n.f11",
+   "size": 256,
+   "kind": "spr_clut",
+   "pins": 16,
+   "part": null
+  },
+  "J15": {
+   "file": "63s281n.j15",
+   "size": 256,
+   "kind": "tx_clut",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

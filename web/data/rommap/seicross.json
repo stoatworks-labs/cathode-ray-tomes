@@ -1,0 +1,53 @@
+{
+ "machine": "seicross",
+ "name": "Seicross (set 1)",
+ "mfr": "Nichibutsu / Alice",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "nichibutsu/seicross.cpp",
+ "docs": 1,
+ "devices": {
+  "3B": {
+   "file": "pal16h2.3b",
+   "size": 68,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "7H": {
+   "file": "sz10.7h",
+   "size": 4096,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "7J": {
+   "file": "sz9.7j",
+   "size": 4096,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "sz11.7k",
+   "size": 4096,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "10B": {
+   "file": "sz74.10b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10C": {
+   "file": "sz73.10c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

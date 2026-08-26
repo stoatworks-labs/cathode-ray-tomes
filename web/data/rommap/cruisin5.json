@@ -1,0 +1,67 @@
+{
+ "machine": "cruisin5",
+ "name": "Cruisin 5: Cruise Back",
+ "mfr": "Abyss",
+ "year": "2023",
+ "style": "number-letter",
+ "source": "taito/arkanoid.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "1-ic33.2c",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "3C": {
+   "file": "2-ic34.3c",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "3F": {
+   "file": "ic81-v.3f",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5C": {
+   "file": "3-ic35.5c",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5F": {
+   "file": "ic82-w.5f",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "11E": {
+   "file": "ic73.11e",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12E": {
+   "file": "ic74.12e",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "13E": {
+   "file": "ic75.13e",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

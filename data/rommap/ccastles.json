@@ -1,0 +1,88 @@
+{
+ "machine": "ccastles",
+ "name": "Crystal Castles (version 4)",
+ "mfr": "Atari",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "atari/ccastles.cpp",
+ "docs": 8,
+ "devices": {
+  "1F": {
+   "file": "136022-101.1f",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "136022-102.1h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "136022-403.1k",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "136022-404.1l",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "136022-405.1n",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6L": {
+   "file": "82s129-136022-109.6l",
+   "size": 256,
+   "kind": "addressprom",
+   "pins": 16,
+   "part": null
+  },
+  "7K": {
+   "file": "82s129-136022-108.7k",
+   "size": 256,
+   "kind": "syncprom",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "136022-107.8b",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "136022-106.8d",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "10K": {
+   "file": "82s129-136022-111.10k",
+   "size": 256,
+   "kind": "priprom",
+   "pins": 16,
+   "part": null
+  },
+  "11L": {
+   "file": "82s129-136022-110.11l",
+   "size": 256,
+   "kind": "wpprom",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

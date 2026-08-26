@@ -1,0 +1,60 @@
+{
+ "machine": "lependu",
+ "name": "Le Pendu (Bilingue, Version 04)",
+ "mfr": "Avenir Amusement Inc.",
+ "year": "198?",
+ "style": "number-letter",
+ "source": "misc/lependu.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "3y.1a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "1y.3a",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "mini.5d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10A": {
+   "file": "000402.10a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11A": {
+   "file": "000401.11a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12A": {
+   "file": "fra_04.12a",
+   "size": 32768,
+   "kind": "data1",
+   "pins": 28,
+   "part": null
+  },
+  "14A": {
+   "file": "fra_05.14a",
+   "size": 32768,
+   "kind": "data2",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

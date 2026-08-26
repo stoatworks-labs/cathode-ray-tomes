@@ -1,0 +1,193 @@
+{
+ "machine": "aircomb",
+ "name": "Air Combat (AC2, US)",
+ "mfr": "Namco",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "namco/namcos21_c67.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "ac1-data-l.1a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "1C": {
+   "file": "ac1-edata1-l.1c",
+   "size": 524288,
+   "kind": "edata",
+   "pins": 32,
+   "part": null
+  },
+  "1J": {
+   "file": "ac2-mpr-l.1j",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "ac1-poi-h.2f",
+   "size": 524288,
+   "kind": "namcos21dsp_c67:point24",
+   "pins": 32,
+   "part": null
+  },
+  "2K": {
+   "file": "ac1-poi-lu.2k",
+   "size": 524288,
+   "kind": "namcos21dsp_c67:point24",
+   "pins": 32,
+   "part": null
+  },
+  "2N": {
+   "file": "ac1-poi-ll.2n",
+   "size": 524288,
+   "kind": "namcos21dsp_c67:point24",
+   "pins": 32,
+   "part": null
+  },
+  "2S": {
+   "file": "ac2-obj6.2s",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "2X": {
+   "file": "ac2-obj7.2x",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "ac1-data-u.3a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "ac1-edata1-u.3c",
+   "size": 524288,
+   "kind": "edata",
+   "pins": 32,
+   "part": null
+  },
+  "3J": {
+   "file": "ac2-mpr-u.3j",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3S": {
+   "file": "ac2-obj2.3s",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "3X": {
+   "file": "ac2-obj3.3x",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "4C": {
+   "file": "ac2-spr-l.4c",
+   "size": 131072,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "4S": {
+   "file": "ac2-obj4.4s",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "4X": {
+   "file": "ac2-obj5.4x",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "5S": {
+   "file": "ac2-obj0.5s",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "5X": {
+   "file": "ac2-obj1.5x",
+   "size": 524288,
+   "kind": "c355spr",
+   "pins": 32,
+   "part": null
+  },
+  "6C": {
+   "file": "ac2-spr-u.6c",
+   "size": 131072,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "8J": {
+   "file": "ac1-snd0.8j",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "12B": {
+   "file": "ac1-voi0.12b",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "12C": {
+   "file": "ac1-voi1.12c",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "12D": {
+   "file": "ac1-voi2.12d",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "12E": {
+   "file": "ac1-voi3.12e",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "17D": {
+   "file": "gal16v8a-3pdsp5.17d",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "17N": {
+   "file": "plhs18p8-3pobj3.17n",
+   "size": 329,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

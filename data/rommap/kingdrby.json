@@ -1,0 +1,81 @@
+{
+ "machine": "kingdrby",
+ "name": "King Derby (1981)",
+ "mfr": "Tazmi",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "tatsumi/kingdrby.cpp",
+ "docs": 0,
+ "devices": {
+  "E1": {
+   "file": "sg1_b.e1",
+   "size": 4096,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "F1": {
+   "file": "im2_yk.f1",
+   "size": 4096,
+   "kind": "slave",
+   "pins": 24,
+   "part": null
+  },
+  "G1": {
+   "file": "im1_yk.g1",
+   "size": 4096,
+   "kind": "slave",
+   "pins": 24,
+   "part": null
+  },
+  "E2": {
+   "file": "s6.e2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F2": {
+   "file": "s7.f2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "G2": {
+   "file": "s8.g2",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C6": {
+   "file": "im5_d.c6",
+   "size": 4096,
+   "kind": "master",
+   "pins": 24,
+   "part": null
+  },
+  "F8": {
+   "file": "147.f8",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K8": {
+   "file": "s9_a.k8",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L8": {
+   "file": "s10_a.l8",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

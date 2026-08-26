@@ -1,0 +1,53 @@
+{
+ "machine": "mustache",
+ "name": "Mustache Boy (Japan)",
+ "mfr": "Seibu Kaihatsu (March license)",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "seibu/mustache.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "mustache.c1",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C2": {
+   "file": "mustache.c2",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C3": {
+   "file": "mustache.c3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E5": {
+   "file": "mustache.e5",
+   "size": 32768,
+   "kind": "t5182:external",
+   "pins": 28,
+   "part": null
+  },
+  "H16": {
+   "file": "mustache.h16",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "H18": {
+   "file": "mustache.h18",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

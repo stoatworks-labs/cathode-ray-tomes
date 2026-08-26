@@ -1,0 +1,60 @@
+{
+ "machine": "kicknrun",
+ "name": "Kick and Run (World)",
+ "mfr": "Taito Corporation",
+ "year": "1986",
+ "style": "letter-number",
+ "source": "taito/kikikai.cpp",
+ "docs": 0,
+ "devices": {
+  "F6": {
+   "file": "a87-06.f6",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "H8": {
+   "file": "a87-01_jph1021p.h8",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "G12": {
+   "file": "a87-12.g12",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G14": {
+   "file": "a87-11.g14",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G15": {
+   "file": "a87-10.g15",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H16": {
+   "file": "a87-08.h16",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "H18": {
+   "file": "a87-07.h18",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "moonwarp",
+ "name": "Moon War (prototype on Frenzy hardware)",
+ "mfr": "Stern Electronics",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "stern/berzerk.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "moon_war_rv0_1c.1c",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "2C": {
+   "file": "moon_war_rv0_2c.2c",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "n82s123.6e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

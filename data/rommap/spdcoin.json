@@ -1,0 +1,53 @@
+{
+ "machine": "spdcoin",
+ "name": "Speed Coin (prototype)",
+ "mfr": "Stern Electronics",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "spdcoin.2c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2E": {
+   "file": "spdcoin.2e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "spdcoin.5c",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "spdcoin.5d",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "spdcoin.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "spdcoin.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

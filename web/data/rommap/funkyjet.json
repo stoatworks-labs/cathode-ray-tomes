@@ -1,0 +1,39 @@
+{
+ "machine": "funkyjet",
+ "name": "Funky Jet (World, rev 1)",
+ "mfr": "Mitchell",
+ "year": "1992",
+ "style": "number-letter",
+ "source": "dataeast/funkyjet.cpp",
+ "docs": 0,
+ "devices": {
+  "12F": {
+   "file": "jk00-1.12f",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "13F": {
+   "file": "jk01-1.13f",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15H": {
+   "file": "jk03.15h",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "16F": {
+   "file": "jk02.16f",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "machine": "deadang",
+ "name": "Dead Angle",
+ "mfr": "Seibu Kaihatsu",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "seibu/deadang.cpp",
+ "docs": 0,
+ "devices": {
+  "6B": {
+   "file": "5.6b",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "6J": {
+   "file": "12.6j",
+   "size": 32768,
+   "kind": "bgmap2",
+   "pins": 28,
+   "part": null
+  },
+  "6K": {
+   "file": "11.6k",
+   "size": 32768,
+   "kind": "bgmap2",
+   "pins": 28,
+   "part": null
+  },
+  "6L": {
+   "file": "10.6l",
+   "size": 32768,
+   "kind": "bgmap1",
+   "pins": 28,
+   "part": null
+  },
+  "6M": {
+   "file": "9.6m",
+   "size": 32768,
+   "kind": "bgmap1",
+   "pins": 28,
+   "part": null
+  },
+  "9B": {
+   "file": "6.9b",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "16.11a",
+   "size": 65536,
+   "kind": "adpcm2",
+   "pins": 32,
+   "part": null
+  },
+  "18F": {
+   "file": "1.18f",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "18H": {
+   "file": "2.18h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "21F": {
+   "file": "3.21f",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "21J": {
+   "file": "7.21j",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "21L": {
+   "file": "8.21l",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "22H": {
+   "file": "4.22h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

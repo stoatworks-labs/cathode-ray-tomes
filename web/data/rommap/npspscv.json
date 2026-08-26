@@ -1,0 +1,53 @@
+{
+ "machine": "npspscv",
+ "name": "Neo Print SP! Super Collection Version (Japan)",
+ "mfr": "SNK",
+ "year": "1997",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "s005-c1.c1",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "s005-ep1.ep1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M1": {
+   "file": "s001-m1.m1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "s001-v1.v1",
+   "size": 1048576,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "s005-c2.c2",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "s005-c3.c3",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

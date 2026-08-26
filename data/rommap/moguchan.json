@@ -1,0 +1,74 @@
+{
+ "machine": "moguchan",
+ "name": "Mogu Chan (bootleg?)",
+ "mfr": "Orca (Eastern Commerce Inc. license)",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "orca/zodiack.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "moguchan.2a",
+   "size": 32,
+   "kind": "videopcb:proms",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "moguchan.2b",
+   "size": 32,
+   "kind": "videopcb:proms",
+   "pins": 16,
+   "part": null
+  },
+  "4R": {
+   "file": "5.4r",
+   "size": 2048,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  },
+  "5M": {
+   "file": "4.5m",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5NP": {
+   "file": "3.5np",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5R": {
+   "file": "2.5r",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7HJ": {
+   "file": "1.7hj",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "7M": {
+   "file": "7.7m",
+   "size": 4096,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  },
+  "7P": {
+   "file": "6.7p",
+   "size": 4096,
+   "kind": "videopcb",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "flyboy",
+ "name": "Fly-Boy",
+ "mfr": "Kaneko",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "galaxian/fastfred.cpp",
+ "docs": 2,
+ "devices": {
+  "7H": {
+   "file": "blue.7h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8H": {
+   "file": "green.8h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "red.9h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

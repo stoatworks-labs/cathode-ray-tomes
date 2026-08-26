@@ -1,0 +1,39 @@
+{
+ "machine": "fambowl",
+ "name": "Family Bowl (Japan, FB1/VER.A V1.00)",
+ "mfr": "Namco",
+ "year": "1997",
+ "style": "number-letter",
+ "source": "namco/namcos11.cpp",
+ "docs": 0,
+ "devices": {
+  "1J": {
+   "file": "fb1_vera.1j",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "1L": {
+   "file": "fb1_vera.1l",
+   "size": 2097152,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "7E": {
+   "file": "fb1_vera.7e",
+   "size": 262144,
+   "kind": "iomcu",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "fb1_wave0a.8k",
+   "size": 4194304,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

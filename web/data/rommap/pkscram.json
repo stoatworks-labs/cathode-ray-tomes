@@ -1,0 +1,39 @@
+{
+ "machine": "pkscram",
+ "name": "PK Scramble",
+ "mfr": "Cosmo Electronics Corporation",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "cosmo/pkscram.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "pk3.1c",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "1E": {
+   "file": "pk4.1e",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "6E": {
+   "file": "pk1.6e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6J": {
+   "file": "pk2.6j",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

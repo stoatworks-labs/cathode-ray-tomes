@@ -1,0 +1,67 @@
+{
+ "machine": "dragrace",
+ "name": "Drag Race",
+ "mfr": "Atari (Kee Games)",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/dragrace.cpp",
+ "docs": 1,
+ "devices": {
+  "E0": {
+   "file": "8515dr.e0",
+   "size": 512,
+   "kind": "tiles_4c",
+   "pins": 16,
+   "part": null
+  },
+  "H0": {
+   "file": "8517dr.h0",
+   "size": 512,
+   "kind": "tiles_4c",
+   "pins": 16,
+   "part": null
+  },
+  "J0": {
+   "file": "8519dr.j0",
+   "size": 512,
+   "kind": "tiles_2c",
+   "pins": 16,
+   "part": null
+  },
+  "K0": {
+   "file": "8521dr.k0",
+   "size": 512,
+   "kind": "tiles_2c",
+   "pins": 16,
+   "part": null
+  },
+  "L0": {
+   "file": "8516dr.l0",
+   "size": 512,
+   "kind": "tiles_4c",
+   "pins": 16,
+   "part": null
+  },
+  "N0": {
+   "file": "8518dr.n0",
+   "size": 512,
+   "kind": "tiles_4c",
+   "pins": 16,
+   "part": null
+  },
+  "R0": {
+   "file": "8520dr.r0",
+   "size": 512,
+   "kind": "tiles_2c",
+   "pins": 16,
+   "part": null
+  },
+  "C1": {
+   "file": "8513.c1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

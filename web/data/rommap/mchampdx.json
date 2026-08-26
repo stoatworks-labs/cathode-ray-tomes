@@ -1,0 +1,60 @@
+{
+ "machine": "mchampdx",
+ "name": "Multi Champ Deluxe (ver. 0106, 06/01/2000)",
+ "mfr": "ESD",
+ "year": "2000",
+ "style": "letter-number",
+ "source": "misc/esd16.cpp",
+ "docs": 0,
+ "devices": {
+  "CU02": {
+   "file": "ver0106_esd2.cu02",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "CU03": {
+   "file": "ver0106_esd1.cu03",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SU06": {
+   "file": "esd3.su06",
+   "size": 262144,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "JU07": {
+   "file": "ver0106_esd5.ju07",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "SU10": {
+   "file": "esd4.su10",
+   "size": 262144,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "FU34": {
+   "file": "rom.fu34",
+   "size": 2097152,
+   "kind": "bgs",
+   "pins": 32,
+   "part": null
+  },
+  "FU35": {
+   "file": "rom.fu35",
+   "size": 2097152,
+   "kind": "bgs",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

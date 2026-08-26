@@ -1,0 +1,32 @@
+{
+ "machine": "zzblock",
+ "name": "Zun Zun Block",
+ "mfr": "Taito",
+ "year": "1979",
+ "style": "number-letter",
+ "source": "taito/taitottl.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "tz02.1d",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "1E": {
+   "file": "tz01.1e",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "6F": {
+   "file": "tz03.6f",
+   "size": 32,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

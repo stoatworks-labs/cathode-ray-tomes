@@ -1,0 +1,32 @@
+{
+ "machine": "cloud9",
+ "name": "Cloud 9 (prototype)",
+ "mfr": "Atari",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "atari/cloud9.cpp",
+ "docs": 0,
+ "devices": {
+  "M8": {
+   "file": "63s141.m8",
+   "size": 256,
+   "kind": "unkproms",
+   "pins": 16,
+   "part": null
+  },
+  "E10": {
+   "file": "63s141.e10",
+   "size": 256,
+   "kind": "syncprom",
+   "pins": 16,
+   "part": null
+  },
+  "M10": {
+   "file": "63s141.m10",
+   "size": 256,
+   "kind": "unkproms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "machine": "montecar",
+ "name": "Monte Carlo",
+ "mfr": "Atari",
+ "year": "1979",
+ "style": "letter-number",
+ "source": "atari/firetrk.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "35763-01.c1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F1": {
+   "file": "35765-01.f1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H1": {
+   "file": "35766-01.h1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M4": {
+   "file": "35778-01.m4",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E6": {
+   "file": "35775-01.e6",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M6": {
+   "file": "35779-01.m6",
+   "size": 2048,
+   "kind": "cars",
+   "pins": 24,
+   "part": null
+  },
+  "E7": {
+   "file": "35785-01.e7",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

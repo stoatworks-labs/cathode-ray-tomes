@@ -1,0 +1,60 @@
+{
+ "machine": "npssr2",
+ "name": "Neo Print Special: Sekai Ryokou 2 (Japan)",
+ "mfr": "SNK",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "s072-c1 neo-pstm cha64c.c1",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "s038a-ep1 nps-prg1.ep1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M1": {
+   "file": "s001-m1 neo-pstm cha64c.m1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "s001-v1 nps-prg1.v1",
+   "size": 1048576,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "s072-c2 neo-pstm cha64c.c2",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP2": {
+   "file": "s072-ep2 nps-prg1.ep2",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "s072-c3 neo-pstm cha64c.c3",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

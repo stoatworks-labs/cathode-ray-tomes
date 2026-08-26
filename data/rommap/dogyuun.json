@@ -1,0 +1,53 @@
+{
+ "machine": "dogyuun",
+ "name": "Dogyuun",
+ "mfr": "Toaplan",
+ "year": "1992",
+ "style": "letter-number",
+ "source": "toaplan/dogyuun.cpp",
+ "docs": 1,
+ "devices": {
+  "R16": {
+   "file": "tp022_01.r16",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "W16": {
+   "file": "tp022_5.w16",
+   "size": 2097152,
+   "kind": "gp9001_1",
+   "pins": 32,
+   "part": null
+  },
+  "W17": {
+   "file": "tp022_6.w17",
+   "size": 2097152,
+   "kind": "gp9001_1",
+   "pins": 32,
+   "part": null
+  },
+  "W30": {
+   "file": "tp022_2.w30",
+   "size": 262144,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "W92": {
+   "file": "tp022_3.w92",
+   "size": 1048576,
+   "kind": "gp9001_0",
+   "pins": 32,
+   "part": null
+  },
+  "W93": {
+   "file": "tp022_4.w93",
+   "size": 1048576,
+   "kind": "gp9001_0",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "machine": "pairlove",
+ "name": "Pairs Love",
+ "mfr": "Athena / Nihon System",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "seta/seta.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "ut2-001-001.1a",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "ut2-001-002.3a",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5J": {
+   "file": "ut2-001-004.5j",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "5L": {
+   "file": "ut2-001-005.5l",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12A": {
+   "file": "ut2-001-003.12a",
+   "size": 524288,
+   "kind": "x1snd",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "cb5",
+ "name": "Cherry Bonus V Five (V1.4)",
+ "mfr": "Dyna",
+ "year": "1997",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "1G": {
+   "file": "cb5-140.1g",
+   "size": 131072,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  },
+  "2B": {
+   "file": "n82s135n.2b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2D": {
+   "file": "n82s135n.2d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

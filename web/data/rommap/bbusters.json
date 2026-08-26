@@ -1,0 +1,158 @@
+{
+ "machine": "bbusters",
+ "name": "Beast Busters (World)",
+ "mfr": "SNK",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "snk/bbusters.cpp",
+ "docs": 0,
+ "devices": {
+  "L3": {
+   "file": "bb-pcmb.l3",
+   "size": 524288,
+   "kind": "ymsnd:adpcmb",
+   "pins": 32,
+   "part": null
+  },
+  "M4": {
+   "file": "bb-back1.m4",
+   "size": 524288,
+   "kind": "bg1_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "L5": {
+   "file": "bb-pcma.l5",
+   "size": 524288,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "E6": {
+   "file": "bb-1.e6",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "M6": {
+   "file": "bb-back2.m6",
+   "size": 524288,
+   "kind": "bg2_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "E7": {
+   "file": "bb-6.e7",
+   "size": 65536,
+   "kind": "sprites1:scale_table",
+   "pins": 32,
+   "part": null
+  },
+  "H7": {
+   "file": "bb-7.h7",
+   "size": 65536,
+   "kind": "sprites1:scale_table",
+   "pins": 32,
+   "part": null
+  },
+  "K8": {
+   "file": "bb-2.k8",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L9": {
+   "file": "bb-10.l9",
+   "size": 131072,
+   "kind": "tx_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "K10": {
+   "file": "bb-3.k10",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L10": {
+   "file": "bb-f21.l10",
+   "size": 524288,
+   "kind": "sprites2",
+   "pins": 32,
+   "part": null
+  },
+  "K11": {
+   "file": "bb-4.k11",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M11": {
+   "file": "bb-f14.m11",
+   "size": 524288,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "K12": {
+   "file": "bb-5.k12",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L12": {
+   "file": "bb-f22.l12",
+   "size": 524288,
+   "kind": "sprites2",
+   "pins": 32,
+   "part": null
+  },
+  "M12": {
+   "file": "bb-f13.m12",
+   "size": 524288,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "L13": {
+   "file": "bb-f23.l13",
+   "size": 524288,
+   "kind": "sprites2",
+   "pins": 32,
+   "part": null
+  },
+  "M13": {
+   "file": "bb-f12.m13",
+   "size": 524288,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "C14": {
+   "file": "bb-9.c14",
+   "size": 65536,
+   "kind": "sprites2:scale_table",
+   "pins": 32,
+   "part": null
+  },
+  "L15": {
+   "file": "bb-f24.l15",
+   "size": 524288,
+   "kind": "sprites2",
+   "pins": 32,
+   "part": null
+  },
+  "M16": {
+   "file": "bb-f11.m16",
+   "size": 524288,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

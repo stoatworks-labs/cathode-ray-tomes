@@ -1,0 +1,46 @@
+{
+ "machine": "subs",
+ "name": "Subs",
+ "mfr": "Atari",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/subs.cpp",
+ "docs": 1,
+ "devices": {
+  "E2": {
+   "file": "34196.e2",
+   "size": 256,
+   "kind": "program",
+   "pins": 16,
+   "part": null
+  },
+  "N2": {
+   "file": "34192.n2",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M4": {
+   "file": "34211.m4",
+   "size": 2048,
+   "kind": "playfield",
+   "pins": 24,
+   "part": null
+  },
+  "E7": {
+   "file": "34218.e7",
+   "size": 512,
+   "kind": "motion",
+   "pins": 16,
+   "part": null
+  },
+  "E8": {
+   "file": "34219.e8",
+   "size": 512,
+   "kind": "motion",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

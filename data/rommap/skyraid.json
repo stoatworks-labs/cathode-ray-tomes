@@ -1,0 +1,53 @@
+{
+ "machine": "skyraid",
+ "name": "Sky Raider",
+ "mfr": "Atari",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/skyraid.cpp",
+ "docs": 1,
+ "devices": {
+  "E1": {
+   "file": "030595.e1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H2": {
+   "file": "030598.h2",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "C4": {
+   "file": "006559.c4",
+   "size": 256,
+   "kind": "sync_prom",
+   "pins": 16,
+   "part": null
+  },
+  "M4": {
+   "file": "030596.m4",
+   "size": 256,
+   "kind": "missiles",
+   "pins": 16,
+   "part": null
+  },
+  "K5": {
+   "file": "030585.k5",
+   "size": 2048,
+   "kind": "terrain",
+   "pins": 24,
+   "part": null
+  },
+  "M7": {
+   "file": "030599.m7",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

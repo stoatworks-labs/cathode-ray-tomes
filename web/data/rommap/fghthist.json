@@ -1,0 +1,109 @@
+{
+ "machine": "fghthist",
+ "name": "Fighter's History (World ver 43-09, DE-0395-1 PCB)",
+ "mfr": "Data East Corporation",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "dataeast/fghthist.cpp",
+ "docs": 1,
+ "devices": {
+  "1F": {
+   "file": "lc00-1.1f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "lc01-1.2f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3D": {
+   "file": "ve-00.3d",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "4D": {
+   "file": "ve-01a.4d",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "8A": {
+   "file": "mbf00-8.8a",
+   "size": 1048576,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  },
+  "8J": {
+   "file": "kt-00.8j",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9A": {
+   "file": "mbf01-8.9a",
+   "size": 1048576,
+   "kind": "tiles2",
+   "pins": 32,
+   "part": null
+  },
+  "15K": {
+   "file": "mbf06.15k",
+   "size": 524288,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  },
+  "16D": {
+   "file": "mbf02-16.16d",
+   "size": 2097152,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "16K": {
+   "file": "mbf07.16k",
+   "size": 524288,
+   "kind": "oki2",
+   "pins": 32,
+   "part": null
+  },
+  "17D": {
+   "file": "mbf03-16.17d",
+   "size": 2097152,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "18D": {
+   "file": "mbf04-16.18d",
+   "size": 2097152,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  },
+  "18K": {
+   "file": "lc02-1.18k",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "19D": {
+   "file": "mbf05-16.19d",
+   "size": 2097152,
+   "kind": "sprites1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "machine": "toypop",
+ "name": "Toypop",
+ "mfr": "Namco",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "namco/toypop.cpp",
+ "docs": 0,
+ "devices": {
+  "1R": {
+   "file": "tp1-3.1r",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1S": {
+   "file": "tp1-2.1s",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1T": {
+   "file": "tp1-1.1t",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2C": {
+   "file": "tp1-3.2c",
+   "size": 8192,
+   "kind": "soundcpu",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "tp1-5.2p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3D": {
+   "file": "tp1-6.3d",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "5B": {
+   "file": "tp1-2.5b",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5C": {
+   "file": "tp1-1.5c",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5L": {
+   "file": "tp1-4.5l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5P": {
+   "file": "tp1-7.5p",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "tp1-4.8c",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "9T": {
+   "file": "tp1-6.9t",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "10C": {
+   "file": "tp1-5.10c",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "machine": "cashquiz",
+ "name": "Cash Quiz (Type B, Version 5)",
+ "mfr": "Zilec-Zenitone",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "konami/pingpong.cpp",
+ "docs": 0,
+ "devices": {
+  "3J": {
+   "file": "cashquiz.3j",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5H": {
+   "file": "pingpong.5h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7H": {
+   "file": "cashq.7h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11J": {
+   "file": "pingpong.11j",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12C": {
+   "file": "cashq.12c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

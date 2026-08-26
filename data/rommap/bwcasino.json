@@ -1,0 +1,46 @@
+{
+ "machine": "bwcasino",
+ "name": "Boardwalk Casino",
+ "mfr": "Epos Corporation",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "pacman/pacman.cpp",
+ "docs": 1,
+ "devices": {
+  "1M": {
+   "file": "82s126.1m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "82s126.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "4_a_b.w.c.4a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5E": {
+   "file": "5_e_boardwalk_casino_pp09144.5e",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "7_f_b.w.c.7f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

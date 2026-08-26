@@ -1,0 +1,39 @@
+{
+ "machine": "cb2001",
+ "name": "Cherry Bonus 2001 (V1.1I)",
+ "mfr": "Dyna",
+ "year": "2000",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "9B": {
+   "file": "am27s29.9b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11B": {
+   "file": "am27s29.11b",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11F": {
+   "file": "c01111.11f",
+   "size": 131072,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  },
+  "12A": {
+   "file": "c0111.12a",
+   "size": 524288,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,102 @@
+{
+ "machine": "devilw",
+ "name": "Devil World",
+ "mfr": "Konami",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "konami/twin16.cpp",
+ "docs": 1,
+ "devices": {
+  "4N": {
+   "file": "687_t04.4n",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4R": {
+   "file": "687_t08.4r",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5A": {
+   "file": "687_i01.5a",
+   "size": 131072,
+   "kind": "k007232",
+   "pins": 32,
+   "part": null
+  },
+  "6N": {
+   "file": "687_t05.6n",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6R": {
+   "file": "687_t09.6r",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "687_i02.7c",
+   "size": 131072,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "8N": {
+   "file": "687_q06.8n",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "8R": {
+   "file": "687_l10.8r",
+   "size": 65536,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "8S": {
+   "file": "687_q12.8s",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "687_l03.10a",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "10N": {
+   "file": "687_q07.10n",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "10R": {
+   "file": "687_l11.10r",
+   "size": 65536,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "10S": {
+   "file": "687_q13.10s",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

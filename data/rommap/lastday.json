@@ -1,0 +1,81 @@
+{
+ "machine": "lastday",
+ "name": "The Last Day (set 1)",
+ "mfr": "Dooyong",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "dooyong/dooyong.cpp",
+ "docs": 0,
+ "devices": {
+  "J4": {
+   "file": "2.j4",
+   "size": 32768,
+   "kind": "tx",
+   "pins": 28,
+   "part": null
+  },
+  "S5": {
+   "file": "lday3.s5",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "R9": {
+   "file": "5.r9",
+   "size": 65536,
+   "kind": "bg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "S9": {
+   "file": "6.s9",
+   "size": 131072,
+   "kind": "bg0",
+   "pins": 32,
+   "part": null
+  },
+  "R11": {
+   "file": "8.r11",
+   "size": 65536,
+   "kind": "bg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "S11": {
+   "file": "9.s11",
+   "size": 131072,
+   "kind": "bg0",
+   "pins": 32,
+   "part": null
+  },
+  "R13": {
+   "file": "11.r13",
+   "size": 65536,
+   "kind": "fg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "S13": {
+   "file": "12.s13",
+   "size": 131072,
+   "kind": "fg0",
+   "pins": 32,
+   "part": null
+  },
+  "R14": {
+   "file": "13.r14",
+   "size": 65536,
+   "kind": "fg0_tmap",
+   "pins": 32,
+   "part": null
+  },
+  "S14": {
+   "file": "14.s14",
+   "size": 131072,
+   "kind": "fg0",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

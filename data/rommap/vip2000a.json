@@ -1,0 +1,32 @@
+{
+ "machine": "vip2000a",
+ "name": "unknown 'VIP 2000' game (set 2)",
+ "mfr": "Paloma Elektronik?",
+ "year": "2003",
+ "style": "letter-number",
+ "source": "misc/bingor.cpp",
+ "docs": 0,
+ "devices": {
+  "C11": {
+   "file": "vip_bios_5_l.c11",
+   "size": 32768,
+   "kind": "boot_prg",
+   "pins": 28,
+   "part": null
+  },
+  "C12": {
+   "file": "vip_bios_5_h.c12",
+   "size": 32768,
+   "kind": "boot_prg",
+   "pins": 28,
+   "part": null
+  },
+  "C34": {
+   "file": "slave_19.09.01.c34",
+   "size": 32768,
+   "kind": "slavecpu",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

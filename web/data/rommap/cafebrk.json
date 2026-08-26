@@ -1,0 +1,39 @@
+{
+ "machine": "cafebrk",
+ "name": "Mahjong Cafe Break (Ver. 1.01J)",
+ "mfr": "Nakanihon / Dynax",
+ "year": "1999",
+ "style": "number-letter",
+ "source": "dynax/royalmah.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "52802.1d",
+   "size": 2097152,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "1F": {
+   "file": "528011.1f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4H": {
+   "file": "ns528b2.4h",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4J": {
+   "file": "ns528a2.4j",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

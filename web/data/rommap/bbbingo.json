@@ -1,0 +1,53 @@
+{
+ "machine": "bbbingo",
+ "name": "Bin Bin Bingo (Japan, main unit)",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcona1.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "bi1-slp5.2c",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "bi1-slp4.2f",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "bi1-slp3.3c",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "bi1-slp2.3f",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "6C": {
+   "file": "bi1-slp1.6c",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6F": {
+   "file": "bi1-slp0.6f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

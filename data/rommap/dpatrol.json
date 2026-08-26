@@ -1,0 +1,39 @@
+{
+ "machine": "dpatrol",
+ "name": "Desert Patrol",
+ "mfr": "Project Support Engineering",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "misc/pse.cpp",
+ "docs": 1,
+ "devices": {
+  "L1": {
+   "file": "bd2.l1",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "E2": {
+   "file": "bd1.e2",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "L4": {
+   "file": "bd2.l4",
+   "size": 512,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "H7": {
+   "file": "bd2.h7",
+   "size": 32,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

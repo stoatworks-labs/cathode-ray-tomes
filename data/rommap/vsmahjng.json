@@ -1,0 +1,67 @@
+{
+ "machine": "vsmahjng",
+ "name": "Vs. Mahjong (Japan)",
+ "mfr": "Nintendo Co., Ltd.",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "nintendo/vsnes.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "mj.1a",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "mj.1b",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "mj.1c",
+   "size": 8192,
+   "kind": "prg",
+   "pins": 24,
+   "part": null
+  },
+  "2B": {
+   "file": "mj.2b",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "mj.6a",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "mj.6b",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "mj.6c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "8B": {
+   "file": "mj.8b",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

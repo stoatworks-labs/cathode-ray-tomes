@@ -1,0 +1,67 @@
+{
+ "machine": "esh",
+ "name": "Esh's Aurunmilla (set 1)",
+ "mfr": "Funai/Gakken",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "misc/esh.cpp",
+ "docs": 0,
+ "devices": {
+  "J1": {
+   "file": "rgb.j1",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K3": {
+   "file": "c.k3",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "L3": {
+   "file": "b.l3",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "M3": {
+   "file": "a.m3",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C5": {
+   "file": "h.c5",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C6": {
+   "file": "v.c6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F8": {
+   "file": "is2.f8",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H8": {
+   "file": "is1.h8",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "npskv",
+ "name": "Neo Print - Suizokukan Version (Japan) (T4i 2.00)",
+ "mfr": "SNK",
+ "year": "1997",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "p012-c1 neo-pstm cha136.c1",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "M1": {
+   "file": "p004-m1 neo-pstm cha136.m1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "p04-v1 neo-mvs progbk1.v1",
+   "size": 2097152,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "p012-c2 neo-pstm cha136.c2",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

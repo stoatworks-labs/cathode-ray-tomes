@@ -1,0 +1,46 @@
+{
+ "machine": "animalhs",
+ "name": "Animal House (V1.0, set 1)",
+ "mfr": "Suns Co Ltd.",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "L2": {
+   "file": "1_am27512.l2",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C6": {
+   "file": "3_tms27c010.c6",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "F6": {
+   "file": "2_tms27c010.f6",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "M6": {
+   "file": "3_82s129.m6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "N6": {
+   "file": "2_82s129.n6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "machine": "fcombat",
+ "name": "Field Combat",
+ "mfr": "Jaleco",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "jaleco/fcombat.cpp",
+ "docs": 0,
+ "devices": {
+  "C2": {
+   "file": "fcprom_a.c2",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F3": {
+   "file": "fcombat6.f3",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "L3": {
+   "file": "fcombat5.l3",
+   "size": 16384,
+   "kind": "bgdata",
+   "pins": 28,
+   "part": null
+  },
+  "C4": {
+   "file": "fcprom_b.c4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "T5": {
+   "file": "fcombat1.t5",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "T9": {
+   "file": "fcombat2.t9",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "L11": {
+   "file": "fcombat7.l11",
+   "size": 8192,
+   "kind": "fgtiles",
+   "pins": 24,
+   "part": null
+  },
+  "K12": {
+   "file": "fcprom_d.k12",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

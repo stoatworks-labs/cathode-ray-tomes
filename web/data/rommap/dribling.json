@@ -1,0 +1,32 @@
+{
+ "machine": "dribling",
+ "name": "Dribbling (set 1)",
+ "mfr": "Model Racing",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "modelracing/dribling.cpp",
+ "docs": 1,
+ "devices": {
+  "2D": {
+   "file": "tbp24s10.2d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3C": {
+   "file": "93453-d9.3c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "63s140-d8.3e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

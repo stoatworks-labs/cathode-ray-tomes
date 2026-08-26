@@ -1,0 +1,39 @@
+{
+ "machine": "pacmania",
+ "name": "Pac-Mania",
+ "mfr": "Namco",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "namco/namcos1.cpp",
+ "docs": 2,
+ "devices": {
+  "M4": {
+   "file": "cus64-64a1.m4",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "E8": {
+   "file": "pn1_c2.e8",
+   "size": 131072,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "F8": {
+   "file": "pn1_c3.f8",
+   "size": 131072,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "T8": {
+   "file": "pn1_c8.t8",
+   "size": 65536,
+   "kind": "c123tmap:mask",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

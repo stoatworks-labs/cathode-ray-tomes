@@ -1,0 +1,165 @@
+{
+ "machine": "firetrap",
+ "name": "Fire Trap (US, rev A)",
+ "mfr": "Woodplace Inc. (Data East USA license)",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "dataeast/firetrap.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "firetrap.1a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2A": {
+   "file": "di-00-a.2a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "2E": {
+   "file": "di-04.2e",
+   "size": 8192,
+   "kind": "tiles1",
+   "pins": 24,
+   "part": null
+  },
+  "2J": {
+   "file": "di-08.2j",
+   "size": 8192,
+   "kind": "tiles2",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "di-01.3a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "3B": {
+   "file": "firetrap.3b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3E": {
+   "file": "di-06.3e",
+   "size": 8192,
+   "kind": "tiles1",
+   "pins": 24,
+   "part": null
+  },
+  "3J": {
+   "file": "di-09.3j",
+   "size": 8192,
+   "kind": "tiles2",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "di-02.4a",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4B": {
+   "file": "firetrap.4b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4E": {
+   "file": "di-05.4e",
+   "size": 8192,
+   "kind": "tiles1",
+   "pins": 24,
+   "part": null
+  },
+  "4J": {
+   "file": "di-10.4j",
+   "size": 8192,
+   "kind": "tiles2",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "di-07.6e",
+   "size": 8192,
+   "kind": "tiles1",
+   "pins": 24,
+   "part": null
+  },
+  "6J": {
+   "file": "di-11.6j",
+   "size": 8192,
+   "kind": "tiles2",
+   "pins": 24,
+   "part": null
+  },
+  "10J": {
+   "file": "di-17.10j",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "12J": {
+   "file": "di-18.12j",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "13H": {
+   "file": "di-13.13h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "14H": {
+   "file": "di-14.14h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "15H": {
+   "file": "di-15.15h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "16H": {
+   "file": "di-12.16h",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "17C": {
+   "file": "di-03.17c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "17H": {
+   "file": "di-16.17h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

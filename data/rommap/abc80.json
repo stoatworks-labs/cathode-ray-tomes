@@ -1,0 +1,46 @@
+{
+ "machine": "abc80",
+ "name": "ABC 80",
+ "mfr": "Luxor Datorer AB",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "luxor/abc80.cpp",
+ "docs": 0,
+ "devices": {
+  "K1": {
+   "file": "abc80_22.k1",
+   "size": 512,
+   "kind": "line",
+   "pins": 16,
+   "part": null
+  },
+  "K2": {
+   "file": "abc80_21.k2",
+   "size": 512,
+   "kind": "vsync",
+   "pins": 16,
+   "part": "82s131"
+  },
+  "J3": {
+   "file": "abc80_12.j3",
+   "size": 256,
+   "kind": "attr",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "K5": {
+   "file": "abc80_11.k5",
+   "size": 256,
+   "kind": "hsync",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "abc80_13.e7",
+   "size": 256,
+   "kind": "mmu",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

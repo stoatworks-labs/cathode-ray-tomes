@@ -1,0 +1,67 @@
+{
+ "machine": "tutankhm",
+ "name": "Tutankham",
+ "mfr": "Konami",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "konami/tutankhm.cpp",
+ "docs": 1,
+ "devices": {
+  "1H": {
+   "file": "m1.1h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "m2.2h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3H": {
+   "file": "3j.3h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4H": {
+   "file": "m4.4h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "m5.5h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6H": {
+   "file": "j6.6h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "s1.7a",
+   "size": 4096,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  },
+  "8A": {
+   "file": "s2.8a",
+   "size": 4096,
+   "kind": "timeplt_audio:tpsound",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

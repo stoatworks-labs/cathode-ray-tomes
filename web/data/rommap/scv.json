@@ -1,0 +1,32 @@
+{
+ "machine": "scv",
+ "name": "Super Cassette Vision",
+ "mfr": "Epoch",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "epoch/scv.cpp",
+ "docs": 0,
+ "devices": {
+  "S01": {
+   "file": "upd7801g.s01",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S02": {
+   "file": "epochtv.chr.s02",
+   "size": 1024,
+   "kind": "charrom",
+   "pins": 24,
+   "part": null
+  },
+  "S03": {
+   "file": "upd1771c-017.s03",
+   "size": 1024,
+   "kind": "upd1771c",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "machine": "finalapr",
+ "name": "Final Lap R (Rev. B)",
+ "mfr": "Namco",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "namco/namcofl.cpp",
+ "docs": 0,
+ "devices": {
+  "14K": {
+   "file": "flr1_rsh.14k",
+   "size": 524288,
+   "kind": "c169roz:mask",
+   "pins": 32,
+   "part": null
+  },
+  "18A": {
+   "file": "flr2_mp_ob.18a",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "18J": {
+   "file": "flr1_rch1.18j",
+   "size": 1048576,
+   "kind": "c169roz",
+   "pins": 32,
+   "part": null
+  },
+  "18P": {
+   "file": "flr1_sch3.18p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "18U": {
+   "file": "flr1_ssh.18u",
+   "size": 524288,
+   "kind": "c123tmap:mask",
+   "pins": 32,
+   "part": null
+  },
+  "19A": {
+   "file": "flr2_mp_eb.19a",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "19J": {
+   "file": "flr1_rch0.19j",
+   "size": 1048576,
+   "kind": "c169roz",
+   "pins": 32,
+   "part": null
+  },
+  "19P": {
+   "file": "flr1_sch2.19p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "20P": {
+   "file": "flr1_sch1.20p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "21L": {
+   "file": "flr1_spr.21l",
+   "size": 131072,
+   "kind": "c75data",
+   "pins": 32,
+   "part": null
+  },
+  "21P": {
+   "file": "flr1_sch0.21p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "23S": {
+   "file": "flr1_voi.23s",
+   "size": 2097152,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

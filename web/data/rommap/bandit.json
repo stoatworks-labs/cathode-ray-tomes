@@ -1,0 +1,32 @@
+{
+ "machine": "bandit",
+ "name": "Bandit (US prototype)",
+ "mfr": "Data East USA / Incredible Technologies",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "dataeast/dec0.cpp",
+ "docs": 0,
+ "devices": {
+  "9A": {
+   "file": "hb31.9a",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "12C": {
+   "file": "mb7116e_a-1.12c",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "17E": {
+   "file": "mb7122e_a-2.17e",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,403 @@
+{
+ "machine": "whodunit",
+ "name": "Who Dunit (version 9.0)",
+ "mfr": "Exidy",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "exidy/exidy440.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "wdl-9_1-a.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "wdl-9_1-b.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "wdl-9_1-c.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "wdl-9_1-d.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "wda-9_1-l.1l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "wda-9_1-m.1m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "wda-9_1-n.1n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1P": {
+   "file": "wda-9_1-p.1p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "wda-9_1-r.1r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1S": {
+   "file": "wda-9_1-s.1s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1T": {
+   "file": "wda-9_1-t.1t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "xbl.2h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "wda-9_2-k.2k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "wda-9_2-l.2l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "wda-9_2-m.2m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "wda-9_2-n.2n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "wda-9_2-p.2p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2R": {
+   "file": "wda-9_2-r.2r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2S": {
+   "file": "wda-9_2-s.2s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2T": {
+   "file": "wda-9_2-t.2t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "wdl-9_3-a.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "wdl-9_3-b.3b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "wdl-9_3-c.3c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "wdl-9_3-d.3d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "wdl-9_4-a.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "wdl-9_4-b.4b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "wdl-9_4-c.4c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "wdl-9_4-d.4d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "wdl-9_4-e.4e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "xbl.4k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "xbl.5k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "wdl-9_6-a.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "wdl-9_6-b.6b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "wdl-9_6-c.6c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "wdl-9_6-d.6d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "wdl-9_6-e.6e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "xbl.6k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7B": {
+   "file": "wdl-9_7-b.7b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "wdl-9_7-c.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "wdl-9_7-d.7d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "wdl-9_7-e.7e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "xbl.7k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "wdl-9_8-b.8b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "wdl-9_8-c.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "wdl-9_8-d.8d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "wdl-9_8-e.8e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "xbl.8k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "xbl.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "10B": {
+   "file": "wdl-9_10-b.10b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10C": {
+   "file": "wdl-9_10-c.10c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10D": {
+   "file": "wdl-9_10-d.10d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10E": {
+   "file": "wdl-9_10-e.10e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "wdl-9_11-c.11c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "wdl-9_11-d.11d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11E": {
+   "file": "wdl-9_11-e.11e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12H": {
+   "file": "xbl.12h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

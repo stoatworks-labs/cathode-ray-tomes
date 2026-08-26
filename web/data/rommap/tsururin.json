@@ -1,0 +1,67 @@
+{
+ "machine": "tsururin",
+ "name": "Tsururin Kun",
+ "mfr": "Konami",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "konami/konmedal.cpp",
+ "docs": 0,
+ "devices": {
+  "C3": {
+   "file": "901c08.c3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C4": {
+   "file": "901c09.c4",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J4": {
+   "file": "901c03.j4",
+   "size": 32768,
+   "kind": "k052109",
+   "pins": 28,
+   "part": null
+  },
+  "E6": {
+   "file": "901e01.e6",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J6": {
+   "file": "901c04.j6",
+   "size": 32768,
+   "kind": "k052109",
+   "pins": 28,
+   "part": null
+  },
+  "J8": {
+   "file": "901c05.j8",
+   "size": 32768,
+   "kind": "k052109",
+   "pins": 28,
+   "part": null
+  },
+  "J9": {
+   "file": "901c06.j9",
+   "size": 32768,
+   "kind": "k052109",
+   "pins": 28,
+   "part": null
+  },
+  "J16": {
+   "file": "901c02.j16",
+   "size": 65536,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

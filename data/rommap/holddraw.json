@@ -1,0 +1,74 @@
+{
+ "machine": "holddraw",
+ "name": "Hold & Draw",
+ "mfr": "Amstar",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "misc/amstarz80.cpp",
+ "docs": 0,
+ "devices": {
+  "G1": {
+   "file": "001-1300.g1",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F2": {
+   "file": "001-1500.f2",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "G2": {
+   "file": "g2.g2",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H2": {
+   "file": "h2.h2",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J2": {
+   "file": "j2.j2",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E5": {
+   "file": "001_1201.e5",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "001-8100.c7",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C8": {
+   "file": "001-8500.c8",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E8": {
+   "file": "001-8300.e8",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

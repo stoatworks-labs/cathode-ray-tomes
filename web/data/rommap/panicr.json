@@ -1,0 +1,53 @@
+{
+ "machine": "panicr",
+ "name": "Panic Road (Japan)",
+ "mfr": "Seibu Kaihatsu (Taito license)",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "seibu/panicr.cpp",
+ "docs": 0,
+ "devices": {
+  "9B": {
+   "file": "d.9b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "13C": {
+   "file": "c.13c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "14C": {
+   "file": "b.14c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15C": {
+   "file": "a.15c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "19M": {
+   "file": "2.19m",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "19N": {
+   "file": "1.19n",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

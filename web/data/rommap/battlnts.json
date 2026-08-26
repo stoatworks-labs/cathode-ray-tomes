@@ -1,0 +1,46 @@
+{
+ "machine": "battlnts",
+ "name": "Battlantis (version G)",
+ "mfr": "Konami",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "konami/battlnts.cpp",
+ "docs": 0,
+ "devices": {
+  "7E": {
+   "file": "777_g02.7e",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8E": {
+   "file": "777_g03.8e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "777_c01.10a",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "13A": {
+   "file": "777c04.13a",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "13E": {
+   "file": "777c05.13e",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

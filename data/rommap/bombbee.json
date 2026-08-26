@@ -1,0 +1,32 @@
+{
+ "machine": "bombbee",
+ "name": "Bomb Bee",
+ "mfr": "Namco",
+ "year": "1979",
+ "style": "number-letter",
+ "source": "namco/warpwarp.cpp",
+ "docs": 0,
+ "devices": {
+  "1K": {
+   "file": "tmm333.1k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2K": {
+   "file": "tmm333.2k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "tmm334.4c",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

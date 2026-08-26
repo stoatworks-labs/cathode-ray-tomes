@@ -1,0 +1,46 @@
+{
+ "machine": "npscv1",
+ "name": "Neo Print - Senyou Cassette Ver. 1 (Japan)",
+ "mfr": "SNK",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "np-jc1 pstm-romc.c1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "np-jp1 neo-mvs progbk1.ep1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M1": {
+   "file": "np-m1 pstm-romc.m1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "np-v1 neo-mvs progbk1.v1",
+   "size": 524288,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "np-jc2 pstm-romc.c2",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

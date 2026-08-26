@@ -1,0 +1,46 @@
+{
+ "machine": "snapper",
+ "name": "Snapper (Korea)",
+ "mfr": "Philko",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "sega/segas16b.cpp",
+ "docs": 0,
+ "devices": {
+  "R01": {
+   "file": "snap2.r01",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "R02": {
+   "file": "snap1.r02",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "R03": {
+   "file": "snap4.r03",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "R04": {
+   "file": "snap3.r04",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "R05": {
+   "file": "snap5.r05",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

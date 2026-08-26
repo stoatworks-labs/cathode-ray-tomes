@@ -1,0 +1,116 @@
+{
+ "machine": "skykiddx",
+ "name": "Sky Kid Deluxe (set 1)",
+ "mfr": "Namco",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "namco/namcos86.cpp",
+ "docs": 0,
+ "devices": {
+  "3R": {
+   "file": "sk3-1.3r",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3S": {
+   "file": "sk3-2.3s",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4R": {
+   "file": "sk3_7.4r",
+   "size": 32768,
+   "kind": "tiles_1",
+   "pins": 28,
+   "part": null
+  },
+  "4S": {
+   "file": "sk3_8.4s",
+   "size": 16384,
+   "kind": "tiles_1",
+   "pins": 28,
+   "part": null
+  },
+  "4V": {
+   "file": "sk3-3.4v",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5V": {
+   "file": "sk3-4.5v",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "sk3_4.6b",
+   "size": 16384,
+   "kind": "mcusub",
+   "pins": 28,
+   "part": null
+  },
+  "6U": {
+   "file": "sk3-5.6u",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7R": {
+   "file": "sk3_9.7r",
+   "size": 32768,
+   "kind": "tiles_0",
+   "pins": 28,
+   "part": null
+  },
+  "7S": {
+   "file": "sk3_10.7s",
+   "size": 16384,
+   "kind": "tiles_0",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "sk3_1b.9c",
+   "size": 32768,
+   "kind": "cpu1",
+   "pins": 28,
+   "part": null
+  },
+  "9D": {
+   "file": "sk3_2.9d",
+   "size": 32768,
+   "kind": "cpu1",
+   "pins": 28,
+   "part": null
+  },
+  "12C": {
+   "file": "sk3_3.12c",
+   "size": 32768,
+   "kind": "cpu2",
+   "pins": 28,
+   "part": null
+  },
+  "12H": {
+   "file": "sk3_5.12h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12K": {
+   "file": "sk3_6.12k",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

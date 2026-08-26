@@ -1,0 +1,284 @@
+{
+ "machine": "polepos2",
+ "name": "Pole Position II (Japan)",
+ "mfr": "Namco",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "namco/polepos.cpp",
+ "docs": 5,
+ "devices": {
+  "1A": {
+   "file": "pp1_32.1a",
+   "size": 4096,
+   "kind": "road",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "pp4_29.1e",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1F": {
+   "file": "pp4_28.1f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "pp1_27.1l",
+   "size": 4096,
+   "kind": "scalelut",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "pp4_26.1m",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "pp4_25.1n",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "2A": {
+   "file": "pp1_31.2a",
+   "size": 8192,
+   "kind": "road",
+   "pins": 24,
+   "part": null
+  },
+  "2E": {
+   "file": "pp1_11.2e",
+   "size": 8192,
+   "kind": "52xx",
+   "pins": 24,
+   "part": null
+  },
+  "2F": {
+   "file": "pp1_12.2f",
+   "size": 8192,
+   "kind": "52xx",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "pp4-10.2h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2M": {
+   "file": "pp4_24.2m",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "pp4_23.2n",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "pp1_30.3a",
+   "size": 8192,
+   "kind": "road",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "pp1-5.3b",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3C": {
+   "file": "pp4-12.3c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "pp4_8.3l",
+   "size": 4096,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "3M": {
+   "file": "pp4_7.3m",
+   "size": 4096,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "3N": {
+   "file": "pp1_21.3n",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "pp4-11.4d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4L": {
+   "file": "pp4_6.4l",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "4M": {
+   "file": "pp4_5.4m",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "pp1_19.4n",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "pp4_16.5a",
+   "size": 8192,
+   "kind": "engine",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "pp4_10.5h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5M": {
+   "file": "pp1_18.5m",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "5N": {
+   "file": "pp1_17.5n",
+   "size": 8192,
+   "kind": "bigsprites",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "pp4_15.6a",
+   "size": 8192,
+   "kind": "engine",
+   "pins": 24,
+   "part": null
+  },
+  "6H": {
+   "file": "pp4_9.6h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6M": {
+   "file": "pp4-6.6m",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "pp1-13.8e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8L": {
+   "file": "pp4_2.8l",
+   "size": 8192,
+   "kind": "sub1",
+   "pins": 24,
+   "part": null
+  },
+  "8M": {
+   "file": "pp4_1.8m",
+   "size": 8192,
+   "kind": "sub1",
+   "pins": 24,
+   "part": null
+  },
+  "9A": {
+   "file": "pp1-15.9a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9E": {
+   "file": "pp1-14.9e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "pp1-4.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9L": {
+   "file": "pp4-8.9l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10A": {
+   "file": "pp1-16.10a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10L": {
+   "file": "pp4-9.10l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11A": {
+   "file": "pp1-17.11a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

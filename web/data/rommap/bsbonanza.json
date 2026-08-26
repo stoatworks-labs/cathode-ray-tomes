@@ -1,0 +1,32 @@
+{
+ "machine": "bsbonanza",
+ "name": "Bonus Spin Bonanza (V1.1G)",
+ "mfr": "Dyna",
+ "year": "2001",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "4C": {
+   "file": "bsb_11g.4c",
+   "size": 262144,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  },
+  "9E": {
+   "file": "bsb_3g.9e",
+   "size": 262144,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "12E": {
+   "file": "bsb_1d.12e",
+   "size": 262144,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,88 @@
+{
+ "machine": "vimana",
+ "name": "Vimana (World, rev A)",
+ "mfr": "Toaplan",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "toaplan/toaplan1.cpp",
+ "docs": 1,
+ "devices": {
+  "4D": {
+   "file": "019rom9.prom9.4d",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4H": {
+   "file": "019rom10.prom10.4h",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s123"
+  },
+  "4M": {
+   "file": "hd647180_tp-019.4m",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "12H": {
+   "file": "tp-019_07a.12h",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "12K": {
+   "file": "tp-019-08a.12k",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "18F": {
+   "file": "tp-019_rom3.18f",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20A": {
+   "file": "tp-019_rom1.20a",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20B": {
+   "file": "tp-019_rom2.20b",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "20F": {
+   "file": "tp-019_rom4.20f",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "22F": {
+   "file": "tp-019_rom5.22f",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "24F": {
+   "file": "tp-019_rom6.24f",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

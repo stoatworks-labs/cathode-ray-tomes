@@ -1,0 +1,137 @@
+{
+ "machine": "ghostb",
+ "name": "The Real Ghostbusters (US 2 Players, revision 2)",
+ "mfr": "Data East USA",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "dataeast/ghostb.cpp",
+ "docs": 2,
+ "devices": {
+  "1B": {
+   "file": "dz-1.1b",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "dz01-22.1d",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "1F": {
+   "file": "dz13.1f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "3D": {
+   "file": "dz02.3d",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "4D": {
+   "file": "dz03.4d",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "5F": {
+   "file": "dz06.5f",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6D": {
+   "file": "dz04-21.6d",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "7D": {
+   "file": "dz05-21.7d",
+   "size": 65536,
+   "kind": "mainbank",
+   "pins": 32,
+   "part": null
+  },
+  "8F": {
+   "file": "dz11.8f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "9F": {
+   "file": "dz12.9f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10D": {
+   "file": "dz19a.10d",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "dz20a.11d",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "12F": {
+   "file": "dz14.12f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "14F": {
+   "file": "dz15.14f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "15F": {
+   "file": "dz16.15f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16B": {
+   "file": "dz00.16b",
+   "size": 32768,
+   "kind": "char",
+   "pins": 28,
+   "part": null
+  },
+  "17F": {
+   "file": "dz17.17f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "18F": {
+   "file": "dz18.18f",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

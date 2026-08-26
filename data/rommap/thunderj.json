@@ -1,0 +1,410 @@
+{
+ "machine": "thunderj",
+ "name": "ThunderJaws (rev 3)",
+ "mfr": "Atari Games",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "atari/thunderj.cpp",
+ "docs": 3,
+ "devices": {
+  "1B": {
+   "file": "136076-2015.1b",
+   "size": 65536,
+   "kind": "jsa:cpu",
+   "pins": 32,
+   "part": null
+  },
+  "1L": {
+   "file": "gal20v8a-136076-1076.1l",
+   "size": 343,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "2H": {
+   "file": "gal16v8a-136076-1073.2h",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "2L": {
+   "file": "gal20v8a-136076-1075.2l",
+   "size": 343,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "2R": {
+   "file": "136076-1041.2r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "2S": {
+   "file": "136076-1037.2s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "3L": {
+   "file": "gal16v8a-136076-2074.3l",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "3P": {
+   "file": "136076-1029.3p",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "4M": {
+   "file": "136076-1020.4m",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "5N": {
+   "file": "gal16v8a-136076-1072.5n",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "5R": {
+   "file": "136076-1025.5r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "5S": {
+   "file": "136076-1021.5s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "6P": {
+   "file": "136076-1033.6p",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "6R": {
+   "file": "136076-1042.6r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "6S": {
+   "file": "136076-1038.6s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "7D": {
+   "file": "136076-1019.7d",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "7E": {
+   "file": "136076-1018.7e",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "7J": {
+   "file": "136076-1017.7j",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "7K": {
+   "file": "136076-1016.7k",
+   "size": 65536,
+   "kind": "jsa:oki1",
+   "pins": 32,
+   "part": null
+  },
+  "7R": {
+   "file": "136076-1050.7r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "7S": {
+   "file": "136076-1046.7s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "9R": {
+   "file": "136076-1026.9r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "9S": {
+   "file": "136076-1022.9s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10R": {
+   "file": "136076-1034.10r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10S": {
+   "file": "136076-1030.10s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "11R": {
+   "file": "136076-1043.11r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "11S": {
+   "file": "136076-1039.11s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12E": {
+   "file": "gal16v8a-136076-1070.12e",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "12R": {
+   "file": "136076-1051.12r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12S": {
+   "file": "136076-1047.12s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "13J": {
+   "file": "gal16v8a-136076-1071.13j",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "13R": {
+   "file": "136076-1027.13r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "13S": {
+   "file": "136076-1023.13s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "14C": {
+   "file": "136076-3002.14c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14E": {
+   "file": "136076-3001.14e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14P": {
+   "file": "136076-1032.14p",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "14R": {
+   "file": "136076-1035.14r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "14S": {
+   "file": "136076-1031.14s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "15C": {
+   "file": "136076-2004.15c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15E": {
+   "file": "136076-2003.15e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15H": {
+   "file": "136076-1009.15h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "15R": {
+   "file": "136076-1044.15r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "15S": {
+   "file": "136076-1040.15s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16C": {
+   "file": "136076-2006.16c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16E": {
+   "file": "136076-2005.16e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16H": {
+   "file": "136076-1010.16h",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16P": {
+   "file": "136076-1036.16p",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16R": {
+   "file": "136076-1052.16r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "16S": {
+   "file": "136076-1048.16s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "17C": {
+   "file": "136076-1008.17c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "17E": {
+   "file": "136076-1007.17e",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "17L": {
+   "file": "136076-1011.17l",
+   "size": 65536,
+   "kind": "extra",
+   "pins": 32,
+   "part": null
+  },
+  "17N": {
+   "file": "136076-1012.17n",
+   "size": 65536,
+   "kind": "extra",
+   "pins": 32,
+   "part": null
+  },
+  "17R": {
+   "file": "136076-1028.17r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "17S": {
+   "file": "136076-1024.17s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "34R": {
+   "file": "136076-1049.34r",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "34S": {
+   "file": "136076-1045.34s",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

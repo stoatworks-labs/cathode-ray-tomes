@@ -1,0 +1,39 @@
+{
+ "machine": "scherrymp",
+ "name": "Super Cherry Master Plus (V1.6)",
+ "mfr": "Dyna",
+ "year": "1997",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "9B": {
+   "file": "82s135.9b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11B": {
+   "file": "82s135.11b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11F": {
+   "file": "supercherrymaster_v1.6d.11f",
+   "size": 262144,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  },
+  "12C": {
+   "file": "d9701.12c",
+   "size": 1048576,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

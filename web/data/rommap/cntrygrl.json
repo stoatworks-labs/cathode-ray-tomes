@@ -1,0 +1,67 @@
+{
+ "machine": "cntrygrl",
+ "name": "Country Girl (Japan set 1)",
+ "mfr": "Royal Denshi",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "nichibutsu/jangou.cpp",
+ "docs": 0,
+ "devices": {
+  "4F": {
+   "file": "countrygirl_prom.4f",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "rom3.5k",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "5L": {
+   "file": "rom2.5l",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "5M": {
+   "file": "rom1.5m",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "7H": {
+   "file": "rom6.7h",
+   "size": 2048,
+   "kind": "data",
+   "pins": 24,
+   "part": null
+  },
+  "7J": {
+   "file": "rom7.7j",
+   "size": 2048,
+   "kind": "data",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "rom5.7k",
+   "size": 8192,
+   "kind": "cpu0",
+   "pins": 24,
+   "part": null
+  },
+  "7L": {
+   "file": "rom4.7l",
+   "size": 8192,
+   "kind": "cpu0",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

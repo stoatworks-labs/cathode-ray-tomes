@@ -1,0 +1,130 @@
+{
+ "machine": "mazerbla",
+ "name": "Mazer Blazer (set 1)",
+ "mfr": "Stern Electronics",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "stern/mazerbla.cpp",
+ "docs": 1,
+ "devices": {
+  "1H": {
+   "file": "mblzpu0.1h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2A": {
+   "file": "mblvsb2.2a",
+   "size": 4096,
+   "kind": "digitalker",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "mblvsb0.2d",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "mblzpu1.2h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3H": {
+   "file": "mblzpu2.3h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "mblvsb3.4a",
+   "size": 4096,
+   "kind": "digitalker",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "mblvsb1.4d",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "4H": {
+   "file": "mblzpu3.4h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "pal16r8.7d",
+   "size": 152,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "8B": {
+   "file": "82s123.8b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8G": {
+   "file": "mblcfb0.8g",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "mblcfb2.8k",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "9B": {
+   "file": "82s123.9b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9G": {
+   "file": "82s129.9g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10K": {
+   "file": "mblcfb3.10k",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "14K": {
+   "file": "mblcfb4.14k",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "16A": {
+   "file": "6353-1.16a",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

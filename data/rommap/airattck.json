@@ -1,0 +1,67 @@
+{
+ "machine": "airattck",
+ "name": "Air Attack (set 1)",
+ "mfr": "Comad",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "nmk/nmk16.cpp",
+ "docs": 0,
+ "devices": {
+  "SU6": {
+   "file": "3.su6",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "UG6": {
+   "file": "82s129.ug6",
+   "size": 256,
+   "kind": "nmk_irq:htiming",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "UH6": {
+   "file": "82s147.uh6",
+   "size": 512,
+   "kind": "nmk_irq:vtiming",
+   "pins": 16,
+   "part": null
+  },
+  "UW9": {
+   "file": "9.uw9",
+   "size": 524288,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UX9": {
+   "file": "10.ux9",
+   "size": 524288,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UL10": {
+   "file": "4.ul10",
+   "size": 131072,
+   "kind": "fgtile",
+   "pins": 32,
+   "part": null
+  },
+  "SU12": {
+   "file": "2.su12",
+   "size": 131072,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  },
+  "SU13": {
+   "file": "1.su13",
+   "size": 524288,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

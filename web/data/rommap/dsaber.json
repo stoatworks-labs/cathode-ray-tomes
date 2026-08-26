@@ -1,0 +1,67 @@
+{
+ "machine": "dsaber",
+ "name": "Dragon Saber (World, DO2)",
+ "mfr": "Namco",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "namco/namcos2.cpp",
+ "docs": 2,
+ "devices": {
+  "CHR0": {
+   "file": "do chr-0a.chr0",
+   "size": 524288,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "MPR0": {
+   "file": "do2 mpr0.mpr0",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SND0": {
+   "file": "do1 snd0.snd0",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "SPR0": {
+   "file": "do1 spr0.spr0",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "CHR1": {
+   "file": "do chr-1a.chr1",
+   "size": 524288,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "MPR1": {
+   "file": "do2 mpr1.mpr1",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SND1": {
+   "file": "do1 snd1.snd1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "SPR1": {
+   "file": "do1 spr1.spr1",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

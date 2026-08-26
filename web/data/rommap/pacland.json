@@ -1,0 +1,137 @@
+{
+ "machine": "pacland",
+ "name": "Pac-Land (World)",
+ "mfr": "Namco",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "namco/pacland.cpp",
+ "docs": 3,
+ "devices": {
+  "1R": {
+   "file": "pl1-1.1r",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "1T": {
+   "file": "pl1-2.1t",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "pl1_7.3e",
+   "size": 8192,
+   "kind": "mcusub",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "pl1-4.4n",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "5T": {
+   "file": "pl1-5.5t",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "pl1-8.6e",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "6F": {
+   "file": "pl1-9.6f",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "6L": {
+   "file": "pl1-3.6l",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "6N": {
+   "file": "pl2_12.6n",
+   "size": 8192,
+   "kind": "fg_chars",
+   "pins": 24,
+   "part": null
+  },
+  "6T": {
+   "file": "pl4_13.6t",
+   "size": 8192,
+   "kind": "bg_chars",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "pl1-10.7e",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "7F": {
+   "file": "pl1-11.7f",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8B": {
+   "file": "pl5_01b.8b",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8D": {
+   "file": "pl5_02.8d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8E": {
+   "file": "pl1_3.8e",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8F": {
+   "file": "pl1_4.8f",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8H": {
+   "file": "pl1_5.8h",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "8J": {
+   "file": "pl3_6.8j",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

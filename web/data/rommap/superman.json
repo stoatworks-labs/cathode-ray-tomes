@@ -1,0 +1,53 @@
+{
+ "machine": "superman",
+ "name": "Superman (World)",
+ "mfr": "Taito Corporation",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "taito/taito_x.cpp",
+ "docs": 1,
+ "devices": {
+  "F1": {
+   "file": "b61-14.f1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "H1": {
+   "file": "b61-15.h1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J1": {
+   "file": "b61-16.j1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "K1": {
+   "file": "b61-17.k1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "M11": {
+   "file": "b61_11.m11",
+   "size": 8192,
+   "kind": "cchip:cchip_eprom",
+   "pins": 24,
+   "part": null
+  },
+  "E18": {
+   "file": "b61-01.e18",
+   "size": 524288,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

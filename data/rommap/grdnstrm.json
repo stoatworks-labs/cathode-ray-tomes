@@ -1,0 +1,32 @@
+{
+ "machine": "grdnstrm",
+ "name": "Guardian Storm (horizontal, not encrypted)",
+ "mfr": "Afega (Apples Industries license)",
+ "year": "1998",
+ "style": "letter-number",
+ "source": "nmk/nmk16.cpp",
+ "docs": 0,
+ "devices": {
+  "UC3": {
+   "file": "afega_af1-b1.uc3",
+   "size": 2097152,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UC8": {
+   "file": "afega_af1-b2.uc8",
+   "size": 2097152,
+   "kind": "bgtile",
+   "pins": 32,
+   "part": null
+  },
+  "UC13": {
+   "file": "afega3.uc13",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

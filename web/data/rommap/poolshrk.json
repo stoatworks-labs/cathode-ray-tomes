@@ -1,0 +1,53 @@
+{
+ "machine": "poolshrk",
+ "name": "Poolshark",
+ "mfr": "Atari",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/poolshrk.cpp",
+ "docs": 1,
+ "devices": {
+  "K1": {
+   "file": "7329.k1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L1": {
+   "file": "7330.l1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H5": {
+   "file": "7326.h5",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "J5": {
+   "file": "7325.j5",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "K6": {
+   "file": "7327.k6",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "N6": {
+   "file": "7328.n6",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

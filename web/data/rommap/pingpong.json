@@ -1,0 +1,60 @@
+{
+ "machine": "pingpong",
+ "name": "Konami's Ping-Pong",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/pingpong.cpp",
+ "docs": 0,
+ "devices": {
+  "3J": {
+   "file": "555e06.3j",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5H": {
+   "file": "555e05.5h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "555_e03.6a",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7A": {
+   "file": "555_e04.7a",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "7H": {
+   "file": "555_e01.7h",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11J": {
+   "file": "555e07.11j",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12C": {
+   "file": "555_e02.12c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

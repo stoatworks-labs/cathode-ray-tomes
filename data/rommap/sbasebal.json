@@ -1,0 +1,88 @@
+{
+ "machine": "sbasebal",
+ "name": "Super Champion Baseball (US)",
+ "mfr": "Alpha Denshi Co. (SNK of America license)",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "alpha/alpha68k.cpp",
+ "docs": 0,
+ "devices": {
+  "L3": {
+   "file": "sb-7.l3",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "G9": {
+   "file": "sb-3.g9",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "G11": {
+   "file": "sb-4.g11",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "G13": {
+   "file": "sb-5.g13",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "G15": {
+   "file": "sb-6.g15",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "H16": {
+   "file": "kcb-chr0.h16",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "H18": {
+   "file": "kcb-chr1.h18",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C19": {
+   "file": "snksb1.c19",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "E19": {
+   "file": "snksb2.e19",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "H19": {
+   "file": "kcb-chr2.h19",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "H21": {
+   "file": "kcb-chr3.h21",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

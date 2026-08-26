@@ -1,0 +1,46 @@
+{
+ "machine": "ncv1",
+ "name": "Namco Classic Collection Vol.1",
+ "mfr": "Namco",
+ "year": "1995",
+ "style": "number-letter",
+ "source": "namco/namcond1.cpp",
+ "docs": 1,
+ "devices": {
+  "1C": {
+   "file": "nc1sub.1c",
+   "size": 524288,
+   "kind": "mcu",
+   "pins": 32,
+   "part": null
+  },
+  "7B": {
+   "file": "nc1voice.7b",
+   "size": 2097152,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10C": {
+   "file": "nc1cg0.10c",
+   "size": 2097152,
+   "kind": "ygv608",
+   "pins": 32,
+   "part": null
+  },
+  "13D": {
+   "file": "nc2main1.13d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "14D": {
+   "file": "nc2main0.14d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

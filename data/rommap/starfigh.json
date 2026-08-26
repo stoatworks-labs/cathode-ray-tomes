@@ -1,0 +1,67 @@
+{
+ "machine": "starfigh",
+ "name": "Star Fighter (v1)",
+ "mfr": "SunA",
+ "year": "1990",
+ "style": "letter-number",
+ "source": "suna/suna8.cpp",
+ "docs": 0,
+ "devices": {
+  "J1": {
+   "file": "starfgtr.j1",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L1": {
+   "file": "starfgtr.l1",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "J3": {
+   "file": "starfgtr.j3",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L3": {
+   "file": "starfgtr.l3",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "E4": {
+   "file": "starfgtr.e4",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "E6": {
+   "file": "starfgtr.e6",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "M8": {
+   "file": "starfgtr.m8",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "Q10": {
+   "file": "starfgtr.q10",
+   "size": 32768,
+   "kind": "sound samples",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

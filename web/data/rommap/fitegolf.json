@@ -1,0 +1,130 @@
+{
+ "machine": "fitegolf",
+ "name": "Lee Trevino's Fighting Golf (World?)",
+ "mfr": "SNK",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 1,
+ "devices": {
+  "1B": {
+   "file": "1.1b",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "2.1c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2B": {
+   "file": "gu7.2b",
+   "size": 32768,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2C": {
+   "file": "3.2c",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "gu8.2d",
+   "size": 16384,
+   "kind": "tx_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2P": {
+   "file": "gu9.2p",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2RS": {
+   "file": "gu10.2rs",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2T": {
+   "file": "gu11.2t",
+   "size": 32768,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3F": {
+   "file": "a6001-3.3f",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "4M": {
+   "file": "gu1.4m",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4P": {
+   "file": "gu2.4p",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "6C": {
+   "file": "a6001-1.6c",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "6G": {
+   "file": "gu3.6g",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6K": {
+   "file": "gu4.6k",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6R": {
+   "file": "a6001-2.6r",
+   "size": 324,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "8M": {
+   "file": "gu5.8m",
+   "size": 32768,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  },
+  "8P": {
+   "file": "gu6.8p",
+   "size": 16384,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

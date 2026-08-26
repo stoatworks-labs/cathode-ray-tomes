@@ -1,0 +1,67 @@
+{
+ "machine": "canvas",
+ "name": "Canvas Croquis",
+ "mfr": "SNK",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "snk/mainsnk.cpp",
+ "docs": 0,
+ "devices": {
+  "C2": {
+   "file": "cc_p11.c2",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "F2": {
+   "file": "cc_p8.f2",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "H2": {
+   "file": "cc_p7.h2",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "J2": {
+   "file": "cc_p14.j2",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J5": {
+   "file": "cc_p13.j5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J8": {
+   "file": "cc_p12.j8",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "J9": {
+   "file": "cc_bprom2.j9",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "J10": {
+   "file": "cc_bprom1.j10",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

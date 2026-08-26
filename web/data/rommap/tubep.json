@@ -1,0 +1,60 @@
+{
+ "machine": "tubep",
+ "name": "Tube Panic",
+ "mfr": "Nichibutsu / Fujitek",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "nichibutsu/tubep.cpp",
+ "docs": 0,
+ "devices": {
+  "E1": {
+   "file": "tp-g5.e1",
+   "size": 8192,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "H2": {
+   "file": "tp-g7.h2",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C10": {
+   "file": "tp-g3.c10",
+   "size": 4096,
+   "kind": "text",
+   "pins": 24,
+   "part": null
+  },
+  "C12": {
+   "file": "tp-2.c12",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "C13": {
+   "file": "tp-1.c13",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E13": {
+   "file": "tp-g1.e13",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "F13": {
+   "file": "tp-g2.f13",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,130 @@
+{
+ "machine": "hal21",
+ "name": "HAL21",
+ "mfr": "SNK",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "p1.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "p5.1c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "2A": {
+   "file": "p2.2a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2B": {
+   "file": "p11.2b",
+   "size": 16384,
+   "kind": "bg_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "2C": {
+   "file": "p6.2c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "2D": {
+   "file": "p12.2d",
+   "size": 8192,
+   "kind": "tx_tiles",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "p3.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "p7.3c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3J": {
+   "file": "p10.3j",
+   "size": 16384,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "3K": {
+   "file": "p14.3k",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "3L": {
+   "file": "p15.3l",
+   "size": 16384,
+   "kind": "sp16_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "4A": {
+   "file": "p4.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "p8.4c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "p9.6c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "3.7k",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "2.8k",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "9K": {
+   "file": "1.9k",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

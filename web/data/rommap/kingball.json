@@ -1,0 +1,46 @@
+{
+ "machine": "kingball",
+ "name": "King & Balloon (US)",
+ "mfr": "Namco",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 1,
+ "devices": {
+  "1H": {
+   "file": "chg1.1h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "chg2.1k",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "prg1.7f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7J": {
+   "file": "prg2.7j",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7L": {
+   "file": "prg3.7l",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

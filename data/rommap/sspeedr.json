@@ -1,0 +1,32 @@
+{
+ "machine": "sspeedr",
+ "name": "Super Speed Race",
+ "mfr": "Taito (Midway license)",
+ "year": "1979",
+ "style": "letter-number",
+ "source": "taito/sspeedr.cpp",
+ "docs": 1,
+ "devices": {
+  "F3": {
+   "file": "ssrm762a.f3",
+   "size": 2048,
+   "kind": "driver",
+   "pins": 24,
+   "part": null
+  },
+  "J3": {
+   "file": "ssrm762b.j3",
+   "size": 2048,
+   "kind": "drone",
+   "pins": 24,
+   "part": null
+  },
+  "L3": {
+   "file": "ssrm762c.l3",
+   "size": 2048,
+   "kind": "track",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

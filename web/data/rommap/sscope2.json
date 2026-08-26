@@ -1,0 +1,81 @@
+{
+ "machine": "sscope2",
+ "name": "Silent Scope 2 : Dark Silhouette (ver UAD, Ver 1.03)",
+ "mfr": "Konami",
+ "year": "2000",
+ "style": "number-letter",
+ "source": "konami/hornet.cpp",
+ "docs": 0,
+ "devices": {
+  "6E": {
+   "file": "931a20.6e",
+   "size": 4194304,
+   "kind": "comm_board",
+   "pins": 32,
+   "part": null
+  },
+  "7S": {
+   "file": "931a08.7s",
+   "size": 524288,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "8B": {
+   "file": "at93c46.8b",
+   "size": 128,
+   "kind": "lan_eeprom",
+   "pins": null,
+   "part": null
+  },
+  "8E": {
+   "file": "931a19.8e",
+   "size": 4194304,
+   "kind": "comm_board",
+   "pins": 32,
+   "part": null
+  },
+  "12P": {
+   "file": "931a11.12p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "14P": {
+   "file": "931a10.14p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "16G": {
+   "file": "ds2401_gk830.16g",
+   "size": 8,
+   "kind": "lan_serial_id",
+   "pins": null,
+   "part": null
+  },
+  "16P": {
+   "file": "931a09.16p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "16T": {
+   "file": "931a04.16t",
+   "size": 2097152,
+   "kind": "datarom",
+   "pins": 32,
+   "part": null
+  },
+  "27P": {
+   "file": "931d01.27p",
+   "size": 2097152,
+   "kind": "prgrom",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "sorcerer",
+ "name": "Sorcerer",
+ "mfr": "Exidy Inc",
+ "year": "1979",
+ "style": "number-letter",
+ "source": "exidy/sorcerer.cpp",
+ "docs": 0,
+ "devices": {
+  "1E": {
+   "file": "exmo1-1.1e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2E": {
+   "file": "exmo1-2.2e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "15B": {
+   "file": "bruce.15b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "6331"
+  },
+  "20D": {
+   "file": "exchr-1.20d",
+   "size": 1024,
+   "kind": "chargen",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

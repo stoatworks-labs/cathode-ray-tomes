@@ -1,0 +1,39 @@
+{
+ "machine": "murogem",
+ "name": "Muroge Monaco (set 1)",
+ "mfr": "<unknown>",
+ "year": "198?",
+ "style": "number-letter",
+ "source": "misc/murogem.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "a3.1b",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6E": {
+   "file": "a2.6e",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "a11-8.8e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "9E": {
+   "file": "a10-9.9e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

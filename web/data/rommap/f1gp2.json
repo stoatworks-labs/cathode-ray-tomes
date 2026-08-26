@@ -1,0 +1,39 @@
+{
+ "machine": "f1gp2",
+ "name": "F-1 Grand Prix Part II",
+ "mfr": "Video System Co.",
+ "year": "1992",
+ "style": "letter-number",
+ "source": "vsystem/f1gp.cpp",
+ "docs": 0,
+ "devices": {
+  "V1": {
+   "file": "rom12.v1",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "V2": {
+   "file": "rom14.v2",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "V3": {
+   "file": "rom13.v3",
+   "size": 131072,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "V4": {
+   "file": "rom5.v4",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

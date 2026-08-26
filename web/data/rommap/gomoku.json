@@ -1,0 +1,102 @@
+{
+ "machine": "gomoku",
+ "name": "Gomoku Narabe Renju",
+ "mfr": "Nichibutsu",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "nichibutsu/gomoku.cpp",
+ "docs": 0,
+ "devices": {
+  "1L": {
+   "file": "rj_prom.1l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1M": {
+   "file": "rj_prom.1m",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3C": {
+   "file": "rj_7.3c",
+   "size": 4096,
+   "kind": "gomoku",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "rj_5.4e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4R": {
+   "file": "rj_6.4r",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7A": {
+   "file": "rj_1.7a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "rj_2.7c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "rj_3.7d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7F": {
+   "file": "rj_4.7f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7P": {
+   "file": "rj_prom.7p",
+   "size": 256,
+   "kind": "bg_y",
+   "pins": 16,
+   "part": null
+  },
+  "7R": {
+   "file": "rj_prom.7r",
+   "size": 256,
+   "kind": "bg_d",
+   "pins": 16,
+   "part": null
+  },
+  "8N": {
+   "file": "rj_prom.8n",
+   "size": 256,
+   "kind": "bg_x",
+   "pins": 16,
+   "part": null
+  },
+  "9K": {
+   "file": "rj_prom.9k",
+   "size": 32,
+   "kind": "unkprom",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

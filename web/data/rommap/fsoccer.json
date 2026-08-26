@@ -1,0 +1,123 @@
+{
+ "machine": "fsoccer",
+ "name": "Fighting Soccer (version 4)",
+ "mfr": "SNK",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "snk/snk.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "fs1_ver4.2c",
+   "size": 65536,
+   "kind": "sub-CPU program",
+   "pins": 32,
+   "part": null
+  },
+  "2J": {
+   "file": "fs5.2j",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2K": {
+   "file": "fs6.2k",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2L": {
+   "file": "fs7.2l",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2N": {
+   "file": "fs8.2n",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2P": {
+   "file": "fs9.2p",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2R": {
+   "file": "fs10.2r",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2S": {
+   "file": "fs11.2s",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "2T": {
+   "file": "fs12.2t",
+   "size": 65536,
+   "kind": "sp32_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "3J": {
+   "file": "fs2.3j",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "4N": {
+   "file": "fs13.4n",
+   "size": 32768,
+   "kind": "tx_tiles",
+   "pins": 28,
+   "part": null
+  },
+  "6C": {
+   "file": "fs3_ver4.6c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7P": {
+   "file": "fs4.7p",
+   "size": 65536,
+   "kind": "ym2",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "1.8d",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "2.8e",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "9E": {
+   "file": "3.9e",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

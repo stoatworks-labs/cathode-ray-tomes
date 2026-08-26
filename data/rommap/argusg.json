@@ -1,0 +1,46 @@
+{
+ "machine": "argusg",
+ "name": "Argus (Gottlieb, prototype)",
+ "mfr": "Gottlieb",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "gottlieb/gottlieb.cpp",
+ "docs": 0,
+ "devices": {
+  "K4": {
+   "file": "arg_fg0_2764.k4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "arg_fg1_2764.k5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "arg_fg2_2764.k6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "arg_ram2_2732.c7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C16": {
+   "file": "arg_rom4_2764.c16",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

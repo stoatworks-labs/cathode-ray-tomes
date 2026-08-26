@@ -1,0 +1,32 @@
+{
+ "machine": "paperboy",
+ "name": "Paperboy (rev 3)",
+ "mfr": "Atari Games",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "atari/atarisy2.cpp",
+ "docs": 2,
+ "devices": {
+  "RV1": {
+   "file": "cpu_j06.rv1",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "RV2": {
+   "file": "cpu_f06.rv2",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "RV3": {
+   "file": "cpu_l07.rv3",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

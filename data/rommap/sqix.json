@@ -1,0 +1,46 @@
+{
+ "machine": "sqix",
+ "name": "Super Qix (World/Japan, V1.2)",
+ "mfr": "Kaneko / Taito",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "taito/superqix.cpp",
+ "docs": 1,
+ "devices": {
+  "L2": {
+   "file": "b03__03.l2",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "EF3": {
+   "file": "b03__01-2.ef3",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "H3": {
+   "file": "b03__02.h3",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "S8": {
+   "file": "b03__04.s8",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "T8": {
+   "file": "b03__05.t8",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

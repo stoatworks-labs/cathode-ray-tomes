@@ -1,0 +1,46 @@
+{
+ "machine": "keirinou",
+ "name": "Keirin Ou",
+ "mfr": "Excellent System",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "excellent/witch.cpp",
+ "docs": 0,
+ "devices": {
+  "K5": {
+   "file": "k5.k5",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "Y5": {
+   "file": "y5-03.y5",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "C6": {
+   "file": "c6-02.c6",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "R8": {
+   "file": "n82s129an.r8",
+   "size": 256,
+   "kind": "prom",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "Y8": {
+   "file": "y8.y8",
+   "size": 32768,
+   "kind": "sub-CPU program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

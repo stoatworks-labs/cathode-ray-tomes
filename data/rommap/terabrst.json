@@ -1,0 +1,88 @@
+{
+ "machine": "terabrst",
+ "name": "Teraburst (1998/07/17 ver UEL)",
+ "mfr": "Konami",
+ "year": "1998",
+ "style": "number-letter",
+ "source": "konami/hornet.cpp",
+ "docs": 0,
+ "devices": {
+  "7S": {
+   "file": "715a08.7s",
+   "size": 524288,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "14P": {
+   "file": "715a10.14p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "14T": {
+   "file": "715a05.14t",
+   "size": 2097152,
+   "kind": "datarom",
+   "pins": 32,
+   "part": null
+  },
+  "16P": {
+   "file": "715a09.16p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "16T": {
+   "file": "715a04.16t",
+   "size": 2097152,
+   "kind": "datarom",
+   "pins": 32,
+   "part": null
+  },
+  "20K": {
+   "file": "715a17.20k",
+   "size": 131072,
+   "kind": "gn680",
+   "pins": 32,
+   "part": null
+  },
+  "22P": {
+   "file": "715l03.22p",
+   "size": 2097152,
+   "kind": "prgrom",
+   "pins": 32,
+   "part": null
+  },
+  "24U": {
+   "file": "715a13.24u",
+   "size": 4194304,
+   "kind": "cgboard_0",
+   "pins": 32,
+   "part": null
+  },
+  "25P": {
+   "file": "715l02.25p",
+   "size": 2097152,
+   "kind": "prgrom",
+   "pins": 32,
+   "part": null
+  },
+  "32U": {
+   "file": "715a14.32u",
+   "size": 4194304,
+   "kind": "cgboard_0",
+   "pins": 32,
+   "part": null
+  },
+  "35D": {
+   "file": "715uel_m48t58y.35d",
+   "size": 8192,
+   "kind": "m48t58",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

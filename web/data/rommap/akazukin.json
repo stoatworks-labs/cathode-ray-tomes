@@ -1,0 +1,95 @@
+{
+ "machine": "akazukin",
+ "name": "Akazukin (Japan)",
+ "mfr": "Sigma",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "orca/akazukin.cpp",
+ "docs": 0,
+ "devices": {
+  "J2": {
+   "file": "1.j2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L2": {
+   "file": "2.l2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M2": {
+   "file": "3.m2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "N2": {
+   "file": "4.n2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "T4": {
+   "file": "7.t4",
+   "size": 4096,
+   "kind": "bgtiles0",
+   "pins": 24,
+   "part": null
+  },
+  "L6": {
+   "file": "b.l6",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "M6": {
+   "file": "g.m6",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "R6": {
+   "file": "r.r6",
+   "size": 256,
+   "kind": "vasvid:proms",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "11.e7",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "H7": {
+   "file": "5.h7",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "J7": {
+   "file": "6.j7",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "E9": {
+   "file": "9.e9",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

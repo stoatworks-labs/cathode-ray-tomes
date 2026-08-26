@@ -1,0 +1,270 @@
+{
+ "machine": "sderby2",
+ "name": "Super Derby II",
+ "mfr": "Sega",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "sega/sderby2.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "pr-6226.1b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "1L": {
+   "file": "epr-6240.1l",
+   "size": 16384,
+   "kind": "subcpu",
+   "pins": 28,
+   "part": null
+  },
+  "1M": {
+   "file": "epr-6241.1m",
+   "size": 16384,
+   "kind": "subcpu",
+   "pins": 28,
+   "part": null
+  },
+  "2B": {
+   "file": "pr-6225.2b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2C": {
+   "file": "pr-6223.2c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3B": {
+   "file": "pr-6224.3b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3S": {
+   "file": "epr-6205.3s",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "3T": {
+   "file": "epr-6206.3t",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4B": {
+   "file": "pr-6226.4b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5B": {
+   "file": "pr-6225.5b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5C": {
+   "file": "pr-6223.5c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6B": {
+   "file": "pr-6224.6b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7B": {
+   "file": "pr-6226.7b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "7P": {
+   "file": "pr-6235.7p",
+   "size": 32,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": "82s123"
+  },
+  "7R": {
+   "file": "pr-6236.7r",
+   "size": 32,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": "82s123"
+  },
+  "7T": {
+   "file": "epr-6242.7t",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8B": {
+   "file": "pr-6225.8b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8N": {
+   "file": "82s141.8n",
+   "size": 512,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": null
+  },
+  "8V": {
+   "file": "epr-6207.8v",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8W": {
+   "file": "epr-6208.8w",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8X": {
+   "file": "epr-6209.8x",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9B": {
+   "file": "pr-6224.9b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9C": {
+   "file": "pr-6223.9c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "9V": {
+   "file": "epr-6210.9v",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9W": {
+   "file": "epr-6211.9w",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9X": {
+   "file": "epr-6212.9x",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "11T": {
+   "file": "epr-6243.11t",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12H": {
+   "file": "epr-6213.12h",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12K": {
+   "file": "epr-6215.12k",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12M": {
+   "file": "epr-6246.12m",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12R": {
+   "file": "epr-6221.12r",
+   "size": 16384,
+   "kind": "saku",
+   "pins": 28,
+   "part": null
+  },
+  "12S": {
+   "file": "epr-6222.12s",
+   "size": 16384,
+   "kind": "saku",
+   "pins": 28,
+   "part": null
+  },
+  "12W": {
+   "file": "pr-6237.12w",
+   "size": 256,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": null
+  },
+  "12X": {
+   "file": "pr-6237.12x",
+   "size": 256,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": null
+  },
+  "13H": {
+   "file": "epr-6216.13h",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13K": {
+   "file": "epr-6218.13k",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13W": {
+   "file": "pr-6237.13w",
+   "size": 256,
+   "kind": "proms_misc",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

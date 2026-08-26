@@ -1,0 +1,88 @@
+{
+ "machine": "bubbles",
+ "name": "Bubbles",
+ "mfr": "Williams",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "williams/williams.cpp",
+ "docs": 2,
+ "devices": {
+  "3C": {
+   "file": "decoder_rom_6.3c",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3G": {
+   "file": "decoder_rom_4.3g",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "bubbles_rom_3b_16-3012-42.4a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "bubbles_rom_2b_16-3012-41.4c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "bubbles_rom_1b_16-3012-40.4e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "bubbles_rom_6b_16-3012-45.5a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "bubbles_rom_5b_16-3012-44.5c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5E": {
+   "file": "bubbles_rom_4b_16-3012-43.5e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "bubbles_rom_9b_16-3012-48.6a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "bubbles_rom_8b_16-3012-47.6c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "bubbles_rom_7b_16-3012-46.6e",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "cafepara",
+ "name": "Mahjong Cafe Paradise (Ver. 1.00)",
+ "mfr": "Techno-Top",
+ "year": "1999",
+ "style": "number-letter",
+ "source": "dynax/royalmah.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "00102.1d",
+   "size": 2097152,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "1H": {
+   "file": "00101.1h",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "4H": {
+   "file": "ts001b.4h",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4J": {
+   "file": "ts001a.4j",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "machine": "omegrace",
+ "name": "Omega Race (set 1)",
+ "mfr": "Midway",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "bally/omegrace.cpp",
+ "docs": 3,
+ "devices": {
+  "E1": {
+   "file": "omega.e1",
+   "size": 2048,
+   "kind": "vectorrom",
+   "pins": 24,
+   "part": null
+  },
+  "F1": {
+   "file": "omega.f1",
+   "size": 2048,
+   "kind": "vectorrom",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "sound.k5",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "J7": {
+   "file": "omega.j7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "K7": {
+   "file": "omega.k7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L7": {
+   "file": "omega.l7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M7": {
+   "file": "omega.m7",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

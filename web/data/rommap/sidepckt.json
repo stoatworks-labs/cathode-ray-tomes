@@ -1,0 +1,88 @@
+{
+ "machine": "sidepckt",
+ "name": "Side Pocket (World)",
+ "mfr": "Data East Corporation",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "dataeast/sidepckt.cpp",
+ "docs": 0,
+ "devices": {
+  "3C": {
+   "file": "dh00-e.3c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3H": {
+   "file": "dh04.3h",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "6D": {
+   "file": "dh-e.6d",
+   "size": 4096,
+   "kind": "mcu",
+   "pins": 24,
+   "part": null
+  },
+  "13H": {
+   "file": "dh05-e.13h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13J": {
+   "file": "dh06-e.13j",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13K": {
+   "file": "dh07-e.13k",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "14A": {
+   "file": "dh01.14a",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "15A": {
+   "file": "dh02.15a",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "15L": {
+   "file": "dh-08.15l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "16L": {
+   "file": "dh-09.16l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "17A": {
+   "file": "dh03.17a",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

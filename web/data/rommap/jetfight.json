@@ -1,0 +1,53 @@
+{
+ "machine": "jetfight",
+ "name": "Jet Fighter/Jet Fighter Cocktail/Launch Aircraft (set 1)",
+ "mfr": "Atari",
+ "year": "1975",
+ "style": "letter-number",
+ "source": "atari/atarittl.cpp",
+ "docs": 0,
+ "devices": {
+  "J1": {
+   "file": "004250.j1",
+   "size": 32,
+   "kind": "shell",
+   "pins": 16,
+   "part": null
+  },
+  "M1": {
+   "file": "004250.m1",
+   "size": 32,
+   "kind": "shell",
+   "pins": 16,
+   "part": null
+  },
+  "F5": {
+   "file": "004253-03.f5",
+   "size": 1024,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "J5": {
+   "file": "004253-02.j5",
+   "size": 512,
+   "kind": "gfx",
+   "pins": 16,
+   "part": null
+  },
+  "K5": {
+   "file": "004253-01.k5",
+   "size": 512,
+   "kind": "gfx",
+   "pins": 16,
+   "part": null
+  },
+  "R5": {
+   "file": "004251.r5",
+   "size": 32,
+   "kind": "singleplayer",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,151 @@
+{
+ "machine": "gaplus",
+ "name": "Gaplus (GP2 rev. B)",
+ "mfr": "Namco",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "namco/gaplus.cpp",
+ "docs": 1,
+ "devices": {
+  "1N": {
+   "file": "gp2-1.1n",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1P": {
+   "file": "gp2-3.1p",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2N": {
+   "file": "gp2-2.2n",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3F": {
+   "file": "gp2-4.3f",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4B": {
+   "file": "gp2-1.4b",
+   "size": 8192,
+   "kind": "sub2",
+   "pins": 24,
+   "part": null
+  },
+  "6N": {
+   "file": "gp2-5.6n",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6P": {
+   "file": "gp2-6.6p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6S": {
+   "file": "gp2-7.6s",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "gp2-2b.8b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "gp2-3b.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "gp2-4.8d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8N": {
+   "file": "pal10l8.8n",
+   "size": 44,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "8S": {
+   "file": "gp2-5.8s",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11B": {
+   "file": "gp2-6.11b",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "gp2-7.11c",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "gp2-8.11d",
+   "size": 8192,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "11M": {
+   "file": "gp2-9.11m",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11N": {
+   "file": "gp2-10.11n",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11P": {
+   "file": "gp2-11.11p",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "11R": {
+   "file": "gp2-12.11r",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

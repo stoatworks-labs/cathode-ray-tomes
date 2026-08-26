@@ -1,0 +1,60 @@
+{
+ "machine": "lespendu",
+ "name": "Le Super Pendu (V1, words set #1)",
+ "mfr": "Voyageur de L'Espace Inc.",
+ "year": "198?",
+ "style": "number-letter",
+ "source": "misc/goldnpkr.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "pendu_a.2a",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "pendu_b.3a",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5A": {
+   "file": "pendu_c.5a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "tbp24s10n.7d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11A": {
+   "file": "pendu_1.11a",
+   "size": 32768,
+   "kind": "data",
+   "pins": 28,
+   "part": null
+  },
+  "12A": {
+   "file": "pendu_2.12a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "14A": {
+   "file": "pendu_3.14a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "pacnpal",
+ "name": "Pac & Pal",
+ "mfr": "Namco",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "namco/mappy.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "pap3-1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "pap1-2b.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "pap1-3b.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "pap1-4.1k",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "pap1-6.3c",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3F": {
+   "file": "pap1-5.3f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "pap1-4.3l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "pap1-3.3m",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4C": {
+   "file": "pap1-6.4c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4E": {
+   "file": "pap1-5.4e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

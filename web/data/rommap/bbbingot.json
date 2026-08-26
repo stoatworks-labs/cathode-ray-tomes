@@ -1,0 +1,67 @@
+{
+ "machine": "bbbingot",
+ "name": "Bin Bin Bingo (Japan, terminal)",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcona1.cpp",
+ "docs": 0,
+ "devices": {
+  "3B": {
+   "file": "bi1 msp5.3b",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "bi1 msp3.3c",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3E": {
+   "file": "bi1 msp1.3e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6B": {
+   "file": "bi1 msp4.6b",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "6C": {
+   "file": "bi1 msp2.6c",
+   "size": 524288,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "6E": {
+   "file": "bi1 msp0.6e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8A": {
+   "file": "na1r2m.8a",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "10A": {
+   "file": "na1r1m.10a",
+   "size": 733,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

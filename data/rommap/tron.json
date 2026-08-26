@@ -1,0 +1,88 @@
+{
+ "machine": "tron",
+ "name": "Tron (8/9)",
+ "mfr": "Bally Midway",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "bally/mcr.cpp",
+ "docs": 2,
+ "devices": {
+  "CB1": {
+   "file": "vgc_lctn-cb1_tron.cb1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "DC1": {
+   "file": "vgb_lctn-dc1_tron.dc1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E1": {
+   "file": "vga_lctn-e1_tron.e1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C2": {
+   "file": "scpu-pga_lctn-c2_tron_aug_9.c2",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C3": {
+   "file": "scpu-pgb_lctn-c3_tron_aug_9.c3",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "G3": {
+   "file": "scpu-bgg_lctn-g3_tron.g3",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C4": {
+   "file": "scpu-pgc_lctn-c4_tron_aug_9.c4",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "G4": {
+   "file": "scpu-bgh_lctn-g4_tron.g4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C5": {
+   "file": "scpu-pgd_lctn-c5_tron_aug_9.c5",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C6": {
+   "file": "scpu-pge_lctn-c6_tron_aug_9.c6",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C7": {
+   "file": "scpu-pgf_lctn-c7_tron_aug_9.c7",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

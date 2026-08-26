@@ -1,0 +1,109 @@
+{
+ "machine": "aliensec",
+ "name": "Alien Sector",
+ "mfr": "Namco",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "namco/baraduke.cpp",
+ "docs": 0,
+ "devices": {
+  "1N": {
+   "file": "bd1-1.1n",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "bd1-2.2m",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "bd1_4.3b",
+   "size": 16384,
+   "kind": "mcusub",
+   "pins": 28,
+   "part": null
+  },
+  "3J": {
+   "file": "bd1_5.3j",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4M": {
+   "file": "bd2_6.4m",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4N": {
+   "file": "bd1_7.4n",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4P": {
+   "file": "bd2_8.4p",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8K": {
+   "file": "bd1_9.8k",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8L": {
+   "file": "bd1_10.8l",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8M": {
+   "file": "bd1_11.8m",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8N": {
+   "file": "bd1_12.8n",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9A": {
+   "file": "bd2_1.9a",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "9B": {
+   "file": "bd2_2.9b",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "bd1_3.9c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "espial",
+ "name": "Espial (Europe)",
+ "mfr": "Orca / Thunderbolt",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/espial.cpp",
+ "docs": 0,
+ "devices": {
+  "1F": {
+   "file": "mmi6301.1f",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1H": {
+   "file": "mmi6301.1h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "espial7.4a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "espial8.4b",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "espial9.4d",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "espial10.4e",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4F": {
+   "file": "esp3.4f",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4H": {
+   "file": "esp4.4h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "esp1.4n",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "4R": {
+   "file": "esp2.4r",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

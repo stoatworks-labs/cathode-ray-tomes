@@ -1,0 +1,67 @@
+{
+ "machine": "jongbou",
+ "name": "Mahjong Block Jongbou (Japan)",
+ "mfr": "SNK",
+ "year": "1987",
+ "style": "letter-number",
+ "source": "alpha/alpha68k_n.cpp",
+ "docs": 0,
+ "devices": {
+  "K1": {
+   "file": "g.k1",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K2": {
+   "file": "r.k2",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "K3": {
+   "file": "b.k3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L9": {
+   "file": "h.l9",
+   "size": 256,
+   "kind": "clut_proms",
+   "pins": 16,
+   "part": null
+  },
+  "L10": {
+   "file": "l.l10",
+   "size": 256,
+   "kind": "clut_proms",
+   "pins": 16,
+   "part": null
+  },
+  "J15": {
+   "file": "p4.j15",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "K15": {
+   "file": "p5.k15",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "L15": {
+   "file": "p6.l15",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

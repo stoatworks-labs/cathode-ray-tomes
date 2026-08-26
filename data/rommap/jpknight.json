@@ -1,0 +1,32 @@
+{
+ "machine": "jpknight",
+ "name": "Jackpot Knight (V1.1)",
+ "mfr": "Dyna / R-Stone",
+ "year": "1997",
+ "style": "letter-number",
+ "source": "igs/goldstar.cpp",
+ "docs": 0,
+ "devices": {
+  "C9": {
+   "file": "82s135.c9",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "F10": {
+   "file": "jpk_11d.f10",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C11": {
+   "file": "82s135.c11",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

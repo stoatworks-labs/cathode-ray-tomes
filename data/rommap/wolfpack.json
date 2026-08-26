@@ -1,0 +1,60 @@
+{
+ "machine": "wolfpack",
+ "name": "Wolf Pack (prototype)",
+ "mfr": "Atari",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/wolfpack.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "30291.c1",
+   "size": 1024,
+   "kind": "tile",
+   "pins": 24,
+   "part": null
+  },
+  "G3": {
+   "file": "30287.g3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H3": {
+   "file": "30288.h3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "R3": {
+   "file": "30864.r3",
+   "size": 2048,
+   "kind": "speech",
+   "pins": 24,
+   "part": null
+  },
+  "J6": {
+   "file": "30289.j6",
+   "size": 2048,
+   "kind": "ship",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "30290.k6",
+   "size": 2048,
+   "kind": "ship",
+   "pins": 24,
+   "part": null
+  },
+  "M6": {
+   "file": "30293.m6",
+   "size": 1024,
+   "kind": "torpedo",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

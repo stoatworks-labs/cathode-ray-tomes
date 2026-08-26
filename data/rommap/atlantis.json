@@ -1,0 +1,39 @@
+{
+ "machine": "atlantis",
+ "name": "Battle of Atlantis (set 1)",
+ "mfr": "Comsoft",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "5C": {
+   "file": "ot1.5c",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "ot2.5d",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5E": {
+   "file": "ot3.5e",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "c01s.6e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

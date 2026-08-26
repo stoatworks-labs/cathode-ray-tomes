@@ -1,0 +1,39 @@
+{
+ "machine": "mooncrst",
+ "name": "Moon Cresta (Nichibutsu)",
+ "mfr": "Nichibutsu",
+ "year": "1980",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 6,
+ "devices": {
+  "6L": {
+   "file": "mmi6331.6l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s123"
+  },
+  "7R": {
+   "file": "mc5.7r",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "mc6.8d",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "mc7.8e",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,116 @@
+{
+ "machine": "ridgerac",
+ "name": "Ridge Racer (World, RR2 Ver.B)",
+ "mfr": "Namco",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "namco/namcos22.cpp",
+ "docs": 2,
+ "devices": {
+  "2D": {
+   "file": "rr2_prglmb.2d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3D": {
+   "file": "rr1gam.3d",
+   "size": 256,
+   "kind": "gamma_proms",
+   "pins": 16,
+   "part": null
+  },
+  "4B": {
+   "file": "rr1potl1.4b",
+   "size": 524288,
+   "kind": "pointrom",
+   "pins": 32,
+   "part": null
+  },
+  "4C": {
+   "file": "rr1potm1.4c",
+   "size": 524288,
+   "kind": "pointrom",
+   "pins": 32,
+   "part": null
+  },
+  "4D": {
+   "file": "rr2_prgllb.4d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5B": {
+   "file": "rr1potl0.5b",
+   "size": 524288,
+   "kind": "pointrom",
+   "pins": 32,
+   "part": null
+  },
+  "5C": {
+   "file": "rr1potm0.5c",
+   "size": 524288,
+   "kind": "pointrom",
+   "pins": 32,
+   "part": null
+  },
+  "5D": {
+   "file": "rr1potu0.5d",
+   "size": 524288,
+   "kind": "pointrom",
+   "pins": 32,
+   "part": null
+  },
+  "6D": {
+   "file": "rr2_prguub.6d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6R": {
+   "file": "rr1data.6r",
+   "size": 524288,
+   "kind": "mcu",
+   "pins": 32,
+   "part": null
+  },
+  "8D": {
+   "file": "rr2_prgumb.8d",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "10L": {
+   "file": "rr1wav3.10l",
+   "size": 1048576,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10N": {
+   "file": "rr1wav2.10n",
+   "size": 1048576,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10P": {
+   "file": "rr1wav1.10p",
+   "size": 1048576,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  },
+  "10R": {
+   "file": "rr1wav0.10r",
+   "size": 1048576,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

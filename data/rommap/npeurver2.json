@@ -1,0 +1,60 @@
+{
+ "machine": "npeurver2",
+ "name": "Neo Print - European Version II (World) (T4i 3.07)",
+ "mfr": "SNK",
+ "year": "1996",
+ "style": "letter-number",
+ "source": "snk/neoprint.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "p040-c1.c1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EP1": {
+   "file": "p040-ep1.ep1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M1": {
+   "file": "p040-m1.m1",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "V1": {
+   "file": "p040-v1.v1",
+   "size": 2097152,
+   "kind": "ymsnd:adpcma",
+   "pins": 32,
+   "part": null
+  },
+  "C2": {
+   "file": "p040-c2.c2",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "p040-c3.c3",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C4": {
+   "file": "p040-c4.c4",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

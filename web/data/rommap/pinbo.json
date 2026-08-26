@@ -1,0 +1,67 @@
+{
+ "machine": "pinbo",
+ "name": "Pinbo (set 1)",
+ "mfr": "Jaleco",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "snk/lasso.cpp",
+ "docs": 0,
+ "devices": {
+  "C1": {
+   "file": "rom8.c1",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E7": {
+   "file": "rom3.e7",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H7": {
+   "file": "rom4.h7",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J7": {
+   "file": "rom5.j7",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S8": {
+   "file": "rom1.s8",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "K10": {
+   "file": "green.k10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "L10": {
+   "file": "red.l10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "N10": {
+   "file": "blue.n10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

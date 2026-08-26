@@ -1,0 +1,67 @@
+{
+ "machine": "rockrage",
+ "name": "Rock'n Rage (World)",
+ "mfr": "Konami",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "konami/rockrage.cpp",
+ "docs": 0,
+ "devices": {
+  "6E": {
+   "file": "620k04.6e",
+   "size": 32768,
+   "kind": "vlm",
+   "pins": 28,
+   "part": null
+  },
+  "8G": {
+   "file": "620l10.8g",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "620k03.11c",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "11G": {
+   "file": "620k09.11g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12G": {
+   "file": "620k08.12g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "13G": {
+   "file": "620k07.13g",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15C": {
+   "file": "620q02.15c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16C": {
+   "file": "620q01.16c",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

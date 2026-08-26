@@ -1,0 +1,39 @@
+{
+ "machine": "robocop",
+ "name": "Robocop (World, revision 4)",
+ "mfr": "Data East Corporation",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "dataeast/dec0.cpp",
+ "docs": 3,
+ "devices": {
+  "11B": {
+   "file": "ep01-4.11b",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "ep05-4.11c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "12C": {
+   "file": "mb7116e_a-1.12c",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "17E": {
+   "file": "mb7122e_a-2.17e",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "machine": "ordyne",
+ "name": "Ordyne (World)",
+ "mfr": "Namco",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "namco/namcos2.cpp",
+ "docs": 1,
+ "devices": {
+  "MPR0": {
+   "file": "or2_mp0.mpr0",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SND0": {
+   "file": "or1_sd.snd0",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "SPR0": {
+   "file": "or1_sp0.spr0",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "MPR1": {
+   "file": "or2_mp1.mpr1",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SPR1": {
+   "file": "or1_sp1.spr1",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,95 @@
+{
+ "machine": "avspirit",
+ "name": "Avenging Spirit",
+ "mfr": "Jaleco",
+ "year": "1991",
+ "style": "number-letter",
+ "source": "jaleco/megasys1.cpp",
+ "docs": 0,
+ "devices": {
+  "1J": {
+   "file": "adpcm-2.1j",
+   "size": 262144,
+   "kind": "oki2",
+   "pins": 32,
+   "part": null
+  },
+  "1K": {
+   "file": "adpcm-1.1k",
+   "size": 262144,
+   "kind": "oki1",
+   "pins": 32,
+   "part": null
+  },
+  "3B": {
+   "file": "jaleco_a.spirit_6.3b",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "jaleco_a.spirit_2.3f",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "5B": {
+   "file": "jaleco_a.spirit_5.5b",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5F": {
+   "file": "jaleco_a.spirit_1.5f",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "11L": {
+   "file": "avspirit-mcu.11l",
+   "size": 16384,
+   "kind": "iomcu",
+   "pins": 28,
+   "part": null
+  },
+  "20M": {
+   "file": "ph.20m",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s131"
+  },
+  "23A": {
+   "file": "spirit7.23a",
+   "size": 524288,
+   "kind": "scroll1",
+   "pins": 32,
+   "part": null
+  },
+  "23D": {
+   "file": "spirit8.23d",
+   "size": 524288,
+   "kind": "scroll2",
+   "pins": 32,
+   "part": null
+  },
+  "23G": {
+   "file": "jaleco_a.spirit_9.23g",
+   "size": 131072,
+   "kind": "scroll3",
+   "pins": 32,
+   "part": null
+  },
+  "28K": {
+   "file": "spirit10.28k",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

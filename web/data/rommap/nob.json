@@ -1,0 +1,109 @@
+{
+ "machine": "nob",
+ "name": "Noboranka (Japan)",
+ "mfr": "Coreland / Data East Corporation",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "sega/system1.cpp",
+ "docs": 0,
+ "devices": {
+  "1F": {
+   "file": "dm08.1f",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "1H": {
+   "file": "dm09.1h",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "1K": {
+   "file": "dm10.1k",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5F": {
+   "file": "dm04.5f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5H": {
+   "file": "dm05.5h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5K": {
+   "file": "dm06.5k",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "5L": {
+   "file": "dm07.5l",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "6A": {
+   "file": "dc-11.6a",
+   "size": 256,
+   "kind": "lookup_proms",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "dm03.9h",
+   "size": 16384,
+   "kind": "soundcpu",
+   "pins": 28,
+   "part": null
+  },
+  "10B": {
+   "file": "dm00.10b",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "12B": {
+   "file": "dm01.12b",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "13B": {
+   "file": "dm02.13b",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "15D": {
+   "file": "nobo_pr.15d",
+   "size": 256,
+   "kind": "color_proms",
+   "pins": 16,
+   "part": null
+  },
+  "16D": {
+   "file": "nobo_pr.16d",
+   "size": 256,
+   "kind": "color_proms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

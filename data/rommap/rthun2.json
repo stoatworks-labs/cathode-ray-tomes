@@ -1,0 +1,130 @@
+{
+ "machine": "rthun2",
+ "name": "Rolling Thunder 2",
+ "mfr": "Namco",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "namco/namcos2.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "rts_roz0.1a",
+   "size": 524288,
+   "kind": "s2roz",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "sys2c65c.3f",
+   "size": 32768,
+   "kind": "c65mcu:external",
+   "pins": 28,
+   "part": null
+  },
+  "3L": {
+   "file": "rts_voi2.3l",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "3M": {
+   "file": "rts_voi1.3m",
+   "size": 524288,
+   "kind": "c140",
+   "pins": 32,
+   "part": null
+  },
+  "4B": {
+   "file": "rts_obj1.4b",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "4D": {
+   "file": "rts_obj3.4d",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "5B": {
+   "file": "rts_obj0.5b",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "5D": {
+   "file": "rts_obj2.5d",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "7G": {
+   "file": "rts1_snd1.7g",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "7J": {
+   "file": "rts1_snd0.7j",
+   "size": 131072,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "7N": {
+   "file": "rts_sha0.7n",
+   "size": 524288,
+   "kind": "c123tmap:mask",
+   "pins": 32,
+   "part": null
+  },
+  "11D": {
+   "file": "rts2_mpr0.11d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "11K": {
+   "file": "rts2_spr0.11k",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  },
+  "11N": {
+   "file": "rts_chr0.11n",
+   "size": 524288,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "11P": {
+   "file": "rts_chr1.11p",
+   "size": 524288,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "13D": {
+   "file": "rts2_mpr1.13d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "13K": {
+   "file": "rts2_spr1.13k",
+   "size": 65536,
+   "kind": "slave",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

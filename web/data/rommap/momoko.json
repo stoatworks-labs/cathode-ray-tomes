@@ -1,0 +1,88 @@
+{
+ "machine": "momoko",
+ "name": "Momoko 120% (Japanese text)",
+ "mfr": "Jaleco",
+ "year": "1986",
+ "style": "letter-number",
+ "source": "jaleco/momoko.cpp",
+ "docs": 0,
+ "devices": {
+  "K2": {
+   "file": "momoko15.k2",
+   "size": 16384,
+   "kind": "fg_map",
+   "pins": 28,
+   "part": null
+  },
+  "E5": {
+   "file": "momoko16.e5",
+   "size": 32768,
+   "kind": "spr_gfx",
+   "pins": 28,
+   "part": null
+  },
+  "M5": {
+   "file": "momoko02.m5",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "E6": {
+   "file": "momoko17.e6",
+   "size": 32768,
+   "kind": "spr_gfx",
+   "pins": 28,
+   "part": null
+  },
+  "M6": {
+   "file": "momoko03.m6",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "C8": {
+   "file": "momoko11.c8",
+   "size": 32768,
+   "kind": "bg_gfx",
+   "pins": 28,
+   "part": null
+  },
+  "E8": {
+   "file": "momoko09.e8",
+   "size": 32768,
+   "kind": "bg_gfx",
+   "pins": 28,
+   "part": null
+  },
+  "H8": {
+   "file": "momoko08.h8",
+   "size": 8192,
+   "kind": "bg_col_map",
+   "pins": 24,
+   "part": null
+  },
+  "L8": {
+   "file": "momoko07.l8",
+   "size": 32768,
+   "kind": "bg_map",
+   "pins": 28,
+   "part": null
+  },
+  "N8": {
+   "file": "momoko06.n8",
+   "size": 32768,
+   "kind": "bg_map",
+   "pins": 28,
+   "part": null
+  },
+  "R8": {
+   "file": "momoko04.r8",
+   "size": 32768,
+   "kind": "bg_map",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

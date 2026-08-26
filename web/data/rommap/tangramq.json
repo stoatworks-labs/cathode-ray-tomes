@@ -1,0 +1,74 @@
+{
+ "machine": "tangramq",
+ "name": "Tangram Q",
+ "mfr": "SNK",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "nichibutsu/cclimber.cpp",
+ "docs": 0,
+ "devices": {
+  "H2": {
+   "file": "f2.h2",
+   "size": 8192,
+   "kind": "tile",
+   "pins": 24,
+   "part": null
+  },
+  "H4": {
+   "file": "f1.h4",
+   "size": 8192,
+   "kind": "tile",
+   "pins": 24,
+   "part": null
+  },
+  "K4": {
+   "file": "m2.k4",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "m1.k5",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "M6": {
+   "file": "mb7051_m02.m6",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M7": {
+   "file": "mb7051_m02.m7",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M8": {
+   "file": "mb7051_m02.m8",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E17": {
+   "file": "b2.e17",
+   "size": 4096,
+   "kind": "bigsprite",
+   "pins": 24,
+   "part": null
+  },
+  "E19": {
+   "file": "b1.e19",
+   "size": 4096,
+   "kind": "bigsprite",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

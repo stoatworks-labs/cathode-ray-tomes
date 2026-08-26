@@ -1,0 +1,53 @@
+{
+ "machine": "sbrkout",
+ "name": "Super Breakout (rev 04)",
+ "mfr": "Atari",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/sbrkout.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "033453.c1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E1": {
+   "file": "033455.e1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E2": {
+   "file": "006401.e2",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M2": {
+   "file": "006400.m2",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "R4": {
+   "file": "033281.r4",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "K6": {
+   "file": "033282.k6",
+   "size": 32,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

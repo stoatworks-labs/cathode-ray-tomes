@@ -1,0 +1,32 @@
+{
+ "machine": "heatof11",
+ "name": "Heat of Eleven '98 (ver EAA)",
+ "mfr": "Konami",
+ "year": "1998",
+ "style": "number-letter",
+ "source": "konami/konamim2.cpp",
+ "docs": 0,
+ "devices": {
+  "5E": {
+   "file": "dallas.5e",
+   "size": 8192,
+   "kind": "m48t58",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "93c46.7k",
+   "size": 128,
+   "kind": "eeprom",
+   "pins": null,
+   "part": null
+  },
+  "8Q": {
+   "file": "636a01.8q",
+   "size": 2097152,
+   "kind": "boot",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

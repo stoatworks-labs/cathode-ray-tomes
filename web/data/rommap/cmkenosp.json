@@ -1,0 +1,95 @@
+{
+ "machine": "cmkenosp",
+ "name": "Coinmaster Keno (Y2K, Spanish, 2000-12-14)",
+ "mfr": "Coinmaster-Gaming, Ltd.",
+ "year": "2000",
+ "style": "letter-number",
+ "source": "misc/coinmvga.cpp",
+ "docs": 0,
+ "devices": {
+  "BG1": {
+   "file": "back1.bg1",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "CP1": {
+   "file": "bet1.cp1",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "FG1": {
+   "file": "fore1.fg1",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "SP1": {
+   "file": "betsound.sp1",
+   "size": 1048576,
+   "kind": "ymz",
+   "pins": 32,
+   "part": null
+  },
+  "BG2": {
+   "file": "back2.bg2",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "CP2": {
+   "file": "bet2.cp2",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "FG2": {
+   "file": "fore2.fg2",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "SP2": {
+   "file": "rwc497ym.sp2",
+   "size": 1048576,
+   "kind": "wheelsnd",
+   "pins": 32,
+   "part": null
+  },
+  "BG3": {
+   "file": "back3.bg3",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "SP3": {
+   "file": "rwc497ym.sp3",
+   "size": 1048576,
+   "kind": "wheelsnd",
+   "pins": 32,
+   "part": null
+  },
+  "BG4": {
+   "file": "back4.bg4",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "SP4": {
+   "file": "rwc497ym.sp4",
+   "size": 1048576,
+   "kind": "wheelsnd",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "bladestl",
+ "name": "Blades of Steel (version T, Joystick)",
+ "mfr": "Konami",
+ "year": "1987",
+ "style": "number-letter",
+ "source": "konami/bladestl.cpp",
+ "docs": 2,
+ "devices": {
+  "9A": {
+   "file": "797a04.9a",
+   "size": 262144,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "797a03.11a",
+   "size": 524288,
+   "kind": "upd",
+   "pins": 32,
+   "part": null
+  },
+  "12D": {
+   "file": "797-c02.12d",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "13H": {
+   "file": "797a06.13h",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "19C": {
+   "file": "797-t01.19c",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "19H": {
+   "file": "797a05.19h",
+   "size": 262144,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

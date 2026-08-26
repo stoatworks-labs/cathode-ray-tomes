@@ -1,0 +1,39 @@
+{
+ "machine": "pocketrc",
+ "name": "Pocket Racer (Japan, PKR1/VER.B)",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcos11.cpp",
+ "docs": 0,
+ "devices": {
+  "2J": {
+   "file": "pkr1verb.2j",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2L": {
+   "file": "pkr1verb.2l",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "6D": {
+   "file": "pkr1verb.6d",
+   "size": 262144,
+   "kind": "c76",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "pkr1wave.8k",
+   "size": 4194304,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

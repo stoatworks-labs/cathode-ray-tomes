@@ -1,0 +1,81 @@
+{
+ "machine": "omegaf",
+ "name": "Omega Fighter (set 1)",
+ "mfr": "UPL",
+ "year": "1989",
+ "style": "number-letter",
+ "source": "upl/ninjakd2.cpp",
+ "docs": 0,
+ "devices": {
+  "3L": {
+   "file": "1.5.3l",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "4L": {
+   "file": "6.4l",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "5F": {
+   "file": "3back3.5f",
+   "size": 524288,
+   "kind": "tiles3",
+   "pins": 32,
+   "part": null
+  },
+  "7M": {
+   "file": "7.7m",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "15B": {
+   "file": "1back2.15b",
+   "size": 524288,
+   "kind": "tiles2",
+   "pins": 32,
+   "part": null
+  },
+  "18H": {
+   "file": "4.18h",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "20L": {
+   "file": "10.20l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s129"
+  },
+  "23M": {
+   "file": "8.23m",
+   "size": 131072,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "27B": {
+   "file": "2back1.27b",
+   "size": 524288,
+   "kind": "tiles1",
+   "pins": 32,
+   "part": null
+  },
+  "27N": {
+   "file": "11.27n",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 16,
+   "part": "82s137"
+  }
+ }
+}

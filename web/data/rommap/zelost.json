@@ -1,0 +1,39 @@
+{
+ "machine": "zelost",
+ "name": "Zelos (Japan, terminal)",
+ "mfr": "Namco",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "namco/namcona1.cpp",
+ "docs": 0,
+ "devices": {
+  "3E": {
+   "file": "zs1 stp 1e.3e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6E": {
+   "file": "zs1 stp 0e.6e",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "8A": {
+   "file": "na1r2m.8a",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "10A": {
+   "file": "na1r1m.10a",
+   "size": 733,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  }
+ }
+}

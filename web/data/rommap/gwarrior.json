@@ -1,0 +1,46 @@
+{
+ "machine": "gwarrior",
+ "name": "Galactic Warriors",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/nemesis.cpp",
+ "docs": 0,
+ "devices": {
+  "5L": {
+   "file": "400-e03.5l",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "10L": {
+   "file": "400-a04.10l",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "12L": {
+   "file": "578-a05.12l",
+   "size": 131072,
+   "kind": "maindata",
+   "pins": 32,
+   "part": null
+  },
+  "15L": {
+   "file": "400-a06.15l",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "17L": {
+   "file": "578-a07.17l",
+   "size": 131072,
+   "kind": "maindata",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

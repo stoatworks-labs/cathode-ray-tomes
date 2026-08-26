@@ -1,0 +1,39 @@
+{
+ "machine": "warpwarp",
+ "name": "Warp & Warp",
+ "mfr": "Namco",
+ "year": "1981",
+ "style": "letter-number",
+ "source": "namco/warpwarp.cpp",
+ "docs": 0,
+ "devices": {
+  "S4": {
+   "file": "ww1_prg3.s4",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S8": {
+   "file": "ww1_prg2.s8",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S10": {
+   "file": "ww1_prg1.s10",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "S12": {
+   "file": "ww1_chg1.s12",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

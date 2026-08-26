@@ -1,0 +1,88 @@
+{
+ "machine": "metrocrs",
+ "name": "Metro-Cross (set 1)",
+ "mfr": "Namco",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "namco/baraduke.cpp",
+ "docs": 1,
+ "devices": {
+  "1N": {
+   "file": "mc1-1.1n",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "mc1-2.2m",
+   "size": 2048,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "mc1-4.3b",
+   "size": 8192,
+   "kind": "mcusub",
+   "pins": 24,
+   "part": null
+  },
+  "3J": {
+   "file": "mc1-5.3j",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4N": {
+   "file": "mc1-6.4n",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4P": {
+   "file": "mc1-7.4p",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8K": {
+   "file": "mc1-8.8k",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "8L": {
+   "file": "mc1-9.8l",
+   "size": 16384,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "9A": {
+   "file": "mc1-1.9a",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "9B": {
+   "file": "mc1-2.9b",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "9C": {
+   "file": "mc1-3.9c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

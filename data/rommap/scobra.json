@@ -1,0 +1,53 @@
+{
+ "machine": "scobra",
+ "name": "Super Cobra",
+ "mfr": "Konami",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 1,
+ "devices": {
+  "2C": {
+   "file": "epr1265.2c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2F": {
+   "file": "epr1267.2f",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "2J": {
+   "file": "epr1269.2j",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "epr1273.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "epr1274.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "82s123.6e",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

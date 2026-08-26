@@ -1,0 +1,81 @@
+{
+ "machine": "thrilld",
+ "name": "Thrill Drive (UDE)",
+ "mfr": "Konami",
+ "year": "1998",
+ "style": "number-letter",
+ "source": "konami/nwk-tr.cpp",
+ "docs": 0,
+ "devices": {
+  "2G": {
+   "file": "gc713ud.2g",
+   "size": 548,
+   "kind": "gn676_lan:eeprom",
+   "pins": null,
+   "part": null
+  },
+  "7S": {
+   "file": "713a08.7s",
+   "size": 524288,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "8X": {
+   "file": "713a13.8x",
+   "size": 4194304,
+   "kind": "cgboard_0",
+   "pins": 32,
+   "part": null
+  },
+  "14P": {
+   "file": "713a10.14p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "14T": {
+   "file": "713a05.14t",
+   "size": 2097152,
+   "kind": "datarom",
+   "pins": 32,
+   "part": null
+  },
+  "16P": {
+   "file": "713a09.16p",
+   "size": 4194304,
+   "kind": "rfsnd",
+   "pins": 32,
+   "part": null
+  },
+  "16T": {
+   "file": "713a04.16t",
+   "size": 2097152,
+   "kind": "datarom",
+   "pins": 32,
+   "part": null
+  },
+  "16X": {
+   "file": "713a14.16x",
+   "size": 4194304,
+   "kind": "cgboard_0",
+   "pins": 32,
+   "part": null
+  },
+  "27P": {
+   "file": "713be01.27p",
+   "size": 2097152,
+   "kind": "prgrom",
+   "pins": 32,
+   "part": null
+  },
+  "35D": {
+   "file": "gm676ua_m48t58y.35d",
+   "size": 8192,
+   "kind": "m48t58",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

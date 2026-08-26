@@ -1,0 +1,60 @@
+{
+ "machine": "mirage",
+ "name": "Mirage Youjuu Mahjongden (Japan)",
+ "mfr": "Mitchell",
+ "year": "1994",
+ "style": "number-letter",
+ "source": "dataeast/mirage.cpp",
+ "docs": 0,
+ "devices": {
+  "2A": {
+   "file": "mr_00-.2a",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "mr_01-.3a",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7A": {
+   "file": "mbl-00.7a",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "10A": {
+   "file": "mbl-03.10a",
+   "size": 524288,
+   "kind": "oki_bgm",
+   "pins": 32,
+   "part": null
+  },
+  "11A": {
+   "file": "mbl-01.11a",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12A": {
+   "file": "mbl-02.12a",
+   "size": 2097152,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "12K": {
+   "file": "mbl-04.12k",
+   "size": 1048576,
+   "kind": "oki_sfx",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,109 @@
+{
+ "machine": "toki",
+ "name": "Toki (World, set 1)",
+ "mfr": "TAD Corporation",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "seibu/toki.cpp",
+ "docs": 1,
+ "devices": {
+  "M1": {
+   "file": "9.m1",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "C3": {
+   "file": "2.c3",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "J3": {
+   "file": "prom27.j3",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M3": {
+   "file": "8.m3",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "C5": {
+   "file": "1.c5",
+   "size": 65536,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "M7": {
+   "file": "7.m7",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "CD8": {
+   "file": "toki_bk1.cd8",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "EF8": {
+   "file": "toki_bk2.ef8",
+   "size": 524288,
+   "kind": "fgtiles",
+   "pins": 32,
+   "part": null
+  },
+  "K10": {
+   "file": "4e.k10",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M10": {
+   "file": "6e.m10",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "K12": {
+   "file": "3.k12",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "M12": {
+   "file": "5.m12",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C20": {
+   "file": "toki_obj1.c20",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C22": {
+   "file": "toki_obj2.c22",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "machine": "woodpeck",
+ "name": "Woodpecker (set 1)",
+ "mfr": "Amenip (Palcom Queen River)",
+ "year": "1981",
+ "style": "number-letter",
+ "source": "pacman/pacman.cpp",
+ "docs": 0,
+ "devices": {
+  "1K": {
+   "file": "pr.1k",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "3K": {
+   "file": "pr.3k",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "4A": {
+   "file": "pr.4a",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5E": {
+   "file": "a.5e",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "b.5f",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "c.5h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5J": {
+   "file": "d.5j",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "8H": {
+   "file": "pr.8h",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

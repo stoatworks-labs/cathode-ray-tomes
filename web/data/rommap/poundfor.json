@@ -1,0 +1,60 @@
+{
+ "machine": "poundfor",
+ "name": "Pound for Pound (World)",
+ "mfr": "Irem",
+ "year": "1990",
+ "style": "number-letter",
+ "source": "irem/m72.cpp",
+ "docs": 0,
+ "devices": {
+  "4J": {
+   "file": "pp-a-sp.4j",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "5H": {
+   "file": "m85_a-5h-.5h",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "6J": {
+   "file": "m85_a-6j-.6j",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "9C": {
+   "file": "pp-a-l1-.9c",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9D": {
+   "file": "pp-a-l0-b.9d",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9E": {
+   "file": "pp-a-h0-b.9e",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9F": {
+   "file": "pp-a-h1-.9f",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

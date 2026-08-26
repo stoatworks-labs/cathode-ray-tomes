@@ -1,0 +1,39 @@
+{
+ "machine": "evilngt",
+ "name": "Evil Night (ver UBA)",
+ "mfr": "Konami",
+ "year": "1998",
+ "style": "number-letter",
+ "source": "konami/konamim2.cpp",
+ "docs": 0,
+ "devices": {
+  "7K": {
+   "file": "93c46.7k",
+   "size": 128,
+   "kind": "eeprom",
+   "pins": null,
+   "part": null
+  },
+  "8Q": {
+   "file": "636a01.8q",
+   "size": 2097152,
+   "kind": "boot",
+   "pins": 32,
+   "part": null
+  },
+  "9N": {
+   "file": "m48t58y.9n",
+   "size": 8192,
+   "kind": "m48t58",
+   "pins": 24,
+   "part": null
+  },
+  "16H": {
+   "file": "810a03.16h",
+   "size": 4194304,
+   "kind": "ymz",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

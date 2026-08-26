@@ -1,0 +1,81 @@
+{
+ "machine": "popbingo",
+ "name": "Pop Bingo",
+ "mfr": "Dooyong",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "dooyong/dooyong.cpp",
+ "docs": 0,
+ "devices": {
+  "3E": {
+   "file": "rom3.3e",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "rom2.3f",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "3P": {
+   "file": "rom1.3p",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "4R": {
+   "file": "rom4.4r",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "9A": {
+   "file": "rom10.9a",
+   "size": 524288,
+   "kind": "bg0",
+   "pins": 32,
+   "part": null
+  },
+  "9C": {
+   "file": "rom9.9c",
+   "size": 524288,
+   "kind": "bg0",
+   "pins": 32,
+   "part": null
+  },
+  "9E": {
+   "file": "rom8.9e",
+   "size": 524288,
+   "kind": "bg1",
+   "pins": 32,
+   "part": null
+  },
+  "9H": {
+   "file": "rom7.9h",
+   "size": 524288,
+   "kind": "bg1",
+   "pins": 32,
+   "part": null
+  },
+  "9L": {
+   "file": "rom6.9l",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  },
+  "9M": {
+   "file": "rom5.9m",
+   "size": 524288,
+   "kind": "sprite",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

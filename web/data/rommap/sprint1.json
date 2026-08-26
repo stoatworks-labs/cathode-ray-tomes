@@ -1,0 +1,46 @@
+{
+ "machine": "sprint1",
+ "name": "Sprint 1",
+ "mfr": "Atari (Kee Games)",
+ "year": "1978",
+ "style": "letter-number",
+ "source": "atari/sprint2.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "6291-01.c1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E1": {
+   "file": "6443-01.e1",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E2": {
+   "file": "6401-01.e2",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "M2": {
+   "file": "6400-01.m2",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "J6": {
+   "file": "6399-01.j6",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,123 @@
+{
+ "machine": "speedrcr",
+ "name": "Speed Racer",
+ "mfr": "Namco",
+ "year": "1995",
+ "style": "number-letter",
+ "source": "namco/namcofl.cpp",
+ "docs": 0,
+ "devices": {
+  "13A": {
+   "file": "se1_dat0.13a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "14A": {
+   "file": "se1_dat1.14a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "14K": {
+   "file": "se1_rsh.14k",
+   "size": 524288,
+   "kind": "c169roz:mask",
+   "pins": 32,
+   "part": null
+  },
+  "15A": {
+   "file": "se1_dat2.15a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "16A": {
+   "file": "se1_dat3.16a",
+   "size": 524288,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "18A": {
+   "file": "se2_mp_oa4.18a",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "18J": {
+   "file": "se1_rch1.18j",
+   "size": 1048576,
+   "kind": "c169roz",
+   "pins": 32,
+   "part": null
+  },
+  "18P": {
+   "file": "se1_sch3.18p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "18U": {
+   "file": "se1_ssh.18u",
+   "size": 524288,
+   "kind": "c123tmap:mask",
+   "pins": 32,
+   "part": null
+  },
+  "19A": {
+   "file": "se2_mp_ea4.19a",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "19J": {
+   "file": "se1_rch0.19j",
+   "size": 1048576,
+   "kind": "c169roz",
+   "pins": 32,
+   "part": null
+  },
+  "19P": {
+   "file": "se1_sch2.19p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "20P": {
+   "file": "se1_sch1.20p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "21L": {
+   "file": "se1_spr.21l",
+   "size": 524288,
+   "kind": "c75data",
+   "pins": 32,
+   "part": null
+  },
+  "21P": {
+   "file": "se1_sch0.21p",
+   "size": 1048576,
+   "kind": "c123tmap",
+   "pins": 32,
+   "part": null
+  },
+  "23S": {
+   "file": "se1_voi.23s",
+   "size": 4194304,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

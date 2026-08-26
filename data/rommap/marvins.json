@@ -1,0 +1,32 @@
+{
+ "machine": "marvins",
+ "name": "Marvin's Maze",
+ "mfr": "SNK",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "snk/snk.cpp",
+ "docs": 1,
+ "devices": {
+  "J1": {
+   "file": "marvmaze.j1",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "J2": {
+   "file": "marvmaze.j2",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  },
+  "J3": {
+   "file": "marvmaze.j3",
+   "size": 1024,
+   "kind": "PROM",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

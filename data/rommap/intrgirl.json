@@ -1,0 +1,46 @@
+{
+ "machine": "intrgirl",
+ "name": "Intergirl",
+ "mfr": "Barko",
+ "year": "1995",
+ "style": "letter-number",
+ "source": "dynax/dynax.cpp",
+ "docs": 0,
+ "devices": {
+  "UG3": {
+   "file": "ka-1.ug3",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "UG5": {
+   "file": "ka-2.ug5",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "UG6": {
+   "file": "pal16l8acn.ug6",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "UK15": {
+   "file": "n82s147n.uk15",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "UK16": {
+   "file": "n82s147n.uk16",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

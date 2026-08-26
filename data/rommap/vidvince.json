@@ -1,0 +1,60 @@
+{
+ "machine": "vidvince",
+ "name": "Video Vince and the Game Factory (prototype)",
+ "mfr": "Mylstar",
+ "year": "1984",
+ "style": "letter-number",
+ "source": "gottlieb/gottlieb.cpp",
+ "docs": 0,
+ "devices": {
+  "K2": {
+   "file": "gv132_drom_snd_2764.k2",
+   "size": 8192,
+   "kind": "r2sound:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "K3": {
+   "file": "gv132_yrom2_snd_2764.k3",
+   "size": 8192,
+   "kind": "r2sound:speechcpu",
+   "pins": 24,
+   "part": null
+  },
+  "N3": {
+   "file": "gv132_yrom1_snd_2764.n3",
+   "size": 8192,
+   "kind": "r2sound:speechcpu",
+   "pins": 24,
+   "part": null
+  },
+  "K4": {
+   "file": "gv132_fg0_2764.k4",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K5": {
+   "file": "gv132_fg1_2764.k5",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K6": {
+   "file": "gv132_fg2_2764.k6",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "C16": {
+   "file": "gv132_rom4_2764.c16",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

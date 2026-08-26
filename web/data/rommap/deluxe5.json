@@ -1,0 +1,74 @@
+{
+ "machine": "deluxe5",
+ "name": "Deluxe 5 (ver. 0107, 07/01/2000, set 1)",
+ "mfr": "ESD",
+ "year": "2000",
+ "style": "letter-number",
+ "source": "misc/esd16.cpp",
+ "docs": 0,
+ "devices": {
+  "CU02": {
+   "file": "esd2.cu02",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "CU03": {
+   "file": "esd1.cu03",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "JU03": {
+   "file": "am27c020.ju03",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "JU04": {
+   "file": "am27c020.ju04",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "JU05": {
+   "file": "am27c020.ju05",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "JU06": {
+   "file": "am27c020.ju06",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "SU06": {
+   "file": "esd3.su06",
+   "size": 262144,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "JU07": {
+   "file": "am27c020.ju07",
+   "size": 262144,
+   "kind": "spr",
+   "pins": 32,
+   "part": null
+  },
+  "SU10": {
+   "file": "esd4.su10",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

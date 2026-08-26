@@ -1,0 +1,74 @@
+{
+ "machine": "airass",
+ "name": "Air Assault (World)",
+ "mfr": "Irem",
+ "year": "1993",
+ "style": "letter-number",
+ "source": "irem/m107.cpp",
+ "docs": 0,
+ "devices": {
+  "C00": {
+   "file": "w45.c00",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "DA0": {
+   "file": "w96.da0",
+   "size": 524288,
+   "kind": "irem",
+   "pins": 32,
+   "part": null
+  },
+  "H0": {
+   "file": "f4-a-h0-etc.h0",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L0": {
+   "file": "f4-a-l0-etc.l0",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "SH0": {
+   "file": "f4-b-sh0-c.sh0",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "SL0": {
+   "file": "f4-b-sl0-c.sl0",
+   "size": 65536,
+   "kind": "soundcpu",
+   "pins": 32,
+   "part": null
+  },
+  "H1": {
+   "file": "f4-a-h1-ss.h1",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "L1": {
+   "file": "f4-a-l1-ss.l1",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C10": {
+   "file": "w46.c10",
+   "size": 1048576,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

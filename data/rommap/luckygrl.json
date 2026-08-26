@@ -1,0 +1,53 @@
+{
+ "machine": "luckygrl",
+ "name": "Lucky Girl (Wing)",
+ "mfr": "Wing Co., Ltd.",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "nichibutsu/jangou.cpp",
+ "docs": 0,
+ "devices": {
+  "3H": {
+   "file": "prom_mb7051.3h",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5N": {
+   "file": "3.5n",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "5R": {
+   "file": "1.5r",
+   "size": 8192,
+   "kind": "gfx",
+   "pins": 24,
+   "part": null
+  },
+  "9C": {
+   "file": "5.9c",
+   "size": 4096,
+   "kind": "cpu0",
+   "pins": 24,
+   "part": null
+  },
+  "9E": {
+   "file": "6.9e",
+   "size": 4096,
+   "kind": "cpu0",
+   "pins": 24,
+   "part": null
+  },
+  "9F": {
+   "file": "7.9f",
+   "size": 4096,
+   "kind": "cpu0",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

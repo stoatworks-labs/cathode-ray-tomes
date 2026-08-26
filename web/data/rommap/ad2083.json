@@ -1,0 +1,67 @@
+{
+ "machine": "ad2083",
+ "name": "A. D. 2083",
+ "mfr": "Midcoin",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "galaxian/scramble.cpp",
+ "docs": 0,
+ "devices": {
+  "1M": {
+   "file": "prom-am27s19dc.1m",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3D": {
+   "file": "ad1s.3d",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "3K": {
+   "file": "ad5.3k",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "ad2s.4d",
+   "size": 4096,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "5K": {
+   "file": "ad4.5k",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "8A": {
+   "file": "prom-sn74s188.8a",
+   "size": 32,
+   "kind": "5110ctrl",
+   "pins": 16,
+   "part": null
+  },
+  "9A": {
+   "file": "ad1v.9a",
+   "size": 4096,
+   "kind": "tmsprom",
+   "pins": 24,
+   "part": null
+  },
+  "10A": {
+   "file": "ad2v.10a",
+   "size": 4096,
+   "kind": "tmsprom",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

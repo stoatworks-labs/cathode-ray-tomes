@@ -1,0 +1,46 @@
+{
+ "machine": "goldmedl",
+ "name": "Gold Medalist (set 1, Alpha68k II PCB)",
+ "mfr": "SNK",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "alpha/alpha68k.cpp",
+ "docs": 0,
+ "devices": {
+  "C43": {
+   "file": "goldchr0.c43",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C44": {
+   "file": "goldchr1.c44",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C45": {
+   "file": "goldchr2.c45",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C46": {
+   "file": "goldchr3.c46",
+   "size": 524288,
+   "kind": "graphics",
+   "pins": 32,
+   "part": null
+  },
+  "C47": {
+   "file": "goldsnd0.c47",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

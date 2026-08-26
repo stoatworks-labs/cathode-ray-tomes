@@ -1,0 +1,39 @@
+{
+ "machine": "mjsenka",
+ "name": "Mahjong Senka (Japan)",
+ "mfr": "Visco",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "dynax/royalmah.cpp",
+ "docs": 0,
+ "devices": {
+  "1D": {
+   "file": "3.1d",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "2.2k",
+   "size": 32,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2L": {
+   "file": "1.2l",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8K": {
+   "file": "4.8k",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

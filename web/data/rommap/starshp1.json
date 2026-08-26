@@ -1,0 +1,67 @@
+{
+ "machine": "starshp1",
+ "name": "Starship 1",
+ "mfr": "Atari",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/starshp1.cpp",
+ "docs": 2,
+ "devices": {
+  "R1": {
+   "file": "7517-01.r1",
+   "size": 1024,
+   "kind": "ship",
+   "pins": 24,
+   "part": null
+  },
+  "C2": {
+   "file": "7529-02.c2",
+   "size": 1024,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "E3": {
+   "file": "7531-02.e3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H3": {
+   "file": "7530-02.h3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J5": {
+   "file": "7515-01.j5",
+   "size": 256,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "N7": {
+   "file": "7513-01.n7",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "N9": {
+   "file": "7514-01.n9",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "R10": {
+   "file": "7518-01.r10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "machine": "danceyes",
+ "name": "Dancing Eyes (World, DC2/VER.B)",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/namcos11.cpp",
+ "docs": 0,
+ "devices": {
+  "2F": {
+   "file": "dc1vera.2f",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2J": {
+   "file": "dc2verb.2j",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2K": {
+   "file": "dc1vera.2k",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "2L": {
+   "file": "dc2verb.2l",
+   "size": 1048576,
+   "kind": "maincpu:rom",
+   "pins": 32,
+   "part": null
+  },
+  "6D": {
+   "file": "dc1sprog.6d",
+   "size": 262144,
+   "kind": "c76",
+   "pins": 32,
+   "part": null
+  },
+  "8K": {
+   "file": "dc1wave.8k",
+   "size": 4194304,
+   "kind": "c352",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

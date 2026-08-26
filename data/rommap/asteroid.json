@@ -1,0 +1,46 @@
+{
+ "machine": "asteroid",
+ "name": "Asteroids (rev 4)",
+ "mfr": "Atari",
+ "year": "1979",
+ "style": "letter-number",
+ "source": "atari/asteroid.cpp",
+ "docs": 49,
+ "devices": {
+  "EF2": {
+   "file": "035145-04e.ef2",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "H2": {
+   "file": "035144-04e.h2",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "J2": {
+   "file": "035143-02.j2",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "NP3": {
+   "file": "035127-02.np3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "C8": {
+   "file": "034602-01.c8",
+   "size": 256,
+   "kind": "dvg:prom",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

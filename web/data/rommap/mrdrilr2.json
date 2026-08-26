@@ -1,0 +1,32 @@
+{
+ "machine": "mrdrilr2",
+ "name": "Mr. Driller 2 (World, DR22 Ver.A)",
+ "mfr": "Namco",
+ "year": "2000",
+ "style": "number-letter",
+ "source": "namco/namcos10.cpp",
+ "docs": 1,
+ "devices": {
+  "1A": {
+   "file": "dr22vera.1a",
+   "size": 8388608,
+   "kind": "nand",
+   "pins": 32,
+   "part": null
+  },
+  "1D": {
+   "file": "dr21ma1.1d",
+   "size": 16777216,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  },
+  "2D": {
+   "file": "dr21ma2.2d",
+   "size": 16777216,
+   "kind": "data",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

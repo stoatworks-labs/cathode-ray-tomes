@@ -1,0 +1,32 @@
+{
+ "machine": "victoryc",
+ "name": "Victory (Comsoft)",
+ "mfr": "Comsoft",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "1H": {
+   "file": "a4.1h",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "df.1k",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6L": {
+   "file": "prom.6l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

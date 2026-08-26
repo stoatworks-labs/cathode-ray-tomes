@@ -1,0 +1,39 @@
+{
+ "machine": "dash_a37",
+ "name": "Dash! (A37, ver 1998/10/22)",
+ "mfr": "<unknown>",
+ "year": "1998",
+ "style": "number-letter",
+ "source": "misc/goldnpkr.cpp",
+ "docs": 0,
+ "devices": {
+  "2M": {
+   "file": "27s13.2m",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5E": {
+   "file": "dash_a37.5e",
+   "size": 32768,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  },
+  "5L": {
+   "file": "nosticker.5l",
+   "size": 16384,
+   "kind": "gfxpool",
+   "pins": 28,
+   "part": null
+  },
+  "5N": {
+   "file": "nosticker.5n",
+   "size": 16384,
+   "kind": "gfxpool",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

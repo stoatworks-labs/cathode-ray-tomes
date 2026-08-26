@@ -1,0 +1,53 @@
+{
+ "machine": "boggy84",
+ "name": "Boggy '84",
+ "mfr": "Kaneko",
+ "year": "1983",
+ "style": "letter-number",
+ "source": "galaxian/fastfred.cpp",
+ "docs": 0,
+ "devices": {
+  "E10": {
+   "file": "r.e10",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H10": {
+   "file": "g1.h10",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E11": {
+   "file": "g.e11",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H11": {
+   "file": "g2.h11",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E12": {
+   "file": "b.e12",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H12": {
+   "file": "g3.h12",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

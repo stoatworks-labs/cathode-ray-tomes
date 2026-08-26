@@ -1,0 +1,39 @@
+{
+ "machine": "gldarrow",
+ "name": "Golden Arrow (Standard G8-03)",
+ "mfr": "Meyco Games, Inc.",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "misc/meyc8088.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "prom.2c",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "12H": {
+   "file": "1.12h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "13H": {
+   "file": "2.13h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "14H": {
+   "file": "3.14h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

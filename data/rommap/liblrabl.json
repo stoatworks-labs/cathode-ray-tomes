@@ -1,0 +1,53 @@
+{
+ "machine": "liblrabl",
+ "name": "Libble Rabble",
+ "mfr": "Namco",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "namco/toypop.cpp",
+ "docs": 0,
+ "devices": {
+  "1R": {
+   "file": "lr1-3.1r",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1S": {
+   "file": "lr1-2.1s",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1T": {
+   "file": "lr1-1.1t",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2P": {
+   "file": "lr1-6.2p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3D": {
+   "file": "lr1-4.3d",
+   "size": 256,
+   "kind": "namco",
+   "pins": 16,
+   "part": null
+  },
+  "5L": {
+   "file": "lr1-5.5l",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

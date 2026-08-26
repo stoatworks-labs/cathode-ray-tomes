@@ -1,0 +1,67 @@
+{
+ "machine": "talbot",
+ "name": "Talbot",
+ "mfr": "Alpha Denshi Co. (Volt Electronics license)",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "alpha/champbas.cpp",
+ "docs": 0,
+ "devices": {
+  "5E": {
+   "file": "mb7052.5e",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "7.6a",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "8.6b",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "7H": {
+   "file": "mb7051.7h",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "10G": {
+   "file": "11.10g",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10H": {
+   "file": "13.10h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11G": {
+   "file": "12.11g",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11H": {
+   "file": "14.11h",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

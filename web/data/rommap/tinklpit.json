@@ -1,0 +1,81 @@
+{
+ "machine": "tinklpit",
+ "name": "Tinkle Pit (Japan)",
+ "mfr": "Namco",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "namco/namcona1.cpp",
+ "docs": 0,
+ "devices": {
+  "2C": {
+   "file": "tk1-ma0l.2c",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "2F": {
+   "file": "tk1-ma0u.2f",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3C": {
+   "file": "tk1-ma1l.3c",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "3F": {
+   "file": "tk1-ma1u.3f",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "4C": {
+   "file": "tk1-ma2l.4c",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "4F": {
+   "file": "tk1-ma2u.4f",
+   "size": 1048576,
+   "kind": "maskrom",
+   "pins": 32,
+   "part": null
+  },
+  "6C": {
+   "file": "tk1-ep0l.6c",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "6F": {
+   "file": "tk1-ep0u.6f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7C": {
+   "file": "tk1-ep1l.7c",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "7F": {
+   "file": "tk1-ep1u.7f",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

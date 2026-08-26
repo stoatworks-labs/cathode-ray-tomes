@@ -1,0 +1,32 @@
+{
+ "machine": "scherrym",
+ "name": "Super Cherry Master (V5.2)",
+ "mfr": "Dyna",
+ "year": "1993",
+ "style": "number-letter",
+ "source": "dyna/dyna_cpu91a.cpp",
+ "docs": 0,
+ "devices": {
+  "2D": {
+   "file": "82s135.2d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3D": {
+   "file": "82s135.3d",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11B": {
+   "file": "v5.2.11b",
+   "size": 65536,
+   "kind": "boot_prg",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

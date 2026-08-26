@@ -1,0 +1,67 @@
+{
+ "machine": "cswat",
+ "name": "Cosmoswat",
+ "mfr": "Namco",
+ "year": "1984",
+ "style": "number-letter",
+ "source": "namco/cswat.cpp",
+ "docs": 0,
+ "devices": {
+  "1P": {
+   "file": "cs2-1.1p",
+   "size": 512,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "cs2-7.2b",
+   "size": 8192,
+   "kind": "52xx",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "cs2-6.2l",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "cs2-5.3l",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5F": {
+   "file": "cs2-4.5f",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5H": {
+   "file": "cs2-3.5h",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5J": {
+   "file": "cs2-2.5j",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5K": {
+   "file": "cs2-1.5k",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

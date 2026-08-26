@@ -1,0 +1,39 @@
+{
+ "machine": "decomult",
+ "name": "DECO Cassette System ROM Multigame (David Widel)",
+ "mfr": "bootleg (David Widel)",
+ "year": "2008",
+ "style": "number-letter",
+ "source": "dataeast/decocass.cpp",
+ "docs": 0,
+ "devices": {
+  "3J": {
+   "file": "v3.3j",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3M": {
+   "file": "v2.3m",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5A": {
+   "file": "v1-.5a",
+   "size": 2048,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  },
+  "10D": {
+   "file": "v4.10d",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "machine": "jongoh",
+ "name": "Mahjong Jongoh (Japan, TTL800-03-04)",
+ "mfr": "Techno-Top",
+ "year": "2000",
+ "style": "number-letter",
+ "source": "dynax/ddenlovr.cpp",
+ "docs": 0,
+ "devices": {
+  "1C": {
+   "file": "t8031.1c",
+   "size": 524288,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "4C": {
+   "file": "t80324.4c",
+   "size": 524288,
+   "kind": "?",
+   "pins": 32,
+   "part": null
+  },
+  "11C": {
+   "file": "t80334.11c",
+   "size": 2097152,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  },
+  "13C": {
+   "file": "t8034.13c",
+   "size": 1048576,
+   "kind": "blitter",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "machine": "splash",
+ "name": "Splash! (ver. 1.3, checksum E7BEF3FA, World)",
+ "mfr": "Gaelco / OMK Software",
+ "year": "1992",
+ "style": "letter-number",
+ "source": "gaelco/splash.cpp",
+ "docs": 0,
+ "devices": {
+  "F4": {
+   "file": "3_gal20v8a-25lp.f4",
+   "size": 343,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "C5": {
+   "file": "splash_1.c5",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "G5": {
+   "file": "splash_3.g5",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "G6": {
+   "file": "splash_4.g6",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "G8": {
+   "file": "splash_5.g8",
+   "size": 524288,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "C13": {
+   "file": "1_gal16v8a-25lp.c13",
+   "size": 279,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "G14": {
+   "file": "p_a1020a-pl84c.g14",
+   "size": 512,
+   "kind": "PLD",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

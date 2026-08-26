@@ -1,0 +1,32 @@
+{
+ "machine": "bmxstunts",
+ "name": "BMX Stunts",
+ "mfr": "Jetsoft",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "galaxian/galaxian.cpp",
+ "docs": 0,
+ "devices": {
+  "1H": {
+   "file": "bmxh.1h",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "bmxl.1l",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6L": {
+   "file": "bmx6331.6l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

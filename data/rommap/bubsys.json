@@ -1,0 +1,32 @@
+{
+ "machine": "bubsys",
+ "name": "Bubble System BIOS",
+ "mfr": "Konami",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "konami/nemesis.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "400a2.1b",
+   "size": 256,
+   "kind": "k005289",
+   "pins": 16,
+   "part": null
+  },
+  "2B": {
+   "file": "400a1.2b",
+   "size": 256,
+   "kind": "k005289",
+   "pins": 16,
+   "part": null
+  },
+  "8G": {
+   "file": "400b03.8g",
+   "size": 8192,
+   "kind": "sound program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "machine": "shougi",
+ "name": "Shougi",
+ "mfr": "Alpha Denshi Co. (Tehkan license)",
+ "year": "1982",
+ "style": "number-letter",
+ "source": "alpha/shougi.cpp",
+ "docs": 0,
+ "devices": {
+  "2L": {
+   "file": "pr.2l",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3A": {
+   "file": "1.3a",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "2.3b",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "3.3c",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "4.3d",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "5.3e",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3F": {
+   "file": "6.3f",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3H": {
+   "file": "7.3h",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3J": {
+   "file": "8.3j",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  },
+  "3K": {
+   "file": "9.3k",
+   "size": 4096,
+   "kind": "sub-CPU program",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

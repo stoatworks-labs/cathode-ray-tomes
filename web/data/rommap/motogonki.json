@@ -1,0 +1,32 @@
+{
+ "machine": "motogonki",
+ "name": "Motogonki",
+ "mfr": "Terminal",
+ "year": "198?",
+ "style": "letter-number",
+ "source": "ussr/istrebiteli.cpp",
+ "docs": 0,
+ "devices": {
+  "W3": {
+   "file": "003_iw3.w3",
+   "size": 512,
+   "kind": "soundrom",
+   "pins": 16,
+   "part": null
+  },
+  "G8": {
+   "file": "003_ig8.g8",
+   "size": 512,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "W13": {
+   "file": "006_04.w13",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

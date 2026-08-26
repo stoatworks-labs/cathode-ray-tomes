@@ -1,0 +1,74 @@
+{
+ "machine": "mia",
+ "name": "M.I.A. - Missing in Action (version T)",
+ "mfr": "Konami",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "konami/tmnt.cpp",
+ "docs": 1,
+ "devices": {
+  "F4": {
+   "file": "808e03.f4",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "H4": {
+   "file": "808d15.h4",
+   "size": 524288,
+   "kind": "k051960",
+   "pins": 32,
+   "part": null
+  },
+  "J4": {
+   "file": "808d17.j4",
+   "size": 524288,
+   "kind": "k051960",
+   "pins": 32,
+   "part": null
+  },
+  "F16": {
+   "file": "808a18.f16",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H17": {
+   "file": "808t20.h17",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J17": {
+   "file": "808t21.j17",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "F28": {
+   "file": "808e12.f28",
+   "size": 65536,
+   "kind": "k052109",
+   "pins": 32,
+   "part": null
+  },
+  "H28": {
+   "file": "808e13.h28",
+   "size": 65536,
+   "kind": "k052109",
+   "pins": 32,
+   "part": null
+  },
+  "K28": {
+   "file": "808e23.k28",
+   "size": 65536,
+   "kind": "k052109",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

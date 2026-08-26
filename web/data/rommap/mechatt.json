@@ -1,0 +1,67 @@
+{
+ "machine": "mechatt",
+ "name": "Mechanized Attack (World)",
+ "mfr": "SNK",
+ "year": "1989",
+ "style": "letter-number",
+ "source": "snk/mechatt.cpp",
+ "docs": 1,
+ "devices": {
+  "L2": {
+   "file": "ma_1.l2",
+   "size": 65536,
+   "kind": "tx_tiles",
+   "pins": 32,
+   "part": null
+  },
+  "F10": {
+   "file": "ma_8.f10",
+   "size": 65536,
+   "kind": "sprites:scale_table",
+   "pins": 32,
+   "part": null
+  },
+  "F12": {
+   "file": "ma_9.f12",
+   "size": 65536,
+   "kind": "sprites:scale_table",
+   "pins": 32,
+   "part": null
+  },
+  "L12": {
+   "file": "ma4.l12",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "N12": {
+   "file": "ma5-e.n12",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "E13": {
+   "file": "ma_3.e13",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  },
+  "L13": {
+   "file": "ma6-f.l13",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "N13": {
+   "file": "ma7.n13",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

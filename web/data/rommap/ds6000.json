@@ -1,0 +1,116 @@
+{
+ "machine": "ds6000",
+ "name": "DS-6000 Driving Simulator",
+ "mfr": "Namco / Mitsubishi",
+ "year": "1996?",
+ "style": "number-letter",
+ "source": "namco/ds6000.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "kss1prog0h-0c.1b",
+   "size": 524288,
+   "kind": "iocpu",
+   "pins": 32,
+   "part": null
+  },
+  "3A": {
+   "file": "kss1prog0-0d.3a",
+   "size": 131072,
+   "kind": "steeringcpu",
+   "pins": 32,
+   "part": null
+  },
+  "4F": {
+   "file": "ksspld0b.4f",
+   "size": 741,
+   "kind": "steeringpcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "6C": {
+   "file": "ds22c5.6c",
+   "size": 741,
+   "kind": "cpupcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "6E": {
+   "file": "ksspld1.6e",
+   "size": 279,
+   "kind": "iopcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "6F": {
+   "file": "ds22sp1.6f",
+   "size": 16384,
+   "kind": "mcu",
+   "pins": 28,
+   "part": null
+  },
+  "8J": {
+   "file": "pa28f200bx.8j",
+   "size": 262144,
+   "kind": "sound_data",
+   "pins": 32,
+   "part": null
+  },
+  "8P": {
+   "file": "dsf5a.8p",
+   "size": 279,
+   "kind": "flashpcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "9E": {
+   "file": "ksspld2.9e",
+   "size": 279,
+   "kind": "iopcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "10A": {
+   "file": "dsf4.10a",
+   "size": 279,
+   "kind": "flashpcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "12B": {
+   "file": "kss1prog0l-0c.12b",
+   "size": 524288,
+   "kind": "iocpu",
+   "pins": 32,
+   "part": null
+  },
+  "12D": {
+   "file": "ds22c4.12d",
+   "size": 741,
+   "kind": "cpupcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "12E": {
+   "file": "at28c64b-15sc.12e",
+   "size": 8192,
+   "kind": "eeprom",
+   "pins": 24,
+   "part": null
+  },
+  "13A": {
+   "file": "ds22c3.13a",
+   "size": 279,
+   "kind": "cpupcb_plds",
+   "pins": null,
+   "part": null
+  },
+  "13K": {
+   "file": "ds22c6.13k",
+   "size": 279,
+   "kind": "cpupcb_plds",
+   "pins": null,
+   "part": null
+  }
+ }
+}

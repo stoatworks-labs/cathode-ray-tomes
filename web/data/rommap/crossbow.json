@@ -1,0 +1,403 @@
+{
+ "machine": "crossbow",
+ "name": "Crossbow (version 2.0)",
+ "mfr": "Exidy",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "exidy/exidy440.cpp",
+ "docs": 2,
+ "devices": {
+  "1A": {
+   "file": "xbl-2.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "xbl-1.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "xbl-1.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1D": {
+   "file": "xbl-1.1d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1E": {
+   "file": "xbl-1.1e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "xba-11.1h",
+   "size": 8192,
+   "kind": "440audio:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "xba-1.1k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "xba-1.1l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "xba-1.1m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "xba-1.1n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1P": {
+   "file": "xba-1.1p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "xba-1.1r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1S": {
+   "file": "xba-1.1s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1T": {
+   "file": "xba-1.1t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "xbl.2h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "xba-1.2k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "xba-1.2l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "xba-1.2m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "xba-1.2n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "xba-1.2p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2R": {
+   "file": "xba-1.2r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2S": {
+   "file": "xba-1.2s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2T": {
+   "file": "xba-1.2t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "xbl-2.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "xbl-1.3b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "xbl-1.3c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3D": {
+   "file": "xbl-1.3d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3E": {
+   "file": "xbl-1.3e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "xbl-2.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "xbl-1.4b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "xbl-1.4c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4D": {
+   "file": "xbl-1.4d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4E": {
+   "file": "xbl-1.4e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "xbl.4k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "xbl.5k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "xbl-2.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "xbl-1.6c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6D": {
+   "file": "xbl-1.6d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6E": {
+   "file": "xbl-1.6e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "xbl.6k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7C": {
+   "file": "xbl-1.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7D": {
+   "file": "xbl-1.7d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7E": {
+   "file": "xbl-1.7e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "xbl.7k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8C": {
+   "file": "xbl-1.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8D": {
+   "file": "xbl-1.8d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8E": {
+   "file": "xbl-1.8e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "xbl.8k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "xbl.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "10C": {
+   "file": "xbl-1.10c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10D": {
+   "file": "xbl-1.10d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10E": {
+   "file": "xbl-1.10e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "xbl-1.11c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "xbl-1.11d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11E": {
+   "file": "xbl-1.11e",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12H": {
+   "file": "xbl.12h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

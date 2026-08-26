@@ -1,0 +1,88 @@
+{
+ "machine": "hopprobo",
+ "name": "Hopper Robo",
+ "mfr": "Sega",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/marineb.cpp",
+ "docs": 0,
+ "devices": {
+  "1B": {
+   "file": "7052hop.1b",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "1C": {
+   "file": "7052hop.1c",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "3K": {
+   "file": "hopper01.3k",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3L": {
+   "file": "hopper02.3l",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3N": {
+   "file": "hopper03.3n",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3P": {
+   "file": "hopper04.3p",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3R": {
+   "file": "hopper05.3r",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "hopper06.5c",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "hopper07.5d",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6F": {
+   "file": "hopper08.6f",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "hopper09.6k",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

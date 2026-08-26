@@ -1,0 +1,326 @@
+{
+ "machine": "cracksht",
+ "name": "Crackshot (version 2.0)",
+ "mfr": "Exidy",
+ "year": "1985",
+ "style": "number-letter",
+ "source": "exidy/exidy440.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "csl2.1a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1B": {
+   "file": "csl2.1b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1C": {
+   "file": "csl2.1c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "1H": {
+   "file": "csa3.1h",
+   "size": 8192,
+   "kind": "440audio:audiocpu",
+   "pins": 24,
+   "part": null
+  },
+  "1K": {
+   "file": "csa3.1k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1L": {
+   "file": "csa3.1l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1M": {
+   "file": "csa3.1m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1N": {
+   "file": "csa3.1n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1P": {
+   "file": "csa3.1p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1R": {
+   "file": "csa3.1r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1S": {
+   "file": "csa3.1s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "1T": {
+   "file": "csa3.1t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2H": {
+   "file": "xbl.2h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "2K": {
+   "file": "csa3.2k",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2L": {
+   "file": "csa3.2l",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2M": {
+   "file": "csa3.2m",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2N": {
+   "file": "csa3.2n",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2P": {
+   "file": "csa3.2p",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2R": {
+   "file": "csa3.2r",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2S": {
+   "file": "csa3.2s",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "2T": {
+   "file": "csa3.2t",
+   "size": 8192,
+   "kind": "440audio:samples",
+   "pins": 24,
+   "part": null
+  },
+  "3A": {
+   "file": "csl2.3a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3B": {
+   "file": "csl2.3b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "3C": {
+   "file": "csl2.3c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4A": {
+   "file": "csl2.4a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4B": {
+   "file": "csl2.4b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4C": {
+   "file": "csl2.4c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "4K": {
+   "file": "xbl.4k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "5K": {
+   "file": "xbl.5k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "6A": {
+   "file": "csl2.6a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6B": {
+   "file": "csl2.6b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "csl2.6c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6K": {
+   "file": "xbl.6k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "7B": {
+   "file": "csl2.7b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7C": {
+   "file": "csl2.7c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "7K": {
+   "file": "xbl.7k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "8B": {
+   "file": "csl2.8b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8C": {
+   "file": "csl2.8c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "8K": {
+   "file": "xbl.8k",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "9H": {
+   "file": "xbl.9h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  },
+  "10B": {
+   "file": "csl2.10b",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "10C": {
+   "file": "csl2.10c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11C": {
+   "file": "csl2.11c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "11D": {
+   "file": "csl2.11d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "12H": {
+   "file": "xbl.12h",
+   "size": 256,
+   "kind": "data",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

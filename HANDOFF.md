@@ -182,6 +182,12 @@ technique is Atari-only, and the reason is not the parts-list format: Atari's de
 Nintendo and both Midways number sequentially (U34, U38), which gives a chip list and no
 map. Checked across all six of the largest non-Atari manufacturers in the corpus.
 
+**1,469 ROM maps are published from MAME**, a separate and weaker asset than the board
+maps — memory devices only, one source, no cross-check, and the page says so. 407 are
+machines whose manual is already here. They came from parsing every ROM_START block in
+MAME's 4,682 driver sources: 35,517 sets, of which 5,581 name their ROM positions in a
+grid convention and 3,160 are distinct layouts.
+
 Centipede and Tempest still have unread sheets. Untouched machines with drawing packages:
 Gravitar, Black Widow, Space Duel, Space Invaders, Tank. Asteroids' own complement is
 ~106 of ~180 devices; sheet 02B partly unread.

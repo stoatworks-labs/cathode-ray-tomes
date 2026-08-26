@@ -1,0 +1,46 @@
+{
+ "machine": "combatsc",
+ "name": "Combat School (joystick)",
+ "mfr": "Konami",
+ "year": "1988",
+ "style": "letter-number",
+ "source": "konami/combatsc.cpp",
+ "docs": 0,
+ "devices": {
+  "H6": {
+   "file": "611g10.h6",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "E7": {
+   "file": "ampal16l8.e7",
+   "size": 260,
+   "kind": "PLD",
+   "pins": null,
+   "part": null
+  },
+  "H7": {
+   "file": "611g09.h7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H14": {
+   "file": "611g06.h14",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "H15": {
+   "file": "611g05.h15",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

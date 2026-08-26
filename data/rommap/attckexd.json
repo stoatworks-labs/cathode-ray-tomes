@@ -1,0 +1,32 @@
+{
+ "machine": "attckexd",
+ "name": "Attack (set 1)",
+ "mfr": "Exidy",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "exidy/exidyttl.cpp",
+ "docs": 1,
+ "devices": {
+  "C1": {
+   "file": "attack.c1",
+   "size": 256,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "J6": {
+   "file": "attack.j6",
+   "size": 256,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  },
+  "K6": {
+   "file": "attack.k6",
+   "size": 256,
+   "kind": "roms",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

@@ -1,0 +1,32 @@
+{
+ "machine": "dpoker",
+ "name": "Draw Poker (Bally, 03-20)",
+ "mfr": "Bally",
+ "year": "1985",
+ "style": "letter-number",
+ "source": "bally/mcr.cpp",
+ "docs": 0,
+ "devices": {
+  "E1": {
+   "file": "vpfg.e1",
+   "size": 8192,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "G4": {
+   "file": "vpbg.g4",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "G5": {
+   "file": "vpbg.g5",
+   "size": 4096,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

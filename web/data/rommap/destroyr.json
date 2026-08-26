@@ -1,0 +1,46 @@
+{
+ "machine": "destroyr",
+ "name": "Destroyer (Atari, version O2)",
+ "mfr": "Atari",
+ "year": "1977",
+ "style": "letter-number",
+ "source": "atari/destroyr.cpp",
+ "docs": 1,
+ "devices": {
+  "M1": {
+   "file": "030131-01.m1",
+   "size": 256,
+   "kind": "syncprom",
+   "pins": 16,
+   "part": null
+  },
+  "K2": {
+   "file": "030136-01.k2",
+   "size": 32,
+   "kind": "graphics",
+   "pins": 16,
+   "part": null
+  },
+  "C3": {
+   "file": "030146-01.c3",
+   "size": 2048,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "F4": {
+   "file": "030132-01.f4",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "K4": {
+   "file": "030132-01.k4",
+   "size": 1024,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

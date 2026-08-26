@@ -1,0 +1,39 @@
+{
+ "machine": "tumblep",
+ "name": "Tumble Pop (World)",
+ "mfr": "Data East Corporation",
+ "year": "1991",
+ "style": "letter-number",
+ "source": "dataeast/supbtime.cpp",
+ "docs": 1,
+ "devices": {
+  "F12": {
+   "file": "hl00-1.f12",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "F13": {
+   "file": "hl01-1.f13",
+   "size": 262144,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "J15": {
+   "file": "hl03-.j15",
+   "size": 131072,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "F16": {
+   "file": "hl02-.f16",
+   "size": 65536,
+   "kind": "sound program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

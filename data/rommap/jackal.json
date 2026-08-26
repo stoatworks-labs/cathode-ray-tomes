@@ -1,0 +1,74 @@
+{
+ "machine": "jackal",
+ "name": "Jackal (World, 8-way Joystick)",
+ "mfr": "Konami",
+ "year": "1986",
+ "style": "number-letter",
+ "source": "konami/jackal.cpp",
+ "docs": 2,
+ "devices": {
+  "7H": {
+   "file": "631t04.7h",
+   "size": 131072,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "8H": {
+   "file": "631t05.8h",
+   "size": 131072,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "9H": {
+   "file": "631r08.9h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "11D": {
+   "file": "631_t01.11d",
+   "size": 32768,
+   "kind": "slave",
+   "pins": 28,
+   "part": null
+  },
+  "12H": {
+   "file": "631t06.12h",
+   "size": 131072,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "13H": {
+   "file": "631t07.13h",
+   "size": 131072,
+   "kind": "gfx",
+   "pins": 32,
+   "part": null
+  },
+  "14H": {
+   "file": "631r09.14h",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "15D": {
+   "file": "631_v02.15d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "16D": {
+   "file": "631_v03.16d",
+   "size": 16384,
+   "kind": "program",
+   "pins": 28,
+   "part": null
+  }
+ }
+}

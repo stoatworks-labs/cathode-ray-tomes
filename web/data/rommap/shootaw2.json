@@ -1,0 +1,39 @@
+{
+ "machine": "shootaw2",
+ "name": "Shoot Away II",
+ "mfr": "Namco",
+ "year": "1996",
+ "style": "number-letter",
+ "source": "namco/shootaway2.cpp",
+ "docs": 0,
+ "devices": {
+  "5E": {
+   "file": "sas1_voi0.5e",
+   "size": 262144,
+   "kind": "sound samples",
+   "pins": 32,
+   "part": null
+  },
+  "7F": {
+   "file": "sas1_spr0.7f",
+   "size": 524288,
+   "kind": "subcpu",
+   "pins": 32,
+   "part": null
+  },
+  "8L": {
+   "file": "sas1_mpr0c.8l",
+   "size": 131072,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  },
+  "9L": {
+   "file": "m28c64a.9l",
+   "size": 8192,
+   "kind": "eeprom",
+   "pins": 24,
+   "part": null
+  }
+ }
+}

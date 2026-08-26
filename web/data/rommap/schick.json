@@ -1,0 +1,39 @@
+{
+ "machine": "schick",
+ "name": "Super Chick",
+ "mfr": "Microhard",
+ "year": "1988",
+ "style": "number-letter",
+ "source": "pacman/schick.cpp",
+ "docs": 0,
+ "devices": {
+  "4E": {
+   "file": "27c256.4e",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "4F": {
+   "file": "4.27c256.4f",
+   "size": 32768,
+   "kind": "graphics",
+   "pins": 28,
+   "part": null
+  },
+  "7M": {
+   "file": "27c256.7m",
+   "size": 32768,
+   "kind": "sound program",
+   "pins": 28,
+   "part": null
+  },
+  "8D": {
+   "file": "27c512.8d",
+   "size": 65536,
+   "kind": "program",
+   "pins": 32,
+   "part": null
+  }
+ }
+}

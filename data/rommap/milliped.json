@@ -1,0 +1,53 @@
+{
+ "machine": "milliped",
+ "name": "Millipede",
+ "mfr": "Atari",
+ "year": "1982",
+ "style": "letter-number",
+ "source": "atari/centiped.cpp",
+ "docs": 5,
+ "devices": {
+  "H1": {
+   "file": "136013-101.h1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "JK1": {
+   "file": "136013-102.jk1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "L1": {
+   "file": "136013-103.l1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "MN1": {
+   "file": "136013-104.mn1",
+   "size": 4096,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "R5": {
+   "file": "136013-107.r5",
+   "size": 2048,
+   "kind": "graphics",
+   "pins": 24,
+   "part": null
+  },
+  "E7": {
+   "file": "136001-213.e7",
+   "size": 256,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  }
+ }
+}

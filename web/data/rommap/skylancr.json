@@ -1,0 +1,53 @@
+{
+ "machine": "skylancr",
+ "name": "Sky Lancer",
+ "mfr": "Orca",
+ "year": "1983",
+ "style": "number-letter",
+ "source": "orca/funkybee.cpp",
+ "docs": 0,
+ "devices": {
+  "1A": {
+   "file": "18s030.1a",
+   "size": 32,
+   "kind": "PROM",
+   "pins": 16,
+   "part": null
+  },
+  "5A": {
+   "file": "1sl.5a",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5C": {
+   "file": "2sl.5c",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "5D": {
+   "file": "3sl.5d",
+   "size": 8192,
+   "kind": "program",
+   "pins": 24,
+   "part": null
+  },
+  "6A": {
+   "file": "4sl.6a",
+   "size": 8192,
+   "kind": "gfxbank1",
+   "pins": 24,
+   "part": null
+  },
+  "6C": {
+   "file": "5sl.6c",
+   "size": 8192,
+   "kind": "gfxbank2",
+   "pins": 24,
+   "part": null
+  }
+ }
+}
