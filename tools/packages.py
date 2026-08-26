@@ -133,6 +133,11 @@ ATARI_MEMORY = {
     "035141-02", "035142-02", "035143-02", "035144-02", "035145-02",
     "035150-02", "035151-02", "035152-02", "035153-02", "035154-02",
     "035155-02",
+    # Centipede's ROMs, from MAME's dumps of real boards. 24-pin, confirmed
+    # independently by the manual's own 24-contact socket entries at the same
+    # six positions.
+    "136001-407", "136001-408", "136001-409", "136001-410",
+    "136001-211", "136001-212",
     "ROM 035131", "ROM 035132", "ROM 035133", "ROM 035134", "ROM 035135",
 }
 

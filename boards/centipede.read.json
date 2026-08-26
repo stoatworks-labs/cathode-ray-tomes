@@ -115,11 +115,14 @@
   "The drawings carry a full CAT Box signature-analysis procedure. Each device has a setup box on the sheet giving exactly where to clip START, STOP and CLOCK \u2014 e.g. for P2: START P2 pin 11, STOP P2 pin 11, CLK N1 pin 6 \u2014 and the signatures are printed next to the signal point they belong to.",
   "Preliminary set-up removes power, harness, PCB and the MPU at C2, then jumpers pins 37-39 on the MPU socket and connects the CAT Box flex cable to the test edge connector.",
   "Playfield RAM test, straight off the drawing: CAT Box preliminary set-up, then TESTER RESET, DBUS SOURCE to ADDR, BYTES to 1024, R/W MODE off, R/W to WRITE, key in 0400, toggle R/W MODE to SINGLE, R/W to READ, toggle again. A lit COMPARE ERROR LED means the ADDRESS display shows the failing location.",
-  "Playfield address selector: 4H low hands the playfield memory to the sync generator (8H/16H/32H/64H on P5, 16V/32V/64V/128V on P7); 4H high hands it to the MPU via AB0-AB9."
+  "Playfield address selector: 4H low hands the playfield memory to the sync generator (8H/16H/32H/64H on P5, 16V/32V/64V/128V on P7); 4H high hands it to the MPU via AB0-AB9.",
+  "The six ROM positions came from MAME rather than from any document here. MAME's romset filenames carry the board position as a suffix \u2014 '136001-409.fh1' \u2014 and those are taken from real dumped boards. The manual's 24-contact socket entries name the same six positions independently, which is why they are placed."
  ],
  "conflicts": [
   "Three cells are claimed twice by the parts lists and are therefore absent from the board map: D11 (D/E11 says 74LS157, D11 says 74LS74), E10 (E/F10 4584B against E10 74LS257) and E11 (E/F11 4584B against E11 74LS157). Same shape as the Asteroids Deluxe collisions \u2014 a spanning designator against a plain one from another row \u2014 and nothing in the lists says which is right.",
-  "J5 is not placed: the lists call it a 74LS373, which is a real part, but it reached the board map before 74LS373 was in the packaging table. It is in now and J5 will place on the next merge."
+  "J5 is not placed: the lists call it a 74LS373, which is a real part, but it reached the board map before 74LS373 was in the packaging table. It is in now and J5 will place on the next merge.",
+  "P4 is recorded as an 82S123, but MAME's dump of the PROM at that position is 256 bytes and an 82S123 holds 32. A 256-byte part at P4 is an 82S129-class 256x4 PROM. The package is unaffected \u2014 both are DIP-16, and the manual's socket entry for P4 is 16-contact \u2014 so the board map draws it correctly either way, but the part number on the BOM is probably wrong.",
+  "C3 and E5 carry sockets the map has nothing in: C3 is 40-contact and E5 is 22-contact, per the manual's own socket entries. A 40-pin part at C3 next to the 6502 at C2 is very likely the POKEY. Neither is placed, because no source read so far names the device."
  ],
  "resolved": [
   "M4 is a 74LS175, not a 74LS75. Nine printings give 'Type-74LS175 Integrated Circuit (A8, E4, M4, N4)' with stock number and description agreeing in each. 75 against 175 is a dropped digit, which is the confusion a hand-lettered drawing makes easiest. The 74LS75 reading is withdrawn."

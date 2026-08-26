@@ -601,9 +601,9 @@
   }
  },
  "notes": [
-  "Two 12.096 MHz crystals (Y1, Y2) with an alternate clock circuit drawn dashed — the board was built both ways.",
+  "Two 12.096 MHz crystals (Y1, Y2) with an alternate clock circuit drawn dashed \u2014 the board was built both ways.",
   "Clock tree: 12MHz -> N4 (74193) -> 6/3/1.5MHz, and N5 (LS393) -> 3kHz/12kHz. E3MHZ and E6MHZ are gated through P8.",
-  "Same MPU as Asteroids — Atari 90-6013 (6502A) — and the same LS245/AM8304B transceiver substitution with alternate pin numbering.",
+  "Same MPU as Asteroids \u2014 Atari 90-6013 (6502A) \u2014 and the same LS245/AM8304B transceiver substitution with alternate pin numbering.",
   "A 50-pin test connector is fitted, marked 'FOR ATARI MANUFACTURING ONLY', bringing out the full address and data bus plus DATA DISABLE.",
   "J19 (24-pin) carries the buffered bus to the Auxiliary Math Box PCB: EDB0-7, EAB0-6, ER/WB, EI/O, EPHI2 and the E6MHZ/E12KHZ/E3MHZ clocks.",
   "Decode chain: M2 splits program/vector memory, C4 selects RAM vs I/O, K5 fans out to VGRST, WDCLR, VGGO, COINCK, OPT0/1 and SINP.",
@@ -620,7 +620,8 @@
   "SW1 is an on-board reset pushbutton, and WDDIS is a watchdog-disable jumper. Both change how a board behaves before any fault is involved, so both are worth checking before chasing a reset loop."
  ],
  "conflicts": [
-  "Designator namespace collision: on these sheets R9, R10 and R11 are ICs at those grid positions (R9 is a 74S04, R10/R11 are 74LS244s on sheet 2 Side B) and are also ordinary resistor numbers on sheet 2 Side A (R9 and R19 are the 10k pull-ups on the LS244 enables) and sheet 3 Side A (R10-R17 are the data-buffer pull-ups). Nothing on the drawing distinguishes them but the symbol: ICs are boxes or gates with a part number beneath, resistors are zigzags with a value. Not resolvable by renaming -- it has to be read off the symbol every time."
+  "Designator namespace collision: on these sheets R9, R10 and R11 are ICs at those grid positions (R9 is a 74S04, R10/R11 are 74LS244s on sheet 2 Side B) and are also ordinary resistor numbers on sheet 2 Side A (R9 and R19 are the 10k pull-ups on the LS244 enables) and sheet 3 Side A (R10-R17 are the data-buffer pull-ups). Nothing on the drawing distinguishes them but the symbol: ICs are boxes or gates with a part number beneath, resistors are zigzags with a value. Not resolvable by renaming -- it has to be read off the symbol every time.",
+  "The map shows four vector-generator ROM positions \u2014 A3, B/C3, E3 and F/H3 \u2014 and MAME's Battlezone dumps populate only two of them, A3 and B/C3. Both Red Baron sets are the same. So E3 and F/H3 are positions the drawing shows and the board has 24-contact sockets for, but that these games appear to leave empty. Worth knowing before someone chases a missing chip that was never fitted. MAME confirms every other ROM and PROM position on this board exactly, including the 82S129 at K7 and the 82S123 at B1 on the Auxiliary PCB."
  ],
  "corrections": [
   "The LS245 alternate is AM8304B, not 'AM83048'. Read off both sheets: the sheet 2 Side A note spells out 'AM8304B INSTEAD OF 74LS245, 2 PLACES THIS PAGE', and sheet 3 Side A repeats it at F2. The two places on sheet 2 are P4 and P2 -- P2 was missing from the earlier read entirely.",
