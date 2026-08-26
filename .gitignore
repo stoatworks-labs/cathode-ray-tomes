@@ -27,3 +27,8 @@ web/boards/*/vec/
 # Python
 __pycache__/
 *.pyc
+
+# Local secrets for `wrangler dev` — the deployed Worker gets these from
+# `wrangler secret put`. Never commit one.
+.dev.vars
+.dev.vars.*

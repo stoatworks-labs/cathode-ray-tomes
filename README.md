@@ -134,6 +134,37 @@ npm run check          # validate config without deploying
 npm run dev            # local worker + assets on :8787
 ```
 
+## Submissions
+
+`/submit` takes a document the corpus does not have — a scan, a schematic sheet, or a link
+to one — and commits it, with whatever the sender knows about where it came from, to a
+separate queue repository. Nothing submitted appears on the site: it is read by a person,
+checked, and then run through the same ingest and indexing path as everything else.
+
+The queue is deliberately a *different* repository from this one, so unvetted uploads never
+sit in the tree Workers Builds deploys. Setting it up is three things:
+
+```bash
+gh repo create stoatworks-labs/cathode-ray-tomes-submissions --private
+gh label create submission -R stoatworks-labs/cathode-ray-tomes-submissions
+# Fine-grained PAT on that repo alone: Contents read+write, Issues read+write.
+npx wrangler secret put GITHUB_TOKEN
+```
+
+The repo can be empty — the first submission creates `main`. Issue creation is best-effort:
+if it fails the document is still committed and the sender is still told it worked, because
+it did.
+
+and `SUBMISSIONS_REPO` in `wrangler.jsonc` pointing at it. Without the secret the endpoint
+reports itself disabled and the form says so rather than failing on send.
+
+Uploads are capped at 20 MB a file and 25 MB a submission — the ceiling is the Worker's
+128 MB of memory, since the file is base64'd to reach the git blob API — and anything
+larger is taken as a link instead. Guards on a form that commits to a repository: a
+per-IP rate limit, a honeypot field, an extension allowlist checked against the file's
+own magic bytes, and optionally Cloudflare Turnstile if `TURNSTILE_SITEKEY` and
+`TURNSTILE_SECRET` are both set.
+
 ## Sources
 
 Scanned documents from [ArcadeRTFM](https://arcadertfm.com/). Machine hardware metadata

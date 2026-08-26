@@ -35,6 +35,7 @@ const routes = [
   [/^\/rom\/(.+)$/, rommap],
   [/^\/board\/(.+)$/, board],
   [/^\/about\/?$/, about],
+  [/^\/submit\/?$/, submit],
 ];
 
 async function route() {
@@ -758,6 +759,221 @@ async function about() {
       conversions state plainly whether nets have been traced or only the component
       complement has been captured.</p>
     </div>`;
+}
+
+/* ---------- submit documentation ---------- */
+
+const mb = (b) => `${Math.round(b / 1048576)} MB`;
+
+/**
+ * The contribution form. Everything it collects is filed as one commit in the
+ * submissions repo; nothing reaches the corpus without being triaged first,
+ * and the page says so rather than implying an upload appears on the site.
+ */
+async function submit() {
+  const cfg = await api("submit");
+
+  if (!cfg.enabled) {
+    app.innerHTML = `
+      <h1>Submit documentation</h1>
+      <p class="sub">Uploads are not configured on this deployment.</p>
+      <div class="panel"><p>Open an issue on
+        <a href="https://github.com/stoatworks-labs/cathode-ray-tomes/issues">the project repository</a>
+        instead and describe what you have.</p></div>`;
+    return;
+  }
+
+  app.innerHTML = `
+    <h1>Submit documentation</h1>
+    <p class="sub">Send a manual, a schematic sheet or a wiring diagram we do not have.</p>
+
+    <div class="panel" style="margin-bottom:18px">
+      <p>The corpus comes from one archive, and what is missing from it is mostly
+      what never got scanned — the folder in the back of a cabinet, the photocopy
+      that came with a board twenty years ago. If you have one, this is where it goes.</p>
+      <p style="margin-bottom:0"><b>What happens to it.</b> Your submission is committed to a
+      private queue repository along with everything you write below. It does not appear
+      on the site: a person reads it, checks it is what it says it is, and only then does it
+      go through the same OCR and indexing pipeline as everything else. That is a manual
+      step and it is not fast.</p>
+    </div>
+
+    <form id="sf" class="form" novalidate>
+      <label>
+        <span>Machine <b class="req">*</b></span>
+        <input name="machine" required maxlength="120" placeholder="Asteroids Deluxe" autocomplete="off">
+        <em>The game the document covers. A model or board number is even better.</em>
+      </label>
+
+      <div class="row2">
+        <label>
+          <span>Manufacturer</span>
+          <input name="manufacturer" maxlength="80" placeholder="Atari" autocomplete="off">
+        </label>
+        <label>
+          <span>Year</span>
+          <input name="year" maxlength="12" placeholder="1981" autocomplete="off">
+        </label>
+      </div>
+
+      <label>
+        <span>What kind of document</span>
+        <select name="docType">
+          ${cfg.docTypes.map((t) => `<option value="${esc(t)}">${esc(t)}</option>`).join("")}
+        </select>
+      </label>
+
+      <label>
+        <span>Files</span>
+        <input type="file" name="files" id="files" multiple accept="${cfg.accept.map((e) => "." + e).join(",")}">
+        <em>Up to ${cfg.maxFiles} files, ${mb(cfg.maxFileBytes)} each and ${mb(cfg.maxTotalBytes)}
+            in total: ${esc(cfg.accept.join(", "))}. A scan at 300 dpi reads far better than a
+            phone photograph, but a phone photograph beats nothing.</em>
+      </label>
+      <div id="picked" class="picked"></div>
+
+      <label>
+        <span>…or a link to it</span>
+        <input name="sourceUrl" type="url" maxlength="500" placeholder="https://…" autocomplete="off">
+        <em>For anything over ${mb(cfg.maxFileBytes)}, or already hosted somewhere.</em>
+      </label>
+
+      <label>
+        <span>Where it came from <b class="req">*</b></span>
+        <textarea name="provenance" rows="3" required maxlength="2000"
+          placeholder="Came with a board I bought in 2004; the operator said it was the original manual."></textarea>
+        <em>Provenance is the difference between a document and a rumour. Say what you know,
+            including that you are not sure.</em>
+      </label>
+
+      <label>
+        <span>Anything else worth knowing</span>
+        <textarea name="notes" rows="3" maxlength="4000"
+          placeholder="Pages 12 and 13 are missing. Someone has pencilled revision notes on the schematic sheet."></textarea>
+        <em>Missing pages, annotations, a revision that does not match the machine — all of it helps.</em>
+      </label>
+
+      <label>
+        <span>Contact or credit</span>
+        <input name="contact" maxlength="120" placeholder="Name, email or GitHub handle" autocomplete="off">
+        <em>Optional. Stored in the private queue repository so we can come back to you
+            about the document, and used to credit you if you would like that.</em>
+      </label>
+
+      <label class="check">
+        <input type="checkbox" name="rights" id="rights">
+        <span>This is a service or repair document, it is mine to share, and I understand
+              its copyright stays with its publisher. <b class="req">*</b></span>
+      </label>
+
+      <!-- Bots fill this in; people never see it. -->
+      <div class="hp" aria-hidden="true">
+        <label>Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div id="ts"></div>
+
+      <div class="actions">
+        <button type="submit" id="go">Send it</button>
+        <span id="prog" class="prog"></span>
+      </div>
+      <div id="msg"></div>
+    </form>`;
+
+  const form = document.getElementById("sf");
+  const picked = document.getElementById("picked");
+  const msg = document.getElementById("msg");
+  const prog = document.getElementById("prog");
+  const go = document.getElementById("go");
+
+  // Size is worth checking here rather than after a reader has spent five
+  // minutes pushing 40 MB up a venue's wifi.
+  document.getElementById("files").onchange = (e) => {
+    const list = [...e.target.files];
+    let total = 0;
+    picked.innerHTML = list
+      .map((f) => {
+        total += f.size;
+        const over = f.size > cfg.maxFileBytes;
+        return `<div class="${over ? "over" : ""}">${esc(f.name)}
+          <span>${(f.size / 1048576).toFixed(1)} MB${over ? " — too large" : ""}</span></div>`;
+      })
+      .join("");
+    if (list.length > cfg.maxFiles) {
+      picked.innerHTML += `<div class="over">${list.length} files — at most ${cfg.maxFiles}</div>`;
+    }
+    if (total > cfg.maxTotalBytes) {
+      picked.innerHTML += `<div class="over">${(total / 1048576).toFixed(1)} MB total — the limit is ${mb(cfg.maxTotalBytes)}</div>`;
+    }
+  };
+
+  if (cfg.turnstileSiteKey) {
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    s.async = true;
+    document.head.appendChild(s);
+    document.getElementById("ts").className = "cf-turnstile";
+    document.getElementById("ts").dataset.sitekey = cfg.turnstileSiteKey;
+  }
+
+  form.onsubmit = (e) => {
+    e.preventDefault();
+    msg.innerHTML = "";
+
+    const data = new FormData(form);
+    if (!String(data.get("machine") || "").trim()) return fail("Which machine is it for?");
+    if (!String(data.get("provenance") || "").trim()) return fail("Say where the document came from.");
+    if (!document.getElementById("rights").checked) return fail("Please confirm the rights statement.");
+    const files = [...document.getElementById("files").files];
+    if (!files.length && !String(data.get("sourceUrl") || "").trim()) {
+      return fail("Attach a file, or give a link to one.");
+    }
+
+    // fetch() cannot report upload progress, and these are slow uploads over
+    // whatever wifi is in the building.
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/submit");
+    xhr.upload.onprogress = (ev) => {
+      if (!ev.lengthComputable) return;
+      prog.textContent = `${Math.round((ev.loaded / ev.total) * 100)}%`;
+    };
+    xhr.onload = () => {
+      go.disabled = false;
+      prog.textContent = "";
+      let body = {};
+      try { body = JSON.parse(xhr.responseText); } catch { /* keep the status */ }
+      if (xhr.status === 200 && body.ok) return done(body);
+      fail(body.error || `The server said ${xhr.status}.`);
+    };
+    xhr.onerror = () => {
+      go.disabled = false;
+      prog.textContent = "";
+      fail("The upload did not complete. Nothing was sent — try again.");
+    };
+
+    go.disabled = true;
+    prog.textContent = "0%";
+    xhr.send(data);
+  };
+
+  function fail(text) {
+    go.disabled = false;
+    msg.innerHTML = `<div class="note warn"><b>Not sent.</b> ${esc(text)}</div>`;
+  }
+
+  function done(body) {
+    app.innerHTML = `
+      <h1>Filed — thank you</h1>
+      <div class="panel">
+        <p>${body.files ? `${body.files} file${body.files > 1 ? "s" : ""} and your notes are` : "Your submission is"}
+        committed to the queue as <code>${esc(body.commit)}</code>.</p>
+        <p>It will be read by a person before anything happens to it, and it does not
+        appear on the site until it has been through the pipeline. If you left a contact
+        we will come back to you if the document raises a question.</p>
+        <p style="margin-bottom:0"><a href="/submit">Submit another</a> ·
+        <a href="/">Back to the machines</a></p>
+      </div>`;
+  }
 }
 
 route();

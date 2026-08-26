@@ -25,8 +25,35 @@
     "not_found_handling": "single-page-application"
   },
 
+  // Reader submissions (/api/submit) are filed into a *separate* repository so
+  // that unvetted uploads never sit in the tree Workers Builds deploys. The
+  // token is a secret, not a var:
+  //
+  //   npx wrangler secret put GITHUB_TOKEN
+  //
+  // A fine-grained PAT scoped to the queue repo alone, with Contents: read and
+  // write and Issues: read and write. Without it /api/submit reports itself
+  // disabled and the form says so rather than failing on send.
   "vars": {
     "SITE_NAME": "Cathode Ray Tomes",
-    "UPSTREAM": "https://files.arcadertfm.com"
+    "UPSTREAM": "https://files.arcadertfm.com",
+    "SUBMISSIONS_REPO": "stoatworks-labs/cathode-ray-tomes-submissions",
+    "SUBMISSIONS_BRANCH": "main"
+    // "TURNSTILE_SITEKEY": "0x...",   // with the TURNSTILE_SECRET secret,
+    //                                 // enables the challenge on the form
+  },
+
+  // A public form that commits to a repository needs a floor under it. Keyed
+  // on client IP; `period` accepts only 10 or 60. The namespace id is local to
+  // this Worker and just has to stay stable.
+  "unsafe": {
+    "bindings": [
+      {
+        "name": "SUBMIT_LIMIT",
+        "type": "ratelimit",
+        "namespace_id": "1001",
+        "simple": { "limit": 5, "period": 60 }
+      }
+    ]
   }
 }

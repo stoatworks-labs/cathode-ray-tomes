@@ -7,7 +7,13 @@
  * corpus together and there is no store to keep in step.
  *
  * Original scans are not hosted; /pdf/<id> redirects to the source archive.
+ *
+ * The one write path is /api/submit, which files a reader's contribution into a
+ * separate GitHub repository for triage — see src/submit.js. It never touches
+ * the corpus this Worker serves.
  */
+
+import { handleSubmit, submitConfig } from "./submit.js";
 
 const JSON_HEADERS = {
   "content-type": "application/json; charset=utf-8",
@@ -55,6 +61,15 @@ const shardOf = (term) => (/^[a-z0-9]/.test(term[0]) ? term[0] : "_");
 
 async function handleApi(url, env, request) {
   const p = url.pathname.replace(/^\/api\//, "");
+
+  // The only endpoint with a side effect, and the only one that reads a body.
+  // Handled ahead of the corpus routes because those answer GET only and cache
+  // their replies, neither of which is right for a submission.
+  if (p === "submit") {
+    if (request.method === "POST") return handleSubmit(request, env);
+    if (request.method === "GET") return submitConfig(env);
+    return json({ error: "method not allowed" }, 405);
+  }
 
   if (p === "stats") {
     const [machines, docs, boards] = await Promise.all([

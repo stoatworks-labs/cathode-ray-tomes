@@ -437,6 +437,52 @@ convention and legitimately uses G.
 - The full-corpus ingest was still running when this was written; `data/ingest-state.json`
   is the source of truth for how far it got.
 
+## Submissions — the one write path
+
+`/api/submit` (`src/submit.js`) is the only endpoint in the Worker with a side effect.
+It takes a reader's document and commits it to a **separate** GitHub repository named by
+`SUBMISSIONS_REPO`, then opens an issue against it for triage.
+
+Why the decisions are what they are:
+
+- **A different repo, not this one.** CI builds and deploys whatever is committed under
+  `web/`. A public form that can write to this repository is a form that can write to the
+  thing that deploys. The queue repo has no CI and nothing reads it automatically.
+- **One commit per submission, via the git data API.** The contents API is one commit per
+  file, which scatters a submission across the log. Blobs go up first, then a tree, then a
+  commit, then the ref. The ref update is retried on 409/422 because two submissions can
+  land at once; the blobs survive the retry.
+- **An empty queue repo has no ref.** The first submission has to create
+  `refs/heads/main` rather than patch it, with no `parents` and no `base_tree`. This is
+  handled, and it is the path a fresh setup actually takes.
+- **The commit is the submission; the issue is only a handle on it.** If issue creation
+  fails the reader is still told it worked, because it did. Do not reorder these.
+- **20 MB a file, 25 MB a submission.** The binding constraint is the Worker's 128 MB of
+  memory, not the platform's 100 MB request limit: the file is held as bytes *and* as
+  base64 to reach the blob API. `toBase64` chunks at 32 KB because
+  `String.fromCharCode(...bytes)` blows the argument limit around a megabyte. Anything
+  larger is taken as a link.
+- **Extension allowlist checked against magic bytes.** An upload claiming `.pdf` has to
+  start `%PDF`. Filenames are stripped to `[A-Za-z0-9._-]`, cannot start with a dot, and
+  are placed under a generated `incoming/<date>-<machine>-<token>/files/` prefix, so no
+  submitted name can escape its directory.
+- **Guards.** Per-IP rate limit (the `SUBMIT_LIMIT` unsafe binding — `period` accepts only
+  10 or 60), an off-screen honeypot field, and Turnstile *only* when both
+  `TURNSTILE_SITEKEY` and `TURNSTILE_SECRET` are set, so a half-configured challenge
+  cannot lock the form.
+- **`gh()` reads the body as text before parsing.** A body-less 2xx — which the ref update
+  can be — is not a parse failure. This was a real bug.
+- **The front end uses XHR, not fetch,** because `fetch()` cannot report upload progress
+  and these are slow uploads over whatever wifi is in the building.
+
+Local `wrangler dev` cannot start on this machine (Node 26 + miniflare, `spawn EBADF`),
+so the endpoint is exercised with a stub-`fetch` harness against `src/submit.js` directly
+and the form against a small static server. `npm run check` still validates the config
+and the bindings.
+
+Contact details a submitter leaves end up in the queue repo and its issues. That is the
+reason the queue repo is private, and the form says so where the field is.
+
 ## Deployment — Workers Builds
 
 The site builds from GitHub (`stoatworks-labs/cathode-ray-tomes`, public) via Cloudflare
