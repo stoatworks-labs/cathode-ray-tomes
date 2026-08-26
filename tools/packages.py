@@ -138,6 +138,11 @@ ATARI_MEMORY = {
     # six positions.
     "136001-407", "136001-408", "136001-409", "136001-410",
     "136001-211", "136001-212",
+    # Football's program ROMs. Position agreed by the manual's own theory
+    # chapter ("ROM memory (P1, N1 and M1)") and by MAME's dumps; 2K each,
+    # which is the 2316/2716 class every socket entry elsewhere confirms as
+    # 24-pin.
+    "033026-02", "033027-02", "033028-01",
     "ROM 035131", "ROM 035132", "ROM 035133", "ROM 035134", "ROM 035135",
 }
 

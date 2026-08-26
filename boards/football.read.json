@@ -7,10 +7,13 @@
  "sheets": {},
  "notes": [
   "This board has no component-location drawing read. Every device on the map comes from the IC parts list in TM-126, taken where both the 2nd and 3rd printings agree \u2014 82 designators agree between them with no split at all. The row alphabet the list uses is A B C D E F H J K L M N P, which skips G, I, O and Q exactly as the later Atari boards do; that is worth recording because it confirms the convention on a 1978 game, four years before Battlezone.",
-  "The grid spacing is nominal. The designators are what the parts list gives and those are real, but nothing here has measured the board, so the drawn positions are the standard 1in by 0.75in DIP grid the rest of this repo assumes."
+  "The grid spacing is nominal. The designators are what the parts list gives and those are real, but nothing here has measured the board, so the drawn positions are the standard 1in by 0.75in DIP grid the rest of this repo assumes.",
+  "The manual's theory chapter names functional blocks with their positions \u2014 the MPU at C2, gated address buffers at B1 and C1, data buffers at E2, program ROM at P1, N1 and M1, working RAM at M2 and N2, address decoding at B3, E3 and C7, and a watchdog reset counter at A4. Where that overlaps the parts-list harvest the two agree on function: B1, C1 and E2 are 74LS244 buffers, and B3 and E3 are 7442 decoders. That agreement is what makes the rest of the chapter worth trusting."
  ],
  "conflicts": [
   "L7 is not placed. Both printings spell it '74874', which is not a part anyone made \u2014 its function number is 74, and 874 is not what follows a real logic family, so it is an OCR of 74S74 that both printings happen to make the same way. Two printings agreeing is normally the test, and here it is not enough; the device is almost certainly a 74S74 but the map does not say so on a guess.",
-  "Four designators appear in only one printing and are therefore not placed: A4 (7490), E5 (8T28), E7 (8T28), L6 (74LS175)."
+  "Four designators appear in only one printing and are therefore not placed: A4 (7490), E5 (8T28), E7 (8T28), L6 (74LS175).",
+  "Five positions the theory chapter names are still empty on the map, because prose gives a function and a location but not a part number: C2 (MPU), M2 and N2 (working RAM), C7 (address decoding) and A4 (watchdog reset counter). The IC parts list does not reach them either \u2014 Atari stocks ROM and RAM by their own part numbers, not as 37-series IC stock, which is the same reason Centipede's ROMs were missing.",
+  "MAME also dumps graphics memory at N7 (1K), C5 and D5 (512 bytes each), and none of those is placed. MAME is a single source for those three positions and their package is not established \u2014 this manual predates the socket entries that settle pin counts elsewhere \u2014 so they are logged rather than drawn."
  ]
 }
