@@ -35,7 +35,11 @@ from packages import (TTL_PINS, TTL_PINS_UNCHECKED, PART_PINS,
 TTL_PINS = {**TTL_PINS, **TTL_PINS_UNCHECKED}
 
 STOCK = re.compile(r'\b37[-\s]?([0-9][0-9A-Z]{2,7})\b')
-TYPE = re.compile(r'\bType\s+([0-9A-Z][0-9A-Z\s.]{2,10}?)\s+[Ii]ntegrated', re.I)
+# 'Type 74LS04' on the Asteroids manuals, 'Type-74LS04' on the Centipede and
+# Tempest ones. That single hyphen was the whole reason those two machines
+# harvested nothing at all from forty-odd documents each.
+TYPE = re.compile(r'\bType[-\s]\s*([0-9A-Z][0-9A-Z\s.]{2,10}?)\s+'
+                  r'(?:[A-Z]{2,4}\s+)?[Ii]ntegrated', re.I)
 # OCR turns ( ) into { } [ ] often enough to be worth accepting
 PARENS = re.compile(r'[\(\{\[]([^)}\]]{1,140})[\)\}\]]')
 # The count layout names the device in its description too — 'Integrated

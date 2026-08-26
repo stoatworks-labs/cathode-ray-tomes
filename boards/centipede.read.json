@@ -117,5 +117,11 @@
   "Playfield RAM test, straight off the drawing: CAT Box preliminary set-up, then TESTER RESET, DBUS SOURCE to ADDR, BYTES to 1024, R/W MODE off, R/W to WRITE, key in 0400, toggle R/W MODE to SINGLE, R/W to READ, toggle again. A lit COMPARE ERROR LED means the ADDRESS display shows the failing location.",
   "Playfield address selector: 4H low hands the playfield memory to the sync generator (8H/16H/32H/64H on P5, 16V/32V/64V/128V on P7); 4H high hands it to the MPU via AB0-AB9."
  ],
- "conflicts": []
+ "conflicts": [
+  "Three cells are claimed twice by the parts lists and are therefore absent from the board map: D11 (D/E11 says 74LS157, D11 says 74LS74), E10 (E/F10 4584B against E10 74LS257) and E11 (E/F11 4584B against E11 74LS157). Same shape as the Asteroids Deluxe collisions \u2014 a spanning designator against a plain one from another row \u2014 and nothing in the lists says which is right.",
+  "J5 is not placed: the lists call it a 74LS373, which is a real part, but it reached the board map before 74LS373 was in the packaging table. It is in now and J5 will place on the next merge."
+ ],
+ "resolved": [
+  "M4 is a 74LS175, not a 74LS75. Nine printings give 'Type-74LS175 Integrated Circuit (A8, E4, M4, N4)' with stock number and description agreeing in each. 75 against 175 is a dropped digit, which is the confusion a hand-lettered drawing makes easiest. The 74LS75 reading is withdrawn."
+ ]
 }

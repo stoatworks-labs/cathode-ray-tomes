@@ -1,1 +1,611 @@
-{"P2":{"part":"74LS163A","section":"Synchronizer","note":"horizontal counter","otherRev":null},"N2":{"part":"74LS163A","section":"Synchronizer","note":"","otherRev":null},"M2":{"part":"74LS163A","section":"Synchronizer","note":"","otherRev":null},"P3":{"part":"74LS163A","section":"Synchronizer","note":"vertical counter","otherRev":null},"N3":{"part":"74LS163A","section":"Synchronizer","note":"","otherRev":null},"N1":{"part":"74S04","section":"Synchronizer","note":"clock inverters","otherRev":null},"K3":{"part":"74LS04","section":"Synchronizer","note":"","otherRev":null},"K4":{"part":"74LS08","section":"Synchronizer","note":"","otherRev":null},"M3":{"part":"74LS74","section":"Synchronizer","note":"HSYNC generation","otherRev":null},"M4":{"part":"74LS75","section":"Synchronizer","note":"","otherRev":null},"L3":{"part":"74LS10","section":"Synchronizer","note":"PLOAD","otherRev":null},"P4":{"part":"82S123","section":"Synchronizer","note":"vertical timing PROM: VBLANK, 128V..1V","otherRev":null},"C2":{"part":"6502","section":"Microprocessor","note":"MPU; the CAT Box procedure has you remove C2 from the PCB","otherRev":null},"P7":{"part":"74LS257","section":"Playfield Address Selector","note":"PFA4-PFA7 mux","otherRev":null},"P5":{"part":"74LS157","section":"Playfield Address Selector","note":"PFA0-PFA3 mux","otherRev":null},"N7":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"M7":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"L7":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"K7":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"N5":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"M5":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"L5":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null},"K5":{"part":"2101A-2","section":"Playfield RAM","note":"","otherRev":null}}
+{
+ "A10": {
+  "part": "7407",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "A4": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "A5": {
+  "part": "74LS163A",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "A7": {
+  "part": "74LS20",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "A8": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "A9": {
+  "part": "7407",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "B1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "B11": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "B4": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "B5": {
+  "part": "74LS163A",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "B7": {
+  "part": "74LS08",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "C1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "C11": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "C2": {
+  "part": "6502",
+  "section": "Microprocessor",
+  "note": "MPU; the CAT Box procedure has you remove C2 from the PCB",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "C4": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "C5": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "C6": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "C7": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "D10": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 5 printings"
+ },
+ "D4": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "D6": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "D7": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "D8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "D9": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "E2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "E3": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "E4": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "E6": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "E7": {
+  "part": "74LS86",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "E8": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "E9": {
+  "part": "74S74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "F10": {
+  "part": "4584B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F11": {
+  "part": "4584B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F3": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "F6": {
+  "part": "74LS83",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "F8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "F9": {
+  "part": "74S74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "H3": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "H4": {
+  "part": "74LS374",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "H5": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "H6": {
+  "part": "74LS83",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "H8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "H9": {
+  "part": "74LS166",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "J2": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "J3": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "J4": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "J5": {
+  "part": "74LS373",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "J6": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "J8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "J9": {
+  "part": "74LS166",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "K2": {
+  "part": "74LS10",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "K3": {
+  "part": "74LS04",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K4": {
+  "part": "74LS08",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K5": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K6": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "K7": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "K9": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "L2": {
+  "part": "74LS90",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "L3": {
+  "part": "74LS10",
+  "section": "Synchronizer",
+  "note": "PLOAD",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L5": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L6": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "L7": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L8": {
+  "part": "74LS00",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "L9": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "M10": {
+  "part": "74LS259",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "M2": {
+  "part": "74LS163A",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M3": {
+  "part": "74LS74",
+  "section": "Synchronizer",
+  "note": "HSYNC generation",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M4": {
+  "part": "74LS175",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M5": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M6": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "M7": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M8": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "M9": {
+  "part": "74LS257",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "N1": {
+  "part": "74S04",
+  "section": "Synchronizer",
+  "note": "clock inverters",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N2": {
+  "part": "74LS163A",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N3": {
+  "part": "74LS163A",
+  "section": "Synchronizer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N4": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "N5": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N6": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "N7": {
+  "part": "2101A-2",
+  "section": "Playfield RAM",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "P2": {
+  "part": "74LS163A",
+  "section": "Synchronizer",
+  "note": "horizontal counter",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "P3": {
+  "part": "74LS163A",
+  "section": "Synchronizer",
+  "note": "vertical counter",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "P4": {
+  "part": "82S123",
+  "section": "Synchronizer",
+  "note": "vertical timing PROM: VBLANK, 128V..1V",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "P5": {
+  "part": "74LS157",
+  "section": "Playfield Address Selector",
+  "note": "PFA0-PFA3 mux",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "P6": {
+  "part": "74LS153",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "P7": {
+  "part": "74LS257",
+  "section": "Playfield Address Selector",
+  "note": "PFA4-PFA7 mux",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ }
+}

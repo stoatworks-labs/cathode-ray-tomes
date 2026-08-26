@@ -43,7 +43,7 @@ TTL_PINS = {
     "107": 14, "109": 16, "139": 16, "151": 16, "153": 16, "157": 16, "160": 16,
     "161": 16, "163": 16, "164": 14, "170": 16, "174": 16, "175": 16,
     "191": 16, "193": 16, "194": 16, "244": 20, "245": 20, "251": 16, "253": 16,
-    "257": 16, "259": 16, "273": 20, "367": 16, "374": 20, "393": 14,
+    "257": 16, "259": 16, "273": 20, "367": 16, "373": 20, "374": 20, "393": 14,
     "670": 16,
 }
 
@@ -86,6 +86,7 @@ PART_PINS = {
     "CD4016B":    (14, "kicad", "quad bilateral switch"),
     "4016B":      (14, "kicad", "quad bilateral switch; the parts lists' "
                                 "spelling of the CD4016B"),
+    "4584B":      (14, "kicad", "hex Schmitt-trigger inverter; == 40106"),
     "CD4066":     (14, "kicad", "quad bilateral switch"),
     "4066":       (14, "kicad", "quad bilateral switch; the parts lists' "
                                 "spelling of the CD4066"),

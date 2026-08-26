@@ -106,5 +106,10 @@
   "A physical 'DIAG STEP' test pad is marked on the board next to the coin door input network \u2014 a probe point, not just a signal name.",
   "The input architecture is identical to Battlezone: two 8-position DIP banks each read onto the data bus through its own LS244 under OPT0/OPT1, with a third LS244 for the coin door plus 3KHZ and HALT. Knowing one Atari board of this era gets you most of the way round another."
  ],
- "conflicts": []
+ "conflicts": [
+  "The Tempest manual carries two parts-list figures \u2014 an Auxiliary PCB and the Analog Vector-Generator PCB \u2014 so the merge is filtered to the vector-generator board, which is what this map is. The Auxiliary PCB has 17 IC rows of its own and no board map yet."
+ ],
+ "resolved": [
+  "L6 is a 74LS670, not a 74LS14. Four printings give 'Type-74LS670 Integrated Circuit (K6, L6, M6)', putting L6 in a bank of three register files. That is the same trio Asteroids has at F4, H4 and J4 on the same vector generator, so the grouping is functionally coherent as well as attested. The 74LS14 reading is withdrawn."
+ ]
 }

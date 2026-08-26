@@ -1,1 +1,583 @@
-{"A6":{"part":"74S04","section":"Clock Circuit","note":"12.096 MHz oscillator and E24KHZ","otherRev":null},"C4":{"part":"74193","section":"Clock Circuit","note":"12MHz down to 6/3/1.5 MHz","otherRev":null},"F3":{"part":"74S08","section":"Clock Circuit","note":"E3MHZ and E6MHZ gating to J19","otherRev":null},"B4":{"part":"74LS393","section":"Clock Circuit","note":"3 kHz and 24 kHz","otherRev":null},"K11":{"part":"TL082","section":"Power Reset","note":"power-on reset comparator","otherRev":null},"L6":{"part":"74LS14","section":"Power Reset","note":"","otherRev":null},"E6":{"part":"74LS14","section":"Power Reset","note":"PWR ON RESET","otherRev":null},"A4":{"part":"74LS08","section":"Watchdog","note":"watchdog disable","otherRev":null},"K9":{"part":"74LS00","section":"Watchdog","note":"WDCLR","otherRev":null},"D4":{"part":"74LS393","section":"Watchdog","note":"watchdog counter","otherRev":null},"N13":{"part":"8-position DIP switch","section":"Option Switches","note":"option bank 0, read via OPT0","otherRev":null},"L12":{"part":"8-position DIP switch","section":"Option Switches","note":"option bank 1, read via OPT1","otherRev":null},"N12":{"part":"74LS244","section":"Option Switches","note":"reads N13 onto DB0-DB7","otherRev":null},"M12":{"part":"74LS244","section":"Option Switches","note":"reads L12 onto DB0-DB7","otherRev":null},"R9":{"part":"74LS244","section":"Coin Door Inputs","note":"DIAG STEP, SELF TEST, SLAM, coin L/C/R, 3KHZ, HALT","otherRev":null},"J11":{"part":"74LS04","section":"Option Switches","note":"OPT0/OPT1 enable","otherRev":null},"N6":{"part":"74S04","section":"Coin Door Inputs","note":"SINP","otherRev":null},"D10":{"part":"DAC-08","section":"Analog Vector Generator","note":"X-Y output DAC","otherRev":null}}
+{
+ "A1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "A4": {
+  "part": "74LS08",
+  "section": "Watchdog",
+  "note": "watchdog disable",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "A6": {
+  "part": "74S04",
+  "section": "Clock Circuit",
+  "note": "12.096 MHz oscillator and E24KHZ",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "A7": {
+  "part": "74LS02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "A8": {
+  "part": "74LS109",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "A9": {
+  "part": "74LS164",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "B1": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B3": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B4": {
+  "part": "74LS393",
+  "section": "Clock Circuit",
+  "note": "3 kHz and 24 kHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B5": {
+  "part": "74LS02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B6": {
+  "part": "74LS27",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B7": {
+  "part": "74S74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "B8": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "B9": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C1": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C3": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C4": {
+  "part": "74193",
+  "section": "Clock Circuit",
+  "note": "12MHz down to 6/3/1.5 MHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C5": {
+  "part": "74S260",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C6": {
+  "part": "74S02",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "C7": {
+  "part": "74S74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "C8": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D10": {
+  "part": "DAC-08",
+  "section": "Analog Vector Generator",
+  "note": "X-Y output DAC",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "D3": {
+  "part": "74LS74",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D4": {
+  "part": "74LS393",
+  "section": "Watchdog",
+  "note": "watchdog counter",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D5": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "D6": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "D8": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "D9": {
+  "part": "74LS273",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E2": {
+  "part": "74LS244",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E3": {
+  "part": "74S04",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E4": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "E5": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E6": {
+  "part": "74LS14",
+  "section": "Power Reset",
+  "note": "PWR ON RESET",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E7": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "E8": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "E9": {
+  "part": "74LS20",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F3": {
+  "part": "74S08",
+  "section": "Clock Circuit",
+  "note": "E3MHZ and E6MHZ gating to J19",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F4": {
+  "part": "74LS10",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F5": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "F6": {
+  "part": "74S00",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F7": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "F8": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H3": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H5": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H6": {
+  "part": "74LS194",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "H7": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "H8": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "H9": {
+  "part": "74LS399",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J11": {
+  "part": "74LS04",
+  "section": "Option Switches",
+  "note": "OPT0/OPT1 enable",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J2": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J5": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J6": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J7": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "J8": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K11": {
+  "part": "TL082",
+  "section": "Power Reset",
+  "note": "power-on reset comparator",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K5": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "K6": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K7": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K8": {
+  "part": "74LS175",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "K9": {
+  "part": "74LS00",
+  "section": "Watchdog",
+  "note": "WDCLR",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L12": {
+  "part": "8-position DIP switch",
+  "section": "Option Switches",
+  "note": "option bank 1, read via OPT1",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "L5": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "L6": {
+  "part": "74LS670",
+  "section": "Power Reset",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L8": {
+  "part": "74LS191",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M12": {
+  "part": "74LS244",
+  "section": "Option Switches",
+  "note": "reads L12 onto DB0-DB7",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "M5": {
+  "part": "74LS193",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 3 printings"
+ },
+ "M6": {
+  "part": "74LS670",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N12": {
+  "part": "74LS244",
+  "section": "Option Switches",
+  "note": "reads N13 onto DB0-DB7",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N13": {
+  "part": "8-position DIP switch",
+  "section": "Option Switches",
+  "note": "option bank 0, read via OPT0",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N2": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N6": {
+  "part": "74S04",
+  "section": "Coin Door Inputs",
+  "note": "SINP",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N7": {
+  "part": "74LS367",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "N8": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "N9": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "P7": {
+  "part": "74LS139",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "P8": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "R7": {
+  "part": "74LS32",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
+ },
+ "R9": {
+  "part": "74LS244",
+  "section": "Coin Door Inputs",
+  "note": "DIAG STEP, SELF TEST, SLAM, coin L/C/R, 3KHZ, HALT",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ }
+}
