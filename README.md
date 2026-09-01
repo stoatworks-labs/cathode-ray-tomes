@@ -57,6 +57,7 @@ python3 tools/ingest.py --workers 6             # fetch, rasterise, OCR, detect 
 python3 tools/backfill_structure.py [--force]   # add/refresh outlines on existing docs
 python3 tools/build_search.py                   # sharded OCR postings + chip index
 python3 tools/build_doc_stats.py                # fold page/section counts into the catalogue
+python3 tools/build_drawings.py --images        # mark drawing pages; publish their scans
 python3 tools/vectorise.py <docId> --pages 1,3  # trace line art to SVG
 bash    tools/publish.sh local|remote           # seed KV + R2
 ```
@@ -103,6 +104,20 @@ chip — which is what a repair search actually looks like.
 **OCR.** Quality tracks the source scan. Dense schematic sheets return fragmentary text,
 but usefully still recover part numbers (`7400`, `74107`, `9316`), which is what a
 repairer actually searches for. Typed manual pages come back clean.
+
+**Drawing pages.** A page that is a drawing has no prose to rebuild, but OCR does not
+return nothing for one — it returns the marks it found and calls them words. Rendered
+as paragraphs that reads as fluent nonsense, which was the worst thing on the site.
+Those pages are now shown as the scan, with what OCR recovered kept underneath and
+collapsed, because that is what the search index matched on.
+
+Deciding which pages those are is the whole difficulty, and not because the nonsense
+is hard to spot. Illustrated parts lists and DIP-switch tables score almost the same
+as a schematic on any measure of how word-like the text is — they are part numbers and
+abbreviations — and they are the most useful pages in the manual. So no page is hidden
+on a score: the document's own outline heading, or the catalogue's record that the
+document is a schematic package, has to agree with it. Pages where only the score
+fires keep their text and are simply marked as having come off a drawing.
 
 **Vectorisation.** `tools/vectorise.py` traces bilevel line art to SVG. It recovers
 **geometry, not meaning** — it does not recognise a resistor and redraw it as an IEC

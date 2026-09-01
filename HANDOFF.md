@@ -20,14 +20,15 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 14, across 10 machines |
+| Board maps | 29, across 24 machines · 1,864 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
 | Parts lists | 192 documents, 11,911 rows |
 
-Corpus ships as **static assets** (`web/data/`, ~11,400 files, 157 MB). No KV, no R2 —
-a deploy publishes code and data together. Repo `.git` is 133 MB as a result.
+Corpus ships as **static assets** (`web/data/` ~12,900 files 160 MB, plus
+`web/pages/` 430 page scans 64 MB). No KV, no R2 — a deploy publishes code and data
+together. Repo `.git` grows accordingly.
 
 ## Architecture
 
@@ -89,9 +90,48 @@ traps found so far.
 
 ## Open work
 
+**Drawing pages** (`tools/build_drawings.py`, new). The reader used to set every
+schematic sheet as prose — 10-Yard Fight's pages 31/32/37 rendered as paragraphs
+reading "ZEP Py KT TI IATD wif vel aifac}ar". `renderBlocks` has one escape hatch, a
+page with *zero* blocks, and a drawing never yields zero. 2,933 pages were doing it.
+
+The trap is that illustrated parts lists, DIP-switch tables and pin-out tables score
+almost identically to a drawing on long-word rate — they are part numbers and
+abbreviations — so a threshold there hides exactly the pages a repairer came for.
+Symbol density separates them (drawing 0.037–0.089, parts list and prose 0.000–0.006)
+because tesseract's output off a drawing is full of marks it could not resolve.
+
+Nothing is hidden on a score alone. Two sources must agree: the outline heading or
+the catalogue's "this document is a schematic", **plus** the page reading as noise.
+926 pages clear it; the other 2,007 keep their text behind a warning, because hiding
+a parts list is worse than showing some noise. Validated against 20 hand-read pages —
+every drawing caught, every parts list left alone.
+
+430 of the 926 are sheets inside a manual and ship their scan inline (`web/pages/`,
+64 MB). The other 496 are pages of documents that are *nothing but* schematics; the
+whole document is the drawing and `/pdf/<id>` already serves it, so they link out.
+Inlining them too would add 135 MB to duplicate a working link — that is the open
+question if the deploy budget ever justifies it.
+
+Two things to know before touching it:
+
+- **`width`/`height` on the `<img>` are load-bearing.** With `height:auto` they give
+  the box an aspect ratio so it reserves height before the image loads. A lazy image
+  with no reserved height is zero-high, never intersects the viewport and therefore
+  never loads — the sheet stays silently missing.
+- **`cache/text/` is not written to.** It is the ingest's checkpoint and stays the OCR
+  as it came out; flags live in `data/drawings.json` and are merged by
+  `build_assets.py` at publish time. Re-run `build_drawings.py --images` after an
+  ingest, then `build_assets.py`.
+
+Still open there: the 2,007 warned-but-kept pages have had no sample read, so the
+split between real parts lists and salvageable noise in that bucket is unmeasured.
+And 107 documents are 40%+ noise; the worst are pure schematic packages with no
+outline at all, which is why the catalogue label had to become a source.
+
 **Boards.** Battlezone's DP-156 is fully read — sheets 1A, 1B, 2A, 2B, 3A, 3B. It turned
-out to be three boards: game PCB 035742 (97 devices), Auxiliary PCB 035678-01 (36, shared
-with Red Baron), and Regulator/Audio II PCB 035435-02, which is discrete and has no board
+out to be three boards: game PCB 035742 (97 devices), Auxiliary PCB 035678-01 (36 —
+**not** shared with Red Baron, see below), and Regulator/Audio II PCB 035435-02, which is discrete and has no board
 map — its notes are in `boards/battlezone-regulator-audio.read.json` and its power story
 in `data/power/bzone.json`. Still unread on sheet 1 Side A: the Coin Door schematic
 (034988-01), International Power Supply (035887-01) and the cabinet wiring diagram
@@ -123,7 +163,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 25 boards and 1,365 devices.
+whole site is 29 boards and 1,864 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -176,7 +216,44 @@ D7 are the strongest candidates for a bad read rather than a bad list: recorded 
 the 74161, so the list agrees with itself twice. The parts lists also give independent
 support for the LS02 reading of C8, which was already an open conflict.
 
-**Do not go looking for more machines to harvest — the corpus has been swept.** The
+**"The corpus has been swept" was true of one thing only and was read as two.** It
+was swept for *new machines to hand-read*. It had never been run against the boards
+already published, and running it there found 499 devices and four new boards — Red
+Baron 15 -> 66, Warlords 12 -> 57, plus Gravitar (68), Space Duel (70), Fast Freddie
+(79) and Red Baron's Auxiliary PCB (18). Everything else is now genuinely at its
+evidence limit: Crash 'n Score, Monte Carlo, Asteroids Deluxe, Centipede, Football,
+Missile Command and the nine single-printing boards all confirm and add nothing.
+Tempest gained 5.
+
+Two results carry more than the device count. **Red Baron's Analog Vector-Generator
+PCB agrees with Battlezone's hand-read game PCB on 58 of the 63 positions they
+share** — sources with nothing in common, six sides of DP-156 read by eye against OCR
+of two Red Baron parts lists — which validates the hand read and the harvest at once.
+Gravitar and Space Duel check each other the same way, 54 of 62, from different
+manuals.
+
+And **Red Baron's Auxiliary PCB is not Battlezone's Math Box 035678-01.** It agrees
+with it on 2 of 14 shared designators and carries no Am2901 slices and no 82S129
+microcode PROMs at all, where the Math Box has four and six; a 555 sits where
+Battlezone has a bit slice. The old note claiming a shared Math Box is withdrawn, and
+with it the claim that Battlezone's 68 signature codes apply to Red Baron. What that
+implicates on Red Baron's game PCB map — A1, K1 and K7 carry Atari 0361xx numbers that
+are Math Box devices on Battlezone, at different positions — is logged in
+`red-baron.read.json` and needs DP-169 or a board.
+
+**Red Baron's manual covers two PCBs whose designator grids collide** — 8 collisions in
+TM-169, 6 in TM-171 — and `locations()` resolves a collision by last write, so
+harvesting it whole merges two boards into one wrong map silently. `--figure` clears
+both to zero. Always check the figure headings before harvesting a manual.
+
+**Asteroids is deliberately untouched by the harvest.** Its four revision maps are
+generated by `build_asteroids_revisions.py` from a revision-specific memory overlay,
+so a merge into `boards/asteroids-0*.json` is lost on the next regeneration; and its
+ten printings span revisions whose numbering shifts, which is exactly what
+manufactures false disagreements. The +24 per revision the dry run offers has to go
+through the generator, not around it.
+
+**Do not go looking for more machines to harvest from the drawings.** The
 technique is Atari-only, and the reason is not the parts-list format: Atari's designators
 *are* board positions, so recovering one recovers a location. Sega, Namco, Konami,
 Nintendo and both Midways number sequentially (U34, U38), which gives a chip list and no
