@@ -291,6 +291,9 @@ async function reader(id) {
   const doc = await api("doc/" + id);
   const pages = doc.pages || [];
   const outline = pages.length >= 3 ? (doc.outline || []) : [];
+  // Page numbers of the sheets whose scan is published, in order, so
+  // renderDrawing can load the first few eagerly.
+  const drawingPages = pages.filter((p) => p.draw && p.dw).map((p) => p.n);
   let cur = 1, query = "";
 
   app.innerHTML = `
@@ -351,8 +354,17 @@ async function reader(id) {
     // drawing, so "see the original" already hands over the right thing and
     // there is no image to frame.
     const hasScan = !!(p.dw && p.dh);
+    // Loading these lazily is the wrong default. A document that has any
+    // scans averages 1.5 of them and 215 of the 285 have exactly one, so
+    // laziness saves almost nothing — and what it defers is the only thing on
+    // the page worth reading, on a page whose text is deliberately collapsed.
+    // A sheet that has not appeared is indistinguishable from one that is
+    // missing. So the first few load eagerly and only a long run of them, on
+    // the two documents that have one, is deferred.
+    const eager = drawingPages.indexOf(p.n) < 4;
     const img = hasScan
-      ? `<img loading="lazy" width="${p.dw}" height="${p.dh}" src="${src}"
+      ? `<img loading="${eager ? "eager" : "lazy"}" decoding="async"
+             width="${p.dw}" height="${p.dh}" src="${src}"
              alt="Scan of page ${p.n}"
              onerror="this.closest('figure').classList.add('noscan')">`
       : "";

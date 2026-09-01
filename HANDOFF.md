@@ -118,7 +118,11 @@ Two things to know before touching it:
 - **`width`/`height` on the `<img>` are load-bearing.** With `height:auto` they give
   the box an aspect ratio so it reserves height before the image loads. A lazy image
   with no reserved height is zero-high, never intersects the viewport and therefore
-  never loads — the sheet stays silently missing.
+  never loads — the sheet stays silently missing. For the same reason the first four
+  sheets in a document load **eagerly**: a document with any scans averages 1.5 of
+  them and 215 of 285 have exactly one, so laziness defers the only thing on the page
+  worth reading and a sheet that has not appeared looks exactly like one that is
+  missing. Only the two documents with a long run of sheets defer anything.
 - **`cache/text/` is not written to.** It is the ingest's checkpoint and stays the OCR
   as it came out; flags live in `data/drawings.json` and are merged by
   `build_assets.py` at publish time. Re-run `build_drawings.py --images` after an
