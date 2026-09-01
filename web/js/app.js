@@ -329,8 +329,53 @@ async function reader(id) {
   const mark = (t) => { const r = rx(); return r ? esc(t).replace(r, "<mark>$1</mark>") : esc(t); };
   const stripBullet = (t) => t.replace(/^\s*([•·*\-–—]|\(?[a-z]\)|\(?\d{1,2}[.)])\s+/, "");
 
+  /**
+   * A page the corpus has decided is a drawing: show the scan.
+   *
+   * These pages used to render as paragraphs of whatever tesseract found on a
+   * schematic sheet, which reads as fluent nonsense — the single worst thing
+   * on the site. The scan is the content here; the recovered text is kept
+   * underneath and collapsed, because it is what the search index matched on
+   * and a reader who searched a part number needs to see where it hit.
+   */
+  function renderDrawing(p) {
+    const src = `/pages/${id}/p${String(p.n).padStart(4, "0")}.webp`;
+    const text = pageText(p).trim();
+    // width/height are the scan's real pixel size and are load-bearing, not
+    // decoration: with `height:auto` they give the box an aspect ratio, so it
+    // reserves its full height before the image arrives. A lazy image with no
+    // reserved height is zero-high, never enters the viewport, and therefore
+    // never loads — the sheet would silently stay missing.
+    // A page only carries dw/dh when its scan is published. Pages of documents
+    // that are nothing but schematics do not: the whole document is the
+    // drawing, so "see the original" already hands over the right thing and
+    // there is no image to frame.
+    const hasScan = !!(p.dw && p.dh);
+    const img = hasScan
+      ? `<img loading="lazy" width="${p.dw}" height="${p.dh}" src="${src}"
+             alt="Scan of page ${p.n}"
+             onerror="this.closest('figure').classList.add('noscan')">`
+      : "";
+    const caption = hasScan
+      ? `This page is a drawing. It is shown as the original scan — the text on
+         it was drawn, not typeset, so there is nothing to rebuild.
+         <a href="/pdf/${id}" target="_blank" rel="noopener">See it in the full
+         document ↗</a>`
+      : `This page is a drawing, so there is nothing to rebuild as text.
+         <a href="/pdf/${id}" target="_blank" rel="noopener">See the original
+         scan ↗</a>`;
+    return `<figure class="sheet${hasScan ? "" : " noscan"}">
+      ${img}
+      <figcaption>${caption}</figcaption>
+      ${text ? `<details class="ocrdump"><summary>What OCR recovered from this
+        sheet (${text.split(/\s+/).length} words — fragments, not prose)</summary>
+        <p class="lowconf">${mark(text)}</p></details>` : ""}
+    </figure>`;
+  }
+
   /** Render a page's semantic blocks as real HTML. */
   function renderBlocks(p) {
+    if (p.draw) return renderDrawing(p);
     const out = [];
     let list = [], table = [];
     const flushList = () => { if (list.length) { out.push(`<ul>${list.join("")}</ul>`); list = []; } };
@@ -352,9 +397,20 @@ async function reader(id) {
       }
     }
     flushList(); flushTable();
-    return out.join("") ||
+    const body = out.join("") ||
       '<p class="lowconf">This page carries no recoverable text — it is a drawing or a photograph. ' +
       `<a href="/pdf/${id}" target="_blank" rel="noopener">See the original scan ↗</a></p>`;
+    // Reads as coming off a drawing, but nothing corroborates that, so the
+    // text stays: this bucket also holds illustrated parts lists and
+    // DIP-switch tables, which score the same and are the most useful pages
+    // in a service manual. Warn, never hide.
+    if (!p.noise) return body;
+    return `<div class="fromdrawing"><p class="fromdrawing-note">The text below
+      was recovered from a drawing rather than from typeset text, so it is
+      fragmentary and out of order. Part numbers on it are usually still
+      right — that is what makes the page searchable — but it does not read as
+      prose. <a href="/pdf/${id}" target="_blank" rel="noopener">See the
+      original scan ↗</a></p>${body}</div>`;
   }
 
   function draw() {

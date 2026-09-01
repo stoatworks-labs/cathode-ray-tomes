@@ -239,6 +239,37 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
 }
 .textview .pg-sep a { margin-left: 10px; text-transform: none; letter-spacing: 0; }
 
+/* ---- drawing pages ----
+   A page whose content is a drawing shows the scan. The sheets are bilevel
+   line art on white, so they get a white ground in both themes rather than
+   being inverted or tinted — a schematic read against a dark page is harder to
+   follow, and these are read at the bench. */
+.textview figure.sheet { margin: 0 0 20px; }
+.textview figure.sheet img {
+  display: block; width: 100%; height: auto; background: #fff;
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+/* If the scan is not published for this page the image is hidden and the
+   caption alone carries the link out, rather than leaving a broken frame. */
+.textview figure.sheet.noscan img { display: none; }
+.textview figure.sheet figcaption {
+  font-size: 13.5px; color: var(--ink-3); line-height: 1.6; margin-top: 8px;
+}
+.textview details.ocrdump { margin-top: 10px; }
+.textview details.ocrdump summary {
+  font-size: 13px; color: var(--ink-3); cursor: pointer; user-select: none;
+}
+.textview details.ocrdump p { margin-top: 8px; font-size: 13.5px; }
+
+/* A page that reads as drawing noise but might be a parts list: the text is
+   never hidden, only prefaced. */
+.textview .fromdrawing { margin: 0 0 16px; }
+.textview .fromdrawing-note {
+  border-left: 3px solid var(--line); background: var(--surface-2);
+  padding: 9px 13px; margin: 0 0 12px; font-size: 13.5px; color: var(--ink-3);
+  border-radius: 0 var(--radius) var(--radius) 0; line-height: 1.6;
+}
+
 /* ---- embedded interactive board view ---- */
 iframe.ibom {
   width: 100%; height: 78vh; min-height: 460px;

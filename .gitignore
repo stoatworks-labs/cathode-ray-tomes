@@ -23,6 +23,12 @@ web/boards/*/vec/
 
 # web/data/ IS tracked: it is the deployed corpus. Rebuild it from the
 # pipeline with tools/build_assets.py.
+#
+# web/pages/ IS tracked for the same reason. It holds the page scans for the
+# drawing pages only — the sheets a manual refers to, which the reader now
+# shows inline instead of linking out to a 45-page PDF. It is a deliberate
+# subset chosen by tools/build_drawings.py, not the whole 8.9 GB of page
+# images, and it is rebuilt with `build_drawings.py --images`.
 
 # Python
 __pycache__/
