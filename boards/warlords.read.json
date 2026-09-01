@@ -3,7 +3,7 @@
  "name": "Warlords",
  "mfr": "Atari",
  "year": "1980",
- "drawing": "DP-175 drawing package",
+ "drawing": "DP-175 drawing package, plus the TM-175 (upright) and TM-177 (cocktail) IC parts lists",
  "sheets": {
   "sync": {
    "P4": {
@@ -68,7 +68,10 @@
  },
  "notes": [
   "Display timing, useful on a scope: 262 horizontal lines per frame, each line 768 clocks of the 12 MHz base, repeating 60 times a second. The 12.096 MHz oscillator is crystal Y1 with transistor Q9 and discretes rather than a packaged part.",
-  "Sync chain: P4/P5/P6 divide 12 MHz down to 1H-256H; 256H inverted clocks the vertical counters N6/N5 for 1V-128V; those address sync PROM M6 whose output is latched by L6. A blank screen with a good 12 MHz at Y1 points down this chain."
+  "Sync chain: P4/P5/P6 divide 12 MHz down to 1H-256H; 256H inverted clocks the vertical counters N6/N5 for 1V-128V; those address sync PROM M6 whose output is latched by L6. A blank screen with a good 12 MHz at Y1 points down this chain.",
+  "The parts-list harvest took this board from 12 devices to 57, and it is the cleanest merge on the site: 56 designators, zero splits between the two printings, zero conflicts with the drawing read, zero off-grid rejects and zero rows the well-formedness guard refused. Every one of the 45 added devices is attested by both printings.",
+  "11 of the 12 hand-read devices are confirmed by both printings and none is contradicted. That matters more than the 45 additions: it says the earlier hand read of DP-175 was sound, so the two sources are measuring the same board and the additions inherit that confidence.",
+  "Both printings put every trusted row under one figure heading \u2014 'Warlords Game PCB Assembly', figure 18 in TM-175 and figure 19 in TM-177 \u2014 and neither reports a designator collision, so no --figure split was needed. The upright and cocktail cabinets share the game PCB."
  ],
  "conflicts": []
 }

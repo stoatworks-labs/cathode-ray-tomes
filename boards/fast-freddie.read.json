@@ -1,0 +1,20 @@
+{
+ "machine": "flyboy",
+ "name": "Fast Freddie",
+ "mfr": "Atari",
+ "year": "1982",
+ "drawing": "TM-208 IC parts list, figure 3-9 (PCB Assembly)",
+ "sheets": {},
+ "notes": [
+  "No component-location drawing has been read for this board, and only one printing of TM-208 is in the corpus. Every device comes from that single IC parts list with no cross-check of any kind behind it, so the board carries singleSource and the site says so at the top of the page. All 22 trusted rows pass their own checksum, which is what the map rests on.",
+  "This is the only board here that is not Atari-designed hardware. Fast Freddie is Kaneko's game, distributed by Atari, and the manual is an Atari technical manual in Atari's house format. It was worth checking whether the technique survives that, because the whole method depends on the manufacturer's designators being board positions rather than a sequential parts count — AGENTS.md records that Sega, Namco, Konami, Nintendo and both Midways number sequentially (U34, U38) and so give a chip list and no map.",
+  "It survives: the designators come out as grid cells (A4, B10, C13, D12, E10) on an A B C D E F H J K L M row alphabet, 15 columns wide. Whoever drew this board used positional designators, whether or not that was Atari's doing. The row alphabet skipping G and I matches the Atari convention, which is weak evidence that the manual — or the board — was reworked to Atari's house style.",
+  "The grid spacing is nominal, as on every parts-list-only board here.",
+  "The part mix is unusually narrow: 20 distinct device types across 79 positions, mostly LS-series gates and counters. That is consistent with an early-80s discrete-logic board and is not itself a sign of a bad read."
+ ],
+ "conflicts": [
+  "J3 is not placed. Two rows of the same parts list claim it — one calling it a 74LS10 and one a 74LS139 — and with a single printing there is no second source to arbitrate. extract_ic_locations resolves an in-document collision by last write, which would silently have put the 74LS139 on the map; it was removed by hand instead. One look at a board or a second printing settles it.",
+  "E8 is not placed. Both readings of its row spell the device 74LS377, which is a real part, but the well-formedness guard does not carry it and the house rule is that the guard rejects rather than the reader overrides. It is almost certainly a 74LS377 octal D flip-flop; the map does not say so on that basis alone.",
+  "Nothing on this board has been checked against a second printing, a drawing, or hardware. Of everything on the site it is the map most likely to contain an error, and it is published on the same terms as the other single-source boards: flagged, with the source named per device."
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "machine": "spacduel",
+ "name": "Space Duel",
+ "mfr": "Atari",
+ "year": "1982",
+ "drawing": "TM-181 IC parts list, figure 3-8 (Game PCB Assembly)",
+ "sheets": {},
+ "notes": [
+  "No component-location drawing has been read for this board. Every device on the map comes from the IC parts list in TM-181, taken where the 1st and 2nd printings agree — 73 designators agree between them with no split at all, and 70 of those are on the grid and carry a device name the guard will stand behind.",
+  "Both printings put every row under one figure heading, 'Figure 3-8 Space Duel Game PCB Assembly', and neither reports a collision. One PCB, so no --figure split was needed.",
+  "The grid spacing is nominal. The designators are what the parts list gives and those are real, but nothing here has measured the board, so the drawn positions are the standard 1in by 0.75in DIP grid the rest of this repo assumes.",
+  "Space Duel and Gravitar are the same Atari colour-vector hardware, harvested independently from different manuals (TM-181 and TM-206). They share 62 grid positions and agree on 54. Neither pipeline can see the other's manual, so that agreement is genuine external evidence for both maps rather than an artefact of the method.",
+  "The row alphabet is A B C D E F H J K L M N P R — skipping G, I, O and Q, as every Atari board here does."
+ ],
+ "conflicts": [
+  "Eight of the 62 positions shared with Gravitar differ: H3, K6, L4, L9, N3, N9, R3, R4. The reasoning is set out in gravitar.read.json and applies symmetrically — they are two different games on a shared board family, so some positions are expected to differ, and neither map has been edited on the strength of the other.",
+  "Three designators appear in only one printing and are therefore not placed."
+ ]
+}

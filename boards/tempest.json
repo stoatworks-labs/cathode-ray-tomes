@@ -5,7 +5,7 @@
  "year": "1981",
  "machine": "tempest",
  "drawing": "DP-190 drawing package, sheets 02A and 02B",
- "coverage": "83 devices: 18 read from the drawings and 65 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "coverage": "93 devices: 88 read from the drawings and 5 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
  "size": {
   "w": 300,
   "h": 300
@@ -20,6 +20,8 @@
  },
  "ics": {
   "A1": "74LS244",
+  "A2": "74109",
+  "A3": "74LS174",
   "A4": "74LS08",
   "A6": "74S04",
   "A7": "74LS02",
@@ -67,6 +69,7 @@
   "F8": "74LS161",
   "H2": "74LS245",
   "H3": "74LS245",
+  "H4": "74LS174",
   "H5": "74LS194",
   "H6": "74LS194",
   "H7": "74LS175",
@@ -74,6 +77,8 @@
   "H9": "74LS399",
   "J11": "74LS04",
   "J2": "74LS139",
+  "J3": "74LS175",
+  "J4": "74LS02",
   "J5": "74LS139",
   "J6": "74LS191",
   "J7": "74LS175",

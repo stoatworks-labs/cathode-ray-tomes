@@ -1,0 +1,44 @@
+{
+ "slug": "red-baron-auxiliary",
+ "name": "Red Baron Auxiliary PCB",
+ "mfr": "Atari",
+ "year": "1980",
+ "machine": "redbaron",
+ "drawing": "TM-169 and TM-171 IC parts lists, Auxiliary PCB Assembly",
+ "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
+ "coverage": "18 devices, every one from the Auxiliary PCB Assembly parts lists in TM-169 and TM-171, taken only where both printings agree \u2014 they agree on all 18 with no split. This is NOT Battlezone's Auxiliary Math Box PCB 035678-01: the two share 14 designators and agree on 2 of them, and this list carries no Am2901 slices and no 82S129 microcode PROMs at all. No component-location drawing has been read for it. A board map, not a bill of materials.",
+ "singleSource": false,
+ "size": {
+  "w": 163,
+  "h": 180
+ },
+ "grid": {
+  "rows": "KJFEDCBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 18.0,
+  "rotation": 90,
+  "cols": 5
+ },
+ "ics": {
+  "A3": "74LS191",
+  "A4": "74LS00",
+  "B1": "74LS374",
+  "B3": "74LS191",
+  "C1": "74LS161",
+  "C3": "74109",
+  "C4": "74LS32",
+  "C5": "74LS02",
+  "D1": "74LS161",
+  "D3": "74LS02",
+  "D4": "74LS74",
+  "D5": "74LS04",
+  "E3": "74LS273",
+  "E4": "74LS164",
+  "F3": "74LS08",
+  "F4": "74LS164",
+  "J4": "74LS00",
+  "K3": "74S08"
+ }
+}

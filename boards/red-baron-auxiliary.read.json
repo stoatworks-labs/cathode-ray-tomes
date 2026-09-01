@@ -1,0 +1,17 @@
+{
+ "machine": "redbaron",
+ "name": "Red Baron Auxiliary PCB",
+ "mfr": "Atari",
+ "year": "1980",
+ "drawing": "TM-169 and TM-171 IC parts lists, Auxiliary PCB Assembly",
+ "sheets": {},
+ "notes": [
+  "No component-location drawing has been read for this board. Every device comes from the Auxiliary PCB Assembly parts list, taken where TM-169 (upright) and TM-171 (sit-down) agree — they agree on all 18 placed designators with no split at all.",
+  "This board exists as a separate map because Red Baron's manual covers two PCBs whose designator grids collide. Read whole, TM-169 reports 8 collisions and TM-171 reports 6 (C4, D4, E4, F4, B5, C5, D5, K3), and extract_ic_locations resolves a collision by last write — so an unsplit harvest would silently have merged two different boards into one wrong map. Splitting on the figure heading clears every collision in both printings: 0 and 0. This is the same trap Battlezone hit and the same fix.",
+  "The grid spacing is nominal."
+ ],
+ "conflicts": [
+  "This is NOT Battlezone's Auxiliary Math Box PCB 035678-01, and the note in red-baron.read.json saying Red Baron and Battlezone share that PCB is wrong for this board. The two share 14 designators and agree on 2 of them — no better than chance. More decisively, this parts list contains no 137004-001 Am2901 slices and no 82S129 microcode PROMs anywhere: the Math Box's four slices at K2/F2/H-J2/D-E2 and its six microcode PROMs at M1/L1/K1/J1/H1/F1 are simply absent. What is here instead is plain TTL — 74LS161 and 74LS164 counters, 74LS191 counters, 74LS273 and 74LS374 latches, gates, and a 555 at K2 where Battlezone has an Am2901. A board carrying a bit-slice ALU and a board carrying a 555 timer at the same position are not the same board.",
+  "That leaves an open question this evidence does not settle: whether Red Baron uses a Math Box at all. Red Baron's own game PCB map carries Atari 0361xx part numbers at A1 (036174-01) and K1 (036179-01) — numbers that on Battlezone are Math Box devices, at B1 and J1 of the Math Box grid rather than at A1 and K1 of the game PCB. Those three entries came from an earlier session that assumed the shared Math Box, and they are now suspect. They have been left where they are because the drawing read is authoritative by house rule and nothing here is a reading of a drawing; they are logged instead. Resolving it needs the DP-169 drawing package or a physical board."
+ ]
+}

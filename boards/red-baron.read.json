@@ -3,7 +3,7 @@
  "name": "Red Baron",
  "mfr": "Atari",
  "year": "1980",
- "drawing": "DP-169 drawing package",
+ "drawing": "DP-169 drawing package sheet 02A, plus the TM-169 and TM-171 IC parts lists (Analog Vector-Generator PCB Assembly)",
  "sheets": {
   "02A": {
    "P5": {
@@ -56,8 +56,15 @@
  },
  "notes": [
   "Red Baron and Battlezone are the same hardware platform. The clock, power reset and watchdog sections were read directly off Red Baron's DP-169 sheet 02A and are identical to Battlezone's DP-156 sheet 02A \u2014 same designators, same parts: P5/74S04, N4/74193, N5/74LS393, P8/74LS08, B6/74LS14, L5/74LS08, J4/74LS00, M4/74LS393, L10/74LS74. This was verified chip by chip rather than assumed from the shared Math Box.",
-  "Both also use the same Auxiliary Math Box PCB, so Battlezone's 68 signature codes apply here and a known-good board from either game can check the other.",
-  "Dual 12.096 MHz crystals Y1/Y2 with an alternate oscillator drawn dashed, exactly as on Battlezone \u2014 the board was built both ways."
+  "An earlier note here said Red Baron and Battlezone use the same Auxiliary Math Box PCB, and that Battlezone's 68 signature codes therefore apply to Red Baron. That is withdrawn. Red Baron's own Auxiliary PCB parts list carries no Am2901 slices and no 82S129 microcode PROMs at all, and agrees with the Battlezone Math Box map on 2 of the 14 designators they share. The reasoning is in red-baron-auxiliary.read.json. The signature codes should not be carried across until something settles what Red Baron's auxiliary board actually is.",
+  "Dual 12.096 MHz crystals Y1/Y2 with an alternate oscillator drawn dashed, exactly as on Battlezone \u2014 the board was built both ways.",
+  "The shared-platform claim in the first note is now independently confirmed, and much more strongly than the ten hand-read devices could confirm it. The TM-169 and TM-171 parts lists for the Analog Vector-Generator PCB agree with Battlezone's hand-read game PCB map on 58 of the 63 grid positions the two share \u2014 92 percent \u2014 and the two harvests share no source: one is somebody reading six sides of DP-156 by eye, the other is OCR of two Red Baron parts lists. This is the strongest cross-machine check on the site and it validates both the Battlezone hand read and the parts-list method at the same time.",
+  "Splitting Red Baron's parts list by figure heading was mandatory, not tidiness. TM-169 covers the Analog Vector-Generator PCB and the Auxiliary PCB in one list and reports 8 designator collisions between them (TM-171 reports 6). locations() resolves a collision by last write, so harvesting the manual whole would have put Auxiliary devices onto the game PCB map without saying so."
  ],
- "conflicts": []
+ "conflicts": [
+  "A5 is kept as 036464-01 from the drawing read; both printings of the parts list call it a 74LS194. The drawing keeps the cell by house rule and the dispute is recorded against that device in the chip lookup. Worth a look \u2014 an Atari custom part number and a 74LS194 are not a pair a drawing makes easy to confuse, so one of the two sources is plainly wrong rather than marginal.",
+  "A1 (036174-01), K1 (036179-01) and K7 (036408-01) are the three positions where Red Baron's game PCB map differs from Battlezone's by carrying an Atari custom number where Battlezone carries a stock part (2114, 8316E, 82S129). Two of those numbers \u2014 036174 and 036179 \u2014 are Battlezone Math Box devices, and on Battlezone they sit at B1 and J1 of the Math Box grid, not at A1 and K1 of the game PCB. They came from an earlier session that assumed the shared Math Box, which the Auxiliary harvest has now contradicted, so they are suspect. They stay because the drawing read is authoritative and nothing here re-reads the drawing. Needs DP-169 or a board.",
+  "P2 is a 74LS244 here against Battlezone's 74LS245. Both printings agree on the LS244, so this is most likely a genuine difference between the two boards rather than a bad read, but it is the one non-custom position where they disagree and it is recorded rather than smoothed over.",
+  "17 designators appear in only one printing and are therefore not placed."
+ ]
 }

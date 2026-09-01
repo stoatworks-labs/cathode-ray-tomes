@@ -123,6 +123,20 @@
   "bom": "/boards/crash-n-score/bom.csv"
  },
  {
+  "slug": "fast-freddie",
+  "name": "Fast Freddie",
+  "mfr": "Atari",
+  "year": "1982",
+  "machine": "flyboy",
+  "drawing": "TM-208 IC parts list, figure 3-9 (PCB Assembly)",
+  "devices": 79,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 79 devices, every one from the IC parts list in the TM-208 manual. Only one printing of that manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. No component-location drawing has been read for this board and the grid spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/fast-freddie/fast-freddie-ibom.html",
+  "bom": "/boards/fast-freddie/bom.csv"
+ },
+ {
   "slug": "football",
   "name": "Football",
   "mfr": "Atari",
@@ -135,6 +149,20 @@
   "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 78 devices, every one from the IC parts list in the TM-126 manual, taken only where both printings agree. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
   "ibom": "/boards/football/football-ibom.html",
   "bom": "/boards/football/bom.csv"
+ },
+ {
+  "slug": "gravitar",
+  "name": "Gravitar",
+  "mfr": "Atari",
+  "year": "1982",
+  "machine": "gravitar",
+  "drawing": "TM-206 IC parts list, figure 3-8 (Game PCB Assembly)",
+  "devices": 68,
+  "netsTraced": false,
+  "singleSource": false,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 68 devices, every one from the IC parts list in the TM-206 manual, taken only where both printings agree \u2014 73 designators agree between them with no split at all. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. 54 of the 62 positions it shares with Space Duel carry the same device, which is the two harvests checking each other. A board map, not a bill of materials.",
+  "ibom": "/boards/gravitar/gravitar-ibom.html",
+  "bom": "/boards/gravitar/bom.csv"
  },
  {
   "slug": "indy-4",
@@ -241,12 +269,26 @@
   "year": "1980",
   "machine": "redbaron",
   "drawing": "DP-169 drawing package, sheet 02A",
-  "devices": 15,
+  "devices": 66,
   "netsTraced": false,
   "singleSource": false,
-  "status": "10 devices from sheet 02A (clock, power reset, watchdog), read directly and found identical to Battlezone. A board map for diagnosis, not a complete bill of materials.",
+  "status": "66 devices: 15 read from the drawings and 51 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/red-baron/red-baron-ibom.html",
   "bom": "/boards/red-baron/bom.csv"
+ },
+ {
+  "slug": "red-baron-auxiliary",
+  "name": "Red Baron Auxiliary PCB",
+  "mfr": "Atari",
+  "year": "1980",
+  "machine": "redbaron",
+  "drawing": "TM-169 and TM-171 IC parts lists, Auxiliary PCB Assembly",
+  "devices": 18,
+  "netsTraced": false,
+  "singleSource": false,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 18 devices, every one from the Auxiliary PCB Assembly parts lists in TM-169 and TM-171, taken only where both printings agree \u2014 they agree on all 18 with no split. This is NOT Battlezone's Auxiliary Math Box PCB 035678-01: the two share 14 designators and agree on 2 of them, and this list carries no Am2901 slices and no 82S129 microcode PROMs at all. No component-location drawing has been read for it. A board map, not a bill of materials.",
+  "ibom": "/boards/red-baron-auxiliary/red-baron-auxiliary-ibom.html",
+  "bom": "/boards/red-baron-auxiliary/bom.csv"
  },
  {
   "slug": "sky-diver",
@@ -275,6 +317,20 @@
   "status": "17 devices, every one from the IC parts list in TM-144. Grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing here has measured the board. A board map, not a bill of materials.",
   "ibom": "/boards/soccer/soccer-ibom.html",
   "bom": "/boards/soccer/bom.csv"
+ },
+ {
+  "slug": "space-duel",
+  "name": "Space Duel",
+  "mfr": "Atari",
+  "year": "1982",
+  "machine": "spacduel",
+  "drawing": "TM-181 IC parts list, figure 3-8 (Game PCB Assembly)",
+  "devices": 70,
+  "netsTraced": false,
+  "singleSource": false,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 70 devices, every one from the IC parts list in the TM-181 manual, taken only where both printings agree \u2014 73 designators agree between them with no split at all. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. 54 of the 62 positions it shares with Gravitar carry the same device, which is the two harvests checking each other. A board map, not a bill of materials.",
+  "ibom": "/boards/space-duel/space-duel-ibom.html",
+  "bom": "/boards/space-duel/bom.csv"
  },
  {
   "slug": "starship-1",
@@ -311,10 +367,10 @@
   "year": "1981",
   "machine": "tempest",
   "drawing": "DP-190 drawing package, sheets 02A and 02B",
-  "devices": 88,
+  "devices": 93,
   "netsTraced": false,
   "singleSource": false,
-  "status": "83 devices: 18 read from the drawings and 65 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+  "status": "93 devices: 88 read from the drawings and 5 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/tempest/tempest-ibom.html",
   "bom": "/boards/tempest/bom.csv"
  },
@@ -339,9 +395,10 @@
   "year": "1980",
   "machine": "warlords",
   "drawing": "DP-175 drawing package, sync sheet",
-  "devices": 12,
+  "devices": 57,
   "netsTraced": false,
-  "status": "12 devices from the sync generator sheet. A board map for diagnosis, not a complete bill of materials.",
+  "singleSource": false,
+  "status": "57 devices: 12 read from the drawings and 45 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/warlords/warlords-ibom.html",
   "bom": "/boards/warlords/bom.csv"
  }

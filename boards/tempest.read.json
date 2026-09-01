@@ -3,7 +3,7 @@
  "name": "Tempest",
  "mfr": "Atari",
  "year": "1981",
- "drawing": "DP-190 drawing package",
+ "drawing": "DP-190 drawing package, plus the TM-190 IC parts lists",
  "sheets": {
   "02A": {
    "A6": {
@@ -104,10 +104,14 @@
   "Same MPU warning as Asteroids and Battlezone: the game clocks at 1.5 MHz so the part must be a 6502A. A plain 6502 tops out at 1 MHz and will not run.",
   "Clock tree is near-identical to Battlezone: 12.096 MHz crystal into a 74193 for 6/3/1.5 MHz, and an LS393 for 3 kHz and 24 kHz.",
   "A physical 'DIAG STEP' test pad is marked on the board next to the coin door input network \u2014 a probe point, not just a signal name.",
-  "The input architecture is identical to Battlezone: two 8-position DIP banks each read onto the data bus through its own LS244 under OPT0/OPT1, with a third LS244 for the coin door plus 3KHZ and HALT. Knowing one Atari board of this era gets you most of the way round another."
+  "The input architecture is identical to Battlezone: two 8-position DIP banks each read onto the data bus through its own LS244 under OPT0/OPT1, with a third LS244 for the coin door plus 3KHZ and HALT. Knowing one Atari board of this era gets you most of the way round another.",
+  "Four printings of the parts list confirm 75 of the 88 hand-read devices and contradict 2, adding 5 the drawing read had not reached. For a board that was already the most complete Tempest map available, the value here is the confirmation rather than the five additions."
  ],
  "conflicts": [
-  "The Tempest manual carries two parts-list figures \u2014 an Auxiliary PCB and the Analog Vector-Generator PCB \u2014 so the merge is filtered to the vector-generator board, which is what this map is. The Auxiliary PCB has 17 IC rows of its own and no board map yet."
+  "The Tempest manual carries two parts-list figures \u2014 an Auxiliary PCB and the Analog Vector-Generator PCB \u2014 so the merge is filtered to the vector-generator board, which is what this map is. The Auxiliary PCB has 17 IC rows of its own and no board map yet.",
+  "B1 is kept as 74LS244 from the drawing read; all four printings call it a 74LS374. Four-to-one against a hand read is the same shape as Missile Command's D3, which the parts lists eventually won. Unlike D3, though, a 244 buffer and a 374 latch are not the confusable pair that a 7404 and a 74LS14 are, so this one is worth an actual look rather than a concession.",
+  "D1 is kept as 136002-101 from the drawing read; all four printings call it a 74LS161. An Atari custom part number against a stock counter is not a marginal misreading \u2014 one of the two sources is simply wrong about what is in that socket, and it is recorded rather than decided.",
+  "Four designators are not placed because the printings disagree with each other: D5 (74LS194 / 74LS74), E3 (74LS244 / 74S04), F3 (74LS374 / 74S08) and F4 (74LS10 / 74LS14). Where four printings cannot agree, nothing is taken."
  ],
  "resolved": [
   "L6 is a 74LS670, not a 74LS14. Four printings give 'Type-74LS670 Integrated Circuit (K6, L6, M6)', putting L6 in a bank of three register files. That is the same trio Asteroids has at F4, H4 and J4 on the same vector generator, so the grouping is functionally coherent as well as attested. The 74LS14 reading is withdrawn."
