@@ -10,6 +10,7 @@
   "The grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing has measured the board. Rows run R to A and columns 1 to 9; the row span is the standard Atari alphabet between the outermost letters seen, so rows with no device on them are still drawn as positions the board has."
  ],
  "conflicts": [
-  "2 device name(s) could not be recovered and are not placed: F5 (7166), K6 (7905). Each is an OCR of a part number whose function number does not name anything the packaging table knows, and with only one printing there is no second reading to repair it from."
+  "2 device name(s) could not be recovered and are not placed: F5 (7166), K6 (7905). Each is an OCR of a part number whose function number does not name anything the packaging table knows, and with only one printing there is no second reading to repair it from.",
+  "MAME's ROM map, whose file names encode board positions and were checked against real boards, puts a ROM at E2 (006401.e2). The parts list here reads 9322 \u2014 a logic device \u2014 at that cell. Only one printing is in the corpus, so this is one OCR read against a position verified on hardware; the map keeps the parts-list reading by house rule but the odds favour MAME. Needs a second printing or a board."
  ]
 }

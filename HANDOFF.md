@@ -544,6 +544,32 @@ Robot's lookup held 51 entries for a 33-device map, still answering "which chip
 is at 5A" from both boards at once. Purged. Worth re-checking after any future
 split.
 
+**Two corpus-wide cross-checks, run once the parts-list route closed.**
+
+*MAME's ROM maps against the board maps.* MAME's ROM file names encode board
+positions (`035143-02.j2`) and were checked against real boards, so where a
+board map has a device at a cell MAME puts a ROM, the disagreement is evidence.
+17 machines have both; of 43 ROM positions that land on a board map, **40 agree**
+— counting the 8316E mask ROMs, which a first pass mislabelled as logic. The
+three that do not are on single-printing boards and are logged in their read
+files: Super Breakout E2 (parts list 9322, MAME a ROM), Indy 4 F4 and E5 (7400
+and 9312 against PROMs). One OCR read against a position verified on hardware;
+the map keeps the parts list by house rule but the odds favour MAME. 97 ROM
+positions MAME knows are on no board map at all — memory cells the parts lists
+never reached. Filling them from MAME would be a new, weaker source mixed into
+the maps and is a decision, not a chore; it is not done.
+
+*Shared-hardware pairs.* Black Widow ran on Space Duel hardware and Gravitar is
+the same colour-vector family, and all three were harvested from different
+manuals. Gravitar and Black Widow agree on **23 of 23** shared positions; Black
+Widow and Space Duel on 22 of 24; and the two exceptions — H3 and K6 — are
+exactly where Gravitar already differed from Space Duel. So two independent
+manuals agree against Space Duel's two printings at those cells. Logged on
+Space Duel as the likelier of the three to be wrong there. Millipede/Centipede
+and Major Havoc/Tempest cannot be compared this way: different designator
+conventions. Asteroids Deluxe against Asteroids -03 is 27 of 85, which is a
+revised layout, not an error.
+
 ## Traps that cost real time
 
 - **`build_assets.py` will revert another session's corpus if your `data/index/`
