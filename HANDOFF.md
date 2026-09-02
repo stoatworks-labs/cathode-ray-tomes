@@ -631,6 +631,21 @@ session will.
 
 ## Traps that cost real time
 
+- **`merge_ic_locations` used to relabel every device it did not add as a
+  drawing read, and one re-run of every merge wiped the site's provenance.** The
+  lookup rewrite assumed anything already in `ics` was the hand read, which was
+  true until MAME and the Asteroids generator started placing devices. Then a pass
+  that re-ran all 50 merges to record contested cells relabelled 138 MAME ROMs and
+  ~1,500 parts-list devices as "component-location drawing" in one commit, and the
+  device counts stayed identical so nothing flagged it. Caught by the closing
+  consistency sweep, which counts provenance by source — keep running that sweep.
+  A cell the run did not add now keeps whatever source it had. Restored from the
+  last good commit and re-run.
+- **A board's registered device count can be stale without being wrong.** Pong
+  said 100 devices in `boards.json` while its map has always had 66; a republish
+  corrected it and looked like 34 devices vanishing. Compare `boards.json`
+  against `boards/*.json` `ics` before believing a count moved.
+
 - **`build_assets.py` will revert another session's corpus if your `data/index/`
   is stale, and it did.** web/data/ is generated wholesale from data/index/,
   which is gitignored and built locally, so a worktree whose index is behind

@@ -262,8 +262,15 @@ def main():
             _, n, _ = added[cell]
             src = f"IC parts list, {n} printing" + ("s" if n > 1 else "")
         else:
-            src = "component-location drawing"
-            if cell in confirmed:
+            # A cell this run did not add keeps the source it already has. It
+            # used to be overwritten with "component-location drawing" on the
+            # assumption that anything already on the map was the hand read —
+            # which was true until other tools started placing devices. Then a
+            # re-run of every merge relabelled 138 MAME ROMs and some 1,500
+            # parts-list devices as drawing reads in one pass, and the
+            # provenance the whole site rests on was wrong for a commit.
+            src = prev.get("source") or "component-location drawing"
+            if cell in confirmed and "confirmed by the parts list" not in src:
                 src += ", confirmed by the parts list"
         note = prev.get("note", "")
         # Where the drawing wins a disagreement, the loser goes in the note.
@@ -272,11 +279,13 @@ def main():
         # something else about the chip in front of them.
         if cell in disputed:
             other, n = disputed[cell]
-            note = (note + " " if note else "") + (
-                f"The IC parts lists call this a {other} "
-                f"({n} printing{'s' if n > 1 else ''}); the drawing says "
-                f"{part}. Unresolved.")
-            src += ", disputed by the parts lists"
+            line = (f"The IC parts lists call this a {other} "
+                    f"({n} printing{'s' if n > 1 else ''}); the drawing says "
+                    f"{part}. Unresolved.")
+            if line not in note:
+                note = (note + " " if note else "") + line
+            if "disputed by the parts lists" not in src:
+                src += ", disputed by the parts lists"
         out[cell] = {"part": part, "section": prev.get("section", ""),
                      "note": note.strip(),
                      "otherRev": prev.get("otherRev"), "source": src}
