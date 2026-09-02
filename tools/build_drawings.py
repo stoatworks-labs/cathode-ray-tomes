@@ -89,19 +89,18 @@ SYMBOL_RATE = 0.030
 # threshold by three thousandths.
 SYMBOL_CORROBORATE = 0.020
 
-# Why a page was called a drawing. The distinction decides whether its scan is
-# published, not whether it is a drawing:
-#
-#   a sheet inside a *manual* is referred to by the prose around it, and the
-#   reader is mid-document when they reach it — that page earns its scan.
-#
-#   a page of a document that is *nothing but* schematics does not. The whole
-#   document is the drawing, "see the original" already hands over exactly the
-#   right thing, and inlining those 496 pages would add 135 MB to the deploy
-#   to duplicate a link that already works. They still stop rendering as
-#   prose, which is the actual complaint; they just link out for the image.
-WHOLE_DOC = "the catalogue lists this document as a schematic and the page "\
-            "reads as drawing noise"
+# A page of a drawing document that genuinely reads as typeset prose. Atari's
+# schematic packages open with a theory of operation, and those pages score
+# like any manual chapter: long words, no debris. They keep their text, set as
+# prose, with the scan above it — everything else in such a document is a
+# sheet, and a sheet with a typeset paragraph on it (4-Player Football's
+# regulator notes sit on the wiring diagram) scores 0.35 / 0.022, which no
+# text measure tells apart from a prose page with a figure. So the catalogue,
+# not the score, decides that a drawing document is shown as its pages.
+PROSE_TOKENS = 150
+PROSE_LONG = 0.30
+PROSE_SYMBOL = 0.012
+WHOLE_DOC = "the catalogue lists this document as a schematic"
 
 
 def measure(page):
@@ -117,16 +116,33 @@ def measure(page):
 
 
 def classify(doc, whole_doc_is_drawing=False):
-    """-> ({page: reason} for drawings, [pages] that read as noise).
+    """-> ({page: reason} for drawings, [pages] that read as noise, {pages}
+    whose scan is published).
 
     `whole_doc_is_drawing` comes from the catalogue: the document is a
-    schematic package or a wiring diagram, not a manual. Those carry no
-    outline at all — there is no typeset text to recover headings from — so
-    the per-page heading test can never fire on them, and they were the worst
-    pages on the site precisely because nothing could reach them. For those,
-    the catalogue entry is the corroborating source that the outline heading
-    is elsewhere, and any page reading as drawing noise is a drawing.
+    schematic package, a drawing package or a wiring diagram, not a manual.
+    Those carry no outline — there is no typeset text to recover headings
+    from — so the per-page heading test can never fire on them, and a text
+    score cannot tell a sheet with a typeset note from a prose page with a
+    figure (measured: 2,294 of 2,437 such pages passed as prose). So every
+    page of one is shown as its scan. A page that reads unmistakably as
+    prose keeps its text set as prose beneath the scan; every other page is
+    a drawing, thin pages included — a sheet with forty words on it is still
+    the sheet.
+
+    A manual is different: its drawings are the pages its outline names or
+    its text betrays, and only those earn a scan.
     """
+    if whole_doc_is_drawing:
+        draw, scan = {}, set()
+        for p in doc.get("pages", []):
+            n, long_rate, sym = measure(p)
+            scan.add(p["n"])
+            prose = (n >= PROSE_TOKENS and long_rate >= PROSE_LONG
+                     and sym < PROSE_SYMBOL)
+            if not prose:
+                draw[p["n"]] = WHOLE_DOC
+        return draw, [], scan
     strict = {o["p"] for o in doc.get("outline", [])
               if STRICT.search(o.get("t", ""))}
     loose = {o["p"] for o in doc.get("outline", [])
@@ -153,11 +169,51 @@ def classify(doc, whole_doc_is_drawing=False):
         if thin:
             continue                      # reader already handles thin pages
         if sym >= SYMBOL_RATE and drawish:
-            if whole_doc_is_drawing:
-                draw[p["n"]] = WHOLE_DOC
-            else:
-                noise.append(p["n"])
-    return draw, noise
+            noise.append(p["n"])
+    return draw, noise, set(draw)
+
+
+def apply_flags(doc, flags):
+    """Mark a document's pages from its drawings.json record, in place.
+
+    `draw` pages are shown as their scan; `noise` pages keep their text but
+    are marked as having come off a drawing; any page with a `size` has its
+    scan published, and the size lets the reader reserve the image's box
+    before the pixels arrive. Shared by build_assets.py and --apply so the two
+    cannot disagree.
+    """
+    draw, noise = set(flags.get("draw", [])), set(flags.get("noise", []))
+    sizes = flags.get("size", {})
+    for page in doc.get("pages", []):
+        for k in ("draw", "noise", "dw", "dh"):
+            page.pop(k, None)
+        if page["n"] in draw:
+            page["draw"] = True
+        elif page["n"] in noise:
+            page["noise"] = True
+        sz = sizes.get(str(page["n"]))
+        if sz:
+            page["dw"], page["dh"] = sz
+    return doc
+
+
+def catalogue():
+    """The document catalogue: data/index/docs.json, or the published copy
+    under web/data when that is the larger of the two. The local index is
+    gitignored and built per checkout, so in a fresh worktree it is behind
+    what another session has already published; the corpus only grows, so
+    the larger one is the current one."""
+    best = []
+    for rel in ("data/index/docs.json", "web/data/docs.json"):
+        path = os.path.join(ROOT, rel)
+        if os.path.exists(path):
+            try:
+                recs = json.load(open(path))
+            except Exception:
+                continue
+            if len(recs) > len(best):
+                best = recs
+    return {d["id"]: d for d in best}
 
 
 def page_size(fid, n):
@@ -178,16 +234,22 @@ def main():
     ap.add_argument("--images", action="store_true",
                     help="also copy the page scans for drawing pages into "
                          "web/pages/, which is what makes them show up")
+    ap.add_argument("--apply", action="store_true",
+                    help="also write the flags into the published documents "
+                         "under web/data/doc/, for when only the drawing "
+                         "decisions changed and build_assets.py would need a "
+                         "fresh index to run")
     a = ap.parse_args()
 
     # The catalogue's own view of what each document is.
-    cat = {d["id"]: d for d in
-           json.load(open(os.path.join(ROOT, "data/index/docs.json")))}
+    cat = catalogue()
 
     out, n_draw, n_noise, n_img, img_bytes = {}, 0, 0, 0, 0
     web_pages = os.path.join(ROOT, "web", "pages")
-    if a.images and os.path.isdir(web_pages):
-        shutil.rmtree(web_pages)
+    # Only the scans of documents this pass decides are cleared, one document
+    # at a time, before its pages are copied back. Clearing web/pages/ whole
+    # used to delete the 462 page images of the 24 vector-read documents,
+    # which are published by ingest_vector.py and never pass through here.
 
     for path in sorted(glob.glob(os.path.join(ROOT, "cache/text/*.json"))):
         fid = os.path.basename(path)[:-5]
@@ -205,32 +267,31 @@ def main():
         kind = (meta.get("type") or "").lower()
         is_drawing_doc = bool(meta.get("schematic")) or any(
             w in kind for w in ("schematic", "drawing", "wiring"))
-        draw, noise = classify(doc, is_drawing_doc)
-        if not draw and not noise:
+        draw, noise, scan = classify(doc, is_drawing_doc)
+        if not draw and not noise and not scan:
             continue
         rec = {}
         if draw:
-            # The scan's pixel size travels with the flag so the reader can
-            # reserve the right box before the image arrives. Without it the
-            # img collapses to nothing, a lazy image that occupies no space
-            # never intersects the viewport, and so it never loads at all —
-            # the schematic silently stays missing, which is the bug this
-            # whole file exists to fix.
             rec["draw"] = sorted(draw)
-            # Only the pages whose scan is published carry a size, because the
-            # size exists to reserve the image's box and there is no image for
-            # the rest. The reader falls back to caption-and-link for those.
-            shown = [n for n, why in sorted(draw.items()) if why != WHOLE_DOC]
-            rec["size"] = {str(n): sz for n in shown if (sz := page_size(fid, n))}
         if noise:
             rec["noise"] = sorted(noise)
+        # The scan's pixel size travels with the flag so the reader can
+        # reserve the right box before the image arrives. Without it the
+        # img collapses to nothing, a lazy image that occupies no space
+        # never intersects the viewport, and so it never loads at all —
+        # the schematic silently stays missing, which is the bug this
+        # whole file exists to fix. Only pages whose scan is published carry
+        # one; the reader falls back to caption-and-link for the rest.
+        shown = sorted(scan)
+        rec["size"] = {str(n): sz for n in shown if (sz := page_size(fid, n))}
         out[fid] = rec
         n_draw += len(draw)
         n_noise += len(noise)
 
         if not a.images:
             continue
-        for n in shown if draw else []:
+        shutil.rmtree(os.path.join(web_pages, fid), ignore_errors=True)
+        for n in shown:
             src = os.path.join(ROOT, f"cache/pages/{fid}/p{n:04d}.webp")
             if not os.path.exists(src):
                 continue
@@ -242,16 +303,36 @@ def main():
 
     dst = os.path.join(ROOT, "data", "drawings.json")
     json.dump(out, open(dst, "w"), indent=0, sort_keys=True)
-    n_linked = n_draw - sum(len(v.get("size", {})) for v in out.values())
+    n_sized = sum(len(v.get("size", {})) for v in out.values())
+    n_under = sum(1 for v in out.values() for n in v.get("size", {})
+                  if int(n) not in set(v.get("draw", [])))
     print(f"{n_draw} drawing pages across "
-          f"{sum(1 for v in out if 'draw' in out[v])} documents "
-          f"({n_draw - n_linked} shown as scans, {n_linked} linked out — "
-          f"pages of documents that are nothing but schematics)")
+          f"{sum(1 for v in out if 'draw' in out[v])} documents; "
+          f"{n_sized} page scans published, {n_under} of them under prose")
     print(f"{n_noise} further pages read as coming off a drawing but keep their "
           f"text — they may be parts lists")
     print(f"wrote {dst}")
     if a.images:
         print(f"copied {n_img} page scans, {img_bytes/1e6:.0f} MB -> web/pages/")
+
+    if a.apply:
+        # Straight onto the published documents, old flags stripped first, so
+        # the result is what build_assets.py would produce from cache/text
+        # and this file — without needing a corpus index at least as fresh
+        # as the published one, which a new worktree does not have.
+        n_changed = 0
+        for path in glob.glob(os.path.join(ROOT, "web", "data", "doc", "*.json")):
+            fid = os.path.basename(path)[:-5]
+            doc = json.load(open(path))
+            if doc.get("meta", {}).get("via") == "vector":
+                continue
+            before = json.dumps(doc, sort_keys=True)
+            apply_flags(doc, out.get(fid, {}))
+            if json.dumps(doc, sort_keys=True) != before:
+                with open(path, "w") as f:
+                    json.dump(doc, f, separators=(",", ":"))
+                n_changed += 1
+        print(f"applied to {n_changed} published documents under web/data/doc/")
 
 
 if __name__ == "__main__":

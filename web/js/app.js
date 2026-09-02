@@ -689,9 +689,9 @@ async function reader(id) {
   const doc = await api("doc/" + id);
   const pages = doc.pages || [];
   const outline = pages.length >= 3 ? (doc.outline || []) : [];
-  // Page numbers of the sheets whose scan is published, in order, so
-  // renderDrawing can load the first few eagerly.
-  const drawingPages = pages.filter((p) => p.draw && p.dw).map((p) => p.n);
+  // Page numbers of the pages whose scan is published, in order, so the
+  // first few load eagerly.
+  const drawingPages = pages.filter((p) => p.dw && p.dh).map((p) => p.n);
   let cur = 1, query = "";
 
   app.innerHTML = `
@@ -795,6 +795,25 @@ async function reader(id) {
     </figure>`;
   }
 
+  /**
+   * A page of a schematic or drawing package that reads as prose — the theory
+   * of operation at the front of an Atari SP package. The scan is shown, as
+   * it is for every page of such a document, with the text set as prose under
+   * it rather than collapsed: it is real text, and it is what search matched.
+   */
+  function renderScannedText(p, body) {
+    const src = `/pages/${id}/p${String(p.n).padStart(4, "0")}.webp`;
+    const eager = drawingPages.indexOf(p.n) < 4;
+    return `<figure class="sheet">
+      <img class="zoomable" title="Click to enlarge" loading="${eager ? "eager" : "lazy"}"
+           decoding="async" width="${p.dw}" height="${p.dh}" src="${src}"
+           alt="Scan of page ${p.n}"
+           onerror="this.closest('figure').classList.add('noscan')">
+      <figcaption>This page is shown as scanned; the text below was recovered
+        from it and is searchable.</figcaption>
+    </figure>${body}`;
+  }
+
   /** Render a page's semantic blocks as real HTML. */
   function renderBlocks(p) {
     if (p.draw) return renderDrawing(p);
@@ -822,6 +841,9 @@ async function reader(id) {
     const body = out.join("") ||
       '<p class="lowconf">This page carries no recoverable text — it is a drawing or a photograph. ' +
       `<a href="/pdf/${id}" target="_blank" rel="noopener">See the original scan ↗</a></p>`;
+    // A text page whose scan is published: a prose page inside a drawing
+    // document, shown as its page with the text beneath.
+    if (!p.noise && p.dw && p.dh) return renderScannedText(p, body);
     // Reads as coming off a drawing, but nothing corroborates that, so the
     // text stays: this bucket also holds illustrated parts lists and
     // DIP-switch tables, which score the same and are the most useful pages

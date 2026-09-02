@@ -18,6 +18,8 @@ versioned and published together.
   web/data/rommap/<machine>.json  ROM positions for one machine
 """
 import json, os, shutil, glob, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from build_drawings import apply_flags  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "web", "data")
@@ -151,16 +153,9 @@ def main():
             total += copy(p, dst); files += 1
             continue
         doc = json.load(open(p))
-        draw, noise = set(flags.get("draw", [])), set(flags.get("noise", []))
-        sizes = flags.get("size", {})
-        for page in doc.get("pages", []):
-            if page["n"] in draw:
-                page["draw"] = True; n_draw += 1
-                sz = sizes.get(str(page["n"]))
-                if sz:
-                    page["dw"], page["dh"] = sz
-            elif page["n"] in noise:
-                page["noise"] = True; n_noise += 1
+        apply_flags(doc, flags)
+        n_draw += sum(1 for page in doc.get("pages", []) if page.get("draw"))
+        n_noise += sum(1 for page in doc.get("pages", []) if page.get("noise"))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         with open(dst, "w") as f:
             json.dump(doc, f, separators=(",", ":"))

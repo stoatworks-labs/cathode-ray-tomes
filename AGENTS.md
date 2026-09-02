@@ -59,6 +59,17 @@ Figures remain the open question: they are the real payload, and vectorising the
 cheaper than raster. The plan is figure crops for a curated set, kept under the
 20,000-file Workers Assets cap, so R2 stays unnecessary.
 
+**Where the page scans stand now.** A document the catalogue calls a schematic,
+drawing or wiring package ships every page's scan under `web/pages/` and the reader
+shows it inline (drawing pages as the sheet with the OCR collapsed beneath, prose pages
+as the scan with the text set under it). Those 3,656 pages were the worst on the site:
+sheets set as paragraphs of OCR debris, because no text score separates a sheet with a
+typeset note from a prose page with a figure. A manual still publishes only the drawing
+pages its outline names. The 2,007 `noise` pages in manuals — drawings by score alone,
+some of them parts lists — still link out: publishing them would put the deploy within
+a few hundred files of the cap. That is the next thing to want and the reason to want a
+second asset store.
+
 ## Extracting connectivity from the scans
 
 Hand-tracing does not scale to 506 schematic documents, so there is a pipeline
@@ -432,6 +443,11 @@ convention and legitimately uses G.
   plain static server has no API. `node tools/dev_server.mjs` runs the real Worker in Node
   over a stub ASSETS binding with the production fallback, so the whole site can be
   driven in a browser; `tools/test_worker.mjs` covers the routing without a browser.
+- **`build_drawings.py` reads whichever catalogue is larger** — `data/index/docs.json`
+  or the published `web/data/docs.json` — because a fresh worktree's local index is
+  behind what another session published, and `--apply` writes the flags straight onto
+  the published documents so the drawing decisions can change without a full
+  `build_assets.py`, which would refuse on the stale index (correctly).
 - **A view that renders once needs an explicit first draw.** `show()` only re-rendered the
   paginated view, so the default document view came up empty until something else
   triggered a redraw.
