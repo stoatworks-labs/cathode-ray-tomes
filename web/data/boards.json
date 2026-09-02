@@ -560,12 +560,13 @@
   "devices": 56,
   "netsTraced": false,
   "singleSource": true,
-  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 56 devices from the TM-217 IC parts list. Two printings are in the corpus and they disagree about only one designator, but they recover different parts of the same list, so most devices here are attested by one printing rather than both and the board is flagged accordingly. The designators are printed column-first \u2014 2L, not L2 \u2014 which is the convention Atari's boards switch to from 1983, and the row alphabet goes with it: this board uses letters the earlier boards skip. Both are recorded on the board rather than inferred, because 2L and L2 are the same cell written two ways and only the silkscreen settles which. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 56 devices: 56 read from the drawings and 0 recovered from the IC parts lists, taken only where 1 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/millipede/millipede-ibom.html",
   "bom": "/boards/millipede/bom.csv",
   "conflicts": [
    "1 designator dropped \u2014 the printings disagree.",
-   "2 designators rejected as off-grid."
+   "2 designators rejected as off-grid.",
+   "MAME's ROM map for this machine was NOT applied, and cannot be without someone looking at a board. This map's designators are column-first (2L), the convention Atari's later boards use, but MAME's map for the same machine is written row-first (L2). Reading one convention as the other transposes every position without saying so, so the tool refuses. MAME's 6 ROM positions are on the machine's ROM-map page, unattributed to a grid; none is on this map. Which convention the silkscreen actually carries is the open question, and it needs a physical board."
   ],
   "notes": [
    "This board exists because extract_ic_locations could not read its parts list until now. The manual carries a perfectly good typeset IC parts list, but it prints the designators BEFORE the device rather than after it \u2014 'A6, A7 Type-74S74 Integrated Circuit 37-74S74' against Asteroids' '37-74LS00 Type 74LS00 Integrated Circuit (N5, C6)'. rows() read forward from each stock number, so it found the next row's designators, reported 'no designators found' for every row, and quietly paired each row's type with the previous row's stock number. It produced no output rather than wrong output, which is the only reason it went unnoticed. The trust rule is unchanged: the row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
@@ -667,10 +668,12 @@
   "devices": 14,
   "netsTraced": false,
   "singleSource": true,
-  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 14 devices from the Central Processing Unit PCB Assembly parts list in TM-274. The Video PCB is mapped separately as paperboy-video. No component-location drawing has been read for this board, so the grid spacing is nominal. A board map, not a bill of materials.",
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 14 devices: 14 read from the drawings and 0 recovered from the IC parts lists, taken only where 1 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/paperboy/paperboy-ibom.html",
   "bom": "/boards/paperboy/bom.csv",
-  "conflicts": [],
+  "conflicts": [
+   "MAME's ROM map for this machine was NOT applied, and cannot be without someone looking at a board. This map's designators are column-first (2L), the convention Atari's later boards use, but MAME's map for the same machine is written row-first (L2). Reading one convention as the other transposes every position without saying so, so the tool refuses. MAME's 3 ROM positions are on the machine's ROM-map page, unattributed to a grid; none is on this map. Which convention the silkscreen actually carries is the open question, and it needs a physical board."
+  ],
   "notes": [
    "This board was published as one map that was really two. paperboy-video is the other half. The manual documents a CPU PCB and a Video PCB in one IC parts list, and their designators do not overlap \u2014 so nothing collided, nothing warned, and the merged map looked complete. Cell 5A on one is not cell 5A on the other, which makes a merged map actively misleading rather than merely incomplete. Found by asking, for every published board, whether its trusted rows sat under more than one figure heading naming a different PCB.",
    "Only one printing is in the corpus, so nothing here is cross-checked against a second source.",

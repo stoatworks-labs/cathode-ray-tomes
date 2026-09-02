@@ -303,6 +303,13 @@ def main():
             rs = sorted({p for _, seen in hits for p in seen})
             contested[cell] = (rs, f"the same parts list claims it twice: "
                                f"{' / '.join(rs)}")
+    for des, part in badspan:
+        cell, _ = cell_and_span(des, transposed)
+        if cell and cell not in board["ics"] and cell not in contested:
+            contested[cell] = ([part], f"read as {des}, a device spanning rows "
+                               f"that are not adjacent on this grid, which no "
+                               f"package does; one of the letters is a misread "
+                               f"and nothing here says which")
     for cell, (rs, why) in contested.items():
         out[cell] = {"part": "contested", "section": "",
                      "note": (f"Not placed. Contested — {why}. Nothing here "

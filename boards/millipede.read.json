@@ -13,6 +13,7 @@
  ],
  "conflicts": [
   "1 designator dropped \u2014 the printings disagree.",
-  "2 designators rejected as off-grid."
+  "2 designators rejected as off-grid.",
+  "MAME's ROM map for this machine was NOT applied, and cannot be without someone looking at a board. This map's designators are column-first (2L), the convention Atari's later boards use, but MAME's map for the same machine is written row-first (L2). Reading one convention as the other transposes every position without saying so, so the tool refuses. MAME's 6 ROM positions are on the machine's ROM-map page, unattributed to a grid; none is on this map. Which convention the silkscreen actually carries is the open question, and it needs a physical board."
  ]
 }
