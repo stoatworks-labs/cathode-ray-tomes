@@ -641,6 +641,20 @@
   "bom": "/boards/tempest/bom.csv"
  },
  {
+  "slug": "tempest-auxiliary",
+  "name": "Tempest Auxiliary PCB",
+  "mfr": "Atari",
+  "year": "1981",
+  "machine": "tempest",
+  "drawing": "TM-190 IC parts lists, Auxiliary PCB Assembly figure (4 printings)",
+  "devices": 23,
+  "netsTraced": false,
+  "singleSource": false,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 23 devices from the Auxiliary PCB Assembly parts list in TM-190, taken only where two or more of its four printings agree \u2014 they agree on all 23 with no split at all. This is a separate PCB from the Analog Vector-Generator board mapped as 'tempest': the two share 16 grid positions and agree on none of them, so A4 here is a 74LS191 and A4 there is a 74LS08. No component-location drawing has been read for this board, so the grid spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/tempest-auxiliary/tempest-auxiliary-ibom.html",
+  "bom": "/boards/tempest-auxiliary/bom.csv"
+ },
+ {
   "slug": "triple-hunt",
   "name": "Triple Hunt",
   "mfr": "Atari",

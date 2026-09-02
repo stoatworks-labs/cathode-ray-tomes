@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 49, across 41 machines · 2,501 devices |
+| Board maps | 50, across 41 machines · 2,524 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -180,7 +180,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 49 boards and 2,501 devices.
+whole site is 50 boards and 2,524 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -497,6 +497,28 @@ under their own: Tempest 5 (from its *Auxiliary* PCB, on a map that is the Analo
 Vector-Generator PCB), Pole Position 4 (as attributable to a video-display
 monitor list as to the CPU one), Food Fight 1 (shared with an EMI Shield figure).
 Under the right figure all three add nothing back, which confirms the diagnosis.
+
+**The figure survey, run over the whole corpus, is closed.** 50 machines yield
+trusted rows under a figure heading; 13 document more than one PCB, and every one
+of those is now either split, published as its own board, or understood:
+
+- **Tempest's Auxiliary PCB is published** (23 devices, 4 printings, no split).
+  It shares 16 grid positions with the Analog Vector-Generator board and agrees on
+  none of them — A4 is a 74LS191 there and a 74LS08 here — which is the proof it
+  is a different PCB and not a misattributed heading.
+- **Food Fight's and Millipede's "EMI Shield PCB" figures are the game PCB,
+  misattributed.** 22 of 23 and 11 of 12 overlapping designators carry the same
+  device, which is what inherited-heading rows look like and what a second board
+  never does. Nothing to build there, and it confirms the Millipede map is sound.
+- **Pole Position's "Video Display" figures are the Electrohome monitor's parts
+  list**, not a PCB grid. Not a board for this site.
+- The rest (Star Wars, Kangaroo, TX-1) have 2–7 designators per figure — noise,
+  not boards.
+
+The discriminator that settles heading-vs-board in every case is the same:
+overlap the two figures' designators, and count how many carry the same device.
+High overlap with the same devices is one board under two headings; overlap with
+different devices is two boards colliding by coincidence.
 
 **Millipede looked like the same fault and is not.** Its TM-217 has one figure
 heading the FIGURE regex recognises, so all 46 trusted rows inherit 'Utility

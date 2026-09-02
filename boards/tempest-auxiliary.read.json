@@ -1,0 +1,15 @@
+{
+ "machine": "tempest",
+ "name": "Tempest Auxiliary PCB",
+ "mfr": "Atari",
+ "year": "1981",
+ "drawing": "TM-190 IC parts lists, Auxiliary PCB Assembly figure (4 printings)",
+ "sheets": {},
+ "notes": [
+  "Found by the figure-heading survey rather than by hand: Tempest's TM-190 carries an Auxiliary PCB Assembly parts list alongside the Analog Vector-Generator one, and five of its devices had been merged onto the main Tempest map before anything noticed. Those five are withdrawn from 'tempest' and this board is the whole of what the Auxiliary figure attests.",
+  "The proof that it is a different PCB and not a misattributed heading is the overlap: 16 shared designators and zero shared devices. A heading that had simply been inherited by the wrong rows \u2014 the Millipede pattern \u2014 would show the same devices under both. This is the Battlezone Math Box pattern instead: a second board with its own grid, colliding by coincidence.",
+  "Four printings and no split between them, which is the same standard the Asteroids Deluxe map was published on.",
+  "Row-letter-first designators, the pre-1983 convention, on an A B C D E F H J alphabet. The grid spacing is nominal."
+ ],
+ "conflicts": []
+}
