@@ -24,9 +24,12 @@ rebuilt as a real KiCad project with an accurate bill of materials.
 Console service manuals are a different problem, and a much better one. Most of them
 are native vector with a real text layer, so their schematic sheets already carry
 designators, values and net names as text rather than as ink — nothing to OCR and
-nothing to trace. Nine consoles and handhelds are here, with 29 manuals between them;
-see `docs/EXTERNAL-SOURCES.md` for where they came from and what was deliberately left
-out.
+nothing to trace. Eleven consoles and handhelds are here, with 42 documents between
+them; see `docs/EXTERNAL-SOURCES.md` for where they came from.
+
+Not all of those are service manuals, and they do not pretend to be. Development
+manuals and modchip installation guides carry their own document types and sort after
+every kind of service material, so a machine page reads service manuals first.
 
 ## What the corpus actually is
 

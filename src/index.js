@@ -132,9 +132,9 @@ async function handleApi(url, env, request) {
     // machines/machineNames are present only where one manual documents more
     // than one machine, as the MVS service manual does for MV-2F and MV-4F.
     const { title, type, machine, machineName, machines, machineNames,
-            src, source, sourcePage, schematic } = meta;
+            src, source, sourcePage, schematic, note } = meta;
     return json({ ...body, title, type, machine, machineName, machines,
-                  machineNames, src, source, sourcePage, schematic });
+                  machineNames, src, source, sourcePage, schematic, note });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own

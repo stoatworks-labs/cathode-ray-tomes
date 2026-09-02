@@ -5,10 +5,10 @@ machine metadata. This note records two other archives that have been surveyed,
 what each of them actually holds, and — for each — whether taking it is a
 technical question or a rights question.
 
-**The console decision has been taken.** Thirty documents from GamingDoc are on
-the site: the SNK MV2F/MV4F service manual on two arcade machines that already
-existed with nothing on them, and 29 console and handheld manuals across nine
-systems. What was left behind, and why, is in "What is not here" below.
+**The console decision has been taken, and the whole of GamingDoc is on the
+site**: all 43 documents, 2,772 pages. The SNK MV2F/MV4F service manual sits on
+two arcade machines that already existed with nothing on them; the other 42 are
+console and handheld documents across eleven systems.
 
 ```bash
 python3 tools/survey_gamingdoc.py            # -> data/sources/gamingdoc.json
@@ -101,12 +101,11 @@ The PDF itself still has to reach R2 before `/pdf/<id>` resolves — that is
 `tools/publish.sh remote`, from a workstation, as with everything else.
 
 Everything else in the survey is a console, and a console is not a MAME arcade
-machine.
+machine — which is the next section.
 
 ### Reading a vector manual: `tools/ingest_vector.py`
 
-Built and measured against five of them; nothing is on the site. It writes the
-same `cache/text/<id>.json` the OCR path does, so build_search, build_doc_stats,
+It writes the same `cache/text/<id>.json` the OCR path does, so build_search, build_doc_stats,
 build_assets and the reader are unchanged — only line extraction differs
 (`pdftotext -bbox-layout` instead of tesseract), and the heading classifier,
 running-header filter and block builder are reused verbatim.
@@ -165,18 +164,30 @@ Outline quality is the honest weak point. These manuals head their sections
 so a classifier tuned on arcade scans under-reads them; the manual's own table
 of contents is a better source and is not used yet.
 
-### What is not here
+### Everything GamingDoc has is here
 
-Five documents in the technical-documentation tree were left out, 1,346 pages
-of it, and the reason is the same in every case: they are how to *write* for the
-machine, not how to fix one. The PS1 MIPS instruction-set reference and runtime
-library overview, and the three SNES developer books. That is not a judgement
-about their worth — it is that "the purpose is troubleshooting, not
-reproduction" has to mean something when it is inconvenient. It also happens to
-remove 653 of the 732 pages that would have needed OCR.
+All 43 documents, 2,772 pages. The first pass held back thirteen of them on the
+grounds that "the purpose is troubleshooting, not reproduction" — five developer
+manuals (the PS1 MIPS reference and runtime library overview, the three SNES
+books) and eight installation guides for modchips and optical-drive emulators.
+That was overruled in favour of completeness, which is the right call for an
+archive: the argument for leaving them out was about what the *site* is for, and
+it was being used to decide what the *corpus* contains. Those are different
+questions.
 
-The eight `modding` documents are out for the same reason on the other axis:
-modchip and optical-drive-emulator install guides are modification, not repair.
+They are typed rather than filtered, which does the same job without losing
+anything. `Developer Manual` and `Installation Guide` sort after every kind of
+service material, so a machine page reads service manuals first and someone with
+a dead console never has to scroll past a MIPS instruction set to reach them.
+
+Two documents carry a `note`, shown at the top of the reader, because their
+filing is misleading and a type cannot say so:
+
+- The **MIPS instruction set reference** is MIPS Technologies' own MIPS32
+  manual. The PS1's R3000A is MIPS I, an earlier architecture — most of it
+  applies and not all of it, and it is not a Sony document.
+- The **Dreamcast switching power supply control** document is a component
+  datasheet for the PSU controller, not a Sega document.
 
 ### How consoles are carried
 

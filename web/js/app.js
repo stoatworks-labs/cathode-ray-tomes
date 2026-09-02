@@ -244,10 +244,16 @@ function sourceCredit(doc) {
     them by type is the difference between a list and something navigable. */
 function docSections(docs) {
   if (!docs.length) return '<div class="empty">No documents for this machine.</div>';
-  const order = ["Technical Manual", "Manual", "Operating Manual", "Owner's Manual",
-                 "Parts & Operating Manual", "Instruction Manual", "Kit Manual",
-                 "Schematics", "Schematic Package", "Drawing Package", "Wiring Diagram",
-                 "Troubleshooting", "Service Bulletin", "Parts Catalog", "Parts List"];
+  // Service material first, then reference, then the things that are neither.
+  // A development manual and an ODE install guide are worth having and are not
+  // what someone with a dead console came for, so they sort last rather than
+  // sitting among the service manuals.
+  const order = ["Service Manual", "Technical Manual", "Manual", "Operating Manual",
+                 "Owner's Manual", "Parts & Operating Manual", "Instruction Manual",
+                 "Kit Manual", "Schematics", "Schematic Package", "Drawing Package",
+                 "Wiring Diagram", "Troubleshooting", "Service Bulletin",
+                 "Parts Catalog", "Parts List", "Datasheet",
+                 "Developer Manual", "Installation Guide"];
   const groups = new Map();
   docs.forEach((d) => {
     if (!groups.has(d.type)) groups.set(d.type, []);
@@ -347,6 +353,8 @@ async function reader(id) {
       ${machineLinks(doc)}
       ${doc.type ? esc(doc.type) + " · " : ""}${pages.length} pages${outline.length ? ` · ${outline.length} sections` : ""} ·
       <a href="/pdf/${id}" target="_blank" rel="noopener">original scan ↗</a>${sourceCredit(doc)}</p>
+
+    ${doc.note ? `<div class="note">${esc(doc.note)}</div>` : ""}
 
     <div class="docbar">
       <input id="find" placeholder="Search inside this manual…" autocomplete="off">

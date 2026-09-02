@@ -121,6 +121,37 @@
    "boards": []
   },
   {
+   "slug": "super-nintendo",
+   "name": "Super Nintendo",
+   "mfr": "Nintendo",
+   "year": "1990",
+   "kind": "console",
+   "cpu": [{"n": "Ricoh 5A22 (65C816 core)", "mhz": 3.58}],
+   "audio": [{"n": "Sony SPC700", "mhz": 1.024}, {"n": "Sony S-DSP", "mhz": 32.0}],
+   "display": [{"type": "raster", "w": 256, "h": 224, "hz": 60.09}],
+   "boards": [
+    {"rev": "SNS-CPU-GPM-01", "note": "Early US board; separate PPU1/PPU2."},
+    {"rev": "SNS-CPU-RGB-01", "note": "The revision with the RGB-capable PPU pairing."},
+    {"rev": "SNS-CPU-1CHIP-01", "note": "1CHIP-01/02/03. PPUs and CPU combined; the best video output."},
+    {"rev": "SNS-CPU-APU-01", "note": "SNES Jr. / Super Famicom Jr. Cost-reduced, no S-RGB."}
+   ]
+  },
+  {
+   "slug": "nintendo-entertainment-system",
+   "name": "Nintendo Entertainment System",
+   "mfr": "Nintendo",
+   "year": "1983",
+   "kind": "console",
+   "cpu": [{"n": "Ricoh 2A03 (6502 core)", "mhz": 1.79}],
+   "audio": [{"n": "Ricoh 2A03 APU"}],
+   "display": [{"type": "raster", "w": 256, "h": 240, "hz": 60.1}],
+   "boards": [
+    {"rev": "NES-CPU-11", "note": "Front-loading NES-001."},
+    {"rev": "HVC-CPU-GPM-02", "note": "Famicom."},
+    {"rev": "AN-303", "note": "Sharp Twin Famicom. Famicom and Disk System in one case."}
+   ]
+  },
+  {
    "slug": "nintendo-game-boy-color",
    "name": "Game Boy Color",
    "mfr": "Nintendo",
