@@ -12,6 +12,7 @@
   "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
  ],
  "conflicts": [
-  "1 designator rejected as off-grid."
+  "1 designator rejected as off-grid.",
+  "Devices withdrawn 2026-09-02. These cells were claimed twice by the same parts list, and merge_ic_locations took whichever reading came last \u2014 locations() detected the collision and returned it, but harvest() discarded that half of the answer. So each of these was one of two readings picked by position in the file rather than by evidence. They are off the map until something settles them. The withdrawn readings are kept here because a repairer at the bench is better served by 'it is one of these two' than by silence: 1B (74LS244/74LS32); 2H (74LS245/74LS374); 3H (74LS244/74LS257); 4P (74LS27/74S182); 7L (74S08/74S163); 9B (74LS00/74LS374); 10B (74LS157/74S00/74S32); 1A (74LS157/74LS245)."
  ]
 }

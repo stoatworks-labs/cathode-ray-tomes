@@ -1,0 +1,17 @@
+{
+ "machine": "xevious",
+ "name": "Xevious",
+ "mfr": "Atari",
+ "year": "1982",
+ "drawing": "TM-230 IC parts list",
+ "sheets": {},
+ "notes": [
+  "This board was withheld from the previous batch and is publishable now only because harvest() drops a contested cell instead of taking whichever reading came last. Its parts list claims 1 cell(s) twice.",
+  "Xevious is Namco's game, distributed by Atari, and its TM-230 follows Atari's house format \u2014 another check that the harvest depends on the manual's format rather than on who designed the board.",
+  "Column-first designators, recorded in grid.transposed rather than inferred.",
+  "No component-location drawing has been read. The grid spacing is nominal."
+ ],
+ "conflicts": [
+  "1 designator(s) dropped as claimed twice within the one printing \u2014 with a single printing there is nothing to arbitrate with. They are listed by the merge and reproduced in the commit."
+ ]
+}

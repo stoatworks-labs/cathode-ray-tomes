@@ -1,0 +1,17 @@
+{
+ "machine": "polepos2",
+ "name": "Pole Position II",
+ "mfr": "Atari",
+ "year": "1983",
+ "drawing": "CO-218-12 IC parts list",
+ "sheets": {},
+ "notes": [
+  "This board was withheld from the previous batch and is publishable now only because harvest() drops a contested cell instead of taking whichever reading came last. Its parts list claims 8 cell(s) twice.",
+  "Pole Position II's manual is a conversion-kit supplement (CO-218-12) whose prose is largely 'See Figure X in TM-218', and its figure headings OCR into fragments the FIGURE regex cannot anchor on. So the rows cannot be attributed to a PCB, and the 8 contested cells are simply dropped rather than split by figure.",
+  "Column-first designators, recorded in grid.transposed rather than inferred.",
+  "No component-location drawing has been read. The grid spacing is nominal."
+ ],
+ "conflicts": [
+  "8 designator(s) dropped as claimed twice within the one printing \u2014 with a single printing there is nothing to arbitrate with. They are listed by the merge and reproduced in the commit."
+ ]
+}

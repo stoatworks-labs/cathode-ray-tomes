@@ -13,6 +13,7 @@
  ],
  "conflicts": [
   "11 designators are not placed because the printings disagree about them. With seven printings available a disagreement is not OCR noise and is worth a look.",
-  "3 designators are rejected as off-grid."
+  "3 designators are rejected as off-grid.",
+  "Devices withdrawn 2026-09-02. These cells were claimed twice by the same parts list, and merge_ic_locations took whichever reading came last \u2014 locations() detected the collision and returned it, but harvest() discarded that half of the answer. So each of these was one of two readings picked by position in the file rather than by evidence. They are off the map until something settles them. The withdrawn readings are kept here because a repairer at the bench is better served by 'it is one of these two' than by silence: 6F (74LS245/74LS367); 6C (74LS08/74LS74); 6K (74LS157/74LS245); 6M (74LS00/74LS273); 11M (4066/74LS373); 6A (74LS161/74S04)."
  ]
 }

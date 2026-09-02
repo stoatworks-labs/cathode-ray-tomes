@@ -38,13 +38,60 @@ from designators import cell_and_span, parse as parse_desig
 
 
 def harvest(doc_ids, figure=None):
-    """{designator: (part, n_printings)} where the printings agree."""
-    per = {}
+    """{designator: (part, n_printings)} where the printings agree.
+
+    A designator can also collide *inside* one printing — two rows of the same
+    parts list claiming the same cell. `locations()` detects that and returns
+    it, but resolves the cell by last write, so a caller that takes only the
+    mapping gets one of the two readings with nothing to say the other existed.
+    On a manual covering more than one PCB that is how two boards merge into
+    one wrong map silently, which is the Red Baron failure.
+
+    So a colliding designator is dropped from the printing it collided in. It
+    is dropped there rather than everywhere because another printing may read
+    the same cell cleanly, and that reading is still worth having; if no
+    printing reads it cleanly the cell simply does not appear.
+    """
+    per, collisions = {}, defaultdict(list)
     for fid in doc_ids:
         try:
-            per[fid] = locations(fid, figure)[0]
+            loc, clash = locations(fid, figure)
         except Exception as e:
             print(f"  ! {fid}: {e}")
+            continue
+        # Gather every reading of a contested cell, not just the pair in one
+        # clash entry — a cell claimed three times produces two entries, and
+        # the surviving value in `loc` is a reading too.
+        readings = defaultdict(set)
+        for des, first, second in clash:
+            readings[des].update((first, second))
+            if des in loc:
+                readings[des].add(loc[des])
+        for des, seen in readings.items():
+            # A contested cell is kept only when every reading of it names the
+            # same device — '74L886' against '74LS86' is one part and an OCR of
+            # S as 8. Anything else comes off the map.
+            #
+            # Deliberately NOT using plausible() to break the tie, though the
+            # cross-printing split does. plausible() does not recognise the
+            # Fairchild 93xx and 96xx series, so it calls 9312, 9322 and 9602
+            # implausible — and 9316, which this file's own equivalence table
+            # documents as Fairchild's 74161. Filtering on it here would have
+            # discarded the 9312 reading of Indy 4's B3 and "resolved" the cell
+            # to a 7474, which is a different device entirely. A false
+            # correction is worse than the collision it replaces.
+            if len({device_key(p) for p in seen}) == 1:
+                loc[des] = best_spelling(*seen)
+                continue
+            collisions[des].append((fid, sorted(seen)))
+            loc.pop(des, None)
+        per[fid] = loc
+    if collisions:
+        print(f"  {len(collisions)} designator(s) dropped — claimed twice "
+              f"within one printing, which says nothing about which is right:")
+        for des, hits in sorted(collisions.items()):
+            for fid, seen in hits:
+                print(f"      {des}: {' against '.join(seen)} (in {fid})")
     votes = defaultdict(dict)
     for fid, loc in per.items():
         for des, part in loc.items():

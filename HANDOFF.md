@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 45, across 39 machines · 2,455 devices |
+| Board maps | 47, across 41 machines · 2,489 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -167,7 +167,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 45 boards and 2,455 devices.
+whole site is 47 boards and 2,489 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -294,14 +294,28 @@ so both maps apply to Marble Madness, Peter Pack Rat and Indiana Jones alike.
 Return of the Jedi (37), Super Sprint (31), APB (23), Paperboy (20), Road Blasters
 (16) and 720 Degrees (11) are published, all single-printing and flagged.
 
-**Two are deliberately withheld, and should stay withheld until someone looks at
-the figures.** Pole Position II reports 8 designator collisions and Xevious 1, and
-neither document has figure headings the FIGURE regex can anchor on — their
-contents pages OCR into fragments, and Pole Position II is a conversion-kit
-supplement (CO-218-12) whose text is mostly "See Figure X in TM-218". Collisions
-with no way to attribute a row to a PCB is the Red Baron failure exactly, and
-`locations()` resolves a collision by last write. 47 and 19 designators are behind
-them.
+**A collision inside one printing used to be resolved by last write, and 22
+published devices were chosen that way.** `locations()` detects a cell claimed
+twice by the same parts list and returns it, but `harvest()` took only
+`locations(...)[0]` and dropped the collision list on the floor — so the map got
+one of two readings picked by position in the file. Fixed: a contested cell is
+kept only when every reading of it names the same device, and is otherwise
+dropped and reported. The 22 are withdrawn from Food Fight (1), I-Robot (8),
+Indy 4 (3), Monte Carlo (4) and Pole Position (6), each logged with both
+readings in the board's read file, because "it is one of these two" serves a
+repairer better than silence.
+
+That also unblocked **Pole Position II (38) and Xevious (18)**, which were
+withheld for exactly this reason. Their contested cells are now dropped rather
+than guessed, so no figure-splitting is needed to publish them safely.
+
+**`plausible()` does not know the Fairchild 93xx/96xx series.** It calls 9312,
+9322 and 9602 implausible — and 9316, which this repo's own equivalence table
+documents as Fairchild's 74161. That is why collision resolution deliberately
+does NOT filter on it: doing so would have discarded the 9312 reading of Indy 4's
+B3 and "resolved" the cell to a 7474, a different device. The cross-printing
+split path in `harvest()` *does* filter on `plausible()` and has the same blind
+spot; nothing is known to have gone wrong there, but it has not been audited.
 
 **Marble Madness and Championship Sprint are withheld for a different reason** —
 10 designators each, and Marble's overlap the System 1 main board on 2 cells while
