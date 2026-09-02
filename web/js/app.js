@@ -734,6 +734,14 @@ async function board(slug) {
        perfectly plausible on its own. Nothing here has had that test. Treat it as a
        lead, and check the chip against the board before you act on it.</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
+    ${(b.conflicts || []).length ? `<h2>Open questions</h2>
+    <p class="sub">Where the sources disagree, or a reading could not be settled. Each is
+       logged rather than guessed — a confidently wrong chip in a repair reference is worse
+       than an absent one — and nothing here has been checked against a physical board.</p>
+    <div class="questions">${b.conflicts.map((c) => `<div class="note warn">${esc(c)}</div>`).join("")}</div>` : ""}
+    ${(b.notes || []).length ? `<details class="readnotes"><summary>How this board was read
+       (${b.notes.length} note${b.notes.length > 1 ? "s" : ""})</summary>
+    <div class="questions">${b.notes.map((n) => `<div class="note">${esc(n)}</div>`).join("")}</div></details>` : ""}
     ${b.ibom ? `<h2>Board</h2>
     <p class="sub">Every device at its position on the board, cross-linked to the bill of
        materials — click a row to find the part, or a part to find the row.</p>
@@ -809,7 +817,8 @@ async function board(slug) {
             <span class="grow"></span>
             ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
             ${v.source ? `<span class="badge src" title="where this reading comes from">${esc(v.source)}</span>` : ""}
-          </div>`).join("")}</div>` : "") + sigHtml
+          </div>
+          ${v.note ? `<div class="chipnote${/contest|disput|unresolved|contradict|withdrawn|disagree|MAME puts|not applied/i.test(v.note) ? " warn" : ""}">${esc(v.note)}</div>` : ""}`).join("")}</div>` : "") + sigHtml
         || `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
     };
   }

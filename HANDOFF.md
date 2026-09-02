@@ -601,6 +601,24 @@ and Major Havoc/Tempest cannot be compared this way: different designator
 conventions. Asteroids Deluxe against Asteroids -03 is 27 of 85, which is a
 revised layout, not an error.
 
+**Every logged conflict is on its board's page now, and every device note is in
+the lookup.** Until this, a read file's notes and conflicts lived only in the
+repository — `boards/<slug>.read.json` is not served — and the chip lookup did
+not render a device's `note` at all. So "A5 is disputed by both printings",
+"MAME puts a ROM where this map has a 7400", "two sibling boards disagree with
+this one at H3" and every "this cell was withdrawn as contested" were written
+down and shown to nobody. `publish_board` now carries the read file's notes and
+conflicts into `boards.json`; the board page shows conflicts as **Open questions**
+above the board and notes as a collapsed "How this board was read"; and the
+lookup shows a device's note under its row, styled as a warning when it reads
+like one. 35 boards carry 77 open questions between them. Nothing here has been
+checked against a physical board, and now the page says so where it matters.
+
+When a doubt is about a specific cell, put it in that device's `note` in
+`data/chips/<slug>.json` as well as in the read file — the lookup is where a
+reader asking about that cell will look, and the read file is where the next
+session will.
+
 ## Traps that cost real time
 
 - **`build_assets.py` will revert another session's corpus if your `data/index/`

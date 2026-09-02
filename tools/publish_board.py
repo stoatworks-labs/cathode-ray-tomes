@@ -48,6 +48,18 @@ def main():
         for part, ds in sorted(by.items(), key=lambda kv: (-len(kv[1]), kv[0])):
             w.writerow([",".join(sorted(ds)), part, len(ds)])
 
+    # Every conflict a read ever logged went into boards/<slug>.read.json, and
+    # that file is not served — so a repairer looking at the page never saw
+    # that A5 is disputed, or that MAME puts a ROM where the map has a 7400,
+    # or that two sibling boards disagree with this one at H3. The whole point
+    # of logging a conflict instead of guessing is that the reader gets to
+    # weigh it, which they cannot do from a file in the repository. The read
+    # file's notes and conflicts travel with the board from here on.
+    rpath = os.path.join(ROOT, "boards", a.slug + ".read.json")
+    read = json.load(open(rpath)) if os.path.exists(rpath) else {}
+    conflicts = [c for c in read.get("conflicts", []) if isinstance(c, str)]
+    notes = [n for n in read.get("notes", []) if isinstance(n, str)]
+
     bp = os.path.join(ROOT, "data", "boards.json")
     registered = json.load(open(bp))
     # Most board definitions carry no `machine` of their own — the link was
@@ -69,6 +81,8 @@ def main():
         "status": compose_status(spec) or prev.get("status", ""),
         "ibom": f"/boards/{a.slug}/{a.slug}-ibom.html",
         "bom": f"/boards/{a.slug}/bom.csv",
+        "conflicts": conflicts,
+        "notes": notes,
     })
     boards.sort(key=lambda b: (b.get("mfr", ""), b["name"]))
     json.dump(boards, open(bp, "w"), indent=1)
