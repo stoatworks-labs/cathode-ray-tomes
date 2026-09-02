@@ -1,18 +1,15 @@
 {
  "machine": "irobot",
- "name": "I, Robot",
+ "name": "I, Robot CPU PCB",
  "mfr": "Atari",
  "year": "1983",
  "drawing": "TM-251 IC parts list",
  "sheets": {},
  "notes": [
-  "This board exists because extract_ic_locations could not read its parts list until now. The manual carries a perfectly good typeset IC parts list, but it prints the designators BEFORE the device rather than after it \u2014 'A6, A7 Type-74S74 Integrated Circuit 37-74S74' against Asteroids' '37-74LS00 Type 74LS00 Integrated Circuit (N5, C6)'. rows() read forward from each stock number, so it found the next row's designators, reported 'no designators found' for every row, and quietly paired each row's type with the previous row's stock number. It produced no output rather than wrong output, which is the only reason it went unnoticed. The trust rule is unchanged: the row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
-  "Only one printing is in the corpus.",
-  "The designators are printed column-first \u2014 2L, not L2. That is the convention Atari's boards take up from 1983, and the row alphabet changes with it: this board uses Q and S, letters the pre-1983 boards deliberately skip. The rule in AGENTS.md that 'Atari skips G, I, O and Q' describes the early boards only, and applying it here would reject real positions. Which way round a board's designators are is recorded in grid.transposed and never inferred from a designator, because 2L and L2 name the same cell and only the silkscreen says which is printed.",
-  "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
+  "This board was published as one map that was really two. i-robot-video is the other half. The manual documents a CPU PCB and a Video PCB in one IC parts list, and their designators do not overlap \u2014 so nothing collided, nothing warned, and the merged map looked complete. Cell 5A on one is not cell 5A on the other, which makes a merged map actively misleading rather than merely incomplete. Found by asking, for every published board, whether its trusted rows sat under more than one figure heading naming a different PCB.",
+  "Only one printing is in the corpus, so nothing here is cross-checked against a second source.",
+  "Column-first designators, recorded in grid.transposed rather than inferred.",
+  "No component-location drawing has been read. The grid spacing is nominal."
  ],
- "conflicts": [
-  "1 designator rejected as off-grid.",
-  "Devices withdrawn 2026-09-02. These cells were claimed twice by the same parts list, and merge_ic_locations took whichever reading came last \u2014 locations() detected the collision and returned it, but harvest() discarded that half of the answer. So each of these was one of two readings picked by position in the file rather than by evidence. They are off the map until something settles them. The withdrawn readings are kept here because a repairer at the bench is better served by 'it is one of these two' than by silence: 1B (74LS244/74LS32); 2H (74LS245/74LS374); 3H (74LS244/74LS257); 4P (74LS27/74S182); 7L (74S08/74S163); 9B (74LS00/74LS374); 10B (74LS157/74S00/74S32); 1A (74LS157/74LS245)."
- ]
+ "conflicts": []
 }

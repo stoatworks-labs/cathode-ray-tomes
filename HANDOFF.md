@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 47, across 41 machines · 2,498 devices |
+| Board maps | 49, across 41 machines · 2,501 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -180,7 +180,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 47 boards and 2,498 devices.
+whole site is 49 boards and 2,501 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -477,6 +477,41 @@ Two geometry bugs fell out of the same pass and are fixed:
 Still open there: **two of the Math Box's four Am2901 slices carry no span.** H/J2 and
 D/E2 do, K2 and F2 do not, and all four are the same DIP-40 on the same row pitch, so
 all four must span. Logged in `battlezone-math-box.read.json`; needs sheet 3 Side B.
+
+**Two published maps were two PCBs stacked, and nothing warned.** The collision
+work catches a manual whose boards share designators — C1 on one is not C1 on the
+other, so a cell is claimed twice and something notices. It cannot catch the
+quieter case: two PCBs whose designators do not overlap merge into one map with
+no collision at all, and the result looks complete. Asking of every published
+board whether its trusted rows sat under more than one figure heading naming a
+different PCB found I, Robot (a CPU PCB and a Video PCB) and Paperboy (the same
+pair). Both are split; the existing slug keeps the CPU board so its URL stays
+valid.
+
+Splitting recovered devices rather than losing them — I, Robot goes 45 to 33+24 —
+because cells the two boards both claimed had been dropped as collisions and are
+now separable.
+
+Three more took a few devices from the wrong board's figure and are re-harvested
+under their own: Tempest 5 (from its *Auxiliary* PCB, on a map that is the Analog
+Vector-Generator PCB), Pole Position 4 (as attributable to a video-display
+monitor list as to the CPU one), Food Fight 1 (shared with an EMI Shield figure).
+Under the right figure all three add nothing back, which confirms the diagnosis.
+
+**Millipede looked like the same fault and is not.** Its TM-217 has one figure
+heading the FIGURE regex recognises, so all 46 trusted rows inherit 'Utility
+Panel Assembly' — but they are plainly game-PCB TTL, and a utility panel does not
+carry 46 logic chips. The attribution is meaningless for that document rather
+than wrong about the board, and both its printings agree on shared designators.
+Left alone.
+
+**Splitting a board leaves the other half in its chip lookup.**
+`merge_ic_locations` deliberately keeps lookup entries that are not on the grid —
+crystals, transistors, hand-read passives — so resetting `ics` to split a board
+leaves the other half's devices behind as if they were off-grid extras. I,
+Robot's lookup held 51 entries for a 33-device map, still answering "which chip
+is at 5A" from both boards at once. Purged. Worth re-checking after any future
+split.
 
 ## Traps that cost real time
 

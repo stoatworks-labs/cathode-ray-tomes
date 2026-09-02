@@ -81,11 +81,37 @@ def check_sources_are_current():
           "tracked upstream work")
     print("  python3 tools/build_index.py               # rebuild data/index/ "
           "from data/machines.raw.json")
-    print("\nIf the shrinkage is genuinely intended, pass --force.")
+    print("\nIf you are only publishing board work, which does not touch the "
+          "corpus index,\npass --boards-only instead — that is the right answer "
+          "almost every time.")
+    print("If the shrinkage is genuinely intended, pass --force.")
     raise SystemExit(1)
 
 
+def publish_boards_only():
+    """Refresh just the board assets, leaving the rest of web/data/ alone.
+
+    Board work does not touch the corpus index, but a full rebuild regenerates
+    everything from data/index/ — so someone whose index is stale has to choose
+    between not publishing their boards and reaching for --force, which is the
+    one thing that reintroduces the clobber. This is the third option, and the
+    one to take: it copies only what changed.
+    """
+    n = 0
+    for name, src in (("boards.json", "data/boards.json"),):
+        p = os.path.join(ROOT, src)
+        if os.path.exists(p):
+            copy(p, os.path.join(OUT, name)); n += 1
+    for p in glob.glob(os.path.join(ROOT, "data", "chips", "*.json")):
+        copy(p, os.path.join(OUT, "chips", os.path.basename(p))); n += 1
+    print(f"{n} board asset(s) refreshed in web/data/ — the corpus index was "
+          f"left untouched")
+
+
 def main():
+    if "--boards-only" in sys.argv:
+        return publish_boards_only()
+
     if "--force" not in sys.argv:
         check_sources_are_current()
 

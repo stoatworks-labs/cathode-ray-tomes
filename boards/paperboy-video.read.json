@@ -1,0 +1,15 @@
+{
+ "machine": "paperboy",
+ "name": "Paperboy Video PCB",
+ "mfr": "Atari",
+ "year": "1984",
+ "drawing": "TM-274 IC parts list",
+ "sheets": {},
+ "notes": [
+  "This board was published as one map that was really two. paperboy is the other half. The manual documents a CPU PCB and a Video PCB in one IC parts list, and their designators do not overlap \u2014 so nothing collided, nothing warned, and the merged map looked complete. Cell 5A on one is not cell 5A on the other, which makes a merged map actively misleading rather than merely incomplete. Found by asking, for every published board, whether its trusted rows sat under more than one figure heading naming a different PCB.",
+  "Only one printing is in the corpus, so nothing here is cross-checked against a second source.",
+  "Column-first designators, recorded in grid.transposed rather than inferred.",
+  "No component-location drawing has been read. The grid spacing is nominal."
+ ],
+ "conflicts": []
+}
