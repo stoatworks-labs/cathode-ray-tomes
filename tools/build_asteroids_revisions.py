@@ -193,8 +193,16 @@ def main():
             if src:
                 other = src["alt"] if not late else (
                     origin.get(cell) if origin.get(cell) != cell else None)
+            # Every other board's lookup names where each device came from;
+            # these were the only 194 that did not, because the generator
+            # predates the source field and only the merge added one. Program
+            # memory comes from the drawing package's typeset substitution
+            # table; everything else is the sheet read.
             chips[cell] = {"part": part, "section": section, "note": note,
-                           "otherRev": other}
+                           "otherRev": other,
+                           "source": ("DP-143 substitution table"
+                                      if part in mem_parts else
+                                      "component-location drawing")}
         json.dump(chips, open(os.path.join(CHIPS, slug + ".json"), "w"),
                   indent=1)
         for c in collisions:
