@@ -1,4 +1,4 @@
-/* Cathode Ray Tomes — arcade service documentation.
+/* Cathode Ray Tomes — service documentation.
    Palette is defined light-first on :root, then overridden for dark. */
 :root {
   --bg: #f6f5f2;
@@ -115,6 +115,9 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 80px; }
    without competing with the part number, which is what people came for. */
 .badge.src { font-size: 10px; color: var(--ink-3); border-style: dashed; }
 .badge.warn { border-color: var(--warn); color: var(--warn); }
+/* Console or handheld. Only the minority carries one, so it reads as the
+   exception it is rather than labelling 7,812 arcade rows with "arcade". */
+.badge.kind { text-transform: capitalize; border-color: var(--ok); color: var(--ok); }
 
 /* ---- machine detail ---- */
 h1 { font-size: 27px; margin: 0 0 4px; line-height: 1.2; }

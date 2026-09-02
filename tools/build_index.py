@@ -2,10 +2,18 @@
 """Normalise arcadertfm machines.json into Cathode Ray Tomes's index artefacts.
 
 Inputs : data/machines.raw.json   (upstream MAME-derived metadata + doc list)
+         data/systems.json        (consoles and handhelds, written by hand)
          data/extra-docs.json     (documents found elsewhere, merged in by hand)
 Outputs: data/index/machines.json    compact browse/search index (all machines)
          data/index/docs.json        flat doc catalogue with stable ids
          data/machine/<slug>.json    per-machine detail records
+
+A console is not a MAME machine — no romname, no DIP switches, and what
+actually identifies one is a board revision rather than a driver. But it is the
+same *kind of thing* to a repairer: something with documents, a chip complement
+and a fault. So consoles are carried in the same index with `kind` set, rather
+than as a second entity with a duplicate set of routes and views. Arcade
+machines carry no kind at all, which keeps 7,812 records the size they were.
 
 The raw dump is refetched and overwritten, so a document that is not in it has
 to be carried separately or it disappears on the next fetch — hence the overlay.
@@ -21,9 +29,10 @@ import json, os, re, hashlib, sys, unicodedata
 from collections import Counter
 
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW   = os.path.join(ROOT, "data", "machines.raw.json")
-EXTRA = os.path.join(ROOT, "data", "extra-docs.json")
-OUT   = os.path.join(ROOT, "data")
+RAW     = os.path.join(ROOT, "data", "machines.raw.json")
+SYSTEMS = os.path.join(ROOT, "data", "systems.json")
+EXTRA   = os.path.join(ROOT, "data", "extra-docs.json")
+OUT     = os.path.join(ROOT, "data")
 
 # Doc types that are expected to carry schematic/diagram line art worth vectorising.
 SCHEMATIC_TYPES = {
@@ -56,6 +65,30 @@ def load_extra():
     return by_slug, entries
 
 
+def overlay_docs(slug, name, extra, emitted, out_docs):
+    """Overlay records for one slug. A document covering several machines is
+    catalogued once, by whichever claims it first, and listed under each."""
+    recs = []
+    for d in extra.get(slug, []):
+        did = doc_id(d["l"])
+        rec = emitted.get(did)
+        if rec is None:
+            dtype = d.get("t") or "Document"
+            rec = {
+                "id": did, "machine": slug, "machineName": name,
+                "title": d.get("f") or "", "type": dtype, "src": d["l"],
+                "schematic": dtype in SCHEMATIC_TYPES,
+                "machines": list(d["machines"]),
+            }
+            for k, out in (("source", "source"), ("page", "sourcePage"),
+                           ("ingest", "ingest"), ("note", "note")):
+                if d.get(k):
+                    rec[out] = d[k]
+            out_docs.append(rec); emitted[did] = rec
+        recs.append(rec)
+    return recs
+
+
 def main():
     machines = json.load(open(RAW))
     extra, extra_entries = load_extra()
@@ -86,22 +119,7 @@ def main():
             }
             recs.append(rec); out_docs.append(rec); emitted[did] = rec
 
-        for d in extra.get(slug, []):
-            url = d["l"]
-            did = doc_id(url)
-            rec = emitted.get(did)
-            if rec is None:                  # first machine to claim it owns it
-                dtype = d.get("t") or "Document"
-                rec = {
-                    "id": did, "machine": slug, "machineName": name,
-                    "title": d.get("f") or "", "type": dtype, "src": url,
-                    "schematic": dtype in SCHEMATIC_TYPES,
-                    "machines": list(d["machines"]),
-                }
-                if d.get("source"): rec["source"] = d["source"]
-                if d.get("page"):   rec["sourcePage"] = d["page"]
-                out_docs.append(rec); emitted[did] = rec
-            recs.append(rec)
+        recs += overlay_docs(slug, name, extra, emitted, out_docs)
 
         cpus = [c.get("n") for c in (m.get("cpu") or []) if c.get("n")]
         aud  = [a.get("n") for a in (m.get("aud") or []) if a.get("n")]
@@ -124,6 +142,42 @@ def main():
             "cpu": m.get("cpu") or [], "audio": m.get("aud") or [],
             "display": disp, "input": m.get("inp") or {},
             "dip": dips, "docs": recs,
+        }
+
+    # Consoles and handhelds, into the same two artefacts. They have no
+    # romname and no DIP banks; what identifies one is its board revision, so
+    # that takes the place the DIP count holds for an arcade machine.
+    systems = []
+    if os.path.exists(SYSTEMS):
+        systems = json.load(open(SYSTEMS)).get("systems") or []
+    for s in systems:
+        slug = s["slug"]
+        if slug in seen_slugs:
+            print(f"WARNING  system slug {slug} collides with a machine",
+                  file=sys.stderr)
+            continue
+        seen_slugs[slug] = True
+        name = s["name"]
+        recs = overlay_docs(slug, name, extra, emitted, out_docs)
+        boards = s.get("boards") or []
+
+        out_machines.append({
+            "s": slug, "n": name, "y": s.get("year") or "",
+            "m": s.get("mfr") or "",
+            "d": len(recs),
+            "k": sum(1 for r in recs if r["schematic"]),
+            "p": len(boards),                     # board revisions, not DIP banks
+            "c": [c.get("n") for c in (s.get("cpu") or []) if c.get("n")][:3],
+            "t": s.get("kind") or "console",      # absent on arcade machines
+        })
+
+        detail[slug] = {
+            "slug": slug, "name": name, "year": s.get("year") or "",
+            "mfr": s.get("mfr") or "", "rom": "",
+            "kind": s.get("kind") or "console",
+            "cpu": s.get("cpu") or [], "audio": s.get("audio") or [],
+            "display": s.get("display") or [], "input": {},
+            "dip": [], "boards": boards, "docs": recs,
         }
 
     # Names for the other machines a shared document covers, so the reader can
@@ -151,6 +205,9 @@ def main():
 
     types = Counter(d["type"] for d in out_docs)
     print(f"machines      {len(out_machines)}")
+    if systems:
+        kinds = Counter(s.get("kind") or "console" for s in systems)
+        print("systems       " + ", ".join(f"{c} {k}" for k, c in kinds.most_common()))
     if extra_entries:
         print(f"overlay       {len(extra_entries)} document(s) from data/extra-docs.json, "
               f"on {len(extra)} machine(s)")

@@ -5,10 +5,10 @@ machine metadata. This note records two other archives that have been surveyed,
 what each of them actually holds, and — for each — whether taking it is a
 technical question or a rights question.
 
-One document has been taken: the SNK MV2F/MV4F service manual, which lands on
-two machines that already existed with nothing on them. Everything else is
-inventoried and left where it is, so the decision can be made against
-measurements instead of impressions.
+**The console decision has been taken.** Thirty documents from GamingDoc are on
+the site: the SNK MV2F/MV4F service manual on two arcade machines that already
+existed with nothing on them, and 29 console and handheld manuals across nine
+systems. What was left behind, and why, is in "What is not here" below.
 
 ```bash
 python3 tools/survey_gamingdoc.py            # -> data/sources/gamingdoc.json
@@ -165,14 +165,77 @@ Outline quality is the honest weak point. These manuals head their sections
 so a classifier tuned on arcade scans under-reads them; the manual's own table
 of contents is a better source and is not used yet.
 
-### What consoles would cost
+### What is not here
 
-`build_index.py` reads `machines.raw.json` and stamps a `machine` slug onto every
-document record; the browse index, the search postings and the reader all key on
-it. A console does not fit that shape, and a board revision — PU-18, GH-010,
-NUS-CPU-05 — is not a machine at all but a revision *of* one. Consoles need a
-second entity alongside machines, and the front end currently says "Arcade
-Service Documentation" on the masthead.
+Five documents in the technical-documentation tree were left out, 1,346 pages
+of it, and the reason is the same in every case: they are how to *write* for the
+machine, not how to fix one. The PS1 MIPS instruction-set reference and runtime
+library overview, and the three SNES developer books. That is not a judgement
+about their worth — it is that "the purpose is troubleshooting, not
+reproduction" has to mean something when it is inconvenient. It also happens to
+remove 653 of the 732 pages that would have needed OCR.
+
+The eight `modding` documents are out for the same reason on the other axis:
+modchip and optical-drive-emulator install guides are modification, not repair.
+
+### How consoles are carried
+
+Not as a second entity. A console has no romname and no DIP banks, and what
+identifies one is a board revision rather than a driver — but it is the same
+*kind of thing* to a repairer, so it lives in the same index with `kind` set,
+and every route, view and search path it needs already existed.
+
+| | arcade machine | console |
+|---|---|---|
+| source | `data/machines.raw.json` (MAME) | `data/systems.json` (by hand) |
+| identified by | romname | board revision |
+| `p` in the browse index | DIP banks | board revisions |
+| `t` in the browse index | absent | `console` / `handheld` |
+
+`data/systems.json` is written by hand rather than derived. MAME has console
+drivers, but they describe an emulation target: the thing a repairer needs —
+which chassis a model number is, which board is inside it — is not in them.
+
+### Two bugs this shook out
+
+**`ingest.py` overwrote sixteen vector documents with worse OCR.**
+`ingest_vector.py` did not write to `data/ingest-state.json`, so `ingest.py`
+saw those documents as un-ingested and re-read them through tesseract. The
+SCPH-30000 went from 52,241 exact words to 22,164 guessed ones. It now
+checkpoints, and `ingest.py` independently refuses any document whose cache
+says `via: vector` — a state file can be copied between trees and go stale, so
+one guard was not enough.
+
+**The tokeniser could not hold a part number together.** `[a-z]{3,}` was tried
+before the part-number branch, so `CXD9615GB` — printed on the chip, and the
+thing someone with a dead PS2 actually types — indexed as `cxd` and `9615gb`
+and the search found nothing. Trying the part-number branch first, with up to
+four leading letters, fixes it: that term now returns six documents, and the
+arcade side is unchanged (`7400` still returns the same 157 documents in the
+same order). Hyphenated board numbers are still split — `TA-085` indexes as
+`085` — because the token charset has no hyphen in it, and widening that is a
+larger change than it looks.
+
+### What consoles cost
+
+Less than expected, because the model absorbed them rather than being extended
+for them. The whole change is one new data file, a merge pass in
+`build_index.py`, a `kind` query parameter on `/api/machines`, and the front-end
+bits that follow from having a kind at all: a badge, two filter chips, board
+revisions where DIP switches would be, and copy that no longer says "arcade" on
+a page that might be a PlayStation.
+
+What it does cost is 93 MB of page scans. Every vector schematic sheet is
+published as a WebP so the reader can show it, which is 420 files across 21
+documents — more than the 430 already in `web/pages/` for the whole arcade
+corpus, because an A3 schematic sheet at 150 dpi is a much larger image than a
+letter-size drawing. The SVGs are rendered into `cache/svg/` and not yet served;
+what to do with them is an open question, and the measurements are above.
+
+Board revisions are listed on the system record but are not entities. A document
+attaches to a console, not to a GH-010, which is right for a service manual
+covering a series and wrong for the day someone wants the recap list for one
+board. That is where Console5's material would go, if it ever could.
 
 ## Console5 — the actual upstream
 

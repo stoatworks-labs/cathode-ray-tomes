@@ -76,19 +76,22 @@ async function home() {
   app.innerHTML = `
     <div class="stats">
       <div class="stat"><b id="s1">—</b><span>Machines</span></div>
+      <div class="stat"><b id="s6">—</b><span>Consoles &amp; handhelds</span></div>
       <div class="stat"><b id="s2">—</b><span>Service documents</span></div>
       <div class="stat"><b id="s3">—</b><span>Digitised &amp; searchable</span></div>
-      <div class="stat"><b id="s4">—</b><span>Pages OCR'd</span></div>
+      <div class="stat"><b id="s4">—</b><span>Pages</span></div>
       <div class="stat"><b id="s5">—</b><span>KiCad conversions</span></div>
     </div>
     <div class="searchbar">
-      <input id="q" placeholder="Search 7,812 machines by name, manufacturer or year…"
+      <input id="q" placeholder="Search by name, manufacturer or year…"
              value="${esc(q0)}" autocomplete="off" autofocus>
     </div>
     <div class="filters">
       <span class="chip" data-f="docs">Has manuals</span>
       <span class="chip" data-f="sch">Has schematics</span>
       <span class="chip" data-f="kicad">KiCad conversion</span>
+      <span class="chip" data-f="arcade">Arcade</span>
+      <span class="chip" data-f="console">Consoles &amp; handhelds</span>
     </div>
     <div id="results" class="rows"></div>`;
 
@@ -100,6 +103,7 @@ async function home() {
   const put = (id, v) => (document.getElementById(id).textContent = v.toLocaleString());
   put("s1", st.machines); put("s2", st.documents);
   put("s3", st.digitised); put("s4", st.pages); put("s5", st.boards);
+  put("s6", st.systems || 0);
 
   const input = document.getElementById("q");
   const results = document.getElementById("results");
@@ -118,7 +122,13 @@ async function home() {
 
   async function render() {
     const q = input.value.trim();
-    const data = await api(`machines?q=${encodeURIComponent(q)}&limit=150${active.has("docs") ? "&docs=1" : ""}`);
+    // Kind is filtered server-side: consoles are a few dozen rows in 7,812 and
+    // would fall outside the first page of results otherwise. Selecting both
+    // chips is the same as selecting neither.
+    const kind = active.has("arcade") === active.has("console") ? ""
+               : active.has("arcade") ? "arcade" : "console";
+    const data = await api(`machines?q=${encodeURIComponent(q)}&limit=150`
+      + (active.has("docs") ? "&docs=1" : "") + (kind ? `&kind=${kind}` : ""));
     let rows = data.results;
     if (active.has("sch")) rows = rows.filter((m) => m.k > 0);
     if (active.has("kicad")) rows = rows.filter((m) => boardSlugs.has(m.s));
@@ -127,11 +137,12 @@ async function home() {
         <span class="nm">${esc(m.n)}</span>
         <span class="meta">${esc(m.m || "—")}${m.y ? " · " + esc(m.y) : ""}</span>
         <span class="grow"></span>
+        ${m.t ? `<span class="badge kind">${esc(m.t)}</span>` : ""}
         ${boardSlugs.has(m.s) ? '<span class="badge kicad">KiCad</span>' : ""}
         ${m.k ? `<span class="badge doc">${m.k} schematic${m.k > 1 ? "s" : ""}</span>` : ""}
         ${m.d ? `<span class="badge">${m.d} doc${m.d > 1 ? "s" : ""}</span>` : ""}
-        ${m.p ? `<span class="badge">${m.p} DIP</span>` : ""}
-      </a>`).join("") : '<div class="empty">No machines match that search.</div>';
+        ${m.p ? `<span class="badge">${m.p} ${m.t ? "board rev" : "DIP"}${m.p > 1 && m.t ? "s" : ""}</span>` : ""}
+      </a>`).join("") : '<div class="empty">Nothing matches that search.</div>';
   }
   render();
 }
@@ -154,10 +165,13 @@ async function machine(slug) {
   const inp = m.input || {};
   const ctrl = (inp.ctrl || []).map((c) => `${esc(c.type)}${c.btn ? ` · ${c.btn} btn` : ""}${c.ways ? ` · ${c.ways}-way` : ""}`).join("<br>") || "—";
 
+  const isConsole = !!m.kind;
+
   app.innerHTML = `
     <h1>${esc(m.name)}</h1>
     <p class="sub">${esc(m.mfr || "Unknown manufacturer")}${m.year ? " · " + esc(m.year) : ""}
-      ${m.rom ? ` · <code>${esc(m.rom)}</code>` : ""}</p>
+      ${m.rom ? ` · <code>${esc(m.rom)}</code>` : ""}
+      ${isConsole ? ` · <span class="badge kind">${esc(m.kind)}</span>` : ""}</p>
 
     ${kb ? `<div class="note"><b>KiCad conversion available.</b>
       This board has a hand-built KiCad project —
@@ -168,9 +182,15 @@ async function machine(slug) {
       <dt>CPU</dt><dd>${cpu}</dd>
       <dt>Audio</dt><dd>${aud}</dd>
       <dt>Display</dt><dd>${disp}</dd>
-      <dt>Players</dt><dd>${inp.p ?? "—"}${inp.co ? ` · ${inp.co} coin slots` : ""}</dd>
-      <dt>Controls</dt><dd>${ctrl}</dd>
+      ${isConsole ? "" : `<dt>Players</dt><dd>${inp.p ?? "—"}${inp.co ? ` · ${inp.co} coin slots` : ""}</dd>
+      <dt>Controls</dt><dd>${ctrl}</dd>`}
     </dl></div>
+
+    ${(m.boards || []).length ? `<h2>Board revisions (${m.boards.length})</h2>
+      <div class="panel"><dl class="kv">
+      ${m.boards.map((b) => `<dt><code>${esc(b.rev)}</code></dt>
+        <dd>${esc(b.note || "")}</dd>`).join("")}
+      </dl></div>` : ""}
 
     <div id="power"></div>
     <div id="sigs"></div>
@@ -393,7 +413,15 @@ async function reader(id) {
              alt="Scan of page ${p.n}"
              onerror="this.closest('figure').classList.add('noscan')">`
       : "";
-    const caption = hasScan
+    // A vector sheet is a different claim. Its labels are the document's own
+    // text, read straight off the page rather than guessed at by tesseract, so
+    // saying "nothing to rebuild" and "what OCR recovered" would both be wrong.
+    const caption = p.vec
+      ? `This page is a schematic sheet, shown as drawn. Its designators, values
+         and net names are the document's own text and are searchable.
+         <a href="/pdf/${id}" target="_blank" rel="noopener">See it in the full
+         document ↗</a>`
+      : hasScan
       ? `This page is a drawing. It is shown as the original scan — the text on
          it was drawn, not typeset, so there is nothing to rebuild.
          <a href="/pdf/${id}" target="_blank" rel="noopener">See it in the full
@@ -404,9 +432,11 @@ async function reader(id) {
     return `<figure class="sheet${hasScan ? "" : " noscan"}">
       ${img}
       <figcaption>${caption}</figcaption>
-      ${text ? `<details class="ocrdump"><summary>What OCR recovered from this
-        sheet (${text.split(/\s+/).length} words — fragments, not prose)</summary>
-        <p class="lowconf">${mark(text)}</p></details>` : ""}
+      ${text ? `<details class="ocrdump"><summary>${p.vec
+        ? `Every label on this sheet (${text.split(/\s+/).length} words)`
+        : `What OCR recovered from this sheet (${text.split(/\s+/).length} words —
+           fragments, not prose)`}</summary>
+        <p class="${p.vec ? "" : "lowconf"}">${mark(text)}</p></details>` : ""}
     </figure>`;
   }
 

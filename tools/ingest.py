@@ -29,6 +29,16 @@ UA    = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " \
 READ_DPI, HI_DPI = 150, 300
 _lock = Lock()
 
+def is_vector(did):
+    """Has ingest_vector.py already read this document from its text layer?"""
+    p = os.path.join(CACHE, "text", did + ".json")
+    if not os.path.exists(p):
+        return False
+    try:
+        return json.load(open(p)).get("meta", {}).get("via") == "vector"
+    except Exception:
+        return False
+
 def load_state():
     if os.path.exists(STATE):
         return json.load(open(STATE))
@@ -177,6 +187,15 @@ def main():
         docs.sort(key=lambda d: not d["schematic"])
 
     todo = [d for d in docs if d["id"] not in st["done"]]
+    # A document ingest_vector.py has already read is not a candidate, whatever
+    # the state file says. OCR of a page that was vector to begin with is
+    # strictly worse — 22,164 guessed words where there were 52,241 exact ones
+    # — and this is the second guard because the first one, the checkpoint, is
+    # a file that can be copied between trees and go stale.
+    skipped = [d for d in todo if is_vector(d["id"])]
+    if skipped:
+        todo = [d for d in todo if d not in skipped]
+        print(f"{len(skipped)} already read as vector; leaving them alone", flush=True)
     if a.limit:
         todo = todo[:a.limit]
     print(f"{len(todo)} documents to ingest ({len(st['done'])} already done)", flush=True)

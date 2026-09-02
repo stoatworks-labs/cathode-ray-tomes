@@ -52,7 +52,7 @@ checkpoint; here it is a property of the extraction itself — we know the page
 is a sheet because we read its geometry — so it belongs with the extraction.
 build_drawings.py skips any document whose meta says `via: vector`.
 """
-import argparse, gzip, json, os, re, shutil, statistics, subprocess, sys, tempfile
+import argparse, glob, gzip, json, os, re, shutil, statistics, subprocess, sys, tempfile
 from xml.etree import ElementTree as ET
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -60,6 +60,7 @@ from ocrlib import classify_headings, build_outline, build_blocks, running_heade
 
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, "cache")
+STATE = os.path.join(ROOT, "data", "ingest-state.json")
 SURVEY = os.path.join(ROOT, "data", "sources", "gamingdoc.json")
 
 NS = "{http://www.w3.org/1999/xhtml}"
@@ -81,6 +82,22 @@ SHEET_MAX_WPB  = 3.0
 
 def sh(*args, timeout=1800):
     return subprocess.run(args, capture_output=True, timeout=timeout).stdout
+
+
+def checkpoint(did, pages, words):
+    """Record the document as done in ingest.py's own state file.
+
+    Not optional. ingest.py skips what the state says is done, and without
+    this it re-reads every vector document through tesseract and overwrites
+    the extraction with a worse one — measured, the SCPH-30000 went from
+    52,241 exact words to 22,164 OCR'd ones before this was added.
+    """
+    st = json.load(open(STATE)) if os.path.exists(STATE) else {"done": {}, "failed": {}}
+    st["done"][did] = {"pages": pages, "words": words, "via": "vector"}
+    st["failed"].pop(did, None)
+    tmp = STATE + ".tmp"
+    json.dump(st, open(tmp, "w"))
+    os.replace(tmp, STATE)
 
 
 def bbox_xml(pdf):
@@ -225,11 +242,14 @@ def process(did, pdf, svg=True, images=True):
         words = sum(len(l["t"].split()) for l in lines)
         page = {"n": n, "words": words}
         if n in sheets:
-            # Keep the text for search — on a vector sheet it is exact, which
-            # is the whole difference from a traced one — but do not set it.
+            # The labels go in as one block rather than a field of their own.
+            # `draw` already stops the reader setting them as prose, and every
+            # other consumer — the postings builder, the in-document search,
+            # the word count under the sheet — reads blocks and would other-
+            # wise miss the most searchable text in the corpus.
             page["draw"] = True
-            page["blocks"] = []
-            page["sheetText"] = " ".join(l["t"] for l in lines)
+            page["vec"] = True
+            page["blocks"] = [{"k": "p", "t": " ".join(l["t"] for l in lines)}]
         else:
             h = head_by_page.get(n) or []
             if h:
@@ -252,7 +272,14 @@ def process(did, pdf, svg=True, images=True):
     webp_bytes = 0
     if images:
         out = os.path.join(CACHE, "pages", did)
+        # Sheets are published, the rest are not. A page the reader rebuilds as
+        # text has no use for its own scan; a sheet is nothing but the scan, and
+        # the reader needs dw/dh to reserve its height or a lazy image never
+        # enters the viewport and never loads.
+        pub = os.path.join(ROOT, "web", "pages", did)
         os.makedirs(out, exist_ok=True)
+        os.makedirs(pub, exist_ok=True)
+        by_n = {p["n"]: p for p in pages}
         tmp = tempfile.mkdtemp(prefix="crt-vec-")
         try:
             sh("pdftoppm", "-r", str(READ_DPI), "-png", pdf, os.path.join(tmp, "p"))
@@ -260,9 +287,15 @@ def process(did, pdf, svg=True, images=True):
                 m = re.search(r"-(\d+)\.png$", f)
                 if not m:
                     continue
-                dst = os.path.join(out, "p%04d.webp" % int(m.group(1)))
+                n = int(m.group(1))
+                dst = os.path.join(out, "p%04d.webp" % n)
                 to_webp(os.path.join(tmp, f), dst)
                 webp_bytes += os.path.getsize(dst)
+                if n in sheets:
+                    shutil.copyfile(dst, os.path.join(pub, "p%04d.webp" % n))
+                    from PIL import Image
+                    with Image.open(dst) as im:
+                        by_n[n]["dw"], by_n[n]["dh"] = im.size
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -286,14 +319,49 @@ def process(did, pdf, svg=True, images=True):
                         "undecoded": round(undecoded, 4)}},
               open(text_out, "w"), separators=(",", ":"))
 
+    words = sum(p["words"] for p in pages)
+    checkpoint(did, len(pages), words)
+
     return {"pages": len(pages), "sheets": len(sheets),
-            "words": sum(p["words"] for p in pages), "sections": len(outline),
+            "words": words, "sections": len(outline),
             "undecoded": undecoded,
             "svgBytes": svg_bytes, "webpBytes": webp_bytes}
 
 
+def publish(did):
+    """Re-copy a document's sheet scans from the cache into web/pages/.
+
+    The scans are a build output that lives in git, so anything that resets the
+    tree loses them while the cache still has everything needed to put them
+    back. Re-running the whole extraction to recover a file copy is the wrong
+    shape, hence this.
+    """
+    text = os.path.join(CACHE, "text", did + ".json")
+    if not os.path.exists(text):
+        return 0
+    doc = json.load(open(text))
+    if doc.get("meta", {}).get("via") != "vector":
+        return 0
+    src_dir = os.path.join(CACHE, "pages", did)
+    pub = os.path.join(ROOT, "web", "pages", did)
+    n = 0
+    for page in doc.get("pages", []):
+        if not page.get("draw"):
+            continue
+        name = "p%04d.webp" % page["n"]
+        src = os.path.join(src_dir, name)
+        if not os.path.exists(src):
+            continue
+        os.makedirs(pub, exist_ok=True)
+        shutil.copyfile(src, os.path.join(pub, name))
+        n += 1
+    return n
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--publish-only", action="store_true",
+                    help="re-copy sheet scans from the cache; no extraction")
     ap.add_argument("--doc", help="document id from data/sources/gamingdoc.json")
     ap.add_argument("--pdf", help="a PDF to read directly, for trying one out")
     ap.add_argument("--id", help="document id to file --pdf under")
@@ -301,6 +369,15 @@ def main():
     ap.add_argument("--no-svg", action="store_true")
     ap.add_argument("--no-images", action="store_true")
     a = ap.parse_args()
+
+    if a.publish_only:
+        total = pages = 0
+        for f in sorted(glob.glob(os.path.join(CACHE, "text", "*.json"))):
+            n = publish(os.path.basename(f)[:-5])
+            if n:
+                total += 1; pages += n
+        print(f"republished {pages} sheet scans across {total} documents")
+        return
 
     jobs = []
     if a.pdf:

@@ -14,8 +14,14 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, "cache", "text")
 OUT = os.path.join(ROOT, "data", "index")
 
-# A token is a word of 3+ letters, or a part-number-ish alphanumeric run.
-TOKEN = re.compile(r"[a-z]{3,}|[a-z]{0,3}\d{2,}[a-z0-9]*")
+# A token is a part-number-ish alphanumeric run, or a word of 3+ letters. The
+# part-number branch is tried first and allows four leading letters, because
+# the alternative splits the part numbers people actually search for: with the
+# word branch first, CXD9615GB tokenised as "cxd" + "9615gb" and searching the
+# printing on the chip found nothing. Four is what Sony's prefixes need
+# (CXD, CXA, MM, SN) without swallowing ordinary words, which cannot reach the
+# two digits the branch requires.
+TOKEN = re.compile(r"[a-z]{0,4}\d{2,}[a-z0-9]*|[a-z]{3,}")
 MAX_POSTINGS = 400          # cap per term; the long tail is not useful
 # Only terms that are in almost every document carry no signal. Filtering more
 # aggressively than this breaks ordinary queries -- "voltage selection" and

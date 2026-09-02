@@ -5,7 +5,8 @@
 > real ArcadeRTFM corpus; the Pong KiCad conversion has a verified component complement and BOM
 > but its nets have **not** been traced, and nothing here has been checked against physical hardware.
 
-Modern, searchable editions of arcade service documentation.
+Modern, searchable editions of service documentation — arcade boards, and the
+consoles that came after them.
 
 **The purpose is troubleshooting, not reproduction.** The board conversions here
 are diagnostic aids — they answer "which chip is at C4, what does it do, and am I
@@ -19,6 +20,13 @@ layer, no structure, and no way to search them. Cathode Ray Tomes rebuilds them 
 every page OCR'd and searchable, every machine cross-referenced against its hardware
 specification and DIP switch settings, and — for a small number of boards — the schematic
 rebuilt as a real KiCad project with an accurate bill of materials.
+
+Console service manuals are a different problem, and a much better one. Most of them
+are native vector with a real text layer, so their schematic sheets already carry
+designators, values and net names as text rather than as ink — nothing to OCR and
+nothing to trace. Nine consoles and handhelds are here, with 29 manuals between them;
+see `docs/EXTERNAL-SOURCES.md` for where they came from and what was deliberately left
+out.
 
 ## What the corpus actually is
 

@@ -81,6 +81,7 @@ async function handleApi(url, env, request) {
     return json({
       machines: (machines || []).length,
       machinesWithDocs: (machines || []).filter((m) => m.d > 0).length,
+      systems: (machines || []).filter((m) => m.t).length,
       documents: (docs || []).length,
       schematics: (docs || []).filter((d) => d.schematic).length,
       digitised: ingested.length,
@@ -94,8 +95,14 @@ async function handleApi(url, env, request) {
     const q = (url.searchParams.get("q") || "").trim().toLowerCase();
     const limit = Math.min(+url.searchParams.get("limit") || 50, 200);
     const onlyDocs = url.searchParams.get("docs") === "1";
+    // Consoles are a few dozen records among 7,812, so this has to filter
+    // before the limit is applied — doing it client-side on one page of
+    // results finds nothing.
+    const kind = url.searchParams.get("kind") || "";
     let out = (await index(env, request, "machines")) || [];
     if (onlyDocs) out = out.filter((m) => m.d > 0);
+    if (kind === "arcade") out = out.filter((m) => !m.t);
+    else if (kind === "console") out = out.filter((m) => !!m.t);
     if (q) {
       out = out
         .map((m) => [scoreMachine(m, q), m])

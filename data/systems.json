@@ -1,0 +1,135 @@
+{
+ "note": "Consoles and handhelds, alongside the MAME-derived arcade machines. Written by hand: MAME's console drivers exist but describe an emulation target, not a board you have in front of you, and the thing a repairer needs — which chassis a model number is, which board revision is inside it — is not in them at all. build_index.py merges these into the same index the machines use, with kind set so the front end can tell them apart. Board revisions come from the service manuals themselves; where a revision is listed with no manual it is there because a model number resolves to it and that is worth knowing.",
+ "systems": [
+  {
+   "slug": "sony-playstation",
+   "name": "PlayStation",
+   "mfr": "Sony",
+   "year": "1994",
+   "kind": "console",
+   "cpu": [{"n": "MIPS R3000A", "mhz": 33.8688}, {"n": "MIPS R3051 GTE (coprocessor)"}],
+   "audio": [{"n": "Sony SPU", "mhz": 44.1}],
+   "display": [{"type": "raster", "w": 320, "h": 240, "hz": 59.94}],
+   "boards": [
+    {"rev": "PU-7", "note": "SCPH-1000/1001/1002. Early board; RCA output, no parallel port on later cost-downs."},
+    {"rev": "PU-8", "note": "SCPH-3000/5000 series."},
+    {"rev": "PU-18", "note": "SCPH-5500/5501/5502. The most common revision."},
+    {"rev": "PU-20", "note": "SCPH-5903."},
+    {"rev": "PU-22", "note": "SCPH-7000/7500 series."},
+    {"rev": "PU-23", "note": "SCPH-7500/9000 series."},
+    {"rev": "PM-41", "note": "SCPH-100 (PSone). Single-board redesign."}
+   ]
+  },
+  {
+   "slug": "sony-playstation-2",
+   "name": "PlayStation 2",
+   "mfr": "Sony",
+   "year": "2000",
+   "kind": "console",
+   "cpu": [{"n": "Emotion Engine (MIPS R5900)", "mhz": 294.912},
+           {"n": "IOP (MIPS R3000A)", "mhz": 36.864}],
+   "audio": [{"n": "SPU2"}],
+   "display": [{"type": "raster", "w": 640, "h": 448, "hz": 59.94}],
+   "boards": [
+    {"rev": "GH-001", "note": "SCPH-30001 launch board."},
+    {"rev": "GH-003", "note": "SCPH-30000 series."},
+    {"rev": "GH-010", "note": "SCPH-30002D/30003D/30004D. Separate 32 MB and 64 MB RDRAM complements."},
+    {"rev": "GH-012", "note": "SCPH-30000R series."},
+    {"rev": "GH-022", "note": "SCPH-39000 series."},
+    {"rev": "GH-026", "note": "SCPH-50000 series."},
+    {"rev": "GH-035", "note": "SCPH-70000 series (slimline, LCG chassis)."}
+   ]
+  },
+  {
+   "slug": "sony-playstation-3",
+   "name": "PlayStation 3",
+   "mfr": "Sony",
+   "year": "2006",
+   "kind": "console",
+   "cpu": [{"n": "Cell Broadband Engine", "mhz": 3200}],
+   "audio": [{"n": "RSX / Cell (software)"}],
+   "display": [{"type": "raster", "w": 1920, "h": 1080, "hz": 60}],
+   "boards": [
+    {"rev": "COK-001", "note": "CECHA00/A01. Launch board, hardware PS2 compatibility."},
+    {"rev": "COK-002", "note": "CECHC/CECHE series."},
+    {"rev": "SEM-001", "note": "CECHG series."}
+   ]
+  },
+  {
+   "slug": "sony-playstation-portable",
+   "name": "PlayStation Portable",
+   "mfr": "Sony",
+   "year": "2004",
+   "kind": "handheld",
+   "cpu": [{"n": "Allegrex (MIPS R4000)", "mhz": 333}],
+   "audio": [{"n": "Sony Virtual Mobile Engine"}],
+   "display": [{"type": "lcd", "w": 480, "h": 272}],
+   "boards": [
+    {"rev": "TA-085", "note": "PSP-2000 series main board."},
+    {"rev": "HP-142", "note": "PSP-2000 headphone/remote board."},
+    {"rev": "SW-510", "note": "PSP-2000 switch board."}
+   ]
+  },
+  {
+   "slug": "sega-saturn",
+   "name": "Saturn",
+   "mfr": "Sega",
+   "year": "1994",
+   "kind": "console",
+   "cpu": [{"n": "Hitachi SH-2", "mhz": 28.6364}, {"n": "Hitachi SH-2 (slave)", "mhz": 28.6364},
+           {"n": "Motorola 68EC000", "mhz": 11.3},
+           {"n": "Hitachi SH-1 (CD block)", "mhz": 20}],
+   "audio": [{"n": "Yamaha YMF292 SCSP"}],
+   "display": [{"type": "raster", "w": 320, "h": 224, "hz": 59.94}],
+   "boards": []
+  },
+  {
+   "slug": "sega-dreamcast",
+   "name": "Dreamcast",
+   "mfr": "Sega",
+   "year": "1998",
+   "kind": "console",
+   "cpu": [{"n": "Hitachi SH-4", "mhz": 200}],
+   "audio": [{"n": "Yamaha AICA (ARM7DI core)", "mhz": 45}],
+   "display": [{"type": "raster", "w": 640, "h": 480, "hz": 59.94}],
+   "boards": [
+    {"rev": "VA0", "note": "Launch board (837-13544)."},
+    {"rev": "VA1", "note": "837-13778. The most common."},
+    {"rev": "VA2.1", "note": "Final cost-reduced revision."}
+   ]
+  },
+  {
+   "slug": "atari-2600",
+   "name": "Atari 2600",
+   "mfr": "Atari",
+   "year": "1977",
+   "kind": "console",
+   "cpu": [{"n": "MOS 6507", "mhz": 1.19}],
+   "audio": [{"n": "TIA (2 channels)"}],
+   "display": [{"type": "raster", "w": 160, "h": 192, "hz": 59.92}],
+   "boards": []
+  },
+  {
+   "slug": "atari-5200",
+   "name": "Atari 5200",
+   "mfr": "Atari",
+   "year": "1982",
+   "kind": "console",
+   "cpu": [{"n": "MOS 6502C", "mhz": 1.79}],
+   "audio": [{"n": "POKEY"}],
+   "display": [{"type": "raster", "w": 320, "h": 192, "hz": 59.92}],
+   "boards": []
+  },
+  {
+   "slug": "nintendo-game-boy-color",
+   "name": "Game Boy Color",
+   "mfr": "Nintendo",
+   "year": "1998",
+   "kind": "handheld",
+   "cpu": [{"n": "Sharp LR35902", "mhz": 8.388}],
+   "audio": [{"n": "Game Boy PSG (4 channels)"}],
+   "display": [{"type": "lcd", "w": 160, "h": 144}],
+   "boards": []
+  }
+ ]
+}
