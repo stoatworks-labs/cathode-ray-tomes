@@ -128,8 +128,21 @@ Two things to know before touching it:
   `build_assets.py` at publish time. Re-run `build_drawings.py --images` after an
   ingest, then `build_assets.py`.
 
-Still open there: the 2,007 warned-but-kept pages have had no sample read, so the
-split between real parts lists and salvageable noise in that bucket is unmeasured.
+**The 2,007 warned-but-kept pages are measured now, and the bucket holds no parts
+lists at all.** Running the parts-list extractor over each page's text on its own
+— `doc_text` flattens a document, so page attribution needs one page at a time —
+none of the 2,007 yields a single trusted row, and 99.7% contain no parts-list
+rows whatever. Fourteen read at random are all schematics, wiring diagrams or PCB
+layouts; not one is prose or a table.
+
+So they render as collapsed drawings now rather than as prose behind a warning.
+The caution that put them in that bucket was sound and is worth keeping in mind
+for the next classifier — an illustrated parts list scores the same as a drawing
+on every text measure — but it was guarding against something this bucket does
+not contain. And the treatment never hid anything either way: the text is
+collapsed, not dropped, so a page in here that turned out to be a parts list
+costs a reader one click rather than the content. No scan is published for them,
+because nothing in the document attests they are drawings; the caption says so.
 And 107 documents are 40%+ noise; the worst are pure schematic packages with no
 outline at all, which is why the catalogue label had to become a source.
 

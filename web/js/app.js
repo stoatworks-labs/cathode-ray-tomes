@@ -442,12 +442,32 @@ async function reader(id) {
     // DIP-switch tables, which score the same and are the most useful pages
     // in a service manual. Warn, never hide.
     if (!p.noise) return body;
-    return `<div class="fromdrawing"><p class="fromdrawing-note">The text below
-      was recovered from a drawing rather than from typeset text, so it is
-      fragmentary and out of order. Part numbers on it are usually still
-      right — that is what makes the page searchable — but it does not read as
-      prose. <a href="/pdf/${id}" target="_blank" rel="noopener">See the
-      original scan ↗</a></p>${body}</div>`;
+    // These read as coming off a drawing but the document never says so, so
+    // they were left as prose behind a warning — the worry being that the same
+    // bucket could hold an illustrated parts list, and hiding one of those is
+    // worse than showing noise.
+    //
+    // Measured since: of the 2,007 pages in it, none yields a single trusted
+    // parts-list row, and fourteen read at random are all schematics, wiring
+    // diagrams or PCB layouts. The worry was sound but the bucket is not what
+    // it guarded against. And the treatment never hid anything anyway — the
+    // text is collapsed, not dropped — so a page in here that turned out to be
+    // a parts list costs a reader one click, not the content.
+    //
+    // No scan is published for these: nothing in the document attests they are
+    // drawings, so they are shown as text-behind-a-disclosure rather than as a
+    // sheet, and the caption says which kind of evidence is behind it.
+    const words = pageText(p).trim().split(/\s+/).length;
+    return `<figure class="sheet noscan">
+      <figcaption>This page reads as a drawing — its text was drawn rather than
+        typeset, so it comes out fragmentary and out of order. The document does
+        not label it, so the recovered text is kept below rather than replaced.
+        <a href="/pdf/${id}" target="_blank" rel="noopener">See the original
+        scan ↗</a></figcaption>
+      <details class="ocrdump"><summary>What OCR recovered from this page
+        (${words} words — fragments, not prose)</summary>
+        <div class="fromdrawing">${body}</div></details>
+    </figure>`;
   }
 
   function draw() {

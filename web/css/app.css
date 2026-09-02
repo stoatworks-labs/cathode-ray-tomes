@@ -261,14 +261,11 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
 }
 .textview details.ocrdump p { margin-top: 8px; font-size: 13.5px; }
 
-/* A page that reads as drawing noise but might be a parts list: the text is
-   never hidden, only prefaced. */
-.textview .fromdrawing { margin: 0 0 16px; }
-.textview .fromdrawing-note {
-  border-left: 3px solid var(--line); background: var(--surface-2);
-  padding: 9px 13px; margin: 0 0 12px; font-size: 13.5px; color: var(--ink-3);
-  border-radius: 0 var(--radius) var(--radius) 0; line-height: 1.6;
-}
+/* A page that reads as drawing noise. Its text is collapsed rather than
+   prefaced now — measured, the bucket holds no parts lists — so it only needs
+   to sit quietly inside the disclosure. */
+.textview .fromdrawing { margin: 0; }
+.textview .fromdrawing p { font-size: 13.5px; color: var(--ink-3); }
 
 /* ---- embedded interactive board view ---- */
 iframe.ibom {
