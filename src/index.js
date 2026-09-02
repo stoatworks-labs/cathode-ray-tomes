@@ -122,8 +122,12 @@ async function handleApi(url, env, request) {
     const meta = docs.find((d) => d.id === id) || {};
     // Pick catalogue fields explicitly: a blanket spread lets the catalogue's
     // `pages` count overwrite the document's `pages` array.
-    const { title, type, machine, machineName, src, schematic } = meta;
-    return json({ ...body, title, type, machine, machineName, src, schematic });
+    // machines/machineNames are present only where one manual documents more
+    // than one machine, as the MVS service manual does for MV-2F and MV-4F.
+    const { title, type, machine, machineName, machines, machineNames,
+            src, source, sourcePage, schematic } = meta;
+    return json({ ...body, title, type, machine, machineName, machines,
+                  machineNames, src, source, sourcePage, schematic });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own

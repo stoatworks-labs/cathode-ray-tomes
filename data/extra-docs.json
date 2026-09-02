@@ -1,0 +1,14 @@
+{
+ "note": "Documents the upstream dump does not carry, merged into the index by build_index.py. data/machines.raw.json is refetched from arcadertfm and overwritten, so anything added by hand has to live here or it is lost on the next fetch. Every entry names the machine slugs it covers and where it came from; see docs/EXTERNAL-SOURCES.md.",
+ "documents": [
+  {
+   "f": "SNK_Neo-Geo_MV2F-MV4F_Service_Manual.pdf",
+   "t": "Service Manual",
+   "l": "https://gamingdoc.org/wp-content/uploads/2021/03/mv2f-mv4fservicemanual.pdf",
+   "machines": ["ng_mv2f", "ng_mv4f"],
+   "source": "gamingdoc",
+   "page": "https://gamingdoc.org/technical-documentation/arcade/snk-neogeo-mvs/official/service-manuals/mv2f-mv4f-service-manual/",
+   "note": "Covers the two-slot and four-slot MVS motherboards in one manual. Both slugs carried zero documents; of 143 SNK machines only 16 had any, none of them the MVS hardware itself."
+  }
+ ]
+}

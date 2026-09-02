@@ -2,16 +2,28 @@
 """Normalise arcadertfm machines.json into Cathode Ray Tomes's index artefacts.
 
 Inputs : data/machines.raw.json   (upstream MAME-derived metadata + doc list)
+         data/extra-docs.json     (documents found elsewhere, merged in by hand)
 Outputs: data/index/machines.json    compact browse/search index (all machines)
          data/index/docs.json        flat doc catalogue with stable ids
          data/machine/<slug>.json    per-machine detail records
+
+The raw dump is refetched and overwritten, so a document that is not in it has
+to be carried separately or it disappears on the next fetch — hence the overlay.
+
+An overlay entry names every machine it covers, because a document can. The
+MVS service manual documents the two-slot and four-slot boards in one book, and
+the honest model is one document on two machines rather than two copies: the id
+is derived from the URL, so copies would collide on the rendered document
+anyway. The record therefore carries a `machines` list alongside its primary
+`machine`, and is listed under each of them.
 """
 import json, os, re, hashlib, sys, unicodedata
 from collections import Counter
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-RAW  = os.path.join(ROOT, "data", "machines.raw.json")
-OUT  = os.path.join(ROOT, "data")
+ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RAW   = os.path.join(ROOT, "data", "machines.raw.json")
+EXTRA = os.path.join(ROOT, "data", "extra-docs.json")
+OUT   = os.path.join(ROOT, "data")
 
 # Doc types that are expected to carry schematic/diagram line art worth vectorising.
 SCHEMATIC_TYPES = {
@@ -29,10 +41,27 @@ def doc_id(url):
     """Stable short id derived from the upstream URL, so ids survive re-ingest."""
     return hashlib.sha1(url.encode()).hexdigest()[:12]
 
+def load_extra():
+    """Overlay documents, grouped by the machine slug they should appear under."""
+    if not os.path.exists(EXTRA):
+        return {}, []
+    entries = json.load(open(EXTRA)).get("documents") or []
+    by_slug = {}
+    for d in entries:
+        slugs = d.get("machines") or []
+        if not slugs or not d.get("l"):
+            continue
+        for slug in slugs:
+            by_slug.setdefault(slug, []).append(d)
+    return by_slug, entries
+
+
 def main():
     machines = json.load(open(RAW))
+    extra, extra_entries = load_extra()
     seen_slugs, out_machines, out_docs, detail = {}, [], [], {}
-
+    emitted = {}                             # doc id -> record, so a shared
+                                             # document is catalogued once
     for m in machines:
         name = m.get("name") or "Unknown"
         base = m.get("id") or slugify(name)
@@ -55,7 +84,24 @@ def main():
                 "title": d.get("f") or "", "type": dtype, "src": url,
                 "schematic": dtype in SCHEMATIC_TYPES,
             }
-            recs.append(rec); out_docs.append(rec)
+            recs.append(rec); out_docs.append(rec); emitted[did] = rec
+
+        for d in extra.get(slug, []):
+            url = d["l"]
+            did = doc_id(url)
+            rec = emitted.get(did)
+            if rec is None:                  # first machine to claim it owns it
+                dtype = d.get("t") or "Document"
+                rec = {
+                    "id": did, "machine": slug, "machineName": name,
+                    "title": d.get("f") or "", "type": dtype, "src": url,
+                    "schematic": dtype in SCHEMATIC_TYPES,
+                    "machines": list(d["machines"]),
+                }
+                if d.get("source"): rec["source"] = d["source"]
+                if d.get("page"):   rec["sourcePage"] = d["page"]
+                out_docs.append(rec); emitted[did] = rec
+            recs.append(rec)
 
         cpus = [c.get("n") for c in (m.get("cpu") or []) if c.get("n")]
         aud  = [a.get("n") for a in (m.get("aud") or []) if a.get("n")]
@@ -80,6 +126,19 @@ def main():
             "dip": dips, "docs": recs,
         }
 
+    # Names for the other machines a shared document covers, so the reader can
+    # say "MV-2F · MV-4F" without fetching a record per slug.
+    names = {slug: rec["name"] for slug, rec in detail.items()}
+    missing = set()
+    for rec in out_docs:
+        if "machines" not in rec:
+            continue
+        missing |= {s for s in rec["machines"] if s not in names}
+        rec["machineNames"] = [names.get(s, s) for s in rec["machines"]]
+    if missing:
+        print(f"WARNING  overlay names {len(missing)} unknown machine slug(s): "
+              + ", ".join(sorted(missing)), file=sys.stderr)
+
     os.makedirs(os.path.join(OUT, "index"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "machine"), exist_ok=True)
     json.dump(out_machines, open(os.path.join(OUT, "index", "machines.json"), "w"),
@@ -92,6 +151,9 @@ def main():
 
     types = Counter(d["type"] for d in out_docs)
     print(f"machines      {len(out_machines)}")
+    if extra_entries:
+        print(f"overlay       {len(extra_entries)} document(s) from data/extra-docs.json, "
+              f"on {len(extra)} machine(s)")
     print(f"docs          {len(out_docs)}  ({sum(1 for d in out_docs if d['schematic'])} schematic-bearing)")
     print(f"with docs     {sum(1 for m in out_machines if m['d'])}")
     print(f"with dips     {sum(1 for m in out_machines if m['p'])}")

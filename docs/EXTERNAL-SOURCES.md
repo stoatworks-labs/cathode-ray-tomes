@@ -1,12 +1,14 @@
 # External sources
 
 Cathode Ray Tomes is built from one corpus: ArcadeRTFM's scans, keyed to MAME's
-machine metadata. This note records two other archives that have been surveyed
-but **not** ingested, what each of them actually holds, and — for each — whether
-taking it is a technical question or a rights question.
+machine metadata. This note records two other archives that have been surveyed,
+what each of them actually holds, and — for each — whether taking it is a
+technical question or a rights question.
 
-Nothing described here is on the site. The inventories are records of what
-exists, so the decision can be made against measurements instead of impressions.
+One document has been taken: the SNK MV2F/MV4F service manual, which lands on
+two machines that already existed with nothing on them. Everything else is
+inventoried and left where it is, so the decision can be made against
+measurements instead of impressions.
 
 ```bash
 python3 tools/survey_gamingdoc.py            # -> data/sources/gamingdoc.json
@@ -76,8 +78,30 @@ that lands on machine slugs we already carry: `ng_mv2f` and `ng_mv4f` both exist
 in the index with zero documents, and of 143 SNK machines only 16 have any
 documentation, none of it covering the MVS motherboard itself.
 
-That makes it the one item requiring no schema decision at all. Everything else
-in the survey is a console, and a console is not a MAME arcade machine.
+That makes it the one item requiring no schema decision at all, and it is now on
+the site: 22 pages OCR'd, 26 sections, both machines listing it.
+
+Getting it there needed one piece of plumbing. `data/machines.raw.json` is
+refetched from arcadertfm and overwritten, so a hand-added document has to live
+somewhere that survives — `data/extra-docs.json`, which `build_index.py` merges
+in. An overlay entry names every machine slug it covers, so one manual can sit
+under several machines without being catalogued twice; the reader links all of
+them, and credits the source on the document itself rather than leaning on the
+footer's blanket ArcadeRTFM attribution.
+
+```bash
+python3 tools/build_index.py                  # merges data/extra-docs.json
+python3 tools/ingest.py --only ng_mv2f        # 22 pages, the flat-scan path
+python3 tools/build_search.py
+python3 tools/build_doc_stats.py
+python3 tools/build_assets.py
+```
+
+The PDF itself still has to reach R2 before `/pdf/<id>` resolves — that is
+`tools/publish.sh remote`, from a workstation, as with everything else.
+
+Everything else in the survey is a console, and a console is not a MAME arcade
+machine.
 
 ### What consoles would cost
 

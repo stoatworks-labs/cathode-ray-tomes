@@ -195,6 +195,31 @@ function prettyTitle(f) {
   return (f || "Manual").replace(/\.pdf$/i, "").replace(/[_]+/g, " ").replace(/\s+/g, " ").trim();
 }
 
+/** One manual can document several machines — the MVS service manual covers
+    the MV-2F and the MV-4F — so link every machine it is filed under, not just
+    the one that happens to own the record. */
+function machineLinks(doc) {
+  const slugs = doc.machines && doc.machines.length ? doc.machines
+              : doc.machine ? [doc.machine] : [];
+  if (!slugs.length) return "";
+  const names = doc.machineNames && doc.machineNames.length === slugs.length
+              ? doc.machineNames : slugs.map(() => doc.machineName || "");
+  return slugs.map((s, i) =>
+    `<a href="/machine/${encodeURIComponent(s)}">${esc(names[i] || s)}</a>`
+  ).join(" · ") + " · ";
+}
+
+/** The footer credits ArcadeRTFM, which is where all but a handful of the
+    scans come from. Anything else says so on the document itself. */
+const SOURCE_NAMES = { gamingdoc: "GamingDoc", console5: "Console5" };
+
+function sourceCredit(doc) {
+  if (!doc.source || !doc.sourcePage) return "";
+  const name = SOURCE_NAMES[doc.source] || doc.source;
+  return ` · scan from <a href="${esc(doc.sourcePage)}" target="_blank"` +
+         ` rel="noopener noreferrer">${esc(name)} ↗</a>`;
+}
+
 /** Machines like Asteroids carry 49 documents across a dozen types; grouping
     them by type is the difference between a list and something navigable. */
 function docSections(docs) {
@@ -299,9 +324,9 @@ async function reader(id) {
   app.innerHTML = `
     <h1>${esc(prettyTitle(doc.title))}</h1>
     <p class="sub">
-      ${doc.machineName ? `<a href="/machine/${encodeURIComponent(doc.machine)}">${esc(doc.machineName)}</a> · ` : ""}
+      ${machineLinks(doc)}
       ${doc.type ? esc(doc.type) + " · " : ""}${pages.length} pages${outline.length ? ` · ${outline.length} sections` : ""} ·
-      <a href="/pdf/${id}" target="_blank" rel="noopener">original scan ↗</a></p>
+      <a href="/pdf/${id}" target="_blank" rel="noopener">original scan ↗</a>${sourceCredit(doc)}</p>
 
     <div class="docbar">
       <input id="find" placeholder="Search inside this manual…" autocomplete="off">
