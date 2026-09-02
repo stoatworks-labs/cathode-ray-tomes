@@ -6,7 +6,7 @@
  "machine": "mhavoc",
  "drawing": "TM-252 IC parts list, 1st and 2nd printings",
  "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
- "coverage": "60 devices from the TM-252 IC parts list. Both printings are here and they contradict each other nowhere, but they read different parts of the list, so most devices rest on a single printing and the board is flagged as single-source. The designators are printed column-first \u2014 2L, not L2 \u2014 which is the convention Atari's boards switch to from 1983, and the row alphabet goes with it: this board uses letters the earlier boards skip. Both are recorded on the board rather than inferred, because 2L and L2 are the same cell written two ways and only the silkscreen settles which. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+ "coverage": "60 devices: 60 read from the drawings and 0 recovered from the IC parts lists, taken only where 1 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
  "singleSource": true,
  "size": {
   "w": 366,

@@ -614,6 +614,16 @@ lookup shows a device's note under its row, styled as a warning when it reads
 like one. 35 boards carry 77 open questions between them. Nothing here has been
 checked against a physical board, and now the page says so where it matters.
 
+**A cell nothing could settle is in the lookup now, marked contested.** It used
+to vanish — not on the map, not in the lookup — so "what is at 12B" answered
+"nothing matches" when the honest answer is "one of these two, and here is why
+we could not say which". `merge_ic_locations --apply` writes every unplaced cell
+it dropped as a split between printings, a collision within one printing, or two
+designators claiming one cell into the lookup with `part: "contested"`, the
+candidate readings in the note, and `source: "contested, not placed"`. It counts
+for nothing and places nothing; it only answers. 54 across the site. The
+Asteroids generator writes them too, since it runs the same merge.
+
 When a doubt is about a specific cell, put it in that device's `note` in
 `data/chips/<slug>.json` as well as in the read file — the lookup is where a
 reader asking about that cell will look, and the read file is where the next

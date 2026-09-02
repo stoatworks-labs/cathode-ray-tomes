@@ -6,7 +6,7 @@
  "machine": "tempest",
  "drawing": "TM-190 IC parts lists, Auxiliary PCB Assembly figure (4 printings)",
  "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
- "coverage": "23 devices from the Auxiliary PCB Assembly parts list in TM-190, taken only where two or more of its four printings agree \u2014 they agree on all 23 with no split at all. This is a separate PCB from the Analog Vector-Generator board mapped as 'tempest': the two share 16 grid positions and agree on none of them, so A4 here is a 74LS191 and A4 there is a 74LS08. No component-location drawing has been read for this board, so the grid spacing is nominal. A board map, not a bill of materials.",
+ "coverage": "23 devices: 23 read from the drawings and 0 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
  "singleSource": false,
  "size": {
   "w": 188,

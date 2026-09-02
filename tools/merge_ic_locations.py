@@ -117,7 +117,9 @@ def harvest(doc_ids, figure=None):
             agreed[des] = (best_spelling(*v.values()), len(v))
         else:
             split[des] = v
-    return agreed, split, len(per)
+    # Collisions travel out with the result now rather than only being
+    # printed, so the caller can put them on the page — see main().
+    return agreed, split, len(per), dict(collisions)
 
 
 def main():
@@ -143,7 +145,7 @@ def main():
     # board, never inferred from a designator — see tools/designators.py.
     transposed = bool(board["grid"].get("transposed"))
 
-    agreed, split, ndocs = harvest(a.docs, a.figure)
+    agreed, split, ndocs, in_doc = harvest(a.docs, a.figure)
     print(f"{ndocs} printings, {len(agreed)} designators agreed, "
           f"{len(split)} split between printings\n")
 
@@ -278,8 +280,40 @@ def main():
         out[cell] = {"part": part, "section": prev.get("section", ""),
                      "note": note.strip(),
                      "otherRev": prev.get("otherRev"), "source": src}
+    # A cell nothing could settle used to vanish: not on the map, not in the
+    # lookup, so a reader asking "what is at 12B" got "nothing matches" when
+    # the honest answer is "one of these two, and here is why we could not
+    # say which". Now it gets that. The entry is marked contested rather than
+    # given a part, so it counts for nothing and places nothing, and the
+    # candidates are in the note where the lookup will show them.
+    contested = {}
+    for des, v in split.items():
+        cell, _ = cell_and_span(des, transposed)
+        if cell and cell not in board["ics"]:
+            rs = sorted({p for p in v.values()})
+            contested[cell] = (rs, f"the {len(v)} printings disagree: "
+                               f"{' / '.join(rs)}")
+    for cell, d1, p1, d2, p2 in collided:
+        if cell not in board["ics"]:
+            contested[cell] = ([p1, p2], f"two designators claim this cell — "
+                               f"{d1} as {p1}, {d2} as {p2}")
+    for des, hits in in_doc.items():
+        cell, _ = cell_and_span(des, transposed)
+        if cell and cell not in board["ics"] and cell not in contested:
+            rs = sorted({p for _, seen in hits for p in seen})
+            contested[cell] = (rs, f"the same parts list claims it twice: "
+                               f"{' / '.join(rs)}")
+    for cell, (rs, why) in contested.items():
+        out[cell] = {"part": "contested", "section": "",
+                     "note": (f"Not placed. Contested — {why}. Nothing here "
+                              f"can say which is right, so the map carries "
+                              f"neither. Not checked against a board."),
+                     "otherRev": None, "source": "contested, not placed"}
+    if contested:
+        print(f"      {len(contested)} contested cell(s) recorded in the lookup "
+              f"as unplaced")
     json.dump(dict(sorted(out.items())), open(cpath, "w"), indent=1)
-    offgrid_kept = len(out) - len(board["ics"])
+    offgrid_kept = len(out) - len(board["ics"]) - len(contested)
     print(f"\nwrote {bpath}\n      {cpath}"
           + (f"\n      {offgrid_kept} off-grid devices kept in the lookup"
              if offgrid_kept else ""))
