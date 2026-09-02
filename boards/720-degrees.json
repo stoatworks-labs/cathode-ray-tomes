@@ -1,0 +1,38 @@
+{
+ "slug": "720-degrees",
+ "name": "720 Degrees",
+ "mfr": "Atari",
+ "year": "1986",
+ "machine": "720",
+ "drawing": "TM-292 IC parts list",
+ "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
+ "coverage": "11 devices from the TM-292 IC parts list \u2014 the whole of what its one printing yields, not a sample of a longer list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+ "singleSource": true,
+ "size": {
+  "w": 366,
+  "h": 199
+ },
+ "grid": {
+  "rows": "PMLKHFDBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 18.0,
+  "rotation": 90,
+  "cols": 13,
+  "transposed": true
+ },
+ "ics": {
+  "10F": "74LS244",
+  "13A": "74LS74",
+  "13K": "7406",
+  "1D": "74S08",
+  "1H": "74LS245",
+  "1M": "74LS244",
+  "2B": "74LS153",
+  "2L": "74LS139",
+  "2P": "74LS374",
+  "4H": "74LS273",
+  "5B": "74S08"
+ }
+}

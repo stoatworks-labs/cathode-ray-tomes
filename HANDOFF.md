@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 37, across 32 machines · 2,242 devices |
+| Board maps | 45, across 39 machines · 2,455 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -167,7 +167,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 37 boards and 2,242 devices.
+whole site is 45 boards and 2,455 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -285,10 +285,28 @@ only 3 designators and split on 8, which is the signature of a manual covering
 more than one PCB — the Red Baron problem. It needs `--figure`, and the figure
 headings need looking at first. 45 designators are waiting behind it.
 
-Also unread, and cheap if the lead layout is extended: **Return of the Jedi (37),
-Super Sprint (36), Pole Position II (47), APB (27), Paperboy (22), Xevious (19),
-RoadBlasters (16), 720 (12)** — all digit-first, all single-printing, all parsing
-today but not yet built.
+**Atari System 1 turned out to be two boards, and is published as two.** Its two
+manuals document different PCBs rather than two printings of one — TM-286 the LSI
+Main PCB (45 devices) and TM-27 the Regulator/Audio III (30). That is why merging
+them agreed on 3 designators and split on 8. System 1 is a platform, not a game,
+so both maps apply to Marble Madness, Peter Pack Rat and Indiana Jones alike.
+
+Return of the Jedi (37), Super Sprint (31), APB (23), Paperboy (20), Road Blasters
+(16) and 720 Degrees (11) are published, all single-printing and flagged.
+
+**Two are deliberately withheld, and should stay withheld until someone looks at
+the figures.** Pole Position II reports 8 designator collisions and Xevious 1, and
+neither document has figure headings the FIGURE regex can anchor on — their
+contents pages OCR into fragments, and Pole Position II is a conversion-kit
+supplement (CO-218-12) whose text is mostly "See Figure X in TM-218". Collisions
+with no way to attribute a row to a PCB is the Red Baron failure exactly, and
+`locations()` resolves a collision by last write. 47 and 19 designators are behind
+them.
+
+**Marble Madness and Championship Sprint are withheld for a different reason** —
+10 designators each, and Marble's overlap the System 1 main board on 2 cells while
+agreeing on none, so it is not clear which board its rows even describe. Ten
+devices of uncertain provenance is not a map.
 
 **Do not go looking for more machines to harvest from the drawings.** The
 technique is Atari-only, and the reason is not the parts-list format: Atari's designators

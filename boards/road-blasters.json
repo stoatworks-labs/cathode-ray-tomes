@@ -1,0 +1,43 @@
+{
+ "slug": "road-blasters",
+ "name": "Road Blasters",
+ "mfr": "Atari",
+ "year": "1987",
+ "machine": "roadblst",
+ "drawing": "TM-297 IC parts list",
+ "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
+ "coverage": "16 devices from the TM-297 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+ "singleSource": true,
+ "size": {
+  "w": 442,
+  "h": 161
+ },
+ "grid": {
+  "rows": "KFEDCBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 18.0,
+  "rotation": 90,
+  "cols": 16,
+  "transposed": true
+ },
+ "ics": {
+  "10C": "74LS02",
+  "10D": "74S74",
+  "13F": "74LS32",
+  "14F": "74LS259",
+  "14K": "74LS244",
+  "16D": "LM324",
+  "2F": "74LS174",
+  "3F": "74LS273",
+  "3K": "74LS08",
+  "4F": "74LS273",
+  "5C": "74LS244",
+  "6A": "74LS245",
+  "6D": "74LS153",
+  "8A": "74S260",
+  "8B": "7407",
+  "8E": "74LS153"
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "machine": "paperboy",
+ "name": "Paperboy",
+ "mfr": "Atari",
+ "year": "1984",
+ "drawing": "TM-274 IC parts list",
+ "sheets": {},
+ "notes": [
+  "Recovered by the lead layout \u2014 this manual prints its designators before the device rather than after it, which extract_ic_locations could not read until 2026-09. The row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
+  "Column-first designators, the post-1983 Atari convention, recorded in grid.transposed rather than inferred: 2L and L2 name the same cell and only the silkscreen says which is printed.",
+  "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
+ ],
+ "conflicts": [
+  "1 row rejected because the device name is not one the guard will stand behind."
+ ]
+}

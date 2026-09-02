@@ -1,0 +1,16 @@
+{
+ "machine": "atari-system-i",
+ "name": "Atari System 1 LSI Main PCB",
+ "mfr": "Atari",
+ "year": "1984",
+ "drawing": "TM-286 IC parts list, figure 4-5 (LSI Main PCB)",
+ "sheets": {},
+ "notes": [
+  "Recovered by the lead layout \u2014 this manual prints its designators before the device rather than after it, which extract_ic_locations could not read until 2026-09. The row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
+  "Atari System 1 is a hardware platform rather than a game \u2014 Marble Madness, Peter Pack Rat and Indiana Jones all run on it \u2014 so this map applies to every game that uses the board.",
+  "The corpus holds two System 1 manuals and they document two DIFFERENT PCBs, not two printings of one: TM-286 covers this LSI Main PCB and TM-27 the Regulator/Audio III. Merging them as printings of the same board agreed on 3 designators and split on 8, which is what sent us looking at the figure headings.",
+  "Column-first designators, the post-1983 Atari convention, recorded in grid.transposed rather than inferred: 2L and L2 name the same cell and only the silkscreen says which is printed.",
+  "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
+ ],
+ "conflicts": []
+}

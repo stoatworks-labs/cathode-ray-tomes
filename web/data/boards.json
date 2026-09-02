@@ -1,5 +1,33 @@
 [
  {
+  "slug": "720-degrees",
+  "name": "720 Degrees",
+  "mfr": "Atari",
+  "year": "1986",
+  "machine": "720",
+  "drawing": "TM-292 IC parts list",
+  "devices": 11,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 11 devices from the TM-292 IC parts list \u2014 the whole of what its one printing yields, not a sample of a longer list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/720-degrees/720-degrees-ibom.html",
+  "bom": "/boards/720-degrees/bom.csv"
+ },
+ {
+  "slug": "apb",
+  "name": "APB",
+  "mfr": "Atari",
+  "year": "1987",
+  "machine": "apb",
+  "drawing": "TM-295 IC parts list",
+  "devices": 23,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 23 devices from the TM-295 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/apb/apb-ibom.html",
+  "bom": "/boards/apb/bom.csv"
+ },
+ {
   "slug": "asteroids-03",
   "name": "Asteroids (034986-03)",
   "mfr": "Atari",
@@ -68,6 +96,34 @@
   "status": "92 devices: 8 read from the drawings and 84 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
   "ibom": "/boards/asteroids-deluxe/asteroids-deluxe-ibom.html",
   "bom": "/boards/asteroids-deluxe/bom.csv"
+ },
+ {
+  "slug": "atari-system-1-main",
+  "name": "Atari System 1 LSI Main PCB",
+  "mfr": "Atari",
+  "year": "1984",
+  "machine": "atari-system-i",
+  "drawing": "TM-286 IC parts list, figure 4-5 (LSI Main PCB)",
+  "devices": 45,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 45 devices from the LSI Main PCB parts list in TM-286. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/atari-system-1-main/atari-system-1-main-ibom.html",
+  "bom": "/boards/atari-system-1-main/bom.csv"
+ },
+ {
+  "slug": "atari-system-1-regulator-audio",
+  "name": "Atari System 1 Regulator/Audio III PCB",
+  "mfr": "Atari",
+  "year": "1984",
+  "machine": "atari-system-i",
+  "drawing": "TM-27 IC parts list, figure 4-6 (A043046-01 Regulator/Audio III PCB)",
+  "devices": 30,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 30 devices from the Regulator/Audio III PCB parts list in TM-27. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/atari-system-1-regulator-audio/atari-system-1-regulator-audio-ibom.html",
+  "bom": "/boards/atari-system-1-regulator-audio/bom.csv"
  },
  {
   "slug": "battlezone",
@@ -333,6 +389,20 @@
   "bom": "/boards/outlaw/bom.csv"
  },
  {
+  "slug": "paperboy",
+  "name": "Paperboy",
+  "mfr": "Atari",
+  "year": "1984",
+  "machine": "paperboy",
+  "drawing": "TM-274 IC parts list",
+  "devices": 20,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 20 devices from the TM-274 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/paperboy/paperboy-ibom.html",
+  "bom": "/boards/paperboy/bom.csv"
+ },
+ {
   "slug": "pole-position",
   "name": "Pole Position",
   "mfr": "Atari",
@@ -403,6 +473,34 @@
   "bom": "/boards/red-baron-auxiliary/bom.csv"
  },
  {
+  "slug": "return-of-the-jedi",
+  "name": "Return of the Jedi",
+  "mfr": "Atari",
+  "year": "1984",
+  "machine": "jedi",
+  "drawing": "TM-227 IC parts list",
+  "devices": 37,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 37 devices from the TM-227 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/return-of-the-jedi/return-of-the-jedi-ibom.html",
+  "bom": "/boards/return-of-the-jedi/bom.csv"
+ },
+ {
+  "slug": "road-blasters",
+  "name": "Road Blasters",
+  "mfr": "Atari",
+  "year": "1987",
+  "machine": "roadblst",
+  "drawing": "TM-297 IC parts list",
+  "devices": 16,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 16 devices from the TM-297 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/road-blasters/road-blasters-ibom.html",
+  "bom": "/boards/road-blasters/bom.csv"
+ },
+ {
   "slug": "sky-diver",
   "name": "Sky Diver",
   "mfr": "Atari",
@@ -471,6 +569,20 @@
   "status": "18 devices, every one from the IC parts list in TM-118. Grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing here has measured the board. A board map, not a bill of materials.",
   "ibom": "/boards/super-breakout/super-breakout-ibom.html",
   "bom": "/boards/super-breakout/bom.csv"
+ },
+ {
+  "slug": "super-sprint",
+  "name": "Super Sprint",
+  "mfr": "Atari",
+  "year": "1986",
+  "machine": "ssprint",
+  "drawing": "TM-290 IC parts list",
+  "devices": 31,
+  "netsTraced": false,
+  "singleSource": true,
+  "status": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list. 31 devices from the TM-290 IC parts list. Only one printing of this manual is in the corpus, so nothing here is cross-checked against a second source and the whole map is worth what a single printing is worth. The designators are printed column-first \u2014 2L, not L2 \u2014 the convention Atari takes up from 1983. Which way round they are is recorded on the board, not inferred, because 2L and L2 name the same cell. No component-location drawing has been read, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+  "ibom": "/boards/super-sprint/super-sprint-ibom.html",
+  "bom": "/boards/super-sprint/bom.csv"
  },
  {
   "slug": "tempest",
