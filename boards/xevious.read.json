@@ -12,6 +12,7 @@
   "No component-location drawing has been read. The grid spacing is nominal."
  ],
  "conflicts": [
-  "1 designator(s) dropped as claimed twice within the one printing \u2014 with a single printing there is nothing to arbitrate with. They are listed by the merge and reproduced in the commit."
+  "1 designator(s) dropped as claimed twice within the one printing \u2014 with a single printing there is nothing to arbitrate with. They are listed by the merge and reproduced in the commit.",
+  "MAME's ROM map for this machine was NOT applied. MAME names each ROM by the board it sits on, and this hardware is more than one board: 8 of MAME's 25 positions fall off this grid and their kinds include 'pals_vidbd' and 'sub-CPU program' \u2014 MAME is naming a video board and a sub-CPU board this map is not. Xevious is Namco multi-board hardware. The site's MAME ROM-map page for the machine is unaffected \u2014 it never claimed a PCB \u2014 but nothing from it is placed on this map until someone attributes MAME's positions to a board."
  ]
 }

@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 50, across 41 machines · 2,672 devices |
+| Board maps | 50, across 41 machines · 2,726 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -180,7 +180,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 50 boards and 2,672 devices.
+whole site is 50 boards and 2,726 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -564,6 +564,22 @@ and only where the map had nothing. The three cells where a parts list and
 MAME disagree are untouched and stay logged. MAME was already a published
 source on this site with its own caveat; this is that source reaching the
 board map with the same label, not a new one mixed in quietly.
+
+**MAME's maps for the later, column-first boards are mostly of a different PCB,
+and the tool now says so instead of guessing.** 1,009 of MAME's 1,469 maps are
+`number-letter`, and ten transposed boards have one. Tested before applying:
+where MAME's ROM cells land on a map, is the device there memory or logic? Pole
+Position: twelve occupied cells, **twelve logic**, across seven agreeing
+printings — that is not OCR, it is another board's grid, because Namco's Pole
+Position is CPU-plus-video hardware and the map is the CPU board alone. Pole
+Position II nine for nine. 720 Degrees and APB share an identical `2B =
+74LS153` against a ROM, and Road Blasters has 24 of 34 positions on rows the map
+does not have. Xevious's off-grid ROMs are literally tagged `pals_vidbd`. None of
+those six took anything; each carries the reasoning in its read file. The four
+with zero conflicts and nothing off-grid that points elsewhere did: Return of the
+Jedi 13, Food Fight 12, Quantum 9, Super Sprint 20 — 54 devices. Millipede and
+Paperboy are refused outright: column-first boards with letter-first MAME maps,
+and one convention read as the other transposes a map without saying so.
 
 **Asteroids -05 and -06 take the parts lists now too, via -03.** Written in early
 designators, the parts lists cannot be merged onto a late board directly. So the

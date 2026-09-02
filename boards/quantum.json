@@ -6,7 +6,7 @@
  "machine": "quantum",
  "drawing": "TM-221 IC parts list",
  "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
- "coverage": "49 devices from the TM-221 IC parts list. Quantum is General Computer Company's design built and sold by Atari, and its manual follows Atari's house format, which is why it reads at all. Only one printing is in the corpus. The designators are printed column-first \u2014 2L, not L2 \u2014 which is the convention Atari's boards switch to from 1983, and the row alphabet goes with it: this board uses letters the earlier boards skip. Both are recorded on the board rather than inferred, because 2L and L2 are the same cell written two ways and only the silkscreen settles which. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+ "coverage": "49 devices from the TM-221 IC parts list. Quantum is General Computer Company's design built and sold by Atari, and its manual follows Atari's house format, which is why it reads at all. Only one printing is in the corpus. The designators are printed column-first \u2014 2L, not L2 \u2014 which is the convention Atari's boards switch to from 1983, and the row alphabet goes with it: this board uses letters the earlier boards skip. Both are recorded on the board rather than inferred, because 2L and L2 are the same cell written two ways and only the silkscreen settles which. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials. 9 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "singleSource": true,
  "size": {
   "w": 290,
@@ -31,7 +31,15 @@
   "1F": "74LS244",
   "1N": "74LS245",
   "1P": "74LS245",
+  "2E": "136016-201",
+  "2F": "136016-102",
+  "2H": "136016-203",
+  "2L": "136016-105",
   "2R": "74LS74",
+  "3E": "136016-206",
+  "3F": "136016-107",
+  "3H": "136016-208",
+  "3L": "136016-110",
   "3P": "74LS245",
   "4D": "74LS245",
   "4E": "74LS245",
@@ -48,6 +56,7 @@
   "5N": "74LS273",
   "5P": "74LS74",
   "5R": "74LS393",
+  "6H": "136002-125",
   "6J": "74LS42",
   "6K": "74LS109",
   "6L": "74LS14",
@@ -75,6 +84,8 @@
  },
  "spans": {
   "4D": "4D/E",
-  "4E": "4E/F"
+  "4E": "4E/F",
+  "2H": "2H/J",
+  "3H": "3H/J"
  }
 }

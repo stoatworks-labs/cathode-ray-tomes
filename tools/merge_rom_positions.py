@@ -17,36 +17,53 @@ from, and only where the map has nothing. A cell the parts list already claims
 is never touched: the three where MAME and a parts list disagree are logged in
 the read files and stay logged, not overridden.
 
-Letter-first boards only. MAME's rommaps carry a `style` and the early Atari
-boards are all `letter-number`; a transposed board would need its cells read
-the other way and none of the fifteen is one.
+MAME's maps carry a `style`: `letter-number` for the early Atari boards (E2,
+FH1) and `number-letter` for the later ones (2A, 5JK). Each is read in the
+convention the board declares in `grid.transposed`, and a map whose style
+contradicts the board is refused rather than guessed at — Millipede's and
+Paperboy's boards are column-first but MAME's maps for them are letter-first,
+and the safe answer to that is no answer.
 """
 import argparse, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
-from designators import cell_and_span
+from designators import cell_and_span, parse as parse_desig
 
-CELL = re.compile(r"^([A-Z]+)(\d{1,2})$")
+LETTER_FIRST = re.compile(r"^([A-Z]+)(\d{1,2})$")     # E2, FH1
+NUMBER_FIRST = re.compile(r"^(\d{1,2})([A-Z]+)$")     # 2A, 5JK
 
 
-def rom_cells(machine):
-    """{cell: (part, span, file)} from MAME's map, spans keyed at first row."""
+def rom_cells(machine, transposed):
+    """{cell: (part, span, file, kind)} from MAME's map, spans keyed at first row."""
     p = os.path.join(ROOT, "data", "rommap", machine + ".json")
     if not os.path.exists(p):
         return {}
     rm = json.load(open(p))
-    if rm.get("style") != "letter-number":
-        raise SystemExit(f"{machine}: rommap style {rm.get('style')!r} — "
-                         f"this tool reads letter-first cells only")
+    want = "number-letter" if transposed else "letter-number"
+    if rm.get("style") != want:
+        raise SystemExit(
+            f"{machine}: board is {'column' if transposed else 'row'}-first but "
+            f"MAME's map is {rm.get('style')!r} — refusing to read one "
+            f"convention as the other")
     out = {}
     for raw, dev in rm["devices"].items():
-        m = CELL.match(raw.upper())
-        if not m:
+        raw = raw.upper()
+        if transposed:
+            m = NUMBER_FIRST.match(raw)
+            if not m:
+                continue
+            col, letters = m.group(1), m.group(2)
+            desig = col + "/".join(letters)          # 5JK -> 5J/K
+        else:
+            m = LETTER_FIRST.match(raw)
+            if not m:
+                continue
+            letters, col = m.group(1), m.group(2)
+            desig = "/".join(letters) + col          # FH1 -> F/H1
+        cell, span = cell_and_span(desig, transposed)
+        if not cell:
             continue
-        letters, col = m.group(1), m.group(2)
-        desig = "/".join(letters) + col if len(letters) > 1 else raw.upper()
-        cell, span = cell_and_span(desig, False)
         part = dev["file"].rsplit(".", 1)[0]       # 035224.e2 -> 035224
         out[cell] = (part, span, dev["file"], dev.get("kind", "rom"))
     return out
@@ -63,18 +80,26 @@ def main():
     for slug in a.slugs:
         bpath = os.path.join(ROOT, "boards", slug + ".json")
         board = json.load(open(bpath))
-        if board["grid"].get("transposed"):
-            print(f"{slug}: transposed grid — skipped"); continue
+        transposed = bool(board["grid"].get("transposed"))
         machine = registered.get(slug, {}).get("machine") or board.get("machine")
         rows = board["grid"]["rows"]
         cols = board["grid"].get("cols")
-        cells = rom_cells(machine)
+        cells = rom_cells(machine, transposed)
         added, kept, offgrid = {}, [], []
         for cell, (part, span, f, kind) in sorted(cells.items()):
             if cell in board["ics"]:
                 kept.append(cell); continue
-            if cell[0] not in rows or (cols and int(cell[1:]) > cols):
+            parsed = parse_desig(cell, transposed)
+            if not parsed or parsed[0][0] not in rows or (cols and parsed[1] > cols):
                 offgrid.append(cell); continue
+            # A span's rows must all be on the grid and adjacent — the same
+            # rule merge_ic_locations and build_board enforce.
+            if span:
+                sp = parse_desig(span, transposed)
+                idx = sorted(rows.index(r) for r in sp[0] if r in rows) if sp else []
+                if not sp or len(idx) != len(sp[0]) or \
+                        idx != list(range(idx[0], idx[0] + len(idx))):
+                    offgrid.append(span); continue
             added[cell] = (part, span, f, kind)
         print(f"{slug:<20} {len(added):>2} ROM position(s) to add, "
               f"{len(kept)} already on the map, {len(offgrid)} off-grid")

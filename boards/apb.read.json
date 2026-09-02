@@ -12,6 +12,7 @@
  ],
  "conflicts": [
   "3B is not placed. It reads as the span 3B/F, a device across rows B to F \u2014 five rows apart on this grid, where every other span on the board (1B/C, 3C/D, 3F/H, 4E/F) covers two adjacent rows. build_board rejected it rather than drawing a part across five rows. It is most likely an OCR of 3B/C, but that is inference and the map does not carry it.",
-  "1 designator rejected as off-grid; 2 rows rejected on the device name."
+  "1 designator rejected as off-grid; 2 rows rejected on the device name.",
+  "MAME's ROM map for this machine was NOT applied. MAME names each ROM by the board it sits on, and this hardware is more than one board: MAME puts a ROM at 2B where the parts list reads a 74LS153 \u2014 the same cell and the same part as 720 Degrees, which is the same System 2 hardware \u2014 and 9 positions fall on rows this map does not have (J, N, S, T). The site's MAME ROM-map page for the machine is unaffected \u2014 it never claimed a PCB \u2014 but nothing from it is placed on this map until someone attributes MAME's positions to a board."
  ]
 }

@@ -11,6 +11,7 @@
   "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
  ],
  "conflicts": [
-  "1 row rejected on the device name."
+  "1 row rejected on the device name.",
+  "MAME's ROM map for this machine was NOT applied. MAME names each ROM by the board it sits on, and this hardware is more than one board: MAME puts a ROM at 2B where the parts list reads a 74LS153, and 13 of its positions are on rows this map does not have at all (C, J, N, R, S, T). Atari System 2 carries its ROMs on a separate board from the logic the parts-list grid reached. The site's MAME ROM-map page for the machine is unaffected \u2014 it never claimed a PCB \u2014 but nothing from it is placed on this map until someone attributes MAME's positions to a board."
  ]
 }

@@ -10,5 +10,7 @@
   "Column-first designators, the post-1983 Atari convention, recorded in grid.transposed rather than inferred: 2L and L2 name the same cell and only the silkscreen says which is printed.",
   "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
  ],
- "conflicts": []
+ "conflicts": [
+  "MAME's ROM map for this machine was NOT applied. MAME names each ROM by the board it sits on, and this hardware is more than one board: 24 of MAME's 34 positions fall on rows this map does not have (E, J, L, M, N, P, R, S) \u2014 most of the map is on a board the parts-list grid never reached. The site's MAME ROM-map page for the machine is unaffected \u2014 it never claimed a PCB \u2014 but nothing from it is placed on this map until someone attributes MAME's positions to a board."
+ ]
 }

@@ -6,7 +6,7 @@
  "machine": "foodf",
  "drawing": "TM-229 IC parts list (3 printings)",
  "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
- "coverage": "27 devices from the TM-229 IC parts list, taken only where two or more of its three printings agree. One device previously here was shared with the EMI Shield PCB figure and is withdrawn. No component-location drawing has been read for this board, so the grid spacing is nominal. A board map, not a bill of materials.",
+ "coverage": "27 devices from the TM-229 IC parts list, taken only where two or more of its three printings agree. One device previously here was shared with the EMI Shield PCB figure and is withdrawn. No component-location drawing has been read for this board, so the grid spacing is nominal. A board map, not a bill of materials. 12 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "singleSource": false,
  "size": {
   "w": 315,
@@ -32,9 +32,12 @@
   "2D": "74S157",
   "2H": "74LS74",
   "2K": "74LS74",
+  "2P": "136020-112",
   "3B": "74LS157",
   "3P": "74LS157",
   "4C": "74LS86",
+  "4D": "136020-111",
+  "4E": "136020-110",
   "4F": "74LS273",
   "4K": "74LS367",
   "4L": "74LS157",
@@ -46,12 +49,22 @@
   "6B": "74LS273",
   "6H": "74LS157",
   "6K": "74LS273",
+  "6L": "136020-109",
   "7M": "74LS273",
+  "8C": "136020-301",
+  "8D": "136020-303",
+  "8E": "136020-305",
+  "8F": "136020-307",
   "8H": "74LS245",
   "8M": "74LS244",
-  "8N": "74LS244"
+  "8N": "74LS244",
+  "9C": "136020-302",
+  "9D": "136020-204",
+  "9E": "136020-306",
+  "9F": "136020-208"
  },
  "spans": {
-  "8N": "8N/P"
+  "8N": "8N/P",
+  "6L": "6L/M"
  }
 }
