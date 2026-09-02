@@ -10,6 +10,294 @@ const api = async (path) => {
   return r.json();
 };
 
+/* ---------- list navigation: letters and pages ----------
+   The corpus is 7,823 machines and 1,469 ROM maps. A list that shows the
+   first 150 and stops is not a list, so every long one gets the same two
+   things: an A–Z bar and pages of PAGE_SIZE. Both live in the query string,
+   so the back button, a reload and a shared link all land on the same page. */
+const PAGE_SIZE = 50;
+const LETTERS = ["#", ..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+
+/** The letter a name files under: A–Z, or "#" for a name that starts with a
+    digit or a symbol. Leading quotes and brackets are skipped, so "'88 Games"
+    files under #. Mirrored in src/index.js, which pages the machine list. */
+const initialOf = (name) => {
+  const c = String(name || "").replace(/^[^a-z0-9]+/i, "").charAt(0).toUpperCase();
+  return /[A-Z]/.test(c) ? c : "#";
+};
+const nameKey = (name) => String(name || "").replace(/^[^a-z0-9]+/i, "").toLowerCase();
+const byName = (get) => (a, b) =>
+  nameKey(get(a)).localeCompare(nameKey(get(b)), "en", { numeric: true });
+
+const param = (k) => new URLSearchParams(location.search).get(k) || "";
+/** Write list state into the URL without adding a history entry. */
+function setParams(obj) {
+  const url = new URL(location.href);
+  for (const [k, v] of Object.entries(obj)) v ? url.searchParams.set(k, String(v)) : url.searchParams.delete(k);
+  history.replaceState({}, "", url);
+}
+
+/** A–Z bar. `present` is the set of letters with anything under them; the
+    rest are dimmed rather than dropped, so the bar keeps its shape. */
+function letterBar(active, present) {
+  return `<div class="letters" role="navigation" aria-label="By letter">
+    <button data-letter="" class="${active ? "" : "on"}">All</button>
+    ${LETTERS.map((l) => `<button data-letter="${l}" class="${l === active ? "on" : ""}"
+       ${present && !present.has(l) ? "disabled" : ""}>${l}</button>`).join("")}
+  </div>`;
+}
+
+/** Prev / first … window round the current page … last / Next, plus the
+    range on show. Nothing when it all fits on one page. */
+function pagerHtml(page, total, size = PAGE_SIZE) {
+  const pages = Math.max(1, Math.ceil(total / size));
+  if (pages <= 1) return "";
+  const from = (page - 1) * size + 1, to = Math.min(total, page * size);
+  const nums = [...new Set([1, pages, page - 2, page - 1, page, page + 1, page + 2]
+    .filter((n) => n >= 1 && n <= pages))].sort((a, b) => a - b);
+  let out = "", prev = 0;
+  for (const n of nums) {
+    if (n - prev > 1) out += '<span class="gap">…</span>';
+    out += `<button data-page="${n}" class="${n === page ? "on" : ""}" ${n === page ? 'aria-current="page"' : ""}>${n}</button>`;
+    prev = n;
+  }
+  return `<div class="pager" role="navigation" aria-label="Pages">
+    <button data-page="${page - 1}" ${page <= 1 ? "disabled" : ""}>‹ Prev</button>
+    ${out}
+    <button data-page="${page + 1}" ${page >= pages ? "disabled" : ""}>Next ›</button>
+    <span class="range">${from.toLocaleString()}–${to.toLocaleString()} of ${total.toLocaleString()}</span>
+  </div>`;
+}
+
+/** One click handler for a container's letter and page buttons. */
+function wireNav(box, onChange) {
+  box.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-letter], button[data-page]");
+    if (!b || b.disabled || !box.contains(b)) return;
+    if (b.dataset.letter !== undefined) onChange({ letter: b.dataset.letter, page: 1 });
+    else onChange({ page: +b.dataset.page });
+  });
+}
+
+/** Bring a list back to the top of the window after a page change, under the
+    sticky header (scroll-margin-top does the offset). */
+const scrollToList = (box) => box.scrollIntoView({ block: "start" });
+
+/**
+ * A list held whole in memory, shown by letter and page. `name` picks the
+ * field the letters file under, `row` renders one entry, `filter` (optional)
+ * says whether an entry matches a typed query.
+ */
+function pagedList(box, items, { name, row, filter, empty = "Nothing under that letter." }) {
+  let letter = param("letter").toUpperCase(), page = Math.max(1, +param("page") || 1), q = param("q");
+  if (!LETTERS.includes(letter)) letter = "";
+  const sorted = [...items].sort(byName(name));
+  function draw() {
+    let rows = sorted;
+    if (q && filter) rows = rows.filter((it) => filter(it, q.toLowerCase()));
+    const present = new Set(rows.map((it) => initialOf(name(it))));
+    if (letter) rows = rows.filter((it) => initialOf(name(it)) === letter);
+    page = Math.min(page, Math.max(1, Math.ceil(rows.length / PAGE_SIZE)));
+    const slice = rows.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    box.innerHTML = `${letterBar(letter, present)}
+      ${slice.length ? `<div class="rows">${slice.map(row).join("")}</div>` : `<div class="empty">${empty}</div>`}
+      ${pagerHtml(page, rows.length)}`;
+  }
+  wireNav(box, (ch) => {
+    if (ch.letter !== undefined) letter = ch.letter;
+    page = ch.page;
+    setParams({ letter, page: page > 1 ? page : "" });
+    draw();
+    scrollToList(box);
+  });
+  draw();
+  return { setQuery(nq) { q = nq; page = 1; setParams({ q, page: "" }); draw(); } };
+}
+
+/* ---------- lightbox: a scan, full size, over the page ----------
+   The sheets are shown inline at column width, which is enough to see that a
+   page is a schematic and not enough to read a designator on it. Clicking one
+   opens it over the page at whatever size the reader wants: wheel or pinch to
+   zoom, drag to pan, double-click for 1:1, arrow keys for the next sheet. */
+let lb = null;
+
+function ensureLightbox() {
+  if (lb) return lb;
+  const root = document.createElement("div");
+  root.className = "lightbox";
+  root.hidden = true;
+  root.setAttribute("role", "dialog");
+  root.setAttribute("aria-label", "Enlarged scan");
+  root.innerHTML = `
+    <div class="lb-bar">
+      <span class="lb-title"></span><span class="grow"></span>
+      <button data-lb="prev" title="Previous sheet (←)">‹</button>
+      <span class="lb-count"></span>
+      <button data-lb="next" title="Next sheet (→)">›</button>
+      <span class="lb-sep"></span>
+      <button data-lb="zo" title="Zoom out (−)">−</button>
+      <button data-lb="zi" title="Zoom in (+)">+</button>
+      <button data-lb="fit" title="Fit to window (0)">fit</button>
+      <button data-lb="one" title="Actual size (1)">1:1</button>
+      <a data-lb="open" target="_blank" rel="noopener" title="Open the image on its own">open ↗</a>
+      <button data-lb="close" title="Close (Esc)">✕</button>
+    </div>
+    <div class="lb-stage"><img alt="" draggable="false"></div>`;
+  document.body.appendChild(root);
+  const stage = root.querySelector(".lb-stage");
+  const img = root.querySelector("img");
+  lb = { root, stage, img, items: [], i: 0, z: 1, x: 0, y: 0, nat: [0, 0] };
+
+  const paint = () => { img.style.transform = `translate(${lb.x}px,${lb.y}px) scale(${lb.z})`; };
+  const box = () => stage.getBoundingClientRect();
+  const clamp = (z) => Math.min(Math.max(z, 0.05), 16);
+  /** Zoom by `f` about a point given relative to the stage. */
+  lb.zoomAt = (f, cx, cy) => {
+    const nz = clamp(lb.z * f), k = nz / lb.z;
+    lb.x = cx - (cx - lb.x) * k; lb.y = cy - (cy - lb.y) * k; lb.z = nz; paint();
+  };
+  lb.fit = () => {
+    const r = box(); const [w, h] = lb.nat;
+    if (!w || !h) return;
+    // Opened before the overlay has a size (a tab in the background, a pane
+    // mid-resize): fit on the next frame instead of to a zero-width stage.
+    if (r.width < 32 || r.height < 32) { requestAnimationFrame(lb.fit); return; }
+    lb.z = clamp(Math.min((r.width - 16) / w, (r.height - 16) / h));
+    lb.x = (r.width - w * lb.z) / 2; lb.y = (r.height - h * lb.z) / 2; paint();
+  };
+  lb.one = (cx, cy) => {
+    if (cx === undefined) { const r = box(); cx = r.width / 2; cy = r.height / 2; }
+    lb.zoomAt(1 / lb.z, cx, cy);
+  };
+  lb.show = (i) => {
+    const n = lb.items.length;
+    lb.i = ((i % n) + n) % n;
+    const it = lb.items[lb.i];
+    root.querySelector(".lb-title").textContent = it.alt || "";
+    root.querySelector(".lb-count").textContent = n > 1 ? `${lb.i + 1} / ${n}` : "";
+    root.querySelector("[data-lb=open]").href = it.src;
+    root.querySelectorAll("[data-lb=prev],[data-lb=next]").forEach((b) => { b.disabled = n < 2; });
+    lb.nat = [it.w || 0, it.h || 0];
+    img.width = it.w || 0; img.height = it.h || 0;
+    img.src = it.src;
+    lb.fit();
+  };
+  // A sheet whose size was not known up front is fitted once it has loaded.
+  img.onload = () => {
+    if (!lb.nat[0] || !lb.nat[1]) { lb.nat = [img.naturalWidth, img.naturalHeight]; lb.fit(); }
+  };
+
+  let moved = false;
+  root.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-lb]");
+    if (b) {
+      const r = box();
+      switch (b.dataset.lb) {
+        case "close": closeLightbox(); break;
+        case "prev": lb.show(lb.i - 1); break;
+        case "next": lb.show(lb.i + 1); break;
+        case "zi": lb.zoomAt(1.25, r.width / 2, r.height / 2); break;
+        case "zo": lb.zoomAt(1 / 1.25, r.width / 2, r.height / 2); break;
+        case "fit": lb.fit(); break;
+        case "one": lb.one(); break;
+        default: return;               // the open link is a real link
+      }
+      e.preventDefault();
+      return;
+    }
+    // A click on the backdrop — not a drag that ended there — closes it.
+    if (e.target === stage && !moved) closeLightbox();
+  });
+  stage.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    const r = box();
+    // A trackpad pinch arrives as a ctrl+wheel with small deltas; treat it as
+    // continuous. A mouse wheel clicks in bigger, fixed steps.
+    const f = e.ctrlKey ? Math.exp(-e.deltaY / 100) : (e.deltaY < 0 ? 1.15 : 1 / 1.15);
+    lb.zoomAt(f, e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+
+  // One pointer drags; two pinch (and drag by their midpoint).
+  const pts = new Map();
+  let start = null, pinch = null;
+  const mid = () => {
+    const [a, b] = [...pts.values()];
+    return { x: (a[0] + b[0]) / 2, y: (a[1] + b[1]) / 2, d: Math.hypot(a[0] - b[0], a[1] - b[1]) };
+  };
+  stage.addEventListener("pointerdown", (e) => {
+    stage.setPointerCapture(e.pointerId);
+    pts.set(e.pointerId, [e.clientX, e.clientY]);
+    moved = false;
+    if (pts.size === 1) start = { x: lb.x, y: lb.y, px: e.clientX, py: e.clientY };
+    else if (pts.size === 2) { const m = mid(); pinch = { ...m, x0: lb.x, y0: lb.y }; }
+    stage.classList.add("drag");
+  });
+  stage.addEventListener("pointermove", (e) => {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, [e.clientX, e.clientY]);
+    if (pts.size === 1 && start) {
+      const dx = e.clientX - start.px, dy = e.clientY - start.py;
+      if (Math.abs(dx) + Math.abs(dy) > 3) moved = true;
+      lb.x = start.x + dx; lb.y = start.y + dy; paint();
+    } else if (pts.size === 2 && pinch) {
+      moved = true;
+      const m = mid(), r = box();
+      lb.x += m.x - pinch.x; lb.y += m.y - pinch.y;
+      if (pinch.d > 0) lb.zoomAt(m.d / pinch.d, m.x - r.left, m.y - r.top); else paint();
+      pinch = { ...pinch, ...m };
+    }
+  });
+  const up = (e) => {
+    pts.delete(e.pointerId);
+    if (pts.size === 1) {
+      const [[x, y]] = pts.values();
+      start = { x: lb.x, y: lb.y, px: x, py: y }; pinch = null;
+    } else if (!pts.size) { start = null; pinch = null; stage.classList.remove("drag"); }
+  };
+  stage.addEventListener("pointerup", up);
+  stage.addEventListener("pointercancel", up);
+  stage.addEventListener("dblclick", (e) => {
+    const r = box();
+    if (Math.abs(lb.z - 1) < 0.01) lb.fit();
+    else lb.one(e.clientX - r.left, e.clientY - r.top);
+  });
+  document.addEventListener("keydown", (e) => {
+    if (root.hidden) return;
+    const r = box();
+    switch (e.key) {
+      case "Escape": closeLightbox(); break;
+      case "ArrowLeft": lb.show(lb.i - 1); break;
+      case "ArrowRight": lb.show(lb.i + 1); break;
+      case "+": case "=": lb.zoomAt(1.25, r.width / 2, r.height / 2); break;
+      case "-": case "_": lb.zoomAt(1 / 1.25, r.width / 2, r.height / 2); break;
+      case "0": lb.fit(); break;
+      case "1": lb.one(); break;
+      default: return;
+    }
+    e.preventDefault();
+  });
+  addEventListener("resize", () => { if (!root.hidden) lb.fit(); });
+  return lb;
+}
+
+/** `items` is [{src, alt, w, h}] — every sheet in the document, so the arrows
+    step between them — and `i` the one clicked. */
+function openLightbox(items, i) {
+  const l = ensureLightbox();
+  l.items = items;
+  l.root.hidden = false;
+  document.body.classList.add("lb-open");
+  l.show(i);
+  l.root.querySelector("[data-lb=close]").focus();
+}
+
+function closeLightbox() {
+  if (!lb || lb.root.hidden) return;
+  lb.root.hidden = true;
+  lb.img.removeAttribute("src");
+  document.body.classList.remove("lb-open");
+}
+
 /* ---------- theme ---------- */
 const themeBtn = document.getElementById("theme");
 const applyTheme = (t) => {
@@ -38,8 +326,15 @@ const routes = [
   [/^\/submit\/?$/, submit],
 ];
 
+/* Listeners a view hangs on window die with the view, rather than piling up
+   across every document opened in a session. */
+let viewAbort = new AbortController();
+
 async function route() {
   const path = location.pathname;
+  viewAbort.abort();
+  viewAbort = new AbortController();
+  closeLightbox();
   for (const [re, view] of routes) {
     const m = path.match(re);
     if (m) {
@@ -69,10 +364,13 @@ document.addEventListener("click", (e) => {
 addEventListener("popstate", route);
 
 /* ---------- home ---------- */
-let allMachines = null;
-
 async function home() {
-  const q0 = new URLSearchParams(location.search).get("q") || "";
+  const q0 = param("q");
+  const active = new Set(param("f").split(",").filter(Boolean));
+  let letter = param("letter").toUpperCase(), page = Math.max(1, +param("page") || 1);
+  if (!LETTERS.includes(letter)) letter = "";
+  const chip = (f, label) => `<span class="chip${active.has(f) ? " on" : ""}" data-f="${f}">${label}</span>`;
+
   app.innerHTML = `
     <div class="stats">
       <div class="stat"><b id="s1">—</b><span>Machines</span></div>
@@ -87,17 +385,19 @@ async function home() {
              value="${esc(q0)}" autocomplete="off" autofocus>
     </div>
     <div class="filters">
-      <span class="chip" data-f="docs">Has manuals</span>
-      <span class="chip" data-f="sch">Has schematics</span>
-      <span class="chip" data-f="kicad">KiCad conversion</span>
-      <span class="chip" data-f="arcade">Arcade</span>
-      <span class="chip" data-f="console">Consoles &amp; handhelds</span>
+      ${chip("docs", "Has manuals")}
+      ${chip("sch", "Has schematics")}
+      ${chip("kicad", "KiCad conversion")}
+      ${chip("arcade", "Arcade")}
+      ${chip("console", "Consoles &amp; handhelds")}
     </div>
-    <div id="results" class="rows"></div>`;
+    <div id="results" class="listbox"></div>`;
 
-  if (!allMachines) allMachines = (await api("machines?limit=200")).results;
+  // A board names the machine it belongs to; its own slug is the board's
+  // (asteroids-03 … asteroids-06 all belong to `asteroid`), so the badge is
+  // keyed on that field. Matching board slug to machine slug found 13 of 50.
   const boardList = await api("boards").catch(() => []);
-  const boardSlugs = new Set(boardList.map((b) => b.slug));
+  const boardMachines = new Set(boardList.map((b) => b.machine || b.slug));
 
   const st = await api("stats");
   const put = (id, v) => (document.getElementById(id).textContent = v.toLocaleString());
@@ -107,51 +407,73 @@ async function home() {
 
   const input = document.getElementById("q");
   const results = document.getElementById("results");
-  const active = new Set();
+  const sync = () => setParams({
+    q: input.value.trim(), f: [...active].join(","), letter, page: page > 1 ? page : "",
+  });
 
   document.querySelectorAll(".chip[data-f]").forEach((c) => {
     c.onclick = () => {
       c.classList.toggle("on");
       active.has(c.dataset.f) ? active.delete(c.dataset.f) : active.add(c.dataset.f);
-      render();
+      page = 1; sync(); render();
     };
   });
 
   let timer;
-  input.oninput = () => { clearTimeout(timer); timer = setTimeout(render, 140); };
+  input.oninput = () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { page = 1; sync(); render(); }, 140);
+  };
 
+  wireNav(results, (ch) => {
+    if (ch.letter !== undefined) letter = ch.letter;
+    page = ch.page;
+    sync(); render().then(() => scrollToList(results));
+  });
+
+  let seq = 0;
   async function render() {
+    const my = ++seq;
     const q = input.value.trim();
-    // Kind is filtered server-side: consoles are a few dozen rows in 7,812 and
-    // would fall outside the first page of results otherwise. Selecting both
-    // chips is the same as selecting neither.
+    // Every filter is applied by the Worker before the page is cut, so the
+    // totals and page counts are exact. Selecting both kind chips is the same
+    // as selecting neither.
     const kind = active.has("arcade") === active.has("console") ? ""
                : active.has("arcade") ? "arcade" : "console";
-    const data = await api(`machines?q=${encodeURIComponent(q)}&limit=150`
-      + (active.has("docs") ? "&docs=1" : "") + (kind ? `&kind=${kind}` : ""));
-    let rows = data.results;
-    if (active.has("sch")) rows = rows.filter((m) => m.k > 0);
-    if (active.has("kicad")) rows = rows.filter((m) => boardSlugs.has(m.s));
-    results.innerHTML = rows.length ? rows.map((m) => `
+    const qs = new URLSearchParams({ q, limit: PAGE_SIZE, offset: (page - 1) * PAGE_SIZE });
+    if (letter) qs.set("letter", letter);
+    if (kind) qs.set("kind", kind);
+    for (const f of ["docs", "sch", "kicad"]) if (active.has(f)) qs.set(f, "1");
+    const data = await api("machines?" + qs);
+    if (my !== seq) return;                         // a later keystroke answered first
+    const pages = Math.max(1, Math.ceil(data.total / PAGE_SIZE));
+    if (page > pages) { page = pages; sync(); return render(); }
+    const rows = data.results;
+    results.innerHTML = letterBar(letter) + (rows.length ? `<div class="rows">${rows.map((m) => `
       <a class="row" href="/machine/${encodeURIComponent(m.s)}">
         <span class="nm">${esc(m.n)}</span>
         <span class="meta">${esc(m.m || "—")}${m.y ? " · " + esc(m.y) : ""}</span>
         <span class="grow"></span>
         ${m.t ? `<span class="badge kind">${esc(m.t)}</span>` : ""}
-        ${boardSlugs.has(m.s) ? '<span class="badge kicad">KiCad</span>' : ""}
+        ${boardMachines.has(m.s) ? '<span class="badge kicad">KiCad</span>' : ""}
         ${m.k ? `<span class="badge doc">${m.k} schematic${m.k > 1 ? "s" : ""}</span>` : ""}
         ${m.d ? `<span class="badge">${m.d} doc${m.d > 1 ? "s" : ""}</span>` : ""}
         ${m.p ? `<span class="badge">${m.p} ${m.t ? "board rev" : "DIP"}${m.p > 1 && m.t ? "s" : ""}</span>` : ""}
-      </a>`).join("") : '<div class="empty">Nothing matches that search.</div>';
+      </a>`).join("")}</div>` : '<div class="empty">Nothing matches that search.</div>')
+      + pagerHtml(page, data.total);
   }
-  render();
+  await render();
 }
 
 /* ---------- machine detail ---------- */
 async function machine(slug) {
   const m = await api("machine/" + encodeURIComponent(slug));
   const boardList = await api("boards").catch(() => []);
-  const kb = boardList.find((b) => b.slug === slug);
+  // A board names the machine it belongs to; its own slug is the board's
+  // (asteroids-03 … asteroids-06 all belong to `asteroid`). Matching board
+  // slug to machine slug found 13 of the 50 and told Asteroids it had none.
+  const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug);
+  loadRomMap(slug);
 
   loadDiagnostics(slug);
   loadSignatures(slug);
@@ -173,9 +495,11 @@ async function machine(slug) {
       ${m.rom ? ` · <code>${esc(m.rom)}</code>` : ""}
       ${isConsole ? ` · <span class="badge kind">${esc(m.kind)}</span>` : ""}</p>
 
-    ${kb ? `<div class="note"><b>KiCad conversion available.</b>
-      This board has a hand-built KiCad project —
-      <a href="/board/${esc(slug)}">open the schematic &amp; BOM viewer</a>.</div>` : ""}
+    ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
+      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a hand-built KiCad
+      project with a schematic and bill of materials —
+      ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>`).join(" · ")}.</div>` : ""}
+    <div id="rommap"></div>
 
     <h2>Hardware</h2>
     <div class="panel"><dl class="kv">
@@ -284,6 +608,17 @@ function docSections(docs) {
         return why ? `<div class="row dead">${inner}</div>`
                    : `<a class="row" href="/doc/${d.id}">${inner}</a>`;
       }).join("")}</div>`).join("");
+}
+
+/** The ROM map, where MAME's romset gives one — linked from the machine so a
+    reader does not have to know the /roms list exists to find it. */
+async function loadRomMap(slug) {
+  const r = await api("rommap/" + encodeURIComponent(slug)).catch(() => null);
+  const box = document.getElementById("rommap");
+  if (!box || !r || !r.devices) return;
+  const n = Object.keys(r.devices).length;
+  box.innerHTML = `<div class="note"><b>ROM map.</b> ${n} memory device${n === 1 ? "" : "s"}
+    placed from MAME's romset — <a href="/rom/${esc(slug)}">see which device sits where</a>.</div>`;
 }
 
 /** Power supply reference — fuses and rails, checked first on a dead machine. */
@@ -428,7 +763,7 @@ async function reader(id) {
     // the two documents that have one, is deferred.
     const eager = drawingPages.indexOf(p.n) < 4;
     const img = hasScan
-      ? `<img loading="${eager ? "eager" : "lazy"}" decoding="async"
+      ? `<img class="zoomable" title="Click to enlarge" loading="${eager ? "eager" : "lazy"}" decoding="async"
              width="${p.dw}" height="${p.dh}" src="${src}"
              alt="Scan of page ${p.n}"
              onerror="this.closest('figure').classList.add('noscan')">`
@@ -526,10 +861,10 @@ async function reader(id) {
       ${renderBlocks(p)}`).join("")}</div>`;
   }
 
-  function goto(n) {
+  function goto(n, smooth = true) {
     cur = Math.min(Math.max(1, n), pages.length);
     const el = document.getElementById("p" + cur);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (el) el.scrollIntoView({ behavior: smooth ? "smooth" : "instant", block: "start" });
     highlightToc();
   }
 
@@ -565,7 +900,19 @@ async function reader(id) {
     const seps = [...document.querySelectorAll(".pg-sep")];
     const top = seps.filter((s) => s.getBoundingClientRect().top < 120).pop();
     if (top) { cur = +top.id.slice(1); highlightToc(); }
-  }, { passive: true });
+  }, { passive: true, signal: viewAbort.signal });
+
+  // A sheet opens over the page at full size; the arrows step through every
+  // sheet in this document.
+  stage.addEventListener("click", (e) => {
+    const img = e.target.closest("figure.sheet img.zoomable");
+    if (!img) return;
+    const all = [...stage.querySelectorAll("figure.sheet img.zoomable")];
+    openLightbox(all.map((i) => ({
+      src: i.currentSrc || i.src, alt: i.alt,
+      w: +i.getAttribute("width") || 0, h: +i.getAttribute("height") || 0,
+    })), all.indexOf(img));
+  });
 
   // Parts list, recovered from the manual's own illustrated parts pages.
   const partsBtn = document.getElementById("showparts");
@@ -601,13 +948,15 @@ async function reader(id) {
   highlightToc();
 
   // Deep link from the diagnostics index: /doc/<id>#p11 lands on that page.
+  // Instantly — a smooth scroll through nine thousand pixels of manual is not
+  // a landing, and a background tab abandons it part way.
   const anchor = location.hash.match(/^#p(\d+)$/);
-  if (anchor) setTimeout(() => goto(+anchor[1]), 60);
+  if (anchor) setTimeout(() => goto(+anchor[1], false), 60);
 }
 
 /* ---------- corpus-wide search ---------- */
 async function search() {
-  const q0 = new URLSearchParams(location.search).get("q") || "";
+  const q0 = param("q");
   app.innerHTML = `
     <h1>Search the manuals</h1>
     <p class="sub">Full text across every digitised document — procedures, part numbers,
@@ -616,37 +965,56 @@ async function search() {
       <input id="q" placeholder="e.g. fuse replacement, self test, 74153…"
              value="${esc(q0)}" autocomplete="off" autofocus>
     </div>
-    <div id="out"></div>`;
+    <div id="out" class="listbox"></div>`;
 
   const input = document.getElementById("q");
   const out = document.getElementById("out");
-  let timer;
+  let timer, page = Math.max(1, +param("page") || 1), last = null, seq = 0;
+
+  const row = (r) => `
+    <a class="row" href="/doc/${r.id}">
+      <span class="nm">${esc(prettyTitle(r.title))}</span>
+      <span class="meta">${esc(r.machineName || "")}</span>
+      <span class="grow"></span>
+      ${r.sections ? `<span class="badge">${r.sections} sections</span>` : ""}
+      <span class="badge doc">${r.hits} hit${r.hits > 1 ? "s" : ""}</span>
+    </a>`;
+
+  function show(d) {
+    const pages = Math.max(1, Math.ceil(d.results.length / PAGE_SIZE));
+    page = Math.min(page, pages);
+    const slice = d.results.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+    out.innerHTML = `<p class="sub">${d.total} document${d.total > 1 ? "s" : ""} match${
+        d.total > d.results.length ? `; the ${d.results.length} best are shown` : ""}</p>
+      <div class="rows">${slice.map(row).join("")}</div>
+      ${pagerHtml(page, d.results.length)}`;
+  }
 
   async function run() {
     const q = input.value.trim();
-    const url = new URL(location.href);
-    q ? url.searchParams.set("q", q) : url.searchParams.delete("q");
-    history.replaceState({}, "", url);
+    if (q !== last) { page = 1; last = q; }
+    setParams({ q, page: page > 1 ? page : "" });
     if (q.length < 3) { out.innerHTML = '<div class="empty">Type at least three characters.</div>'; return; }
+    const my = ++seq;
     out.innerHTML = '<div class="spin">Searching…</div>';
-    const d = await api("search?q=" + encodeURIComponent(q));
+    const d = await api("search?q=" + encodeURIComponent(q) + "&limit=200");
+    if (my !== seq) return;
     if (!d.results.length) {
       out.innerHTML = `<div class="empty">Nothing found for “${esc(q)}”.</div>`;
       return;
     }
-    out.innerHTML = `<p class="sub">${d.total} document${d.total > 1 ? "s" : ""} match</p>
-      <div class="rows">${d.results.map((r) => `
-        <a class="row" href="/doc/${r.id}">
-          <span class="nm">${esc(prettyTitle(r.title))}</span>
-          <span class="meta">${esc(r.machineName || "")}</span>
-          <span class="grow"></span>
-          ${r.sections ? `<span class="badge">${r.sections} sections</span>` : ""}
-          <span class="badge doc">${r.hits} hit${r.hits > 1 ? "s" : ""}</span>
-        </a>`).join("")}</div>`;
+    last = q; run.data = d;
+    show(d);
   }
 
+  wireNav(out, (ch) => {
+    page = ch.page;
+    setParams({ page: page > 1 ? page : "" });
+    if (run.data) { show(run.data); scrollToList(out); }
+  });
+
   input.oninput = () => { clearTimeout(timer); timer = setTimeout(run, 220); };
-  if (q0) run(); else out.innerHTML = '<div class="empty">Type to search.</div>';
+  if (q0) { last = q0; run(); } else out.innerHTML = '<div class="empty">Type to search.</div>';
 }
 
 /* ---------- boards index ---------- */
@@ -656,7 +1024,14 @@ async function boards() {
     <h1>KiCad conversions</h1>
     <p class="sub">Boards rebuilt from the original drawings as real KiCad projects,
        with browsable schematics and bills of materials.</p>
-    ${list.length ? `<div class="rows">${list.map((b) => `
+    <div id="list" class="listbox"></div>`;
+  if (!list.length) {
+    document.getElementById("list").innerHTML = '<div class="empty">No conversions published yet.</div>';
+    return;
+  }
+  pagedList(document.getElementById("list"), list, {
+    name: (b) => b.name,
+    row: (b) => `
       <a class="row" href="/board/${esc(b.slug)}">
         <span class="nm">${esc(b.name)}</span>
         <span class="meta">${esc(b.mfr || "")}${b.year ? " · " + esc(b.year) : ""}</span>
@@ -664,7 +1039,8 @@ async function boards() {
         <span class="badge">${b.devices} devices</span>
         ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
         <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? "nets traced" : "components only"}</span>
-      </a>`).join("")}</div>` : '<div class="empty">No conversions published yet.</div>'}`;
+      </a>`,
+  });
 }
 
 /* ---------- ROM maps recovered from MAME ----------
@@ -672,7 +1048,7 @@ async function boards() {
    memory devices only, from one source, with nothing cross-checked. */
 async function rommaps() {
   const list = await api("rommaps");
-  const withDoc = list.filter((r) => r.docs);
+  const withDoc = list.filter((r) => r.docs).length;
   app.innerHTML = `
     <h1>ROM maps</h1>
     <p class="sub">Which memory device sits at which position, for ${list.length}
@@ -683,9 +1059,19 @@ async function rommaps() {
        from it. It comes from one source and has not been cross-checked against a
        drawing. The <a href="/boards">board maps</a> are the other thing: read off
        component-location drawings, every device carrying its own provenance.</div>
-    <p class="sub">${withDoc.length} of these are machines whose manual is also on
+    <p class="sub">${withDoc} of these are machines whose manual is also on
        this site.</p>
-    <div class="rows">${list.slice(0, 400).map((r) => `
+    <div class="searchbar">
+      <input id="rq" placeholder="Filter by name or manufacturer…"
+             value="${esc(param("q"))}" autocomplete="off">
+    </div>
+    <div id="list" class="listbox"></div>`;
+
+  const view = pagedList(document.getElementById("list"), list, {
+    name: (r) => r.name,
+    filter: (r, q) => `${r.name} ${r.mfr || ""} ${r.machine}`.toLowerCase().includes(q),
+    empty: "No ROM map matches that.",
+    row: (r) => `
       <a class="row" href="/rom/${esc(r.machine)}">
         <span class="nm">${esc(r.name)}</span>
         <span class="meta">${esc(r.mfr || "")}${r.year ? " · " + esc(r.year) : ""}</span>
@@ -693,14 +1079,20 @@ async function rommaps() {
         ${r.docs ? `<span class="badge doc">${r.docs} manual${r.docs > 1 ? "s" : ""}</span>` : ""}
         ${r.hasBoard ? `<span class="badge kicad">board map</span>` : ""}
         <span class="badge">${r.devices} devices</span>
-      </a>`).join("")}</div>
-    ${list.length > 400 ? `<p class="sub">Showing the first 400 of ${list.length};
-       search finds the rest.</p>` : ""}`;
+      </a>`,
+  });
+  const rq = document.getElementById("rq");
+  let timer;
+  rq.oninput = () => { clearTimeout(timer); timer = setTimeout(() => view.setQuery(rq.value.trim()), 140); };
 }
 
 async function rommap(machine) {
   const r = await api("rommap/" + machine);
   const rows = Object.entries(r.devices);
+  // The "board map" badge on the list promised something; this is where it
+  // is. Boards name the machine they belong to, so match on that.
+  const kbs = (await api("boards").catch(() => []))
+    .filter((b) => b.machine === machine || b.slug === machine);
   const kinds = [...new Set(rows.map(([, d]) => d.kind))];
   app.innerHTML = `
     <h1>${esc(r.name)} — ROM map</h1>
@@ -712,8 +1104,12 @@ async function rommap(machine) {
        romset, which are taken from real dumped boards. Everything on the board
        that is not a ROM, PROM or PLD is absent, and nothing here has been checked
        against a component-location drawing.</div>
-    ${r.docs ? `<p class="sub"><a href="/search?q=${encodeURIComponent(r.name)}">
-       ${r.docs} manual${r.docs > 1 ? "s" : ""} for this machine</a> are on the site.</p>` : ""}
+    ${kbs.length ? `<p class="sub">Board map${kbs.length > 1 ? "s" : ""} for this machine —
+       every device, read from the drawings:
+       ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>`).join(" · ")}.</p>` : ""}
+    <p class="sub"><a href="/machine/${esc(machine)}">${esc(r.name)}</a>${r.docs
+       ? ` — ${r.docs} manual${r.docs > 1 ? "s" : ""} for this machine are on the site.`
+       : " — hardware and DIP switch settings."}</p>
     <h2>Devices</h2>
     <div class="rows">${rows.map(([cell, d]) => `
       <div class="row">

@@ -70,6 +70,29 @@ function scoreMachine(m, q) {
   return -1;
 }
 
+/** The letter a name files under: A–Z, or "#" for a name that starts with a
+    digit or a symbol. Leading quotes and brackets are skipped, so "'88 Games"
+    files under # and "(Unknown) Foo" under F. Mirrored in web/js/app.js. */
+const initialOf = (name) => {
+  const c = String(name || "").replace(/^[^a-z0-9]+/i, "").charAt(0).toUpperCase();
+  return /[A-Z]/.test(c) ? c : "#";
+};
+const nameKey = (name) => String(name || "").replace(/^[^a-z0-9]+/i, "").toLowerCase();
+
+/** The machine index in name order, sorted once per index load. The upstream
+    order is close to alphabetical but not quite, and a paged list that is
+    nearly sorted puts the same machine on two pages. */
+let sortedFor = null, sortedMachinesList = null;
+async function sortedMachines(env, request) {
+  const list = (await index(env, request, "machines")) || [];
+  if (list !== sortedFor) {
+    sortedMachinesList = [...list].sort((a, b) =>
+      nameKey(a.n).localeCompare(nameKey(b.n), "en", { numeric: true }) || a.n.localeCompare(b.n));
+    sortedFor = list;
+  }
+  return sortedMachinesList;
+}
+
 /** Postings are sharded by leading character to keep each file small. */
 const shardOf = (term) => (/^[a-z0-9]/.test(term[0]) ? term[0] : "_");
 
@@ -108,15 +131,31 @@ async function handleApi(url, env, request) {
   if (p === "machines") {
     const q = (url.searchParams.get("q") || "").trim().toLowerCase();
     const limit = Math.min(+url.searchParams.get("limit") || 50, 200);
+    const offset = Math.max(0, +url.searchParams.get("offset") || 0);
     const onlyDocs = url.searchParams.get("docs") === "1";
-    // Consoles are a few dozen records among 7,812, so this has to filter
-    // before the limit is applied — doing it client-side on one page of
-    // results finds nothing.
+    const onlySch = url.searchParams.get("sch") === "1";
+    const onlyKicad = url.searchParams.get("kicad") === "1";
+    // A–Z, or "#" for names starting with a digit or a symbol.
+    const letter = (url.searchParams.get("letter") || "").toUpperCase();
+    // Every filter is applied here, before the page is cut, so the total the
+    // client prints and the pages it offers are exact. Consoles are a few
+    // dozen records among 7,823; filtering one page of results client-side
+    // used to find none of them.
     const kind = url.searchParams.get("kind") || "";
-    let out = (await index(env, request, "machines")) || [];
+    let out = await sortedMachines(env, request);
     if (onlyDocs) out = out.filter((m) => m.d > 0);
+    if (onlySch) out = out.filter((m) => m.k > 0);
+    if (onlyKicad) {
+      // A board is keyed by its own slug and names the machine it belongs to
+      // — asteroids-03 through -06 all point at `asteroid` — so the test is on
+      // that field, not on the board slug matching the machine slug.
+      const boards = (await index(env, request, "boards")) || [];
+      const withBoard = new Set(boards.map((b) => b.machine || b.slug));
+      out = out.filter((m) => withBoard.has(m.s));
+    }
     if (kind === "arcade") out = out.filter((m) => !m.t);
     else if (kind === "console") out = out.filter((m) => !!m.t);
+    if (letter) out = out.filter((m) => initialOf(m.n) === letter);
     if (q) {
       out = out
         .map((m) => [scoreMachine(m, q), m])
@@ -124,7 +163,7 @@ async function handleApi(url, env, request) {
         .sort((a, b) => b[0] - a[0])
         .map(([, m]) => m);
     }
-    return json({ total: out.length, results: out.slice(0, limit) });
+    return json({ total: out.length, offset, limit, results: out.slice(offset, offset + limit) });
   }
 
   if (p.startsWith("machine/")) {

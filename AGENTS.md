@@ -416,6 +416,22 @@ convention and legitimately uses G.
 - **Spreading the catalogue over a document overwrote its data** — `{...body, ...meta}`
   let the catalogue's `pages` *count* replace the document's `pages` *array*. Pick fields
   explicitly when merging two records that share key names.
+- **A board's slug is not its machine's slug.** `asteroids-03` through `-06` belong to
+  `asteroid`; only 13 of 50 boards share a slug with their machine. The machine page and
+  the home-page KiCad badge used to test `board.slug === machine.slug`, so Asteroids said
+  it had no board map. Match on `board.machine` (falling back to the slug).
+- **`.reader.wide` beat the phone layout.** It is declared after the `max-width: 820px`
+  rule and is more specific, so a 375px screen kept a 240px contents column beside the
+  text. Any override of a `.reader` grid rule has to name `.reader.wide` too.
+- **Lists must page, not truncate.** The home list stopped at 150 machines and the ROM
+  map list at 400 of 1,469 with "search finds the rest" — and search only covers manuals.
+  Every long list now has an A–Z bar and 50-a-page pager whose state lives in the query
+  string; `/api/machines` takes `letter`, `offset`, `sch=1` and `kicad=1` so the totals
+  are exact.
+- **`wrangler dev` cannot spawn workerd here** (`spawn EBADF`, sandboxed or not), and a
+  plain static server has no API. `node tools/dev_server.mjs` runs the real Worker in Node
+  over a stub ASSETS binding with the production fallback, so the whole site can be
+  driven in a browser; `tools/test_worker.mjs` covers the routing without a browser.
 - **A view that renders once needs an explicit first draw.** `show()` only re-rendered the
   paginated view, so the default document view came up empty until something else
   triggered a redraw.

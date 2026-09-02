@@ -226,6 +226,14 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
 .textview mark { background: var(--accent); color: var(--accent-ink); border-radius: 2px; padding: 0 2px; }
 .textview .lowconf { color: var(--ink-3); font-style: italic; }
 .reader.wide { grid-template-columns: 240px 1fr; }
+/* On a phone the contents list sits above the text, scrolling on its own,
+   rather than beside it. Declared after .reader.wide so it wins. */
+@media (max-width: 820px) {
+  .reader, .reader.wide { grid-template-columns: 1fr; }
+  .side { position: static; max-height: none; }
+  .side .toc { max-height: 34vh; }
+  .textview { padding: 18px 16px; max-width: none; }
+}
 /* The thumbnail strip scrolls independently; otherwise scrolling a page into
    view drags the whole sidebar and hides the contents list. */
 .side .thumbs { max-height: 42vh; overflow-y: auto; overscroll-behavior: contain; }
@@ -257,6 +265,7 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
   display: block; width: 100%; height: auto; background: #fff;
   border: 1px solid var(--line); border-radius: var(--radius);
 }
+.textview figure.sheet img.zoomable { cursor: zoom-in; }
 /* If the scan is not published for this page the image is hidden and the
    caption alone carries the link out, rather than leaving a broken frame. */
 .textview figure.sheet.noscan img { display: none; }
@@ -330,4 +339,56 @@ iframe.ibom {
 @media (max-width: 620px) {
   .top-in { flex-wrap: wrap; row-gap: 8px; }
   .top nav { order: 3; width: 100%; flex-wrap: wrap; gap: 16px; }
+}
+
+/* ---- list navigation: letters and pages ----
+   Every long list wears the same bar above and pager below; the state is in
+   the query string so the back button lands where the reader left. */
+.listbox { scroll-margin-top: 70px; }
+.letters { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 12px; }
+.letters button, .pager button {
+  min-width: 30px; padding: 4px 8px; font: 13px var(--mono); cursor: pointer;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--surface); color: var(--ink-2);
+}
+.letters button:hover, .pager button:hover { background: var(--surface-2); color: var(--ink); }
+.letters button.on, .pager button.on {
+  background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+}
+.letters button:disabled, .pager button:disabled { opacity: .35; cursor: default; background: var(--surface); }
+.pager { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 12px 0 0; }
+.pager .gap { padding: 0 4px; color: var(--ink-3); }
+.pager .range { margin-left: auto; font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+
+/* ---- lightbox ----
+   A scan over the page at any size. Always dark, whatever the theme: the
+   sheet is white line art and reads best against a dark surround. */
+.lightbox {
+  position: fixed; inset: 0; z-index: 100; display: flex; flex-direction: column;
+  background: rgba(12, 12, 9, .95); color: #eceadf;
+}
+.lightbox[hidden] { display: none; }
+.lb-bar {
+  display: flex; gap: 6px; align-items: center; flex: none;
+  padding: 8px 12px; font-size: 13px; background: rgba(0, 0, 0, .55);
+}
+.lb-bar .lb-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #b0ad9e; }
+.lb-bar .lb-count { font-family: var(--mono); color: #b0ad9e; white-space: nowrap; }
+.lb-bar .lb-sep { width: 10px; }
+.lb-bar button, .lb-bar a {
+  padding: 4px 10px; cursor: pointer; border: 1px solid #454538; border-radius: var(--radius);
+  background: #24241d; color: #eceadf; font: 13px var(--mono); text-decoration: none;
+}
+.lb-bar button:hover, .lb-bar a:hover { background: #33332a; text-decoration: none; }
+.lb-bar button:disabled { opacity: .35; cursor: default; background: #24241d; }
+.lb-stage { flex: 1; position: relative; overflow: hidden; touch-action: none; cursor: grab; }
+.lb-stage.drag { cursor: grabbing; }
+.lb-stage img {
+  position: absolute; left: 0; top: 0; transform-origin: 0 0;
+  max-width: none; background: #fff; user-select: none; -webkit-user-drag: none;
+}
+body.lb-open { overflow: hidden; }
+@media (max-width: 620px) {
+  .lb-bar { gap: 4px; padding: 6px 8px; }
+  .lb-bar .lb-title, .lb-bar [data-lb="open"] { display: none; }
 }
