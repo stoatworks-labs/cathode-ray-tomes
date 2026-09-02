@@ -103,6 +103,68 @@ The PDF itself still has to reach R2 before `/pdf/<id>` resolves — that is
 Everything else in the survey is a console, and a console is not a MAME arcade
 machine.
 
+### Reading a vector manual: `tools/ingest_vector.py`
+
+Built and measured against five of them; nothing is on the site. It writes the
+same `cache/text/<id>.json` the OCR path does, so build_search, build_doc_stats,
+build_assets and the reader are unchanged — only line extraction differs
+(`pdftotext -bbox-layout` instead of tesseract), and the heading classifier,
+running-header filter and block builder are reused verbatim.
+
+```bash
+python3 tools/ingest_vector.py --doc <id>     # from data/sources/gamingdoc.json
+python3 tools/ingest_vector.py --all          # every document classed `vector`
+```
+
+| manual | pages | sheets | words | sections |
+|---|---|---|---|---|
+| SCPH-30000 (PS2, 6th ed) | 82 | 49 | 52,241 | 30 |
+| CECHG (PS3, 2nd ed) | 45 | 26 | 14,846 | 10 |
+| SCPH-9000 (PS1, 3rd ed) | 28 | 12 | 16,602 | 12 |
+| SCPH-70000 (PS2 slim) | 26 | 13 | 23,217 | 14 |
+| PSP-2000 | 24 | 16 | 7,824 | 8 |
+
+**The sheet text is the prize.** A schematic page comes back as
+`R328 47k DIG_+1.8V2 … C343 0.1u B … IC104 394 pin … /CS8 238 SA26 247` —
+designators, values, net names and pin numbers, exact rather than guessed. The
+arcade corpus has nothing like it at any price.
+
+**Three things measured that were not obvious:**
+
+- **SVG is not a size win against a reading image, and is against a usable
+  one.** For the five densest SCPH-30000 sheets, gzipped SVG is 3.0 MB against
+  2.0 MB for the 150 dpi WebP (1.49×) but 4.9 MB for the 300 dpi WebP (0.62×) —
+  and 300 dpi is what `ingest.py` already renders for schematic-bearing
+  documents, because 150 dpi is not something you can follow a trace on. So SVG
+  wins where it counts, and is resolution-independent besides. This is a better
+  result than tracing gave (README: 109–267 KB traced against 68–174 KB raster)
+  and for a different reason — there is no scan noise in the path data.
+- **A text layer can be present and unreadable.** The SCPH-70000's fonts are
+  subsetted with no usable ToUnicode map, so 3.6% of its characters — 58% on its
+  worst page — come back as U+FFFD, correctly positioned and meaningless. Four
+  of the five are clean. `meta.undecoded` records it and the tool warns; above a
+  few percent a document wants the OCR path instead.
+- **poppler crashes on one of them.** The SCPH-9000's Producer string is
+  mojibake and `pdftotext` dies writing the XML header with an uncaught
+  `std::out_of_range`, truncating its output and exiting 0. Rewriting the file
+  through `pdftocairo -pdf` drops the metadata and all 28 pages then extract.
+
+**Where it is weak.** Deciding which pages are drawings is a fresh problem here:
+`build_drawings.py` answers it from OCR debris, and a vector page has none. The
+signal is structural instead — a sheet is hundreds of one-word blocks — and
+against the SCPH-30000 read by hand it finds 47 of 64 drawings and wrongly hides
+none. The 17 it misses are mixed pages, a drawing beside a real CAUTION
+paragraph, which keep their text. That is deliberately the same trade
+`build_drawings.py` makes: hiding a parts list is worse than showing a drawing's
+labels. Getting there needed a second signal — words per block — because the
+PSP-2000's parts lists have cells too short to read as prose and the first rule
+hid all four pages of them.
+
+Outline quality is the honest weak point. These manuals head their sections
+`SECTION 5` / `ELECTRICAL PARTS LIST` and set them barely larger than body text,
+so a classifier tuned on arcade scans under-reads them; the manual's own table
+of contents is a better source and is not used yet.
+
 ### What consoles would cost
 
 `build_index.py` reads `machines.raw.json` and stamps a `machine` slug onto every

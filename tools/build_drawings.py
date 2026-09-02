@@ -195,6 +195,12 @@ def main():
             doc = json.load(open(path))
         except Exception:
             continue
+        # A document read by ingest_vector.py has already flagged its own
+        # drawings, from page geometry rather than from OCR debris. Every
+        # measure below is a measure of tesseract's mistakes, and a page that
+        # was never OCR'd has none to find.
+        if doc.get("meta", {}).get("via") == "vector":
+            continue
         meta = cat.get(fid, {})
         kind = (meta.get("type") or "").lower()
         is_drawing_doc = bool(meta.get("schematic")) or any(
