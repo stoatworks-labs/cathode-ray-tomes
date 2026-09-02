@@ -480,6 +480,18 @@ all four must span. Logged in `battlezone-math-box.read.json`; needs sheet 3 Sid
 
 ## Traps that cost real time
 
+- **`build_assets.py` will revert another session's corpus if your `data/index/`
+  is stale, and it did.** web/data/ is generated wholesale from data/index/,
+  which is gitignored and built locally, so a worktree whose index is behind
+  regenerates the whole published corpus from the older one. It cost 39 files of
+  a co-session's work in a commit that was otherwise a two-file front-end change
+  — the document catalogue, the machine records and every search posting —
+  caught only by reading `git status` before staging. There is a guard now: the
+  corpus only grows, so a local index with fewer records than the published one
+  is stale by definition, and the build refuses. `--force` overrides it. Do not
+  reach for `--force` to make an error go away; rebuild the index or pull.
+
+
 - **tesseract silently returns nothing for images under `/tmp`.** No error, empty result.
   Rendering into the project cache took one sheet from 0 to 22,900 chars.
 - **Signature codes are printed rotated.** Read the sheet twice — upright for

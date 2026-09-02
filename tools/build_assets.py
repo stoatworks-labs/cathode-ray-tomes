@@ -17,7 +17,7 @@ versioned and published together.
   web/data/rommaps.json         index of ROM maps recovered from MAME
   web/data/rommap/<machine>.json  ROM positions for one machine
 """
-import json, os, shutil, glob
+import json, os, shutil, glob, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "web", "data")
@@ -27,7 +27,68 @@ def copy(src, dst):
     shutil.copyfile(src, dst)
     return os.path.getsize(dst)
 
+def published(path):
+    """What the last commit published at web/data/<path>, or None."""
+    try:
+        out = subprocess.run(["git", "-C", ROOT, "show", f"HEAD:web/data/{path}"],
+                             capture_output=True, timeout=60)
+        return json.loads(out.stdout) if out.returncode == 0 else None
+    except Exception:
+        return None
+
+
+def check_sources_are_current():
+    """Refuse to publish a corpus index older than the one already published.
+
+    web/data/ is generated wholesale from data/index/, which is gitignored and
+    built locally by build_index.py. Anyone whose local index is behind will
+    regenerate web/data/ from it and silently revert whatever the last person
+    published — the corpus only ever grows, so a smaller index is a stale one,
+    never a real change.
+
+    This is not hypothetical. Several sessions share these repos, and a run
+    from a worktree whose data/index was a symlink to a stale checkout
+    overwrote 39 files of another session's work — the whole document
+    catalogue, the machine records and every search posting — in a commit that
+    was otherwise a two-file front-end change. It was caught by reading `git
+    status` before staging, which is not a control.
+    """
+    problems = []
+    for name, src in (("docs.json", "data/index/docs.json"),
+                      ("machines.json", "data/index/machines.json"),
+                      ("chips.json", "data/index/chips.json")):
+        local_path = os.path.join(ROOT, src)
+        if not os.path.exists(local_path):
+            continue
+        was = published(name)
+        if was is None:
+            continue
+        try:
+            now = json.load(open(local_path))
+        except Exception:
+            continue
+        if len(now) < len(was):
+            problems.append(f"  {src}: {len(now)} records, but the published "
+                            f"web/data/{name} already has {len(was)}")
+    if not problems:
+        return
+    print("REFUSING to rebuild web/data/ — the local corpus index is behind "
+          "what is already published:")
+    print("\n".join(problems))
+    print("\nRegenerating from it would revert whoever published the larger "
+          "index. Fix the source first:")
+    print("  git pull                                   # if the index is "
+          "tracked upstream work")
+    print("  python3 tools/build_index.py               # rebuild data/index/ "
+          "from data/machines.raw.json")
+    print("\nIf the shrinkage is genuinely intended, pass --force.")
+    raise SystemExit(1)
+
+
 def main():
+    if "--force" not in sys.argv:
+        check_sources_are_current()
+
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
