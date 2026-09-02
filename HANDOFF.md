@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 29, across 24 machines · 1,864 devices |
+| Board maps | 37, across 32 machines · 2,242 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -167,7 +167,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 29 boards and 1,864 devices.
+whole site is 37 boards and 2,242 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -256,6 +256,39 @@ so a merge into `boards/asteroids-0*.json` is lost on the next regeneration; and
 ten printings span revisions whose numbering shifts, which is exactly what
 manufactures false disagreements. The +24 per revision the dry run offers has to go
 through the generator, not around it.
+
+**The parts lists had a third layout nobody had read.** Black Widow, Liberator,
+Major Havoc, Food Fight, Pole Position, Millipede, I-Robot and Quantum all carry a
+perfectly good typeset IC parts list and all harvested exactly nothing, because
+they print the designators *before* the device rather than after it:
+
+    paren   37-74LS00   Type 74LS00 Integrated Circuit (N5, C6)
+    lead    A6, A7 Type-74S74 Integrated Circuit  37-74S74
+
+`rows()` reads forward from each `37-` stock number, so on those documents it
+found the next row's designators, reported "no designators found" for every row,
+and quietly paired each row's type with the *previous* row's stock number. It
+produced no output rather than wrong output, which is the only reason it survived
+this long. The trust rule is unchanged — the row states its device twice and is
+taken only when the two agree. 35 documents that yielded nothing now yield, and no
+document behind an existing board changed by a single designator.
+
+**The designator convention transposes in 1983.** The later boards print `2L`, not
+`L2`, and the alphabet widens with it — Major Havoc has devices at 2Q and 2S,
+letters the early boards skip. `tools/designators.py` reads both; the board states
+which it is in `grid.transposed` and it is never inferred, because `2L` and `L2`
+are the same cell and only the silkscreen says which is printed. A wrong guess
+does not corrupt a map, it transposes one.
+
+Still open there: **Atari System 1 is not published.** Its two manuals agree on
+only 3 designators and split on 8, which is the signature of a manual covering
+more than one PCB — the Red Baron problem. It needs `--figure`, and the figure
+headings need looking at first. 45 designators are waiting behind it.
+
+Also unread, and cheap if the lead layout is extended: **Return of the Jedi (37),
+Super Sprint (36), Pole Position II (47), APB (27), Paperboy (22), Xevious (19),
+RoadBlasters (16), 720 (12)** — all digit-first, all single-printing, all parsing
+today but not yet built.
 
 **Do not go looking for more machines to harvest from the drawings.** The
 technique is Atari-only, and the reason is not the parts-list format: Atari's designators

@@ -1,0 +1,14 @@
+{
+ "machine": "bwidow",
+ "name": "Black Widow",
+ "mfr": "Atari",
+ "year": "1982",
+ "drawing": "TM-234 IC parts list, 1st and 2nd printings",
+ "sheets": {},
+ "notes": [
+  "This board exists because extract_ic_locations could not read its parts list until now. The manual carries a perfectly good typeset IC parts list, but it prints the designators BEFORE the device rather than after it \u2014 'A6, A7 Type-74S74 Integrated Circuit 37-74S74' against Asteroids' '37-74LS00 Type 74LS00 Integrated Circuit (N5, C6)'. rows() read forward from each stock number, so it found the next row's designators, reported 'no designators found' for every row, and quietly paired each row's type with the previous row's stock number. It produced no output rather than wrong output, which is the only reason it went unnoticed. The trust rule is unchanged: the row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
+  "The two printings agree on every designator they share, with no split at all. They do not read equally far \u2014 the 2nd printing recovers 49 designators and the 1st 27 \u2014 so the 24 devices here are the cross-checked core of a longer list, not the whole of it. The rest are attested by one printing and are left off rather than published on a single reading.",
+  "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
+ ],
+ "conflicts": []
+}

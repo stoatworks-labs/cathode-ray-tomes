@@ -21,6 +21,7 @@ MM = pcbnew.FromMM
 
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 from packages import package_for
+from designators import parse as parse_desig
 
 # KiCAD 10 moved footprint loading onto the IO plugin, and the object returned
 # by PCB_IO_MGR.FindPlugin() is manager-owned and gets freed mid-run.
@@ -54,9 +55,18 @@ def build(spec, out_path):
     # neighbour on *both* sides, so the row index is the mean of the cells the
     # designator actually names.
     spans = spec.get("spans", {})
+    # Which way round this board prints its designators — `A1` or `2L`. See
+    # tools/designators.py; it is stated by the board, never inferred.
+    transposed = bool(g.get("transposed"))
+
     for cell, desig in spans.items():
-        letters = desig.split(cell[1:])[0].split("/")
-        if cell not in spec["ics"] or letters[0] != cell[0]:
+        parsed = parse_desig(desig, transposed)
+        base = parse_desig(cell, transposed)
+        if not parsed or not base:
+            raise ValueError(f"span {desig} at {cell} is not a designator on "
+                             f"this board's grid (transposed={transposed})")
+        letters = list(parsed[0])
+        if cell not in spec["ics"] or letters[0] != base[0][0]:
             raise ValueError(f"span {desig} must be keyed at its first cell, "
                              f"and that cell must be in `ics`; got {cell}")
         idx = sorted(rows.index(r) for r in letters)   # raises on a bad row
@@ -68,9 +78,13 @@ def build(spec, out_path):
     n_ic = 0
     unsized = {}
     for cell, part in spec["ics"].items():
-        row, col = cell[0], int(cell[1:])
-        letters = spans[cell].split(str(col))[0].split("/") if cell in spans \
-            else [row]
+        parsed = parse_desig(cell, transposed)
+        if not parsed:
+            raise ValueError(f"`ics` key {cell!r} is not a grid cell on this "
+                             f"board (transposed={transposed})")
+        row, col = parsed[0][0], parsed[1]
+        letters = list(parse_desig(spans[cell], transposed)[0]) \
+            if cell in spans else [row]
         ri = sum(rows.index(r) for r in letters) / len(letters)
         x = g["x0"] + (col - 1) * g["col_pitch"]
         y = g["y0"] + ri * g["row_pitch"]

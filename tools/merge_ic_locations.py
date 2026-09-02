@@ -29,13 +29,12 @@ from extract_ic_locations import (locations, device_key, plausible,
                                   well_formed, best_spelling)
 
 
-def split_designator(desig):
-    """'B/C10' -> ('B10', 'B/C10'); 'C3' -> ('C3', None)."""
-    head = desig.rstrip("0123456789")
-    col = desig[len(head):]
-    if "/" not in head:
-        return desig, None
-    return head.split("/")[0] + col, desig
+# Superseded by tools/designators.py, which reads both of Atari's conventions.
+# The old implementation assumed row-letter-first and, given a 1983-on
+# designator like `2L`, returned it unchanged and let the caller's `cell[0] not
+# in rows` test reject it as off-grid — so a whole board silently harvested
+# nothing rather than harvesting wrongly.
+from designators import cell_and_span, parse as parse_desig
 
 
 def harvest(doc_ids, figure=None):
@@ -93,6 +92,9 @@ def main():
     cols = board["grid"].get("cols")
     drawing = dict(board["ics"])
     spans = dict(board.get("spans", {}))
+    # Which way round this board's designators are printed. Stated by the
+    # board, never inferred from a designator — see tools/designators.py.
+    transposed = bool(board["grid"].get("transposed"))
 
     agreed, split, ndocs = harvest(a.docs, a.figure)
     print(f"{ndocs} printings, {len(agreed)} designators agreed, "
@@ -105,14 +107,15 @@ def main():
         if not well_formed(part):
             unnamed.append((des, part))
             continue
-        cell, span = split_designator(des)
-        if cell[0] not in rows or not cell[1:].isdigit():
+        cell, span = cell_and_span(des, transposed)
+        parsed = parse_desig(des, transposed)
+        if not cell or not parsed or parsed[0][0] not in rows:
             offgrid.append((des, part))
             continue
         # Boards are ten or so columns wide. A designator claiming column 28 is
         # OCR wreckage, not a position, and placing it would stretch the board
         # to three times its width to hold one phantom.
-        if cols and int(cell[1:]) > cols:
+        if cols and parsed[1] > cols:
             offgrid.append((des, part))
             continue
         if cell in drawing:

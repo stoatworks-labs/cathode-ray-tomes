@@ -8,15 +8,19 @@ a re-litigation of it — this reads a different source. The technical manuals
 carry a typeset IC parts list, set in the same type as the body text, and it
 gives exactly the pairing the drawings will not give up.
 
-Two layouts appear in the corpus, and each carries its own checksum:
+Three layouts appear in the corpus, and each carries its own checksum:
 
   paren   37-74LS00   Type 74LS00 Integrated Circuit (N5, C6)
   count   37-7400  10 Integrated Circuit 7400  A2,A6,A9,D5,D9,E3,H/J2,L8,R3
+  lead    A6, A7 Type-74S74 Integrated Circuit  37-74S74
 
 The paren layout states the device type twice — once as Atari's stock number
 and once in the description — so a row is trusted only when two independent
 OCR reads of it agree. The count layout states how many devices the row covers,
-so the designators must come to that many. A row that fails its own checksum is
+so the designators must come to that many. The lead layout is the paren layout
+written backwards, designators first, and carries the same two-readings check;
+it went unread until 2026-09 because rows() only ever looked forward from a
+stock number, which on those documents finds the *next* row's designators. A row that fails its own checksum is
 reported, never quietly used: the whole point of the exercise is that a wrong
 designator in a repair reference is worse than an absent one.
 
@@ -96,6 +100,42 @@ def memory_rows(fid, figure=None):
 
 INLINE_TYPE = re.compile(r'[Ii]ntegrated\s+Circuit[,.]?\s+([0-9A-Z][0-9A-Z.]{2,8})')
 DESIG = re.compile(r'\b([A-Z](?:/[A-Z])*)\s?(\d{1,2})\b')
+
+# Atari's early boards designate a device by row letter then column number —
+# A1, H/J2, R11. From 1983 the convention transposes: Major Havoc, Food Fight
+# and Star Wars print 2L, 1F, 3A, and they use Q and S, letters the early
+# alphabet deliberately skipped. Both forms are board positions and both are
+# read. Which way round a given board's designators are is a property of the
+# board, decided once from the whole harvest, never guessed per designator —
+# 'A1' is unambiguous but '2L' and 'L2' are the same cell written two ways and
+# only the board knows which its silkscreen says.
+_D = r'(?:[A-Z](?:/[A-Z])*\s?\d{1,2}|\d{1,2}\s?[A-Z](?:/[A-Z])*)'
+DESIG_ANY = re.compile(r'\b(' + _D + r')\b')
+
+# The third layout, and the reason Black Widow, Liberator, Major Havoc, Food
+# Fight, Quantum and Star Wars all harvested nothing from manuals that plainly
+# carry a parts list:
+#
+#   paren   37-74LS00   Type 74LS00 Integrated Circuit (N5, C6)
+#   count   37-7400  10 Integrated Circuit 7400  A2,A6,A9,D5,...
+#   lead    A6, A7 Type-74S74 Integrated Circuit  37-74S74
+#
+# The first two put the designators after the stock number, so `rows()` reads
+# forward from each `37-` match and finds them. The third puts them *before*
+# it. Reading forward there finds the next row's designators instead, so every
+# row reported 'no designators found' while quietly pairing each row's type
+# with the previous row's stock number — wrong in a way that produced no
+# output rather than bad output, which is the only reason it went unnoticed.
+#
+# The trust rule is unchanged and is the same one the paren layout uses: the
+# row states its device twice, once as Atari's stock number and once in the
+# description, and it is trusted only when the two agree.
+LEAD = re.compile(
+    r'(?P<desigs>' + _D + r'(?:\s*[,&]\s*' + _D + r')*)'
+    # OCR sheds quote marks and stray strokes between the two columns
+    r'[\s\'"`‘’.:;|-]{0,4}'
+    r'Type[-\s]\s*(?P<part>[0-9A-Z][0-9A-Z\s.]{2,10}?)\s+'
+    r'(?:[A-Z]{2,4}\s+)?[Ii]ntegrated', re.I)
 # a row that only names an alternative device carries no locations of its own;
 # reading on past it picks up the *next* row's designators
 SUBSTITUTE = re.compile(r'substitute\s+for|used\s+(?:only\s+)?(?:with|in)\b', re.I)
@@ -281,12 +321,19 @@ def rows(fid):
     figures = [(m.start(), " ".join(m.group(0).split()))
                for m in FIGURE.finditer(txt)]
     out = []
+    prev_end = 0
     for m in STOCK.finditer(txt):
         stock = m.group(1)
         tail = txt[m.end():m.end() + 220]
         nxt = STOCK.search(tail)
         if nxt:
             tail = tail[:nxt.start()]
+        # The lead layout's designators sit between the previous row's stock
+        # number and this one's, so the head is bounded by both. Capping it
+        # matters: without the previous match as a floor, a document that
+        # mixes layouts would let one row reach back over several others.
+        before = txt[max(prev_end, m.start() - 220):m.start()]
+        prev_end = m.end()
 
         under = ""
         for pos, head in figures:
@@ -297,6 +344,27 @@ def rows(fid):
         rec = {"stock": stock, "type": None, "desigs": [], "trusted": False,
                "layout": None, "why": "", "qualified": False, "figure": under,
                "raw": " ".join(tail.split())[:150]}
+
+        # Tried before the forward-reading layouts because on a lead-layout
+        # document TYPE also matches the tail — that match is the *next* row's
+        # type, and taking it is exactly the mis-pairing this fixes. A lead row
+        # is only claimed when its own checksum passes, so a paren document
+        # cannot be captured by it: there, nothing sits between the previous
+        # row's closing parenthesis and this row's stock number.
+        lead = None
+        for lm in LEAD.finditer(before):
+            lead = lm                      # the last one is nearest this stock
+        if lead and _loose(_norm(lead.group("part"))) == _loose(stock):
+            rec["layout"] = "lead"
+            rec["type"] = best_spelling(_norm(stock), _norm(lead.group("part")))
+            rec["desigs"] = [d.group(1).replace(" ", "")
+                             for d in DESIG_ANY.finditer(lead.group("desigs"))]
+            if not rec["desigs"]:
+                rec["why"] = "no designators found"
+            else:
+                rec["trusted"] = True
+            out.append(rec)
+            continue
 
         t = TYPE.search(tail)
         if t:

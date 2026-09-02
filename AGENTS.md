@@ -356,9 +356,18 @@ the board's `spans` map so the footprint is placed across the cells it occupies
 rather than hanging off one of them. The build rejects a span whose rows are not
 adjacent, which is usually a sign the grid is wrong rather than the span.
 
-**The grid alphabet skips G, I, O and Q**: A B C D E F H J K L M N P R. The board
-definitions used to carry G and Q as rows, which put every device below F at the
-wrong height. Three independent confirmations — nothing in any read, signature or
+**The grid alphabet skips G, I, O and Q — on the pre-1983 boards.** A B C D E F H
+J K L M N P R. The board definitions used to carry G and Q as rows, which put
+every device below F at the wrong height.
+
+That rule does not hold for the later boards, and applying it to one rejects real
+positions. From 1983 the designator convention transposes — Major Havoc, Food
+Fight, Pole Position, Millipede, I-Robot and Quantum print `2L`, not `L2` — and
+the alphabet widens with it: Major Havoc has devices at 2Q and 2S. Which way round
+a board's designators are is stated in `grid.transposed` and read by
+`tools/designators.py`; it is never inferred from a designator, because `2L` and
+`L2` name the same cell and only the silkscreen says which is printed. Getting it
+wrong does not corrupt a map, it transposes one, which is harder to notice. Three independent confirmations — nothing in any read, signature or
 signal record in this repo sits in a G or Q row while both neighbours of each are
 populated; and the sheets' own spanning designators treat F/H and H/J as adjacent
 pairs, which a 24-pin DIP on a 0.75in row pitch requires. Pong predates the

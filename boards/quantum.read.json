@@ -1,0 +1,16 @@
+{
+ "machine": "quantum",
+ "name": "Quantum",
+ "mfr": "Atari",
+ "year": "1982",
+ "drawing": "TM-221 IC parts list",
+ "sheets": {},
+ "notes": [
+  "This board exists because extract_ic_locations could not read its parts list until now. The manual carries a perfectly good typeset IC parts list, but it prints the designators BEFORE the device rather than after it \u2014 'A6, A7 Type-74S74 Integrated Circuit 37-74S74' against Asteroids' '37-74LS00 Type 74LS00 Integrated Circuit (N5, C6)'. rows() read forward from each stock number, so it found the next row's designators, reported 'no designators found' for every row, and quietly paired each row's type with the previous row's stock number. It produced no output rather than wrong output, which is the only reason it went unnoticed. The trust rule is unchanged: the row states its device twice, as a stock number and in the description, and is taken only when the two agree.",
+  "Quantum is General Computer Company's design, built and sold by Atari, and its manual follows Atari's house format \u2014 which is why it reads at all. It is a useful check that the format rather than the designer is what the harvest depends on.",
+  "Only one printing is in the corpus.",
+  "The designators are printed column-first \u2014 2L, not L2. That is the convention Atari's boards take up from 1983, and the row alphabet changes with it: this board uses Q and S, letters the pre-1983 boards deliberately skip. The rule in AGENTS.md that 'Atari skips G, I, O and Q' describes the early boards only, and applying it here would reject real positions. Which way round a board's designators are is recorded in grid.transposed and never inferred from a designator, because 2L and L2 name the same cell and only the silkscreen says which is printed.",
+  "No component-location drawing has been read. The grid spacing is nominal \u2014 the designators are real but nothing here has measured the board."
+ ],
+ "conflicts": []
+}

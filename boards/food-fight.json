@@ -1,0 +1,58 @@
+{
+ "slug": "food-fight",
+ "name": "Food Fight",
+ "mfr": "Atari",
+ "year": "1983",
+ "machine": "foodf",
+ "drawing": "TM-229 IC parts list (3 printings)",
+ "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
+ "coverage": "28 devices from the TM-229 IC parts list, taken only where two or more of its three printings agree. The designators are printed column-first \u2014 2L, not L2 \u2014 which is the convention Atari's boards switch to from 1983, and the row alphabet goes with it: this board uses letters the earlier boards skip. Both are recorded on the board rather than inferred, because 2L and L2 are the same cell written two ways and only the silkscreen settles which. No component-location drawing has been read for this board, so the grid positions are the designators the parts list gives and the spacing is nominal. A board map, not a bill of materials.",
+ "singleSource": false,
+ "size": {
+  "w": 315,
+  "h": 257
+ },
+ "grid": {
+  "rows": "PNMLKHFEDCBA",
+  "col_pitch": 25.4,
+  "row_pitch": 19.05,
+  "x0": 26.0,
+  "y0": 18.0,
+  "rotation": 90,
+  "cols": 11,
+  "transposed": true
+ },
+ "ics": {
+  "10C": "7406",
+  "10M": "74LS161",
+  "10N": "74LS161",
+  "1F": "74LS86",
+  "1H": "7407",
+  "2C": "74S08",
+  "2D": "74S157",
+  "2H": "74LS74",
+  "2K": "74LS74",
+  "3A": "74LS157",
+  "3B": "74LS157",
+  "3P": "74LS157",
+  "4C": "74LS86",
+  "4F": "74LS273",
+  "4K": "74LS367",
+  "4L": "74LS157",
+  "4M": "74LS157",
+  "4N": "74LS157",
+  "4P": "74S00",
+  "5M": "74LS194",
+  "5N": "74LS194",
+  "6B": "74LS273",
+  "6H": "74LS157",
+  "6K": "74LS273",
+  "7M": "74LS273",
+  "8H": "74LS245",
+  "8M": "74LS244",
+  "8N": "74LS244"
+ },
+ "spans": {
+  "8N": "8N/P"
+ }
+}
