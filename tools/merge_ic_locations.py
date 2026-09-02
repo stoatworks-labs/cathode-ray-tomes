@@ -149,6 +149,7 @@ def main():
 
     need = 1 if a.allow_single else 2
     added, confirmed, conflicts, offgrid, thin = {}, [], [], [], []
+    badspan = []
     collided, unnamed = [], []
     for des, (part, n) in sorted(agreed.items()):
         if not well_formed(part):
@@ -165,6 +166,18 @@ def main():
         if cols and parsed[1] > cols:
             offgrid.append((des, part))
             continue
+        # A span names the rows a wide device straddles, and they have to be
+        # next to each other. build_board enforces that and raises, but it
+        # enforced it too late: the merge wrote the span, the board file
+        # carried it, and the build failed afterwards. Removing it by hand did
+        # not stick either, because the next merge simply put it back. So the
+        # rule belongs here, where the designator is first accepted.
+        if span and len(parsed[0]) > 1:
+            idx = sorted(rows.index(r) for r in parsed[0] if r in rows)
+            if len(idx) != len(parsed[0]) or \
+                    idx != list(range(idx[0], idx[0] + len(idx))):
+                badspan.append((des, part))
+                continue
         if cell in drawing:
             if device_key(drawing[cell]) == device_key(part):
                 confirmed.append(cell)
@@ -192,6 +205,8 @@ def main():
     print(f"  {len(added):>3} added from the parts lists")
     print(f"  {len(thin):>3} skipped, attested by fewer than {need} printings")
     print(f"  {len(offgrid):>3} skipped, not a cell on this grid")
+    print(f"  {len(badspan):>3} skipped, the span names rows that are not "
+          f"adjacent")
     print(f"  {len(split):>3} skipped, the printings disagree with each other")
     print(f"  {len(collided):>3} skipped, two designators claim the same cell")
     print(f"  {len(unnamed):>3} skipped, the device name is not one we can stand behind")
@@ -202,6 +217,9 @@ def main():
     for cell, was, now, n in conflicts:
         print(f"      conflict {cell}: drawing {was}, parts lists {now} "
               f"({n} printings)")
+    for des, part in badspan:
+        print(f"      impossible span {des}: {part} — those rows are not "
+              f"adjacent on this grid")
     for des, part in offgrid[:8]:
         print(f"      off-grid {des}: {part}")
     for des, v in list(split.items())[:8]:

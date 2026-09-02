@@ -169,6 +169,17 @@ CANONICAL = re.compile(
     r'^(?:74(?:LS|ALS|AS|HCT|HC|S|H|L|F|C)?\d{2,3}[A-Z]?'
     r'|(?:CD)?4\d{3}[A-Z]?'
     r'|[A-Z]{2,3}\d{3,4}[A-Z]?'
+    # Fairchild's own numbering, which this corpus is full of and which was
+    # missing: 9316 (the 74161, and named as such in EQUIV below), 9312, 9322,
+    # 9602, 9300, 9301, 9334. Those eight are 111 trusted rows and 64 devices
+    # on published maps, every one of them admitted by well_formed() and
+    # called implausible here. The two disagreed, and the disagreement is not
+    # academic: plausible() is what breaks a tie between two printings, so a
+    # printing reading 9316 lost to one reading 74LS164 on Asteroids P9 — the
+    # 9316 discarded as wreckage when it is the more specific reading of the
+    # two. Bounded to 93xx and 96xx because that is what the corpus actually
+    # contains; a bare 9\d{3} would admit any four-digit OCR smear.
+    r'|9[36]\d{2}[A-Z]?'
     r'|\d{2}S\d{2,3})$')
 
 

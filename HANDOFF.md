@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 47, across 41 machines · 2,489 devices |
+| Board maps | 47, across 41 machines · 2,498 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -167,7 +167,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 47 boards and 2,489 devices.
+whole site is 47 boards and 2,498 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -309,13 +309,29 @@ That also unblocked **Pole Position II (38) and Xevious (18)**, which were
 withheld for exactly this reason. Their contested cells are now dropped rather
 than guessed, so no figure-splitting is needed to publish them safely.
 
-**`plausible()` does not know the Fairchild 93xx/96xx series.** It calls 9312,
-9322 and 9602 implausible — and 9316, which this repo's own equivalence table
-documents as Fairchild's 74161. That is why collision resolution deliberately
-does NOT filter on it: doing so would have discarded the 9312 reading of Indy 4's
-B3 and "resolved" the cell to a 7474, a different device. The cross-printing
-split path in `harvest()` *does* filter on `plausible()` and has the same blind
-spot; nothing is known to have gone wrong there, but it has not been audited.
+**`plausible()` did not know the Fairchild 93xx/96xx series, and now does.** It
+called 9312, 9322, 9602, 9300, 9301, 9316, 9321 and 9334 implausible — eight
+parts appearing in 111 trusted rows and on 64 devices of published maps, every
+one of them admitted by `well_formed()`. The two functions disagreed, and it was
+not academic: `plausible()` is what breaks a tie between two printings, so on
+Asteroids P9 a printing reading 9316 lost to one reading 74LS164, the 9316
+discarded as wreckage when it is the more specific reading. The pattern is
+bounded to `9[36]\d{2}` because that is what the corpus contains; a bare
+`9\d{3}` would admit any four-digit smear.
+
+**The split path was audited and had done no damage.** Replaying it over every
+published board found 8 cells decided by the filter: 4 were Asteroids P9 (the
+blind spot, and on no map), and 4 were genuine OCR corrections — `8728` to
+`8T28` on Football, `74LSI91` to `74LS191` on Major Havoc, capital-I for 1.
+After the fix, 4 remain and all four are the genuine kind. No published device
+ever came from a false resolution.
+
+**An impossible span is rejected at merge time now, not at build time.**
+build_board raised on APB's `3B/F` — rows B to F, five apart, where every other
+span on that board covers two — but by then the merge had already written it to
+the board file, and removing it by hand did not stick: the next merge put it
+straight back. The adjacency rule now runs where the designator is first
+accepted, and reports it.
 
 **Marble Madness and Championship Sprint are withheld for a different reason** —
 10 designators each, and Marble's overlap the System 1 main board on 2 cells while
