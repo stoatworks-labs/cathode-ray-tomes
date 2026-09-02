@@ -4,7 +4,7 @@
  "mfr": "Atari",
  "year": "1980",
  "drawing": "DP-147 drawing package, sync sheet",
- "coverage": "83 devices: 14 read from the drawings and 69 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "coverage": "83 devices: 14 read from the drawings and 69 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials. 6 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "size": {
   "w": 300,
   "h": 300
@@ -57,11 +57,13 @@
   "F6": "74LS11",
   "F7": "7474",
   "F9": "74LS273",
+  "H1": "035820-02",
   "H2": "74LS157",
   "H3": "74153",
   "H5": "74LS153",
   "H6": "7474",
   "H7": "74LS08",
+  "J1": "035821-02",
   "J2": "74LS157",
   "J3": "74153",
   "J5": "74LS153",
@@ -69,6 +71,7 @@
   "J7": "74LS32",
   "J8": "7474",
   "J9": "74LS14",
+  "K1": "035822-03e",
   "K2": "74LS157",
   "K3": "74153",
   "K5": "74LS153",
@@ -76,6 +79,7 @@
   "K7": "7404",
   "K8": "74LS191",
   "K9": "74LS191",
+  "L1": "035823-02",
   "L2": "74LS157",
   "L5": "74S32",
   "L6": "035826-01",
@@ -87,6 +91,7 @@
   "M6": "74LS195",
   "M7": "74LS157",
   "M9": "74LS244",
+  "N1": "035824-02",
   "N11": "7407",
   "N2": "7442",
   "N3": "74LS244",
@@ -98,6 +103,7 @@
   "P5": "74LS244",
   "P6": "74LS166",
   "P7": "74LS153",
+  "R1": "035825-02",
   "R2": "74LS08",
   "R4": "74LS163A",
   "R5": "7432",
@@ -107,6 +113,10 @@
  "spans": {
   "A1": "A/B1",
   "B1": "B/C1",
-  "N3": "N/P3"
+  "N3": "N/P3",
+  "J1": "J/K1",
+  "K1": "K/L1",
+  "L1": "L/M1",
+  "N1": "N/P1"
  }
 }

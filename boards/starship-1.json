@@ -6,7 +6,7 @@
  "machine": "starshp1",
  "drawing": "IPC-085 IC parts list",
  "revision": "",
- "coverage": "10 devices, every one from the IC parts list in IPC-085. Grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing here has measured the board. A board map, not a bill of materials.",
+ "coverage": "10 devices, every one from the IC parts list in IPC-085. Grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing here has measured the board. A board map, not a bill of materials. 8 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "singleSource": true,
  "size": {
   "w": 325.4,
@@ -23,14 +23,22 @@
  },
  "ics": {
   "A6": "7474",
+  "C2": "7529-02",
+  "E3": "7531-02",
   "F7": "7474",
   "F8": "7474",
   "F9": "7474",
   "H10": "74LS193",
+  "H3": "7530-02",
+  "J5": "7515-01",
   "K9": "7474",
   "M1": "74LS193",
   "N2": "74LS193",
   "N5": "74LS83",
+  "N7": "7513-01",
+  "N9": "7514-01",
+  "R1": "7517-01",
+  "R10": "7518-01",
   "R7": "7474"
  }
 }

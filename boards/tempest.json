@@ -5,7 +5,7 @@
  "year": "1981",
  "machine": "tempest",
  "drawing": "DP-190 drawing package, sheets 02A and 02B",
- "coverage": "88 devices, all read from the DP-190 drawing package. Five devices previously here came from the parts list under Tempest's *Auxiliary* PCB figure rather than the Analog Vector-Generator PCB this map is of, and are withdrawn. Re-harvested under the Analog Vector-Generator figure alone, the parts lists confirm the drawing read and add nothing.",
+ "coverage": "88 devices, all read from the DP-190 drawing package. Five devices previously here came from the parts list under Tempest's *Auxiliary* PCB figure rather than the Analog Vector-Generator PCB this map is of, and are withdrawn. Re-harvested under the Analog Vector-Generator figure alone, the parts lists confirm the drawing read and add nothing. 3 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "size": {
   "w": 300,
   "h": 300
@@ -58,6 +58,7 @@
   "E7": "74LS174",
   "E8": "74LS161",
   "E9": "74LS20",
+  "F1": "136002-134",
   "F2": "74LS245",
   "F3": "74S08",
   "F4": "74LS10",
@@ -72,6 +73,7 @@
   "H7": "74LS175",
   "H8": "74LS174",
   "H9": "74LS399",
+  "J1": "136002-235",
   "J11": "74LS04",
   "J2": "74LS139",
   "J5": "74LS139",
@@ -85,6 +87,7 @@
   "K7": "74LS367",
   "K8": "74LS175",
   "K9": "74LS00",
+  "L1": "136002-136",
   "L12": "8-position DIP switch",
   "L2": "74LS157",
   "L5": "74LS193",
@@ -111,6 +114,7 @@
  "spans": {
   "A1": "A/B1",
   "B1": "B/C1",
-  "N3": "N/P3"
+  "N3": "N/P3",
+  "L1": "L/M1"
  }
 }

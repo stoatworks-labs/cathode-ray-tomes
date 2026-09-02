@@ -4,7 +4,7 @@
  "mfr": "Atari",
  "year": "1980",
  "drawing": "DP-156 drawing package, sheets 02A, 02B and 03A",
- "coverage": "105 devices: 97 read from the drawings and 8 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "coverage": "105 devices: 97 read from the drawings and 8 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials. 1 memory device placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "size": {
   "w": 300,
   "h": 300
@@ -59,6 +59,7 @@
   "F7": "74LS367",
   "F8": "74LS175",
   "F9": "74LS175",
+  "H1": "036413-01",
   "H10": "74LS74",
   "H11": "7404",
   "H2": "2114",

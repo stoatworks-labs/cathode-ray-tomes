@@ -5,7 +5,7 @@
  "year": "1980",
  "machine": "redbaron",
  "drawing": "DP-169 drawing package, sheet 02A",
- "coverage": "66 devices: 15 read from the drawings and 51 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "coverage": "66 devices: 15 read from the drawings and 51 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials. 6 memory devices placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "size": {
   "w": 300,
   "h": 300
@@ -22,6 +22,7 @@
   "A1": "036174-01",
   "A5": "036464-01",
   "A6": "74LS194",
+  "B3": "037006-01",
   "B4": "74LS42",
   "B5": "74LS194",
   "B6": "74LS14",
@@ -32,9 +33,11 @@
   "D5": "74LS194",
   "D6": "74LS194",
   "D7": "74LS86",
+  "E1": "037000-01",
   "E4": "74LS157",
   "E5": "74LS193",
   "E6": "74LS670",
+  "F1": "037587-01",
   "F10": "74LS191",
   "F2": "74LS245",
   "F4": "74LS157",
@@ -48,6 +51,7 @@
   "H5": "74LS193",
   "H6": "74LS670",
   "H8": "74LS399",
+  "J1": "036998-01",
   "J10": "74S74",
   "J4": "74LS00",
   "J5": "74LS32",
@@ -60,6 +64,7 @@
   "K7": "036408-01",
   "K8": "74LS175",
   "K9": "74S02",
+  "L1": "036996-01",
   "L10": "74LS74",
   "L5": "74LS08",
   "L8": "74S260",
@@ -69,6 +74,7 @@
   "M7": "74LS02",
   "M8": "74LS32",
   "M9": "74LS74",
+  "N1": "036995-01",
   "N11": "74LS244",
   "N2": "74LS244",
   "N3": "90-6013",
@@ -85,5 +91,10 @@
   "R4": "74LS245",
   "R5": "74LS245",
   "R9": "74S04"
+ },
+ "spans": {
+  "B3": "B/C3",
+  "F1": "F/H1",
+  "L1": "L/M1"
  }
 }

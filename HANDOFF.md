@@ -20,7 +20,7 @@ about your board revision.
 | Machines | 7,812 |
 | Documents digitised | 2,389 of 2,405 (100% block structure) |
 | Pages OCR'd | 62,784 · 44,668 sections |
-| Board maps | 50, across 41 machines · 2,568 devices |
+| Board maps | 50, across 41 machines · 2,672 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -180,7 +180,7 @@ came out unchanged:
 Soccer 17, Starship 1 10 — 305 devices with no cross-check behind any of them. Every one
 carries `singleSource: true`, which puts a warning at the top of the board page and a
 badge in the boards list, and the chip lookup still names the source per device. The
-whole site is 50 boards and 2,568 devices.
+whole site is 50 boards and 2,672 devices.
 
 That leaves the well-formedness guard doing all the work on those nine, since
 cross-printing agreement is unavailable. It rejected 24 device names outright and each
@@ -554,10 +554,25 @@ board map has a device at a cell MAME puts a ROM, the disagreement is evidence.
 three that do not are on single-printing boards and are logged in their read
 files: Super Breakout E2 (parts list 9322, MAME a ROM), Indy 4 F4 and E5 (7400
 and 9312 against PROMs). One OCR read against a position verified on hardware;
-the map keeps the parts list by house rule but the odds favour MAME. 97 ROM
-positions MAME knows are on no board map at all — memory cells the parts lists
-never reached. Filling them from MAME would be a new, weaker source mixed into
-the maps and is a decision, not a chore; it is not done.
+the map keeps the parts list by house rule but the odds favour MAME. Then the
+positions MAME knows that were on no board map — memory cells the parts lists
+never reach, because Atari stocks ROMs under its own part numbers rather than
+as 37-series IC stock and those rows fail the harvest's checksum — were put on:
+**78 memory devices across 14 boards** by `tools/merge_rom_positions.py`,
+labelled `MAME ROM map` in the chip lookup so each says where it came from,
+and only where the map had nothing. The three cells where a parts list and
+MAME disagree are untouched and stay logged. MAME was already a published
+source on this site with its own caveat; this is that source reaching the
+board map with the same label, not a new one mixed in quietly.
+
+**Asteroids -05 and -06 take the parts lists now too, via -03.** Written in early
+designators, the parts lists cannot be merged onto a late board directly. So the
+late boards take -03's parts-list additions, shifted through the drawing's
+early-to-late table where an alternate is known and placed at the early cell
+otherwise — which is what those boards already do for their 78 unshifted
+drawing-read devices, under a caveat they already carry. 13 each; none of the
+22 turned out to have a known alternate, and 9 land on cells a shifted device
+already occupies and are skipped rather than duplicated.
 
 *Shared-hardware pairs.* Black Widow ran on Space Duel hardware and Gravitar is
 the same colour-vector family, and all three were harvested from different

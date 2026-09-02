@@ -270,7 +270,6 @@ def supplement_from_parts_lists(devices):
     ids = [fid for fid, *_ in early]
     for slug, rev in REVISIONS.items():
         if rev["designators"] != "early":
-            print(f"  {slug:<16} late designators — parts lists not applied")
             continue
         r = subprocess.run([sys.executable,
                             os.path.join(ROOT, "tools", "merge_ic_locations.py"),
@@ -281,6 +280,62 @@ def supplement_from_parts_lists(devices):
         print(f"  {slug:<16} {added}")
         if r.returncode:
             print("   ! " + (r.stderr.strip().splitlines() or ["?"])[-1][:120])
+
+    # The late boards take the same devices, shifted where the shift is known.
+    # The parts lists are written in early designators, so a device cannot be
+    # merged onto -05/-06 directly: for the 28 whose alternate the drawing
+    # records it would land one column from where the board has it and
+    # duplicate the chip. Shift those 28. The rest have no known alternate and
+    # go at their early cell — which is exactly what these boards already do
+    # for the 78 drawing-read devices without one, and say so in their
+    # revision note. Same rule, same caveat, no new one.
+    alt = {p: s["alt"] for p, s in devices.items() if s.get("alt")}
+    src = json.load(open(os.path.join(OUT, "asteroids-03.json")))
+    src_chips = json.load(open(os.path.join(CHIPS, "asteroids-03.json")))
+    from_list = {c: src["ics"][c] for c in src["ics"]
+                 if "parts list" in src_chips.get(c, {}).get("source", "")
+                 and "drawing" not in src_chips.get(c, {}).get("source", "")}
+    for slug, rev in REVISIONS.items():
+        if rev["designators"] != "late":
+            continue
+        bpath = os.path.join(OUT, slug + ".json")
+        board = json.load(open(bpath))
+        chips = json.load(open(os.path.join(CHIPS, slug + ".json")))
+        placed = shifted = 0
+        for cell, part in from_list.items():
+            target = alt.get(cell, cell)
+            if target in board["ics"]:
+                continue
+            board["ics"][target] = part
+            chips[target] = {"part": part, "section": "", "note": (
+                f"Read at {cell} in the parts lists, which are written in "
+                f"-03/-04 designators; shown here at the -05/-06 position the "
+                f"drawing gives for it." if target != cell else
+                f"Read at {cell} in the parts lists, which are written in "
+                f"-03/-04 designators. No -05/-06 alternate is recorded for this "
+                f"device, so it is shown at its early position — the same "
+                f"caveat this board already carries for its drawing-read "
+                f"devices."), "otherRev": cell if target != cell else None,
+                "source": ("IC parts list via -03, shifted to the -05/-06 "
+                           "designator" if target != cell else
+                           "IC parts list via -03, at the -03/-04 designator "
+                           "(no alternate known)")}
+            placed += 1; shifted += (target != cell)
+        board["ics"] = dict(sorted(board["ics"].items()))
+        board["coverage"] = (
+            f"{len(board['ics'])} devices: "
+            f"{len(board['ics']) - placed} read from the drawings and {placed} "
+            f"recovered from the IC parts lists via the -03 map — {shifted} of "
+            f"them shifted to the -05/-06 designator the drawing records, "
+            f"{placed - shifted} shown at their -03/-04 position because no "
+            f"alternate is known, which is the caveat this board already "
+            f"carries. The chip lookup names the source for each one. This is a "
+            f"board map, not a complete bill of materials.")
+        json.dump(board, open(bpath, "w"), indent=1)
+        json.dump(dict(sorted(chips.items())),
+                  open(os.path.join(CHIPS, slug + ".json"), "w"), indent=1)
+        print(f"  {slug:<16} {placed} added via -03, {shifted} shifted, "
+              f"{placed - shifted} at early position")
 
 
 if __name__ == "__main__":

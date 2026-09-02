@@ -5,7 +5,7 @@
  "year": "1980",
  "machine": "astdelux",
  "drawing": "DP-165 drawing package, clock and reset sheet",
- "coverage": "92 devices: 8 read from the drawings and 84 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "coverage": "92 devices: 8 read from the drawings and 84 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials. 1 memory device placed from MAME's ROM map, which encodes board positions in its file names and was checked against real boards; the chip lookup names MAME as the source for each.",
  "size": {
   "w": 300,
   "h": 300
@@ -58,6 +58,7 @@
   "E6": "74LS42",
   "E8": "74LS42",
   "E9": "74LS191",
+  "F1": "036432-02",
   "F2": "74LS157",
   "F3": "74LS670",
   "F4": "74LS193",
@@ -122,6 +123,7 @@
  },
  "spans": {
   "E1": "E/F1",
-  "N2": "N/P2"
+  "N2": "N/P2",
+  "F1": "F/H1"
  }
 }
