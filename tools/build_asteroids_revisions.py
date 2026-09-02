@@ -205,5 +205,84 @@ def main():
         print(f"  {slug:<16} {n:>3} devices placed, {sp} spanning "
               f"({sk} off-grid, not placed)")
 
+    supplement_from_parts_lists(devices)
+
+
+def classify_printings(devices):
+    """Sort the corpus's Asteroids manuals by which designators they print.
+
+    The drawing read records an early designator and, for 28 devices, the
+    -05/-06 alternate one column over. A printing that puts those 28 devices
+    at their early cells is written in early designators and can be merged
+    onto an early board directly. Measured, every printing in the corpus is —
+    the 1st through 7th of TM-143, the Cabaret and both Cocktails all score
+    18-22 early against 0-1 late, with the 6th printing at 18 to 10 the only
+    one that hedges. So the shift HANDOFF warned about lives in the boards,
+    not in the manuals, and the merge that was declined twice for fear of it
+    is safe for the early boards.
+    """
+    import sys as _sys
+    _sys.path.insert(0, os.path.join(ROOT, "tools"))
+    from extract_ic_locations import locations, device_key
+    pairs = [(p, s["alt"], s["part"]) for p, s in devices.items() if s.get("alt")]
+    docs = json.load(open(os.path.join(ROOT, "data", "index", "docs.json")))
+    early, unclear = [], []
+    for d in docs:
+        if d.get("machine") != "asteroid":
+            continue
+        if not os.path.exists(os.path.join(ROOT, "cache", "text", d["id"] + ".json")):
+            continue
+        try:
+            loc, _ = locations(d["id"])
+        except Exception:
+            continue
+        if not loc:
+            continue
+        e = sum(1 for p, a, part in pairs
+                if p in loc and device_key(loc[p]) == device_key(part))
+        l = sum(1 for p, a, part in pairs
+                if a in loc and device_key(loc[a]) == device_key(part))
+        (early if e > 2 * l else unclear).append((d["id"], d["title"], e, l))
+    return early, unclear
+
+
+def supplement_from_parts_lists(devices):
+    """Add what the typeset parts lists attest, onto the early boards only.
+
+    Runs inside the generator so it survives regeneration; a merge applied to
+    the emitted files by hand was lost the next time this ran, which is why it
+    was never done. Only -03 and -04 take the supplement. The parts lists are
+    written in early designators, so on a -05/-06 board a parts-list device
+    would land one column from where the board actually has it and, for the
+    28 devices whose alternate is known, duplicate a chip the drawing read has
+    already placed at the shifted cell. Those two boards keep the caveat they
+    already carry rather than gain a second, quieter one.
+    """
+    import subprocess
+    early, unclear = classify_printings(devices)
+    print(f"\n  parts lists: {len(early)} printings write early designators, "
+          f"{len(unclear)} unclear")
+    for fid, title, e, l in unclear:
+        print(f"    unclear, not used: {title[:50]} (early {e}, late {l})")
+    if len(early) < 2:
+        print("  fewer than two early printings — supplement skipped")
+        return
+    ids = [fid for fid, *_ in early]
+    for slug, rev in REVISIONS.items():
+        if rev["designators"] != "early":
+            print(f"  {slug:<16} late designators — parts lists not applied")
+            continue
+        r = subprocess.run([sys.executable,
+                            os.path.join(ROOT, "tools", "merge_ic_locations.py"),
+                            slug, "--docs"] + ids + ["--apply"],
+                           capture_output=True, text=True)
+        added = next((l.strip() for l in r.stdout.splitlines()
+                      if "added from the parts" in l), "?")
+        print(f"  {slug:<16} {added}")
+        if r.returncode:
+            print("   ! " + (r.stderr.strip().splitlines() or ["?"])[-1][:120])
+
+
 if __name__ == "__main__":
+    import sys
     main()

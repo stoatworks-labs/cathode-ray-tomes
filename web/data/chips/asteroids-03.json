@@ -1,662 +1,926 @@
 {
- "D4": {
-  "part": "74LS74",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "B9": {
-  "part": "74LS32",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "K6": {
-  "part": "74LS08",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "K5": {
-  "part": "74LS191",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "F4": {
-  "part": "74LS670",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "H4": {
-  "part": "74LS670",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "J4": {
-  "part": "74LS670",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "B8": {
-  "part": "74LS08",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": "B9"
- },
- "B5": {
-  "part": "74LS04",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "C6": {
-  "part": "74LS00",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "F5": {
-  "part": "74LS193",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "H5": {
-  "part": "74LS193",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "J5": {
-  "part": "74LS193",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "H6": {
-  "part": "74LS367",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "J6": {
-  "part": "74LS367",
-  "section": "Vector Generator Program Counter",
-  "note": "",
-  "otherRev": null
- },
- "K3": {
-  "part": "74LS157",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "J3": {
-  "part": "74LS157",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "H3": {
-  "part": "74LS157",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "F3": {
-  "part": "74LS157",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "M5": {
-  "part": "74LS32",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "L3": {
-  "part": "74LS139",
-  "section": "Memory Address Selector",
-  "note": "",
-  "otherRev": null
- },
- "L5": {
-  "part": "74LS04",
-  "section": "Memory Address Selector",
-  "note": "second LS04 package",
-  "otherRev": "L6"
- },
- "R4": {
-  "part": "2114",
-  "section": "Vector Generator RAM",
-  "note": "Atari 90-7033, vector generator RAM",
-  "otherRev": null
- },
- "P4": {
-  "part": "2114",
-  "section": "Vector Generator RAM",
-  "note": "Atari 90-7033",
-  "otherRev": null
- },
- "M4": {
-  "part": "2114",
-  "section": "Vector Generator RAM",
-  "note": "Atari 90-7033",
-  "otherRev": null
- },
- "N4": {
-  "part": "2114",
-  "section": "Vector Generator RAM",
-  "note": "Atari 90-7033",
-  "otherRev": null
- },
- "K4": {
-  "part": "83S185",
-  "section": "Vector Generator ROM",
-  "note": "vector ROM, see table",
-  "otherRev": null
- },
- "L4": {
-  "part": "83S185",
-  "section": "Vector Generator ROM",
-  "note": "vector ROM, see table",
-  "otherRev": null
- },
- "N3": {
-  "part": "8316E",
-  "section": "Vector Generator ROM",
-  "note": "vector ROM N/P3, see table",
-  "otherRev": null
- },
- "R2": {
-  "part": "74LS245",
-  "section": "Vector Generator Data Buffer",
-  "note": "data buffer; pin numbering differs if AM83048 fitted",
-  "otherRev": null
- },
- "K7": {
-  "part": "74LS273",
-  "section": "Vector Generator Memory Data Latches",
-  "note": "data latch 3",
-  "otherRev": null
- },
- "J7": {
-  "part": "74LS273",
-  "section": "Vector Generator Memory Data Latches",
-  "note": "data latch 2",
-  "otherRev": null
- },
- "F7": {
-  "part": "74LS273",
-  "section": "Vector Generator Memory Data Latches",
-  "note": "data latch 1",
-  "otherRev": null
- },
- "H7": {
-  "part": "74LS273",
-  "section": "Vector Generator Memory Data Latches",
-  "note": "data latch 0",
-  "otherRev": null
- },
- "B10": {
-  "part": "74LS32",
-  "section": "Vector Generator Memory Data Latches",
-  "note": "",
-  "otherRev": "B9"
- },
- "N5": {
-  "part": "74LS00",
+ "A10": {
+  "part": "74LS109",
   "section": "State Machine",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "R8": {
-  "part": "74LS74",
-  "section": "State Machine",
+ "A11": {
+  "part": "74LS157",
+  "section": "",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
  },
  "A7": {
   "part": "74LS74",
   "section": "State Machine",
   "note": "",
-  "otherRev": null
- },
- "C8": {
-  "part": "82S129",
-  "section": "State Machine",
-  "note": "Atari 034002, state machine PROM",
-  "otherRev": null
- },
- "D8": {
-  "part": "74LS174",
-  "section": "State Machine",
-  "note": "manual text calls this 'latch D8'",
-  "otherRev": "D9"
- },
- "E6": {
-  "part": "74LS08",
-  "section": "State Machine",
-  "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
  "A8": {
   "part": "74LS10",
   "section": "State Machine",
   "note": "",
-  "otherRev": "A9"
+  "otherRev": "A9",
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "D6": {
-  "part": "74LS04",
-  "section": "State Machine",
-  "note": "inverter to BLANK",
-  "otherRev": null
- },
- "A10": {
+ "A9": {
   "part": "74LS109",
-  "section": "State Machine",
+  "section": "",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 4 printings"
  },
- "B6": {
-  "part": "74LS14",
-  "section": "State Machine",
-  "note": "",
-  "otherRev": null
- },
- "M7": {
-  "part": "74LS175",
-  "section": "Vector Timer",
-  "note": "",
-  "otherRev": null
- },
- "N6": {
+ "B10": {
   "part": "74LS32",
-  "section": "State Machine",
+  "section": "Vector Generator Memory Data Latches",
+  "note": "The IC parts lists call this a 74LS157 (7 printings); the drawing says 74LS32. Unresolved.",
+  "otherRev": "B9",
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "B11": {
+  "part": "AD561J",
+  "section": "Video Outputs",
+  "note": "Y DAC The IC parts lists call this a 74LS374 (2 printings); the drawing says AD561J. Unresolved.",
+  "otherRev": "B12",
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "B12": {
+  "part": "4016B",
+  "section": "",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
  },
- "E5": {
-  "part": "74LS20",
-  "section": "State Machine",
+ "B13": {
+  "part": "4016B",
+  "section": "",
   "note": "",
-  "otherRev": null
- },
- "F6": {
-  "part": "74LS157",
-  "section": "Vector Timer",
-  "note": "",
-  "otherRev": null
- },
- "M6": {
-  "part": "74LS83",
-  "section": "Vector Timer",
-  "note": "adder",
-  "otherRev": null
- },
- "E7": {
-  "part": "74LS42",
-  "section": "Vector Timer",
-  "note": "decoder",
-  "otherRev": null
- },
- "D7": {
-  "part": "74LS191",
-  "section": "Vector Timer",
-  "note": "",
-  "otherRev": null
- },
- "C7": {
-  "part": "74LS191",
-  "section": "Vector Timer",
-  "note": "",
-  "otherRev": null
- },
- "B7": {
-  "part": "74LS191",
-  "section": "Vector Timer",
-  "note": "",
-  "otherRev": null
- },
- "J8": {
-  "part": "74LS97",
-  "section": "X and Y Position Counters",
-  "note": "rate multiplier",
-  "otherRev": "J9"
- },
- "K8": {
-  "part": "74LS97",
-  "section": "X and Y Position Counters",
-  "note": "rate multiplier",
-  "otherRev": "K9"
- },
- "E9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "E10"
- },
- "D9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "X/Y position counter",
-  "otherRev": "D10"
- },
- "C9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "C10"
- },
- "H10": {
-  "part": "74LS04",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "H11"
- },
- "C10": {
-  "part": "74LS157",
-  "section": "X and Y Position Counters",
-  "note": "Y DAC mux",
-  "otherRev": "C11"
- },
- "E10": {
-  "part": "74LS157",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "E11"
- },
- "D12": {
-  "part": "CD4016B",
-  "section": "X and Y Position Counters",
-  "note": "analogue switch, video output",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
  },
  "B16": {
   "part": "74LS374",
   "section": "X and Y Position Counters",
   "note": "Y DAC latch (designator uncertain)",
-  "otherRev": null
- },
- "F10": {
-  "part": "74LS174",
-  "section": "X and Y Position Counters",
-  "note": "drawing cites this exact chip as the revision example",
-  "otherRev": "F11"
- },
- "H8": {
-  "part": "74LS97",
-  "section": "X and Y Position Counters",
-  "note": "Y rate multiplier",
-  "otherRev": "H9"
- },
- "F8": {
-  "part": "74LS97",
-  "section": "X and Y Position Counters",
-  "note": "Y rate multiplier on -01 thru -05",
-  "otherRev": "F9"
- },
- "J9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "J10"
- },
- "H9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "H10"
- },
- "F9": {
-  "part": "74LS191",
-  "section": "X and Y Position Counters",
-  "note": "",
-  "otherRev": "F10"
- },
- "D5": {
-  "part": "74LS393",
-  "section": "Power Reset and Watchdog",
-  "note": "watchdog counter",
-  "otherRev": null
- },
- "C4": {
-  "part": "9316",
-  "section": "Clock Circuit",
-  "note": "clock divider: 6MHz / 3MHz / 1.5MHz",
-  "otherRev": null
- },
- "B4": {
-  "part": "74LS393",
-  "section": "Clock Circuit",
-  "note": "clock divider: 3kHz / 12kHz",
-  "otherRev": null
- },
- "C3": {
-  "part": "6502A",
-  "section": "MPU Circuitry",
-  "note": "Atari 90-6013. Drawing warns: MPU runs at 1.5MHz so it MUST be a 6502A; a plain 6502 tops out at 1MHz and is not compatible.",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
  },
  "B2": {
   "part": "74LS244",
   "section": "MPU Circuitry",
   "note": "address buffer; split pads allow an LS245 substitution",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B4": {
+  "part": "74LS393",
+  "section": "Clock Circuit",
+  "note": "clock divider: 3kHz / 12kHz",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B5": {
+  "part": "74LS04",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B6": {
+  "part": "74LS14",
+  "section": "State Machine",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B7": {
+  "part": "74LS191",
+  "section": "Vector Timer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "B8": {
+  "part": "74LS08",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": "B9",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "B9": {
+  "part": "74LS32",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "C10": {
+  "part": "74LS157",
+  "section": "X and Y Position Counters",
+  "note": "Y DAC mux",
+  "otherRev": "C11",
+  "source": "component-location drawing"
+ },
+ "C11": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
  },
  "C2": {
   "part": "74LS244",
   "section": "MPU Circuitry",
   "note": "address buffer",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "E3": {
-  "part": "74LS245",
+ "C3": {
+  "part": "6502A",
   "section": "MPU Circuitry",
-  "note": "data bus transceiver",
-  "otherRev": null
+  "note": "Atari 90-6013. Drawing warns: MPU runs at 1.5MHz so it MUST be a 6502A; a plain 6502 tops out at 1MHz and is not compatible.",
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "E2": {
-  "part": "2114",
-  "section": "RAM Circuitry",
-  "note": "Atari 90-7033, MPU RAM",
-  "otherRev": null
- },
- "D2": {
-  "part": "2114",
-  "section": "RAM Circuitry",
-  "note": "Atari 90-7033, MPU RAM",
-  "otherRev": null
- },
- "P5": {
-  "part": "74LS86",
-  "section": "RAM Circuitry",
-  "note": "",
-  "otherRev": null
+ "C4": {
+  "part": "9316",
+  "section": "Clock Circuit",
+  "note": "clock divider: 6MHz / 3MHz / 1.5MHz",
+  "otherRev": null,
+  "source": "component-location drawing"
  },
  "C5": {
   "part": "9316",
   "section": "NMI Counter",
   "note": "NMI counter; divides 3kHz by 12, interrupt every 4ms. Type from the parts list, which the sheet does not give: five printings name a counter at C5 \u2014 '37-9316' in the 6th, 7th and Cocktail 3rd, '37-74LS161' in the 1st and 2nd. The 9316 is Fairchild's 74161, so these are the same part.",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "L10": {
-  "part": "74LS251",
-  "section": "Player Input Circuitry",
-  "note": "player input mux, SINP0",
-  "otherRev": "L11"
- },
- "J10": {
-  "part": "74LS251",
-  "section": "Player Input Circuitry",
-  "note": "coin door / control panel mux, SINP1",
-  "otherRev": "J11"
- },
- "P11": {
-  "part": "LM324",
-  "section": "Audio Output",
-  "note": "audio mixer; all sounds mixed in 1/4 of P11",
-  "otherRev": null
- },
- "P12": {
-  "part": "LM324",
-  "section": "Audio Output",
+ "C6": {
+  "part": "74LS00",
+  "section": "Vector Generator Program Counter",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "N11": {
-  "part": "74LS174",
-  "section": "Coin Counter / LED Output",
-  "note": "74LS174 hex flip-flop shared across functions: coin-counter latch on sheet 02B and the RAMSEL latch on 01B. Different bits of one package, not a conflicting reading.",
-  "otherRev": null
- },
- "N9": {
-  "part": "7406",
-  "section": "Coin Counter / LED Output",
-  "note": "open-collector inverter",
-  "otherRev": null
- },
- "N10": {
-  "part": "7406",
-  "section": "Coin Counter / LED Output",
+ "C7": {
+  "part": "74LS191",
+  "section": "Vector Timer",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "M12": {
-  "part": "4-position DIP switch",
-  "section": "Option Switches",
-  "note": "Option switches. Atari 66-114P1T, '4-Station Single-Throw, Dual-Inline-Package Bit Switch', item 143 at M12 in three printings.",
-  "otherRev": null
+ "C8": {
+  "part": "82S129",
+  "section": "State Machine",
+  "note": "Atari 034002, state machine PROM The IC parts lists call this a 74LS02 (2 printings); the drawing says 82S129. Unresolved.",
+  "otherRev": null,
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "C9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "C10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D10": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
  },
  "D11": {
   "part": "AD561J",
   "section": "Video Outputs",
-  "note": "X DAC; drawing states D11 on -01 thru -04, D12 on -05/-06",
-  "otherRev": "D12"
+  "note": "X DAC; drawing states D11 on -01 thru -04, D12 on -05/-06 The IC parts lists call this a 74LS374 (1 printing); the drawing says AD561J. Unresolved.",
+  "otherRev": "D12",
+  "source": "component-location drawing, disputed by the parts lists"
  },
- "B11": {
-  "part": "AD561J",
-  "section": "Video Outputs",
-  "note": "Y DAC",
-  "otherRev": "B12"
+ "D12": {
+  "part": "CD4016B",
+  "section": "X and Y Position Counters",
+  "note": "analogue switch, video output",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
  "D13": {
   "part": "CD4016B",
   "section": "Video Outputs",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D2": {
+  "part": "2114",
+  "section": "RAM Circuitry",
+  "note": "Atari 90-7033, MPU RAM",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "D4": {
+  "part": "74LS74",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D5": {
+  "part": "74LS393",
+  "section": "Power Reset and Watchdog",
+  "note": "watchdog counter",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D6": {
+  "part": "74LS04",
+  "section": "State Machine",
+  "note": "inverter to BLANK The IC parts lists call this a 74LS02 (8 printings); the drawing says 74LS04. Unresolved.",
+  "otherRev": null,
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "D7": {
+  "part": "74LS191",
+  "section": "Vector Timer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "D8": {
+  "part": "74LS174",
+  "section": "State Machine",
+  "note": "manual text calls this 'latch D8'",
+  "otherRev": "D9",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "D9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "X/Y position counter",
+  "otherRev": "D10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E10": {
+  "part": "74LS157",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "E11",
+  "source": "component-location drawing"
+ },
+ "E11": {
+  "part": "74LS157",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
  },
  "E12": {
   "part": "137108-001",
   "section": "Video Outputs",
   "note": "Video output op-amp. Type from the parts list, which the sheet does not give: item 130, 'Operational Amplifier Integrated Circuit' at E12 in three printings, and the Caberat manual names it 'Type TL081CP'. The same item also lists a B/C12 location that nothing here accounts for.",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "M10": {
-  "part": "74LS259",
-  "section": "Sound",
-  "note": "sound control latch",
-  "otherRev": "M11"
+ "E2": {
+  "part": "2114",
+  "section": "RAM Circuitry",
+  "note": "Atari 90-7033, MPU RAM",
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "M9": {
-  "part": "CD4016B",
-  "section": "Sound",
-  "note": "analogue switch",
-  "otherRev": "M10"
+ "E3": {
+  "part": "74LS245",
+  "section": "MPU Circuitry",
+  "note": "data bus transceiver",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "M8": {
-  "part": "NE555",
-  "section": "Sound",
-  "note": "saucer fire VCO",
-  "otherRev": "M9"
- },
- "L9": {
-  "part": "NE555",
-  "section": "Sound",
-  "note": "ship fire VCO",
-  "otherRev": "L10"
- },
- "L8": {
-  "part": "LM324",
-  "section": "Audio Output",
-  "note": "audio op-amps; corroborated by sheet 01B text",
-  "otherRev": "L9"
- },
- "J2": {
-  "part": "035131-02",
-  "section": "ROM/PROM Circuitry",
-  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
-  "otherRev": null
- },
- "N2": {
-  "part": "035132-02",
-  "section": "ROM/PROM Circuitry",
-  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
-  "otherRev": null
- },
- "K1": {
-  "part": "035137-02",
-  "section": "Program memory",
+ "E4": {
+  "part": "74LS139",
+  "section": "",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 6 printings"
  },
- "N1": {
-  "part": "035138-02",
-  "section": "Program memory",
+ "E5": {
+  "part": "74LS20",
+  "section": "State Machine",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "H2": {
-  "part": "035133-02",
-  "section": "ROM/PROM Circuitry",
-  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
-  "otherRev": null
- },
- "M2": {
-  "part": "035134-02",
-  "section": "ROM/PROM Circuitry",
-  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
-  "otherRev": null
- },
- "J1": {
-  "part": "035139-02",
-  "section": "Program memory",
+ "E6": {
+  "part": "74LS08",
+  "section": "State Machine",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  },
- "M1": {
-  "part": "035140-02",
-  "section": "Program memory",
+ "E7": {
+  "part": "74LS42",
+  "section": "Vector Timer",
+  "note": "decoder",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "E8": {
+  "part": "74LS42",
+  "section": "",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "E9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "E10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F10": {
+  "part": "74LS174",
+  "section": "X and Y Position Counters",
+  "note": "drawing cites this exact chip as the revision example The IC parts lists call this a 74LS157 (5 printings); the drawing says 74LS174. Unresolved.",
+  "otherRev": "F11",
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "F11": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
  },
  "F2": {
   "part": "035135-02",
   "section": "ROM/PROM Circuitry",
   "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
  },
- "L2": {
-  "part": "035136-02",
-  "section": "Program memory",
+ "F3": {
+  "part": "74LS157",
+  "section": "Memory Address Selector",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F4": {
+  "part": "74LS670",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F5": {
+  "part": "74LS193",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "F6": {
+  "part": "74LS157",
+  "section": "Vector Timer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F7": {
+  "part": "74LS273",
+  "section": "Vector Generator Memory Data Latches",
+  "note": "data latch 1",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F8": {
+  "part": "74LS97",
+  "section": "X and Y Position Counters",
+  "note": "Y rate multiplier on -01 thru -05",
+  "otherRev": "F9",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "F9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "F10",
+  "source": "component-location drawing, confirmed by the parts list"
  },
  "H1": {
   "part": "035141-02",
   "section": "Program memory",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "H10": {
+  "part": "74LS04",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "H11",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H2": {
+  "part": "035133-02",
+  "section": "ROM/PROM Circuitry",
+  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "H3": {
+  "part": "74LS157",
+  "section": "Memory Address Selector",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H4": {
+  "part": "74LS670",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H5": {
+  "part": "74LS193",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "H6": {
+  "part": "74LS367",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H7": {
+  "part": "74LS273",
+  "section": "Vector Generator Memory Data Latches",
+  "note": "data latch 0",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H8": {
+  "part": "74LS97",
+  "section": "X and Y Position Counters",
+  "note": "Y rate multiplier",
+  "otherRev": "H9",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "H9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "H10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J1": {
+  "part": "035139-02",
+  "section": "Program memory",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "J10": {
+  "part": "74LS251",
+  "section": "Player Input Circuitry",
+  "note": "coin door / control panel mux, SINP1",
+  "otherRev": "J11",
+  "source": "component-location drawing"
+ },
+ "J11": {
+  "part": "74LS251",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "J2": {
+  "part": "035131-02",
+  "section": "ROM/PROM Circuitry",
+  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "J3": {
+  "part": "74LS157",
+  "section": "Memory Address Selector",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J4": {
+  "part": "74LS670",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J5": {
+  "part": "74LS193",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "J6": {
+  "part": "74LS367",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J7": {
+  "part": "74LS273",
+  "section": "Vector Generator Memory Data Latches",
+  "note": "data latch 2",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J8": {
+  "part": "74LS97",
+  "section": "X and Y Position Counters",
+  "note": "rate multiplier",
+  "otherRev": "J9",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "J9": {
+  "part": "74LS191",
+  "section": "X and Y Position Counters",
+  "note": "",
+  "otherRev": "J10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K1": {
+  "part": "035137-02",
+  "section": "Program memory",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K3": {
+  "part": "74LS157",
+  "section": "Memory Address Selector",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K4": {
+  "part": "83S185",
+  "section": "Vector Generator ROM",
+  "note": "vector ROM, see table",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "K5": {
+  "part": "74LS191",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K6": {
+  "part": "74LS08",
+  "section": "Vector Generator Program Counter",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K7": {
+  "part": "74LS273",
+  "section": "Vector Generator Memory Data Latches",
+  "note": "data latch 3",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "K8": {
+  "part": "74LS97",
+  "section": "X and Y Position Counters",
+  "note": "rate multiplier",
+  "otherRev": "K9",
+  "source": "component-location drawing, confirmed by the parts list"
  },
  "L1": {
   "part": "035142-02",
   "section": "Program memory",
   "note": "",
-  "otherRev": null
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L10": {
+  "part": "74LS251",
+  "section": "Player Input Circuitry",
+  "note": "player input mux, SINP0",
+  "otherRev": "L11",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L2": {
+  "part": "035136-02",
+  "section": "Program memory",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L3": {
+  "part": "74LS139",
+  "section": "Memory Address Selector",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L4": {
+  "part": "83S185",
+  "section": "Vector Generator ROM",
+  "note": "vector ROM, see table",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "L5": {
+  "part": "74LS04",
+  "section": "Memory Address Selector",
+  "note": "second LS04 package",
+  "otherRev": "L6",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "L6": {
+  "part": "74LS42",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 7 printings"
+ },
+ "L8": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "audio op-amps; corroborated by sheet 01B text The IC parts lists call this a 9316 (1 printing); the drawing says LM324. Unresolved.",
+  "otherRev": "L9",
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "L9": {
+  "part": "NE555",
+  "section": "Sound",
+  "note": "ship fire VCO",
+  "otherRev": "L10",
+  "source": "component-location drawing"
+ },
+ "M1": {
+  "part": "035140-02",
+  "section": "Program memory",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M10": {
+  "part": "74LS259",
+  "section": "Sound",
+  "note": "sound control latch",
+  "otherRev": "M11",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M11": {
+  "part": "74LS259",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "M12": {
+  "part": "4-position DIP switch",
+  "section": "Option Switches",
+  "note": "Option switches. Atari 66-114P1T, '4-Station Single-Throw, Dual-Inline-Package Bit Switch', item 143 at M12 in three printings.",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M2": {
+  "part": "035134-02",
+  "section": "ROM/PROM Circuitry",
+  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M4": {
+  "part": "2114",
+  "section": "Vector Generator RAM",
+  "note": "Atari 90-7033",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "M5": {
+  "part": "74LS32",
+  "section": "Memory Address Selector",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M6": {
+  "part": "74LS83",
+  "section": "Vector Timer",
+  "note": "adder",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M7": {
+  "part": "74LS175",
+  "section": "Vector Timer",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "M8": {
+  "part": "NE555",
+  "section": "Sound",
+  "note": "saucer fire VCO",
+  "otherRev": "M9",
+  "source": "component-location drawing"
+ },
+ "M9": {
+  "part": "CD4016B",
+  "section": "Sound",
+  "note": "analogue switch",
+  "otherRev": "M10",
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N1": {
+  "part": "035138-02",
+  "section": "Program memory",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N10": {
+  "part": "7406",
+  "section": "Coin Counter / LED Output",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N11": {
+  "part": "74LS174",
+  "section": "Coin Counter / LED Output",
+  "note": "74LS174 hex flip-flop shared across functions: coin-counter latch on sheet 02B and the RAMSEL latch on 01B. Different bits of one package, not a conflicting reading.",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N12": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "N2": {
+  "part": "035132-02",
+  "section": "ROM/PROM Circuitry",
+  "note": "program memory, -03 PROM configuration only \u2014 see memory_by_revision",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N3": {
+  "part": "8316E",
+  "section": "Vector Generator ROM",
+  "note": "vector ROM N/P3, see table",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N4": {
+  "part": "2114",
+  "section": "Vector Generator RAM",
+  "note": "Atari 90-7033",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "N5": {
+  "part": "74LS00",
+  "section": "State Machine",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N6": {
+  "part": "74LS32",
+  "section": "State Machine",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "N7": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "N9": {
+  "part": "7406",
+  "section": "Coin Counter / LED Output",
+  "note": "open-collector inverter",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "P11": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "audio mixer; all sounds mixed in 1/4 of P11 The IC parts lists call this a 9316 (1 printing); the drawing says LM324. Unresolved.",
+  "otherRev": null,
+  "source": "component-location drawing, disputed by the parts lists"
+ },
+ "P12": {
+  "part": "LM324",
+  "section": "Audio Output",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "P2": {
+  "part": "74LS245",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "P4": {
+  "part": "2114",
+  "section": "Vector Generator RAM",
+  "note": "Atari 90-7033",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "P5": {
+  "part": "74LS86",
+  "section": "RAM Circuitry",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "P6": {
+  "part": "74LS253",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "P7": {
+  "part": "74LS174",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "P8": {
+  "part": "74LS161",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "R11": {
+  "part": "4016B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 8 printings"
+ },
+ "R12": {
+  "part": "4016B",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 2 printings"
+ },
+ "R2": {
+  "part": "74LS245",
+  "section": "Vector Generator Data Buffer",
+  "note": "data buffer; pin numbering differs if AM83048 fitted",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
+ },
+ "R4": {
+  "part": "2114",
+  "section": "Vector Generator RAM",
+  "note": "Atari 90-7033, vector generator RAM",
+  "otherRev": null,
+  "source": "component-location drawing"
+ },
+ "R7": {
+  "part": "74LS08",
+  "section": "",
+  "note": "",
+  "otherRev": null,
+  "source": "IC parts list, 9 printings"
+ },
+ "R8": {
+  "part": "74LS74",
+  "section": "State Machine",
+  "note": "",
+  "otherRev": null,
+  "source": "component-location drawing, confirmed by the parts list"
  }
 }
