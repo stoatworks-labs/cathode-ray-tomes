@@ -185,3 +185,9 @@ own magic bytes, and optionally Cloudflare Turnstile if `TURNSTILE_SITEKEY` and
 Scanned documents from [ArcadeRTFM](https://arcadertfm.com/). Machine hardware metadata
 derived from [MAME](https://www.mamedev.org/). Manuals remain the property of their
 respective publishers and are presented for preservation and repair reference.
+
+Two further archives have been surveyed but not ingested — GamingDoc and the Console5
+Tech Wiki. `docs/EXTERNAL-SOURCES.md` records what each holds, what it would cost to
+take, and where the answer is "link to it, don't mirror it". The measured inventories
+live in `data/sources/` and are rebuilt by `tools/survey_gamingdoc.py` and
+`tools/survey_console5.py`.
