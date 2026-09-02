@@ -32,6 +32,7 @@ ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW     = os.path.join(ROOT, "data", "machines.raw.json")
 SYSTEMS = os.path.join(ROOT, "data", "systems.json")
 EXTRA   = os.path.join(ROOT, "data", "extra-docs.json")
+HEALTH  = os.path.join(ROOT, "data", "link-health.json")
 OUT     = os.path.join(ROOT, "data")
 
 # Doc types that are expected to carry schematic/diagram line art worth vectorising.
@@ -180,6 +181,17 @@ def main():
             "dip": [], "boards": boards, "docs": recs,
         }
 
+    # Documents whose source has gone, or arrives unreadable. Marked rather
+    # than dropped: the machine really does have that schematic somewhere, and
+    # saying so with a reason is more use than a link that 404s in a new tab.
+    health = {}
+    if os.path.exists(HEALTH):
+        health = json.load(open(HEALTH)).get("documents") or {}
+    for rec in out_docs:
+        h = health.get(rec["id"])
+        if h:
+            rec["dead"] = h["state"]
+
     # Names for the other machines a shared document covers, so the reader can
     # say "MV-2F · MV-4F" without fetching a record per slug.
     names = {slug: rec["name"] for slug, rec in detail.items()}
@@ -208,6 +220,9 @@ def main():
     if systems:
         kinds = Counter(s.get("kind") or "console" for s in systems)
         print("systems       " + ", ".join(f"{c} {k}" for k, c in kinds.most_common()))
+    if health:
+        states = Counter(d.get("dead") for d in out_docs if d.get("dead"))
+        print("link health   " + ", ".join(f"{c} {s}" for s, c in states.most_common()))
     if extra_entries:
         print(f"overlay       {len(extra_entries)} document(s) from data/extra-docs.json, "
               f"on {len(extra)} machine(s)")

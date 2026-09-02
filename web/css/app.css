@@ -102,6 +102,11 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 80px; }
 }
 .row:last-child { border-bottom: 0; }
 .row:hover { background: var(--surface-2); }
+/* A document whose source has gone. It is a div, not an anchor, so it already
+   does not respond to a click — this stops it *looking* like it should. */
+.row.dead { cursor: default; }
+.row.dead:hover { background: transparent; }
+.row.dead .nm { font-weight: 500; color: var(--ink-3); }
 .row .nm { font-weight: 600; }
 .row .meta { color: var(--ink-3); font-size: 13px; }
 .badge {
@@ -269,26 +274,6 @@ footer .in { max-width: var(--maxw); margin: 0 auto; }
    to sit quietly inside the disclosure. */
 .textview .fromdrawing { margin: 0; }
 .textview .fromdrawing p { font-size: 13.5px; color: var(--ink-3); }
-
-/* ---- uncertainty, where a reader can see it ----
-   A conflict logged in a read file that never reaches the page protects
-   nobody. These put it beside the thing it is about: a board's open
-   questions above the board, and a device's own doubt under the row that
-   names it. */
-.questions { display: grid; gap: 8px; margin: 0 0 18px; }
-.questions .note { margin: 0; }
-details.readnotes { margin: 0 0 18px; }
-details.readnotes summary {
-  cursor: pointer; user-select: none; font-size: 14px; color: var(--ink-3);
-  padding: 6px 0;
-}
-details.readnotes .questions { margin-top: 8px; }
-.rows .chipnote {
-  font-size: 13px; line-height: 1.55; color: var(--ink-3);
-  padding: 4px 12px 10px 12px; margin-top: -4px;
-  border-left: 3px solid var(--line);
-}
-.rows .chipnote.warn { border-left-color: var(--warn); color: var(--ink-2); }
 
 /* ---- embedded interactive board view ---- */
 iframe.ibom {

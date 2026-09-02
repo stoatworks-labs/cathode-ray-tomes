@@ -2,13 +2,13 @@
   "name": "cathode-ray-tomes",
   "version": "0.1.0",
   "private": true,
-  "description": "Digitised, searchable arcade service documentation",
+  "description": "Digitised, searchable service documentation",
   "scripts": {
     "dev": "wrangler dev --port 8787",
     "deploy": "wrangler deploy",
     "preview": "wrangler versions upload",
     "check": "wrangler deploy --dry-run",
-    "test": "node tools/test_submit.mjs"
+    "test": "node tools/test_submit.mjs && node tools/test_worker.mjs"
   },
   "devDependencies": {
     "wrangler": "4.116.0"

@@ -264,14 +264,26 @@ function docSections(docs) {
     .sort((a, b) => rank(a[0]) - rank(b[0]) || a[0].localeCompare(b[0]))
     .map(([type, list]) => `
       <h2 style="margin-top:22px">${esc(type)} <span style="color:var(--ink-3);font-weight:400">(${list.length})</span></h2>
-      <div class="rows">${list.map((d) => `
-        <a class="row" href="/doc/${d.id}">
+      <div class="rows">${list.map((d) => {
+        // A document that cannot be read is still worth listing — the machine
+        // really does have that schematic somewhere — but it must not look
+        // like a link. Nothing is behind it but someone else's 404.
+        const why = d.dead === "gone" ? "the source archive no longer has this file"
+                  : d.dead === "unreadable" ? "the source file is not a readable PDF"
+                  : null;
+        const meta = why ? why
+                   : d.ingested ? `${d.pages} page${d.pages > 1 ? "s" : ""}`
+                   : "not yet digitised";
+        const inner = `
           <span class="nm">${esc(prettyTitle(d.title))}</span>
-          <span class="meta">${d.ingested ? `${d.pages} page${d.pages > 1 ? "s" : ""}` : "not yet digitised"}</span>
+          <span class="meta">${esc(meta)}</span>
           <span class="grow"></span>
           ${d.sections && d.pages >= 3 ? `<span class="badge">${d.sections} sections</span>` : ""}
           ${d.schematic ? '<span class="badge doc">schematic</span>' : ""}
-        </a>`).join("")}</div>`).join("");
+          ${why ? '<span class="badge warn">unavailable</span>' : ""}`;
+        return why ? `<div class="row dead">${inner}</div>`
+                   : `<a class="row" href="/doc/${d.id}">${inner}</a>`;
+      }).join("")}</div>`).join("");
 }
 
 /** Power supply reference — fuses and rails, checked first on a dead machine. */
@@ -734,14 +746,6 @@ async function board(slug) {
        perfectly plausible on its own. Nothing here has had that test. Treat it as a
        lead, and check the chip against the board before you act on it.</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
-    ${(b.conflicts || []).length ? `<h2>Open questions</h2>
-    <p class="sub">Where the sources disagree, or a reading could not be settled. Each is
-       logged rather than guessed — a confidently wrong chip in a repair reference is worse
-       than an absent one — and nothing here has been checked against a physical board.</p>
-    <div class="questions">${b.conflicts.map((c) => `<div class="note warn">${esc(c)}</div>`).join("")}</div>` : ""}
-    ${(b.notes || []).length ? `<details class="readnotes"><summary>How this board was read
-       (${b.notes.length} note${b.notes.length > 1 ? "s" : ""})</summary>
-    <div class="questions">${b.notes.map((n) => `<div class="note">${esc(n)}</div>`).join("")}</div></details>` : ""}
     ${b.ibom ? `<h2>Board</h2>
     <p class="sub">Every device at its position on the board, cross-linked to the bill of
        materials — click a row to find the part, or a part to find the row.</p>
@@ -817,8 +821,7 @@ async function board(slug) {
             <span class="grow"></span>
             ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
             ${v.source ? `<span class="badge src" title="where this reading comes from">${esc(v.source)}</span>` : ""}
-          </div>
-          ${v.note ? `<div class="chipnote${/contest|disput|unresolved|contradict|withdrawn|disagree|MAME puts|not applied/i.test(v.note) ? " warn" : ""}">${esc(v.note)}</div>` : ""}`).join("")}</div>` : "") + sigHtml
+          </div>`).join("")}</div>` : "") + sigHtml
         || `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
     };
   }

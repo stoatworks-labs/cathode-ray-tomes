@@ -158,7 +158,14 @@ from a workstation with `tools/publish.sh remote` after an ingest run — CI nev
 npm ci                 # install pinned wrangler
 npm run check          # validate config without deploying
 npm run dev            # local worker + assets on :8787
+npm test               # submit endpoint + Worker routing, no wrangler needed
 ```
+
+`npm test` runs the Worker against a stubbed ASSETS binding, which is worth
+having because `wrangler dev` cannot spawn workerd on every machine and a
+Worker change that ships unexercised is how `not_found_handling:
+single-page-application` turned every unknown id into a 500 for months. The
+stub reproduces that fallback, so the routing cases fail without the fix.
 
 ## Submissions
 

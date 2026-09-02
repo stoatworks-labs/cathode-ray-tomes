@@ -30,11 +30,25 @@ const notFound = (what = "not found") => json({ error: what }, 404);
 /**
  * Read a corpus asset. Assets are fetched through the ASSETS binding, which
  * hits Cloudflare's cache rather than an origin.
+ *
+ * The binding is configured `not_found_handling: single-page-application`, so a
+ * path that does not exist comes back as **200 with index.html**, not 404. That
+ * makes `!res.ok` useless as a missing-asset test: every endpoint below that
+ * looks up an unknown id used to reach `res.json()`, throw a SyntaxError on the
+ * HTML, and return a Worker exception — `error code: 1101`, a 500 — where the
+ * code plainly intended a 404. It affected /api/doc, /api/machine, /api/parts,
+ * /api/chips, /api/signals, /api/diagnostics and /api/rommap alike, which is
+ * every link into a document the ingest could not read.
  */
 async function asset(env, request, path) {
   const res = await env.ASSETS.fetch(new Request(new URL(path, request.url)));
   if (!res.ok) return null;
-  return res.json();
+  if (!(res.headers.get("content-type") || "").includes("json")) return null;
+  try {
+    return await res.json();
+  } catch {
+    return null;                       // truncated or not JSON after all
+  }
 }
 
 /** Hot indexes are read on nearly every request — keep them in the isolate. */
@@ -132,9 +146,9 @@ async function handleApi(url, env, request) {
     // machines/machineNames are present only where one manual documents more
     // than one machine, as the MVS service manual does for MV-2F and MV-4F.
     const { title, type, machine, machineName, machines, machineNames,
-            src, source, sourcePage, schematic, note } = meta;
+            src, source, sourcePage, schematic, note, dead } = meta;
     return json({ ...body, title, type, machine, machineName, machines,
-                  machineNames, src, source, sourcePage, schematic, note });
+                  machineNames, src, source, sourcePage, schematic, note, dead });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own
@@ -258,9 +272,11 @@ async function handleApi(url, env, request) {
   }
   const rm = url.pathname.match(/^\/api\/rommap\/([a-z0-9_-]{1,40})$/);
   if (rm) {
-    const r = await env.ASSETS.fetch(
-      new Request(new URL(`/data/rommap/${rm[1]}.json`, url), request));
-    return r.ok ? json(await r.json()) : notFound("no ROM map for this machine");
+    // Through asset(), not ASSETS directly: reading the binding raw is what
+    // made this the one endpoint the content-type guard did not cover, and it
+    // threw on the SPA fallback exactly as the rest used to.
+    const map = await asset(env, request, `/data/rommap/${rm[1]}.json`);
+    return map ? json(map) : notFound("no ROM map for this machine");
   }
 
   if (p === "boards") {
@@ -284,6 +300,14 @@ export default {
       const docs = (await index(env, request, "docs")) || [];
       const doc = docs.find((d) => d.id === pdf[1]);
       if (!doc || !doc.src) return notFound("unknown document");
+      // Redirecting into a known 404 is worse than saying so: the reader ends
+      // up on someone else's error page with no idea whose fault it is.
+      if (doc.dead === "gone") {
+        return json({
+          error: "the source archive no longer has this file",
+          document: doc.title, source: doc.src,
+        }, 410);
+      }
       return Response.redirect(doc.src, 302);
     }
 
