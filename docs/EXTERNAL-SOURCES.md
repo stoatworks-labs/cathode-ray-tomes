@@ -293,6 +293,106 @@ squarely ours:
   TC-RM251s, TC-RM25T. Monitor chassis are a real gap: the corpus documents
   monitors only where a game manual happens to include the chassis drawings.
 
+## Three more archives, surveyed the same way
+
+Surveyed in September 2026, after the corpus had taken everything ArcadeRTFM
+holds. Each survey records pointers and measurements and takes no document.
+
+```bash
+python3 tools/survey_archive_org.py              # -> data/sources/archive_org.json
+python3 tools/survey_archive_org.py --metadata   # per-item file lists, ~40 min, resumable
+python3 tools/survey_arcarc.py                   # -> data/sources/arcarc.json
+python3 tools/survey_segaretro.py                # -> data/sources/segaretro.json
+```
+
+The headline is that the arcade documentation world is mostly one corpus
+mirrored around. ArcadeRTFM, the Internet Archive's `arcademanuals` collection
+and the Arcade Archive at XMission hold the same files under the same names,
+uploaded by different people in different years. What each adds on top is
+smaller than its size suggests, and it is different in each case.
+
+| archive | PDFs | size | same file as ours | new to us |
+|---|---|---|---|---|
+| Internet Archive `arcademanuals` | 4,753 items | 165 GB stored, 16 GB of original PDF in the new items | 2,065 | 2,696 |
+| Arcade Archive (arcarc.xmission.com) | 3,709 | 9.6 GB | 2,440 | 1,269 |
+| Sega Retro | 12,737 | 99 GB | — | 63 service documents |
+
+Only six of the Arcade Archive's new files also appear among archive.org's, so
+the two sets barely overlap: together they are about 3,950 documents the corpus
+does not have.
+
+### Internet Archive — `arcademanuals`
+
+<https://archive.org/details/arcademanuals> · 4,753 items · three upload waves
+(2011, 2017, 2025) by different people from their own collections.
+
+It holds **2,065 of our 2,405 documents under the same filename**, including
+five of the sixteen the ingest could not read — three that arrive unreadable
+from ArcadeRTFM and two that ArcadeRTFM has since lost. That is a second home
+for the corpus that costs no upload, and `mirrors` in the survey output maps
+our document ids to the archive.org items that carry them. Any item's files are
+served directly at `https://archive.org/download/<identifier>/<file>`, which
+is the whole of the "archive.org as a CDN" question: a fallback for `/pdf/<id>`
+when the source is gone, and a primary for those five, wired up by reading that
+map. It is not a CDN in the performance sense — no SLA, periodic slowness,
+occasional outages — so it is a fallback, not a replacement for the redirect.
+Uploading our own copies of the 340 not found there is possible through the
+S3-style API but is a rights decision, not a technical one; the collection's
+items carry no licence and are private uploads of publisher-copyright manuals,
+the same footing as everything else here.
+
+Two things the archive does that ArcadeRTFM does not. It **runs its own OCR**
+over every upload and publishes the result beside the scan (`_djvu.txt`,
+`_text.pdf`; 2,670 of the 2,696 new items have it): a second, independent reading of the same page, which is exactly
+the cross-check `build_drawings.py` lacks. And its titles carry the machine
+name in the clear, so the 2,696 new items match MAME machines by name: 1,707
+of them land on a machine (873 on the whole title, the rest on a leading
+run), and 367 machines would gain their first document. By kind, reading
+the titles: 1,798 manuals, 206 schematics, 136 DIP and pin-out sheets, 70
+parts lists, and 143 that are pinball, which is out of scope.
+
+### Arcade Archive — arcarc.xmission.com
+
+A plain Apache file tree run by one volunteer at XMission, sorted into
+manufacturer and subject directories. No robots.txt, no API, no licence
+stated; the survey walks the 233 directory listings and reads no file.
+
+Its 3,709 PDFs are mostly ours already — 2,440 share a filename — and what is
+new is mostly *not game manuals*: 320 jukebox, 247 monitor chassis, 106 coin
+mechanism, 89 laserdisc-game and 60 more arcade documents, plus DIP-switch
+sheets and electronics references. The monitor and coin-mech material is the
+interesting part: the corpus documents a monitor only where a game manual
+happens to include the chassis drawings, and someone at a dead cabinet needs
+the chassis manual as often as the game's. 256 of the new files match a
+machine name and 46 machines would gain a first document.
+
+Taking from it is a courtesy question before a technical one — a single
+maintainer's mirror, reached at arcarc@xmission.com — and the survey exists so
+that conversation can start from numbers.
+
+### Sega Retro
+
+<https://segaretro.org/> · 12,737 PDFs · 99 GB, through the MediaWiki API.
+
+The robots file carries the same express reservation Console5's does
+(`Content-Signal: search=yes, ai-train=no, use=reference`), so this is pointers
+only, on the same terms as Console5. Read by filename, it is 5,522 game
+instruction manuals, 1,480 flyers and 1,138 arcade-system documents, of which
+**63 are service material** — and those are the ones nobody else has: the
+NAOMI, NAOMI 2 and GD-ROM service manuals, Atomiswave, Lindbergh, the Master
+System and Mega Drive service manuals by revision, the Out Run and Hang-On
+schematics. The survey lists the 1,201 service and arcade-system files with
+their URLs and leaves the rest as counts.
+
+### What to take next, if anything
+
+In order of value per document: the Sega system service manuals, if Sega
+Retro agrees; the Arcade Archive's monitor and coin-mech references, if its
+maintainer does; then the archive.org items that would give a machine its first
+document. The archive.org OCR text is worth reading against ours before any of
+that, because it costs nothing and would tell us which of our 65,000 pages
+tesseract read worst.
+
 ## Rights, stated plainly
 
 The two sources sit differently and should not be treated the same way.
