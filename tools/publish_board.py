@@ -84,6 +84,13 @@ def main():
         "conflicts": conflicts,
         "notes": notes,
     })
+    # The schematic is built by tools/build_board_schematic.py, not from the
+    # spec, so it is only ever in the previous record. Rebuilding without it
+    # silently dropped Pong's sheet -- the file kept shipping, nothing pointed
+    # at it, and the board page rendered an <img> with an empty src.
+    for k in ("sheet", "sheetKind", "sheetSource", "schematicDocs"):
+        if prev.get(k):
+            boards[-1][k] = prev[k]
     boards.sort(key=lambda b: (b.get("mfr", ""), b["name"]))
     json.dump(boards, open(bp, "w"), indent=1)
     print(f"{spec['name']}: {len(spec['ics'])} devices, {len(by)} BOM line items")

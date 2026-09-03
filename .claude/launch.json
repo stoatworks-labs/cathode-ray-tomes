@@ -8,6 +8,12 @@
       "port": 8787
     },
     {
+      "name": "node-worker",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["tools/dev_server.mjs", "8790"],
+      "port": 8790
+    },
+    {
       "name": "static",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8788", "--directory", "web"],

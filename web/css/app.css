@@ -162,7 +162,11 @@ table.dip tr.def td { color: var(--ok); font-weight: 600; }
 .svgwrap { background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
            overflow: hidden; position: relative; height: 74vh; cursor: grab; }
 .svgwrap.drag { cursor: grabbing; }
-.svgwrap svg, .svgwrap img { transform-origin: 0 0; display: block; }
+/* Fit the sheet to the frame at rest. A traced D-size sheet is ~9,000 px
+   across, so at natural size the reader opens on a blank corner of the
+   drawing and has to hunt for the circuit. Fit first, then zoom. */
+.svgwrap svg, .svgwrap img { transform-origin: 0 0; display: block;
+                             max-width: 100%; height: auto; }
 .zoombar { display: flex; gap: 6px; margin-bottom: 10px; }
 .zoombar button { padding: 5px 11px; cursor: pointer; border: 1px solid var(--line);
   background: var(--surface-2); color: var(--ink); border-radius: var(--radius); font-family: var(--mono); font-size: 13px; }

@@ -1159,6 +1159,19 @@ async function rommap(machine) {
 }
 
 /* ---------- board: schematic + BOM ---------- */
+
+/* Say which sheet this is, and say plainly what the reader is looking at. A
+   traced sheet stays sharp at any zoom; a scan does not, and pretending
+   otherwise wastes the reader's time when they zoom in and find mush. */
+function sheetNote(b) {
+  const src = b.sheetSource || {};
+  const doc = (b.schematicDocs || []).find((d) => d.id === src.doc);
+  const where = doc ? `${doc.title}, page ${src.page}` : "the schematic package";
+  return b.sheetKind === "svg"
+    ? `Traced from ${where} — vector, so it stays sharp at any zoom.`
+    : `Page scan from ${where}. This drawing is a photograph of stained paper, `
+      + `which traces to speckle rather than line work, so the scan is shown instead.`;
+}
 async function board(slug) {
   const list = await api("boards");
   const b = list.find((x) => x.slug === slug);
@@ -1189,13 +1202,22 @@ async function board(slug) {
     </div>
     <div id="chipout"></div>
 
-    <h2>Schematic</h2>
+    ${b.sheet ? `<h2>Schematic</h2>
+    <p class="sub">${esc(sheetNote(b))}</p>
     <div class="zoombar">
       <button id="zi">+</button><button id="zo">−</button><button id="zr">reset</button>
       <span class="grow"></span>
-      <a href="${esc(b.svg)}" target="_blank" rel="noopener">Open SVG ↗</a>
+      <a href="${esc(b.sheet)}" target="_blank" rel="noopener">Open sheet ↗</a>
     </div>
-    <div class="svgwrap" id="wrap"><img id="svg" src="${esc(b.svg)}" alt="Schematic"></div>
+    <div class="svgwrap" id="wrap"><img id="svg" src="${esc(b.sheet)}" alt="Schematic sheet"></div>` : ""}
+    ${(b.schematicDocs || []).length ? `<h2>Schematic documents</h2>
+    <p class="sub">Every schematic and drawing package this machine has, page by page.</p>
+    <div class="rows">${b.schematicDocs.map((d) => `
+      <a class="row" href="/doc/${esc(d.id)}">
+        <span class="nm">${esc(d.title)}</span>
+        <span class="grow"></span>
+        <span class="meta">${esc(d.pages)} page${d.pages === 1 ? "" : "s"}</span>
+      </a>`).join("")}</div>` : ""}
     <h2>Bill of materials</h2>
     <div class="searchbar"><input id="bq" placeholder="Filter by value or reference…" autocomplete="off"></div>
     <div class="panel" style="padding:0;overflow:auto">
@@ -1255,23 +1277,27 @@ async function board(slug) {
     };
   }
 
-  /* pan + zoom */
+  /* pan + zoom — only when the board has a sheet to pan over. Thirteen boards
+     have no schematic in the corpus at all, and wiring this up unconditionally
+     threw on the missing buttons and took the bill of materials down with it. */
   const wrap = document.getElementById("wrap"), img = document.getElementById("svg");
-  let z = 1, x = 0, y = 0, dragging = false, sx = 0, sy = 0;
-  const paint = () => { img.style.transform = `translate(${x}px,${y}px) scale(${z})`; };
-  document.getElementById("zi").onclick = () => { z *= 1.3; paint(); };
-  document.getElementById("zo").onclick = () => { z /= 1.3; paint(); };
-  document.getElementById("zr").onclick = () => { z = 1; x = y = 0; paint(); };
-  wrap.onwheel = (e) => {
-    e.preventDefault();
-    const f = e.deltaY < 0 ? 1.12 : 1 / 1.12;
-    const r = wrap.getBoundingClientRect();
-    const mx = e.clientX - r.left, my = e.clientY - r.top;
-    x = mx - (mx - x) * f; y = my - (my - y) * f; z *= f; paint();
-  };
-  wrap.onpointerdown = (e) => { dragging = true; sx = e.clientX - x; sy = e.clientY - y; wrap.classList.add("drag"); wrap.setPointerCapture(e.pointerId); };
-  wrap.onpointermove = (e) => { if (dragging) { x = e.clientX - sx; y = e.clientY - sy; paint(); } };
-  wrap.onpointerup = () => { dragging = false; wrap.classList.remove("drag"); };
+  if (wrap && img) {
+    let z = 1, x = 0, y = 0, dragging = false, sx = 0, sy = 0;
+    const paint = () => { img.style.transform = `translate(${x}px,${y}px) scale(${z})`; };
+    document.getElementById("zi").onclick = () => { z *= 1.3; paint(); };
+    document.getElementById("zo").onclick = () => { z /= 1.3; paint(); };
+    document.getElementById("zr").onclick = () => { z = 1; x = y = 0; paint(); };
+    wrap.onwheel = (e) => {
+      e.preventDefault();
+      const f = e.deltaY < 0 ? 1.12 : 1 / 1.12;
+      const r = wrap.getBoundingClientRect();
+      const mx = e.clientX - r.left, my = e.clientY - r.top;
+      x = mx - (mx - x) * f; y = my - (my - y) * f; z *= f; paint();
+    };
+    wrap.onpointerdown = (e) => { dragging = true; sx = e.clientX - x; sy = e.clientY - y; wrap.classList.add("drag"); wrap.setPointerCapture(e.pointerId); };
+    wrap.onpointermove = (e) => { if (dragging) { x = e.clientX - sx; y = e.clientY - sy; paint(); } };
+    wrap.onpointerup = () => { dragging = false; wrap.classList.remove("drag"); };
+  }
 
   /* BOM */
   const rows = await fetch(b.bom).then((r) => r.text()).then(parseCsv);
