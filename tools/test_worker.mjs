@@ -17,13 +17,17 @@
  * fallback, so these cases fail without the fix and pass with it.
  */
 import worker from "../src/index.js";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const WEB = join(ROOT, "web");
 const INDEX_HTML = readFileSync(join(WEB, "index.html"), "utf8");
+
+const isFile = (p) => {
+  try { return statSync(p).isFile(); } catch { return false; }
+};
 
 const env = {
   SITE_NAME: "Cathode Ray Tomes",
@@ -32,7 +36,10 @@ const env = {
     async fetch(req) {
       const path = new URL(req.url).pathname;
       const file = join(WEB, path);
-      if (!path.endsWith("/") && existsSync(file)) {
+      // isFile, not exists: `web/boards/` is a real directory of KiCad exports
+      // and `/boards` is also an app route. Cloudflare serves no directory, so
+      // neither does this.
+      if (!path.endsWith("/") && isFile(file)) {
         return new Response(readFileSync(file), {
           headers: {
             "content-type": path.endsWith(".json")
@@ -67,6 +74,27 @@ const CASES = [
   ["/pdf/d282ad622596",               302, "healthy document redirects upstream"],
   ["/pdf/e27163bf0ed2",               410, "source gone: explained, not redirected"],
   ["/pdf/000000000000",               404, "unknown document"],
+
+  // Page routes. The shell is served either way — the router renders "Page not
+  // found" for a reader — but the status has to be honest or a link checker
+  // sweeps the site and calls every rotted link clean.
+  ["/",                               200, "home"],
+  ["/machine/pong",                   200, "known machine page"],
+  ["/machine/sony-playstation-2",     200, "known console page"],
+  ["/machine/does-not-exist",         404, "unknown machine page"],
+  ["/doc/d282ad622596",               200, "known document page"],
+  ["/doc/000000000000",               404, "unknown document page"],
+  ["/board/pong",                     200, "known board page"],
+  ["/board/does-not-exist",           404, "unknown board page"],
+  ["/rom/centiped",                   200, "known ROM map page"],
+  ["/rom/does-not-exist",             404, "unknown ROM map page"],
+  ["/search",                         200, "a route that names nothing"],
+  ["/boards",                         200, "a route that names nothing"],
+  ["/about",                          200, "a route that names nothing"],
+
+  // Static assets go through the same handler now, so check they still do.
+  ["/css/app.css",                    200, "stylesheet"],
+  ["/js/app.js",                      200, "script"],
 ];
 
 let failures = 0;

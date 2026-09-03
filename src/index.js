@@ -325,6 +325,50 @@ async function handleApi(url, env, request) {
   return notFound("unknown endpoint");
 }
 
+/**
+ * Serve the app shell, with a status that tells the truth about the URL.
+ *
+ * `not_found_handling: single-page-application` answers everything with 200 and
+ * index.html, which is right for a reader — the router renders "Page not found"
+ * — and wrong for everything else. A crawler indexes the miss as a real page; a
+ * link checker sweeps the site and reports it clean however many of its links
+ * rot. So the routes that name a specific thing are checked against the index
+ * first, and a miss gets the same shell with a 404 on it.
+ *
+ * The check costs an index read, but only the first time an isolate handles one
+ * of these paths: index() memoises, and the same two indexes are already read
+ * by /api/machines, /api/search and /pdf. Routes that name nothing in
+ * particular — /, /search, /boards, /about — are not checked at all.
+ */
+const PAGE_ROUTES = [
+  [/^\/machine\/(.+)$/, "machines", (idx, id) =>
+    idx.some((m) => m.s === decodeURIComponent(id))],
+  [/^\/doc\/(.+)$/, "docs", (idx, id) => idx.some((d) => d.id === id)],
+  [/^\/board\/(.+)$/, "boards", (idx, id) =>
+    idx.some((b) => b.slug === decodeURIComponent(id))],
+  [/^\/rom\/(.+)$/, "rommaps", (idx, id) =>
+    idx.some((r) => r.machine === decodeURIComponent(id))],
+];
+
+async function servePage(url, env, request) {
+  const res = await env.ASSETS.fetch(request);
+  for (const [re, name, has] of PAGE_ROUTES) {
+    const m = url.pathname.match(re);
+    if (!m) continue;
+    const idx = await index(env, request, name);
+    if (idx && !has(idx, m[1])) {
+      // Same body, honest status. Rebuilt rather than mutated because a
+      // Response from the binding has immutable headers.
+      return new Response(res.body, {
+        status: 404,
+        headers: new Headers(res.headers),
+      });
+    }
+    break;
+  }
+  return res;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -350,6 +394,6 @@ export default {
       return Response.redirect(doc.src, 302);
     }
 
-    return env.ASSETS.fetch(request);
+    return servePage(url, env, request);
   },
 };

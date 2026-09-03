@@ -49,15 +49,31 @@ URL, and every link to one of those sixteen documents.
 It survived because there was no way to run the Worker: `wrangler dev` cannot
 spawn workerd on this machine, so Worker changes shipped unexercised. There is
 now `tools/test_worker.mjs`, which stubs the binding to return the SPA fallback
-exactly as Cloudflare does and asserts the status of sixteen routes. Writing it
+exactly as Cloudflare does and asserts the status of thirty-one routes. Writing it
 immediately found a second instance of the same bug that the first fix had
 missed — `/api/rommap` read the binding directly rather than through `asset()`,
 so the content-type guard never covered it.
 
+## Soft 404s
+
+`/machine/does-not-exist` used to return **200** and the shell, which then said
+"Page not found". Right for a reader, invisible to anything that checks links,
+and wrong for a crawler — which indexes the miss as a real page, and which is
+how a reference site accumulates rot nobody can see.
+
+The four routes that name a specific thing — `/machine/`, `/doc/`, `/board/`,
+`/rom/` — are now checked against the index before the shell is served, and a
+miss gets the same shell with a 404 on it. The reader sees exactly what they saw
+before; everything else gets told the truth.
+
+The cost is an index read, and only on the first request an isolate handles for
+one of those paths: `index()` memoises, and the same indexes are already read by
+`/api/machines`, `/api/search` and `/pdf`. Routes that name nothing in
+particular — `/`, `/search`, `/boards`, `/about` — are not checked at all.
+
 ## Still open
 
-`/machine/does-not-exist` returns **200** and the shell, which then says "Page
-not found". Correct for a reader, invisible to anything that checks links, and
-wrong for a crawler. Fixing it means validating the slug in the Worker before
-serving the shell, which costs an index read on every page load — worth doing,
-not free, and not done here.
+A static asset that does not exist still answers 200 with the shell:
+`/css/nope.css` returns HTML. Harmless in practice, since nothing links to one,
+and the fix is a `not_found_handling` change that would take the SPA routing
+with it.
