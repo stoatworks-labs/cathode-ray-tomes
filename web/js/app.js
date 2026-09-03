@@ -558,6 +558,14 @@ function machineLinks(doc) {
 const SOURCE_NAMES = { gamingdoc: "GamingDoc", console5: "Console5" };
 
 function sourceCredit(doc) {
+  // Where the usual source has lost the file, the scan behind "original scan"
+  // is somebody else's copy. Say so: it is a different archive with a
+  // different address, and the reader should know whose page they land on.
+  if (doc.mirror) {
+    return ` · <span class="meta">source archive lost this one;</span> ` +
+           `scan from <a href="${esc(doc.mirror)}" target="_blank"` +
+           ` rel="noopener noreferrer">the Internet Archive ↗</a>`;
+  }
   if (!doc.source || !doc.sourcePage) return "";
   const name = SOURCE_NAMES[doc.source] || doc.source;
   return ` · scan from <a href="${esc(doc.sourcePage)}" target="_blank"` +
@@ -591,8 +599,11 @@ function docSections(docs) {
       <div class="rows">${list.map((d) => {
         // A document that cannot be read is still worth listing — the machine
         // really does have that schematic somewhere — but it must not look
-        // like a link. Nothing is behind it but someone else's 404.
-        const why = d.dead === "gone" ? "the source archive no longer has this file"
+        // like a link. Nothing is behind it but someone else's 404. Unless
+        // archive.org has a working copy, in which case it is an ordinary
+        // document again and only the scan comes from somewhere else.
+        const why = d.mirror ? null
+                  : d.dead === "gone" ? "the source archive no longer has this file"
                   : d.dead === "unreadable" ? "the source file is not a readable PDF"
                   : null;
         const meta = why ? why

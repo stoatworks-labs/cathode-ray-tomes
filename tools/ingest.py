@@ -123,7 +123,13 @@ def process(doc):
     pdf = os.path.join(CACHE, "pdf", did + ".pdf")
     os.makedirs(os.path.dirname(pdf), exist_ok=True)
     if not os.path.exists(pdf) or os.path.getsize(pdf) == 0:
-        fetch(doc["src"], pdf)
+        # Where the source has gone, or arrives corrupt, check_links.py may
+        # have found a working copy on archive.org. Preferred outright for a
+        # document in that state: there is nothing to lose by it, and for the
+        # three it applies to the mirrored file is a readable PDF where ours
+        # is a 404 or a truncated one.
+        src = doc.get("mirror") if doc.get("dead") else None
+        fetch(src or doc["src"], pdf)
 
     n = page_count(pdf)
     if not n:

@@ -191,6 +191,12 @@ def main():
         h = health.get(rec["id"])
         if h:
             rec["dead"] = h["state"]
+            # archive.org holds a working copy of some of them. Recorded
+            # alongside rather than replacing `src`: the document id is the
+            # sha1 of the source URL, so swapping it would change the id and
+            # break every link already pointing at the document.
+            if h.get("mirror"):
+                rec["mirror"] = h["mirror"]["url"]
 
     # Names for the other machines a shared document covers, so the reader can
     # say "MV-2F · MV-4F" without fetching a record per slug.

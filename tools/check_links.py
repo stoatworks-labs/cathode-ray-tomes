@@ -25,10 +25,11 @@ default.
 """
 import argparse, json, os, time, urllib.error, urllib.parse, urllib.request
 
-ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATE = os.path.join(ROOT, "data", "ingest-state.json")
-DOCS  = os.path.join(ROOT, "data", "index", "docs.json")
-OUT   = os.path.join(ROOT, "data", "link-health.json")
+ROOT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATE  = os.path.join(ROOT, "data", "ingest-state.json")
+DOCS   = os.path.join(ROOT, "data", "index", "docs.json")
+MIRROR = os.path.join(ROOT, "data", "sources", "archive_org.json")
+OUT    = os.path.join(ROOT, "data", "link-health.json")
 UA    = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
          "(KHTML, like Gecko) Chrome/126 Safari/537.36")
 DELAY = 2.0
@@ -47,6 +48,46 @@ def head(url, timeout=45):
         return e.code
     except Exception:
         return -1
+
+
+def find_mirror(did, docs):
+    """A working archive.org copy, or None.
+
+    tools/survey_archive_org.py maps our document ids to the `arcademanuals`
+    items that carry the same filename. Being listed is not the same as being
+    there: two of the five items covering our broken documents are metadata
+    shells with no files in them at all, so the item's own file list decides,
+    and the URL is confirmed with a HEAD before it is written down.
+    """
+    if not os.path.exists(MIRROR):
+        return None
+    m = json.load(open(MIRROR)).get("mirrors", {}).get(did)
+    if not m:
+        return None
+    ident = m["identifier"]
+    try:
+        req = urllib.request.Request(f"https://archive.org/metadata/{ident}",
+                                     headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=60) as r:
+            meta = json.load(r)
+    except Exception:
+        return None
+    want = os.path.basename(docs[did]["src"])
+    pdfs = [f for f in meta.get("files", [])
+            if f["name"].lower().endswith(".pdf") and "_text" not in f["name"]]
+    if not pdfs:
+        return None
+    exact = [f for f in pdfs if f["name"] == want]
+    pick = exact[0] if exact else max(pdfs, key=lambda f: int(f.get("size", 0)))
+    # Left unquoted, like every other src in this corpus: head() quotes the
+    # path itself, and quoting here too turned a space into %2520 and lost the
+    # two mirrored files whose names contain one.
+    url = f"https://archive.org/download/{ident}/{pick['name']}"
+    time.sleep(DELAY)
+    if head(url) != 200:
+        return None
+    return {"identifier": ident, "file": pick["name"], "url": url,
+            "bytes": int(pick.get("size", 0))}
 
 
 def main():
@@ -86,6 +127,13 @@ def main():
         elif status is not None and status != 200:
             out[did] = {"state": "gone", "status": status,
                         "note": "the source archive no longer has this file"}
+        # A broken document may still exist on archive.org, which is a second
+        # home for most of this corpus. Worth more than a fallback link: where
+        # the mirrored copy is readable the document can simply be ingested.
+        if did in out and not a.offline:
+            mirror = find_mirror(did, docs)
+            if mirror:
+                out[did]["mirror"] = mirror
 
     payload = {
         "checked": time.strftime("%Y-%m-%d"),
@@ -97,11 +145,15 @@ def main():
 
     gone = sum(1 for v in out.values() if v["state"] == "gone")
     bad  = sum(1 for v in out.values() if v["state"] == "unreadable")
-    print(f"\n{gone} gone, {bad} unreadable -> {os.path.relpath(OUT, ROOT)}")
+    mir  = sum(1 for v in out.values() if v.get("mirror"))
+    print(f"\n{gone} gone, {bad} unreadable, {mir} with a working archive.org "
+          f"copy -> {os.path.relpath(OUT, ROOT)}")
     for did, v in sorted(out.items(), key=lambda kv: kv[1]["state"]):
+        m = v.get("mirror")
         print(f"  {v['state']:<11} {v['status']:>4}  "
-              f"{docs[did].get('machineName','?')[:24]:<24} "
-              f"{docs[did].get('title','')[:44]}")
+              f"{docs[did].get('machineName','?')[:22]:<22} "
+              f"{docs[did].get('title','')[:38]:<38} "
+              f"{'archive.org/' + m['identifier'] if m else ''}")
 
 
 if __name__ == "__main__":

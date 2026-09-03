@@ -10,8 +10,10 @@ python3 tools/check_links.py --all      # every document; hours, serial by desig
 python3 tools/check_links.py --offline  # trust the ingest state, no requests
 ```
 
-Writes `data/link-health.json`; `build_index.py` merges it and stamps `dead` on
-the affected catalogue records.
+Writes `data/link-health.json`; `build_index.py` merges it and stamps `dead` —
+and, where the Internet Archive has a working copy, `mirror` — on the affected
+catalogue records. A broken document is also checked against
+`data/sources/archive_org.json`, so a run needs that survey to have been done.
 
 ## What is actually broken
 
@@ -20,15 +22,34 @@ catalogue still lists all sixteen with the same URLs, verified against a fresh
 `machines.json` months after the ingest first failed. Its index and its file
 server disagree.
 
-| | |
-|---|---|
-| `gone` — HTTP 404 at the source | 12 |
-| `unreadable` — fetches fine, is not a readable PDF | 4 |
+| | | |
+|---|---|---|
+| `gone` — HTTP 404 at the source | 12 | 2 recovered from archive.org |
+| `unreadable` — fetches fine, is not a readable PDF | 4 | 1 recovered |
 
 Every one of the twelve ends `.PDF`. Lowercasing the extension recovers none of
 them, so it is not a case-sensitivity problem, just a batch that went away.
 
-Both are now marked rather than dropped. The machine really does have that
+## Three of them are only broken here
+
+`tools/survey_archive_org.py` found that the Internet Archive's `arcademanuals`
+collection holds 2,065 of our documents under the same filenames, and five of
+the sixteen broken ones. Five is optimistic: two of those items are metadata
+shells with no files in them at all, which is why `check_links.py` reads each
+item's own file list and confirms the URL with a HEAD before recording it.
+
+Three are real, and they are not a fallback link — they are documents the corpus
+can simply have. The mirrored copies are readable PDFs where ours are a 404 or
+a truncated file, so `ingest.py` prefers the mirror for any document already
+marked dead, and all three are now ingested and searchable: Speedway's wiring
+diagram, 19 pages of Ten Yard Fight '85, and 6 pages of Raiden Fighters.
+
+The mirror is recorded beside `src`, never in place of it. A document's id is
+the sha1 of its source URL, so swapping the URL would change the id and break
+every link already pointing at it.
+
+That leaves **thirteen** with nowhere to go. Those are still marked rather than
+dropped. The machine really does have that
 schematic somewhere, and saying so with a reason is more use than either
 silence or a link that fails. On a machine page they render as plain rows, not
 links, reading *the source archive no longer has this file*. `/pdf/<id>` returns

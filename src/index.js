@@ -185,9 +185,10 @@ async function handleApi(url, env, request) {
     // machines/machineNames are present only where one manual documents more
     // than one machine, as the MVS service manual does for MV-2F and MV-4F.
     const { title, type, machine, machineName, machines, machineNames,
-            src, source, sourcePage, schematic, note, dead } = meta;
+            src, source, sourcePage, schematic, note, dead, mirror } = meta;
     return json({ ...body, title, type, machine, machineName, machines,
-                  machineNames, src, source, sourcePage, schematic, note, dead });
+                  machineNames, src, source, sourcePage, schematic, note, dead,
+                  mirror });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own
@@ -383,6 +384,10 @@ export default {
       const docs = (await index(env, request, "docs")) || [];
       const doc = docs.find((d) => d.id === pdf[1]);
       if (!doc || !doc.src) return notFound("unknown document");
+      // Most of this corpus has a second home in archive.org's arcademanuals
+      // collection, and for a document the source has lost that copy is the
+      // only one there is.
+      if (doc.dead && doc.mirror) return Response.redirect(doc.mirror, 302);
       // Redirecting into a known 404 is worse than saying so: the reader ends
       // up on someone else's error page with no idea whose fault it is.
       if (doc.dead === "gone") {
