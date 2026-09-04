@@ -162,6 +162,80 @@ def page_lines(pdf):
     return out
 
 
+# "SECTION 5", as these manuals mark their own structure on the page.
+SECTION_MARK = re.compile(r"\bSECTION\s*(\d{1,2})\b", re.I)
+MIN_SECTION_MARKS = 2          # two marked sections is still a structure
+
+
+# A word that can be part of a section title: capitals only, no digits and no
+# symbols. That is what stops "BLOCK DIAGRAM GS+VIDEO EE+RDRAM" at the net
+# labels, "INSTRUCTION MANUAL BLOCK • SEMICONDUCTORS" at the bullet, and
+# "SPECIFICATIONS TABLE OF CONTENTS SCPH-30001" at the model number.
+TITLE_WORD = re.compile(r"[A-Z][A-Z'&-]*$")
+# Capitalised words that begin whatever follows a section title rather than
+# ending it: a callout, or the first column heading of the table under it.
+# None of the section titles in these manuals contains one.
+TITLE_STOP = {"NOTE", "NOTES", "CAUTION", "WARNING", "SC", "REF", "THIS"}
+
+
+def section_title(rest, max_words=6):
+    """The title following a SECTION mark: the run of capitals after it.
+
+    These manuals set the section title in capitals and follow it immediately
+    with body text, so the first mixed-case word ends it — "SECTION 4 PRINTED
+    WIRING BOARDS AND SCHEMATIC DIAGRAMS for SCPH-30002D" gives the whole title
+    and stops at "for". Six words is what that longest real title needs; it
+    also stops "…DIAGRAMS THIS NOTE IS COMMON FOR…" running on.
+    """
+    out = []
+    for w in rest.split():
+        core = w.strip(".:,—")
+        if not core or core.upper() == "SECTION" or core in TITLE_STOP:
+            break
+        if not TITLE_WORD.match(core):
+            break
+        out.append(core)
+        if len(out) >= max_words:
+            break
+    return " ".join(out).strip(" .:-")
+
+
+def numbered_outline(pages):
+    """The document's own section numbering, where it has one.
+
+    build_outline() recovers headings from type size, which is the only signal
+    a scan offers and the wrong one here: measured across the 24 vector
+    manuals it returned 9 to 101 entries of which 0 to 5 were real sections,
+    the rest being exploded-view callouts set large — "SCREW, SKEW", "VIEW A",
+    "TOOLS : SCREW DRIVER ( #0)". Every Sony service manual among them instead
+    prints "SECTION n" and its title at the head of the page where the section
+    starts. That is the document saying where its sections are, and it beats
+    anything computed about them: the SCPH-30000 goes from 30 entries with 2
+    real ones to 7 entries that are the manual's actual contents.
+
+    A document that marks no sections keeps the geometric outline, which is
+    right for it — the PS1 runtime library reference is a properly typeset
+    programming manual and its 101 recovered headings are its real chapters.
+    """
+    out = []
+    for p in pages:
+        # The whole page, not just its opening: on a sheet the blocks are one
+        # run of scattered labels in no useful order, and the PSP-2000's
+        # "SECTION 2" sits 200 characters in behind the board designators.
+        # A cross-reference in prose is not a false positive here — "refer to
+        # SECTION 5 for details" is followed by lower case, and section_title()
+        # returns nothing for it.
+        text = " ".join(b["t"] for b in (p.get("blocks") or []))
+        seen = set()
+        for m in SECTION_MARK.finditer(text):
+            n = int(m.group(1))
+            title = section_title(text[m.end():])
+            if title and n not in seen:
+                seen.add(n)
+                out.append({"t": f"SECTION {n} — {title}", "lvl": 1, "p": p["n"]})
+    return out
+
+
 def is_sheet(block_sizes):
     """True when the page reads as a drawing rather than as something to set."""
     total = sum(block_sizes)
@@ -257,8 +331,9 @@ def process(did, pdf, svg=True, images=True):
             page["blocks"] = build_blocks(lines, h, skip=skip)
         pages.append(page)
 
-    outline = build_outline([head_by_page.get(i) or [] for i in
-                             range(1, len(per_page) + 1)])
+    numbered = numbered_outline(pages)
+    outline = numbered if len(numbered) >= MIN_SECTION_MARKS else build_outline(
+        [head_by_page.get(i) or [] for i in range(1, len(per_page) + 1)])
 
     svg_bytes = 0
     if svg:
@@ -358,8 +433,34 @@ def publish(did):
     return n
 
 
+def reoutline(did):
+    """Redo one document's outline from the text already in the cache.
+
+    The outline is derived from page text, so improving how it is derived does
+    not need the PDF back — which matters, because the sources are 322 MB from
+    a small archive with a download limiter and re-fetching them to recompute a
+    contents list would be absurd. Returns (before, after) entry counts.
+    """
+    path = os.path.join(CACHE, "text", did + ".json")
+    doc = json.load(open(path))
+    if doc.get("meta", {}).get("via") != "vector":
+        return None
+    before = len(doc.get("outline") or [])
+    numbered = numbered_outline(doc["pages"])
+    if len(numbered) < MIN_SECTION_MARKS:
+        return (before, None)            # keep the geometric one
+    doc["outline"] = numbered
+    doc["meta"]["sections"] = len(numbered)
+    tmp = path + ".tmp"
+    json.dump(doc, open(tmp, "w"), separators=(",", ":"))
+    os.replace(tmp, path)
+    return (before, len(numbered))
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--outlines-only", action="store_true",
+                    help="redo outlines from the cached text; no PDF needed")
     ap.add_argument("--publish-only", action="store_true",
                     help="re-copy sheet scans from the cache; no extraction")
     ap.add_argument("--doc", help="document id from data/sources/gamingdoc.json")
@@ -369,6 +470,23 @@ def main():
     ap.add_argument("--no-svg", action="store_true")
     ap.add_argument("--no-images", action="store_true")
     a = ap.parse_args()
+
+    if a.outlines_only:
+        changed = kept = 0
+        for f in sorted(glob.glob(os.path.join(CACHE, "text", "*.json"))):
+            did = os.path.basename(f)[:-5]
+            r = reoutline(did)
+            if r is None:
+                continue
+            before, after = r
+            if after is None:
+                kept += 1
+                continue
+            changed += 1
+            print(f"  {did}  {before:3d} -> {after:2d} entries")
+        print(f"{changed} outline(s) taken from the document's own section "
+              f"numbering; {kept} left on the geometric outline")
+        return
 
     if a.publish_only:
         total = pages = 0
