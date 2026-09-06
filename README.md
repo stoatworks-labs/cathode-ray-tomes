@@ -70,6 +70,7 @@ python3 tools/build_search.py                   # sharded OCR postings + chip in
 python3 tools/build_doc_stats.py                # fold page/section counts into the catalogue
 python3 tools/build_drawings.py --images        # mark drawing pages; publish their scans
 python3 tools/vectorise.py <docId> --pages 1,3  # trace line art to SVG
+python3 tools/check_pages.py                    # read what shipped; exit 1 on a bad page
 bash    tools/publish.sh local|remote           # seed KV + R2
 ```
 
@@ -115,6 +116,21 @@ chip — which is what a repair search actually looks like.
 **OCR.** Quality tracks the source scan. Dense schematic sheets return fragmentary text,
 but usefully still recover part numbers (`7400`, `74107`, `9316`), which is what a
 repairer actually searches for. Typed manual pages come back clean.
+
+**Checking what shipped.** Every check in the pipeline asks whether a document
+*ingested*. `tools/check_pages.py` asks the question after that: given what is in
+`web/data/`, is there a page a reader would open and find unusable? It reads each page
+the way the reader renders it and reports drawing debris set as prose, text the
+extractor could not decode, a scan promised by `dw`/`dh` with no file behind it, a scan
+published that no page points at, and a table row that cannot be split into cells. It
+exits non-zero when anything fires, so it belongs before a deploy rather than after one.
+
+It exists because the alternative did not work. The SCPH-70000's parts list shipped as
+five thousand words of `U U U U U … C1692 C1693` for as long as the document was on the
+site; the ingest had measured the problem, written it into the document's own metadata
+and printed a warning, and the warning scrolled past in a build that prints a hundred
+lines. It currently reports two one-cell table rows, which clear when those two
+documents are next ingested.
 
 **Drawing pages.** A page that is a drawing has no prose to rebuild, but OCR does not
 return nothing for one — it returns the marks it found and calls them words. Rendered

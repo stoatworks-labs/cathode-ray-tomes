@@ -184,11 +184,19 @@ async function handleApi(url, env, request) {
     // `pages` count overwrite the document's `pages` array.
     // machines/machineNames are present only where one manual documents more
     // than one machine, as the MVS service manual does for MV-2F and MV-4F.
+    //
+    // `parts` is the row count of the manual's own illustrated parts list, and
+    // the reader draws its "Parts list (n)" button from it. Leaving it out of
+    // this list hid every one of them: 194 documents and 11,940 rows were
+    // being served at /api/parts/<id> with nothing on the page linking there.
+    // An allowlist fails closed, which is the right way round, but it only
+    // works if adding a catalogue field means adding it here too.
     const { title, type, machine, machineName, machines, machineNames,
-            src, source, sourcePage, schematic, note, dead, mirror } = meta;
+            src, source, sourcePage, schematic, note, dead, mirror,
+            parts } = meta;
     return json({ ...body, title, type, machine, machineName, machines,
                   machineNames, src, source, sourcePage, schematic, note, dead,
-                  mirror });
+                  mirror, parts });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own

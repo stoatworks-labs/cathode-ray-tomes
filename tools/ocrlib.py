@@ -245,6 +245,19 @@ def _is_table_row(line, gap_px):
     """A row with two or more wide internal gaps reads as tabular."""
     return line.get("_gaps", 0) >= 2
 
+
+def _tidy_row(t):
+    """Tidy a table row's spacing without closing up its column gaps.
+
+    The reader splits a `tr` on runs of three or more spaces to get its cells,
+    so the flat `" ".join(t.split())` that is right for a paragraph turns every
+    table into a single-cell row — which is what the whole corpus had. Wide
+    gaps are the only thing separating one cell from the next, so they survive;
+    ordinary spacing is normalised as before.
+    """
+    return re.sub(r"\s+", lambda m: "   " if len(m.group()) >= 3 else " ",
+                  t.strip())
+
 def _annotate_gaps(lines, space_px):
     """Record how many wide internal gaps each line has, for table detection.
     Word positions are gone by this point, so approximate from the text: runs
@@ -300,7 +313,7 @@ def build_blocks(lines, heads=None, body_h=None, skip=None):
             cur.clear(); return
         if all(_is_table_row(l, med) for l in cur):
             for l in cur:
-                blocks.append({"k": "tr", "t": " ".join(l["t"].split())})
+                blocks.append({"k": "tr", "t": _tidy_row(l["t"])})
         elif CALLOUT.match(txt):
             blocks.append({"k": "note", "t": txt})
         elif BULLET.match(cur[0]["t"]):

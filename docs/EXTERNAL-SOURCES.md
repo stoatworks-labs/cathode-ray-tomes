@@ -120,7 +120,7 @@ python3 tools/ingest_vector.py --all          # every document classed `vector`
 | SCPH-30000 (PS2, 6th ed) | 82 | 49 | 52,241 | 30 |
 | CECHG (PS3, 2nd ed) | 45 | 26 | 14,846 | 10 |
 | SCPH-9000 (PS1, 3rd ed) | 28 | 12 | 16,602 | 12 |
-| SCPH-70000 (PS2 slim) | 26 | 13 | 23,217 | 14 |
+| SCPH-70000 (PS2 slim) | 26 | 13 | 24,333 | 2 |
 | PSP-2000 | 24 | 16 | 7,824 | 8 |
 
 **The sheet text is the prize.** A schematic page comes back as
@@ -138,11 +138,29 @@ arcade corpus has nothing like it at any price.
   wins where it counts, and is resolution-independent besides. This is a better
   result than tracing gave (README: 109–267 KB traced against 68–174 KB raster)
   and for a different reason — there is no scan noise in the path data.
-- **A text layer can be present and unreadable.** The SCPH-70000's fonts are
-  subsetted with no usable ToUnicode map, so 3.6% of its characters — 58% on its
-  worst page — come back as U+FFFD, correctly positioned and meaningless. Four
-  of the five are clean. `meta.undecoded` records it and the tool warns; above a
-  few percent a document wants the OCR path instead.
+- **A text layer can be present and unreadable — but check *why* before
+  believing it.** The SCPH-70000 measured 3.6% U+FFFD, 58% on its worst page,
+  and this note used to conclude that its fonts were subsetted without a
+  ToUnicode map and that "above a few percent a document wants the OCR path
+  instead". Both halves were wrong, and the second would have made the document
+  worse: its parts list is exact Sony part numbers, and OCR would have guessed
+  at them.
+
+  What actually happened is a fallback firing on the wrong document. Twenty-two
+  glyphs in a symbol font on page 4 have no Unicode mapping, and poppler writes
+  those as raw C0 control bytes — which are not legal XML, so `ET.fromstring`
+  refused the file, the `pdftocairo -pdf` rewrite below ran, and *that* dropped
+  the Adobe-Japan1 CMap the pages 19-26 parts list is set in. Twenty-two
+  unreadable characters on one page cost the document five thousand words on
+  seven others. `bbox_xml` now neutralises those bytes to U+FFFD before
+  parsing, the rewrite stays reserved for what it was written for, and the
+  document reads at 0.02% undecoded — the µ and Ω that genuinely have no
+  mapping, and nothing else.
+
+  The lesson is not about this file. `meta.undecoded` was recorded correctly
+  and the tool printed its warning, and the document shipped anyway for as long
+  as it was on the site, because a warning on a build that prints a hundred
+  lines is not a control. `tools/check_pages.py` is the control.
 - **poppler crashes on one of them.** The SCPH-9000's Producer string is
   mojibake and `pdftotext` dies writing the XML header with an uncaught
   `std::out_of_range`, truncating its output and exiting 0. Rewriting the file

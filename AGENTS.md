@@ -386,6 +386,28 @@ convention and legitimately uses G.
 
 ## Traps that have already bitten
 
+- **A fallback that fires on the wrong document does more damage than the fault it
+  catches.** `bbox_xml`'s `pdftocairo -pdf` rewrite exists for the SCPH-9000, whose
+  Producer string kills `pdftotext`. It also fired on the SCPH-70000, because poppler
+  writes an unmapped glyph as a raw C0 byte and twenty-two of those on page 4 made the
+  XML unparseable — and the rewrite re-renders the PDF, losing the Adobe-Japan1 CMap
+  that seven other pages were set in. A 22-character fault destroyed 5,000 words.
+  Sanitise the input to the primary path before letting a fallback take the file.
+- **`/api/doc` merges the catalogue through an explicit allowlist**, and a field left out
+  of it is not an error anywhere — the feature reading it simply never appears. `parts`
+  was missing, so all 194 parts lists were unreachable from the reader while being
+  served correctly at `/api/parts/<id>`. Add a catalogue field, add it there too, and
+  add a content case to `test_worker.mjs`: routing tests cannot see this class of bug.
+- **`build_blocks` collapsed the whitespace that makes a table a table.** The reader
+  splits a `tr` on runs of three or more spaces to get its cells, and the block builder
+  ran `" ".join(t.split())` over it first, so every table in the corpus rendered as a
+  single-column strip. Kinds that carry structure in their spacing need `_tidy_row`,
+  not the paragraph normaliser.
+- **A warning in a build that prints a hundred lines is not a control.** `ingest_vector`
+  measured the SCPH-70000's undecoded text, wrote `undecoded: 0.0364` into the document
+  and printed `⚠ text does not decode`, and the document shipped anyway and stayed
+  shipped. `tools/check_pages.py` reads what is actually in `web/data/` and exits
+  non-zero; run it before a deploy.
 - **Reference-designator collisions.** Atari labels ICs by board grid position (`A2`, `C1`,
   `H7`). Used directly as KiCad refdes, `C1`–`C9` and `D1`–`D9` collide with capacitors and
   diodes, and `batch_delete_schematic_components` then deletes *both*. ICs are therefore

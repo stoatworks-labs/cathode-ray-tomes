@@ -53,6 +53,7 @@ is a sheet because we read its geometry — so it belongs with the extraction.
 build_drawings.py skips any document whose meta says `via: vector`.
 """
 import argparse, glob, gzip, json, os, re, shutil, statistics, subprocess, sys, tempfile
+from collections import Counter
 from xml.etree import ElementTree as ET
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -79,6 +80,24 @@ PROSE_BLOCK    = 8                  # words in a block for it to count as prose
 # too short to count as prose blocks, and the share test alone hid all four.
 SHEET_MAX_WPB  = 3.0
 
+# A table's cells arrive as separate lines, because pdftotext blocks a printed
+# table by column. The raster path never has this problem: tesseract's layout
+# output keeps a row on one line with wide runs of spaces between the cells,
+# which is exactly what ocrlib's _is_table_row counts. So the cells are banded
+# back into rows here and joined with those same wide gaps, and build_blocks
+# then emits `tr` with no change to it or to the reader.
+#
+# The guard matters more than the rule. Interleaving the columns of a
+# two-column prose page is the worst thing that can happen to this text, so a
+# page has to read as a consistent grid before anything is merged: most of its
+# bands the same width, and that width at least three. Two-column prose bands
+# into two cells a row and is never touched; nor is a page with too few rows to
+# tell a grid from a coincidence.
+GRID_MIN_CELLS = 3      # two is a prose page's two columns
+GRID_MIN_BANDS = 8      # fewer rows than this is not evidence of a grid
+GRID_SHARE     = 0.50   # of the bands, at the same width
+CELL_GAP = "   "        # three spaces: what _is_table_row looks for
+
 
 def sh(*args, timeout=1800):
     return subprocess.run(args, capture_output=True, timeout=timeout).stdout
@@ -100,6 +119,23 @@ def checkpoint(did, pages, words):
     os.replace(tmp, STATE)
 
 
+# Everything XML 1.0 forbids in character data: the C0 controls other than
+# tab, newline and carriage return, the surrogate range, and the two
+# non-characters at the end of the BMP.
+NOT_XML = re.compile("[^\x09\x0a\x0d\x20-퟿-�"
+                     "\U00010000-\U0010ffff]")
+
+
+def sanitise_xml(xml):
+    """Replace characters XML cannot carry with U+FFFD.
+
+    poppler writes an unmapped glyph as its raw character code, so a symbol
+    font with no ToUnicode puts bytes like 0x02 straight into the word text.
+    One of those anywhere in a document makes the whole file unparseable.
+    """
+    return NOT_XML.sub("�", xml)
+
+
 def bbox_xml(pdf):
     """pdftotext -bbox-layout, with a fallback for PDFs that crash it.
 
@@ -108,8 +144,23 @@ def bbox_xml(pdf):
     the XML header with an uncaught std::out_of_range, leaving a truncated
     document and exit status 0. Rewriting the file through pdftocairo drops
     the metadata and the same extraction then succeeds on all 28 pages.
+
+    That rewrite is a last resort and must stay one, because it re-renders the
+    document and loses any CMap the fonts relied on. The SCPH-70000 is the
+    cautionary tale: a symbol font on its page 4 has twenty-two glyphs with no
+    Unicode mapping, which poppler emits as raw C0 control bytes. Those are not
+    legal XML, so ET refused the whole document, the rewrite ran, and the
+    rewrite dropped the Adobe-Japan1 CMap that pages 19-26 are set in — turning
+    5,000 words of exact Sony parts list into U+FFFD. Twenty-two unreadable
+    characters cost the document its most useful pages.
+
+    So the control characters are neutralised before the parse rather than
+    being allowed to condemn the file. They become U+FFFD, which is both legal
+    XML and what they honestly are — a glyph we could not read — so the
+    `undecoded` measure below still counts them.
     """
-    xml = sh("pdftotext", "-bbox-layout", pdf, "-").decode("utf-8", "replace")
+    xml = sanitise_xml(sh("pdftotext", "-bbox-layout", pdf, "-")
+                       .decode("utf-8", "replace"))
     try:
         return ET.fromstring(xml)
     except ET.ParseError:
@@ -121,7 +172,8 @@ def bbox_xml(pdf):
         if not os.path.getsize(clean):
             raise RuntimeError("pdftotext produced malformed XML and the "
                                "rewrite failed — send this one to ingest.py")
-        xml = sh("pdftotext", "-bbox-layout", clean, "-").decode("utf-8", "replace")
+        xml = sanitise_xml(sh("pdftotext", "-bbox-layout", clean, "-")
+                           .decode("utf-8", "replace"))
         try:
             return ET.fromstring(xml)
         except ET.ParseError as e:
@@ -236,6 +288,40 @@ def numbered_outline(pages):
     return out
 
 
+def band_rows(lines):
+    """The page's lines regrouped into table rows, or None if it is not a grid.
+
+    Returning None is the common case and means "leave this page alone".
+    """
+    if len(lines) < GRID_MIN_CELLS * GRID_MIN_BANDS:
+        return None
+    hs = sorted(l["h"] for l in lines)
+    med = hs[len(hs) // 2]
+    bands = {}
+    for l in lines:
+        # Band on the vertical centre: a row's cells are set on one baseline
+        # but not always at one height, and a cell in a larger face would
+        # otherwise land in the band above.
+        bands.setdefault(round((l["y"] + l["h"] / 2) / max(med * 0.8, 1)),
+                         []).append(l)
+    if len(bands) < GRID_MIN_BANDS:
+        return None
+    widths = Counter(len(v) for v in bands.values())
+    width, at_width = widths.most_common(1)[0]
+    if width < GRID_MIN_CELLS or at_width < len(bands) * GRID_SHARE:
+        return None
+
+    rows = []
+    for _, cells in sorted(bands.items()):
+        cells.sort(key=lambda l: l["x"])
+        row = dict(cells[0])
+        row["t"] = CELL_GAP.join(c["t"] for c in cells)
+        row["w"] = max(c["x"] + c["w"] for c in cells) - row["x"]
+        row["h"] = max(c["h"] for c in cells)
+        rows.append(row)
+    return rows
+
+
 def is_sheet(block_sizes):
     """True when the page reads as a drawing rather than as something to set."""
     total = sum(block_sizes)
@@ -301,6 +387,19 @@ def process(did, pdf, svg=True, images=True):
 
     sheets = {i for i, (_, sizes) in enumerate(per_page, 1) if is_sheet(sizes)}
 
+    # Band a grid page's cells back into rows before anything else reads them,
+    # so the heading classifier, the block builder and the outline all see the
+    # same lines. Sheets are left alone: their labels go in as one block and
+    # banding them would only add spaces.
+    grids = set()
+    for i in range(1, len(per_page) + 1):
+        if i in sheets:
+            continue
+        rows = band_rows(per_page[i - 1][0])
+        if rows:
+            grids.add(i)
+            per_page[i - 1] = (rows, per_page[i - 1][1])
+
     # Headings are relative to the document's own body text, so the classifier
     # needs every page — but a sheet's scattered labels are not body text and
     # would drag the median down. Feed it the prose pages and apply the result
@@ -323,7 +422,11 @@ def process(did, pdf, svg=True, images=True):
             # wise miss the most searchable text in the corpus.
             page["draw"] = True
             page["vec"] = True
-            page["blocks"] = [{"k": "p", "t": " ".join(l["t"] for l in lines)}]
+            # A sheet of pure artwork has no labels at all, and an empty block
+            # is not the same as no block: it reaches the reader as a blank
+            # paragraph and counts as a word in the "what OCR recovered" tally.
+            label = " ".join(l["t"] for l in lines).strip()
+            page["blocks"] = [{"k": "p", "t": label}] if label else []
         else:
             h = head_by_page.get(n) or []
             if h:
@@ -347,10 +450,17 @@ def process(did, pdf, svg=True, images=True):
     webp_bytes = 0
     if images:
         out = os.path.join(CACHE, "pages", did)
-        # Sheets are published, the rest are not. A page the reader rebuilds as
-        # text has no use for its own scan; a sheet is nothing but the scan, and
-        # the reader needs dw/dh to reserve its height or a lazy image never
-        # enters the viewport and never loads.
+        # Sheets and grids are published, the rest are not. A page the reader
+        # rebuilds as prose has no use for its own scan; a sheet is nothing but
+        # the scan; and a grid is a page whose printed layout carries meaning
+        # the text cannot — a parts list read as rows is right, but which of
+        # three side-by-side column groups a row sits in is only on the page.
+        # The reader shows a scan with dw/dh above the text rather than instead
+        # of it, so the rows stay readable and searchable underneath.
+        #
+        # dw/dh are load-bearing for both: without them a lazy image is zero
+        # high, never intersects the viewport, and never loads.
+        show_scan = sheets | grids
         pub = os.path.join(ROOT, "web", "pages", did)
         os.makedirs(out, exist_ok=True)
         os.makedirs(pub, exist_ok=True)
@@ -366,7 +476,7 @@ def process(did, pdf, svg=True, images=True):
                 dst = os.path.join(out, "p%04d.webp" % n)
                 to_webp(os.path.join(tmp, f), dst)
                 webp_bytes += os.path.getsize(dst)
-                if n in sheets:
+                if n in show_scan:
                     shutil.copyfile(dst, os.path.join(pub, "p%04d.webp" % n))
                     from PIL import Image
                     with Image.open(dst) as im:
@@ -404,7 +514,7 @@ def process(did, pdf, svg=True, images=True):
 
 
 def publish(did):
-    """Re-copy a document's sheet scans from the cache into web/pages/.
+    """Re-copy a document's published scans from the cache into web/pages/.
 
     The scans are a build output that lives in git, so anything that resets the
     tree loses them while the cache still has everything needed to put them
@@ -421,7 +531,9 @@ def publish(did):
     pub = os.path.join(ROOT, "web", "pages", did)
     n = 0
     for page in doc.get("pages", []):
-        if not page.get("draw"):
+        # dw/dh, not `draw`: a sheet and a grid both ship a scan, and dw is
+        # what the extraction set on exactly the pages it published one for.
+        if not page.get("dw"):
             continue
         name = "p%04d.webp" % page["n"]
         src = os.path.join(src_dir, name)

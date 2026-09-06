@@ -18,17 +18,18 @@ about your board revision.
 | | |
 |---|---|
 | Machines | 7,812 |
-| Documents digitised | 2,389 of 2,405 (100% block structure) |
-| Pages OCR'd | 62,784 · 44,668 sections |
+| Documents digitised | 2,435 of 2,448 (100% block structure) |
+| Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
-| Parts lists | 192 documents, 11,911 rows |
+| Parts lists | 194 documents, 11,940 rows — **reachable from the reader since 2026-09-06** |
 
-Corpus ships as **static assets** (`web/data/` ~12,900 files 160 MB, plus
-`web/pages/` 430 page scans 64 MB). No KV, no R2 — a deploy publishes code and data
-together. Repo `.git` grows accordingly.
+Corpus ships as **static assets** (`web/data/` ~13,000 files 194 MB, plus
+`web/pages/` 4,513 page scans 928 MB). No KV, no R2 — a deploy publishes code and data
+together. Repo `.git` grows accordingly. `build_assets.py` warns above 19,000 files
+against the 20,000-file Workers Assets limit; the count is 17,510 including the scans.
 
 ## Architecture
 
@@ -89,6 +90,48 @@ Designator equivalence is something to **check, never assume** — three separat
 traps found so far.
 
 ## Open work
+
+**Every parts list was unreachable, and now is not.** `/api/doc` merges the catalogue
+record into the document through an explicit allowlist and `parts` was not in it, so
+`doc.parts` was always undefined and the reader's "Parts list (n)" button never
+rendered — on any document. 194 documents and 11,940 rows were being served correctly
+at `/api/parts/<id>` with nothing on the site linking there. Two things had to change:
+the field added to the allowlist in `src/index.js`, and `parts` restored to
+`web/data/docs.json`, which had lost it because `build_index.py` regenerates that file
+from scratch and only `build_parts.py` puts the counts back. **Run the pipeline in the
+README's order** — `build_doc_stats` → `build_parts` → `build_search` → `build_assets` —
+or the counts silently vanish again. `test_worker.mjs` now has a content case that
+fails without the allowlist entry, which routing tests could never catch.
+
+**The SCPH-70000 parts list is readable.** Pages 19-26 were five thousand words of
+`U U U U U … C1692 C1693`; they are now the page's own scan above a 68-row table of
+`U | C1185 | 1-125-837-91 | CAP,SMD,CER 1MF 10% 6.3V 1608 X7R`. Three separate faults,
+all in `docs/EXTERNAL-SOURCES.md` and `AGENTS.md`: a fallback rewrite losing the
+Adobe-Japan1 CMap over 22 stray control bytes, `pdftotext` blocking a printed table by
+column so its cells arrived as separate lines, and `build_blocks` collapsing the very
+spacing the reader splits cells on. The document reads at 0.02% undecoded now.
+
+`band_rows()` in `ingest_vector.py` is what regroups a grid page's cells into rows, and
+it is **validated on this document only** — the other 23 vector manuals were not
+re-ingested, because their PDFs are not in this cache. It is guarded to fire only on a
+page whose bands are consistently three cells or wider, so a two-column prose page can
+never be interleaved by it, but the next person to run `--all` should read the diff
+rather than trust that. The same is true of `_tidy_row` in `ocrlib.py`: it changes what
+a `tr` block looks like for every future ingest, raster path included.
+
+**`tools/check_pages.py` is the control that was missing.** It currently reports two
+one-cell table rows (the PS3 BD-drive and PSP-2000 unit legends), which clear when those
+two documents are next ingested. Everything else it looks for is clean.
+
+**The shared checkout's cache is not the published corpus.** `cache/text/` in
+`~/Projects/publishing/cathode-ray-tomes` holds 4,119 documents, of which 1,684 are an
+unfinished archive.org ingest (`via: archive.org`, plus 230 `via: tesseract`) belonging
+to the stranded `worktree-take-archives` branch. They are in no catalogue and on no
+page. Anyone running `build_search.py` or `build_assets.py` against that cache will
+publish postings pointing at 1,684 documents the site does not serve. Filter to
+`data/index/docs.json` first. The same branch's work also left the shared
+`data/ingest-state.json` not knowing about `8a1a4445e351`, which is how `ingest.py`
+comes to re-OCR a vector document.
 
 **Drawing pages** (`tools/build_drawings.py`, new). The reader used to set every
 schematic sheet as prose — 10-Yard Fight's pages 31/32/37 rendered as paragraphs

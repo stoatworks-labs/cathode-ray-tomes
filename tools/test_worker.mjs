@@ -116,5 +116,37 @@ for (const [path, want, why] of CASES) {
   if (!ok && body) console.log(`     body: ${body}`);
 }
 
-console.log(failures ? `\n${failures} failing` : `\nall ${CASES.length} pass`);
+// Routing is not the only way a handler can be silently wrong. /api/doc merges
+// the catalogue record into the document through an explicit allowlist, and a
+// field missing from that list is not an error anywhere — it is simply absent,
+// and the feature that reads it never appears. `parts` was missing from it, so
+// every one of the 194 parts lists the pipeline recovers was unreachable from
+// the reader while being served perfectly well at /api/parts/<id>.
+const docs = JSON.parse(readFileSync(join(WEB, "data", "docs.json"), "utf8"));
+const withParts = docs.find((d) => d.parts);
+const CONTENT = withParts ? [[
+  `/api/doc/${withParts.id}`,
+  (body) => body.parts === withParts.parts,
+  `carries parts=${withParts.parts} from the catalogue`,
+]] : [];
+
+for (const [path, ok, why] of CONTENT) {
+  let pass = false, note = "";
+  try {
+    const res = await worker.fetch(
+      new Request(`https://cathode-ray-tomes.com${path}`), env, {});
+    const body = await res.json();
+    pass = ok(body);
+    if (!pass) note = `got parts=${JSON.stringify(body.parts)}`;
+  } catch (e) {
+    note = `THREW ${e.constructor.name}`;
+  }
+  if (!pass) failures++;
+  console.log(`${pass ? "ok  " : "FAIL"} ${"".padEnd(14)} content  `
+    + `${path.padEnd(34)} ${why}`);
+  if (note) console.log(`     ${note}`);
+}
+
+const total = CASES.length + CONTENT.length;
+console.log(failures ? `\n${failures} failing` : `\nall ${total} pass`);
 process.exit(failures ? 1 : 0);
