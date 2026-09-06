@@ -141,6 +141,37 @@ A001433, every IC at a labelled A-H x 1-9 cell). Not every manual does:
 So the realistic unit of work per board is: find a component-location drawing,
 read it once, write the JSON. Everything after that is scripted.
 
+## Quantity is a column in most of these manuals, and the header says which
+
+`extract_parts.py` recovers rows from the shape of the data, and the column
+order it has to assume is the one thing it cannot read off the shape. Measured
+over the corpus, 346 of 621 header occurrences name a quantity column between
+PART NO. and DESCRIPTION and **183 have nothing at all** — the Sega lists are
+ITEM, PART NO., DESCRIPTION and no more. So the split is gated on the page's
+own header, never applied blanket:
+
+    header names a quantity column : 94% of descriptions start with a number
+    header names no such column    : 22% do, and those digits are the
+                                     description — "2 Player Harness"
+
+A continuation page inherits the last header seen; a document with no
+recognised header anywhere falls back to `infer_qty_column`, which reads the
+magnitude of the leading numbers, because a quantity is small and a component
+value is not (`1 Speaker Cover` against `680 uf`). That fallback speaks only
+when the manual is silent — a header always wins, in either direction.
+
+**Clear the field that is wrong, never the row.** An electrical parts list
+prints a rating where an illustrated one prints an item number, so `4W` arrives
+as an item on rows whose part number and description are both good. And where a
+page's columns OCR'd as separate runs, the "description" is the *next* row's
+item and part number, while this row's own item and part are still correctly
+paired — that pairing is what someone orders from. Both cases blank the bad
+field and keep the row; the reader draws an em-dash for a description that
+could not be read, which is a truthful answer rather than an empty cell.
+
+Part numbers take a trailing revision letter (`75-010S`, `75-5124B`). Without
+it the pattern does not recognise the next record and emits two rows as one.
+
 ## The parts lists are a second source, and they do harvest
 
 The finding above is about the *drawings* and it stands. It does not extend to

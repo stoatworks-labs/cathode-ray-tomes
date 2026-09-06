@@ -31,10 +31,14 @@ def main():
         rows = from_document(doc)
         if len(rows) < MIN_ROWS:
             continue
-        # de-duplicate: the same part often repeats across figure lists
+        # de-duplicate: the same part often repeats across figure lists.
+        # A row whose description could not be recovered has to keep its item
+        # number in the key, or every such row for one part collapses into one
+        # and the item numbers that were the useful half are lost.
         seen, uniq = set(), []
         for r in rows:
-            key = (r["part"], r["desc"][:40].lower())
+            key = ((r["part"], r["item"]) if not r["desc"]
+                   else (r["part"], r["desc"][:40].lower()))
             if key in seen:
                 continue
             seen.add(key)

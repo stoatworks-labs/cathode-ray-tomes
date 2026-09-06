@@ -958,15 +958,28 @@ async function reader(id) {
       if (!open) { box.innerHTML = ""; return; }
       box.innerHTML = '<div class="spin">Loading parts…</div>';
       if (!rows) rows = await api("parts/" + id);
+      // Only the manuals that print a quantity column get one. Where the
+      // header does not name one — the Sega lists are ITEM, PART NO.,
+      // DESCRIPTION and nothing else — an empty column would invent a field
+      // the page never had.
+      const hasQty = rows.some((r) => r.qty);
+      // A blank description is a real answer, not a missing one: the page's
+      // columns came off the scan as separate runs, so the item and part
+      // number are known and the description is not. Say so rather than
+      // leaving a cell the reader reads as a bug.
+      const noDesc = '<span class="q" title="This row\'s description could not be '
+        + 'read off the page. Its item and part number were.">—</span>';
       box.innerHTML = `
         <div class="panel" style="padding:0;overflow:auto;margin-bottom:18px">
           <table class="bom"><thead><tr>
-            <th>Item</th><th>Part number</th><th>Description</th><th>Page</th>
+            <th>Item</th><th>Part number</th>${hasQty ? "<th>Qty</th>" : ""}
+            <th>Description</th><th>Page</th>
           </tr></thead><tbody>
           ${rows.map((r) => `<tr>
             <td class="q">${esc(r.item)}</td>
             <td class="refs">${esc(r.part)}</td>
-            <td>${esc(r.desc)}</td>
+            ${hasQty ? `<td class="q">${esc(r.qty)}</td>` : ""}
+            <td>${r.desc ? esc(r.desc) : noDesc}</td>
             <td class="q"><a href="#" data-p="${r.page}">p${r.page}</a></td>
           </tr>`).join("")}
           </tbody></table>
