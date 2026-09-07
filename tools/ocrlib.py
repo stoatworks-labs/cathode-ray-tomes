@@ -41,6 +41,11 @@ def ocr_page(png, psm="1", lang="eng", timeout=180):
                     lines.append({
                         "b": key[0], "pa": key[1],
                         "t": " ".join(w["text"] for w in ws),
+                        # Where each word sat, which is the only record that a
+                        # line is a row of a table: joining the words with
+                        # single spaces below throws the column gaps away.
+                        "words": [(int(w["left"]), int(w["left"]) + int(w["width"]),
+                                   w["text"]) for w in ws],
                         "x": min(int(w["left"]) for w in ws),
                         "y": min(int(w["top"]) for w in ws),
                         "w": max(int(w["left"]) + int(w["width"]) for w in ws) - min(int(w["left"]) for w in ws),
@@ -241,11 +246,6 @@ def _dehyphenate(a, b):
         return a[:-1] + b
     return a + " " + b
 
-def _is_table_row(line, gap_px):
-    """A row with two or more wide internal gaps reads as tabular."""
-    return line.get("_gaps", 0) >= 2
-
-
 def _tidy_row(t):
     """Tidy a table row's spacing without closing up its column gaps.
 
@@ -258,10 +258,183 @@ def _tidy_row(t):
     return re.sub(r"\s+", lambda m: "   " if len(m.group()) >= 3 else " ",
                   t.strip())
 
-def _annotate_gaps(lines, space_px):
+# ---------------------------------------------------------------------------
+# Table columns
+# ---------------------------------------------------------------------------
+#
+# A DIP-switch row reaches us from tesseract on a single line, its cells set
+# apart by whitespace an order of magnitude wider than a word space:
+#
+#     Off [74] 70 [7] seconds [8] per [7] coin [108] F
+#
+# The line's text throws that away -- the words are joined with single spaces
+# -- so the row reads as a sentence, `_is_table_row` never fires, and
+# `build_blocks` glues it to the row beneath it as a paragraph. The distances
+# are not subtle; only the record of them was missing, which is why `ocr_page`
+# now keeps the word boxes.
+#
+# The gap alone is not enough to act on, because the threshold that finds a
+# real column also finds the hole OCR leaves where it dropped a word. What
+# separates them is that a column *repeats*: a table's cells start at the same
+# x line after line, and debris lands wherever it lands. So the gaps are only
+# a proposal, and a cell start has to stack up down the page before the split
+# is kept.
+#
+# Three columns, not two, because two is what a two-column prose page looks
+# like when tesseract fails to separate its columns -- and interleaving those
+# is the worst thing that can happen to this text.
+COL_GAP_MULT  = 3.0   # a column gap, counted in word spaces
+COL_GAP_MIN   = 12    # ...and in pixels, at the 150 dpi these scans are read at
+COL_TOL_MULT  = 2.5   # cell starts this close, in word spaces, are one column
+COL_MIN_CELLS = 3     # two cells a row is two-column prose
+COL_MIN_ROWS  = 3     # a grid has to repeat before it is a grid
+COL_MIN_HITS  = 3     # rows sharing a start before it counts as a column
+CELL_GAP = "   "      # three spaces: what _is_table_row and the reader read
+
+
+def _word_space(lines):
+    """The page's ordinary space between two words, in pixels.
+
+    Taken across the whole page rather than per line, which is what makes this
+    work: a row of three cells has only two or three gaps of its own, and its
+    median is the column gap itself, so a line-local threshold measures the
+    thing it is meant to be detecting and finds nothing.
+    """
+    gaps = []
+    for l in lines:
+        ws = l.get("words") or []
+        gaps += [b[0] - a[1] for a, b in zip(ws, ws[1:]) if b[0] >= a[1]]
+    if len(gaps) < 8:
+        return None
+    gaps.sort()
+    # The lower quartile, not the median: on a page that is mostly table the
+    # column gaps are half the sample and would drag the median up with them.
+    return max(gaps[len(gaps) // 4], 1)
+
+
+def _split_cells(words, wide):
+    """A line's words grouped into cells, breaking on any gap at least `wide`."""
+    cells = [[words[0]]]
+    for prev, w in zip(words, words[1:]):
+        (cells.append([w]) if w[0] - prev[1] >= wide else cells[-1].append(w))
+    return cells
+
+
+def _cluster(xs, tol):
+    """Sorted positions grouped into runs, breaking where the step exceeds `tol`."""
+    runs, run = [], [xs[0]]
+    for x in xs[1:]:
+        if x - run[-1] <= tol:
+            run.append(x)
+        else:
+            runs.append(run)
+            run = [x]
+    runs.append(run)
+    return runs
+
+
+# Geometry gets one page wrong, and always the same page. A schematic sheet
+# sets its theory of operation in four or five narrow columns of running text,
+# and those columns stack up as consistently as any grid does -- Asteroids
+# sheet 2 side A is five columns of prose and reads, to everything above, as a
+# five-column table. What separates them is not where the cells are but what
+# is in them: a table's cell is a value, a designator, a part number, a short
+# description, and a cell holding a clause is a sentence. One clause in a row
+# is a description column and is common; a row built mostly of them is prose,
+# and a page whose rows are mostly like that is prose in columns.
+PROSE_STOP = frozenset(
+    "the a an and or of to in is are was were for with that this it be on at "
+    "as by from not you your".split())
+PROSE_CELL_WORDS = 5   # words in a cell before it can be a clause
+PROSE_CELL_STOPS = 2   # ...and function words in it
+PROSE_ROW_CELLS = 2    # clauses in a row before the row reads as prose
+PROSE_SHARE = 0.6      # of the rows, before the page does
+
+
+def _is_clause(cell):
+    words = cell.lower().split()
+    return (len(words) >= PROSE_CELL_WORDS
+            and sum(1 for w in words if w in PROSE_STOP) >= PROSE_CELL_STOPS)
+
+
+def _reads_as_prose(rows):
+    """Whether a page's recovered rows are running text in columns."""
+    if not rows:
+        return False
+    wordy = sum(1 for cells in rows.values()
+                if sum(1 for c in cells if _is_clause(c)) >= PROSE_ROW_CELLS)
+    return wordy >= 3 and wordy >= len(rows) * PROSE_SHARE
+
+
+def table_rows(lines, keep=()):
+    """The page's lines that read as rows of one consistent grid.
+
+    Returns {index in `lines`: [cell text, ...]}. An empty result is the common
+    case and means "this page is not a table, leave it alone".
+
+    `keep` is the text of lines already claimed as headings, which stand alone
+    and are never rewritten as rows.
+    """
+    # A contents page is a column of entries against a column of page numbers,
+    # so it reads as a grid and is not one. It already renders acceptably as
+    # the list it is, and `classify_headings` holds it out of structure
+    # detection for its own reasons; hold it out of this too rather than churn
+    # a page that was never the problem.
+    if _is_contents_page(lines):
+        return {}
+    space = _word_space(lines)
+    if not space:
+        return {}
+    wide = max(space * COL_GAP_MULT, COL_GAP_MIN)
+
+    proposed = {}
+    for i, l in enumerate(lines):
+        ws = l.get("words") or []
+        if len(ws) < COL_MIN_CELLS or l["t"].strip() in keep:
+            continue
+        cells = _split_cells(ws, wide)
+        if len(cells) >= COL_MIN_CELLS:
+            proposed[i] = cells
+    if len(proposed) < COL_MIN_ROWS:
+        return {}
+
+    # Which proposed cell starts are columns: the ones several rows share.
+    tol = max(space * COL_TOL_MULT, 1)
+    starts = sorted(c[0][0] for cells in proposed.values() for c in cells)
+    cols = [(min(r), max(r)) for r in _cluster(starts, tol)
+            if len(r) >= COL_MIN_HITS]
+    if len(cols) < COL_MIN_CELLS:
+        return {}
+
+    rows = {}
+    for i, cells in proposed.items():
+        # Most of a row's cells must sit in a column, but not all of them: a
+        # stray footnote mark in its own narrow column is real, and rejecting
+        # the row over it would lose the setting the row documents.
+        hits = sum(1 for c in cells
+                   if any(lo - tol <= c[0][0] <= hi + tol for lo, hi in cols))
+        if hits >= COL_MIN_CELLS:
+            rows[i] = [" ".join(w[2] for w in c) for c in cells]
+    if len(rows) < COL_MIN_ROWS or _reads_as_prose(rows):
+        return {}
+    return rows
+
+
+def _is_table_row(line, gap_px):
+    """A row with two or more wide internal gaps reads as tabular."""
+    return line.get("_gaps", 0) >= 2
+
+
+def _annotate_gaps(lines, space_px, keep=()):
     """Record how many wide internal gaps each line has, for table detection.
-    Word positions are gone by this point, so approximate from the text: runs
-    of two or more spaces survive tesseract's layout output in table rows."""
+
+    Rows of a grid have their cells rejoined here with the wide gaps the rest
+    of the pipeline reads as column breaks. Lines that already carry those gaps
+    in their text -- the vector path bands its rows that way, having never had
+    word boxes to lose -- are counted exactly as they always were.
+    """
+    for i, cells in table_rows(lines, keep).items():
+        lines[i]["t"] = CELL_GAP.join(cells)
     for l in lines:
         l["_gaps"] = len(re.findall(r"\s{3,}", l["t"]))
 
@@ -299,7 +472,7 @@ def build_blocks(lines, heads=None, body_h=None, skip=None):
     skip = skip or set()
     hs = sorted(l["h"] for l in lines)
     med = body_h or hs[len(hs) // 2]
-    _annotate_gaps(lines, med)
+    _annotate_gaps(lines, med, keep=set(head_of))
 
     blocks, cur, prev = [], [], None
     def flush():

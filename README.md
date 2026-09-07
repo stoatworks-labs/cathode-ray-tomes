@@ -138,6 +138,45 @@ Run it before `build_parts.py` or the descriptions it recovered silently revert 
 em-dashes on the next rebuild. It is incremental: 346 pages, six minutes cold, and
 nothing on a re-run.
 
+**A DIP-switch table arrived as a sentence, and nothing was feeding the machinery that
+would have fixed it.** `build_blocks` has emitted a `tr` for any line carrying two or
+more wide gaps since tables were added, and the reader splits a `tr` on those gaps into
+cells. Nothing ever reached it: `ocr_page` built each line's text by joining tesseract's
+words with single spaces, so the gaps that say where one cell ends and the next begins
+did not survive the read. 4-Player Football's option-switch page reached the reader as
+`Off 70 seconds per coin F On 90 seconds per coin $ N` — two rows of a table set as one
+paragraph — and every DIP-switch, option-switch and pin-out table in the corpus was in
+that state, which are the pages a repairer actually opens.
+
+The distances are not subtle: on that page a word space is 8 pixels and the column gaps
+are 43 to 251. What makes them unsafe on their own is that a gap wide enough to be a
+column is also wide enough to be the hole OCR leaves where it dropped a word. So the
+gaps are only a proposal, and a cell start has to **repeat** down the page before a
+split is kept — the Result column there begins at x = 459–462 on all nine of its rows,
+while debris lands wherever it lands and is dropped.
+
+That repeat test is also the guard on the thing that must never happen. A page has to
+show **three** columns before anything is split, because two is what two-column prose
+looks like when tesseract reads across the gutter: those lines carry a single wide gap,
+make two cells, and are left alone. On Hard Drivin' page 3-25 the flowchart boxes became
+rows and the two columns of numbered prose beneath them did not.
+
+`page_tables.py` applies this to the corpus the way `parts_rows.py` applies its banding,
+and for the same reason — `cache/text/` stores blocks, and the word boxes that say where
+a cell began are not in them, so the pages are read again from their cached scans. A page
+is kept only if it gained a table **and** still says exactly what it said before, which
+is what makes a 4,000-document backfill safe: a page whose re-read does not reproduce its
+own published text did not read the same way twice, and is left alone. The one difference
+allowed is a word hyphenated across a line break — `Designator` becoming `Desig-` /
+`nator` where the row broke out of its paragraph.
+
+Its output is `data/tables/`, which unlike `cache/rows/` is **committed**, because
+`web/data/doc/` is built from `cache/text/` plus the side-cars and a gitignored one
+reverts on the next rebuild with nothing to say it happened. It is merged in by
+`build_assets.py --tables-only`, which leaves the corpus index alone for the same reason
+`--boards-only` does. 12,145 pages across 1,810 documents are now set as tables, 244,719
+rows, and `check_pages.py` reports exactly what it reported before.
+
 **Not everything is in English.** 43 of these manuals are Japanese, and tesseract
 run with `-l eng` does not fail on one so much as invent: Super Puzzle Fighter's first
 page came back as `yo09964Zd WO Ddivfay SARL 21 BHMGMII`, and with `-l jpn+eng` it is

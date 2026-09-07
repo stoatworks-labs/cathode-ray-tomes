@@ -20,6 +20,7 @@ versioned and published together.
 import json, os, shutil, glob, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_drawings import apply_flags  # noqa: E402
+from page_tables import apply_tables, load as load_tables  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "web", "data")
@@ -110,9 +111,38 @@ def publish_boards_only():
           f"left untouched")
 
 
+def publish_tables_only():
+    """Merge the recovered tables into the published documents, leaving the
+    rest of web/data/ alone.
+
+    Same reasoning as publish_boards_only, and the same trap avoided: a full
+    rebuild regenerates everything from data/index/, which is gitignored and
+    built per checkout, so running one from a worktree that has never built an
+    index would clobber the corpus it is trying to improve. A table changes
+    nothing but the blocks of the page it was found on.
+    """
+    docs = pages = 0
+    for p in sorted(glob.glob(os.path.join(OUT, "doc", "*.json"))):
+        rows = load_tables(os.path.basename(p)[:-5])
+        if not rows:
+            continue
+        doc = json.load(open(p))
+        n = apply_tables(doc, rows)
+        if not n:
+            continue
+        with open(p, "w") as f:
+            json.dump(doc, f, separators=(",", ":"))
+        docs += 1
+        pages += n
+    print(f"{pages} page(s) across {docs} document(s) set as tables in "
+          f"web/data/ — the corpus index was left untouched")
+
+
 def main():
     if "--boards-only" in sys.argv:
         return publish_boards_only()
+    if "--tables-only" in sys.argv:
+        return publish_tables_only()
 
     if "--force" not in sys.argv:
         check_sources_are_current()
@@ -144,16 +174,24 @@ def main():
     # different answers.
     dpath = os.path.join(ROOT, "data", "drawings.json")
     drawings = json.load(open(dpath)) if os.path.exists(dpath) else {}
-    n_draw = n_noise = 0
+    # Tables are merged the same way and for the same reason: tools/page_tables.py
+    # re-reads a page from its scan to recover the columns the flat text lost,
+    # and the result belongs to the published document rather than to the
+    # checkpoint the ingest wrote.
+    n_draw = n_noise = n_table = 0
     for p in glob.glob(os.path.join(ROOT, "cache", "text", "*.json")):
         fid = os.path.basename(p)[:-5]
         flags = drawings.get(fid)
+        tables = load_tables(fid)
         dst = os.path.join(OUT, "doc", os.path.basename(p))
-        if not flags:
+        if not flags and not tables:
             total += copy(p, dst); files += 1
             continue
         doc = json.load(open(p))
-        apply_flags(doc, flags)
+        if tables:
+            n_table += apply_tables(doc, tables)
+        if flags:
+            apply_flags(doc, flags)
         n_draw += sum(1 for page in doc.get("pages", []) if page.get("draw"))
         n_noise += sum(1 for page in doc.get("pages", []) if page.get("noise"))
         os.makedirs(os.path.dirname(dst), exist_ok=True)
@@ -162,6 +200,8 @@ def main():
         total += os.path.getsize(dst); files += 1
     if drawings:
         print(f"  {n_draw} pages marked as drawings, {n_noise} as drawing noise")
+    if n_table:
+        print(f"  {n_table} pages set as tables")
 
     # The scans for the drawing pages, so a schematic the manual refers to is
     # actually on the page instead of being a link to a 45-page PDF.

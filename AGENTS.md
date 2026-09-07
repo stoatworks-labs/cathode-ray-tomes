@@ -190,6 +190,64 @@ Three things to know before touching it:
 - **`cache/text/` is not written to**, exactly as `build_drawings.py` leaves it. It is
   the ingest's checkpoint and stays the OCR as it came out.
 
+## A table row arrives on one line, and only the column gaps say where its cells are
+
+`parts_rows.py` reunites a table whose **rows** tesseract split across blocks. The other
+half of the same problem is a table whose rows arrive whole and whose **cells** do not.
+Tesseract reads a DIP-switch row onto one line and sets its cells apart by whitespace an
+order of magnitude wider than a word space — `Off [74] 70 [7] seconds [8] per [7] coin
+[108] F` — and `ocr_page` then joined those words with single spaces. The row reached the
+reader as a sentence, `_is_table_row` never fired, and the row beneath it was glued on as
+the same paragraph. `ocrlib.table_rows` recovers the cells from the word boxes `ocr_page`
+now keeps, and `tools/page_tables.py` applies it to the corpus.
+
+Four things to know before touching it:
+
+- **The threshold is per page, never per line.** This is the reason the obvious fix does
+  not work. A row of three cells has two or three gaps of its own, so its median *is* the
+  column gap: `On [149] 1-coin [9] minimum [138] N` has a median gap of 138, and no
+  multiple of that finds anything. `_word_space` takes the **lower quartile of every gap
+  on the page** — the lower quartile and not the median, because on a page that is mostly
+  table the column gaps are half the sample and would drag a median up with them.
+- **A wide gap is only a proposal.** The threshold that finds a column also finds the
+  hole OCR leaves where it dropped a word. What separates them is that a column repeats:
+  a cell start has to be shared by three rows before a split is kept, so debris at a
+  random x is discarded. Rows may keep a stray cell the columns do not explain — a
+  footnote mark in its own narrow column is real — so a row needs three of its cells in
+  columns, not all of them.
+- **Three columns, never two.** Two cells a row is a two-column prose page read across
+  the gutter, and interleaving that is the worst thing that can happen to this text. It
+  is why `GRID_MIN_CELLS` in `ingest_vector.py` is 3 as well, and it holds: on Hard
+  Drivin' page 3-25 the flowchart boxes became rows and the two columns of numbered
+  prose beneath them stayed prose, because those lines carry one wide gap and make two
+  cells.
+- **Rows are not all the same width, and that is not a bug to fix in place.** 27% of
+  recovered pages have every row at the same cell count and the median page has two
+  thirds of its rows at its modal width. The rest are ragged because tesseract splits a
+  cell wherever its words happen to sit far enough apart (`IC,` and `74L8174` arrive as
+  two cells where the page prints one) and because a row that skips a column has no way
+  to say so: a `tr` is cells joined by three spaces, and `re.split(r"\s{3,}", "a      b")`
+  is `["a", "b"]`, so an empty cell cannot be written down. Snapping cells onto the
+  detected columns is the obvious fix and is wrong as stated — `Display During Self-Test`
+  is one header centred over two columns and would be glued onto `Result`. Doing it
+  properly needs spans and a `tr` that carries a list of cells rather than a string,
+  which is a change to the reader, `check_pages.py` and the vector path as well.
+- **The 43 Japanese manuals get no tables, and that is the guard working.** Their
+  pages carry real pin-out charts, and re-reading one with `-l jpn+eng` finds them --
+  26 rows on the JAMMA chart in `02b619948f1e` p3. The re-read does not reproduce the
+  published Japanese *glyph for glyph* (`念 配置 図` against `品 面`), so the page is
+  left alone rather than have its text swapped for a second opinion in a script the
+  rest of the pipeline cannot score. Reading a page and replacing a page are different
+  permissions. Note also that this checkout's `cache/text/` still held those documents
+  in the English they were first read in while `web/data/doc/` had them in Japanese,
+  which is why the reference is the published document and not the checkpoint.
+- **`data/tables/` is committed**, which is the one place this differs from
+  `cache/rows/`. `web/data/doc/` is built from `cache/text/` plus the side-cars, so a
+  gitignored side-car silently reverts on the next rebuild — the trap `cache/rows/`
+  already sets. Merge it with `build_assets.py --tables-only`; a full `build_assets.py`
+  run wipes `web/data/` and rebuilds it from the gitignored `data/index/`, which a
+  worktree does not have.
+
 ## Quantity is a column in most of these manuals, and the header says which
 
 `extract_parts.py` recovers rows from the shape of the data, and the column
