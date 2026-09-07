@@ -407,9 +407,25 @@ their URLs and leaves the rest as counts.
 In order of value per document: the Sega system service manuals, if Sega
 Retro agrees; the Arcade Archive's monitor and coin-mech references, if its
 maintainer does; then the archive.org items that would give a machine its first
-document. The archive.org OCR text is worth reading against ours before any of
-that, because it costs nothing and would tell us which of our 65,000 pages
-tesseract read worst.
+document.
+
+**The archive.org OCR has been read against ours, and the answer is that it
+found nothing we read worse.** `tools/compare_ocr.py` fetched their `_djvu.txt`
+for all 2,057 mirrored documents on 2026-09-07 and compared readable English —
+function-word counts, because debris off a drawing produces none however much
+of it there is. Ours holds as much or more on 96% of documents. Every one of
+the remainder dissolved on inspection: archive.org's multilingual model
+invents Cyrillic and Arabic on English scans (Sente's SAC 1B comes back with
+6,990 of them, opening `Жү чы PAPIAS. B a пили aaa ap тен чад`, where our
+reading of the same page is clean prose); or it read more debris off schematic
+sheets we already show as scans; or the pages were parts lists, which are
+tables and short of function words whoever reads them. Two limits of the data
+are worth knowing: their `_djvu.txt` has no page breaks (not one of the 2,057),
+so the comparison is whole-document, and page-level would need the 1.1 GB of
+`_djvu.xml`, which this result does not justify.
+
+So the remaining OCR-quality work is structural — the DIP-switch tables that
+render as prose — rather than a matter of reading the scans again.
 
 ## Rights, stated plainly
 

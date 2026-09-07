@@ -91,6 +91,14 @@ traps found so far.
 
 ## Open work
 
+**A second reader of the same scans found nothing we read worse.**
+`tools/compare_ocr.py` read archive.org's own OCR of the 2,057 documents it
+mirrors against ours. Ours holds as much or more readable English on 96%; the
+rest is their multilingual model hallucinating other scripts, debris off
+sheets we show as scans, or parts-list pages. Details in EXTERNAL-SOURCES.md.
+The consequence for planning: further OCR-quality effort belongs on structure
+(the DIP tables), not on re-reading pages.
+
 **43 documents are Japanese and were being read as English.** Not a subtle
 failure: `-l eng` on a Japanese page invents confident Latin nonsense, which
 every downstream measure then reads as drawing debris. Those pages were flagged
