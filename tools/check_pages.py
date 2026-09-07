@@ -51,6 +51,18 @@ PAGES = os.path.join(ROOT, "web", "pages")
 TOKEN = re.compile(r"[A-Za-z]{2,}")
 SYMBOL = re.compile(r"[^A-Za-z0-9\s.,;:()\-/+%'\"&#*=\[\]]")
 MIN_TOKENS, LONG_RATE, SYMBOL_RATE = 40, 0.20, 0.030
+# Those measures are calibrated on English, and a kanji is in none of their
+# character classes — SYMBOL counts every one as debris, so a correctly-read
+# Japanese page scores like a schematic. build_drawings.py exempts these pages
+# and so must this, or the check reports the 43 Japanese manuals as broken for
+# being legible. Same constants, same reason.
+CJK = re.compile("[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
+CJK_MIN, CJK_SHARE = 60, 0.10
+
+
+def is_cjk_text(text):
+    hits = len(CJK.findall(text))
+    return hits >= CJK_MIN and text and hits / len(text) >= CJK_SHARE
 
 # A page fires only when it is unreadable by both measures. A symbol font the
 # extractor could not map — a µ, an Ω — leaves a dozen U+FFFD on a short page,
@@ -131,7 +143,8 @@ def check():
                          sample=text[:120]))
 
             if (mode == "prose" and n >= MIN_TOKENS
-                    and long_rate < LONG_RATE and sym >= SYMBOL_RATE):
+                    and long_rate < LONG_RATE and sym >= SYMBOL_RATE
+                    and not is_cjk_text(text)):
                 found["prose-is-noise"].append(
                     dict(where, page=p["n"], tokens=n,
                          long=round(long_rate, 3), sym=round(sym, 3),
