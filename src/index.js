@@ -96,6 +96,25 @@ async function sortedMachines(env, request) {
 /** Postings are sharded by leading character to keep each file small. */
 const shardOf = (term) => (/^[a-z0-9]/.test(term[0]) ? term[0] : "_");
 
+// Japanese is written without spaces, so a query in it has no words to split on.
+// build_search.py indexes CJK as character bigrams; a query has to be broken the
+// same way or it matches nothing. Latin terms keep their three-character floor —
+// two-letter fragments of English are noise — but a two-character bigram is a
+// whole word in Japanese.
+const CJK = /[぀-ヿ㐀-䶿一-鿿]/;
+const CJK_RUN = /[぀-ヿ㐀-䶿一-鿿]{2,}/g;
+
+function queryTerms(q) {
+    const out = [];
+    for (const run of q.match(CJK_RUN) || []) {
+        for (let i = 0; i < run.length - 1; i++) out.push(run.slice(i, i + 2));
+    }
+    for (const t of q.split(/\s+/)) {
+        if (t.length >= 3 && !CJK.test(t)) out.push(t);
+    }
+    return out;
+}
+
 async function handleApi(url, env, request) {
   const p = url.pathname.replace(/^\/api\//, "");
 
@@ -276,9 +295,12 @@ async function handleApi(url, env, request) {
   if (p === "search") {
     const q = (url.searchParams.get("q") || "").trim().toLowerCase();
     const limit = Math.min(+url.searchParams.get("limit") || 60, 200);
-    if (q.length < 3) return json({ query: q, total: 0, results: [] });
+    // Two characters is a whole word in Japanese, so the floor is per-script.
+    if (q.length < (CJK.test(q) ? 2 : 3)) {
+      return json({ query: q, total: 0, results: [] });
+    }
 
-    const terms = [...new Set(q.split(/\s+/).filter((t) => t.length >= 3))];
+    const terms = [...new Set(queryTerms(q))];
     if (!terms.length) return json({ query: q, total: 0, results: [] });
 
     // Only the shards the query touches are fetched.

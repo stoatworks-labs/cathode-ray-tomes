@@ -23,6 +23,10 @@ from ocrlib import (ocr_page, classify_headings, build_outline,
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CACHE = os.path.join(ROOT, "cache")
 STATE = os.path.join(ROOT, "data", "ingest-state.json")
+# {document id: tesseract language}, written by tools/detect_language.py. Only
+# the documents that are not English are in it; everything else reads as `eng`.
+_LANG_PATH = os.path.join(ROOT, "data", "languages.json")
+LANGUAGES = json.load(open(_LANG_PATH)) if os.path.exists(_LANG_PATH) else {}
 UA    = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 " \
         "(KHTML, like Gecko) Chrome/126 Safari/537.36"
 
@@ -109,17 +113,21 @@ def to_webp(src, dst, quality=82, maxpx=2600):
         im = im.resize((int(im.width * r), int(im.height * r)), Image.LANCZOS)
     im.save(dst, "WEBP", quality=quality, method=4)
 
-def ocr(png):
+def ocr(png, lang="eng"):
     """Return (text, word_count, lines). One tesseract pass yields both the
     plain text and the line geometry used for heading detection."""
     try:
-        txt, lines = ocr_page(png, psm="1")
+        txt, lines = ocr_page(png, psm="1", lang=lang)
         return txt, len(txt.split()), lines
     except subprocess.TimeoutExpired:
         return "", 0, []
 
 def process(doc):
     did, hi = doc["id"], doc["schematic"]
+    # Read in the document's own language where it is not English. A Japanese
+    # manual read with -l eng comes back as noise that no downstream measure
+    # can tell from a drawing — see tools/detect_language.py.
+    lang = LANGUAGES.get(did, "eng")
     pdf = os.path.join(CACHE, "pdf", did + ".pdf")
     os.makedirs(os.path.dirname(pdf), exist_ok=True)
     if not os.path.exists(pdf) or os.path.getsize(pdf) == 0:
@@ -149,7 +157,7 @@ def process(doc):
         for i, fn in enumerate(pngs, 1):
             src = os.path.join(tmp, fn)
             to_webp(src, os.path.join(pages_dir, f"p{i:04d}.webp"))
-            txt, wc, lines = ocr(src)
+            txt, wc, lines = ocr(src, lang)
             pages.append({"n": i, "words": wc})
             page_lines.append(lines)
 
@@ -169,7 +177,8 @@ def process(doc):
                    "meta": {"pageCount": len(pages), "bytes": os.path.getsize(pdf),
                             "words": sum(p["words"] for p in pages),
                             "blocks": sum(len(p.get("blocks", [])) for p in pages),
-                            "sections": len(outline)}},
+                            "sections": len(outline),
+                            **({"lang": lang} if lang != "eng" else {})}},
                   open(text_out, "w"), separators=(",", ":"))
         return len(pages), sum(p["words"] for p in pages)
     finally:
@@ -181,6 +190,8 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--only", help="comma-separated machine slugs to do first")
     ap.add_argument("--schematics-first", action="store_true")
+    ap.add_argument("--redo", help="comma-separated document ids to read again, "
+                                   "ignoring the checkpoint that says they are done")
     a = ap.parse_args()
 
     docs = json.load(open(os.path.join(ROOT, "data", "index", "docs.json")))
@@ -192,7 +203,14 @@ def main():
     if a.schematics_first:
         docs.sort(key=lambda d: not d["schematic"])
 
-    todo = [d for d in docs if d["id"] not in st["done"]]
+    if a.redo:
+        want = set(a.redo.split(","))
+        missing = want - {d["id"] for d in docs}
+        if missing:
+            sys.exit("not in the catalogue: " + ", ".join(sorted(missing)))
+        todo = [d for d in docs if d["id"] in want]
+    else:
+        todo = [d for d in docs if d["id"] not in st["done"]]
     # A document ingest_vector.py has already read is not a candidate, whatever
     # the state file says. OCR of a page that was vector to begin with is
     # strictly worse — 22,164 guessed words where there were 52,241 exact ones

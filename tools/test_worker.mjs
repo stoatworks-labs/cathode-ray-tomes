@@ -130,6 +130,15 @@ const CONTENT = withParts ? [[
   `carries parts=${withParts.parts} from the catalogue`,
 ]] : [];
 
+// Japanese has no spaces, so the query splitter and the index both work in
+// character bigrams. They have to agree: index under 設 and look under `_` and
+// the term is written and never found. A routing test cannot see that either.
+CONTENT.push([
+  "/api/search?q=" + encodeURIComponent("設定"),
+  (body) => body.total > 0,
+  "finds the Japanese manuals by a Japanese word",
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {

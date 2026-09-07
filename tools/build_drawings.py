@@ -70,6 +70,10 @@ TOKEN = re.compile(r"[A-Za-z]{2,}")
 # Everything a typeset page legitimately contains. What is left over is what
 # tesseract invented off a drawing.
 SYMBOL = re.compile(r"[^A-Za-z0-9\s.,;:()\-/+%'\"&#*=\[\]]")
+# Hiragana, katakana and the CJK ideographs — see is_cjk_text below.
+CJK = re.compile("[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]")
+CJK_MIN = 60            # characters on the page
+CJK_SHARE = 0.10        # of everything on it
 
 # Below this there is not enough text to judge, and the reader's own
 # empty-page fallback already covers those pages.
@@ -101,6 +105,21 @@ PROSE_TOKENS = 150
 PROSE_LONG = 0.30
 PROSE_SYMBOL = 0.012
 WHOLE_DOC = "the catalogue lists this document as a schematic"
+
+
+def is_cjk_text(text):
+    """A page written in Japanese, which none of the measures below can read.
+
+    Every one of them is calibrated on what tesseract does to an English page,
+    and a kanji is not in any of their character classes: SYMBOL counts each
+    one as debris, so a correctly-read Japanese manual scores 0.24-0.53 against
+    a drawing threshold of 0.030, and TOKEN finds no words in it at all. Before
+    tools/detect_language.py these pages really were noise and the flag was
+    right; now they are text and it is not. A page with this much CJK on it is
+    prose in a language this classifier does not speak, and is left alone.
+    """
+    hits = len(CJK.findall(text))
+    return hits >= CJK_MIN and text and hits / len(text) >= CJK_SHARE
 
 
 def measure(page):
@@ -138,8 +157,10 @@ def classify(doc, whole_doc_is_drawing=False):
         for p in doc.get("pages", []):
             n, long_rate, sym = measure(p)
             scan.add(p["n"])
+            text = " ".join(b.get("t", "") for b in p.get("blocks", [])
+                            if isinstance(b.get("t"), str))
             prose = (n >= PROSE_TOKENS and long_rate >= PROSE_LONG
-                     and sym < PROSE_SYMBOL)
+                     and sym < PROSE_SYMBOL) or is_cjk_text(text)
             if not prose:
                 draw[p["n"]] = WHOLE_DOC
         return draw, [], scan
@@ -150,6 +171,10 @@ def classify(doc, whole_doc_is_drawing=False):
     draw, noise = {}, []
     for p in doc.get("pages", []):
         n, long_rate, sym = measure(p)
+        text = " ".join(b.get("t", "") for b in p.get("blocks", [])
+                        if isinstance(b.get("t"), str))
+        if is_cjk_text(text):
+            continue
         thin = n < MIN_TOKENS
         # Below MIN_TOKENS the prose test is not just weak, it inverts: a page
         # whose entire text is the heading "POWER SUPPLY SCHEMATIC 1 of 1"
@@ -217,16 +242,24 @@ def catalogue():
 
 
 def page_size(fid, n):
-    """[width, height] of a page's cached scan, or None if it is not there."""
-    src = os.path.join(ROOT, f"cache/pages/{fid}/p{n:04d}.webp")
-    if not os.path.exists(src):
-        return None
-    try:
-        from PIL import Image
-        with Image.open(src) as im:
-            return list(im.size)
-    except Exception:
-        return None
+    """[width, height] of a page's scan, from the cache or from what is published.
+
+    The published copy is the fallback because the cache is local and can be
+    incomplete — a document ingested in another tree has its scans committed
+    here and nothing under cache/pages. Reading the size only from the cache
+    dropped dw/dh for those, which is how a published sheet stops being shown.
+    """
+    for src in (os.path.join(ROOT, f"cache/pages/{fid}/p{n:04d}.webp"),
+                os.path.join(ROOT, "web", "pages", fid, f"p{n:04d}.webp")):
+        if not os.path.exists(src):
+            continue
+        try:
+            from PIL import Image
+            with Image.open(src) as im:
+                return list(im.size)
+        except Exception:
+            continue
+    return None
 
 
 def main():
@@ -290,12 +323,26 @@ def main():
 
         if not a.images:
             continue
-        shutil.rmtree(os.path.join(web_pages, fid), ignore_errors=True)
+        # Delete only what this pass has decided is no longer shown. Clearing
+        # the directory and re-copying from the cache loses every scan the
+        # cache happens not to hold, and it does not have to hold them: the
+        # scans are committed and the cache is local, so a document ingested in
+        # another tree publishes fine and caches nothing here. That deleted
+        # Speedway's wiring diagram, which was published and correct.
+        pub_dir = os.path.join(web_pages, fid)
+        want = {f"p{n:04d}.webp" for n in shown}
+        if os.path.isdir(pub_dir):
+            for f in set(os.listdir(pub_dir)) - want:
+                os.remove(os.path.join(pub_dir, f))
         for n in shown:
             src = os.path.join(ROOT, f"cache/pages/{fid}/p{n:04d}.webp")
-            if not os.path.exists(src):
-                continue
             dst = os.path.join(web_pages, fid, f"p{n:04d}.webp")
+            if not os.path.exists(src):
+                # Nothing to refresh it from; a published copy stays as it is.
+                if os.path.exists(dst):
+                    n_img += 1
+                    img_bytes += os.path.getsize(dst)
+                continue
             os.makedirs(os.path.dirname(dst), exist_ok=True)
             shutil.copyfile(src, dst)
             n_img += 1

@@ -22,6 +22,21 @@ OUT = os.path.join(ROOT, "data", "index")
 # (CXD, CXA, MM, SN) without swallowing ordinary words, which cannot reach the
 # two digits the branch requires.
 TOKEN = re.compile(r"[a-z]{0,4}\d{2,}[a-z0-9]*|[a-z]{3,}")
+# Japanese is written without spaces, so there are no words to find. The cheap
+# answer, and the usual one, is character bigrams: index every adjacent pair and
+# split a query the same way, with no dictionary and no segmenter. Over the 43
+# manuals tools/detect_language.py identifies, that is 2,538 distinct terms —
+# 0.8% more index — and the common ones are real words: 設定 (setting), テスト
+# (test), ゲーム (game).
+CJK_RUN = re.compile(r"[぀-ヿ㐀-䶿一-鿿]{2,}")
+
+
+def tokens(text):
+    """Every searchable term on a page, Latin words and CJK bigrams alike."""
+    out = TOKEN.findall(text)
+    for run in CJK_RUN.findall(text):
+        out += [run[i:i + 2] for i in range(len(run) - 1)]
+    return out
 MAX_POSTINGS = 400          # cap per term; the long tail is not useful
 # Only terms that are in almost every document carry no signal. Filtering more
 # aggressively than this breaks ordinary queries -- "voltage selection" and
@@ -30,9 +45,15 @@ MAX_DF_RATIO = 0.92
 
 def shard_of(token):
     """Postings are sharded by leading character so the Worker fetches only
-    what a query needs, and no single KV value approaches the 25 MB limit."""
+    what a query needs, and no single KV value approaches the 25 MB limit.
+
+    The test is `[a-z0-9]` and not `str.isalnum()`, which has to match the
+    Worker's `/^[a-z0-9]/` exactly. Python calls a CJK character alphanumeric
+    and JavaScript's test does not, so a bigram would have been written to a
+    shard named 設 and looked for in `_` — a term indexed and never found.
+    """
     c = token[0]
-    return c if c.isalnum() else "_"
+    return c if ("a" <= c <= "z" or "0" <= c <= "9") else "_"
 
 def build_postings():
     files = sorted(glob.glob(os.path.join(CACHE, "*.json")))
@@ -48,7 +69,7 @@ def build_postings():
             continue
         for page in doc.get("pages", []):
             body = page.get("text") or " ".join(b["t"] for b in page.get("blocks", []))
-            for tok in TOKEN.findall(body.lower()):
+            for tok in tokens(body.lower()):
                 post[tok][did] += 1
 
     n = len(files)
