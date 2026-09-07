@@ -8,6 +8,7 @@ without fetching each one.
 import glob, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from extract_parts import from_document
+from parts_rows import load as load_rows
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "parts")
@@ -28,7 +29,10 @@ def main():
             doc = json.load(open(fp))
         except Exception:
             continue
-        rows = from_document(doc)
+        # Pages re-read from their scan and banded back into rows, where the
+        # flat block order had put every description after every part number.
+        # Absent for most documents, and then this is exactly as it was.
+        rows = from_document(doc, load_rows(did))
         if len(rows) < MIN_ROWS:
             continue
         # de-duplicate: the same part often repeats across figure lists.

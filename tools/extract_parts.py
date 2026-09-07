@@ -60,11 +60,26 @@ ITEM_IS_UNIT = re.compile(r"^\d{1,3}[VWK]$", re.I)
 # row's data, dragged in because this page's columns OCR'd as separate runs —
 # the item and part number are still right, so the row is kept without it.
 HAS_WORD = re.compile(r"[A-Za-z]{3,}")
+# A unit-of-measure column, which Data East prints between the quantity and the
+# description ("ITEM PART NUMBER REV QTY U/M DESCRIPTION"). In banded text the
+# cells are still separated by a wide gap, so it can be taken off by name.
+# Only by name: 41 descriptions genuinely open with a short cell — `Cap   Film
+# 0.0015 MF 50V`, `Res   4.7K Ohm` — and a rule about cell width would eat them.
+UM_CELL = re.compile(r"^(?:ea|ft|in|pr|lb|yd|pcs?)\s{3,}(?=\S)", re.I)
 
-def page_text(page):
+def page_text(page, rows=None):
+    """The page as text, preferring rows rebuilt from its geometry.
+
+    `rows` comes from tools/parts_rows.py: the page re-read from its scan and
+    banded back into table rows, for the pages where the flat block order put
+    every description after every part number. Where there is one it is a
+    strictly better reading of the same page — see that file for why.
+    """
+    if rows and page["n"] in rows:
+        return rows[page["n"]]
     return " ".join(b["t"] for b in page.get("blocks", [])) or page.get("text", "")
 
-def has_qty_column(doc):
+def has_qty_column(doc, rows=None):
     """True/False from this document's own headers, or None if it has none.
 
     The default for a continuation page that carries no header of its own. A
@@ -73,7 +88,7 @@ def has_qty_column(doc):
     """
     seen = None
     for page in doc.get("pages", []):
-        m = COLUMNS.search(page_text(page))
+        m = COLUMNS.search(page_text(page, rows))
         if m:
             if QTY_COL.search(m.group("mid")):
                 return True
@@ -114,67 +129,98 @@ def split_qty(desc, qty_col):
     return m.group(1).replace(" ", ""), desc[m.end():].strip()
 
 
-def from_document(doc):
-    """Return [{page, item, part, qty?, desc}] for every parts-list row found."""
-    rows = []
-    qty_col = has_qty_column(doc)
+def rows_from_text(txt, n, qty_col):
+    """(rows, qty_col) for one page's text. qty_col may be updated by its header."""
+    # Gate on the page's own shape as well as its header: running-header
+    # suppression can remove the "Item Part No." line that used to be the
+    # only anchor, silently dropping otherwise perfectly readable tables.
+    if not (HEADER.search(txt) or LIST_PAGE.search(txt)
+            or len(RECORD.findall(txt)) >= 5):
+        return [], qty_col
+    # A page that prints its own header overrides the document default: a
+    # manual can carry an illustrated parts list with a quantity column and
+    # an electrical one without.
+    cols = COLUMNS.search(txt)
+    if cols:
+        qty_col = bool(QTY_COL.search(cols.group("mid")))
+
+    # start after the column header where there is one; it prevents the
+    # header itself being parsed as a row
+    m = HEADER.search(txt)
+    body = txt[m.end():] if m else txt
+    found = []
+    for r in RECORD.finditer(body):
+        item, part, desc = r.group(1), r.group(2), r.group(3).strip(" .-—")
+        # Clear the field that is wrong, never the row. An electrical parts
+        # list prints its rating where an illustrated one prints an item
+        # number, so `4W` here is a ¼W resistor on a row whose part number
+        # and description are both good — Xybots has 31 of them.
+        if ITEM_IS_UNIT.match(item):
+            item = ""
+        qty, desc = split_qty(desc, qty_col)
+        desc = UM_CELL.sub("", desc).strip(" .-—|")
+        # Same principle for the description. Where a page's columns OCR'd
+        # as separate runs the description that lands here is the *next*
+        # row's item and part number — Pepper II's `2 D90-0002-00`, Star
+        # Trek's `4 4`. The item and part on this row are still correctly
+        # paired, and that pairing is what someone orders from, so the row
+        # stays and the description goes.
+        if not HAS_WORD.search(desc):
+            desc = ""
+        # What is left has to identify something: a part number alone,
+        # with neither an item number nor a description, is not a row.
+        if not desc and not item:
+            continue
+        row = {"page": n, "item": item, "part": part, "desc": desc}
+        if qty is not None:
+            row["qty"] = qty
+        found.append(row)
+    return found, qty_col
+
+
+def _score(found):
+    """How much a reading of a page is worth: descriptions first, then rows.
+
+    A description is the thing the flat block order loses, so a reading that
+    recovers more of them wins even on fewer rows. Rows break the tie, which
+    is what keeps a page the banded read cannot parse at all — Xevious prints
+    no item-number column, Tenpin prints its description first — on the
+    reading that at least pairs an item with a part.
+    """
+    return (sum(1 for r in found if r["desc"]), len(found))
+
+
+def from_document(doc, rows=None):
+    """Return [{page, item, part, qty?, desc}] for every parts-list row found.
+
+    `rows` is the optional {page: text} from tools/parts_rows.py — the same
+    pages re-read from their scans and banded back into table rows. It is not
+    trusted blindly: both readings are taken and the better one kept, page by
+    page, so a page the banded read cannot parse keeps the flat one.
+    """
+    out = []
+    qty_col = has_qty_column(doc, rows)
     # No header anywhere in the document. Parse without splitting anything, and
     # judge from what comes out — see infer_qty_column.
     inferring = qty_col is None
     if inferring:
         qty_col = False
     for page in doc.get("pages", []):
-        txt = page_text(page)
-        # Gate on the page's own shape as well as its header: running-header
-        # suppression can remove the "Item Part No." line that used to be the
-        # only anchor, silently dropping otherwise perfectly readable tables.
-        if not (HEADER.search(txt) or LIST_PAGE.search(txt)
-                or len(RECORD.findall(txt)) >= 5):
-            continue
-        # A page that prints its own header overrides the document default: a
-        # manual can carry an illustrated parts list with a quantity column and
-        # an electrical one without.
-        cols = COLUMNS.search(txt)
-        if cols:
-            qty_col = bool(QTY_COL.search(cols.group("mid")))
+        n = page["n"]
+        flat, flat_qty = rows_from_text(page_text(page), n, qty_col)
+        best, qty_col = flat, flat_qty
+        if rows and n in rows:
+            banded, banded_qty = rows_from_text(rows[n], n, qty_col)
+            if _score(banded) > _score(flat):
+                best, qty_col = banded, banded_qty
+        out.extend(best)
 
-        # start after the column header where there is one; it prevents the
-        # header itself being parsed as a row
-        m = HEADER.search(txt)
-        body = txt[m.end():] if m else txt
-        for r in RECORD.finditer(body):
-            item, part, desc = r.group(1), r.group(2), r.group(3).strip(" .-—")
-            # Clear the field that is wrong, never the row. An electrical parts
-            # list prints its rating where an illustrated one prints an item
-            # number, so `4W` here is a ¼W resistor on a row whose part number
-            # and description are both good — Xybots has 31 of them.
-            if ITEM_IS_UNIT.match(item):
-                item = ""
-            qty, desc = split_qty(desc, qty_col)
-            desc = desc.strip(" .-—|")
-            # Same principle for the description. Where a page's columns OCR'd
-            # as separate runs the description that lands here is the *next*
-            # row's item and part number — Pepper II's `2 D90-0002-00`, Star
-            # Trek's `4 4`. The item and part on this row are still correctly
-            # paired, and that pairing is what someone orders from, so the row
-            # stays and the description goes.
-            if not HAS_WORD.search(desc):
-                desc = ""
-            # What is left has to identify something: a part number alone,
-            # with neither an item number nor a description, is not a row.
-            if not desc and not item:
-                continue
-            row = {"page": page["n"], "item": item, "part": part, "desc": desc}
-            if qty is not None:
-                row["qty"] = qty
-            rows.append(row)
-
-    if inferring and infer_qty_column([r["desc"] for r in rows]):
-        for r in rows:
+    if inferring and infer_qty_column([r["desc"] for r in out]):
+        for r in out:
             qty, desc = split_qty(r["desc"], True)
             if qty is not None:
                 r["qty"], r["desc"] = qty, desc.strip(" .-—|")
-    return rows
+    return out
 
 def main():
     ap = argparse.ArgumentParser()

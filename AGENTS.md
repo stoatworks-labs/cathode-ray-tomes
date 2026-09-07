@@ -141,6 +141,35 @@ A001433, every IC at a labelled A-H x 1-9 cell). Not every manual does:
 So the realistic unit of work per board is: find a component-location drawing,
 read it once, write the JSON. Everything after that is scripted.
 
+## A ruled table's columns are separate tesseract blocks
+
+This is the fault behind most of what was wrong with the parts lists, and it is not
+an OCR failure — the recognition is fine. A vertical rule between two columns is a
+**block boundary**, so `cache/text/` stores a parts-list page as one block of item
+and part numbers followed by another block of descriptions. Flattening it for the
+extractor puts every description after every part number, and each row is then paired
+with the *next* row's data.
+
+    cache/text  31 281-0004-12 33 281-0014-28 … SCR, 8-32 x .750 PN HD PHIL …
+    banded      31 281-0004-12 1   SCR, 8-32 x .750 PN HD PHIL
+
+The geometry is what recovers it: `tools/parts_rows.py` re-reads the page from its
+cached scan and bands the lines by vertical centre. **This is the same fault the
+SCPH-70000 had** — pdftotext blocks a printed table by column too — and the same fix,
+which is worth remembering the next time a table comes out as two runs.
+
+Three things to know before touching it:
+
+- **`cache/rows/` is gitignored.** Run `parts_rows.py --all` before `build_parts.py`
+  or every description it recovered reverts to an em-dash on the next rebuild, with
+  nothing to say it happened.
+- **Both readings are kept and scored.** Banding is not always better: Xevious prints
+  no item-number column at all and Tenpin prints its description first, and on those
+  the banded read parses worse. `_score` prefers whichever recovers more descriptions,
+  so the change cannot regress a page.
+- **`cache/text/` is not written to**, exactly as `build_drawings.py` leaves it. It is
+  the ingest's checkpoint and stays the OCR as it came out.
+
 ## Quantity is a column in most of these manuals, and the header says which
 
 `extract_parts.py` recovers rows from the shape of the data, and the column

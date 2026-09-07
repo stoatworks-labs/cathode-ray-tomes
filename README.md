@@ -66,6 +66,7 @@ cache/          Local ingest cache: PDFs, page images, OCR text (gitignored)
 python3 tools/build_index.py                    # normalise upstream metadata
 python3 tools/ingest.py --workers 6             # fetch, rasterise, OCR, detect structure
 python3 tools/backfill_structure.py [--force]   # add/refresh outlines on existing docs
+python3 tools/parts_rows.py --all               # re-read parts-list pages that lost their rows
 python3 tools/build_search.py                   # sharded OCR postings + chip index
 python3 tools/build_doc_stats.py                # fold page/section counts into the catalogue
 python3 tools/build_drawings.py --images        # mark drawing pages; publish their scans
@@ -116,6 +117,25 @@ chip — which is what a repair search actually looks like.
 **OCR.** Quality tracks the source scan. Dense schematic sheets return fragmentary text,
 but usefully still recover part numbers (`7400`, `74107`, `9316`), which is what a
 repairer actually searches for. Typed manual pages come back clean.
+
+**A table is not a page of prose, and the block order says so.** A page is stored
+as an ordered list of blocks, which is right for prose and wrong for a ruled table:
+tesseract makes the vertical rule between two columns a block boundary, so flattening
+the page emits every item number, part number and quantity first and every description
+afterwards. The parts extractor then pairs each row's part number with the *next* row's
+item number, and 22% of recovered rows had no usable description at all.
+
+Nothing is lost, only unlabelled — every cell still knows where it sat. `parts_rows.py`
+re-reads those pages from their cached scans, bands the lines by vertical centre and
+joins each row's cells back together, which is the shape the extractor already reads.
+Both readings are then taken and the better one kept per page, scored on descriptions
+recovered, so a page the banded read cannot parse — Xevious prints no item-number
+column, Tenpin prints its description first — keeps the flat one.
+
+Its output lives in `cache/rows/`, which is **gitignored like the rest of the cache**.
+Run it before `build_parts.py` or the descriptions it recovered silently revert to
+em-dashes on the next rebuild. It is incremental: 346 pages, six minutes cold, and
+nothing on a re-run.
 
 **Checking what shipped.** Every check in the pipeline asks whether a document
 *ingested*. `tools/check_pages.py` asks the question after that: given what is in

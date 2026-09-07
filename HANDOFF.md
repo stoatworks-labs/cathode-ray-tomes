@@ -24,7 +24,7 @@ about your board revision.
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
-| Parts lists | 195 documents, 12,389 rows — **reachable from the reader since 2026-09-06** |
+| Parts lists | 194 documents, 12,617 rows — **reachable from the reader since 2026-09-06** |
 
 Corpus ships as **static assets** (`web/data/` ~13,000 files 194 MB, plus
 `web/pages/` 4,513 page scans 928 MB). No KV, no R2 — a deploy publishes code and data
@@ -97,11 +97,12 @@ the site linked to it. Measured over all 12,389 rows, before and after:
 
 | | before | after |
 |---|---|---|
-| rows carrying a quantity | 0 | 6,450 (52%) |
-| description starting with a bare quantity | 37.9% | 5.2% |
+| rows carrying a quantity | 0 | 6,227 (49%) |
+| description starting with a bare quantity | 37.9% | 5.0% |
 | description that is really the next row's data | 23.0% | 0% |
 | item number that is a rating (`4W`, `50V`) | 113 | 0 |
-| **clean: a real description, no quantity glued to it** | **29.2%** | **63.6%** |
+| rows with no readable description at all | 23.0% | 13.0% |
+| **clean: a real description, no quantity glued to it** | **29.2%** | **72.2%** |
 
 Four faults, in `extract_parts.py`: the quantity column was never split off (and
 cannot be split blanket — 183 header occurrences have no such column); part
@@ -109,11 +110,24 @@ numbers with a revision suffix were unrecognised, so pairs of rows were emitted
 as one; a rating was taken for an item number; and a description that was really
 the next row's data was published as if it were a description. See AGENTS.md.
 
-The residue is honest rather than fixed: **21.9% of rows now show an em-dash for
-a description**, because their page's columns OCR'd as separate runs and only
-the item and part number survived. Recovering those needs the OCR word boxes,
-which `cache/text/` does not keep — it is the same fault the SCPH-70000 had, and
-the same fix would work if the pages were re-OCR'd with coordinates retained.
+**Most of that residue is recovered.** The em-dash rows were a table whose two
+halves tesseract had put in separate blocks — the vertical rule between the
+columns is a block boundary — so the flat text held every description after
+every part number. `tools/parts_rows.py` re-reads those 346 pages from their
+cached scans and bands the lines back into rows, and the blank share falls from
+21.9% to 13.0%. Robocop goes from 38 rows all blank to 54 rows with none.
+
+Two things about it. **`cache/rows/` is gitignored**, so `parts_rows.py --all`
+has to run before `build_parts.py` or the descriptions revert silently — it is
+incremental, six minutes cold and nothing on a re-run. And both readings are
+scored per page, because banding is not always better: Xevious prints no
+item-number column and Tenpin prints its description first. One document,
+Xenophobe, drops off the site entirely — its banded read gives 4 well-described
+rows where the flat gave 21 item/part pairs with no descriptions, and 4 is under
+the eight-row floor.
+
+What is left is 13.0%: pages with no cached scan, and pages that band into rows
+the record pattern still cannot split.
 
 **Every parts list was unreachable, and now is not.** `/api/doc` merges the catalogue
 record into the document through an explicit allowlist and `parts` was not in it, so
