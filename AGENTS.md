@@ -141,6 +141,26 @@ A001433, every IC at a labelled A-H x 1-9 cell). Not every manual does:
 So the realistic unit of work per board is: find a component-location drawing,
 read it once, write the JSON. Everything after that is scripted.
 
+## The pipeline assumes English, and 43 documents are not
+
+`ingest.py` reads `data/languages.json` and passes the language to tesseract. Only the
+documents that are not English are in it. Three things break if that is forgotten:
+
+- **A Japanese page read with `-l eng` is not a failure that looks like one.** It comes
+  back as confident Latin nonsense, which every downstream measure then reads as drawing
+  debris — correctly, on the evidence. The page was flagged as noise and the flag was
+  right; what was wrong was what the page said.
+- **`build_drawings.py` cannot read CJK.** Every measure in it is calibrated on English,
+  and a kanji is in none of its character classes: SYMBOL counts each one as debris, so a
+  correctly-read Japanese page scores 0.24-0.53 against a drawing threshold of 0.030.
+  `is_cjk_text` exempts them. Anything else added to that file needs the same exemption.
+- **`shard_of` must match the Worker's `/^[a-z0-9]/` exactly.** Python calls a kanji
+  alphanumeric and JavaScript does not, so a bigram would be written to a shard named 設
+  and looked for in `_`: indexed, and never found. Test the two together — `test_worker.mjs`
+  has a case, and routing tests cannot see this class of bug.
+
+Re-read named documents with `ingest.py --redo <ids>`, which ignores the checkpoint.
+
 ## A ruled table's columns are separate tesseract blocks
 
 This is the fault behind most of what was wrong with the parts lists, and it is not

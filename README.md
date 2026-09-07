@@ -66,6 +66,7 @@ cache/          Local ingest cache: PDFs, page images, OCR text (gitignored)
 python3 tools/build_index.py                    # normalise upstream metadata
 python3 tools/ingest.py --workers 6             # fetch, rasterise, OCR, detect structure
 python3 tools/backfill_structure.py [--force]   # add/refresh outlines on existing docs
+python3 tools/detect_language.py                # which documents are not English
 python3 tools/parts_rows.py --all               # re-read parts-list pages that lost their rows
 python3 tools/build_search.py                   # sharded OCR postings + chip index
 python3 tools/build_doc_stats.py                # fold page/section counts into the catalogue
@@ -136,6 +137,23 @@ Its output lives in `cache/rows/`, which is **gitignored like the rest of the ca
 Run it before `build_parts.py` or the descriptions it recovered silently revert to
 em-dashes on the next rebuild. It is incremental: 346 pages, six minutes cold, and
 nothing on a re-run.
+
+**Not everything is in English.** 43 of these manuals are Japanese, and tesseract
+run with `-l eng` does not fail on one so much as invent: Super Puzzle Fighter's first
+page came back as `yo09964Zd WO Ddivfay SARL 21 BHMGMII`, and with `-l jpn+eng` it is
+`© CAPCOM CO., LTD. 1996 ALL RIGHTS RESERVED. 取扱説明書`. `detect_language.py` finds them
+from the share of a document's prose that is English function words, then confirms by
+re-reading one page in Japanese and counting the CJK — which is what tells a Japanese
+manual from a parts catalogue, also short of function words and containing no CJK at
+all. The answer lives in `data/languages.json`, so the language is a property of the
+document rather than a flag to remember.
+
+Two things had to follow it. `build_drawings.py` is calibrated on English OCR debris
+and counts every kanji as a symbol, so a correctly-read Japanese page scored 0.24-0.53
+against a drawing threshold of 0.030 and would have been hidden for being legible.
+And Japanese is written without spaces, so `build_search.py` indexes it as character
+bigrams and the Worker splits a query the same way — 2,538 more terms for 0.8% more
+index, no dictionary and no segmenter.
 
 **Checking what shipped.** Every check in the pipeline asks whether a document
 *ingested*. `tools/check_pages.py` asks the question after that: given what is in

@@ -91,6 +91,38 @@ traps found so far.
 
 ## Open work
 
+**43 documents are Japanese and were being read as English.** Not a subtle
+failure: `-l eng` on a Japanese page invents confident Latin nonsense, which
+every downstream measure then reads as drawing debris. Those pages were flagged
+as noise and the flag was right — what was wrong was what the page said.
+`tools/detect_language.py` finds them, `data/languages.json` records the answer
+and `ingest.py` reads it. 102,590 CJK characters recovered; Super Puzzle
+Fighter goes from 6 of 8 pages hidden to none. `build_drawings.py` and
+`build_search.py` both had to learn about CJK — see AGENTS.md for why each, and
+what the next person adding to those files has to remember.
+
+**Three content leads were measured and closed.** Recorded so they are not
+re-opened without new information:
+
+- *Drawing pages that link out instead of showing their scan* — none left. The
+  README's note about 496 of them and 135 MB is stale; the console work
+  resolved it. All 3,964 drawing pages ship their scan.
+- *13 documents of 8+ prose pages with no outline* — their headings are set at
+  the same size as their body text, because they are typewritten. The heading
+  classifier is geometric and there is nothing for it to find. Recovering them
+  needs a different signal (all-caps, spacing, numbering) for 13 documents
+  where the reader already falls back to a page list. Left alone deliberately.
+- *1,388 DIP-switch and settings pages render as prose rather than tables* —
+  real, and the pages a repairer comes for, but three routes to it failed on
+  2026-09-07 and the details are in the spawned task rather than lost. Banding
+  does not apply (tesseract already puts a row on one line); splitting on the
+  OCR'd column rules has almost no signal (4% of blocks against 2.4%
+  everywhere else); and `preserve_interword_spaces=1` restores the gaps in
+  tesseract's *text* output but `ocr_page` builds its lines from the TSV, which
+  joins words with single spaces. Reconstructing the gaps from the word boxes
+  was prototyped and produced near-zero rows. It needs real column clustering,
+  validated against pages that currently render acceptably.
+
 **The parts lists were read for the first time once they became visible, and
 they needed work.** Nobody had ever looked at the content, because nothing on
 the site linked to it. Measured over all 12,389 rows, before and after:
