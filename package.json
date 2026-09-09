@@ -11,9 +11,12 @@
     "test": "node tools/test_submit.mjs && node tools/test_worker.mjs"
   },
   "devDependencies": {
-    "wrangler": "4.116.0"
+    "wrangler": "4.130.0"
   },
   "engines": {
     "node": ">=20"
+  },
+  "overrides": {
+    "sharp": "0.35.4"
   }
 }
