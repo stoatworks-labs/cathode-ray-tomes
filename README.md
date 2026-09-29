@@ -1,6 +1,7 @@
 # Cathode Ray Tomes
 
-> **AI-assisted project.** This codebase was created with [Claude Code](https://claude.com/claude-code).
+> **AI-assisted project.** This codebase was created with [Claude](https://claude.com/claude-code)
+> (Anthropic), directed and reviewed by a human author.
 > The corpus index, ingestion pipeline and web application have been run end-to-end against the
 > real ArcadeRTFM corpus; the Pong KiCad conversion has a verified component complement and BOM
 > but its nets have **not** been traced, and nothing here has been checked against physical hardware.
