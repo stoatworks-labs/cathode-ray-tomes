@@ -303,3 +303,7 @@ Tech Wiki. `docs/EXTERNAL-SOURCES.md` records what each holds, what it would cos
 take, and where the answer is "link to it, don't mirror it". The measured inventories
 live in `data/sources/` and are rebuilt by `tools/survey_gamingdoc.py` and
 `tools/survey_console5.py`.
+
+<!-- attributions:start -->
+This project is built on other people's work — see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
+<!-- attributions:end -->
