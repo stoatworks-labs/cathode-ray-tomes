@@ -1,7 +1,7 @@
 # External sources
 
-Cathode Ray Tomes is built from one corpus: ArcadeRTFM's scans, keyed to MAME's
-machine metadata. This note records two other archives that have been surveyed,
+Cathode Ray Tomes started from one corpus: ArcadeRTFM's scans, keyed to MAME's
+machine metadata. This note records five other archives that have been surveyed,
 what each of them actually holds, and — for each — whether taking it is a
 technical question or a rights question.
 
@@ -97,8 +97,8 @@ python3 tools/build_doc_stats.py
 python3 tools/build_assets.py
 ```
 
-The PDF itself still has to reach R2 before `/pdf/<id>` resolves — that is
-`tools/publish.sh remote`, from a workstation, as with everything else.
+`/pdf/<id>` redirects to the PDF on GamingDoc (the entry's `l`), so there's nothing to
+upload for it.
 
 Everything else in the survey is a console, and a console is not a MAME arcade
 machine — which is the next section.

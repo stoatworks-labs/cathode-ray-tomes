@@ -628,8 +628,10 @@ convention and legitimately uses G.
 - Vectorisation: traced, rendered and visually compared against the source scan.
 
 **Assumed / not yet done:**
-- **Pong nets are not traced.** The schematic shows placed devices, not wired circuitry.
-  Sheet 002826 Rev E is the source; start with the power rails and the H/V sync chains.
+- **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in
+  `pong_signal_nets.py`, and `pong_power_nets.py` wires the rails from datasheet pinouts;
+  the rest of the schematic shows placed devices, not wired circuitry. Sheet 002826 Rev E
+  is the source; the H/V sync chains are still to do.
 - The `7425` and `7450` symbols are hand-created from TI datasheets and have not been
   exercised in a wired design.
 - `LM309K` vs `LM305K`: schematic 002826 says LM309, assembly A001433 says LM305K. The

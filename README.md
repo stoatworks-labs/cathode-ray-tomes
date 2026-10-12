@@ -4,8 +4,8 @@
 > (Anthropic), directed and reviewed by a human author.
 > I've run the corpus index, the ingestion pipeline and the web application end to end against
 > the real ArcadeRTFM corpus. The Pong KiCad conversion has a verified component complement and
-> BOM, but its nets have **not** been traced, and nothing here has been checked against physical
-> hardware.
+> BOM, but only eight of its signal nets (the video output chain) have been traced, and nothing
+> here has been checked against physical hardware.
 
 Modern, searchable editions of service documentation: arcade boards, and the
 consoles that came after them.
@@ -75,8 +75,8 @@ python3 tools/build_search.py                   # sharded OCR postings + chip in
 python3 tools/build_doc_stats.py                # fold page/section counts into the catalogue
 python3 tools/build_drawings.py --images        # mark drawing pages; publish their scans
 python3 tools/vectorise.py <docId> --pages 1,3  # trace line art to SVG
+python3 tools/build_assets.py                   # assemble web/data/ for the deploy
 python3 tools/check_pages.py                    # read what shipped; exit 1 on a bad page
-bash    tools/publish.sh local|remote           # seed KV + R2
 ```
 
 `ingest.py` is resumable: finished documents are checkpointed in
@@ -90,8 +90,8 @@ reader shows by default. The scan is kept as a "see original" reference for anyt
 couldn't carry.
 
 That's what makes the whole thing cheap to serve. The full structured text and outline
-for a 52-page manual is **24 KB gzipped**; the entire corpus of text is ~90 MB, which fits
-in KV. Page images, by comparison, would be 63,000 files and 8.9 GB.
+for a 52-page manual is **24 KB gzipped**; the entire corpus of text is ~90 MB, which ships
+as static assets beside the code. Page images, by comparison, would be 63,000 files and 8.9 GB.
 
 **Two-column layout.** These manuals are set in two columns. Recognised lines have to be kept
 in tesseract's own reading order, because sorting them top to bottom interleaves the columns
@@ -112,10 +112,10 @@ Setup → A. New Parts → B. Game Inspection → C. Game Installation → D. Se
 52-page scan with no text layer. That outline becomes the in-page navigation.
 
 **Search.** Postings are built from the OCR text and sharded by leading character, so a
-query only fetches the shards its terms touch and no single index value gets near KV's
-25 MB limit. Documents have to contain every term and are ranked by total occurrences, so
-the manual that actually documents a part outranks a schematic that prints it once in a
-corner. Searching `7400` finds the Pong schematic alongside every other board using that
+query only fetches the shards its terms touch and no single shard gets near the 25 MiB
+limit on one static asset. Documents have to contain every term and are ranked by total
+occurrences, so the manual that actually documents a part outranks a schematic that prints
+it once in a corner. Searching `7400` finds the Pong schematic alongside every other board using that
 chip, which is what a repair search actually looks like.
 
 **OCR.** Quality follows the source scan. Dense schematic sheets return fragmentary text,
@@ -246,9 +246,10 @@ traced or only the component complement captured.
 ## Deployment
 
 The Worker and static assets build from GitHub via Cloudflare Workers Builds on push to
-`main`. The corpus is separate: indexes live in KV and page images/PDFs in R2, both pushed
-from a workstation with `tools/publish.sh remote` after an ingest run. CI never touches
-`cache/`.
+`main`. The corpus ships with them: `tools/build_assets.py` assembles the indexes and documents
+in `web/data/`, the page scans the reader shows sit in `web/pages/`, and both are committed, so
+a deploy publishes code and corpus together. Original PDFs aren't hosted; `/pdf/<id>`
+redirects to the source archive. CI never touches `cache/`.
 
 ```bash
 npm ci                 # install pinned wrangler
@@ -300,11 +301,12 @@ Scanned documents from [ArcadeRTFM](https://arcadertfm.com/). Machine hardware m
 derived from [MAME](https://www.mamedev.org/). Manuals remain the property of their
 respective publishers and are presented for preservation and repair reference.
 
-Two more archives have been surveyed but not ingested: GamingDoc and the Console5
-Tech Wiki. `docs/EXTERNAL-SOURCES.md` records what each holds, what it would cost to
-take, and where the answer is "link to it, don't mirror it". The measured inventories
-live in `data/sources/` and are rebuilt by `tools/survey_gamingdoc.py` and
-`tools/survey_console5.py`.
+GamingDoc has been taken whole: the console documents above, and one SNK arcade manual.
+The Console5 Tech Wiki, the Internet Archive's `arcademanuals` collection, the Arcade
+Archive at XMission and Sega Retro have been surveyed but not ingested.
+`docs/EXTERNAL-SOURCES.md` records what each holds, what it would cost to take, and where
+the answer is "link to it, don't mirror it". The measured inventories live in
+`data/sources/` and are rebuilt by the `tools/survey_*.py` scripts.
 
 <!-- attributions:start -->
 This project is built on other people's work — see [ATTRIBUTIONS.md](ATTRIBUTIONS.md).
