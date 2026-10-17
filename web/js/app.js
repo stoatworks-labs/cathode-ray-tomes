@@ -1206,6 +1206,23 @@ async function board(slug) {
        materials — click a row to find the part, or a part to find the row.</p>
     <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
     <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
+    ${b.redrawn ? `<h2>Redrawn schematic</h2>
+    <p class="sub">Every connection on the drawing, redrawn in KiCad from a netlist read by hand
+       off the scan and checked against it pin for pin. Each pin carries the name of its net, so
+       a signal is followed by its label rather than by a wire. Signals the drawing leaves unnamed
+       are named after the pin that drives them: <code>E4-6</code> is pin 6 of the chip at E4.
+       It is a reading, not the original — when the two disagree, the scan below wins.</p>
+    <div class="rows">${b.redrawn.sheets.map((s) => `
+      <a class="row" href="${esc(s.svg)}" target="_blank" rel="noopener">
+        <span class="nm">${esc(s.title)}</span>
+        <span class="grow"></span>
+        <span class="meta">sheet ↗</span>
+      </a>`).join("")}</div>
+    <div class="zoombar">
+      <a href="${esc(b.redrawn.pdf)}" target="_blank" rel="noopener">All sheets as PDF ↗</a>
+      <a href="${esc(b.redrawn.netlist)}" target="_blank" rel="noopener">The netlist as read ↗</a>
+      <a href="${esc(b.redrawn.project)}" target="_blank" rel="noopener">KiCad project ↗</a>
+    </div>` : ""}
 
     <div id="related"></div>
 

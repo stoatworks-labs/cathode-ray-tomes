@@ -4,8 +4,9 @@
 > (Anthropic), directed and reviewed by a human author.
 > I've run the corpus index, the ingestion pipeline and the web application end to end against
 > the real ArcadeRTFM corpus. The Pong KiCad conversion has a verified component complement and
-> BOM, but only eight of its signal nets (the video output chain) have been traced, and nothing
-> here has been checked against physical hardware.
+> BOM, but only eight of its signal nets (the video output chain) have been traced. The Battlezone
+> Math Box board is traced in full, every net on its drawing, and the redrawn schematic is checked
+> against that read by KiCad's own netlist. Nothing here has been checked against physical hardware.
 
 Modern, searchable editions of service documentation: arcade boards, and the
 consoles that came after them.
@@ -242,6 +243,14 @@ and that result doesn't generalise.)
 **KiCad conversion.** There's no tool that turns a 1974 Atari drawing into a netlist, so
 each board is built by hand. Each conversion says on the site whether its nets have been
 traced or only the component complement captured.
+
+The Battlezone Math Box (Auxiliary PCB 035678-01) is the first with everything: I read all
+186 nets off DP-156 sheet 3 Side B into `boards/battlezone-math-box.nets`, and from there it's
+scripted. `tools/build_board_nets.py` argues with the read (pins that don't exist, outputs
+fighting, pins nobody mentioned, signatures that disagree), the KiCad schematic is drawn from
+it across eight sheets, `tools/check_board_schematic.py` proves KiCad's netlist says the same
+thing, and the board view gets the nets on its IC pads. The board page links the redrawn sheets
+beside the scan. The scan still wins an argument.
 
 ## Deployment
 

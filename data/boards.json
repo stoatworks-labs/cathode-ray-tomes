@@ -1189,9 +1189,9 @@
   "machine": "bzone",
   "drawing": "DP-156 sheet 3 Side B, section of 035678-01",
   "devices": 37,
-  "netsTraced": false,
+  "netsTraced": true,
   "singleSource": false,
-  "status": "37 devices: 36 read from the drawings and 1 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+  "status": "37 devices: 37 read from the drawings and 0 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. Every connection on the sheet is traced as well -- 186 nets over 845 pins, the 96 resistors, capacitors, diodes, connectors and test points as well as the 37 ICs -- and redrawn as a KiCad schematic below. The board view carries the nets between ICs; the passives are in the schematic only, because the board map does not place them.",
   "ibom": "/boards/battlezone-math-box/battlezone-math-box-ibom.html",
   "bom": "/boards/battlezone-math-box/bom.csv",
   "conflicts": [
@@ -1200,7 +1200,7 @@
   "notes": [
    "Sheet 3 Side B is a DIFFERENT PCB from sheets 2 and 3 Side A. Those are sections of the game PCB 035742; this is the Auxiliary PCB 035678-01. The designator grids are separate, so C1 here is not the C1 on the game PCB and the two must never be merged into one board map.",
    "The Math Box is a microcoded bit-slice machine, not a fixed-function circuit: four 137004-001 slices (Atari-marked Am2901) at K2, F2, H/J2 and D/E2 make a 16-bit ALU, sequenced by six 82S129 microcode PROMs at M1, L1, K1, J1, H1 and F1 carrying Atari parts 036175 to 036180 in that order, with an 82S123 at B1 (036174) providing the entry address and C1 (LS374) latching it.",
-   "This is the PCB Red Baron shares with Battlezone, so every device position and signature here applies to both games. A known-good board from either checks the other.",
+   "Red Baron uses the same Math Box circuit, the same six microcode PROMs (036175-036180) and the same signatures, but NOT this PCB and NOT these positions. Red Baron's own DP-169 sheet 3 Side B calls its board 'Auxiliary PCB 036305-01' and puts the PROMs at E1-L1 rather than M1-F1, the multiply latch at D4 rather than C5, the CPU8 gate at K3 rather than D5 and the sign XOR at H4 rather than E5. A known-good board from either game checks the other's signatures; it does not tell you which socket to look in.",
    "The 2nd printing (Rev B) is the more useful document: it adds signal-flow arrows for each signature test, the ORIGIN markers, the asterisk/1k pull-up note, and the R11 tank-idle adjustment procedure. The 1st printing (Rev A) has none of these.",
    "The POKEY (B/C2) lives on this board, not the game PCB, and it reads the control panel switches on its own P0-P7 lines. So the control panel goes through the POKEY while the coin door goes through an LS244 on the game PCB -- two completely different paths for what looks like the same kind of input.",
    "Sound splits in two at the mixer: shell, explosion and engine are generated on this board by the 4066 switches, the 555 and the LS161 dividers, and are summed into K5 through R25, R28 and R26. Everything else -- radar blip, bump, saucer, saucer disintegrate, missile, bonus and the 1812 Overture -- arrives as one signal from the POKEY through R27. Silence on one group but not the other says which half to look at.",
@@ -1208,8 +1208,57 @@
    "This PCB has its own +5V LED at CR2 through R37, the same arrangement as the game PCB. Two boards, two power LEDs, both called CR2.",
    "Sheet 1 Side B is the key to this board: it carries the whole signature analysis procedure plus four typeset figures giving signatures per device pin. Those figures are far more legible than the hand-lettered boxes on sheet 3 Side B, and every disagreement between the two printings of sheet 3 Side B is settled by them.",
    "The sequencer is now complete end to end: B1 (82S123, entry PROM) supplies a start address, E1 and D1 (two LS161s) latch it and then step, their eight outputs address the six 82S129 microcode PROMs M1 through F1, and those drive the four 137004-001 slices. A Math Box that starts but does not finish, versus one that never starts, separates at E1/D1 against B1.",
-   "The four Am2901 slices are recorded inconsistently: H/J2 and D/E2 carry a span, K2 and F2 do not. All four are the same DIP-40 part on the same 0.75in row pitch, so all four must physically span two positions \u2014 the difference is in how they were read, not in how they are fitted. The same entry also appears once as D/E2 and once as E/D2. Worth one pass over sheet 3 Side B to settle whether K2 and F2 are labelled K/L2 and F/H2 on the drawing; until then only the two recorded spans are drawn spanning."
+   "The four Am2901 slices are recorded inconsistently: H/J2 and D/E2 carry a span, K2 and F2 do not. All four are the same DIP-40 part on the same 0.75in row pitch, so all four must physically span two positions \u2014 the difference is in how they were read, not in how they are fitted. The same entry also appears once as D/E2 and once as E/D2. Worth one pass over sheet 3 Side B to settle whether K2 and F2 are labelled K/L2 and F/H2 on the drawing; until then only the two recorded spans are drawn spanning.",
+   "Nets traced in full from the 2nd printing of sheet 3 Side B: boards/battlezone-math-box.nets, 186 nets over 845 pins, every IC pin either wired or marked as not drawn. tools/build_board_nets.py checks it against each part's pinout (KiCad's library, or tools/custom_pinouts.json for the Am2901, POKEY and both PROMs), for two outputs on one net, and against the signatures printed on the sheet; the 1st printing was compared pin for pin on the start, stop and decode logic and part for part on the sound section, and agrees everywhere it was compared.",
+   "K2 is the most significant slice and D/E2 the least: K2's F3 and OVR are the only ones wired (into E5, the sign logic), K2's RAM3 is the arithmetic-shift input, and D/E2's carry-in comes from microcode bit A23. An earlier version of this file had them the other way round.",
+   "The Math Box multiplies by shift-and-add. Microcode bit A18 (the slices' I7) chooses the shift direction: shifting up, E3 pulls the low slice's Q0 low; shifting down, E3 drives the top slice's RAM3 with F3 XOR OVR (gated by A20) for an arithmetic shift, and C5 latches the bit falling out of Q0. That latched bit, ANDed with A22 at D5, flips the slices' I1 through E5 -- add or pass, decided one bit at a time.",
+   "C11, the 555's timing capacitor, is .015 uF mylar: legible on the 1st printing, where the fold on the 2nd hides the last digit."
   ],
+  "redrawn": {
+   "pdf": "/boards/battlezone-math-box/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Math Box sequencer",
+     "svg": "/boards/battlezone-math-box/schematic/math-box-sequencer.svg"
+    },
+    {
+     "title": "Math Box ALU",
+     "svg": "/boards/battlezone-math-box/schematic/math-box-alu.svg"
+    },
+    {
+     "title": "Math Box control",
+     "svg": "/boards/battlezone-math-box/schematic/math-box-control.svg"
+    },
+    {
+     "title": "Interconnect, edge connector and output latch",
+     "svg": "/boards/battlezone-math-box/schematic/interconnect-edge-connector-and-output-latch.svg"
+    },
+    {
+     "title": "POKEY and control panel inputs",
+     "svg": "/boards/battlezone-math-box/schematic/pokey-and-control-panel-inputs.svg"
+    },
+    {
+     "title": "Noise generator and engine sound",
+     "svg": "/boards/battlezone-math-box/schematic/noise-generator-and-engine-sound.svg"
+    },
+    {
+     "title": "Shell, explosion, mixer and output",
+     "svg": "/boards/battlezone-math-box/schematic/shell-explosion-mixer-and-output.svg"
+    },
+    {
+     "title": "Power input and decoupling",
+     "svg": "/boards/battlezone-math-box/schematic/power-input-and-decoupling.svg"
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/battlezone-math-box",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/battlezone-math-box.nets"
+  },
+  "sheet": "/pages/8e98ce79ede4/p0001.webp",
+  "sheetKind": "scan",
+  "sheetSource": {
+   "doc": "8e98ce79ede4",
+   "page": 1
+  },
   "schematicDocs": [
    {
     "id": "16c8444b1dda",
@@ -1321,13 +1370,7 @@
     "title": "Battlezone_DP-156-3rd-02B.pdf",
     "pages": 1
    }
-  ],
-  "sheet": "/pages/0267624f5196/p0001.webp",
-  "sheetKind": "scan",
-  "sheetSource": {
-   "doc": "0267624f5196",
-   "page": 1
-  }
+  ]
  },
  {
   "slug": "black-widow",

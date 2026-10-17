@@ -5,21 +5,19 @@
  "year": "1980",
  "drawing": "DP-156 sheet 3 Side B, section of 035678-01",
  "assembly": "035678-01",
- "shared_with": [
-  "redbaron"
- ],
+ "shared_with": [],
  "coverage": "All five blocks on DP-156 sheet 3 Side B read: Math Box, Output Latch, Audio Output, Control Panel Inputs and Audio Generator, Power Input. Cross-checked device for device against the Figure 1 test-point map on sheet 1 Side B, which is what caught E1 and D1 being missed on the first pass. Passives are recorded only where they set a rate, a level or an adjustment.",
  "sheets": {
   "03B": {
    "B1": {
     "part": "82S123",
     "section": "Math Box",
-    "note": "Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN"
+    "note": "Atari 036174; 32x8 entry PROM. A0-A4 from EAB0-4; D0-D7 share a bus with C1's outputs into the program counter's load inputs (E1 and D1 pins 3-6). Enabled while BEGIN (its CE is /BEGIN), so it supplies the start address of the routine the CPU asked for"
    },
    "C1": {
     "part": "74LS374",
     "section": "Math Box",
-    "note": "microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN"
+    "note": "jump-address latch: takes microcode bits A0-A7 on A6A3 (D5: A16 AND /CLK) and puts them on the program counter's load bus whenever BEGIN is low (OE is BEGIN)"
    },
    "M1": {
     "part": "82S129",
@@ -54,27 +52,27 @@
    "K2": {
     "part": "137004-001",
     "section": "Math Box",
-    "note": "Atari-marked Am2901 4-bit slice, DIP-40; least significant slice"
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; most significant slice -- its F3 and OVR feed the sign logic (E5) and its RAM3 is driven by E3 for arithmetic shifts. Puts EDB7-4 on the bus under /YHI"
    },
    "F2": {
     "part": "137004-001",
     "section": "Math Box",
-    "note": "Atari-marked Am2901 4-bit slice, DIP-40"
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; bits 11-8, EDB3-0 under /YHI"
    },
    "H/J2": {
     "part": "137004-001",
     "section": "Math Box",
-    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2"
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2; bits 7-4, EDB7-4 under /YLO"
    },
    "D/E2": {
     "part": "137004-001",
     "section": "Math Box",
-    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice"
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, least significant slice -- carry in from microcode bit A23, Q0 shift-in from E3"
    },
    "B4": {
     "part": "74109",
     "section": "Math Box",
-    "note": "JK flip-flop; M START"
+    "note": "JK flip-flop that makes BEGIN: held clear while M START is low, then set on an E6MHZ edge with J = E3MHZ, and toggled off again by its own /BEGIN on K. The second half divides E12KHZ by two to clock the noise shift registers"
    },
    "C5": {
     "part": "74LS74",
@@ -189,23 +187,27 @@
    "E1": {
     "part": "74LS161",
     "section": "Math Box",
-    "note": "low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loaded from B1 via LD, clocked by CLK"
+    "note": "low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loads B1's entry address at BEGIN or C1's jump address when the jump condition holds (LD and ET both from D5 pin 11), otherwise counts on CLK"
    },
    "D1": {
     "part": "74LS161",
     "section": "Math Box",
-    "note": "high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7. Loaded from B1 via LD -- B1 supplies the entry address, E1/D1 then step through the microcode"
+    "note": "high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7; QD is also SAEN1 on the signature-analysis header. Loaded with E1 from the same bus"
    }
   }
  },
  "interconnect": {
-  "note": "Circled numbers on this sheet are interconnect-connector pins, not test points -- the drawing's own legend says a square is an edge connector, a circle an interconnect connector, and a rounded shape a test point.",
+  "note": "Three connectors, and the 2nd printing's legend names two of them: a square is the edge connector, a hexagon the interconnect connector (the 24-pin cable from J19 on the game PCB), and a pentagon flag a test point (+5V, GND, +22V, AUD+, AUD-). The circled numbers are not in the legend: they are the signature-analysis header the test harness plugs onto. The schematic and netlist call these P2, P1, TP1-TP5 and SA; Atari gives none of them a designator on this sheet.",
   "pins": {
    "3": "M START",
    "4": "STOP",
    "6": "SACLK1",
    "8": "SACLK3",
-   "9": "SAEN1"
+   "9": "SAEN1",
+   "5": "J (microcode bit A21, the jump condition into D3)",
+   "7": "SACLK2",
+   "10": "SAEN2,3 (EXPLO EN)",
+   "1": "GND"
   }
  },
  "signatures": {
@@ -322,7 +324,7 @@
  "notes": [
   "Sheet 3 Side B is a DIFFERENT PCB from sheets 2 and 3 Side A. Those are sections of the game PCB 035742; this is the Auxiliary PCB 035678-01. The designator grids are separate, so C1 here is not the C1 on the game PCB and the two must never be merged into one board map.",
   "The Math Box is a microcoded bit-slice machine, not a fixed-function circuit: four 137004-001 slices (Atari-marked Am2901) at K2, F2, H/J2 and D/E2 make a 16-bit ALU, sequenced by six 82S129 microcode PROMs at M1, L1, K1, J1, H1 and F1 carrying Atari parts 036175 to 036180 in that order, with an 82S123 at B1 (036174) providing the entry address and C1 (LS374) latching it.",
-  "This is the PCB Red Baron shares with Battlezone, so every device position and signature here applies to both games. A known-good board from either checks the other.",
+  "Red Baron uses the same Math Box circuit, the same six microcode PROMs (036175-036180) and the same signatures, but NOT this PCB and NOT these positions. Red Baron's own DP-169 sheet 3 Side B calls its board 'Auxiliary PCB 036305-01' and puts the PROMs at E1-L1 rather than M1-F1, the multiply latch at D4 rather than C5, the CPU8 gate at K3 rather than D5 and the sign XOR at H4 rather than E5. A known-good board from either game checks the other's signatures; it does not tell you which socket to look in.",
   "The 2nd printing (Rev B) is the more useful document: it adds signal-flow arrows for each signature test, the ORIGIN markers, the asterisk/1k pull-up note, and the R11 tank-idle adjustment procedure. The 1st printing (Rev A) has none of these.",
   "The POKEY (B/C2) lives on this board, not the game PCB, and it reads the control panel switches on its own P0-P7 lines. So the control panel goes through the POKEY while the coin door goes through an LS244 on the game PCB -- two completely different paths for what looks like the same kind of input.",
   "Sound splits in two at the mixer: shell, explosion and engine are generated on this board by the 4066 switches, the 555 and the LS161 dividers, and are summed into K5 through R25, R28 and R26. Everything else -- radar blip, bump, saucer, saucer disintegrate, missile, bonus and the 1812 Overture -- arrives as one signal from the POKEY through R27. Silence on one group but not the other says which half to look at.",
@@ -330,7 +332,11 @@
   "This PCB has its own +5V LED at CR2 through R37, the same arrangement as the game PCB. Two boards, two power LEDs, both called CR2.",
   "Sheet 1 Side B is the key to this board: it carries the whole signature analysis procedure plus four typeset figures giving signatures per device pin. Those figures are far more legible than the hand-lettered boxes on sheet 3 Side B, and every disagreement between the two printings of sheet 3 Side B is settled by them.",
   "The sequencer is now complete end to end: B1 (82S123, entry PROM) supplies a start address, E1 and D1 (two LS161s) latch it and then step, their eight outputs address the six 82S129 microcode PROMs M1 through F1, and those drive the four 137004-001 slices. A Math Box that starts but does not finish, versus one that never starts, separates at E1/D1 against B1.",
-  "The four Am2901 slices are recorded inconsistently: H/J2 and D/E2 carry a span, K2 and F2 do not. All four are the same DIP-40 part on the same 0.75in row pitch, so all four must physically span two positions \u2014 the difference is in how they were read, not in how they are fitted. The same entry also appears once as D/E2 and once as E/D2. Worth one pass over sheet 3 Side B to settle whether K2 and F2 are labelled K/L2 and F/H2 on the drawing; until then only the two recorded spans are drawn spanning."
+  "The four Am2901 slices are recorded inconsistently: H/J2 and D/E2 carry a span, K2 and F2 do not. All four are the same DIP-40 part on the same 0.75in row pitch, so all four must physically span two positions — the difference is in how they were read, not in how they are fitted. The same entry also appears once as D/E2 and once as E/D2. Worth one pass over sheet 3 Side B to settle whether K2 and F2 are labelled K/L2 and F/H2 on the drawing; until then only the two recorded spans are drawn spanning.",
+  "Nets traced in full from the 2nd printing of sheet 3 Side B: boards/battlezone-math-box.nets, 186 nets over 845 pins, every IC pin either wired or marked as not drawn. tools/build_board_nets.py checks it against each part's pinout (KiCad's library, or tools/custom_pinouts.json for the Am2901, POKEY and both PROMs), for two outputs on one net, and against the signatures printed on the sheet; the 1st printing was compared pin for pin on the start, stop and decode logic and part for part on the sound section, and agrees everywhere it was compared.",
+  "K2 is the most significant slice and D/E2 the least: K2's F3 and OVR are the only ones wired (into E5, the sign logic), K2's RAM3 is the arithmetic-shift input, and D/E2's carry-in comes from microcode bit A23. An earlier version of this file had them the other way round.",
+  "The Math Box multiplies by shift-and-add. Microcode bit A18 (the slices' I7) chooses the shift direction: shifting up, E3 pulls the low slice's Q0 low; shifting down, E3 drives the top slice's RAM3 with F3 XOR OVR (gated by A20) for an arithmetic shift, and C5 latches the bit falling out of Q0. That latched bit, ANDed with A22 at D5, flips the slices' I1 through E5 -- add or pass, decided one bit at a time.",
+  "C11, the 555's timing capacitor, is .015 uF mylar: legible on the 1st printing, where the fold on the 2nd hides the last digit."
  ],
  "conflicts": [
   "Figure 3 on sheet 1 Side B gives E/D2 pin 22 as 4414; the Test #3 box on sheet 3 Side B gives the same net as 441H. Both are valid signature strings and both are legible. The typeset figure is the more reliable of the two, but this one is not settled."
@@ -559,7 +565,7 @@
   }
  },
  "signature_procedure": {
-  "board": "Auxiliary PCB 035678-01 (shared by Battlezone and Red Baron)",
+  "board": "Auxiliary PCB 035678-01 (Battlezone; Red Baron's 036305-01 carries the same Math Box circuit at different positions)",
   "source": "DP-156 sheet 1 Side B, 'Auxiliary PCB Signature Analysis Procedure'",
   "equipment": "Atari CAT (Computer-Assisted Troubleshooter), Kurz-Kasch Signature II, or HP 5004A signature analyser. Note on the drawing: of two Kurz-Kasch Signature IIs tried, different START, STOP and CLOCK settings were required -- note your own settings while testing a known-good board.",
   "harness": "Atari P/N A036836-01, or make one: Molex 7-circuit housing 09-05-7071 x1, 12-circuit housing 09-50-7121 x3, terminals 08-50-0106 x18, three jumper wires with hook connectors on each end, and a 1k-1.5k quarter-watt pull-up resistor.",

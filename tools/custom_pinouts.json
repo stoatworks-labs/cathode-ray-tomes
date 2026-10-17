@@ -1,0 +1,83 @@
+{
+ "_note": "Pinouts for parts KiCad's library does not ship. Every entry names where it was checked; tools/build_board_nets.py validates netlists against them and the KiCad symbols are drawn from them. Types are KiCad electrical types.",
+ "137004-001": {
+  "desc": "Atari-marked Am2901 4-bit microprocessor slice, DIP-40",
+  "source": "AMD Am2901B/Am2901C data sheet, Figure 1 connection diagram (P-40/D-40) and pin description table",
+  "pins": {
+   "1": {"name": "A3", "type": "input"}, "2": {"name": "A2", "type": "input"},
+   "3": {"name": "A1", "type": "input"}, "4": {"name": "A0", "type": "input"},
+   "5": {"name": "I6", "type": "input"}, "6": {"name": "I8", "type": "input"},
+   "7": {"name": "I7", "type": "input"}, "8": {"name": "RAM3", "type": "bidirectional"},
+   "9": {"name": "RAM0", "type": "bidirectional"}, "10": {"name": "VCC", "type": "power_in"},
+   "11": {"name": "F=0", "type": "open_collector"}, "12": {"name": "I0", "type": "input"},
+   "13": {"name": "I1", "type": "input"}, "14": {"name": "I2", "type": "input"},
+   "15": {"name": "CP", "type": "input"}, "16": {"name": "Q3", "type": "bidirectional"},
+   "17": {"name": "B0", "type": "input"}, "18": {"name": "B1", "type": "input"},
+   "19": {"name": "B2", "type": "input"}, "20": {"name": "B3", "type": "input"},
+   "21": {"name": "Q0", "type": "bidirectional"}, "22": {"name": "D3", "type": "input"},
+   "23": {"name": "D2", "type": "input"}, "24": {"name": "D1", "type": "input"},
+   "25": {"name": "D0", "type": "input"}, "26": {"name": "I3", "type": "input"},
+   "27": {"name": "I5", "type": "input"}, "28": {"name": "I4", "type": "input"},
+   "29": {"name": "Cn", "type": "input"}, "30": {"name": "GND", "type": "power_in"},
+   "31": {"name": "F3", "type": "output"}, "32": {"name": "~{G}", "type": "output"},
+   "33": {"name": "Cn+4", "type": "output"}, "34": {"name": "OVR", "type": "output"},
+   "35": {"name": "~{P}", "type": "output"}, "36": {"name": "Y0", "type": "tri_state"},
+   "37": {"name": "Y1", "type": "tri_state"}, "38": {"name": "Y2", "type": "tri_state"},
+   "39": {"name": "Y3", "type": "tri_state"}, "40": {"name": "~{OE}", "type": "input"}
+  }
+ },
+ "C012294-01": {
+  "desc": "POKEY (Atari C012294), DIP-40",
+  "source": "Wikipedia 'POKEY' pin table, agreeing with every pin name DP-156 sheet 3 Side B prints at B/C2",
+  "pins": {
+   "1": {"name": "VSS", "type": "power_in"}, "2": {"name": "D3", "type": "bidirectional"},
+   "3": {"name": "D4", "type": "bidirectional"}, "4": {"name": "D5", "type": "bidirectional"},
+   "5": {"name": "D6", "type": "bidirectional"}, "6": {"name": "D7", "type": "bidirectional"},
+   "7": {"name": "PHI2", "type": "input"}, "8": {"name": "P6", "type": "input"},
+   "9": {"name": "P7", "type": "input"}, "10": {"name": "P4", "type": "input"},
+   "11": {"name": "P5", "type": "input"}, "12": {"name": "P2", "type": "input"},
+   "13": {"name": "P3", "type": "input"}, "14": {"name": "P0", "type": "input"},
+   "15": {"name": "P1", "type": "input"}, "16": {"name": "KR2", "type": "input"},
+   "17": {"name": "VDD", "type": "power_in"}, "18": {"name": "K5", "type": "output"},
+   "19": {"name": "K4", "type": "output"}, "20": {"name": "K3", "type": "output"},
+   "21": {"name": "K2", "type": "output"}, "22": {"name": "K1", "type": "output"},
+   "23": {"name": "K0", "type": "output"}, "24": {"name": "SID", "type": "input"},
+   "25": {"name": "KR1", "type": "input"}, "26": {"name": "BCLK", "type": "bidirectional"},
+   "27": {"name": "OCLK", "type": "output"}, "28": {"name": "SOD", "type": "open_collector"},
+   "29": {"name": "~{IRQ}", "type": "open_collector"}, "30": {"name": "~{CS0}", "type": "input"},
+   "31": {"name": "CS1", "type": "input"}, "32": {"name": "R/~{W}", "type": "input"},
+   "33": {"name": "A3", "type": "input"}, "34": {"name": "A2", "type": "input"},
+   "35": {"name": "A1", "type": "input"}, "36": {"name": "A0", "type": "input"},
+   "37": {"name": "AUD", "type": "output"}, "38": {"name": "D0", "type": "bidirectional"},
+   "39": {"name": "D1", "type": "bidirectional"}, "40": {"name": "D2", "type": "bidirectional"}
+  }
+ },
+ "82S129": {
+  "desc": "256x4 bipolar PROM, tri-state outputs, DIP-16",
+  "source": "Signetics 82S129 pinout as tabulated for EPROM adaptors (A7 15, A6-A3 1-4, A0-A2 5-7, D0-D3 12-9, /CE 13-14); DP-156 draws 13 and 14 as active-low enables",
+  "pins": {
+   "1": {"name": "A6", "type": "input"}, "2": {"name": "A5", "type": "input"},
+   "3": {"name": "A4", "type": "input"}, "4": {"name": "A3", "type": "input"},
+   "5": {"name": "A0", "type": "input"}, "6": {"name": "A1", "type": "input"},
+   "7": {"name": "A2", "type": "input"}, "8": {"name": "GND", "type": "power_in"},
+   "9": {"name": "D3", "type": "tri_state"}, "10": {"name": "D2", "type": "tri_state"},
+   "11": {"name": "D1", "type": "tri_state"}, "12": {"name": "D0", "type": "tri_state"},
+   "13": {"name": "~{CE1}", "type": "input"}, "14": {"name": "~{CE2}", "type": "input"},
+   "15": {"name": "A7", "type": "input"}, "16": {"name": "VCC", "type": "power_in"}
+  }
+ },
+ "82S123": {
+  "desc": "32x8 bipolar PROM, tri-state outputs, DIP-16",
+  "source": "pin names as DP-156 sheet 3 Side B prints them at B1 (D0-D6 1-7, D7 9, A0-A4 10-14, CE 15); power on 16/8 as for every 16-pin PROM in the family",
+  "pins": {
+   "1": {"name": "D0", "type": "tri_state"}, "2": {"name": "D1", "type": "tri_state"},
+   "3": {"name": "D2", "type": "tri_state"}, "4": {"name": "D3", "type": "tri_state"},
+   "5": {"name": "D4", "type": "tri_state"}, "6": {"name": "D5", "type": "tri_state"},
+   "7": {"name": "D6", "type": "tri_state"}, "8": {"name": "GND", "type": "power_in"},
+   "9": {"name": "D7", "type": "tri_state"}, "10": {"name": "A0", "type": "input"},
+   "11": {"name": "A1", "type": "input"}, "12": {"name": "A2", "type": "input"},
+   "13": {"name": "A3", "type": "input"}, "14": {"name": "A4", "type": "input"},
+   "15": {"name": "~{CE}", "type": "input"}, "16": {"name": "VCC", "type": "power_in"}
+  }
+ }
+}

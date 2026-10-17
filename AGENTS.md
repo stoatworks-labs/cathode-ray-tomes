@@ -438,6 +438,66 @@ mapping: a 7427 gate 2 is pins 3/4/5 into 6, a 7425 gate 2 is 9/10/12/13 into 8.
 A misread pin number therefore shows up as a gate that cannot exist, which is the
 main defence against quietly wrong connectivity.
 
+## Tracing a whole board: the Battlezone Math Box
+
+`battlezone-math-box` is the first board with every connection traced: 186 nets over
+845 pins, ICs and passives both, from DP-156 sheet 3 Side B. Pong's eight nets live in a
+pcbnew script; this one is data, and the pipeline after the read is generic:
+
+    boards/<slug>.nets                 the read, by hand: net / wire / sig / nc / value
+    tools/build_board_nets.py <slug>   -> boards/<slug>.netlist.json, and argues with it
+    tools/plan_board_schematic.py      -> kicad/<slug>/plan/*.json, one per A4 sheet
+    (Konnect MCP, one agent per sheet) -> kicad/<slug>/*.kicad_sch
+    tools/check_board_schematic.py     KiCad's own netlist against the read, pin for pin
+    tools/build_board.py <slug>        the PCB, now with the read's nets on the IC pads
+    tools/publish_board.py <slug>      iBOM with nets, plus SVG/PDF of the redrawn sheets
+
+**How the read was done.** The 400 dpi scan, rendered at 300 dpi in overlapping 1450 px
+tiles, is legible down to the pin numbers; 600 dpi crops settle the dense spots (the
+slices' carry chain, junction dots). Every IC's pins are recorded where they land, so a
+two-ended wire is read twice. Long lines that cross tiles are the weak point: they were
+settled by following them in one zoomed strip, and the control logic was then compared pin
+for pin against the 1st printing, which agrees.
+
+**What `build_board_nets.py` catches, and why it is worth running before anything is
+drawn:** a pin number the part does not have (from KiCad's own symbol library, or
+`tools/custom_pinouts.json` for the Am2901, POKEY, 82S129 and 82S123 -- each entry names
+the datasheet it came from); two hard outputs on one net; a net only inputs listen to; an
+IC pin neither wired nor marked `nc`; and two different signatures printed in the same
+test on one net. A pin that was simply missed looks exactly like a pin that is unused, so
+the coverage check is the one that earns its keep.
+
+Traps, all hit once:
+
+- **The legend is on the sheet, and an earlier note had it wrong.** Square: edge
+  connector. Hexagon: the interconnect (the 24-pin cable from J19 on the game PCB).
+  Pentagon flag: a test point (+5V, GND, +22V, AUD+, AUD-) -- not an off-sheet reference.
+  The circles are not in the legend at all: they are the signature-analysis header.
+- **The 2nd printing's bow-ties and heavy arrows are signature-analysis annotations.**
+  The 1st printing draws the same lines without them. They are plain wire.
+- **Read the slice order off the circuit, not the drawing order.** K2 is the most
+  significant slice (only its F3 and OVR are wired; its RAM3 is the arithmetic-shift
+  input) and D/E2 the least (carry-in from microcode bit A23). The notes had it reversed.
+- **Red Baron draws the same Math Box at different positions** on its own board,
+  036305-01: PROMs E1-L1 not M1-F1, the multiply latch D4 not C5. Same circuit, same
+  PROMs, same signatures; not the same sockets.
+- **A label is not an off-sheet join.** In KiCad a local label and a global label with the
+  same name do not connect by name -- only by touching. So a net that crosses sheets gets
+  a global label on every pin it has there, and a power rail gets local labels plus one
+  power symbol placed on one of them. The plan decides which is which.
+- **Konnect writes A4 sheets and has no paper-size tool.** Anything placed off the page is
+  still in the netlist but clipped from every export, hence eight sheets rather than one.
+- **Konnect's pin-location queries see one unit of a multi-unit part** (whichever was
+  placed first). `batch_connect_to_net` places labels on the right unit; the queries do
+  not report the others, so global labels on those pins were placed from the symbol
+  geometry. `check_board_schematic.py` is what proves they landed.
+- **A gate the sheet does not draw is not placed** (C4's first OR, E3's second NAND, three
+  of M5's op-amps). KiCad's ERC reports them as unplaced units; that is the drawing being
+  honest, not a fault.
+- **Undrawn power pins are assumed.** The sheet draws VCC/GND only where it is unusual
+  (the slices, C1, the POKEY, the LM324s on +22V); the build joins every other IC's supply
+  pins to +5V/GND from its standard pinout, the two 4066s included.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV
@@ -626,6 +686,10 @@ convention and legitimately uses G.
 - Pong BOM: 66 ICs + 34 discretes = 100 devices, read off assembly drawing A001433 Rev E
   and cross-checked against the well-documented 66-IC figure.
 - Vectorisation: traced, rendered and visually compared against the source scan.
+- Battlezone Math Box nets: `boards/battlezone-math-box.nets` passes `build_board_nets.py`
+  with no problems, and the redrawn schematic's KiCad netlist matches it net for net
+  (`check_board_schematic.py`, 0 disagreements). The board page and its iBOM (175 nets) were
+  looked at in a browser against the real Worker.
 
 **Assumed / not yet done:**
 - **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in
@@ -637,6 +701,10 @@ convention and legitimately uses G.
 - `LM309K` vs `LM305K`: schematic 002826 says LM309, assembly A001433 says LM305K. The
   KiCad project uses LM309K. This discrepancy is real and unresolved — worth surfacing.
 - Nothing has been checked against physical hardware.
+- **The Math Box read is one person's reading of one scan.** The long lines that cross
+  render tiles, and every power pin the sheet does not draw (the 4066s on +5V included), are
+  the soft spots. The 1st printing agrees wherever it was compared, which was the control
+  logic pin for pin and the sound section part for part, not the whole sheet.
 - The full-corpus ingest was still running when this was written; `data/ingest-state.json`
   is the source of truth for how far it got.
 

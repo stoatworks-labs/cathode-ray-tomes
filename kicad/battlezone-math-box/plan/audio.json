@@ -1,0 +1,670 @@
+{
+ "sheet": "audio",
+ "title": "Shell, explosion, mixer and output",
+ "file": "audio.kicad_sch",
+ "place": [
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UL4",
+   "unit": 3,
+   "value": "CD4066",
+   "x": 25,
+   "y": 35
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R12",
+   "unit": 1,
+   "value": "33K",
+   "x": 50,
+   "y": 45
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R13",
+   "unit": 1,
+   "value": "10K",
+   "x": 65,
+   "y": 35
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C21",
+   "unit": 1,
+   "value": ".0047uF",
+   "x": 85,
+   "y": 25
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R32",
+   "unit": 1,
+   "value": "330K",
+   "x": 85,
+   "y": 35
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK5",
+   "unit": 3,
+   "value": "LM324",
+   "x": 110,
+   "y": 45
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UJ3",
+   "unit": 4,
+   "value": "CD4066",
+   "x": 25,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C9",
+   "unit": 1,
+   "value": "4.7uF",
+   "x": 45,
+   "y": 80
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UJ3",
+   "unit": 3,
+   "value": "CD4066",
+   "x": 60,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R14",
+   "unit": 1,
+   "value": "22K",
+   "x": 80,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R15",
+   "unit": 1,
+   "value": "1K",
+   "x": 90,
+   "y": 80
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UL4",
+   "unit": 2,
+   "value": "CD4066",
+   "x": 25,
+   "y": 105
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R19",
+   "unit": 1,
+   "value": "33K",
+   "x": 50,
+   "y": 115
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R18",
+   "unit": 1,
+   "value": "10K",
+   "x": 65,
+   "y": 105
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C22",
+   "unit": 1,
+   "value": ".0047uF",
+   "x": 85,
+   "y": 95
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R33",
+   "unit": 1,
+   "value": "330K",
+   "x": 85,
+   "y": 105
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK5",
+   "unit": 1,
+   "value": "LM324",
+   "x": 110,
+   "y": 115
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UJ3",
+   "unit": 1,
+   "value": "CD4066",
+   "x": 25,
+   "y": 140
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C14",
+   "unit": 1,
+   "value": "10uF",
+   "x": 45,
+   "y": 150
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UJ3",
+   "unit": 2,
+   "value": "CD4066",
+   "x": 60,
+   "y": 140
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R17",
+   "unit": 1,
+   "value": "22K",
+   "x": 80,
+   "y": 140
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R16",
+   "unit": 1,
+   "value": "1K",
+   "x": 90,
+   "y": 150
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R25",
+   "unit": 1,
+   "value": "100K",
+   "x": 150,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R28",
+   "unit": 1,
+   "value": "100K",
+   "x": 150,
+   "y": 75
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R26",
+   "unit": 1,
+   "value": "33K",
+   "x": 150,
+   "y": 90
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R27",
+   "unit": 1,
+   "value": "330K",
+   "x": 150,
+   "y": 105
+  },
+  {
+   "lib_id": "4xxx:4066",
+   "reference": "UL4",
+   "unit": 4,
+   "value": "CD4066",
+   "x": 175,
+   "y": 80
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R29",
+   "unit": 1,
+   "value": "22K",
+   "x": 195,
+   "y": 105
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK5",
+   "unit": 4,
+   "value": "LM324",
+   "x": 215,
+   "y": 90
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R30",
+   "unit": 1,
+   "value": "10K",
+   "x": 200,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R31",
+   "unit": 1,
+   "value": "100K",
+   "x": 225,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C20",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 240,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R24",
+   "unit": 1,
+   "value": "100K",
+   "x": 255,
+   "y": 120
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UM5",
+   "unit": 4,
+   "value": "LM324",
+   "x": 265,
+   "y": 150
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R23",
+   "unit": 1,
+   "value": "100K",
+   "x": 265,
+   "y": 130
+  }
+ ],
+ "local_nets": {
+  "EXPLOSION_SOUND": [
+   [
+    "C22",
+    "2"
+   ],
+   [
+    "R28",
+    "1"
+   ],
+   [
+    "R33",
+    "2"
+   ],
+   [
+    "UK5",
+    "1"
+   ]
+  ],
+  "C14-1": [
+   [
+    "C14",
+    "1"
+   ],
+   [
+    "UJ3",
+    "2"
+   ],
+   [
+    "UJ3",
+    "4"
+   ]
+  ],
+  "C20-2": [
+   [
+    "C20",
+    "2"
+   ],
+   [
+    "R24",
+    "1"
+   ]
+  ],
+  "C21-1": [
+   [
+    "C21",
+    "1"
+   ],
+   [
+    "R13",
+    "2"
+   ],
+   [
+    "R32",
+    "1"
+   ],
+   [
+    "UK5",
+    "9"
+   ]
+  ],
+  "C22-1": [
+   [
+    "C22",
+    "1"
+   ],
+   [
+    "R18",
+    "2"
+   ],
+   [
+    "R33",
+    "1"
+   ],
+   [
+    "UK5",
+    "2"
+   ]
+  ],
+  "C9-1": [
+   [
+    "C9",
+    "1"
+   ],
+   [
+    "UJ3",
+    "10"
+   ],
+   [
+    "UJ3",
+    "8"
+   ]
+  ],
+  "R12-1": [
+   [
+    "R12",
+    "1"
+   ],
+   [
+    "R13",
+    "1"
+   ],
+   [
+    "UL4",
+    "9"
+   ]
+  ],
+  "R14-1": [
+   [
+    "R14",
+    "1"
+   ],
+   [
+    "UJ3",
+    "9"
+   ]
+  ],
+  "R14-2": [
+   [
+    "R14",
+    "2"
+   ],
+   [
+    "R15",
+    "1"
+   ],
+   [
+    "UK5",
+    "10"
+   ]
+  ],
+  "R16-1": [
+   [
+    "R16",
+    "1"
+   ],
+   [
+    "R17",
+    "2"
+   ],
+   [
+    "UK5",
+    "3"
+   ]
+  ],
+  "R17-1": [
+   [
+    "R17",
+    "1"
+   ],
+   [
+    "UJ3",
+    "3"
+   ]
+  ],
+  "R18-1": [
+   [
+    "R18",
+    "1"
+   ],
+   [
+    "R19",
+    "1"
+   ],
+   [
+    "UL4",
+    "3"
+   ]
+  ],
+  "R23-1": [
+   [
+    "R23",
+    "1"
+   ],
+   [
+    "R24",
+    "2"
+   ],
+   [
+    "UM5",
+    "13"
+   ]
+  ],
+  "R25-2": [
+   [
+    "R25",
+    "2"
+   ],
+   [
+    "R26",
+    "2"
+   ],
+   [
+    "R27",
+    "2"
+   ],
+   [
+    "R28",
+    "2"
+   ],
+   [
+    "UL4",
+    "10"
+   ]
+  ],
+  "R29-1": [
+   [
+    "R29",
+    "1"
+   ],
+   [
+    "UK5",
+    "12"
+   ],
+   [
+    "UL4",
+    "11"
+   ]
+  ],
+  "R30-1": [
+   [
+    "R30",
+    "1"
+   ],
+   [
+    "R31",
+    "1"
+   ],
+   [
+    "UK5",
+    "13"
+   ]
+  ],
+  "SHELL_SOUND": [
+   [
+    "C21",
+    "2"
+   ],
+   [
+    "R25",
+    "1"
+   ],
+   [
+    "R32",
+    "2"
+   ],
+   [
+    "UK5",
+    "8"
+   ]
+  ]
+ },
+ "global_pins": [
+  [
+   "AUD+",
+   "C20",
+   "1"
+  ],
+  [
+   "AUD+",
+   "R31",
+   "2"
+  ],
+  [
+   "AUD+",
+   "UK5",
+   "14"
+  ],
+  [
+   "AUD-",
+   "R23",
+   "2"
+  ],
+  [
+   "AUD-",
+   "UM5",
+   "14"
+  ],
+  [
+   "ENGINE_SOUND",
+   "R26",
+   "1"
+  ],
+  [
+   "EXPLO_L/~{S}",
+   "UL4",
+   "5"
+  ],
+  [
+   "J5-6",
+   "UJ3",
+   "5"
+  ],
+  [
+   "J5-8",
+   "UJ3",
+   "6"
+  ],
+  [
+   "POKEY_SOUND",
+   "R27",
+   "1"
+  ],
+  [
+   "SAEN2,3",
+   "UJ3",
+   "13"
+  ],
+  [
+   "SHELL_EN",
+   "UJ3",
+   "12"
+  ],
+  [
+   "SHELL_L/~{S}",
+   "UL4",
+   "6"
+  ],
+  [
+   "SOUND_ENABLE",
+   "UL4",
+   "12"
+  ]
+ ],
+ "power": {
+  "+5V": [
+   [
+    "UJ3",
+    "1"
+   ],
+   [
+    "UJ3",
+    "11"
+   ],
+   [
+    "UM5",
+    "12"
+   ]
+  ],
+  "GND": [
+   [
+    "C14",
+    "2"
+   ],
+   [
+    "C9",
+    "2"
+   ],
+   [
+    "R12",
+    "2"
+   ],
+   [
+    "R15",
+    "2"
+   ],
+   [
+    "R16",
+    "2"
+   ],
+   [
+    "R19",
+    "2"
+   ],
+   [
+    "R29",
+    "2"
+   ],
+   [
+    "R30",
+    "2"
+   ],
+   [
+    "UL4",
+    "4"
+   ],
+   [
+    "UL4",
+    "8"
+   ]
+  ]
+ },
+ "nc": []
+}

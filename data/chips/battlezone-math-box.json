@@ -2,7 +2,7 @@
  "B1": {
   "part": "82S123",
   "section": "Math Box",
-  "note": "Atari 036174; 32x8 entry PROM, A0-A4 from EAB0-4, D0-D7 drive the microcode PROM address bus; enabled by BEGIN",
+  "note": "Atari 036174; 32x8 entry PROM. A0-A4 from EAB0-4; D0-D7 share a bus with C1's outputs into the program counter's load inputs (E1 and D1 pins 3-6). Enabled while BEGIN (its CE is /BEGIN), so it supplies the start address of the routine the CPU asked for",
   "otherRev": null,
   "source": "component-location drawing"
  },
@@ -16,14 +16,14 @@
  "B4": {
   "part": "74109",
   "section": "Math Box",
-  "note": "JK flip-flop; M START",
+  "note": "JK flip-flop that makes BEGIN: held clear while M START is low, then set on an E6MHZ edge with J = E3MHZ, and toggled off again by its own /BEGIN on K. The second half divides E12KHZ by two to clock the noise shift registers",
   "otherRev": null,
   "source": "component-location drawing, confirmed by the parts list"
  },
  "C1": {
   "part": "74LS374",
   "section": "Math Box",
-  "note": "microcode address latch A0-A7, clocked by D5 (A6A3), output enable from BEGIN",
+  "note": "jump-address latch: takes microcode bits A0-A7 on A6A3 (D5: A16 AND /CLK) and puts them on the program counter's load bus whenever BEGIN is low (OE is BEGIN)",
   "otherRev": null,
   "source": "component-location drawing, confirmed by the parts list"
  },
@@ -58,14 +58,14 @@
  "D1": {
   "part": "74LS161",
   "section": "Math Box",
-  "note": "high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7. Loaded from B1 via LD -- B1 supplies the entry address, E1/D1 then step through the microcode",
+  "note": "high half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A4-A7; QD is also SAEN1 on the signature-analysis header. Loaded with E1 from the same bus",
   "otherRev": null,
   "source": "component-location drawing, confirmed by the parts list"
  },
  "D2": {
   "part": "137004-001",
   "section": "Math Box",
-  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, most significant slice",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans D2 and E2, least significant slice -- carry in from microcode bit A23, Q0 shift-in from E3",
   "otherRev": null,
   "source": "component-location drawing"
  },
@@ -93,7 +93,7 @@
  "E1": {
   "part": "74LS161",
   "section": "Math Box",
-  "note": "low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loaded from B1 via LD, clocked by CLK",
+  "note": "low half of the microcode program counter; QA-QD (pins 14,13,12,11) drive PROM address A0-A3, carry out on 15 into D1. Loads B1's entry address at BEGIN or C1's jump address when the jump condition holds (LD and ET both from D5 pin 11), otherwise counts on CLK",
   "otherRev": null,
   "source": "component-location drawing, confirmed by the parts list"
  },
@@ -128,7 +128,7 @@
  "F2": {
   "part": "137004-001",
   "section": "Math Box",
-  "note": "Atari-marked Am2901 4-bit slice, DIP-40",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; bits 11-8, EDB3-0 under /YHI",
   "otherRev": null,
   "source": "component-location drawing"
  },
@@ -163,7 +163,7 @@
  "H2": {
   "part": "137004-001",
   "section": "Math Box",
-  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; spans H2 and J2; bits 7-4, EDB7-4 under /YLO",
   "otherRev": null,
   "source": "component-location drawing"
  },
@@ -219,7 +219,7 @@
  "K2": {
   "part": "137004-001",
   "section": "Math Box",
-  "note": "Atari-marked Am2901 4-bit slice, DIP-40; least significant slice",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; most significant slice -- its F3 and OVR feed the sign logic (E5) and its RAM3 is driven by E3 for arithmetic shifts. Puts EDB7-4 on the bus under /YHI",
   "otherRev": null,
   "source": "component-location drawing"
  },

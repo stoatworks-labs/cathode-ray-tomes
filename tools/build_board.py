@@ -120,9 +120,49 @@ def build(spec, out_path):
         seg.SetWidth(MM(0.15))
         board.Add(seg)
 
+    nets = apply_nets(board, spec["slug"])
+
     pcbnew.SaveBoard(out_path, board)
     total = len(list(board.GetFootprints()))
-    return n_ic, total, unsized
+    return n_ic, total, unsized, nets
+
+def apply_nets(board, slug):
+    """Give the pads the nets of a hand-read netlist, where the board has one.
+
+    boards/<slug>.netlist.json is written by tools/build_board_nets.py from the
+    read in boards/<slug>.nets. The board map only places ICs, so a net reaches
+    the board through the IC pins on it; passives and connectors are in the
+    schematic, not here. A net the sheet leaves unnamed is named after the pin
+    that drives it, as the schematic's labels are (kicad/<slug>/plan/labels.json).
+    Returns (nets placed, pads joined), or None when there is no netlist.
+    """
+    path = os.path.join(ROOT, "boards", slug + ".netlist.json")
+    if not os.path.exists(path):
+        return None
+    netlist = json.load(open(path))
+    labels_path = os.path.join(ROOT, "kicad", slug, "plan", "labels.json")
+    labels = json.load(open(labels_path)) if os.path.exists(labels_path) else {}
+    pads = {}
+    for fp in board.GetFootprints():
+        for pad in fp.Pads():
+            pads[(fp.GetReference(), pad.GetNumber())] = pad
+    code, placed, joined = 1, 0, 0
+    for name, net in sorted(netlist["nets"].items()):
+        on_board = [pads[tuple(p.rsplit(".", 1))] for p in net["pins"]
+                    if tuple(p.rsplit(".", 1)) in pads]
+        if not on_board:
+            continue
+        shown = labels.get(name, name) if net["named"] == "auto" else name
+        # An explicit code: created without one, the net serialises as
+        # (net "NAME") and KiCad reads that as no net at all.
+        item = pcbnew.NETINFO_ITEM(board, shown, code)
+        board.Add(item)
+        code += 1
+        placed += 1
+        for pad in on_board:
+            pad.SetNet(item)
+            joined += 1
+    return placed, joined
 
 def main():
     ap = argparse.ArgumentParser()
@@ -134,7 +174,7 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, a.slug + ".kicad_pcb")
 
-    n_ic, total, unsized = build(spec, out)
+    n_ic, total, unsized, nets = build(spec, out)
     parts, packages = {}, {}
     for cell, p in spec["ics"].items():
         parts[p] = parts.get(p, 0) + 1
@@ -153,6 +193,8 @@ def main():
         print(f"  {n} device(s) drawn as DIP-14 without a packaging entry:")
         for part, cells in sorted(unsized.items()):
             print(f"    {part:<24}{', '.join(sorted(cells))}")
+    if nets:
+        print(f"  nets: {nets[0]} from boards/{a.slug}.netlist.json, {nets[1]} pads joined")
     print(f"  -> {out}")
 
 if __name__ == "__main__":

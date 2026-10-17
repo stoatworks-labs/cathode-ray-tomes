@@ -107,6 +107,10 @@ def publish_boards_only():
             copy(p, os.path.join(OUT, name)); n += 1
     for p in glob.glob(os.path.join(ROOT, "data", "chips", "*.json")):
         copy(p, os.path.join(OUT, "chips", os.path.basename(p))); n += 1
+    # Which boards share hardware is board work too, and is corrected by it --
+    # the Math Box trace is what showed Red Baron's board is not Battlezone's.
+    for p in glob.glob(os.path.join(ROOT, "data", "related", "*.json")):
+        copy(p, os.path.join(OUT, "related", os.path.basename(p))); n += 1
     print(f"{n} board asset(s) refreshed in web/data/ — the corpus index was "
           f"left untouched")
 

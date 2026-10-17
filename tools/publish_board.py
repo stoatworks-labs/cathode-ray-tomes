@@ -4,11 +4,13 @@
 Everything after the board definition is mechanical, so this is one command
 rather than three ad-hoc snippets each time a board gains devices.
 """
-import argparse, collections, csv, json, os, subprocess, sys
+import argparse, collections, csv, glob, json, os, re, shutil, subprocess, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 KP = ("/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/"
       "Versions/3.9/bin/python3")
+KICAD_CLI = "/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli"
+REPO = "https://github.com/stoatworks-labs/cathode-ray-tomes"
 IBOM = os.path.expanduser("~/Documents/KiCad/10.0/3rdparty/plugins/"
                           "org_openscopeproject_InteractiveHtmlBom/"
                           "generate_interactive_bom.py")
@@ -21,6 +23,51 @@ def compose_status(spec):
     sentence, so they are joined here rather than duplicated in the spec.
     """
     return " ".join(x for x in (spec.get("revision"), spec.get("coverage")) if x)
+
+
+def publish_schematic(slug, web):
+    """Export a board's redrawn KiCad schematic, where it has one, for the site.
+
+    kicad/<slug>/<slug>.kicad_sch is drawn from the hand-read netlist (see
+    tools/plan_board_schematic.py) and checked against it by
+    tools/check_board_schematic.py. The page gets one SVG per sheet, titled from
+    the plan, a PDF of the lot, and a link to the project itself on GitHub.
+    """
+    sch = os.path.join(ROOT, "kicad", slug, slug + ".kicad_sch")
+    if not os.path.exists(sch):
+        return None
+    out = os.path.join(web, "schematic")
+    shutil.rmtree(out, ignore_errors=True)
+    os.makedirs(out)
+    subprocess.run([KICAD_CLI, "sch", "export", "svg", "--exclude-drawing-sheet", "-o", out, sch],
+                   check=True, capture_output=True)
+    subprocess.run([KICAD_CLI, "sch", "export", "pdf", "-o",
+                    os.path.join(web, "schematic.pdf"), sch], check=True, capture_output=True)
+    plans = {}
+    for p in glob.glob(os.path.join(ROOT, "kicad", slug, "plan", "*.json")):
+        plan = json.load(open(p))
+        if isinstance(plan, dict) and "title" in plan:
+            plans[plan["file"]] = plan
+    order = [k for k in ("seq", "alu", "ctl", "io", "pokey", "noise", "audio", "power")]
+    sheets = []
+    for f in sorted(os.listdir(out)):
+        # kicad-cli names a sheet's SVG after the project and the sheet name;
+        # the root sheet is only the sheet boxes and is not shown.
+        stem = f[:-4]
+        if stem == slug:
+            os.remove(os.path.join(out, f))
+            continue
+        tidy = re.sub(r"[^a-z0-9]+", "-", stem[len(slug):].lower()).strip("-") + ".svg"
+        os.rename(os.path.join(out, f), os.path.join(out, tidy))
+        title = next((pl["title"] for pl in plans.values()
+                      if re.sub(r"[^a-z0-9]+", "-", pl["title"].lower()).strip("-") + ".svg" == tidy), stem)
+        key = next((pl["sheet"] for pl in plans.values() if pl["title"] == title), "")
+        sheets.append({"title": title, "svg": f"/boards/{slug}/schematic/{tidy}",
+                       "order": order.index(key) if key in order else 99})
+    sheets.sort(key=lambda s: s.pop("order"))
+    return {"pdf": f"/boards/{slug}/schematic.pdf", "sheets": sheets,
+            "project": f"{REPO}/tree/main/kicad/{slug}",
+            "netlist": f"{REPO}/blob/main/boards/{slug}.nets"}
 
 
 def main():
@@ -38,6 +85,8 @@ def main():
                     "--layer-view", "F", "--include-nets",
                     "--name-format", f"{a.slug}-ibom", "--dest-dir", web, pcb],
                    capture_output=True, timeout=600)
+
+    redrawn = publish_schematic(a.slug, web)
 
     by = collections.defaultdict(list)
     for desig, part in spec["ics"].items():
@@ -84,6 +133,8 @@ def main():
         "conflicts": conflicts,
         "notes": notes,
     })
+    if redrawn:
+        boards[-1]["redrawn"] = redrawn
     # The schematic is built by tools/build_board_schematic.py, not from the
     # spec, so it is only ever in the previous record. Rebuilding without it
     # silently dropped Pong's sheet -- the file kept shipping, nothing pointed

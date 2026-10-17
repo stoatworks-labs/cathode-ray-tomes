@@ -21,6 +21,7 @@ about your board revision.
 | Documents digitised | 2,435 of 2,448 (100% block structure) |
 | Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
+| Nets traced | Battlezone Math Box in full (186 nets, 845 pins, redrawn in KiCad) · Pong 8 of ~200 |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -571,6 +572,17 @@ single-digit biased. The validator catches 4/4 injected faults using device pino
 
 **Pong** has 8 traced signal nets (video chain) out of ~200; the rest needs a cleaner
 scan of sheet 002826 than the archive holds.
+
+**The Battlezone Math Box is traced in full** (2026-10-17): 186 nets over 845 pins, ICs and
+passives, read by eye off the 400 dpi scan of DP-156 sheet 3 Side B (2nd printing), redrawn as
+an eight-sheet KiCad schematic and checked back against the read with KiCad's own netlist
+(0 disagreements). AGENTS.md has the pipeline and its traps. The same pipeline wants another
+board: the drawing-package auxiliary boards are the next best candidates (Tempest auxiliary,
+23 devices, all stock parts; Red Baron's 036305-01, which carries the same Math Box at
+different positions and would reuse every custom symbol). The redrawn schematic's ERC is 0
+errors; its warnings are the undrawn spare gates, the open-collector/tri-state EDB7 that is
+the real design, and a cosmetic "doesn't match the library" on the custom symbols that KiCad's
+*Update symbols from library* clears.
 
 **Test-point markers** are drawn as a flag symbol on the sheets — extracting them needs
 shape detection, not OCR. Not started.

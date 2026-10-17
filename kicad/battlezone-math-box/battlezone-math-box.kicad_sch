@@ -1,0 +1,177 @@
+(kicad_sch
+  (version 20250610)
+  (generator "konnect")
+  (generator_version "10.0")
+  (uuid "dea16d71-60b5-4b4b-b082-638896254e61")
+  (paper "A4")
+
+  (lib_symbols)
+	(sheet
+    (at 20 50)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "647a523c-cbd4-4034-bbe7-23ad2b6fcfff")
+    (property "Sheetname" "Math Box sequencer"
+      (at 20 49.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "seq.kicad_sch"
+      (at 20 80.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "2"))
+      )
+    )
+  )
+	(sheet
+    (at 90 50)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "2a958dcb-ebd0-41b3-8678-f217dff8fd84")
+    (property "Sheetname" "Math Box ALU"
+      (at 90 49.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "alu.kicad_sch"
+      (at 90 80.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "3"))
+      )
+    )
+  )
+	(sheet
+    (at 160 50)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "13a0bb9f-abcb-40dd-8c88-0f5a05b6cf5f")
+    (property "Sheetname" "Math Box control"
+      (at 160 49.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "ctl.kicad_sch"
+      (at 160 80.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "4"))
+      )
+    )
+  )
+	(sheet
+    (at 230 50)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "75a68cb6-5c1f-4114-a1c1-6c1f241b0175")
+    (property "Sheetname" "Interconnect, edge connector and output latch"
+      (at 230 49.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "io.kicad_sch"
+      (at 230 80.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "5"))
+      )
+    )
+  )
+	(sheet
+    (at 20 115)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "226a41e0-024b-43c5-a314-266d858b210e")
+    (property "Sheetname" "POKEY and control panel inputs"
+      (at 20 114.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "pokey.kicad_sch"
+      (at 20 145.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "6"))
+      )
+    )
+  )
+	(sheet
+    (at 90 115)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "abc43b80-2578-42ae-8bca-4a0789ecc511")
+    (property "Sheetname" "Noise generator and engine sound"
+      (at 90 114.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "noise.kicad_sch"
+      (at 90 145.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "7"))
+      )
+    )
+  )
+	(sheet
+    (at 160 115)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "ed709984-a557-4d88-8521-cc246383cf35")
+    (property "Sheetname" "Shell, explosion, mixer and output"
+      (at 160 114.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "audio.kicad_sch"
+      (at 160 145.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "8"))
+      )
+    )
+  )
+	(sheet
+    (at 230 115)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "aa319fdb-71ca-4405-af72-808340ba050a")
+    (property "Sheetname" "Power input and decoupling"
+      (at 230 114.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "power.kicad_sch"
+      (at 230 145.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "battlezone-math-box"
+        (path "/dea16d71-60b5-4b4b-b082-638896254e61" (page "9"))
+      )
+    )
+  )
+)
