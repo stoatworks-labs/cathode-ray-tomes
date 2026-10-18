@@ -13,5 +13,12 @@
   "kind": "same circuit",
   "detail": "Red Baron's Math Box is the same circuit with the same microcode PROMs (036175-036180), so the signatures here apply to it. It is not the same PCB: Red Baron's sheet calls its board 036305-01 and places the parts differently -- PROMs at E1-L1 instead of M1-F1, the multiply latch at D4 instead of C5. Check positions against Red Baron's own sheet.",
   "confidence": "verified"
+ },
+ {
+  "board": "tempest-auxiliary",
+  "name": "Tempest Auxiliary PCB",
+  "kind": "same circuit",
+  "detail": "Tempest's Auxiliary PCB 037585-01 carries this Math Box at different positions: B4, B1, C1, E1/D1, PROMs M1-F1 and slices K2, F2, H/J2, D/E2 here are Tempest's A2, A1, B1, D1/C1, PROMs L1-E1 and slices E2, J2, F/H2, K/L2. Traced independently from each board's own drawing, all 79 nets between those parts agree pin for pin and all 65 signatures printed on both sheets agree.",
+  "confidence": "verified"
  }
 ]

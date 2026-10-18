@@ -1,0 +1,240 @@
+(kicad_sch
+	(version 20250610)
+	(generator "konnect")
+	(generator_version "10.0")
+	(uuid "72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef")
+	(paper "A4")
+	(lib_symbols
+	)
+	(sheet
+    (at 20 40)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "c8c4ffce-6a81-49fa-a3bd-1836f6b0d8b1")
+    (property "Sheetname" "Address decoder"
+      (at 20 39.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "dec.kicad_sch"
+      (at 20 70.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "2"))
+      )
+    )
+  )
+	(sheet
+    (at 90 40)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "ec05ec46-8baf-4f16-b9aa-f6e471ecaac8")
+    (property "Sheetname" "Math Box sequencer"
+      (at 90 39.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "seq.kicad_sch"
+      (at 90 70.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "3"))
+      )
+    )
+  )
+	(sheet
+    (at 160 40)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "0925d70c-2570-4f9e-be24-cd3c1b5896ad")
+    (property "Sheetname" "Math Box ALU"
+      (at 160 39.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "alu.kicad_sch"
+      (at 160 70.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "4"))
+      )
+    )
+  )
+	(sheet
+    (at 230 40)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "0a0422da-a7f9-4846-9713-6d4cc1dcce16")
+    (property "Sheetname" "Math Box start, stop and clock"
+      (at 230 39.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "ctl.kicad_sch"
+      (at 230 70.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "5"))
+      )
+    )
+  )
+	(sheet
+    (at 20 90)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "55845915-08ff-4545-83c2-bad612877342")
+    (property "Sheetname" "High-score memory (EAROM)"
+      (at 20 89.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "ear.kicad_sch"
+      (at 20 120.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "6"))
+      )
+    )
+  )
+	(sheet
+    (at 90 90)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "83eaa372-649f-43ff-8b2c-87229408f5b6")
+    (property "Sheetname" "EAROM -28V supply"
+      (at 90 89.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "eps.kicad_sch"
+      (at 90 120.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "7"))
+      )
+    )
+  )
+	(sheet
+    (at 160 90)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "c60f4e3a-9a93-437f-91f1-7fcb1145669a")
+    (property "Sheetname" "Encoder wheel inputs"
+      (at 160 89.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "spin.kicad_sch"
+      (at 160 120.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "8"))
+      )
+    )
+  )
+	(sheet
+    (at 230 90)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "4b6a209d-9c95-4941-8cf4-d600f121ad77")
+    (property "Sheetname" "POKEYs, player inputs and option switch"
+      (at 230 89.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "pokey.kicad_sch"
+      (at 230 120.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "9"))
+      )
+    )
+  )
+	(sheet
+    (at 20 140)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "cd7a6334-e04f-417f-b173-9dac0040aec8")
+    (property "Sheetname" "Audio output, output latch and Math Box status"
+      (at 20 139.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "audio.kicad_sch"
+      (at 20 170.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "10"))
+      )
+    )
+  )
+	(sheet
+    (at 90 140)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "02ea2b87-cbe7-4f16-bb03-98322d0f86a5")
+    (property "Sheetname" "Interconnect, edge connector and test points"
+      (at 90 139.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "io.kicad_sch"
+      (at 90 170.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "11"))
+      )
+    )
+  )
+	(sheet
+    (at 160 140)
+    (size 55 30)
+    (fields_autoplaced yes)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0))
+    (uuid "4388e54d-a526-46d1-a52d-f9ec6cb6c0c6")
+    (property "Sheetname" "Power input and decoupling"
+      (at 160 139.365 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "power.kicad_sch"
+      (at 160 170.635 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "tempest-auxiliary"
+        (path "/72b3ec3a-69ed-4ca5-bf70-dcf7bd9cc7ef" (page "12"))
+      )
+    )
+  )
+)

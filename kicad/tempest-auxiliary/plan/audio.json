@@ -1,0 +1,395 @@
+{
+ "sheet": "audio",
+ "title": "Audio output, output latch and Math Box status",
+ "file": "audio.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Device:R",
+   "reference": "R33",
+   "unit": 1,
+   "value": "330K",
+   "x": 40,
+   "y": 50
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R32",
+   "unit": 1,
+   "value": "330K",
+   "x": 40,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R34",
+   "unit": 1,
+   "value": "22K",
+   "x": 70,
+   "y": 85
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R36",
+   "unit": 1,
+   "value": "10K",
+   "x": 95,
+   "y": 85
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK6",
+   "unit": 3,
+   "value": "LM324",
+   "x": 135,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R38",
+   "unit": 1,
+   "value": "100K",
+   "x": 135,
+   "y": 85
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C27",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 175,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R35",
+   "unit": 1,
+   "value": "100K",
+   "x": 195,
+   "y": 75
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK6",
+   "unit": 2,
+   "value": "LM324",
+   "x": 230,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R37",
+   "unit": 1,
+   "value": "100K",
+   "x": 230,
+   "y": 85
+  },
+  {
+   "lib_id": "74xx:74LS174",
+   "reference": "UH4",
+   "unit": 1,
+   "value": "74LS174",
+   "x": 55,
+   "y": 145
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R30",
+   "unit": 1,
+   "value": "150",
+   "x": 110,
+   "y": 135
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R31",
+   "unit": 1,
+   "value": "150",
+   "x": 110,
+   "y": 155
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R7",
+   "unit": 1,
+   "value": "1K",
+   "x": 25,
+   "y": 180
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 6,
+   "value": "74LS14",
+   "x": 165,
+   "y": 140
+  },
+  {
+   "lib_id": "74xx:74LS03",
+   "reference": "UF5",
+   "unit": 3,
+   "value": "74S03",
+   "x": 215,
+   "y": 140
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R41",
+   "unit": 1,
+   "value": "1K",
+   "x": 250,
+   "y": 130
+  }
+ ],
+ "local_nets": {
+  "C27-2": [
+   [
+    "C27",
+    "2"
+   ],
+   [
+    "R35",
+    "1"
+   ]
+  ],
+  "H4-12": [
+   [
+    "R30",
+    "1"
+   ],
+   [
+    "UH4",
+    "12"
+   ]
+  ],
+  "H4-15": [
+   [
+    "R31",
+    "1"
+   ],
+   [
+    "UH4",
+    "15"
+   ]
+  ],
+  "R32-2": [
+   [
+    "R32",
+    "2"
+   ],
+   [
+    "R33",
+    "2"
+   ],
+   [
+    "R34",
+    "1"
+   ],
+   [
+    "UK6",
+    "10"
+   ]
+  ],
+  "R35-2": [
+   [
+    "R35",
+    "2"
+   ],
+   [
+    "R37",
+    "1"
+   ],
+   [
+    "UK6",
+    "6"
+   ]
+  ],
+  "R36-2": [
+   [
+    "R36",
+    "2"
+   ],
+   [
+    "R38",
+    "1"
+   ],
+   [
+    "UK6",
+    "9"
+   ]
+  ],
+  "F4-12": [
+   [
+    "UF4",
+    "12"
+   ],
+   [
+    "UF5",
+    "9"
+   ]
+  ]
+ },
+ "global_pins": [
+  [
+   "~{OL}",
+   "UH4",
+   "9"
+  ],
+  [
+   "~{RESET}",
+   "R7",
+   "1"
+  ],
+  [
+   "~{RESET}",
+   "UH4",
+   "1"
+  ],
+  [
+   "~{STREN}",
+   "UF4",
+   "13"
+  ],
+  [
+   "AUD+",
+   "C27",
+   "1"
+  ],
+  [
+   "AUD+",
+   "R38",
+   "2"
+  ],
+  [
+   "AUD+",
+   "UK6",
+   "8"
+  ],
+  [
+   "AUD-",
+   "R37",
+   "2"
+  ],
+  [
+   "AUD-",
+   "UK6",
+   "7"
+  ],
+  [
+   "EDB0",
+   "UH4",
+   "14"
+  ],
+  [
+   "EDB1",
+   "UH4",
+   "13"
+  ],
+  [
+   "EDB2",
+   "UH4",
+   "11"
+  ],
+  [
+   "EDB3",
+   "UH4",
+   "6"
+  ],
+  [
+   "EDB7",
+   "R41",
+   "1"
+  ],
+  [
+   "EDB7",
+   "UF5",
+   "8"
+  ],
+  [
+   "FLIP",
+   "UH4",
+   "10"
+  ],
+  [
+   "POKAU1",
+   "R32",
+   "1"
+  ],
+  [
+   "POKAU2",
+   "R33",
+   "1"
+  ],
+  [
+   "SAEN2,3",
+   "UH4",
+   "7"
+  ],
+  [
+   "START_LED1",
+   "R30",
+   "2"
+  ],
+  [
+   "START_LED2",
+   "R31",
+   "2"
+  ],
+  [
+   "STOP",
+   "UF5",
+   "10"
+  ]
+ ],
+ "power": {
+  "+5V": [
+   [
+    "R41",
+    "2"
+   ],
+   [
+    "R7",
+    "2"
+   ],
+   [
+    "UH4",
+    "16"
+   ],
+   [
+    "UK6",
+    "5"
+   ]
+  ],
+  "GND": [
+   [
+    "R34",
+    "2"
+   ],
+   [
+    "R36",
+    "1"
+   ],
+   [
+    "UH4",
+    "8"
+   ]
+  ]
+ },
+ "nc": [
+  [
+   "UH4",
+   "2"
+  ],
+  [
+   "UH4",
+   "3"
+  ],
+  [
+   "UH4",
+   "4"
+  ],
+  [
+   "UH4",
+   "5"
+  ]
+ ]
+}

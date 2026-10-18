@@ -5,8 +5,9 @@
 > I've run the corpus index, the ingestion pipeline and the web application end to end against
 > the real ArcadeRTFM corpus. The Pong KiCad conversion has a verified component complement and
 > BOM, but only eight of its signal nets (the video output chain) have been traced. The Battlezone
-> Math Box board is traced in full, every net on its drawing, and the redrawn schematic is checked
-> against that read by KiCad's own netlist. Nothing here has been checked against physical hardware.
+> Math Box and Tempest auxiliary boards are traced in full, every net on their drawings, and each
+> redrawn schematic is checked against its read by KiCad's own netlist. Nothing here has been
+> checked against physical hardware.
 
 Modern, searchable editions of service documentation: arcade boards, and the
 consoles that came after them.
@@ -251,6 +252,12 @@ fighting, pins nobody mentioned, signatures that disagree), the KiCad schematic 
 it across eight sheets, `tools/check_board_schematic.py` proves KiCad's netlist says the same
 thing, and the board view gets the nets on its IC pads. The board page links the redrawn sheets
 beside the scan. The scan still wins an argument.
+
+The Tempest Auxiliary PCB (037585-01) is the second, and the bigger: the same Math Box at
+different positions, plus the high-score EAROM and the charge pump that makes its -28V, both
+POKEYs and the audio stage, 216 nets in all. Its Math Box agrees with Battlezone's net for net,
+which is about the best check two drawings can give each other. Where the sheet contradicts
+itself, the board page says so instead of picking quietly.
 
 ## Deployment
 

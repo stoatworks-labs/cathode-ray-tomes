@@ -8,7 +8,9 @@ leaves undrawn, and then argues with the result:
   * every pin must exist on the part, by the part's own pin list -- KiCad's
     symbol library for stock parts, tools/custom_pinouts.json for the rest
   * two driving outputs on one net is a misread, unless both can let go
-    (open collector, tri-state, bidirectional)
+    (open collector, tri-state, bidirectional) -- or the sheet ties them on
+    purpose, which the read must declare with `parallel PIN PIN ...` (Tempest's
+    K3 is four LM324 sections driving one charge pump)
   * an IC pin the reader neither wired nor marked `nc` is reported, because
     a pin that was simply missed looks exactly like one that is unused
   * pins on one net share a signature, so two different codes printed in the
@@ -35,10 +37,21 @@ KICAD = {
     "74LS164": "74xx:74HC164", "74LS273": "74xx:74LS273", "74LS374": "74xx:74LS374",
     "CD4066": "4xxx:4066", "LM324": "Amplifier_Operational:LM324",
     "555": "Timer:NE555P",
+    "74LS10": "74xx:74LS10", "74LS14": "74xx:74LS14", "74LS157": "74xx:74LS157",
+    "74LS174": "74xx:74LS174", "74LS175": "74xx:74LS175", "74LS191": "74xx:74LS191",
+    "74LS244": "74xx:74LS244", "74LS08": "74xx:74LS08", "74LS86": "74xx:74LS86",
+    "74S04": "74xx:74LS04",
+    # The 4584 is the 40106's pinout: six Schmitt inverters, 14 VDD, 7 VSS.
+    "4584B": "4xxx:40106",
 }
 # Electrical types that may share a net with another driver.
 LETS_GO = {"open_collector", "open_emitter", "tri_state", "bidirectional", "passive"}
 DRIVES = {"output", "power_out"} | LETS_GO - {"passive"}
+
+def is_rail(name):
+    """A supply net: GND, or a voltage as the sheet prints one (+5V, -12V, +22V)."""
+    return name == "GND" or re.fullmatch(r"[+-]\d+(\.\d+)?V", name) is not None
+
 
 PIN_RE = re.compile(r"\(pin\s+(\w+)\s+\w+.*?\(name\s+\"([^\"]*)\".*?\(number\s+\"([^\"]+)\"", re.S)
 
@@ -90,6 +103,18 @@ def pinout(part):
     return custom_pins(part)
 
 
+def supply_rail(part, num, pname):
+    """The net an undrawn supply pin belongs on. A custom pinout may say so
+    outright (`rail`) -- on a PMOS part like the ER2055, VSS is the *positive*
+    supply, and going by the name would ground it."""
+    if part not in KICAD:
+        entry = json.load(open(os.path.join(ROOT, "tools", "custom_pinouts.json")))[part]
+        rail = entry["pins"][num].get("rail")
+        if rail:
+            return rail
+    return "GND" if pname.upper() in ("GND", "VSS", "V-") else "+5V"
+
+
 # ---------------------------------------------------------------------------
 # The .nets file
 # ---------------------------------------------------------------------------
@@ -105,7 +130,7 @@ def parse(path):
         if kind in ("net", "label"):
             name, _, pins = rest.partition(":")
             out.append((kind, name.strip(), pins.split(), None, n))
-        elif kind in ("wire", "nc"):
+        elif kind in ("wire", "nc", "parallel"):
             out.append((kind, None, rest.split(), None, n))
         elif kind == "sig":
             parts = rest.split()
@@ -157,8 +182,12 @@ def build(slug):
     names = collections.defaultdict(list)       # root pin -> [(kind, name)]
     sigs = collections.defaultdict(list)        # pin -> [(code, test, line)]
     values, nc, seen = {}, set(), set()
+    parallel = []                               # [pins] the sheet ties together on purpose
     for kind, name, toks, extra, n in stmts:
         pins = [pin(t) for t in toks]
+        if kind == "parallel":
+            parallel.append(pins)               # declares; the wire itself joins them
+            continue
         seen.update(pins)
         if kind in ("net", "label"):
             for p in pins:
@@ -194,7 +223,7 @@ def build(slug):
             p = f"{ref}.{num}"
             if p in seen:
                 continue
-            rail = "GND" if pname.upper() in ("GND", "VSS", "V-") else "+5V"
+            rail = supply_rail(part, num, pname)
             u.join(p, f"#{rail}")
             seen.add(p)
             notes.append(f"{p} ({pname}) joined to {rail}: power pin not drawn")
@@ -206,7 +235,9 @@ def build(slug):
     nets = {}
     for members in groups.values():
         pins = sorted(m for m in members if not m.startswith("#"))
-        labels = [names[m] for m in members if m.startswith("#")]
+        # In file order, so that where the sheet prints two names on one net the
+        # first one the read declares names it -- every run, not by hash order.
+        labels = [names[m] for m in names if m in members]
         if not labels and all(p in nc for p in pins):
             continue                                # an unconnected pin is not a net
         sheet = [nm for lst in labels for k, nm in lst if k == "net"]
@@ -240,9 +271,17 @@ def build(slug):
             problems.append(f"{ref} ({part}): pins never mentioned -- " + ", ".join(
                 f"{n} {table[n][0]}" for n in sorted(missing, key=lambda x: int(x) if x.isdigit() else 0)))
 
-    # Drivers.
+    # Drivers. Outputs a `parallel` statement declares -- the sections of one
+    # package the sheet draws tied together to share a load -- count as one
+    # driver, but only if the read really did put them all on one net.
+    group_of = {}
+    for i, pins in enumerate(parallel):
+        if len({net_of.get(p) for p in pins}) != 1 or None in {net_of.get(p) for p in pins}:
+            problems.append("parallel " + " ".join(pins) + ": not all on one net")
+        for p in pins:
+            group_of[p] = i
     for name, n in nets.items():
-        drivers, hard = [], []
+        drivers, hard, soft = [], set(), 0
         for p in n["pins"]:
             ref, _, num = p.rpartition(".")
             part = parts.get(ref)
@@ -251,15 +290,17 @@ def build(slug):
             pname, ptype = pinout(part).get(num, ("?", "?"))
             if ptype in DRIVES:
                 drivers.append(f"{p} {pname}")
-                if ptype not in LETS_GO:
-                    hard.append(p)
-        if len(hard) > 1 or (hard and len(drivers) > len(hard)):
+                if ptype in LETS_GO:
+                    soft += 1
+                else:
+                    hard.add(group_of.get(p, p))
+        if len(hard) > 1 or (hard and soft):
             problems.append(f"{name}: more than one output drives it -- " + ", ".join(drivers))
 
     # Undriven nets: inputs only, nothing that could set the level -- no
     # output, no connector, no passive. Usually a join that was missed.
     for name, n in nets.items():
-        if name in ("+5V", "GND", "+22V"):
+        if is_rail(name):
             continue
         types = []
         for p in n["pins"]:
@@ -286,14 +327,17 @@ def build(slug):
     for ref in values:
         if ref not in components:
             problems.append(f"value given for {ref}, which is on no net")
-    return {
+    out = {
         "slug": slug,
         "source": "boards/%s.nets" % slug,
         "components": components,
         "nets": dict(sorted(nets.items())),
         "signatures": {p: [{"code": c, "test": t} for c, t, _ in v] for p, v in sorted(sigs.items())},
         "nc": sorted(nc),
-    }, problems, notes
+    }
+    if parallel:
+        out["parallel"] = parallel
+    return out, problems, notes
 
 
 def main():

@@ -498,6 +498,54 @@ Traps, all hit once:
   (the slices, C1, the POKEY, the LM324s on +22V); the build joins every other IC's supply
   pins to +5V/GND from its standard pinout, the two 4066s included.
 
+## The second whole board: the Tempest Auxiliary PCB
+
+`tempest-auxiliary` is DP-190 sheet 3 Side B, Auxiliary PCB 037585-01: 216 nets over 1,036
+pins, 41 ICs and 147 passives, connectors and test points. It is the Math Box, the high-score
+EAROM, both POKEYs and the audio output -- Tempest's equivalent of the Battlezone board, so the
+same pipeline ran end to end. What it added:
+
+- **The sheet was read in four parts at once**, one reader per titled box (decoder + power,
+  Math Box, high-score memory, player inputs + audio), each working from one brief with the
+  DSL, the legend and the tile coordinates. Atari names nearly every line that leaves a box,
+  so the parts join by name; a reader writes any unnamed exit as a coordinate for the merge.
+  None was needed. The brief is `docs/TRACING-A-BOARD.md`, part 1.
+- **The 4th printing is in colour, and that makes it the one to read.** Wiring is black, the
+  signature annotations blue, so a highlight band can never pass for a wire; where a blue
+  band hides a line, the 2nd printing (1-bit) shows it.
+- **The parts list is a completeness check for the passives.** TM-190 Figure 22 lists every
+  resistor, capacitor and diode by value: all 130 are in the read with the listed value, and
+  all 41 ICs at the listed positions. A read that is missing a pull-up shows up here and
+  nowhere else, because a passive has no pinout to be checked against.
+- **A second board with the same circuit is the strongest check there is.** Mapping
+  Battlezone's PROMs, slices, counters and latch onto Tempest's positions, all 79 nets
+  between them agree pin for pin and all 65 shared signatures agree -- two drawings, two
+  independent reads. Red Baron's 036305-01 is the third copy and can be checked the same way.
+- **A sheet can contradict itself.** B1 pin 1 is lettered BEGIN but drawn wired into /BEGIN,
+  in all three printings. The read takes the pin's label (the circuit cannot work the other
+  way), the read file logs the conflict and the board's status line states it. Record it; do
+  not quietly pick one. Note that the site does not render a board's `notes` or `conflicts`
+  yet -- they reach `/api/boards` and stop there -- so anything a repairer must see goes in
+  the status (`coverage`) too.
+- **`parallel PIN ...`** declares outputs the sheet ties together on purpose -- K3 is four
+  LM324 sections driving one charge pump. The checker then counts them as one driver, and
+  still reports them if the read did not put them on one net.
+- **A custom pinout can name a supply pin's rail** (`"rail": "+5V"`). The ER2055 is PMOS: its
+  VSS is the *positive* supply, and the build's name heuristic would have grounded it.
+- **The per-board layout is data**: `boards/<slug>.sheets.json` (units, positions, custom
+  symbols, connector symbols, label spellings, PWR_FLAGs). `plan_board_schematic.py` holds
+  only rules, and Battlezone's plan regenerates byte for byte from its own file.
+- **`plan_board_schematic.py <slug> --ops`** writes every global label, power symbol and
+  no-connect as an explicit coordinate from the library's pin geometry (a symbol at X,Y puts
+  pin px,py on X+px, Y-py; positions snap to the nearest 1.27 mm). That is the way round
+  Konnect's first-unit-only pin queries, and it makes drawing a sheet mechanical: eight
+  Sonnet agents drew ten sheets in parallel from `docs/TRACING-A-BOARD.md` part 2, each
+  proving its own sheet with `tools/check_board_sheets.py` before the whole-board check. Konnect
+  serialises calls, so parallel calls against one file are safe.
+- **`build_board_nets.py` named a net with two sheet names by hash order**, so Battlezone's
+  EXPLO EN / SAEN2,3 net changed name from run to run. The first name the read declares now
+  wins; Battlezone's read lists SAEN2,3 first because that is what its drawn schematic says.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV
@@ -690,6 +738,17 @@ convention and legitimately uses G.
   with no problems, and the redrawn schematic's KiCad netlist matches it net for net
   (`check_board_schematic.py`, 0 disagreements). The board page and its iBOM (175 nets) were
   looked at in a browser against the real Worker.
+- Tempest Auxiliary PCB nets: `boards/tempest-auxiliary.nets` passes `build_board_nets.py` with
+  no problems; every passive value and IC position agrees with the TM-190 parts list; its Math
+  Box agrees with Battlezone's net for net and signature for signature; the redrawn
+  schematic's KiCad netlist matches the read (`check_board_schematic.py`, 0 disagreements).
+  ERC: 5 errors, all the drawing's own design, each confirmed on the 4th and 2nd printings:
+  K3's LM324 sections paralleled into the -28V charge pump (3, "output to output"), and each
+  POKEY's open-collector SOD looped to its SID with no pull-up (2, "input not driven"). The
+  symbols keep their true pin types so ERC keeps reporting them; the read file's notes say
+  where each is on the sheet. The bar for a redraw is 0 *unexplained* ERC errors.
+  Not checked against a board: the B1/BEGIN conflict, the 4th printing's K3, R58 and C39
+  readings, and which spinner edge pins carry clock and which direction (inferred).
 
 **Assumed / not yet done:**
 - **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in

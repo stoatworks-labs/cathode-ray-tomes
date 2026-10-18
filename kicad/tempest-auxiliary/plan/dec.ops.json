@@ -1,0 +1,447 @@
+{
+ "sheet": "dec",
+ "file": "dec.kicad_sch",
+ "place": [
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB4",
+   "unit": 1,
+   "value": "74LS139",
+   "x": 35,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB4",
+   "unit": 2,
+   "value": "74LS139",
+   "x": 95,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB5",
+   "unit": 1,
+   "value": "74LS139",
+   "x": 155,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB5",
+   "unit": 2,
+   "value": "74LS139",
+   "x": 215,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS32",
+   "reference": "UC4",
+   "unit": 1,
+   "value": "74LS32",
+   "x": 30,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS32",
+   "reference": "UC4",
+   "unit": 2,
+   "value": "74LS32",
+   "x": 70,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS32",
+   "reference": "UC4",
+   "unit": 3,
+   "value": "74LS32",
+   "x": 110,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS32",
+   "reference": "UC4",
+   "unit": 4,
+   "value": "74LS32",
+   "x": 150,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS10",
+   "reference": "UC5",
+   "unit": 2,
+   "value": "74LS10",
+   "x": 195,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS10",
+   "reference": "UC5",
+   "unit": 3,
+   "value": "74LS10",
+   "x": 245,
+   "y": 110
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 3,
+   "value": "74LS14",
+   "x": 40,
+   "y": 160
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 5,
+   "value": "74LS14",
+   "x": 95,
+   "y": 160
+  },
+  {
+   "lib_id": "74xx:74LS02",
+   "reference": "UJ4",
+   "unit": 2,
+   "value": "74LS02",
+   "x": 150,
+   "y": 160
+  }
+ ],
+ "local": [
+  {
+   "net": "~{WRITE}",
+   "pins": [
+    {
+     "reference": "UC4",
+     "pin_number": "13"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UC5",
+     "pin_number": "8"
+    }
+   ]
+  },
+  {
+   "net": "C4-3",
+   "pins": [
+    {
+     "reference": "UB4",
+     "pin_number": "15"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "3"
+    }
+   ]
+  },
+  {
+   "net": "B4-5",
+   "pins": [
+    {
+     "reference": "UB4",
+     "pin_number": "5"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "10"
+    }
+   ]
+  },
+  {
+   "net": "B4-6",
+   "pins": [
+    {
+     "reference": "UB4",
+     "pin_number": "6"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "B4-7",
+   "pins": [
+    {
+     "reference": "UB4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UB5",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "C4-8",
+   "pins": [
+    {
+     "reference": "UB5",
+     "pin_number": "15"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "8"
+    }
+   ]
+  },
+  {
+   "net": "B5-6",
+   "pins": [
+    {
+     "reference": "UB5",
+     "pin_number": "6"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "12"
+    }
+   ]
+  },
+  {
+   "net": "C4-6",
+   "pins": [
+    {
+     "reference": "UC4",
+     "pin_number": "6"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "5"
+    },
+    {
+     "reference": "UJ4",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "F4-6",
+   "pins": [
+    {
+     "reference": "UC5",
+     "pin_number": "3"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "6"
+    }
+   ]
+  },
+  {
+   "net": "~{R}/WB",
+   "pins": [
+    {
+     "reference": "UC4",
+     "pin_number": "9"
+    },
+    {
+     "reference": "UC5",
+     "pin_number": "10"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "10"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "~{EARCON}",
+   "x": 107.95,
+   "y": 49.53,
+   "rotation": 0
+  },
+  {
+   "net": "~{EARD}",
+   "x": 227.33,
+   "y": 49.53,
+   "rotation": 0
+  },
+  {
+   "net": "~{EARWR}",
+   "x": 107.95,
+   "y": 46.99,
+   "rotation": 0
+  },
+  {
+   "net": "~{I/O}",
+   "x": 22.86,
+   "y": 54.61,
+   "rotation": 180
+  },
+  {
+   "net": "~{I/O}",
+   "x": 22.86,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "~{OL}",
+   "x": 157.48,
+   "y": 110.49,
+   "rotation": 0
+  },
+  {
+   "net": "~{POKEY1}",
+   "x": 167.64,
+   "y": 46.99,
+   "rotation": 0
+  },
+  {
+   "net": "~{POKEY2}",
+   "x": 167.64,
+   "y": 49.53,
+   "rotation": 0
+  },
+  {
+   "net": "~{STREN}",
+   "x": 227.33,
+   "y": 46.99,
+   "rotation": 0
+  },
+  {
+   "net": "~{YHI}",
+   "x": 227.33,
+   "y": 54.61,
+   "rotation": 0
+  },
+  {
+   "net": "~{YLO}",
+   "x": 227.33,
+   "y": 52.07,
+   "rotation": 0
+  },
+  {
+   "net": "E3MHZ",
+   "x": 187.96,
+   "y": 113.03,
+   "rotation": 180
+  },
+  {
+   "net": "E3MHZ",
+   "x": 237.49,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "EAB4",
+   "x": 201.93,
+   "y": 49.53,
+   "rotation": 180
+  },
+  {
+   "net": "EAB4",
+   "x": 142.24,
+   "y": 49.53,
+   "rotation": 180
+  },
+  {
+   "net": "EAB5",
+   "x": 201.93,
+   "y": 46.99,
+   "rotation": 180
+  },
+  {
+   "net": "EAB5",
+   "x": 142.24,
+   "y": 46.99,
+   "rotation": 180
+  },
+  {
+   "net": "EAB6",
+   "x": 82.55,
+   "y": 49.53,
+   "rotation": 180
+  },
+  {
+   "net": "EAB6",
+   "x": 22.86,
+   "y": 49.53,
+   "rotation": 180
+  },
+  {
+   "net": "EAB7",
+   "x": 82.55,
+   "y": 46.99,
+   "rotation": 180
+  },
+  {
+   "net": "EAB7",
+   "x": 22.86,
+   "y": 46.99,
+   "rotation": 180
+  },
+  {
+   "net": "EPHI2",
+   "x": 237.49,
+   "y": 113.03,
+   "rotation": 180
+  },
+  {
+   "net": "EPHI2",
+   "x": 187.96,
+   "y": 110.49,
+   "rotation": 180
+  },
+  {
+   "net": "EPHI2",
+   "x": 142.24,
+   "y": 162.56,
+   "rotation": 180
+  },
+  {
+   "net": "ER/~{WB}",
+   "x": 62.23,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "ER/~{WB}",
+   "x": 87.63,
+   "y": 160.02,
+   "rotation": 180
+  },
+  {
+   "net": "M_START",
+   "x": 157.48,
+   "y": 160.02,
+   "rotation": 0
+  },
+  {
+   "net": "SACLK3",
+   "x": 203.2,
+   "y": 110.49,
+   "rotation": 0
+  }
+ ],
+ "power_symbols": [],
+ "nc": [
+  {
+   "x": 107.95,
+   "y": 52.07,
+   "pin": "UB4.10"
+  },
+  {
+   "x": 48.26,
+   "y": 46.99,
+   "pin": "UB4.4"
+  },
+  {
+   "x": 107.95,
+   "y": 54.61,
+   "pin": "UB4.9"
+  },
+  {
+   "x": 167.64,
+   "y": 54.61,
+   "pin": "UB5.7"
+  }
+ ]
+}

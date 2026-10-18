@@ -312,8 +312,10 @@ net ENGINE REV EN: UM2.5 UL4.13
 net SHELL L/S: UM2.9 UL4.6
 net SHELL EN: UM2.12 UJ3.12
 net EXPLO L/S: UM2.6 UL4.5
-net EXPLO EN: UM2.15 UJ3.13
+# Two names on one net: SAEN2,3 is declared first because it is the label the
+# redrawn schematic carries.
 net SAEN2,3: SA.10 UM2.15
+net EXPLO EN: UM2.15 UJ3.13
 net START LED: UM2.2 P2.7
 net /ERESET: P2.V UM2.1 R38.1
 net +5V: R38.2

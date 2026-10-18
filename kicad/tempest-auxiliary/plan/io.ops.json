@@ -1,0 +1,485 @@
+{
+ "sheet": "io",
+ "file": "io.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Connector_Generic:Conn_01x24",
+   "reference": "J17",
+   "unit": 1,
+   "value": "Interconnect",
+   "x": 50,
+   "y": 95
+  },
+  {
+   "lib_id": "tempest-auxiliary:Edge_15x2_Atari",
+   "reference": "J18",
+   "unit": 1,
+   "value": "Edge connector",
+   "x": 150,
+   "y": 95
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP1",
+   "unit": 1,
+   "value": "EPHI2",
+   "x": 225,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP2",
+   "unit": 1,
+   "value": "ER/WB",
+   "x": 245,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP3",
+   "unit": 1,
+   "value": "+5V",
+   "x": 265,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP4",
+   "unit": 1,
+   "value": "GND",
+   "x": 225,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP5",
+   "unit": 1,
+   "value": "-22V",
+   "x": 245,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP6",
+   "unit": 1,
+   "value": "+22V",
+   "x": 265,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP7",
+   "unit": 1,
+   "value": "E6MHZ",
+   "x": 225,
+   "y": 100
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP8",
+   "unit": 1,
+   "value": "E3MHZ",
+   "x": 245,
+   "y": 100
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP9",
+   "unit": 1,
+   "value": "AUD+",
+   "x": 225,
+   "y": 130
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP10",
+   "unit": 1,
+   "value": "AUD-",
+   "x": 245,
+   "y": 130
+  }
+ ],
+ "local": [
+  {
+   "net": "+5V",
+   "pins": [
+    {
+     "reference": "J18",
+     "pin_number": "14"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "2"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "B"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "R"
+    },
+    {
+     "reference": "TP3",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "J17",
+     "pin_number": "1"
+    },
+    {
+     "reference": "J17",
+     "pin_number": "2"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "1"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "15"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "6"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "A"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "E"
+    },
+    {
+     "reference": "J18",
+     "pin_number": "S"
+    },
+    {
+     "reference": "TP4",
+     "pin_number": "1"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "+22V",
+   "x": 142.24,
+   "y": 82.55,
+   "rotation": 180
+  },
+  {
+   "net": "+22V",
+   "x": 157.48,
+   "y": 107.95,
+   "rotation": 0
+  },
+  {
+   "net": "+22V",
+   "x": 265.43,
+   "y": 69.85,
+   "rotation": 270
+  },
+  {
+   "net": "-22V",
+   "x": 142.24,
+   "y": 85.09,
+   "rotation": 180
+  },
+  {
+   "net": "-22V",
+   "x": 157.48,
+   "y": 105.41,
+   "rotation": 0
+  },
+  {
+   "net": "-22V",
+   "x": 245.11,
+   "y": 69.85,
+   "rotation": 270
+  },
+  {
+   "net": "~{COCKTAIL}",
+   "x": 157.48,
+   "y": 82.55,
+   "rotation": 0
+  },
+  {
+   "net": "~{I/O}",
+   "x": 44.45,
+   "y": 87.63,
+   "rotation": 180
+  },
+  {
+   "net": "~{RESET}",
+   "x": 157.48,
+   "y": 90.17,
+   "rotation": 0
+  },
+  {
+   "net": "3KHZ",
+   "x": 44.45,
+   "y": 80.01,
+   "rotation": 180
+  },
+  {
+   "net": "AUD+",
+   "x": 142.24,
+   "y": 87.63,
+   "rotation": 180
+  },
+  {
+   "net": "AUD+",
+   "x": 224.79,
+   "y": 129.54,
+   "rotation": 270
+  },
+  {
+   "net": "AUD-",
+   "x": 157.48,
+   "y": 85.09,
+   "rotation": 0
+  },
+  {
+   "net": "AUD-",
+   "x": 245.11,
+   "y": 129.54,
+   "rotation": 270
+  },
+  {
+   "net": "E3MHZ",
+   "x": 245.11,
+   "y": 100.33,
+   "rotation": 270
+  },
+  {
+   "net": "E3MHZ-IN",
+   "x": 44.45,
+   "y": 74.93,
+   "rotation": 180
+  },
+  {
+   "net": "E6MHZ",
+   "x": 44.45,
+   "y": 72.39,
+   "rotation": 180
+  },
+  {
+   "net": "E6MHZ",
+   "x": 224.79,
+   "y": 100.33,
+   "rotation": 270
+  },
+  {
+   "net": "EAB0",
+   "x": 44.45,
+   "y": 90.17,
+   "rotation": 180
+  },
+  {
+   "net": "EAB1",
+   "x": 44.45,
+   "y": 92.71,
+   "rotation": 180
+  },
+  {
+   "net": "EAB2",
+   "x": 44.45,
+   "y": 95.25,
+   "rotation": 180
+  },
+  {
+   "net": "EAB3",
+   "x": 44.45,
+   "y": 97.79,
+   "rotation": 180
+  },
+  {
+   "net": "EAB4",
+   "x": 44.45,
+   "y": 100.33,
+   "rotation": 180
+  },
+  {
+   "net": "EAB5",
+   "x": 44.45,
+   "y": 102.87,
+   "rotation": 180
+  },
+  {
+   "net": "EAB6",
+   "x": 44.45,
+   "y": 105.41,
+   "rotation": 180
+  },
+  {
+   "net": "EAB7",
+   "x": 44.45,
+   "y": 77.47,
+   "rotation": 180
+  },
+  {
+   "net": "EDB0",
+   "x": 44.45,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "EDB1",
+   "x": 44.45,
+   "y": 110.49,
+   "rotation": 180
+  },
+  {
+   "net": "EDB2",
+   "x": 44.45,
+   "y": 113.03,
+   "rotation": 180
+  },
+  {
+   "net": "EDB3",
+   "x": 44.45,
+   "y": 115.57,
+   "rotation": 180
+  },
+  {
+   "net": "EDB4",
+   "x": 44.45,
+   "y": 118.11,
+   "rotation": 180
+  },
+  {
+   "net": "EDB5",
+   "x": 44.45,
+   "y": 120.65,
+   "rotation": 180
+  },
+  {
+   "net": "EDB6",
+   "x": 44.45,
+   "y": 123.19,
+   "rotation": 180
+  },
+  {
+   "net": "EDB7",
+   "x": 44.45,
+   "y": 125.73,
+   "rotation": 180
+  },
+  {
+   "net": "EPHI2",
+   "x": 44.45,
+   "y": 82.55,
+   "rotation": 180
+  },
+  {
+   "net": "EPHI2",
+   "x": 224.79,
+   "y": 39.37,
+   "rotation": 270
+  },
+  {
+   "net": "ER/~{WB}",
+   "x": 44.45,
+   "y": 85.09,
+   "rotation": 180
+  },
+  {
+   "net": "ER/~{WB}",
+   "x": 245.11,
+   "y": 39.37,
+   "rotation": 270
+  },
+  {
+   "net": "FIRE1",
+   "x": 142.24,
+   "y": 97.79,
+   "rotation": 180
+  },
+  {
+   "net": "FIRE2",
+   "x": 157.48,
+   "y": 97.79,
+   "rotation": 0
+  },
+  {
+   "net": "C28-1",
+   "x": 157.48,
+   "y": 92.71,
+   "rotation": 0
+  },
+  {
+   "net": "C29-1",
+   "x": 142.24,
+   "y": 92.71,
+   "rotation": 180
+  },
+  {
+   "net": "C42-1",
+   "x": 157.48,
+   "y": 95.25,
+   "rotation": 0
+  },
+  {
+   "net": "C43-1",
+   "x": 142.24,
+   "y": 95.25,
+   "rotation": 180
+  },
+  {
+   "net": "START_LED1",
+   "x": 142.24,
+   "y": 105.41,
+   "rotation": 180
+  },
+  {
+   "net": "START_LED2",
+   "x": 142.24,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "START1",
+   "x": 142.24,
+   "y": 102.87,
+   "rotation": 180
+  },
+  {
+   "net": "START2",
+   "x": 157.48,
+   "y": 102.87,
+   "rotation": 0
+  },
+  {
+   "net": "ZAP1",
+   "x": 142.24,
+   "y": 100.33,
+   "rotation": 180
+  },
+  {
+   "net": "ZAP2",
+   "x": 157.48,
+   "y": 100.33,
+   "rotation": 0
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "+5V",
+   "x": 142.24,
+   "y": 110.49
+  },
+  {
+   "net": "GND",
+   "x": 44.45,
+   "y": 67.31
+  }
+ ],
+ "nc": []
+}

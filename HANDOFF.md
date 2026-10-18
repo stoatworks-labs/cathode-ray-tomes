@@ -21,7 +21,7 @@ about your board revision.
 | Documents digitised | 2,435 of 2,448 (100% block structure) |
 | Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
-| Nets traced | Battlezone Math Box in full (186 nets, 845 pins, redrawn in KiCad) · Pong 8 of ~200 |
+| Nets traced | Battlezone Math Box in full (186 nets, 845 pins) · Tempest Auxiliary in full (216 nets, 1,036 pins), both redrawn in KiCad · Pong 8 of ~200 |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
@@ -576,13 +576,27 @@ scan of sheet 002826 than the archive holds.
 **The Battlezone Math Box is traced in full** (2026-10-17): 186 nets over 845 pins, ICs and
 passives, read by eye off the 400 dpi scan of DP-156 sheet 3 Side B (2nd printing), redrawn as
 an eight-sheet KiCad schematic and checked back against the read with KiCad's own netlist
-(0 disagreements). AGENTS.md has the pipeline and its traps. The same pipeline wants another
-board: the drawing-package auxiliary boards are the next best candidates (Tempest auxiliary,
-23 devices, all stock parts; Red Baron's 036305-01, which carries the same Math Box at
-different positions and would reuse every custom symbol). The redrawn schematic's ERC is 0
+(0 disagreements). AGENTS.md has the pipeline and its traps. The redrawn schematic's ERC is 0
 errors; its warnings are the undrawn spare gates, the open-collector/tri-state EDB7 that is
 the real design, and a cosmetic "doesn't match the library" on the custom symbols that KiCad's
 *Update symbols from library* clears.
+
+**The Tempest Auxiliary PCB is traced in full** (2026-10-18): 216 nets over 1,036 pins, 41
+ICs and 147 passives, connectors and test points, off DP-190 sheet 3 Side B (4th printing,
+the colour one), redrawn as eleven KiCad sheets and checked back with KiCad's netlist
+(0 disagreements). It turned out not to be "23 stock parts": the parts-list harvest had only
+reached the stock TTL, and the sheet carries the whole Math Box, the ER2055 high-score EAROM
+and its -28V charge pump, both POKEYs and the audio stage. Its Math Box agrees with
+Battlezone's net for net (79) and signature for signature (65). Six conflicts are logged in
+`boards/tempest-auxiliary.read.json`; the real one, B1 pin 1 lettered BEGIN but drawn wired to
+/BEGIN, is also in the board's status line, because **the site renders no board's `notes` or
+`conflicts`** -- they reach `/api/boards` and stop. That gap predates this board and hides
+Battlezone's too. ERC on the redraw has five errors, each the drawing's own design and each
+confirmed on two printings: K3's paralleled LM324 outputs (3) and the two POKEYs'
+open-collector SOD looped to SID with no pull-up (2). They are left visible, not hidden by
+changing pin types. **Red
+Baron's 036305-01 is the obvious next board**: the same Math Box a third time, every custom
+symbol already exists, and the Battlezone/Tempest comparison script pattern checks it.
 
 **Test-point markers** are drawn as a flag symbol on the sheets — extracting them needs
 shape detection, not OCR. Not started.

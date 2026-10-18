@@ -1,0 +1,735 @@
+{
+ "sheet": "spin",
+ "file": "spin.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Device:C",
+   "reference": "C42",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 40
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R47",
+   "unit": 1,
+   "value": "3.3K",
+   "x": 32,
+   "y": 40
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C46",
+   "unit": 1,
+   "value": "1.0uF 50V",
+   "x": 46,
+   "y": 40
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R52",
+   "unit": 1,
+   "value": "10K",
+   "x": 60,
+   "y": 40
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C43",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 72
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R46",
+   "unit": 1,
+   "value": "3.3K",
+   "x": 32,
+   "y": 72
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C45",
+   "unit": 1,
+   "value": "1.0uF 50V",
+   "x": 46,
+   "y": 72
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R51",
+   "unit": 1,
+   "value": "10K",
+   "x": 60,
+   "y": 72
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C28",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 104
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R40",
+   "unit": 1,
+   "value": "3.3K",
+   "x": 32,
+   "y": 104
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C32",
+   "unit": 1,
+   "value": "1.0uF 50V",
+   "x": 46,
+   "y": 104
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R50",
+   "unit": 1,
+   "value": "10K",
+   "x": 60,
+   "y": 104
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C29",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 136
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R39",
+   "unit": 1,
+   "value": "3.3K",
+   "x": 32,
+   "y": 136
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C31",
+   "unit": 1,
+   "value": "1.0uF 50V",
+   "x": 46,
+   "y": 136
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R49",
+   "unit": 1,
+   "value": "10K",
+   "x": 60,
+   "y": 136
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 6,
+   "value": "4584B",
+   "x": 100,
+   "y": 40
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 5,
+   "value": "4584B",
+   "x": 100,
+   "y": 72
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 3,
+   "value": "4584B",
+   "x": 100,
+   "y": 104
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 4,
+   "value": "4584B",
+   "x": 100,
+   "y": 136
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 1,
+   "value": "4584B",
+   "x": 40,
+   "y": 172
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R53",
+   "unit": 1,
+   "value": "1K",
+   "x": 70,
+   "y": 172
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C48",
+   "unit": 1,
+   "value": "1000pF",
+   "x": 20,
+   "y": 180
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R48",
+   "unit": 1,
+   "value": "10K",
+   "x": 95,
+   "y": 172
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C47",
+   "unit": 1,
+   "value": "1.0uF 50V",
+   "x": 115,
+   "y": 180
+  },
+  {
+   "lib_id": "74xx:74LS157",
+   "reference": "UD6",
+   "unit": 1,
+   "value": "74LS157",
+   "x": 170,
+   "y": 90
+  },
+  {
+   "lib_id": "74xx:74LS74",
+   "reference": "UC6",
+   "unit": 1,
+   "value": "74LS74",
+   "x": 245,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS191",
+   "reference": "UA4",
+   "unit": 1,
+   "value": "74LS191",
+   "x": 245,
+   "y": 135
+  }
+ ],
+ "local": [
+  {
+   "net": "C31-1",
+   "pins": [
+    {
+     "reference": "C31",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R49",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "9"
+    }
+   ]
+  },
+  {
+   "net": "C32-1",
+   "pins": [
+    {
+     "reference": "C32",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R50",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "C45-1",
+   "pins": [
+    {
+     "reference": "C45",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R51",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "11"
+    }
+   ]
+  },
+  {
+   "net": "C46-1",
+   "pins": [
+    {
+     "reference": "C46",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R52",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "13"
+    }
+   ]
+  },
+  {
+   "net": "C47-1",
+   "pins": [
+    {
+     "reference": "C47",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R48",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R49",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R50",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R51",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R52",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "C48-1",
+   "pins": [
+    {
+     "reference": "C48",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R48",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R53",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "E6-2",
+   "pins": [
+    {
+     "reference": "R53",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "D6-12",
+   "pins": [
+    {
+     "reference": "UA4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UC6",
+     "pin_number": "3"
+    },
+    {
+     "reference": "UD6",
+     "pin_number": "12"
+    }
+   ]
+  },
+  {
+   "net": "C6-5",
+   "pins": [
+    {
+     "reference": "UA4",
+     "pin_number": "5"
+    },
+    {
+     "reference": "UC6",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "D6-4",
+   "pins": [
+    {
+     "reference": "UC6",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UD6",
+     "pin_number": "4"
+    }
+   ]
+  },
+  {
+   "net": "E6-8",
+   "pins": [
+    {
+     "reference": "UD6",
+     "pin_number": "13"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "8"
+    }
+   ]
+  },
+  {
+   "net": "E6-6",
+   "pins": [
+    {
+     "reference": "UD6",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "6"
+    }
+   ]
+  },
+  {
+   "net": "E6-12",
+   "pins": [
+    {
+     "reference": "UD6",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "12"
+    }
+   ]
+  },
+  {
+   "net": "E6-10",
+   "pins": [
+    {
+     "reference": "UD6",
+     "pin_number": "3"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "10"
+    }
+   ]
+  },
+  {
+   "net": "+5V",
+   "pins": [
+    {
+     "reference": "UA4",
+     "pin_number": "16"
+    },
+    {
+     "reference": "UD6",
+     "pin_number": "16"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "C28",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C29",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C42",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C43",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C47",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C48",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R39",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R40",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R46",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R47",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "10"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "15"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "4"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "8"
+    },
+    {
+     "reference": "UA4",
+     "pin_number": "9"
+    },
+    {
+     "reference": "UD6",
+     "pin_number": "15"
+    },
+    {
+     "reference": "UD6",
+     "pin_number": "8"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "FLIP",
+   "x": 157.48,
+   "y": 105.41,
+   "rotation": 180
+  },
+  {
+   "net": "C28-1",
+   "x": 20.32,
+   "y": 100.33,
+   "rotation": 90
+  },
+  {
+   "net": "C28-1",
+   "x": 45.72,
+   "y": 107.95,
+   "rotation": 270
+  },
+  {
+   "net": "C28-1",
+   "x": 31.75,
+   "y": 100.33,
+   "rotation": 90
+  },
+  {
+   "net": "C29-1",
+   "x": 20.32,
+   "y": 132.08,
+   "rotation": 90
+  },
+  {
+   "net": "C29-1",
+   "x": 45.72,
+   "y": 139.7,
+   "rotation": 270
+  },
+  {
+   "net": "C29-1",
+   "x": 31.75,
+   "y": 132.08,
+   "rotation": 90
+  },
+  {
+   "net": "C42-1",
+   "x": 20.32,
+   "y": 35.56,
+   "rotation": 90
+  },
+  {
+   "net": "C42-1",
+   "x": 45.72,
+   "y": 43.18,
+   "rotation": 270
+  },
+  {
+   "net": "C42-1",
+   "x": 31.75,
+   "y": 35.56,
+   "rotation": 90
+  },
+  {
+   "net": "C43-1",
+   "x": 20.32,
+   "y": 68.58,
+   "rotation": 90
+  },
+  {
+   "net": "C43-1",
+   "x": 45.72,
+   "y": 76.2,
+   "rotation": 270
+  },
+  {
+   "net": "C43-1",
+   "x": 31.75,
+   "y": 68.58,
+   "rotation": 90
+  },
+  {
+   "net": "C50-1",
+   "x": 157.48,
+   "y": 82.55,
+   "rotation": 180
+  },
+  {
+   "net": "C51-1",
+   "x": 157.48,
+   "y": 85.09,
+   "rotation": 180
+  },
+  {
+   "net": "C52-1",
+   "x": 157.48,
+   "y": 92.71,
+   "rotation": 180
+  },
+  {
+   "net": "C53-1",
+   "x": 157.48,
+   "y": 90.17,
+   "rotation": 180
+  },
+  {
+   "net": "R54-1",
+   "x": 232.41,
+   "y": 137.16,
+   "rotation": 180
+  },
+  {
+   "net": "R54-1",
+   "x": 245.11,
+   "y": 57.15,
+   "rotation": 270
+  },
+  {
+   "net": "R54-1",
+   "x": 245.11,
+   "y": 41.91,
+   "rotation": 90
+  },
+  {
+   "net": "D6-7",
+   "x": 182.88,
+   "y": 82.55,
+   "rotation": 0
+  },
+  {
+   "net": "D6-9",
+   "x": 182.88,
+   "y": 90.17,
+   "rotation": 0
+  },
+  {
+   "net": "TBC0",
+   "x": 257.81,
+   "y": 124.46,
+   "rotation": 0
+  },
+  {
+   "net": "TBC1",
+   "x": 257.81,
+   "y": 127.0,
+   "rotation": 0
+  },
+  {
+   "net": "TBC2",
+   "x": 257.81,
+   "y": 129.54,
+   "rotation": 0
+  },
+  {
+   "net": "TBC3",
+   "x": 257.81,
+   "y": 132.08,
+   "rotation": 0
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "+5V",
+   "x": 245.11,
+   "y": 116.84
+  },
+  {
+   "net": "GND",
+   "x": 20.32,
+   "y": 107.95
+  }
+ ],
+ "nc": [
+  {
+   "x": 257.81,
+   "y": 142.24,
+   "pin": "UA4.12"
+  },
+  {
+   "x": 257.81,
+   "y": 137.16,
+   "pin": "UA4.13"
+  },
+  {
+   "x": 252.73,
+   "y": 52.07,
+   "pin": "UC6.6"
+  }
+ ]
+}

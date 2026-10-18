@@ -4,16 +4,16 @@
  "mfr": "Atari",
  "year": "1981",
  "machine": "tempest",
- "drawing": "TM-190 IC parts lists, Auxiliary PCB Assembly figure (4 printings)",
- "revision": "No component-location drawing has been read for this board \u2014 every device below comes from the IC parts list.",
- "coverage": "23 devices: 23 read from the drawings and 0 recovered from the IC parts lists, taken only where 2 or more printings agree. The chip lookup names the source for each one. This is a board map, not a complete bill of materials.",
+ "drawing": "DP-190 sheet 3 Side B, section of Auxiliary PCB 037585-01",
+ "revision": "Auxiliary PCB 037585-01: the Math Box, high-score EAROM, both POKEYs and the audio output, a separate board from the Analog Vector-Generator PCB.",
+ "coverage": "41 devices, read from DP-190 sheet 3 Side B and agreeing with the TM-190 parts list on every one. The chip lookup names the source for each. Every connection on the sheet is traced as well -- 216 nets over 1,036 pins, the 147 resistors, capacitors, diodes, jumpers, connectors and test points as well as the 41 ICs -- and redrawn as a KiCad schematic below. The board view carries the nets between ICs; the passives are in the schematic only, because the board map does not place them. Where the sheet contradicts itself -- B1 pin 1 is lettered BEGIN but drawn wired to /BEGIN -- the redraw follows the label, because the latch and the entry PROM would otherwise drive the counter bus together. ERC: 5 errors, all the drawing's own design: K3's LM324 sections paralleled into the -28V charge pump (3), and each POKEY's open-collector SOD looped to its SID with no pull-up (2). No component-location drawing has been read, so the grid spacing is nominal.",
  "singleSource": false,
  "size": {
   "w": 188,
-  "h": 180
+  "h": 218
  },
  "grid": {
-  "rows": "JHFEDCBA",
+  "rows": "LKJHFEDCBA",
   "col_pitch": 25.4,
   "row_pitch": 19.05,
   "x0": 26.0,
@@ -22,13 +22,17 @@
   "cols": 6
  },
  "ics": {
+  "A1": "82S123",
   "A2": "74109",
   "A3": "74LS174",
   "A4": "74LS191",
   "B1": "74LS374",
+  "B2": "C012294-01",
   "B4": "74LS139",
   "B5": "74LS139",
   "C1": "74LS161",
+  "C2": "C012294-01",
+  "C3": "ER2055",
   "C4": "74LS32",
   "C5": "74LS10",
   "C6": "74LS74",
@@ -36,14 +40,35 @@
   "D4": "74LS00",
   "D5": "74LS74",
   "D6": "74LS157",
+  "E1": "82S129",
+  "E2": "137004-001",
   "E3": "74LS244",
   "E4": "74S08",
+  "E5": "74S86",
   "E6": "4584B",
+  "F1": "82S129",
+  "F2": "137004-001",
   "F3": "74LS374",
   "F4": "74LS14",
+  "F5": "74S03",
+  "H1": "82S129",
   "H3": "74LS244",
   "H4": "74LS174",
+  "J1": "82S129",
+  "J2": "137004-001",
   "J3": "74LS175",
-  "J4": "74LS02"
- }
+  "J4": "74LS02",
+  "K1": "82S129",
+  "K2": "137004-001",
+  "K3": "LM324",
+  "K6": "LM324",
+  "L1": "82S129"
+ },
+ "spans": {
+  "B2": "B/C2",
+  "C2": "C/D2",
+  "F2": "F/H2",
+  "K2": "K/L2"
+ },
+ "netsTraced": true
 }

@@ -1,0 +1,383 @@
+{
+ "sheet": "eps",
+ "file": "eps.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 1,
+   "value": "LM324",
+   "x": 70,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 2,
+   "value": "LM324",
+   "x": 120,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 3,
+   "value": "LM324",
+   "x": 170,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 4,
+   "value": "LM324",
+   "x": 220,
+   "y": 55
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C11",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R6",
+   "unit": 1,
+   "value": "47K",
+   "x": 35,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R5",
+   "unit": 1,
+   "value": "1K",
+   "x": 50,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R28",
+   "unit": 1,
+   "value": "47K",
+   "x": 65,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R29",
+   "unit": 1,
+   "value": "4.7K",
+   "x": 80,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C13",
+   "unit": 1,
+   "value": "47uF 25V",
+   "x": 95,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C19",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 120,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D",
+   "reference": "CR4",
+   "unit": 1,
+   "value": "1N100",
+   "x": 135,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D",
+   "reference": "CR3",
+   "unit": 1,
+   "value": "1N100",
+   "x": 150,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C21",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 165,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R27",
+   "unit": 1,
+   "value": "1K 1/2W",
+   "x": 180,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D_Zener",
+   "reference": "CR2",
+   "unit": 1,
+   "value": "1N5257B",
+   "x": 195,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C20",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 210,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C16",
+   "unit": 1,
+   "value": ".01uF",
+   "x": 225,
+   "y": 120
+  }
+ ],
+ "local": [
+  {
+   "net": "C11-2",
+   "pins": [
+    {
+     "reference": "C11",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R6",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "13"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "6"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "9"
+    }
+   ]
+  },
+  {
+   "net": "C13-2",
+   "pins": [
+    {
+     "reference": "C13",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R28",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R29",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R5",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R6",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "K3-1",
+   "pins": [
+    {
+     "reference": "C19",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "8"
+    }
+   ]
+  },
+  {
+   "net": "C19-2",
+   "pins": [
+    {
+     "reference": "C19",
+     "pin_number": "2"
+    },
+    {
+     "reference": "CR3",
+     "pin_number": "1"
+    },
+    {
+     "reference": "CR4",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "C21-2",
+   "pins": [
+    {
+     "reference": "C21",
+     "pin_number": "2"
+    },
+    {
+     "reference": "CR3",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R27",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "R28-1",
+   "pins": [
+    {
+     "reference": "R28",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "10"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "12"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "3"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "+5V",
+   "pins": [
+    {
+     "reference": "C20",
+     "pin_number": "1"
+    },
+    {
+     "reference": "CR2",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "C13",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C16",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R5",
+     "pin_number": "1"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "-22V",
+   "x": 165.1,
+   "y": 115.57,
+   "rotation": 90
+  },
+  {
+   "net": "-22V",
+   "x": 130.81,
+   "y": 119.38,
+   "rotation": 180
+  },
+  {
+   "net": "-22V",
+   "x": 80.01,
+   "y": 123.19,
+   "rotation": 270
+  },
+  {
+   "net": "-28V",
+   "x": 224.79,
+   "y": 115.57,
+   "rotation": 90
+  },
+  {
+   "net": "-28V",
+   "x": 209.55,
+   "y": 123.19,
+   "rotation": 270
+  },
+  {
+   "net": "-28V",
+   "x": 199.39,
+   "y": 119.38,
+   "rotation": 0
+  },
+  {
+   "net": "-28V",
+   "x": 180.34,
+   "y": 123.19,
+   "rotation": 270
+  },
+  {
+   "net": "3KHZ",
+   "x": 20.32,
+   "y": 115.57,
+   "rotation": 90
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "+5V",
+   "x": 209.55,
+   "y": 115.57
+  },
+  {
+   "net": "GND",
+   "x": 95.25,
+   "y": 115.57
+  }
+ ],
+ "nc": []
+}

@@ -1,0 +1,342 @@
+{
+ "sheet": "eps",
+ "title": "EAROM -28V supply",
+ "file": "eps.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 1,
+   "value": "LM324",
+   "x": 70,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 2,
+   "value": "LM324",
+   "x": 120,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 3,
+   "value": "LM324",
+   "x": 170,
+   "y": 55
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 4,
+   "value": "LM324",
+   "x": 220,
+   "y": 55
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C11",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R6",
+   "unit": 1,
+   "value": "47K",
+   "x": 35,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R5",
+   "unit": 1,
+   "value": "1K",
+   "x": 50,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R28",
+   "unit": 1,
+   "value": "47K",
+   "x": 65,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R29",
+   "unit": 1,
+   "value": "4.7K",
+   "x": 80,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C13",
+   "unit": 1,
+   "value": "47uF 25V",
+   "x": 95,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C19",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 120,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D",
+   "reference": "CR4",
+   "unit": 1,
+   "value": "1N100",
+   "x": 135,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D",
+   "reference": "CR3",
+   "unit": 1,
+   "value": "1N100",
+   "x": 150,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C21",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 165,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R27",
+   "unit": 1,
+   "value": "1K 1/2W",
+   "x": 180,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:D_Zener",
+   "reference": "CR2",
+   "unit": 1,
+   "value": "1N5257B",
+   "x": 195,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C20",
+   "unit": 1,
+   "value": "47uF 50V",
+   "x": 210,
+   "y": 120
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C16",
+   "unit": 1,
+   "value": ".01uF",
+   "x": 225,
+   "y": 120
+  }
+ ],
+ "local_nets": {
+  "C11-2": [
+   [
+    "C11",
+    "2"
+   ],
+   [
+    "R6",
+    "1"
+   ],
+   [
+    "UK3",
+    "13"
+   ],
+   [
+    "UK3",
+    "2"
+   ],
+   [
+    "UK3",
+    "6"
+   ],
+   [
+    "UK3",
+    "9"
+   ]
+  ],
+  "C13-2": [
+   [
+    "C13",
+    "2"
+   ],
+   [
+    "R28",
+    "2"
+   ],
+   [
+    "R29",
+    "1"
+   ],
+   [
+    "R5",
+    "2"
+   ],
+   [
+    "R6",
+    "2"
+   ]
+  ],
+  "K3-1": [
+   [
+    "C19",
+    "1"
+   ],
+   [
+    "UK3",
+    "1"
+   ],
+   [
+    "UK3",
+    "14"
+   ],
+   [
+    "UK3",
+    "7"
+   ],
+   [
+    "UK3",
+    "8"
+   ]
+  ],
+  "C19-2": [
+   [
+    "C19",
+    "2"
+   ],
+   [
+    "CR3",
+    "1"
+   ],
+   [
+    "CR4",
+    "2"
+   ]
+  ],
+  "C21-2": [
+   [
+    "C21",
+    "2"
+   ],
+   [
+    "CR3",
+    "2"
+   ],
+   [
+    "R27",
+    "1"
+   ]
+  ],
+  "R28-1": [
+   [
+    "R28",
+    "1"
+   ],
+   [
+    "UK3",
+    "10"
+   ],
+   [
+    "UK3",
+    "12"
+   ],
+   [
+    "UK3",
+    "3"
+   ],
+   [
+    "UK3",
+    "5"
+   ]
+  ]
+ },
+ "global_pins": [
+  [
+   "-22V",
+   "C21",
+   "1"
+  ],
+  [
+   "-22V",
+   "CR4",
+   "1"
+  ],
+  [
+   "-22V",
+   "R29",
+   "2"
+  ],
+  [
+   "-28V",
+   "C16",
+   "1"
+  ],
+  [
+   "-28V",
+   "C20",
+   "2"
+  ],
+  [
+   "-28V",
+   "CR2",
+   "2"
+  ],
+  [
+   "-28V",
+   "R27",
+   "2"
+  ],
+  [
+   "3KHZ",
+   "C11",
+   "1"
+  ]
+ ],
+ "power": {
+  "+5V": [
+   [
+    "C20",
+    "1"
+   ],
+   [
+    "CR2",
+    "1"
+   ]
+  ],
+  "GND": [
+   [
+    "C13",
+    "1"
+   ],
+   [
+    "C16",
+    "2"
+   ],
+   [
+    "R5",
+    "1"
+   ]
+  ]
+ },
+ "nc": []
+}

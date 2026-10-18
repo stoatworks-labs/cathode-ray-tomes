@@ -1,0 +1,419 @@
+{
+ "sheet": "io",
+ "title": "Interconnect, edge connector and test points",
+ "file": "io.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Connector_Generic:Conn_01x24",
+   "reference": "J17",
+   "unit": 1,
+   "value": "Interconnect",
+   "x": 50,
+   "y": 95
+  },
+  {
+   "lib_id": "tempest-auxiliary:Edge_15x2_Atari",
+   "reference": "J18",
+   "unit": 1,
+   "value": "Edge connector",
+   "x": 150,
+   "y": 95
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP1",
+   "unit": 1,
+   "value": "EPHI2",
+   "x": 225,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP2",
+   "unit": 1,
+   "value": "ER/WB",
+   "x": 245,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP3",
+   "unit": 1,
+   "value": "+5V",
+   "x": 265,
+   "y": 40
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP4",
+   "unit": 1,
+   "value": "GND",
+   "x": 225,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP5",
+   "unit": 1,
+   "value": "-22V",
+   "x": 245,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP6",
+   "unit": 1,
+   "value": "+22V",
+   "x": 265,
+   "y": 70
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP7",
+   "unit": 1,
+   "value": "E6MHZ",
+   "x": 225,
+   "y": 100
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP8",
+   "unit": 1,
+   "value": "E3MHZ",
+   "x": 245,
+   "y": 100
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP9",
+   "unit": 1,
+   "value": "AUD+",
+   "x": 225,
+   "y": 130
+  },
+  {
+   "lib_id": "Connector:TestPoint",
+   "reference": "TP10",
+   "unit": 1,
+   "value": "AUD-",
+   "x": 245,
+   "y": 130
+  }
+ ],
+ "local_nets": {},
+ "global_pins": [
+  [
+   "+22V",
+   "J18",
+   "3"
+  ],
+  [
+   "+22V",
+   "J18",
+   "P"
+  ],
+  [
+   "+22V",
+   "TP6",
+   "1"
+  ],
+  [
+   "-22V",
+   "J18",
+   "4"
+  ],
+  [
+   "-22V",
+   "J18",
+   "N"
+  ],
+  [
+   "-22V",
+   "TP5",
+   "1"
+  ],
+  [
+   "~{COCKTAIL}",
+   "J18",
+   "C"
+  ],
+  [
+   "~{I/O}",
+   "J17",
+   "9"
+  ],
+  [
+   "~{RESET}",
+   "J18",
+   "F"
+  ],
+  [
+   "3KHZ",
+   "J17",
+   "6"
+  ],
+  [
+   "AUD+",
+   "J18",
+   "5"
+  ],
+  [
+   "AUD+",
+   "TP9",
+   "1"
+  ],
+  [
+   "AUD-",
+   "J18",
+   "D"
+  ],
+  [
+   "AUD-",
+   "TP10",
+   "1"
+  ],
+  [
+   "E3MHZ",
+   "TP8",
+   "1"
+  ],
+  [
+   "E3MHZ-IN",
+   "J17",
+   "4"
+  ],
+  [
+   "E6MHZ",
+   "J17",
+   "3"
+  ],
+  [
+   "E6MHZ",
+   "TP7",
+   "1"
+  ],
+  [
+   "EAB0",
+   "J17",
+   "10"
+  ],
+  [
+   "EAB1",
+   "J17",
+   "11"
+  ],
+  [
+   "EAB2",
+   "J17",
+   "12"
+  ],
+  [
+   "EAB3",
+   "J17",
+   "13"
+  ],
+  [
+   "EAB4",
+   "J17",
+   "14"
+  ],
+  [
+   "EAB5",
+   "J17",
+   "15"
+  ],
+  [
+   "EAB6",
+   "J17",
+   "16"
+  ],
+  [
+   "EAB7",
+   "J17",
+   "5"
+  ],
+  [
+   "EDB0",
+   "J17",
+   "17"
+  ],
+  [
+   "EDB1",
+   "J17",
+   "18"
+  ],
+  [
+   "EDB2",
+   "J17",
+   "19"
+  ],
+  [
+   "EDB3",
+   "J17",
+   "20"
+  ],
+  [
+   "EDB4",
+   "J17",
+   "21"
+  ],
+  [
+   "EDB5",
+   "J17",
+   "22"
+  ],
+  [
+   "EDB6",
+   "J17",
+   "23"
+  ],
+  [
+   "EDB7",
+   "J17",
+   "24"
+  ],
+  [
+   "EPHI2",
+   "J17",
+   "7"
+  ],
+  [
+   "EPHI2",
+   "TP1",
+   "1"
+  ],
+  [
+   "ER/~{WB}",
+   "J17",
+   "8"
+  ],
+  [
+   "ER/~{WB}",
+   "TP2",
+   "1"
+  ],
+  [
+   "FIRE1",
+   "J18",
+   "9"
+  ],
+  [
+   "FIRE2",
+   "J18",
+   "K"
+  ],
+  [
+   "C28-1",
+   "J18",
+   "H"
+  ],
+  [
+   "C29-1",
+   "J18",
+   "7"
+  ],
+  [
+   "C42-1",
+   "J18",
+   "J"
+  ],
+  [
+   "C43-1",
+   "J18",
+   "8"
+  ],
+  [
+   "START_LED1",
+   "J18",
+   "12"
+  ],
+  [
+   "START_LED2",
+   "J18",
+   "13"
+  ],
+  [
+   "START1",
+   "J18",
+   "11"
+  ],
+  [
+   "START2",
+   "J18",
+   "M"
+  ],
+  [
+   "ZAP1",
+   "J18",
+   "10"
+  ],
+  [
+   "ZAP2",
+   "J18",
+   "L"
+  ]
+ ],
+ "power": {
+  "+5V": [
+   [
+    "J18",
+    "14"
+   ],
+   [
+    "J18",
+    "2"
+   ],
+   [
+    "J18",
+    "B"
+   ],
+   [
+    "J18",
+    "R"
+   ],
+   [
+    "TP3",
+    "1"
+   ]
+  ],
+  "GND": [
+   [
+    "J17",
+    "1"
+   ],
+   [
+    "J17",
+    "2"
+   ],
+   [
+    "J18",
+    "1"
+   ],
+   [
+    "J18",
+    "15"
+   ],
+   [
+    "J18",
+    "6"
+   ],
+   [
+    "J18",
+    "A"
+   ],
+   [
+    "J18",
+    "E"
+   ],
+   [
+    "J18",
+    "S"
+   ],
+   [
+    "TP4",
+    "1"
+   ]
+  ]
+ },
+ "nc": []
+}

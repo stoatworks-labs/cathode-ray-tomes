@@ -1,0 +1,16 @@
+[
+ {
+  "board": "tempest",
+  "name": "Tempest",
+  "kind": "companion PCB",
+  "detail": "This is the Auxiliary PCB 037585-01; Tempest's Analog Vector-Generator PCB is 037383. They are different boards with separate designator grids, connected by the J17 interconnect -- the game PCB sends EDB0-7, EAB0-7, ER/WB, /I/O, EPHI2, the E3MHZ and E6MHZ clocks and 3 kHz across. A designator like A4 means a different chip on each.",
+  "confidence": "verified"
+ },
+ {
+  "board": "battlezone-math-box",
+  "name": "Battlezone Auxiliary Math Box PCB",
+  "kind": "same circuit",
+  "detail": "Tempest's Math Box is Battlezone's at different positions: Battlezone's B4, B1, C1, E1/D1, PROMs M1-F1 and slices K2, F2, H/J2, D/E2 are Tempest's A2, A1, B1, D1/C1, PROMs L1-E1 and slices E2, J2, F/H2, K/L2. Traced independently from each board's own drawing, all 79 nets between those parts agree pin for pin and all 65 signatures printed on both sheets agree, so Battlezone's signature-analysis procedure applies here once the designators are translated.",
+  "confidence": "verified"
+ }
+]

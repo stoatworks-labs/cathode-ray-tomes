@@ -13,7 +13,14 @@ Net names follow the sheet. Active-low names the sheet overbars get KiCad's
 drives it, as the board silkscreens it (E4-6), so a label tells a reader where
 the signal comes from.
 
-  tools/plan_board_schematic.py battlezone-math-box   -> kicad/<slug>/plan/*.json
+What differs from board to board -- which unit sits where on which sheet, the
+symbols for its custom parts and connectors, label spellings the generic rule
+gets wrong -- is data, in boards/<slug>.sheets.json. This file holds only the
+rules.
+
+  tools/plan_board_schematic.py battlezone-math-box         -> kicad/<slug>/plan/*.json
+  tools/plan_board_schematic.py tempest-auxiliary --ops     ... and *.ops.json: every
+      label, power symbol and no-connect flag as an explicit Konnect call
 """
 import json, os, re, sys, collections
 
@@ -21,24 +28,31 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, "tools"))
 from build_board_nets import KICAD, pinout   # noqa: E402
 
-PROJECT_LIB = "battlezone-math-box"
-LIB = dict(KICAD)
-LIB.update({"137004-001": f"{PROJECT_LIB}:Am2901", "C012294-01": f"{PROJECT_LIB}:POKEY",
-            "82S129": f"{PROJECT_LIB}:82S129", "82S123": f"{PROJECT_LIB}:82S123"})
-# Rails drawn with KiCad power symbols. +22V has no stock symbol and only six
-# pins, so it travels by global label like any other net.
+# Rails drawn with KiCad power symbols. Any other rail (+22V, -5V) has no
+# stock symbol worth trusting and few pins, so it travels by global label like
+# any other net.
 POWER = ("+5V", "GND")
+
+# Where the power sheet puts things, unless the board's layout says otherwise:
+# the multi-unit ICs' supply units in rows across the top, the bypass list and
+# power-input parts below them, the PWR_FLAGs along the bottom.
+POWER_GRID = {
+    "units": {"x0": 25, "dx": 30, "per_row": 9, "y0": 40, "dy": 32},
+    "extras": {"x0": 20, "dx": 13, "per_row": 20, "y0": 150, "dy": 25},
+    "flags": {"x0": 120, "dx": 20, "y": 175},
+}
 
 # Which KiCad unit holds which pins, read from the library so a gate is never
 # guessed. Filled lazily.
 _units = {}
+_project_libs = {}
 
 
 def unit_of(libsym, pin):
     if libsym not in _units:
         lib, name = libsym.split(":")
-        path = os.path.join("/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols",
-                            lib + ".kicad_sym")
+        path = _project_libs.get(lib) or os.path.join(
+            "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols", lib + ".kicad_sym")
         table = {}
         if os.path.exists(path):
             text = open(path).read()
@@ -68,12 +82,8 @@ def _symbol(text, name):
     return _block(text, text.find(f'(symbol "{name}"'))
 
 
-def label_name(name):
+def label_name(name, special):
     """Sheet spelling -> KiCad label text."""
-    special = {
-        "ER/WB": "ER/~{WB}", "/EI/O": "~{EI/O}", "SHELL L/S": "SHELL_L/~{S}",
-        "EXPLO L/S": "EXPLO_L/~{S}", "/OUTPUT LATCH": "~{OUTPUT_LATCH}",
-    }
     if name in special:
         return special[name]
     if name.startswith("/"):
@@ -81,110 +91,57 @@ def label_name(name):
     return name.replace(" ", "_")
 
 
-# ---------------------------------------------------------------------------
-# Sheets. Each unit: (ref, unit, x, y) in mm on an A4 sheet; refs are KiCad
-# references. Passives and connectors are single-unit.
-# ---------------------------------------------------------------------------
-SHEETS = [
-    ("seq", "Math Box sequencer", [
-        ("UB1", 1, 45, 55), ("UC1", 1, 110, 55), ("UE1", 1, 175, 55), ("UD1", 1, 240, 55),
-        ("UM1", 1, 30, 145), ("UL1", 1, 75, 145), ("UK1", 1, 120, 145),
-        ("UJ1", 1, 165, 145), ("UH1", 1, 210, 145), ("UF1", 1, 255, 145)]),
-    ("alu", "Math Box ALU", [
-        ("UK2", 1, 45, 80), ("UF2", 1, 110, 80), ("UH2", 1, 175, 80), ("UD2", 1, 240, 80),
-        ("UE5", 4, 25, 150), ("UD3", 4, 55, 150), ("UD3", 3, 85, 150), ("UE3", 4, 115, 150),
-        ("UD3", 2, 145, 150), ("UE3", 3, 175, 150), ("UC5", 1, 210, 150), ("UD5", 2, 245, 150),
-        ("UE5", 3, 270, 150), ("R1", 1, 130, 172)]),
-    ("ctl", "Math Box control", [
-        ("UB4", 1, 30, 45), ("UC5", 2, 75, 45), ("UC3", 1, 120, 45), ("UC3", 2, 165, 45),
-        ("UJ4", 1, 210, 45), ("SA", 1, 255, 60),
-        ("UC4", 4, 25, 95), ("UC4", 3, 55, 95), ("UC4", 2, 85, 95), ("UD4", 1, 115, 95),
-        ("UD4", 2, 145, 95), ("UD4", 3, 175, 95), ("UD4", 4, 205, 95),
-        ("UD3", 1, 25, 135), ("UD5", 1, 55, 135), ("UD5", 3, 85, 135), ("UD5", 4, 115, 135),
-        ("UE3", 1, 145, 135), ("UE4", 3, 175, 135), ("UE4", 4, 205, 135), ("UE4", 5, 235, 135),
-        ("UE4", 6, 265, 135),
-        ("R2", 1, 40, 175), ("R3", 1, 80, 175), ("R22", 1, 120, 175)]),
-    ("io", "Interconnect, edge connector and output latch", [
-        ("P1", 1, 40, 95), ("P2", 1, 120, 95), ("UM2", 1, 210, 70),
-        ("R38", 1, 210, 140), ("TP1", 1, 25, 175), ("TP2", 1, 45, 175), ("TP3", 1, 65, 175),
-        ("TP4", 1, 85, 175), ("TP5", 1, 105, 175)]),
-    ("pokey", "POKEY and control panel inputs", [
-        ("UB2", 1, 200, 95),
-        ("R43", 1, 30, 45), ("R44", 1, 40, 45), ("R41", 1, 50, 45), ("R42", 1, 60, 45),
-        ("R39", 1, 70, 45), ("R40", 1, 80, 45),
-        ("R51", 1, 30, 90), ("R52", 1, 45, 90), ("R49", 1, 60, 90), ("R50", 1, 75, 90),
-        ("R47", 1, 90, 90), ("R48", 1, 105, 90),
-        ("C34", 1, 30, 135), ("C35", 1, 45, 135), ("C32", 1, 60, 135), ("C33", 1, 75, 135),
-        ("C30", 1, 90, 135), ("C31", 1, 105, 135),
-        ("R46", 1, 255, 60), ("R36", 1, 255, 110), ("C25", 1, 255, 145)]),
-    ("noise", "Noise generator and engine sound", [
-        ("UB4", 2, 25, 45), ("UH5", 1, 75, 45), ("UH4", 1, 130, 45), ("UJ4", 2, 180, 40),
-        ("UJ5", 1, 225, 40), ("UJ5", 2, 265, 40),
-        ("UE5", 2, 180, 85), ("UE5", 1, 225, 85),
-        ("UL4", 1, 25, 120), ("R5", 1, 45, 120), ("R6", 1, 55, 135), ("R7", 1, 65, 110),
-        ("R8", 1, 80, 120), ("CR1", 1, 80, 135), ("R9", 1, 95, 135), ("C13", 1, 110, 140),
-        ("UK5", 2, 130, 125), ("UF3", 1, 175, 130), ("R10", 1, 150, 110), ("R11", 1, 150, 130),
-        ("C11", 1, 150, 150),
-        ("UF4", 1, 215, 125), ("UF5", 1, 265, 125), ("UE4", 1, 215, 155), ("UE4", 2, 265, 155),
-        ("R20", 1, 25, 175), ("R21", 1, 45, 175), ("R34", 1, 65, 175), ("R35", 1, 85, 175),
-        ("C29", 1, 105, 175)]),
-    ("audio", "Shell, explosion, mixer and output", [
-        ("UL4", 3, 25, 35), ("R12", 1, 50, 45), ("R13", 1, 65, 35), ("C21", 1, 85, 25),
-        ("R32", 1, 85, 35), ("UK5", 3, 110, 45),
-        ("UJ3", 4, 25, 70), ("C9", 1, 45, 80), ("UJ3", 3, 60, 70), ("R14", 1, 80, 70),
-        ("R15", 1, 90, 80),
-        ("UL4", 2, 25, 105), ("R19", 1, 50, 115), ("R18", 1, 65, 105), ("C22", 1, 85, 95),
-        ("R33", 1, 85, 105), ("UK5", 1, 110, 115),
-        ("UJ3", 1, 25, 140), ("C14", 1, 45, 150), ("UJ3", 2, 60, 140), ("R17", 1, 80, 140),
-        ("R16", 1, 90, 150),
-        ("R25", 1, 150, 60), ("R28", 1, 150, 75), ("R26", 1, 150, 90), ("R27", 1, 150, 105),
-        ("UL4", 4, 175, 80), ("R29", 1, 195, 105), ("UK5", 4, 215, 90), ("R30", 1, 200, 70),
-        ("R31", 1, 225, 70), ("C20", 1, 240, 120), ("R24", 1, 255, 120), ("UM5", 4, 265, 150),
-        ("R23", 1, 265, 130)]),
-    ("power", "Power input and decoupling", []),
-]
+def load_layout(slug):
+    """boards/<slug>.sheets.json: the per-board half of the plan."""
+    layout = json.load(open(os.path.join(ROOT, "boards", f"{slug}.sheets.json")))
+    lib = layout.get("project_lib", slug)
+    # A project-library symbol's units are read from the project's own .kicad_sym.
+    _project_libs[lib] = os.path.join(ROOT, "kicad", slug, f"{lib}.kicad_sym")
+    return layout
 
 
 def build_plan(slug):
+    layout = load_layout(slug)
+    LIB = dict(KICAD)
+    LIB.update(layout.get("parts", {}))
+    refsyms = layout.get("refs", {})
+    special = layout.get("label_names", {})
+    flags = layout.get("flags", {"#FLG01": "+5V", "#FLG02": "GND"})
+    grid = {k: dict(v, **layout.get("power_grid", {}).get(k, {})) for k, v in POWER_GRID.items()}
+    SHEETS = [(s["key"], s["title"], [tuple(u) for u in s.get("units", [])])
+              for s in layout["sheets"]]
+    power_key = next(s["key"] for s in layout["sheets"] if s.get("power"))
+    extras = next(s.get("extras", []) for s in layout["sheets"] if s.get("power"))
+
     net = json.load(open(os.path.join(ROOT, "boards", f"{slug}.netlist.json")))
     comps = net["components"]
     nets = net["nets"]
 
     def libsym(ref):
+        if ref in refsyms:
+            return refsyms[ref]
         part = comps[ref]["part"]
         if part:
             return LIB[part]
         if ref.startswith("TP"):
             return "Connector:TestPoint"
-        if ref == "P1":
-            return "Connector_Generic:Conn_01x24"
-        if ref == "P2":
-            return f"{PROJECT_LIB}:Edge_22x2_Atari"
-        if ref == "SA":
-            return "Connector_Generic:Conn_01x10"
-        if ref == "R11":
-            return "Device:R_Potentiometer"
-        if ref == "CR1":
-            return "Diode:1N914"
-        if ref == "CR2":
-            return "Device:LED"
         if ref.startswith("R"):
             return "Device:R"
         if ref.startswith("C"):
             return "Device:C_Polarized" if "uF" in comps[ref]["value"] and \
                 not comps[ref]["value"].startswith(".") else "Device:C"
-        raise KeyError(ref)
+        raise KeyError(f"{ref}: no symbol -- name one under 'refs' in boards/{slug}.sheets.json")
 
     # Power units and the power sheet. Every multi-unit IC's supply unit goes on
     # the power sheet with the bypass capacitors and the power input.
     placed = {}                      # (ref, unit) -> sheet
-    layout = {}
+    where = {}
     for key, title, units in SHEETS:
         for ref, unit, x, y in units:
             if ref.endswith("_dummy"):
                 continue
             placed[(ref, unit)] = key
-            layout[(ref, unit)] = (x, y)
+            where[(ref, unit)] = (x, y)
     power_units = []
     for ref in sorted(comps):
         part = comps[ref]["part"]
@@ -197,23 +154,23 @@ def build_plan(slug):
             pins = [p for p in pinout(part) if unit_of(ls, p) == pu]
             if all(pinout(part)[p][1] == "power_in" for p in pins):
                 power_units.append((ref, pu))
+    g = grid["units"]
     psheet = []
     for i, (ref, unit) in enumerate(power_units):
-        x, y = 25 + (i % 9) * 30, 40 + (i // 9) * 32
+        x = g["x0"] + (i % g["per_row"]) * g["dx"]
+        y = g["y0"] + (i // g["per_row"]) * g["dy"]
         psheet.append((ref, unit, x, y))
-    # The sheet's bypass list: "C1-8, 10, 12, 15-19, 23, 24, 26".
-    bypass = [f"C{n}" for n in (1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 15, 16, 17, 18, 19, 23, 24, 26)]
-    extras = ["C27", "C28", "R37", "CR2", "R45"] + bypass
+    g = grid["extras"]
     for i, ref in enumerate(extras):
-        x, y = 20 + (i % 20) * 13, 150 + (i // 20) * 25
+        x = g["x0"] + (i % g["per_row"]) * g["dx"]
+        y = g["y0"] + (i // g["per_row"]) * g["dy"]
         psheet.append((ref, 1, x, y))
-    SHEETS[-1] = ("power", SHEETS[-1][1], psheet)
+    SHEETS = [(k, t, psheet if k == power_key else u) for k, t, u in SHEETS]
     for ref, unit, x, y in psheet:
-        placed[(ref, unit)] = "power"
-        layout[(ref, unit)] = (x, y)
+        placed[(ref, unit)] = power_key
+        where[(ref, unit)] = (x, y)
     # The rails arrive on passive connector pins, so ERC is told where power
-    # enters with a PWR_FLAG on each.
-    flags = {"#FLG01": "+5V", "#FLG02": "GND", "#FLG03": "+22V"}
+    # enters with a PWR_FLAG on each (`flags` in the layout).
 
     def sheet_of(pin):
         ref, _, num = pin.rpartition(".")
@@ -237,9 +194,11 @@ def build_plan(slug):
             plans[key]["place"].append({"lib_id": libsym(ref), "reference": ref, "unit": unit,
                                         "value": comps[ref]["value"] or part, "x": x, "y": y})
 
+    g = grid["flags"]
     for i, (ref, rail) in enumerate(flags.items()):
-        plans["power"]["place"].append({"lib_id": "power:PWR_FLAG", "reference": ref, "unit": 1,
-                                        "value": "PWR_FLAG", "x": 120 + i * 20, "y": 175})
+        plans[power_key]["place"].append({"lib_id": "power:PWR_FLAG", "reference": ref, "unit": 1,
+                                          "value": "PWR_FLAG", "x": g["x0"] + i * g["dx"],
+                                          "y": g["y"]})
     names = {}
     for name, n in nets.items():
         if n["named"] == "auto":
@@ -250,7 +209,7 @@ def build_plan(slug):
             ref, _, num = first.rpartition(".")
             names[name] = f"{ref[1:] if ref.startswith('U') else ref}-{num}"
         else:
-            names[name] = label_name(name)
+            names[name] = label_name(name, special)
     if len(set(names.values())) != len(names):
         dup = [v for v, c in collections.Counter(names.values()).items() if c > 1]
         raise ValueError(f"label names collide: {dup}")
@@ -263,7 +222,7 @@ def build_plan(slug):
         lab = names[name]
         for ref, rail in flags.items():
             if rail == name:
-                by_sheet["power"].append([ref, "1"])
+                by_sheet[power_key].append([ref, "1"])
         for s, pins in by_sheet.items():
             if name in POWER:
                 plans[s]["power"][name] = pins
@@ -286,7 +245,100 @@ def build_plan(slug):
         for num in pinout(part):
             if unit_of(LIB[part], num) == unit and f"{ref}.{num}" not in on_net:
                 raise ValueError(f"{ref}.{num} is drawn on {s} but on no net")
+    # Every component in the read must be drawn somewhere, or the schematic
+    # silently loses it; a multi-unit IC needs at least one of its units placed.
+    drawn = {ref for ref, _ in placed}
+    missing = sorted(set(comps) - drawn)
+    if missing:
+        raise ValueError(f"in the read but on no sheet: {', '.join(missing)}")
     return plans, names
+
+
+# ---------------------------------------------------------------------------
+# Ops: the plan as explicit Konnect calls. Konnect's pin-location queries only
+# see the first unit of a multi-unit part placed in a file, so every global
+# label, power symbol and no-connect flag is positioned here instead, from the
+# library's own pin geometry: a symbol at (X, Y) puts a library pin at
+# (px, py) on (X + px, Y - py), and a label there reads away from the body.
+# ---------------------------------------------------------------------------
+GRID = 1.27
+AWAY = {0: 180, 180: 0, 90: 270, 270: 90}    # library pin angle -> label rotation
+PIN_AT = re.compile(r'\(pin\s+\w+\s+\w+\s*\(at\s+([-\d.]+)\s+([-\d.]+)\s+([-\d.]+)\).*?'
+                    r'\(number\s+"([^"]+)"', re.S)
+_geometry = {}
+
+
+def snap(v):
+    """Konnect snaps a placed symbol to the 1.27 mm grid, to the nearest point."""
+    return round(int(v / GRID + 0.5) * GRID, 2)
+
+
+def pin_geometry(libsym):
+    """{(unit, number): (px, py, angle)} for body style 1, unit 0 = every unit."""
+    if libsym not in _geometry:
+        lib, name = libsym.split(":")
+        path = _project_libs.get(lib) or os.path.join(
+            "/Applications/KiCad/KiCad.app/Contents/SharedSupport/symbols", lib + ".kicad_sym")
+        text = open(path).read()
+        body = _symbol(text, name)
+        ext = re.search(r'\(extends "([^"]+)"\)', body)
+        if ext:
+            name = ext.group(1)
+            body = _symbol(text, name)
+        table = {}
+        for m in re.finditer(r'\(symbol "' + re.escape(name) + r'_(\d+)_(\d+)"', body):
+            if m.group(2) not in ("0", "1"):
+                continue                        # De Morgan body: same pins, drawn twice
+            for px, py, ang, num in PIN_AT.findall(_block(body, m.start())):
+                table[(int(m.group(1)), num)] = (float(px), float(py), int(float(ang)))
+        _geometry[libsym] = table
+    return _geometry[libsym]
+
+
+def pin_end(place, num):
+    """Where pin `num` of a placed unit lands on the sheet, and which way is out."""
+    geo = pin_geometry(place["lib_id"])
+    g = geo.get((place["unit"], num)) or geo.get((0, num))
+    if g is None:
+        raise KeyError(f"{place['reference']} unit {place['unit']} has no pin {num}")
+    px, py, ang = g
+    x, y = snap(place["x"]), snap(place["y"])
+    return round(x + px, 2), round(y - py, 2), AWAY[ang % 360]
+
+
+def build_ops(plan, slug):
+    """The plan for one sheet as the calls that draw it, in order."""
+    lib = load_layout(slug).get("project_lib", slug)
+    _project_libs[lib] = os.path.join(ROOT, "kicad", slug, f"{lib}.kicad_sym")
+    units = {}
+    for p in plan["place"]:
+        units.setdefault(p["reference"], []).append(p)
+
+    def where(ref, num):
+        for p in units[ref]:
+            try:
+                return pin_end(p, num)
+            except KeyError:
+                continue
+        raise KeyError(f"{ref}.{num} is on no unit placed on {plan['sheet']}")
+
+    local = [{"net": net, "pins": [{"reference": r, "pin_number": n} for r, n in pins]}
+             for net, pins in plan["local_nets"].items()]
+    power_symbols = []
+    for rail, pins in plan["power"].items():
+        local.append({"net": rail, "pins": [{"reference": r, "pin_number": n} for r, n in pins]})
+        x, y, _ = where(*pins[0])
+        power_symbols.append({"net": rail, "x": x, "y": y})
+    glob = []
+    for net, ref, num in plan["global_pins"]:
+        x, y, rot = where(ref, num)
+        glob.append({"net": net, "x": x, "y": y, "rotation": rot})
+    nc = []
+    for ref, num in plan["nc"]:
+        x, y, _ = where(ref, num)
+        nc.append({"x": x, "y": y, "pin": f"{ref}.{num}"})
+    return {"sheet": plan["sheet"], "file": plan["file"], "place": plan["place"],
+            "local": local, "global": glob, "power_symbols": power_symbols, "nc": nc}
 
 
 def main():
@@ -300,6 +352,11 @@ def main():
               f"{len(plan['global_pins']):3} global labels  "
               f"{sum(len(v) for v in plan['power'].values()):3} power pins  {len(plan['nc']):3} nc")
     json.dump(names, open(os.path.join(out, "labels.json"), "w"), indent=1)
+    if "--ops" in sys.argv:
+        for key, plan in plans.items():
+            json.dump(build_ops(plan, slug), open(os.path.join(out, f"{key}.ops.json"), "w"),
+                      indent=1)
+        print(f"wrote {len(plans)} ops files")
 
 
 if __name__ == "__main__":

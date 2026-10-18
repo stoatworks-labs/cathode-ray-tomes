@@ -48,7 +48,9 @@ def publish_schematic(slug, web):
         plan = json.load(open(p))
         if isinstance(plan, dict) and "title" in plan:
             plans[plan["file"]] = plan
-    order = [k for k in ("seq", "alu", "ctl", "io", "pokey", "noise", "audio", "power")]
+    # Sheets are shown in the order the board's layout lists them.
+    lpath = os.path.join(ROOT, "boards", slug + ".sheets.json")
+    order = [s["key"] for s in json.load(open(lpath))["sheets"]] if os.path.exists(lpath) else []
     sheets = []
     for f in sorted(os.listdir(out)):
         # kicad-cli names a sheet's SVG after the project and the sheet name;

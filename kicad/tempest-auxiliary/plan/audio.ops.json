@@ -1,0 +1,457 @@
+{
+ "sheet": "audio",
+ "file": "audio.kicad_sch",
+ "place": [
+  {
+   "lib_id": "Device:R",
+   "reference": "R33",
+   "unit": 1,
+   "value": "330K",
+   "x": 40,
+   "y": 50
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R32",
+   "unit": 1,
+   "value": "330K",
+   "x": 40,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R34",
+   "unit": 1,
+   "value": "22K",
+   "x": 70,
+   "y": 85
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R36",
+   "unit": 1,
+   "value": "10K",
+   "x": 95,
+   "y": 85
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK6",
+   "unit": 3,
+   "value": "LM324",
+   "x": 135,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R38",
+   "unit": 1,
+   "value": "100K",
+   "x": 135,
+   "y": 85
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C27",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 175,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R35",
+   "unit": 1,
+   "value": "100K",
+   "x": 195,
+   "y": 75
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK6",
+   "unit": 2,
+   "value": "LM324",
+   "x": 230,
+   "y": 60
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R37",
+   "unit": 1,
+   "value": "100K",
+   "x": 230,
+   "y": 85
+  },
+  {
+   "lib_id": "74xx:74LS174",
+   "reference": "UH4",
+   "unit": 1,
+   "value": "74LS174",
+   "x": 55,
+   "y": 145
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R30",
+   "unit": 1,
+   "value": "150",
+   "x": 110,
+   "y": 135
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R31",
+   "unit": 1,
+   "value": "150",
+   "x": 110,
+   "y": 155
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R7",
+   "unit": 1,
+   "value": "1K",
+   "x": 25,
+   "y": 180
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 6,
+   "value": "74LS14",
+   "x": 165,
+   "y": 140
+  },
+  {
+   "lib_id": "74xx:74LS03",
+   "reference": "UF5",
+   "unit": 3,
+   "value": "74S03",
+   "x": 215,
+   "y": 140
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R41",
+   "unit": 1,
+   "value": "1K",
+   "x": 250,
+   "y": 130
+  }
+ ],
+ "local": [
+  {
+   "net": "C27-2",
+   "pins": [
+    {
+     "reference": "C27",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R35",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "H4-12",
+   "pins": [
+    {
+     "reference": "R30",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UH4",
+     "pin_number": "12"
+    }
+   ]
+  },
+  {
+   "net": "H4-15",
+   "pins": [
+    {
+     "reference": "R31",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UH4",
+     "pin_number": "15"
+    }
+   ]
+  },
+  {
+   "net": "R32-2",
+   "pins": [
+    {
+     "reference": "R32",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R33",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R34",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK6",
+     "pin_number": "10"
+    }
+   ]
+  },
+  {
+   "net": "R35-2",
+   "pins": [
+    {
+     "reference": "R35",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R37",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK6",
+     "pin_number": "6"
+    }
+   ]
+  },
+  {
+   "net": "R36-2",
+   "pins": [
+    {
+     "reference": "R36",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R38",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UK6",
+     "pin_number": "9"
+    }
+   ]
+  },
+  {
+   "net": "F4-12",
+   "pins": [
+    {
+     "reference": "UF4",
+     "pin_number": "12"
+    },
+    {
+     "reference": "UF5",
+     "pin_number": "9"
+    }
+   ]
+  },
+  {
+   "net": "+5V",
+   "pins": [
+    {
+     "reference": "R41",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R7",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UH4",
+     "pin_number": "16"
+    },
+    {
+     "reference": "UK6",
+     "pin_number": "5"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "R34",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R36",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UH4",
+     "pin_number": "8"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "~{OL}",
+   "x": 41.91,
+   "y": 152.4,
+   "rotation": 180
+  },
+  {
+   "net": "~{RESET}",
+   "x": 25.4,
+   "y": 176.53,
+   "rotation": 90
+  },
+  {
+   "net": "~{RESET}",
+   "x": 41.91,
+   "y": 157.48,
+   "rotation": 180
+  },
+  {
+   "net": "~{STREN}",
+   "x": 157.48,
+   "y": 139.7,
+   "rotation": 180
+  },
+  {
+   "net": "AUD+",
+   "x": 175.26,
+   "y": 55.88,
+   "rotation": 90
+  },
+  {
+   "net": "AUD+",
+   "x": 134.62,
+   "y": 88.9,
+   "rotation": 270
+  },
+  {
+   "net": "AUD+",
+   "x": 142.24,
+   "y": 59.69,
+   "rotation": 0
+  },
+  {
+   "net": "AUD-",
+   "x": 229.87,
+   "y": 88.9,
+   "rotation": 270
+  },
+  {
+   "net": "AUD-",
+   "x": 237.49,
+   "y": 59.69,
+   "rotation": 0
+  },
+  {
+   "net": "EDB0",
+   "x": 41.91,
+   "y": 147.32,
+   "rotation": 180
+  },
+  {
+   "net": "EDB1",
+   "x": 41.91,
+   "y": 144.78,
+   "rotation": 180
+  },
+  {
+   "net": "EDB2",
+   "x": 41.91,
+   "y": 142.24,
+   "rotation": 180
+  },
+  {
+   "net": "EDB3",
+   "x": 41.91,
+   "y": 139.7,
+   "rotation": 180
+  },
+  {
+   "net": "EDB7",
+   "x": 250.19,
+   "y": 125.73,
+   "rotation": 90
+  },
+  {
+   "net": "EDB7",
+   "x": 222.25,
+   "y": 139.7,
+   "rotation": 0
+  },
+  {
+   "net": "FLIP",
+   "x": 67.31,
+   "y": 142.24,
+   "rotation": 0
+  },
+  {
+   "net": "POKAU1",
+   "x": 39.37,
+   "y": 66.04,
+   "rotation": 90
+  },
+  {
+   "net": "POKAU2",
+   "x": 39.37,
+   "y": 45.72,
+   "rotation": 90
+  },
+  {
+   "net": "SAEN2,3",
+   "x": 67.31,
+   "y": 139.7,
+   "rotation": 0
+  },
+  {
+   "net": "START_LED1",
+   "x": 110.49,
+   "y": 138.43,
+   "rotation": 270
+  },
+  {
+   "net": "START_LED2",
+   "x": 110.49,
+   "y": 158.75,
+   "rotation": 270
+  },
+  {
+   "net": "STOP",
+   "x": 207.01,
+   "y": 142.24,
+   "rotation": 180
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "+5V",
+   "x": 250.19,
+   "y": 133.35
+  },
+  {
+   "net": "GND",
+   "x": 69.85,
+   "y": 88.9
+  }
+ ],
+ "nc": [
+  {
+   "x": 67.31,
+   "y": 134.62,
+   "pin": "UH4.2"
+  },
+  {
+   "x": 41.91,
+   "y": 134.62,
+   "pin": "UH4.3"
+  },
+  {
+   "x": 41.91,
+   "y": 137.16,
+   "pin": "UH4.4"
+  },
+  {
+   "x": 67.31,
+   "y": 137.16,
+   "pin": "UH4.5"
+  }
+ ]
+}

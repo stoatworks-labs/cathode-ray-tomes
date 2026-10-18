@@ -1,163 +1,289 @@
 {
+ "A1": {
+  "part": "82S123",
+  "section": "Math Box",
+  "note": "Atari 136002-126; 32x8 entry PROM. A0-A4 from EAB0-4; D0-D7 share a bus with B1's outputs into the program counter's load inputs (D1 and C1 pins 3-6). Enabled while BEGIN (its CE is /BEGIN), so it supplies the start address of the routine the CPU asked for",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
  "A2": {
   "part": "74109",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "printed '109'. Makes BEGIN: held clear while M START is low, set on an E6MHZ edge with E3MHZ high, and cleared again by its own /BEGIN on /K. Its second flip-flop is not drawn",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "A3": {
   "part": "74LS174",
-  "section": "",
-  "note": "",
+  "section": "High Score Memory",
+  "note": "EAROM address latch: EAB0-5 clocked in by /EARWR, out to C3 pins 7-12, each pulled up 10K (R19-R23, R25)",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "A4": {
   "part": "74LS191",
-  "section": "",
-  "note": "",
+  "section": "Player Inputs and Audio Output",
+  "note": "spinner up/down counter, clocked by the selected encoder's clock, direction from C6; its count TBC0-3 is read by POKEY B/C2 on P0-P3. Load held off, data inputs grounded",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "B1": {
   "part": "74LS374",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "jump-address latch: takes microcode bits A0-A7 on E4.6 (/CLK AND LDAB) and puts them on the program counter's load bus whenever BEGIN is low. Its OC (pin 1) is lettered BEGIN but drawn wired to /BEGIN -- see the conflicts",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "B2": {
+  "part": "C012294-01",
+  "section": "Player Inputs and Audio Output",
+  "note": "POKEY 'Audio 1' (self-test name), DIP-40 spanning B and C. Selected by /POKEY1 (60C0). Reads the spinner count on P0-P3, /COCKTAIL on P4 and option switch 1 on P5; its audio is POKAU1; spans B/C2",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "B4": {
   "part": "74LS139",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "first-level decode of the $60xx I/O page: upper half splits EAB7/6 into EAROM write, the read strobes, Math Box start and the POKEY/latch group; lower half makes /EARCON and /EARWR from EAB7/6 under C4.3",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "B5": {
   "part": "74LS139",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "second-level decode: upper half (EAB5/4) makes /POKEY1, /POKEY2 and the output-latch strobe; lower half makes the read strobes /YHI, /YLO, /EARD and /STREN",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "C1": {
   "part": "74LS161",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "program counter, high nibble (MA4-MA7); MA7 is also SA enable 1 (J16 pin 9)",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "C2": {
+  "part": "C012294-01",
+  "section": "Player Inputs and Audio Output",
+  "note": "POKEY 'Audio 2', DIP-40 spanning C and D. Selected by /POKEY2 (60D0). Reads the option switches on P0-P2, ZAP on P3, FIRE on P4, START1 on P5 and START2 on P6; its audio is POKAU2; spans C/D2",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "C3": {
+  "part": "ER2055",
+  "section": "High Score Memory",
+  "note": "GI ER2055 64x8 EAROM (Atari 137161-001), the high-score memory. Address from A3, data written through F3 and read back through E3, control from J3 (CK=EDB0, C2=EDB1, C1=/EDB2, CS1=EDB3). VSS +5V, VGG -28V from the K3 charge pump",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "C4": {
   "part": "74LS32",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "four OR gates qualifying the decode with /I/O, /WRITE, R/WB and ER/WB",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "C5": {
   "part": "74LS10",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "/WRITE = NAND(EPHI2, E3MHZ, R/WB), shared by the EAROM write and output-latch strobes; SACLK3 = NAND(EPHI2, E3MHZ, Math Box start)",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "C6": {
   "part": "74LS74",
-  "section": "",
-  "note": "",
+  "section": "Player Inputs and Audio Output",
+  "note": "spinner direction latch: the selected encoder's direction clocked on its clock edge into A4's up/down input. Second flip-flop not drawn",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "D1": {
   "part": "74LS161",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "program counter, low nibble (MA0-MA3); loaded by /PCEN from A1 or B1",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "D4": {
   "part": "74LS00",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "SACLK2 (CLK gated by BEGIN), /A18, and the jump-on-sign NANDs feeding /PCEN",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "D5": {
   "part": "74LS74",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "second half is the STOP flip-flop (microcode A12 clocked on /CLK, cleared by /BEGIN); first half latches the slices' Q0 on CLK for the multiply step",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "D6": {
   "part": "74LS157",
-  "section": "",
-  "note": "",
+  "section": "Player Inputs and Audio Output",
+  "note": "player select, switched by FLIP: picks one encoder's clock and direction, ZAP and FIRE for the cocktail cabinet's two players",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "E1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-127; microcode PROM, outputs C, M, J, S (Battlezone's A23-A20)",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "E2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; most significant slice -- its F3 and OVR feed the sign XOR (E5) and its RAM3 is driven by F5 for arithmetic shifts. Puts EDB7-4 on the bus under /YHI",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "E3": {
   "part": "74LS244",
-  "section": "",
-  "note": "",
+  "section": "High Score Memory",
+  "note": "EAROM read buffer: C3's data onto EDB under /EARD. Its second enable reaches /EARD through jumper JP1 (fitted)",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "E4": {
   "part": "74S08",
-  "section": "",
-  "note": "",
+  "section": "Math Box",
+  "note": "LDAB AND /CLK clocks B1; /PCEN = jump AND /BEGIN; M AND C6-latched Q0 for the multiply",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "E5": {
+  "part": "74S86",
+  "section": "Math Box",
+  "note": "Atari 137002-001. Sign = F3 XOR OVR from E2; A10* = A10 XOR the multiply bit, into all four slices' I1",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "E6": {
   "part": "4584B",
-  "section": "",
-  "note": "",
+  "section": "Player Inputs and Audio Output",
+  "note": "Schmitt inverters squaring the four AC-coupled encoder inputs; its sixth inverter (1->2, R53/C48) is the oscillator whose average (R48/C47) biases them. If that oscillator or C47 fails, all four encoder inputs die together",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "F1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-128; microcode PROM, outputs LDAB (Battlezone's A16), A17, A18, A19",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "F2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40 spanning F and H; bits 7-4. Puts EDB7-4 on the bus under /YLO; spans F/H2",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "F3": {
   "part": "74LS374",
-  "section": "",
-  "note": "",
+  "section": "High Score Memory",
+  "note": "EAROM write latch: EDB clocked in by /EARWR, onto C3's data pins while C1 is low (its OC is the EAROM's C1 line)",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "F4": {
   "part": "74LS14",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "shared Schmitt inverters: /CLK (Math Box), R/WB, the Math Box start strobe, /EARD for the E3 jumper option and /STREN for the status read",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "F5": {
+  "part": "74S03",
+  "section": "Math Box",
+  "note": "Atari 137003-001; open-collector NANDs: drives E2's RAM3 (R15, pulled up by R42), pulls K/L2's Q0 low on a shift up, and puts STOP on EDB7 under /STREN",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "H1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-129; microcode PROM, outputs A12-A15 (A12 is STOP's data)",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "H3": {
   "part": "74LS244",
-  "section": "",
-  "note": "",
+  "section": "High Score Memory",
+  "note": "data-bus buffer to F3 and J3; its EDB6 slot carries the 3 MHz clock instead, buffered to E3MHZ for the decoder and the Math Box -- a dead H3 stops the Math Box too",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "H4": {
   "part": "74LS174",
-  "section": "",
-  "note": "",
+  "section": "Player Inputs and Audio Output",
+  "note": "output latch on /OL (60E0): EDB0/1 the two start LEDs, EDB2 FLIP, EDB3 SA enable 2,3. Cleared by /RESET",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "J1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-130; microcode PROM, outputs A8-A11",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "J2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40; bits 11-8. Puts EDB3-0 on the bus under /YHI",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "J3": {
   "part": "74LS175",
-  "section": "",
-  "note": "",
+  "section": "High Score Memory",
+  "note": "EAROM control latch on /EARCON (6040): CK, C2, C1 and CS1 from EDB0-3, each pulled up 10K. Cleared by /RESET",
   "otherRev": null,
-  "source": "IC parts list, 4 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  },
  "J4": {
   "part": "74LS02",
-  "section": "",
-  "note": "",
+  "section": "Address Decoder",
+  "note": "CLK = NOR(STOP, E3MHZ), so the Math Box clock runs only while STOP is low; M START = NOR(Math Box write, EPHI2)",
   "otherRev": null,
-  "source": "IC parts list, 3 printings, confirmed by the parts list"
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "K1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-131; microcode PROM, outputs A4-A7",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "K2": {
+  "part": "137004-001",
+  "section": "Math Box",
+  "note": "Atari-marked Am2901 4-bit slice, DIP-40 spanning K and L; least significant, bits 3-0, carry-in from microcode C. Puts EDB3-0 on the bus under /YLO; spans K/L2",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "K3": {
+  "part": "LM324",
+  "section": "High Score Memory",
+  "note": "the EAROM's -28V: run between GND and -22V as a comparator on the game PCB's 3 kHz, driving the C19/CR3/CR4/C21 charge pump; R27 and the 33V zener CR2 regulate it. The 4th printing parallels all four sections, the 1st and 2nd two",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "K6": {
+  "part": "LM324",
+  "section": "Player Inputs and Audio Output",
+  "note": "audio output on +22V: sums POKAU1 and POKAU2 through 330K into AUD+, and inverts that around +5V for AUD- (edge pins 5 and D)",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
+ },
+ "L1": {
+  "part": "82S129",
+  "section": "Math Box",
+  "note": "Atari 136002-132; microcode PROM, outputs A0-A3",
+  "otherRev": null,
+  "source": "DP-190 sheet 3 Side B, the TM-190 parts list agreeing"
  }
 }

@@ -68,6 +68,10 @@ PART_PINS = {
     "82S123":     (16, "datasheet", "32x8 bipolar PROM"),
     "82S129":     (16, "datasheet", "256x4 bipolar PROM"),
     "83S185":     (18, "datasheet", "2K x 4 bipolar PROM"),
+    "ER2055":     (22, "drawing",
+                   "GI 64x8 EAROM, Atari 137161-001; DIP-22 drawn pin by pin "
+                   "on Tempest DP-190 sheet 3 Side B, and a 22-contact socket "
+                   "at C3 in the TM-190 Auxiliary PCB parts list"),
 
     # processors and custom silicon
     "6502":       (40, "datasheet", "MOS 6502"),

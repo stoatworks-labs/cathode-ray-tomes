@@ -1,0 +1,916 @@
+{
+ "sheet": "power",
+ "file": "power.kicad_sch",
+ "place": [
+  {
+   "lib_id": "74xx:74LS109",
+   "reference": "UA2",
+   "unit": 3,
+   "value": "74109",
+   "x": 25,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB4",
+   "unit": 3,
+   "value": "74LS139",
+   "x": 55,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS139",
+   "reference": "UB5",
+   "unit": 3,
+   "value": "74LS139",
+   "x": 85,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS32",
+   "reference": "UC4",
+   "unit": 5,
+   "value": "74LS32",
+   "x": 115,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS10",
+   "reference": "UC5",
+   "unit": 4,
+   "value": "74LS10",
+   "x": 145,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS74",
+   "reference": "UC6",
+   "unit": 3,
+   "value": "74LS74",
+   "x": 175,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS00",
+   "reference": "UD4",
+   "unit": 5,
+   "value": "74LS00",
+   "x": 205,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS74",
+   "reference": "UD5",
+   "unit": 3,
+   "value": "74LS74",
+   "x": 235,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS08",
+   "reference": "UE4",
+   "unit": 5,
+   "value": "74S08",
+   "x": 265,
+   "y": 40
+  },
+  {
+   "lib_id": "74xx:74LS86",
+   "reference": "UE5",
+   "unit": 5,
+   "value": "74S86",
+   "x": 25,
+   "y": 70
+  },
+  {
+   "lib_id": "4xxx:40106",
+   "reference": "UE6",
+   "unit": 7,
+   "value": "4584B",
+   "x": 55,
+   "y": 70
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 7,
+   "value": "74LS14",
+   "x": 85,
+   "y": 70
+  },
+  {
+   "lib_id": "74xx:74LS03",
+   "reference": "UF5",
+   "unit": 5,
+   "value": "74S03",
+   "x": 115,
+   "y": 70
+  },
+  {
+   "lib_id": "74xx:74LS02",
+   "reference": "UJ4",
+   "unit": 5,
+   "value": "74LS02",
+   "x": 145,
+   "y": 70
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK3",
+   "unit": 5,
+   "value": "LM324",
+   "x": 175,
+   "y": 70
+  },
+  {
+   "lib_id": "Amplifier_Operational:LM324",
+   "reference": "UK6",
+   "unit": 5,
+   "value": "LM324",
+   "x": 205,
+   "y": 70
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C56",
+   "unit": 1,
+   "value": "100uF 25V",
+   "x": 20,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C37",
+   "unit": 1,
+   "value": "470uF 25V",
+   "x": 34,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C_Polarized",
+   "reference": "C38",
+   "unit": 1,
+   "value": "470uF 25V",
+   "x": 48,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R2",
+   "unit": 1,
+   "value": "150",
+   "x": 62,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:LED",
+   "reference": "CR1",
+   "unit": 1,
+   "value": "MV5053",
+   "x": 76,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R1",
+   "unit": 1,
+   "value": "1K",
+   "x": 90,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:R",
+   "reference": "R54",
+   "unit": 1,
+   "value": "1K",
+   "x": 104,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C1",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 118,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C2",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 132,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C3",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 146,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C4",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 160,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C5",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 174,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C6",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 188,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C7",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 202,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C8",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 216,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C12",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 230,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C14",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 244,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C15",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 258,
+   "y": 112
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C17",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 20,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C18",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 34,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C22",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 48,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C23",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 62,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C24",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 76,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C25",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 90,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C26",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 104,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C30",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 118,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C33",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 132,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C34",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 146,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C35",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 160,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C36",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 174,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C41",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 188,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C44",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 202,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C49",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 216,
+   "y": 142
+  },
+  {
+   "lib_id": "Device:C",
+   "reference": "C54",
+   "unit": 1,
+   "value": ".1uF",
+   "x": 230,
+   "y": 142
+  },
+  {
+   "lib_id": "power:PWR_FLAG",
+   "reference": "#FLG01",
+   "unit": 1,
+   "value": "PWR_FLAG",
+   "x": 120,
+   "y": 180
+  },
+  {
+   "lib_id": "power:PWR_FLAG",
+   "reference": "#FLG02",
+   "unit": 1,
+   "value": "PWR_FLAG",
+   "x": 140,
+   "y": 180
+  },
+  {
+   "lib_id": "power:PWR_FLAG",
+   "reference": "#FLG03",
+   "unit": 1,
+   "value": "PWR_FLAG",
+   "x": 160,
+   "y": 180
+  },
+  {
+   "lib_id": "power:PWR_FLAG",
+   "reference": "#FLG04",
+   "unit": 1,
+   "value": "PWR_FLAG",
+   "x": 180,
+   "y": 180
+  },
+  {
+   "lib_id": "power:PWR_FLAG",
+   "reference": "#FLG05",
+   "unit": 1,
+   "value": "PWR_FLAG",
+   "x": 200,
+   "y": 180
+  }
+ ],
+ "local": [
+  {
+   "net": "CR1-2",
+   "pins": [
+    {
+     "reference": "CR1",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R2",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "+5V",
+   "pins": [
+    {
+     "reference": "C1",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C12",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C14",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C15",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C17",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C18",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C2",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C22",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C23",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C24",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C25",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C26",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C3",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C30",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C33",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C34",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C35",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C36",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C4",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C41",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C44",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C49",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C5",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C54",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C56",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C6",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C7",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C8",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R1",
+     "pin_number": "2"
+    },
+    {
+     "reference": "R2",
+     "pin_number": "1"
+    },
+    {
+     "reference": "R54",
+     "pin_number": "2"
+    },
+    {
+     "reference": "UA2",
+     "pin_number": "16"
+    },
+    {
+     "reference": "UB4",
+     "pin_number": "16"
+    },
+    {
+     "reference": "UB5",
+     "pin_number": "16"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UC5",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UC6",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UD4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UD5",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UE4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UE5",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UF5",
+     "pin_number": "14"
+    },
+    {
+     "reference": "UJ4",
+     "pin_number": "14"
+    },
+    {
+     "reference": "#FLG01",
+     "pin_number": "1"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "C1",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C12",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C14",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C15",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C17",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C18",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C2",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C22",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C23",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C24",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C25",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C26",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C3",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C30",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C33",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C34",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C35",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C36",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C37",
+     "pin_number": "1"
+    },
+    {
+     "reference": "C38",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C4",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C41",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C44",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C49",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C5",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C54",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C56",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C6",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C7",
+     "pin_number": "2"
+    },
+    {
+     "reference": "C8",
+     "pin_number": "2"
+    },
+    {
+     "reference": "CR1",
+     "pin_number": "1"
+    },
+    {
+     "reference": "UA2",
+     "pin_number": "8"
+    },
+    {
+     "reference": "UB4",
+     "pin_number": "8"
+    },
+    {
+     "reference": "UB5",
+     "pin_number": "8"
+    },
+    {
+     "reference": "UC4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UC5",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UC6",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UD4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UD5",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UE4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UE5",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UE6",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UF5",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UJ4",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UK3",
+     "pin_number": "4"
+    },
+    {
+     "reference": "UK6",
+     "pin_number": "11"
+    },
+    {
+     "reference": "#FLG02",
+     "pin_number": "1"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "+22V",
+   "x": 48.26,
+   "y": 107.95,
+   "rotation": 90
+  },
+  {
+   "net": "+22V",
+   "x": 201.93,
+   "y": 62.23,
+   "rotation": 90
+  },
+  {
+   "net": "+22V",
+   "x": 160.02,
+   "y": 180.34,
+   "rotation": 270
+  },
+  {
+   "net": "-22V",
+   "x": 34.29,
+   "y": 115.57,
+   "rotation": 270
+  },
+  {
+   "net": "-22V",
+   "x": 172.72,
+   "y": 77.47,
+   "rotation": 270
+  },
+  {
+   "net": "-22V",
+   "x": 180.34,
+   "y": 180.34,
+   "rotation": 270
+  },
+  {
+   "net": "-28V",
+   "x": 199.39,
+   "y": 180.34,
+   "rotation": 270
+  },
+  {
+   "net": "R1-1",
+   "x": 90.17,
+   "y": 107.95,
+   "rotation": 90
+  },
+  {
+   "net": "R54-1",
+   "x": 104.14,
+   "y": 107.95,
+   "rotation": 90
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "+5V",
+   "x": 118.11,
+   "y": 107.95
+  },
+  {
+   "net": "GND",
+   "x": 118.11,
+   "y": 115.57
+  }
+ ],
+ "nc": []
+}

@@ -1,0 +1,290 @@
+{
+ "sheet": "ctl",
+ "file": "ctl.kicad_sch",
+ "place": [
+  {
+   "lib_id": "74xx:74LS109",
+   "reference": "UA2",
+   "unit": 1,
+   "value": "74109",
+   "x": 35,
+   "y": 55
+  },
+  {
+   "lib_id": "74xx:74LS74",
+   "reference": "UD5",
+   "unit": 2,
+   "value": "74LS74",
+   "x": 95,
+   "y": 55
+  },
+  {
+   "lib_id": "74xx:74LS02",
+   "reference": "UJ4",
+   "unit": 1,
+   "value": "74LS02",
+   "x": 150,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS14",
+   "reference": "UF4",
+   "unit": 1,
+   "value": "74LS14",
+   "x": 195,
+   "y": 50
+  },
+  {
+   "lib_id": "74xx:74LS00",
+   "reference": "UD4",
+   "unit": 1,
+   "value": "74LS00",
+   "x": 150,
+   "y": 95
+  },
+  {
+   "lib_id": "74xx:74LS08",
+   "reference": "UE4",
+   "unit": 2,
+   "value": "74S08",
+   "x": 195,
+   "y": 95
+  },
+  {
+   "lib_id": "Connector_Generic:Conn_01x12",
+   "reference": "J16",
+   "unit": 1,
+   "value": "SA header",
+   "x": 255,
+   "y": 100
+  }
+ ],
+ "local": [
+  {
+   "net": "~{CLK}",
+   "pins": [
+    {
+     "reference": "UD5",
+     "pin_number": "11"
+    },
+    {
+     "reference": "UE4",
+     "pin_number": "4"
+    },
+    {
+     "reference": "UF4",
+     "pin_number": "2"
+    }
+   ]
+  },
+  {
+   "net": "SACLK2",
+   "pins": [
+    {
+     "reference": "J16",
+     "pin_number": "7"
+    },
+    {
+     "reference": "UD4",
+     "pin_number": "3"
+    }
+   ]
+  },
+  {
+   "net": "GND",
+   "pins": [
+    {
+     "reference": "J16",
+     "pin_number": "1"
+    }
+   ]
+  }
+ ],
+ "global": [
+  {
+   "net": "~{BEGIN}",
+   "x": 27.94,
+   "y": 57.15,
+   "rotation": 180
+  },
+  {
+   "net": "~{BEGIN}",
+   "x": 43.18,
+   "y": 57.15,
+   "rotation": 0
+  },
+  {
+   "net": "~{BEGIN}",
+   "x": 95.25,
+   "y": 62.23,
+   "rotation": 270
+  },
+  {
+   "net": "A12",
+   "x": 87.63,
+   "y": 52.07,
+   "rotation": 180
+  },
+  {
+   "net": "BEGIN",
+   "x": 43.18,
+   "y": 52.07,
+   "rotation": 0
+  },
+  {
+   "net": "BEGIN",
+   "x": 142.24,
+   "y": 97.79,
+   "rotation": 180
+  },
+  {
+   "net": "CLK",
+   "x": 250.19,
+   "y": 100.33,
+   "rotation": 180
+  },
+  {
+   "net": "CLK",
+   "x": 142.24,
+   "y": 92.71,
+   "rotation": 180
+  },
+  {
+   "net": "CLK",
+   "x": 187.96,
+   "y": 49.53,
+   "rotation": 180
+  },
+  {
+   "net": "CLK",
+   "x": 157.48,
+   "y": 49.53,
+   "rotation": 0
+  },
+  {
+   "net": "E3MHZ",
+   "x": 27.94,
+   "y": 52.07,
+   "rotation": 180
+  },
+  {
+   "net": "E3MHZ",
+   "x": 142.24,
+   "y": 46.99,
+   "rotation": 180
+  },
+  {
+   "net": "E6MHZ",
+   "x": 27.94,
+   "y": 54.61,
+   "rotation": 180
+  },
+  {
+   "net": "J",
+   "x": 250.19,
+   "y": 97.79,
+   "rotation": 180
+  },
+  {
+   "net": "LDAB",
+   "x": 187.96,
+   "y": 97.79,
+   "rotation": 180
+  },
+  {
+   "net": "M_START",
+   "x": 250.19,
+   "y": 92.71,
+   "rotation": 180
+  },
+  {
+   "net": "M_START",
+   "x": 35.56,
+   "y": 62.23,
+   "rotation": 270
+  },
+  {
+   "net": "R1-1",
+   "x": 35.56,
+   "y": 46.99,
+   "rotation": 90
+  },
+  {
+   "net": "R54-1",
+   "x": 95.25,
+   "y": 46.99,
+   "rotation": 90
+  },
+  {
+   "net": "E4-6",
+   "x": 203.2,
+   "y": 95.25,
+   "rotation": 0
+  },
+  {
+   "net": "SACLK3",
+   "x": 250.19,
+   "y": 105.41,
+   "rotation": 180
+  },
+  {
+   "net": "SAEN2,3",
+   "x": 250.19,
+   "y": 110.49,
+   "rotation": 180
+  },
+  {
+   "net": "SAEN1",
+   "x": 250.19,
+   "y": 107.95,
+   "rotation": 180
+  },
+  {
+   "net": "STOP",
+   "x": 250.19,
+   "y": 95.25,
+   "rotation": 180
+  },
+  {
+   "net": "STOP",
+   "x": 102.87,
+   "y": 52.07,
+   "rotation": 0
+  },
+  {
+   "net": "STOP",
+   "x": 142.24,
+   "y": 52.07,
+   "rotation": 180
+  }
+ ],
+ "power_symbols": [
+  {
+   "net": "GND",
+   "x": 250.19,
+   "y": 87.63
+  }
+ ],
+ "nc": [
+  {
+   "x": 250.19,
+   "y": 113.03,
+   "pin": "J16.11"
+  },
+  {
+   "x": 250.19,
+   "y": 115.57,
+   "pin": "J16.12"
+  },
+  {
+   "x": 250.19,
+   "y": 90.17,
+   "pin": "J16.2"
+  },
+  {
+   "x": 102.87,
+   "y": 57.15,
+   "pin": "UD5.8"
+  }
+ ]
+}

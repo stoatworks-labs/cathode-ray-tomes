@@ -3,13 +3,236 @@
  "name": "Tempest Auxiliary PCB",
  "mfr": "Atari",
  "year": "1981",
- "drawing": "TM-190 IC parts lists, Auxiliary PCB Assembly figure (4 printings)",
- "sheets": {},
+ "drawing": "DP-190 sheet 3 Side B, Auxiliary PCB 037585-01 (4th printing, checked against the 2nd and 1st), with the TM-190 Figure 22 parts list",
+ "sheets": {
+  "03B": {
+   "A1": {
+    "part": "82S123",
+    "section": "Math Box",
+    "note": "Atari 136002-126; 32x8 entry PROM. A0-A4 from EAB0-4; D0-D7 share a bus with B1's outputs into the program counter's load inputs (D1 and C1 pins 3-6). Enabled while BEGIN (its CE is /BEGIN), so it supplies the start address of the routine the CPU asked for"
+   },
+   "A2": {
+    "part": "74109",
+    "section": "Math Box",
+    "note": "printed '109'. Makes BEGIN: held clear while M START is low, set on an E6MHZ edge with E3MHZ high, and cleared again by its own /BEGIN on /K. Its second flip-flop is not drawn"
+   },
+   "A3": {
+    "part": "74LS174",
+    "section": "High Score Memory",
+    "note": "EAROM address latch: EAB0-5 clocked in by /EARWR, out to C3 pins 7-12, each pulled up 10K (R19-R23, R25)"
+   },
+   "A4": {
+    "part": "74LS191",
+    "section": "Player Inputs and Audio Output",
+    "note": "spinner up/down counter, clocked by the selected encoder's clock, direction from C6; its count TBC0-3 is read by POKEY B/C2 on P0-P3. Load held off, data inputs grounded"
+   },
+   "B1": {
+    "part": "74LS374",
+    "section": "Math Box",
+    "note": "jump-address latch: takes microcode bits A0-A7 on E4.6 (/CLK AND LDAB) and puts them on the program counter's load bus whenever BEGIN is low. Its OC (pin 1) is lettered BEGIN but drawn wired to /BEGIN -- see the conflicts"
+   },
+   "B2": {
+    "part": "C012294-01",
+    "section": "Player Inputs and Audio Output",
+    "note": "POKEY 'Audio 1' (self-test name), DIP-40 spanning B and C. Selected by /POKEY1 (60C0). Reads the spinner count on P0-P3, /COCKTAIL on P4 and option switch 1 on P5; its audio is POKAU1"
+   },
+   "B4": {
+    "part": "74LS139",
+    "section": "Address Decoder",
+    "note": "first-level decode of the $60xx I/O page: upper half splits EAB7/6 into EAROM write, the read strobes, Math Box start and the POKEY/latch group; lower half makes /EARCON and /EARWR from EAB7/6 under C4.3"
+   },
+   "B5": {
+    "part": "74LS139",
+    "section": "Address Decoder",
+    "note": "second-level decode: upper half (EAB5/4) makes /POKEY1, /POKEY2 and the output-latch strobe; lower half makes the read strobes /YHI, /YLO, /EARD and /STREN"
+   },
+   "C1": {
+    "part": "74LS161",
+    "section": "Math Box",
+    "note": "program counter, high nibble (MA4-MA7); MA7 is also SA enable 1 (J16 pin 9)"
+   },
+   "C2": {
+    "part": "C012294-01",
+    "section": "Player Inputs and Audio Output",
+    "note": "POKEY 'Audio 2', DIP-40 spanning C and D. Selected by /POKEY2 (60D0). Reads the option switches on P0-P2, ZAP on P3, FIRE on P4, START1 on P5 and START2 on P6; its audio is POKAU2"
+   },
+   "C3": {
+    "part": "ER2055",
+    "section": "High Score Memory",
+    "note": "GI ER2055 64x8 EAROM (Atari 137161-001), the high-score memory. Address from A3, data written through F3 and read back through E3, control from J3 (CK=EDB0, C2=EDB1, C1=/EDB2, CS1=EDB3). VSS +5V, VGG -28V from the K3 charge pump"
+   },
+   "C4": {
+    "part": "74LS32",
+    "section": "Address Decoder",
+    "note": "four OR gates qualifying the decode with /I/O, /WRITE, R/WB and ER/WB"
+   },
+   "C5": {
+    "part": "74LS10",
+    "section": "Address Decoder",
+    "note": "/WRITE = NAND(EPHI2, E3MHZ, R/WB), shared by the EAROM write and output-latch strobes; SACLK3 = NAND(EPHI2, E3MHZ, Math Box start)"
+   },
+   "C6": {
+    "part": "74LS74",
+    "section": "Player Inputs and Audio Output",
+    "note": "spinner direction latch: the selected encoder's direction clocked on its clock edge into A4's up/down input. Second flip-flop not drawn"
+   },
+   "D1": {
+    "part": "74LS161",
+    "section": "Math Box",
+    "note": "program counter, low nibble (MA0-MA3); loaded by /PCEN from A1 or B1"
+   },
+   "D4": {
+    "part": "74LS00",
+    "section": "Math Box",
+    "note": "SACLK2 (CLK gated by BEGIN), /A18, and the jump-on-sign NANDs feeding /PCEN"
+   },
+   "D5": {
+    "part": "74LS74",
+    "section": "Math Box",
+    "note": "second half is the STOP flip-flop (microcode A12 clocked on /CLK, cleared by /BEGIN); first half latches the slices' Q0 on CLK for the multiply step"
+   },
+   "D6": {
+    "part": "74LS157",
+    "section": "Player Inputs and Audio Output",
+    "note": "player select, switched by FLIP: picks one encoder's clock and direction, ZAP and FIRE for the cocktail cabinet's two players"
+   },
+   "E1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-127; microcode PROM, outputs C, M, J, S (Battlezone's A23-A20)"
+   },
+   "E2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; most significant slice -- its F3 and OVR feed the sign XOR (E5) and its RAM3 is driven by F5 for arithmetic shifts. Puts EDB7-4 on the bus under /YHI"
+   },
+   "E3": {
+    "part": "74LS244",
+    "section": "High Score Memory",
+    "note": "EAROM read buffer: C3's data onto EDB under /EARD. Its second enable reaches /EARD through jumper JP1 (fitted)"
+   },
+   "E4": {
+    "part": "74S08",
+    "section": "Math Box",
+    "note": "LDAB AND /CLK clocks B1; /PCEN = jump AND /BEGIN; M AND C6-latched Q0 for the multiply"
+   },
+   "E5": {
+    "part": "74S86",
+    "section": "Math Box",
+    "note": "Atari 137002-001. Sign = F3 XOR OVR from E2; A10* = A10 XOR the multiply bit, into all four slices' I1"
+   },
+   "E6": {
+    "part": "4584B",
+    "section": "Player Inputs and Audio Output",
+    "note": "Schmitt inverters squaring the four AC-coupled encoder inputs; its sixth inverter (1->2, R53/C48) is the oscillator whose average (R48/C47) biases them. If that oscillator or C47 fails, all four encoder inputs die together"
+   },
+   "F1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-128; microcode PROM, outputs LDAB (Battlezone's A16), A17, A18, A19"
+   },
+   "F2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40 spanning F and H; bits 7-4. Puts EDB7-4 on the bus under /YLO"
+   },
+   "F3": {
+    "part": "74LS374",
+    "section": "High Score Memory",
+    "note": "EAROM write latch: EDB clocked in by /EARWR, onto C3's data pins while C1 is low (its OC is the EAROM's C1 line)"
+   },
+   "F4": {
+    "part": "74LS14",
+    "section": "Address Decoder",
+    "note": "shared Schmitt inverters: /CLK (Math Box), R/WB, the Math Box start strobe, /EARD for the E3 jumper option and /STREN for the status read"
+   },
+   "F5": {
+    "part": "74S03",
+    "section": "Math Box",
+    "note": "Atari 137003-001; open-collector NANDs: drives E2's RAM3 (R15, pulled up by R42), pulls K/L2's Q0 low on a shift up, and puts STOP on EDB7 under /STREN"
+   },
+   "H1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-129; microcode PROM, outputs A12-A15 (A12 is STOP's data)"
+   },
+   "H3": {
+    "part": "74LS244",
+    "section": "High Score Memory",
+    "note": "data-bus buffer to F3 and J3; its EDB6 slot carries the 3 MHz clock instead, buffered to E3MHZ for the decoder and the Math Box -- a dead H3 stops the Math Box too"
+   },
+   "H4": {
+    "part": "74LS174",
+    "section": "Player Inputs and Audio Output",
+    "note": "output latch on /OL (60E0): EDB0/1 the two start LEDs, EDB2 FLIP, EDB3 SA enable 2,3. Cleared by /RESET"
+   },
+   "J1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-130; microcode PROM, outputs A8-A11"
+   },
+   "J2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40; bits 11-8. Puts EDB3-0 on the bus under /YHI"
+   },
+   "J3": {
+    "part": "74LS175",
+    "section": "High Score Memory",
+    "note": "EAROM control latch on /EARCON (6040): CK, C2, C1 and CS1 from EDB0-3, each pulled up 10K. Cleared by /RESET"
+   },
+   "J4": {
+    "part": "74LS02",
+    "section": "Address Decoder",
+    "note": "CLK = NOR(STOP, E3MHZ), so the Math Box clock runs only while STOP is low; M START = NOR(Math Box write, EPHI2)"
+   },
+   "K1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-131; microcode PROM, outputs A4-A7"
+   },
+   "K2": {
+    "part": "137004-001",
+    "section": "Math Box",
+    "note": "Atari-marked Am2901 4-bit slice, DIP-40 spanning K and L; least significant, bits 3-0, carry-in from microcode C. Puts EDB3-0 on the bus under /YLO"
+   },
+   "K3": {
+    "part": "LM324",
+    "section": "High Score Memory",
+    "note": "the EAROM's -28V: run between GND and -22V as a comparator on the game PCB's 3 kHz, driving the C19/CR3/CR4/C21 charge pump; R27 and the 33V zener CR2 regulate it. The 4th printing parallels all four sections, the 1st and 2nd two"
+   },
+   "K6": {
+    "part": "LM324",
+    "section": "Player Inputs and Audio Output",
+    "note": "audio output on +22V: sums POKAU1 and POKAU2 through 330K into AUD+, and inverts that around +5V for AUD- (edge pins 5 and D)"
+   },
+   "L1": {
+    "part": "82S129",
+    "section": "Math Box",
+    "note": "Atari 136002-132; microcode PROM, outputs A0-A3"
+   }
+  }
+ },
  "notes": [
-  "Found by the figure-heading survey rather than by hand: Tempest's TM-190 carries an Auxiliary PCB Assembly parts list alongside the Analog Vector-Generator one, and five of its devices had been merged onto the main Tempest map before anything noticed. Those five are withdrawn from 'tempest' and this board is the whole of what the Auxiliary figure attests.",
-  "The proof that it is a different PCB and not a misattributed heading is the overlap: 16 shared designators and zero shared devices. A heading that had simply been inherited by the wrong rows \u2014 the Millipede pattern \u2014 would show the same devices under both. This is the Battlezone Math Box pattern instead: a second board with its own grid, colliding by coincidence.",
-  "Four printings and no split between them, which is the same standard the Asteroids Deluxe map was published on.",
-  "Row-letter-first designators, the pre-1983 convention, on an A B C D E F H J alphabet. The grid spacing is nominal."
+  "This is Tempest's Math Box board: DP-190 sheet 3 Side B, 'Auxiliary PCB 037585-01', titled High Score Memory, Audio Output, Control Panel Input, Math Box and Encoder Wheel. It is a separate PCB from the Analog Vector-Generator board mapped as 'tempest' -- the two share 16 grid positions and agree on none of them, so A4 here is a 74LS191 and A4 there a 74LS08.",
+  "The Math Box is Battlezone's, at different positions. Battlezone's B4, B1, C1, E1/D1, PROMs M1-F1 and slices K2, F2, H/J2, D/E2 are Tempest's A2, A1, B1, D1/C1, PROMs L1-E1 and slices E2, J2, F/H2, K/L2. Mapped across, all 79 nets that run between those parts agree pin for pin with the independently traced Battlezone board, and all 65 signatures printed on both sheets agree -- so Battlezone's signature-analysis procedure applies here once the designators are translated. The microcode fields are named differently (Battlezone's A16 is LDAB here, A20-A23 are S, J, M and C) and the start/stop decode lives in the address decoder rather than inside the Math Box.",
+  "The decode matches MAME's Tempest map exactly. B4 splits the $60xx page on EAB7/6: 00 EAROM write (6000-603F), 01 the read strobes (6040 Math Box status, 6050 EAROM, 6060/6070 Math Box result), 10 Math Box start (6080-609F), 11 the POKEYs (60C0, 60D0) and the output latch (60E0). One bad B4 kills the EAROM, the Math Box and both POKEYs together; if only one group fails, look at that group's B5 half or C4 gate.",
+  "The EAROM (C3, an ER2055) needs -28V, and the board makes it: K3, an LM324 running between GND and -22V, squares the game PCB's 3 kHz into a charge pump (C19, CR4, CR3, C21), and R27 with the 33V zener CR2 regulates the result. High scores that will not save: measure C3 pin 14 first. If -28V is missing, look at the 3 kHz on J17 pin 6, then K3, then the pump diodes and capacitors, then CR2.",
+  "H3 is not just a data buffer: its EDB6 slot carries the 3 MHz clock, which leaves as the buffered E3MHZ for the address decoder and the Math Box. A dead H3 stops the Math Box as well as the high scores.",
+  "The spinner arrives on edge pins J, 8, H and 7 from the Encoder Wheel PCB (A035220-01, a separate board drawn as an inset: two IR LEDs and two phototransistors). Each input is filtered, AC-coupled and squared by E6, D6 picks one player's pair with FLIP, C6 latches direction and A4 counts; POKEY B/C2 reads the count. E6's sixth inverter is an oscillator whose average biases all four inputs -- if it or C47 fails, every encoder input dies at once. Which edge pins carry clock and which direction is inferred from the circuit; the sheet does not label them.",
+  "Two POKEYs, two jobs. B/C2 ('Audio 1' in the self-test) reads the spinner count, the cocktail input and option switch 1; C/D2 ('Audio 2') reads option switches 2-4, ZAP, FIRE and both START buttons through D6. Their audio is summed through 330K into K6, which drives AUD+ and inverts it for AUD- on +22V. No sound at all points at K6 or +22V; one missing voice points at one POKEY.",
+  "H4 is the output latch (60E0): the two start LEDs (through 150 ohm to edge pins 12 and 13), FLIP for the cocktail cabinet, and SA enable 2,3. The CPU reads the Math Box's STOP back on EDB7 through F5 under /STREN.",
+  "The Math Box clock runs only while STOP is low (J4 NORs STOP with E3MHZ). /PCEN loads both program counters, at BEGIN or on a jump taken on sign (E5 = F3 XOR OVR from E2). A sequencer that never jumps points at E4 or D4.",
+  "Nets traced in full from the 4th printing of DP-190 sheet 3 Side B: boards/tempest-auxiliary.nets, 216 nets over 1,036 pins, every IC pin either wired or marked as not drawn. tools/build_board_nets.py checks it against each part's pinout (KiCad's library, or tools/custom_pinouts.json for the Am2901, POKEY, both PROMs and the ER2055), for two outputs on one net, for nets nothing drives and against the signatures printed on the sheet: 0 problems. The 2nd and 1st printings were compared everywhere; every resistor, capacitor and diode value agrees with the TM-190 parts list (Figure 22).",
+  "No component-location drawing has been read for this board, so the grid spacing on the board view is nominal; the positions themselves are the drawing's and agree with the TM-190 parts list on all 41 ICs.",
+  "ERC on the redrawn schematic reports 5 errors, and each is the drawing's own design, checked on the 4th and 2nd printings. (1-3) 'Output connected to Output' on K3 pins 1, 7 and 8: at the top left of the High Score Memory box the sheet draws K3 as one op-amp symbol whose output is lettered 1,7,8,14 (1,7 in the 2nd printing) on a single wire into C19 -- the LM324's sections paralleled to drive the -28V charge pump; redrawn on the 'EAROM -28V supply' sheet. (4-5) 'Input pin not driven' on SID (pin 24) of POKEYs C/D2 and B/C2: in the Player Inputs and Audio Output box each POKEY's SOD (pin 28) is drawn as a bare wire round the chip and back into its own SID, with no pull-up (Battlezone's has R46), and the POKAU line crosses each loop without a dot; redrawn on the 'POKEYs, player inputs and option switch' sheet. The serial port is unused. The symbols keep their true pin types, so ERC still reports all five."
  ],
- "conflicts": []
+ "conflicts": [
+  "B1 pin 1 (the jump latch's output enable) is lettered BEGIN at the pin, but the wire drawn from it runs into the /BEGIN line from A2's /Q -- in all three printings. Taken as BEGIN: that is the name at the pin, Battlezone's latch uses BEGIN, and on /BEGIN the latch and the entry PROM A1 would drive the counter bus together. The drawing contradicts itself here; nothing settles it short of the board.",
+  "K3 (LM324): the 4th printing draws all four sections in parallel (pins 1, 7, 8, 14 tied); the 2nd and 1st draw two (1 and 7). The read follows the 4th printing. A board built to an earlier revision may have only two sections fitted to the charge pump.",
+  "R58 is lettered 15K in the 4th printing; the 1st and 2nd printings and the typeset parts list say 1K, and 15K in series could never pull an LS157 input low. Read as 1K.",
+  "C39 (the cocktail input's filter) returns to +5V in the 4th printing and to ground in the 2nd and 1st. The read follows the 4th; either way it only filters the input.",
+  "Three signatures differ between printings: F5 pin 6 is 753F in the 4th and C53F in the 2nd; J2 pin 33 is 8631 against 8638; A1 pin 1 is 4FUF against AFUF. In each case the 4th printing agrees with the same node on Battlezone's sheet, so the 4th printing's values are the ones in the read.",
+  "R10's supply is lettered +5V in the 1st printing; in the 2nd and 4th the + has lost its vertical stroke and reads -5V at a glance. Read as +5V."
+ ]
 }

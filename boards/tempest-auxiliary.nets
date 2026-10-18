@@ -1,0 +1,1295 @@
+# Tempest Auxiliary PCB 037585-01 -- netlist, read by eye
+#
+# Source: DP-190 sheet 3 Side B, 4th printing ("037585-01 B +", doc ad5d39e0e6ea),
+# rendered at 300-600 dpi from the 400 dpi scan. The 4th printing is in colour, so its
+# signature-analysis annotations (blue) cannot be mistaken for wire. Every section was
+# compared with the 2nd printing (ba4e9f648414) and the dense parts with the 1st
+# (a2e9aa09a858, "037585-01 A"); where they differ the comment says so. Every resistor,
+# capacitor and diode value was checked against the typeset parts list, TM-190 Figure 22
+# (doc 56a2f53adedf pp. 45-46): all 130 agree, R58 after a correction noted below.
+# tools/build_board_nets.py reads this file.
+#
+#   net NAME: PIN PIN ...   a net whose name is printed on the sheet
+#   wire PIN PIN ...        an unnamed connection -- same net, no name on the sheet
+#   sig PIN CODE [TEST]     a signature printed beside the pin (TEST defaults to 1)
+#   nc PIN ...              a pin the sheet draws with nothing attached, or not at all
+#   label NAME: PIN ...     an unnamed net we have given a name to (not on the sheet)
+#   parallel PIN PIN ...    outputs the sheet ties together on purpose (K3)
+#   value REF VALUE         a passive's value as printed
+#
+# PIN is DESIGNATOR.NUMBER. ICs are U + the grid position exactly as the sheet prints
+# it (UB4, UK/L2); the build files a spanning device under its first cell (UK2), as the
+# board map does. Passives as printed (R54, C12, CR1).
+#
+# The sheet's legend names its connectors: square = edge connector J18 (2 x 15, 1-15
+# and A-S, every contact used), hexagon = the interconnect J17 (the cable to the game
+# PCB, 24 pins), circle = the signature-analysis header J16. Test points (the legend's
+# flag) and the three jumpers are not designated on the sheet: TP1-TP10 and JP1-JP3 are
+# ours, and SW1 is ours for the DIP switch the parts list calls D/E2 (it is not an IC,
+# so it stays out of the board map). Where a comment says "Uncertain", it records what
+# was checked and why the reading was taken.
+#
+# Power pins of logic ICs are not drawn on this sheet except where noted; the build
+# adds them from the part's standard pinout. "P,R1" / "P,R54" printed at a pin means
+# pulled up through the 1K R1 or R54 drawn in the Power Inputs box: such pins are
+# written onto R1.1 / R54.1.
+#
+# The sheet was read in four parts, one per titled box: the address decoder with the
+# J17 buses and the power inputs; the Math Box; the high-score memory; and the player
+# inputs and audio output.
+
+# ===========================================================================
+# Auxiliary Board Address Decoder, J17 buses, Power Inputs
+# ===========================================================================
+#
+# Source: DP-190 sheet 3 Side B, 4th printing (ad5d39e0e6ea), read from the 300 dpi
+# tiles and 600-900 dpi crops. Every connection
+# below was compared against the 2nd printing (ba4e9f648414) and the decoder and J17
+# pin numbers against the 1st printing (a2e9aa09a858) as well; all three agree.
+# Coordinates in comments are 300 dpi sheet pixels.
+#
+# Extent. The decoder box is not a rectangle. Its right edge runs down x~2575 only as
+# far as y~795, then steps right along y~795 to x~3765 and runs down x~3765: it wraps
+# under the A2 (LS109) start box, which belongs to the Math Box frame. So J4 (LS02),
+# C5 pins 3-6 (LS10), F4 pins 5/6 (LS14) and C4 pins 11-13 (LS32), drawn at x
+# 2790-3000, y 900-1400, are inside the decoder box and are read here.
+#
+# No IC power pins are drawn in this box. No signatures are printed in it.
+
+# part UB4 74LS139
+# part UB5 74LS139
+# part UC4 74LS32
+# part UC5 74LS10
+# part UF4 74LS14
+# part UJ4 74LS02
+
+# ---------------------------------------------------------------------------
+# Game-PCB interconnect J17 (hexagons) -- control lines
+# ---------------------------------------------------------------------------
+# TP1 is the test-point flag labelled "EPHI2" (printed E-phi-2) at (1190,447).
+# EPHI2 also runs right along y~520, across the A2 box, and drops down x~2790 to
+# J4.6 and C5.4. At (2790,752) a T (no dot, same in all three printings) sends it
+# right along y~752 to x~3581 and down: it leaves the decoder box heading down at
+# (3581, ~800) -- presumably to the POKEYs' phi-2 pins, which are labelled EPHI2.
+# Uncertain: the branch at (2790,752) is a T with no dot. The y~752 line starts at the
+# x~2790 vertical and does not continue left of it, in all three printings, so it is
+# read as joined. Nothing in this box hangs on it; it matters for whoever owns the
+# far end of the x~3581 line.
+net EPHI2: J17.7 TP1.1 UC5.11 UJ4.6 UC5.4
+# TP2 is the test-point flag labelled "ER/WB" (printed ER/W-bar-B) at (1180,850).
+# ER/WB leaves the box heading right along y~1452 from x~1887 (to the POKEYs' R/W).
+net ER/WB: J17.8 TP2.1 UF4.11 UC4.4
+net /I/O: J17.9 UB4.1 UC4.1
+# R/WB is printed with the bar over the R only (R-bar/WB), the inverse of ER/WB.
+# Named here without the partial bar, following the ER/WB precedent; it runs only
+# inside this box.
+# Uncertain: spelling only (the bar covers the R only).
+net R/WB: UF4.10 UC5.10 UC4.9
+# E3MHZ arrives by label: printed at C5.9 and again at C5.5. The C5.5 line runs up
+# x~2676 to y~714 and left to a free end at (1763,714) just under the C5.9 label
+# (all three printings draw it that way); it connects to nothing else.
+net E3MHZ: UC5.9 UC5.5
+
+# ---------------------------------------------------------------------------
+# External Address Bus "From Sheet 2 Side A" -- J17
+# ---------------------------------------------------------------------------
+# The pins as printed beside the hexagons (EAB7 on 5 is not a misreading: all three
+# printings agree). The thick bars are bus arrows, not wires: each decoder input is
+# named at its own pin. EAB3-EAB0 go to the High Score Memory (A3 LS174) and the
+# Math Box (A1) by name. Two short labelled taps (EAB7 at x~1524, EAB6 at x~1576,
+# hanging down to y~1222) carry no pins.
+net EAB7: J17.5 UB4.3 UB4.13
+net EAB6: J17.16 UB4.2 UB4.14
+net EAB5: J17.15 UB5.3 UB5.13
+net EAB4: J17.14 UB5.2 UB5.14
+net EAB3: J17.13
+net EAB2: J17.12
+net EAB1: J17.11
+net EAB0: J17.10
+
+# ---------------------------------------------------------------------------
+# External Data Bus "From Sheet 2 Side A" -- J17
+# ---------------------------------------------------------------------------
+# Hexagons at x~640, y 3880-4250. The double-headed hatched arrow is a bus symbol.
+net EDB7: J17.24
+net EDB6: J17.23
+net EDB5: J17.22
+net EDB4: J17.21
+net EDB3: J17.20
+net EDB2: J17.19
+net EDB1: J17.18
+net EDB0: J17.17
+
+# ---------------------------------------------------------------------------
+# Decoder -- first level: B4 (upper half) splits the $60xx I/O page on EAB7/EAB6
+# ---------------------------------------------------------------------------
+# The decode matches MAME's Tempest map exactly: EAB7,6 = 00 EAROM write, 01 EAROM
+# control / read-back group, 10 Math Box start, 11 POKEYs and output latch.
+nc UB4.4
+# Y1 (EAB7,6 = 01) gates the read strobes in B5's lower half, with R/WB
+wire UB4.5 UC4.10
+# Y2 (EAB7,6 = 10) ORed with ER/WB: low on a write to the Math Box start address
+wire UB4.6 UC4.5
+# Y3 (EAB7,6 = 11) enables B5's upper half
+wire UB4.7 UB5.1
+
+# ---------------------------------------------------------------------------
+# Decoder -- POKEYs and output latch: B5 upper half on EAB5/EAB4
+# ---------------------------------------------------------------------------
+# /POKEY1 leaves heading down x~2572 from y~1100; /POKEY2 heads down x~2766 from y~1071.
+net /POKEY1: UB5.4
+net /POKEY2: UB5.5
+wire UB5.6 UC4.12
+nc UB5.7
+# /OL = Y2 ORed with /WRITE. Leaves heading down x~2980 from y~1385.
+net /WRITE: UC5.8 UC4.13 UC4.2
+net /OL: UC4.11
+
+# ---------------------------------------------------------------------------
+# Decoder -- read strobes: B5 lower half, enabled by C4.8 = B4.Y1 OR R/WB
+# ---------------------------------------------------------------------------
+wire UC4.8 UB5.15
+# /YHI, /YLO and /EARD leave heading right at y~1531, ~1570 and ~1610 (to the Math
+# Box slices' OE and to F4.9 in the High Score Memory); /STREN turns down x~2407
+# from y~1650 (to F4.13 in the audio section).
+net /YHI: UB5.9
+net /YLO: UB5.10
+net /EARD: UB5.11
+net /STREN: UB5.12
+
+# ---------------------------------------------------------------------------
+# Decoder -- EAROM write strobes: B4 lower half, enabled by C4.3 = /I/O OR /WRITE
+# ---------------------------------------------------------------------------
+# /WRITE = NAND(EPHI2, E3MHZ, R/WB). Its line runs down x~2147 to a dot at
+# (2147,1365), left along y~1365 and down x~1435 to C4.2, and right to C4.13.
+wire UC4.3 UB4.15
+nc UB4.9 UB4.10
+# /EARCON turns down at x~1690 from y~2346 (to J3 CK in the High Score Memory);
+# /EARWR leaves heading right along y~2190 (to A3 CK and F3 CK).
+net /EARCON: UB4.11
+net /EARWR: UB4.12
+
+# ---------------------------------------------------------------------------
+# Decoder -- Math Box start and SA clock 3
+# ---------------------------------------------------------------------------
+# C4.6 is low for a write to EAB7,6 = 10. J4 NORs it with EPHI2 to make M START;
+# F4 inverts it for C5, which NANDs it with EPHI2 and E3MHZ into SACLK3.
+wire UC4.6 UJ4.5 UF4.5
+# M START also runs up x~2977 out of the decoder box to A2 pin 1 (C, clear) of the
+# Math Box's LS109 -- UA2.1 is drawn in the Math Box, listed here so the join is explicit.
+net M START: UJ4.4 J16.3 UA2.1
+wire UF4.6 UC5.3
+net SACLK3: UC5.6 J16.8
+
+# ---------------------------------------------------------------------------
+# Gates of F4, J4 and C5 the sheet does not draw anywhere
+# ---------------------------------------------------------------------------
+# Whole sheet scanned: F4's other inverters are 1->2 (Math Box), 9->8 (High Score
+# Memory) and 13->12 (audio, /STREN); J4's other drawn gate is 2,3->1 (Math Box).
+# These remain, drawn nowhere:
+# Uncertain: scanned at 100-300 dpi, not pin by pin; if another box draws one of these
+# gates drawn, its reading wins over these nc lines.
+nc UF4.3 UF4.4
+nc UJ4.8 UJ4.9 UJ4.10 UJ4.11 UJ4.12 UJ4.13
+nc UC5.1 UC5.2 UC5.13 UC5.12
+
+# ---------------------------------------------------------------------------
+# Power Inputs -- edge connector J18 (squares)
+# ---------------------------------------------------------------------------
+# Each supply is drawn arriving on a block of J18 squares: "2|14 over B|R" is +5V,
+# "1|15 over A|S" is +5V RET, "4 over N" is -22V, "3 over P" is +22V.
+net +5V: J18.2 J18.14 J18.B J18.R C56.1 R2.1 R1.2 R54.2 TP3.1
+# Uncertain: J17.2 is not wired on its own; its hexagon is drawn stacked on J17.1's,
+# touching, with the ground wire reaching J17.1 only. Read as both pins grounded (the
+# same stacking the J18 blocks use). Same in the 2nd printing.
+net GND: J18.1 J18.15 J18.A J18.S C56.2 CR1.1 TP4.1 J16.1 J17.1 J17.2
+# TP3 is the flag labelled "+5V". TP4 is the flag labelled "(4)GND" -- one flag
+# drawn, the "(4)" presumably the number of ground test points on the board.
+# The GND line also carries a drawn ground symbol, the SA header's J16.1 ("GND"),
+# and interconnect J17.1 with J17.2 drawn as a stacked hexagon touching it.
+# CR1 is the power-on LED: anode (pin 2) from R2, cathode (pin 1) to ground
+wire R2.2 CR1.2
+value C56 100uF 25V
+value R2 150
+value CR1 MV5053
+# "R1,54 1K PULLUP": one resistor symbol for both, the "P," end up, +5V end down.
+# Their pulled-up nodes are wherever "P,R1" / "P,R54" are printed (Math Box,
+# audio, player inputs) and go on R1.1 / R54.1 there.
+value R1 1K
+value R54 1K
+# -22V: C37's + plate is drawn on the ground side (negative rail)
+net -22V: J18.4 J18.N C37.2 TP5.1
+net GND: C37.1
+# +22V
+net +22V: J18.3 J18.P C38.1 TP6.1
+net GND: C38.2
+# TP5 is the flag labelled "-22V", TP6 the flag labelled "+22V". Both rails leave
+# the box as labels ("-22V", "+22V") heading right.
+value C37 470uF 25V
+value C38 470uF 25V
+# C56, C37 and C38 are all printed 25V.
+
+# Bypass: "C1-8, 12, 14, 15, 17, 18, 22-26, 30, 33-36, 41, 44, 49, 54  0.1 BYPASS",
+# +5V to GND (27 capacitors). The sheet draws one and lists the rest; where each
+# sits is not drawn. Same list in the 2nd printing.
+net +5V: C1.1 C2.1 C3.1 C4.1 C5.1 C6.1 C7.1 C8.1 C12.1 C14.1 C15.1 C17.1 C18.1 C22.1 C23.1 C24.1 C25.1 C26.1 C30.1 C33.1 C34.1 C35.1 C36.1 C41.1 C44.1 C49.1 C54.1
+net GND: C1.2 C2.2 C3.2 C4.2 C5.2 C6.2 C7.2 C8.2 C12.2 C14.2 C15.2 C17.2 C18.2 C22.2 C23.2 C24.2 C25.2 C26.2 C30.2 C33.2 C34.2 C35.2 C36.2 C41.2 C44.2 C49.2 C54.2
+value C1 .1uF
+value C2 .1uF
+value C3 .1uF
+value C4 .1uF
+value C5 .1uF
+value C6 .1uF
+value C7 .1uF
+value C8 .1uF
+value C12 .1uF
+value C14 .1uF
+value C15 .1uF
+value C17 .1uF
+value C18 .1uF
+value C22 .1uF
+value C23 .1uF
+value C24 .1uF
+value C25 .1uF
+value C26 .1uF
+value C30 .1uF
+value C33 .1uF
+value C34 .1uF
+value C35 .1uF
+value C36 .1uF
+value C41 .1uF
+value C44 .1uF
+value C49 .1uF
+value C54 .1uF
+
+# ===========================================================================
+# Math Box
+# ===========================================================================
+#
+# Source: DP-190 sheet 3 Side B, 4th printing (ad5d39e0e6ea), rendered at 300 and 600
+# dpi. Every gate, the slice pin columns and the
+# sequencer were compared against the 2nd printing (ba4e9f648414); the BEGIN routing
+# and the slice block against the 1st (a2e9aa09a858) too. Where they differ it says so.
+# Coordinates in comments are 300 dpi sheet pixels.
+#
+# Extent. The Math Box frame (7 px rules, twice a wire's weight) runs along y~140 from
+# x~2688 to x~10015, down the right edge x~10015 to y~3412, back along y~3412 to
+# x~3868, up x~3868 to y~684, left along y~684 to x~2688 and up to the top: the
+# A2 / D4 start logic sits in the notch at top left. J4.4, F4.6, C5 and C4, drawn at
+# x 2790-3000 below y~684, are inside the address decoder's frame (the decoder box), not here.
+# The line along y~3412 is this frame's bottom edge, not a
+# wire (it is 6-7 px like the other three edges, and turns up x~10015 into the top
+# edge at y~140); /EARWR (x~3941) and /EARD (x~3907) cross it without a dot.
+#
+# Drawing conventions on this sheet that matter here:
+#  * A pin number is written outside the body, above its wire: just left of the edge
+#    for an input on the left, just right of the edge for an output on the right.
+#  * The four slices are drawn as a row of abutting boxes E2 | J2 | F/H2 | K/L2. An
+#    input line crosses all four boxes; its pin number is written once, at E2's left
+#    edge, and applies to every box the line enters (the line ends at K/L2's left edge,
+#    where its name is repeated inside K/L2: CP, A19 ... A0, GND). Where a line feeds
+#    only some boxes the number is repeated at those boxes (pin 14: A8 to E2 and J2,
+#    A9 to F/H2 and K/L2). Each box's Y/D pins and OE are drawn on its right edge.
+#  * The six PROMs are drawn the same way: address pin numbers written once, left of
+#    L1, the address lines running through L1 K1 J1 H1 F1 E1; "A7 ... A0" printed
+#    inside E1's box are the PROM's address-pin names, not the microcode nets A0-A7.
+#  * Labels are usually in-line (a wire runs into a name and out the other side).
+#
+# Power pins are drawn only for the slices' GND (pin 30) and the PROM enables.
+#
+# Legend: circle = SA connector J16, hexagon = interconnect J17, pentagon flag
+# = test point; TP7 is ours.
+
+# part UA2 74109 (printed "109" with no family letter; the board map has 74109)
+# part UD4 74LS00
+# part UJ4 74LS02 (gate 2,3->1 only; 5,6->4 is in the decoder box)
+# part UF4 74LS14 (inverter 1->2 only; 5->6 the decoder box, 9->8 the High Score Memory box, 13->12 the Player Inputs box)
+# part UD5 74LS74
+# part UE4 74S08 (gates 4,5->6; 9,10->8; 12,13->11)
+# part UE5 74S86 (gates 9,10->8; 12,13->11)
+# part UF5 74S03 (gates 12,13->11; 4,5->6; 9,10->8 is in the Player Inputs box)
+# part UB1 74LS374 (jump-address latch)
+# part UA1 136002-126 (82S123 entry PROM)
+# part UD1 74LS161 (program counter, low)
+# part UC1 74LS161 (program counter, high)
+# part UL1 136002-132 (82S129 microcode PROM)
+# part UK1 136002-131 (82S129 microcode PROM)
+# part UJ1 136002-130 (82S129 microcode PROM)
+# part UH1 136002-129 (82S129 microcode PROM)
+# part UF1 136002-128 (82S129 microcode PROM)
+# part UE1 136002-127 (82S129 microcode PROM)
+# part UE2 137004-001 (Am2901 bit slice; most significant, bits 15-12)
+# part UJ2 137004-001 (Am2901 bit slice; bits 11-8)
+# part UF/H2 137004-001 (Am2901 bit slice; bits 7-4)
+# part UK/L2 137004-001 (Am2901 bit slice; least significant, bits 3-0)
+value R42 470
+
+# ---------------------------------------------------------------------------
+# Start: A2 makes BEGIN
+# ---------------------------------------------------------------------------
+# A2 is held clear while M START is low; then on an E6MHZ edge with E3MHZ high it sets
+# (BEGIN), and its own /BEGIN on /K clears it again on the next edge.
+# M START: A2.1's line runs down x~3245, left along y~650 and down x~2978, out of the
+# notch through the frame at (2978,684) into the decoder box, where it lands on J4.4 and the
+# SA circle (3) printed "M START" (same in the 2nd and 1st printings). the decoder box lists
+# UA2.1 on M START as well.
+net M START: UA2.1
+net E3MHZ: UA2.2 UJ4.2
+# E6MHZ: the hexagon (3) and the pentagon flag printed "E6MHZ" join at a dot (3035,465).
+# TP7: test-point flag printed "E6MHZ", at (2840-2990,580).
+net E6MHZ: J17.3 UA2.4 TP7.1
+# R1 is a 1K pull-up drawn in the Power Inputs box; the sheet prints "P,R1" here
+wire UA2.5 R1.1
+net BEGIN: UA2.6 UD4.2
+net /BEGIN: UA2.7 UA2.3
+sig UA2.6 0000
+# Uncertain: B1.1 (the latch's /OC) is printed "BEGIN" at the pin, but the wire drawn below
+# that label runs down x~4703, left along y~1542, up x~3946 and left along y~566 into
+# the in-line "/BEGIN" label on A2's /Q line -- so as drawn A2.7 reaches a pin labelled
+# BEGIN. The same in all three printings. Taken as BEGIN: that is the name printed at
+# the pin, A2.6's own line runs only to D4.2 and up into a "BEGIN" label that nothing
+# else answers, and /BEGIN on both B1.1 and A1.15 would have the latch and the entry
+# PROM driving the counter bus together. (Battlezone's latch C1.1 is BEGIN.) If the
+# wire is right and the label wrong, move UB1.1 to /BEGIN.
+net BEGIN: UB1.1
+# The other /BEGIN loads are on a separate drawn line, labelled "/BEGIN" at each end:
+# up x~3980 to y~561 and right to D5.13; a T at y~1581 right to A1.15; down to y~2928
+# and right along it (across the fold) to E4.12.
+net /BEGIN: UD5.13 UA1.15 UE4.12
+
+# ---------------------------------------------------------------------------
+# Stop and clock
+# ---------------------------------------------------------------------------
+# D5's second half is the STOP flip-flop: A12 clocked in on /CLK, cleared by /BEGIN.
+# CLK runs while STOP is low: J4 NORs STOP with E3MHZ; F4 makes /CLK.
+net +5V: R42.2
+wire UD5.10 UD5.4 UD5.1 R54.1
+# R54 is the other 1K pull-up in the Power Inputs box; the sheet prints "P,R54" at all three
+net A12: UD5.12
+net STOP: UD5.9 UJ4.3 J16.4
+nc UD5.8
+net CLK: UJ4.1 UF4.1 UD4.1 UD5.3 UD1.2 UC1.2 UE2.15 UJ2.15 UF/H2.15 UK/L2.15 J16.6
+# The SA circle (6) on CLK is printed "SACLK1"
+net SACLK1: J16.6
+net /CLK: UF4.2 UD5.11 UE4.4
+# CC34 is printed beside "/CLK" at F4.2 in both the 4th and 2nd printings
+sig UF4.2 CC34
+# SA clock 2: CLK gated by BEGIN
+net SACLK2: UD4.3 J16.7
+
+# ---------------------------------------------------------------------------
+# Sequencer: entry PROM A1, jump latch B1, program counter D1 (low) / C1 (high)
+# ---------------------------------------------------------------------------
+# A1 (addressed by EAB0-4, enabled by /BEGIN) and B1 (enabled by BEGIN) share one bus
+# into the counters' parallel inputs. B1 latches microcode A0-A7 on E4.6 = /CLK AND LDAB.
+net EAB0: UA1.10
+net EAB1: UA1.11
+net EAB2: UA1.12
+net EAB3: UA1.13
+net EAB4: UA1.14
+wire UE4.6 UB1.11
+net LDAB: UE4.5
+wire UB1.19 UA1.1 UD1.3
+wire UB1.2 UA1.2 UD1.4
+wire UB1.16 UA1.3 UD1.5
+wire UB1.5 UA1.4 UD1.6
+wire UB1.15 UA1.5 UC1.3
+wire UB1.6 UA1.6 UC1.4
+wire UB1.12 UA1.7 UC1.5
+wire UB1.9 UA1.9 UC1.6
+# Counters: /PCEN loads both (LD) and gates the count (ET); "P,R1" on D1's EP and both clears
+net /PCEN: UE4.11 UD1.9 UD1.10 UC1.9 UC1.10
+wire UD1.7 UD1.1 UC1.1 R1.1
+wire UD1.15 UC1.7
+nc UC1.15
+# Microcode address bus: every PROM sees the same eight lines (numbers printed once,
+# left of L1: 15 1 2 3 4 7 6 5 from MA7 down to MA0)
+label MA0: UD1.14 UL1.5 UK1.5 UJ1.5 UH1.5 UF1.5 UE1.5
+label MA1: UD1.13 UL1.6 UK1.6 UJ1.6 UH1.6 UF1.6 UE1.6
+label MA2: UD1.12 UL1.7 UK1.7 UJ1.7 UH1.7 UF1.7 UE1.7
+label MA3: UD1.11 UL1.4 UK1.4 UJ1.4 UH1.4 UF1.4 UE1.4
+label MA4: UC1.14 UL1.3 UK1.3 UJ1.3 UH1.3 UF1.3 UE1.3
+label MA5: UC1.13 UL1.2 UK1.2 UJ1.2 UH1.2 UF1.2 UE1.2
+label MA6: UC1.12 UL1.1 UK1.1 UJ1.1 UH1.1 UF1.1 UE1.1
+label MA7: UC1.11 UL1.15 UK1.15 UJ1.15 UH1.15 UF1.15 UE1.15
+# The SA circle (9) printed "SAEN1" taps MA7 with a dot at (6012,1683)
+net SAEN1: J16.9 UC1.11
+# The six PROMs are always enabled
+net GND: UL1.13 UL1.14 UK1.13 UK1.14 UJ1.13 UJ1.14 UH1.13 UH1.14 UF1.13 UF1.14 UE1.13 UE1.14
+
+# ---------------------------------------------------------------------------
+# Microcode fields -- the PROM outputs, by the sheet's own names
+# ---------------------------------------------------------------------------
+# Each PROM's outputs 12, 11, 10, 9 run right (across the PROMs to its right) to a
+# name at x~7130-7290, then through the crossbar to the slices (names repeated at
+# x~7800 left of E2), B1 and the control gates.
+net A0: UL1.9 UB1.8 UE2.1 UJ2.1 UF/H2.1 UK/L2.1
+net A1: UL1.10 UB1.13 UE2.2 UJ2.2 UF/H2.2 UK/L2.2
+net A2: UL1.11 UB1.7 UE2.3 UJ2.3 UF/H2.3 UK/L2.3
+net A3: UL1.12 UB1.14 UE2.4 UJ2.4 UF/H2.4 UK/L2.4
+net A4: UK1.9 UB1.4 UE2.20 UJ2.20 UF/H2.20 UK/L2.20
+net A5: UK1.10 UB1.17 UE2.19 UJ2.19 UF/H2.19 UK/L2.19
+net A6: UK1.11 UB1.3 UE2.18 UJ2.18 UF/H2.18 UK/L2.18
+net A7: UK1.12 UB1.18 UE2.17 UJ2.17 UF/H2.17 UK/L2.17
+net A8: UJ1.9 UE2.14 UJ2.14
+net A9: UJ1.10 UF/H2.14 UK/L2.14
+# A10 goes up x~7519 and back along y~424 to E5.9; A10* (E5.8) feeds pin 13 of all
+# four slices. The slice line is printed "A10*" left of E2 but "A10" at its K/L2 end
+# (all printings) -- one continuous line, so it is A10* throughout.
+net A10: UJ1.11 UE5.9
+net A10*: UE5.8 UE2.13 UJ2.13 UF/H2.13 UK/L2.13
+net A11: UJ1.12 UE2.12 UJ2.12 UF/H2.12 UK/L2.12
+net A12: UH1.9
+net A13: UH1.10 UE2.27 UJ2.27 UF/H2.27 UK/L2.27
+net A14: UH1.11 UE2.28 UJ2.28 UF/H2.28 UK/L2.28
+net A15: UH1.12 UE2.26 UJ2.26 UF/H2.26 UK/L2.26
+# LDAB (Battlezone's A16) runs up x~7590, left along y~153 and down x~3916 to E4.5
+net LDAB: UF1.9
+net A17: UF1.10 UE2.6 UJ2.6 UF/H2.6 UK/L2.6
+net A18: UF1.11 UE2.7 UJ2.7 UF/H2.7 UK/L2.7 UD4.4 UD4.5 UF5.12 UF5.13
+net A19: UF1.12 UE2.5 UJ2.5 UF/H2.5 UK/L2.5
+# E1's four outputs are printed C, M, J, S (Battlezone's A23, A22, A21, A20)
+net S: UE1.9 UD4.9
+net J: UE1.10 UD4.12 J16.5
+net M: UE1.11 UE4.9
+net C: UE1.12 UK/L2.29
+
+# ---------------------------------------------------------------------------
+# The four 137004-001 slices -- data bus and output enables
+# ---------------------------------------------------------------------------
+# E2 (MS) and J2 drive the high byte under /YHI, F/H2 and K/L2 the low byte under
+# /YLO: E2 and F/H2 onto EDB7-4, J2 and K/L2 onto EDB3-0. Each slice's D inputs are
+# tied to its own Y outputs (22-39, 23-38, 24-37, 25-36), joined by dots at x~9073
+# (E2 + F/H2) and x~9430 (J2 + K/L2). The names "D7 ... D0" printed inside E2's and
+# J2's boxes beside these pins are the symbol's, not net names.
+net EDB7: UE2.22 UE2.39 UF/H2.22 UF/H2.39
+net EDB6: UE2.23 UE2.38 UF/H2.23 UF/H2.38
+net EDB5: UE2.24 UE2.37 UF/H2.24 UF/H2.37
+net EDB4: UE2.25 UE2.36 UF/H2.25 UF/H2.36
+net EDB3: UJ2.22 UJ2.39 UK/L2.22 UK/L2.39
+net EDB2: UJ2.23 UJ2.38 UK/L2.23 UK/L2.38
+net EDB1: UJ2.24 UJ2.37 UK/L2.24 UK/L2.37
+net EDB0: UJ2.25 UJ2.36 UK/L2.25 UK/L2.36
+# /YHI and /YLO: printed at the arrowheads right of the slices; each runs down the
+# right side (x~9727, x~9692) and back left along y~3050 / y~3010 out through the
+# frame at x~3868 into the decoder box (B5.9 / B5.10).
+net /YHI: UE2.40 UJ2.40
+net /YLO: UF/H2.40 UK/L2.40
+net GND: UE2.30 UJ2.30 UF/H2.30 UK/L2.30
+
+# ---------------------------------------------------------------------------
+# Carry, RAM-shift and Q-shift chains, least significant slice to most
+# ---------------------------------------------------------------------------
+# K/L2 -> F/H2 -> J2 -> E2. Drawn as three nested loops under each pair of boxes.
+wire UK/L2.33 UF/H2.29
+wire UF/H2.33 UJ2.29
+wire UJ2.33 UE2.29
+wire UK/L2.8 UF/H2.9
+wire UF/H2.8 UJ2.9
+wire UJ2.8 UE2.9
+wire UK/L2.16 UF/H2.21
+wire UF/H2.16 UJ2.21
+wire UJ2.16 UE2.21
+# Ends of the chains, all labelled under the pins:
+# R0: E2's Q3 into K/L2's RAM0 (double-length shift), along y~2273
+net R0: UE2.16 UK/L2.9
+# Q0: K/L2's Q0, driven open-collector from F5.11 (/A18), latched by D5 for multiply
+net Q0: UK/L2.21 UF5.11 UD5.2
+# R15: E2's RAM3, along y~2237 and down x~9085 to F5.6 / R42 (pull-up to +5V)
+net R15: UE2.8 UF5.6 R42.1
+# S1, S0: E2's F3 and OVR, to the sign XOR
+net S1: UE2.31 UE5.12
+net S0: UE2.34 UE5.13
+
+# ---------------------------------------------------------------------------
+# Sign, shift and multiply logic (bottom right)
+# ---------------------------------------------------------------------------
+# E5.11 = F3 XOR OVR (true sign). D4.8 = NAND(S, sign); D4.11 = NAND(J, D4.8);
+# /PCEN = E4.11 = D4.11 AND /BEGIN, so the counter loads at BEGIN and on a taken jump.
+# F5.6 drives RAM3 of the MS slice (shift-in) from D4.6 (/A18) and D4.8.
+wire UE5.11 UD4.10
+wire UD4.8 UD4.13 UF5.4
+wire UD4.11 UE4.13
+wire UD4.6 UF5.5
+# Multiply: D5's first half latches Q0 on CLK; E4.8 = /Q AND M; E5.8 = A10 XOR that
+wire UD5.6 UE4.10
+wire UE4.8 UE5.10
+nc UD5.5
+
+# ---------------------------------------------------------------------------
+# Pins the sheet draws with nothing attached
+# ---------------------------------------------------------------------------
+# E2's Cn+4 (the top of the carry chain)
+nc UE2.33
+# F=0, /G, /P: drawn as bare stubs at E2's left edge (11, 32, 35) and not drawn for
+# the other three; F3 and OVR (31, 34) bare on J2, F/H2 and K/L2
+nc UE2.11 UE2.32 UE2.35
+nc UJ2.11 UJ2.31 UJ2.32 UJ2.34 UJ2.35
+nc UF/H2.11 UF/H2.31 UF/H2.32 UF/H2.34 UF/H2.35
+nc UK/L2.11 UK/L2.31 UK/L2.32 UK/L2.34 UK/L2.35
+# Not drawn in this box, nor in any other (listed with the undrawn pins at the end):
+# A2 pins 9-15 (the LS109's second flip-flop), E4 gate 1,2->3, E5 gates 1,2->3 and
+# 4,5->6, F5 gate 1,2->3.
+
+# ---------------------------------------------------------------------------
+# Wires that only pass through the Math Box (no pin here). All are named in the decoder box.
+# ---------------------------------------------------------------------------
+# entering at the left frame x~3868 (from the decoder box) and leaving down through y~3412:
+#   y~1608, down x~3907, out at (3907,3412)   the decoder box: /EARD; the High Score Memory box: to F4.9
+#   y~2188, down x~3941, out at (3941,3412)   the decoder box: /EARWR; the High Score Memory box: A3, F3 CK
+#   y~3112, down x~8087, out at (8087,3412)   the Player Inputs box: /STREN to F4.13
+#   y~3151, down x~8052, out at (8052,3412)
+#   y~3202, down x~7109, out at (7109,3412)
+#   y~3237, down x~7066, out at (7066,3412)
+#   y~3274, down x~6959, out at (6959,3412)
+#   y~3306, down x~5746, out at (5746,3412)
+# entering the notch at (2688,521), down x~2790, out at (2790,684): the decoder box's EPHI2.
+# The black EAB bus bar along y~3340-3385 also crosses (to the POKEYs), and the grey
+# EDB bus leaves down the right side x~9915-9990.
+
+# ---------------------------------------------------------------------------
+# Signatures (Test #1 unless named)
+# ---------------------------------------------------------------------------
+# PROM outputs, printed between E1 and the names
+sig UL1.9 6CF6
+sig UL1.10 F74F
+sig UL1.11 1AA2
+sig UL1.12 58A1
+sig UK1.9 34C2
+sig UK1.10 PPF6
+sig UK1.11 60H6
+sig UK1.12 05A6
+sig UJ1.9 3FU4
+sig UJ1.10 6989
+sig UJ1.11 UC59
+sig UJ1.12 96U0
+sig UH1.9 2987
+sig UH1.10 P9C1
+sig UH1.11 91HA
+sig UH1.12 26A6
+sig UF1.9 A6A3
+sig UF1.10 3CAP
+sig UF1.11 0UF0
+sig UF1.12 4PPF
+sig UE1.9 F515
+sig UE1.10 0000
+sig UE1.11 CPU8
+sig UE1.12 F765
+# B1 outputs
+sig UB1.9 6U30
+sig UB1.12 5AAH
+sig UB1.6 1C6C
+sig UB1.15 03A7
+sig UB1.5 CU2P
+sig UB1.16 9A08
+sig UB1.2 8A7H
+sig UB1.19 2327
+# Control logic. "*" = taken with the 1K pull-up on the probe; the asterisk is
+# printed at E5.8 (45A1*), F5.11 (C835*) and on the slice signatures marked below.
+sig UE4.6 A6A3
+sig UE4.8 CPU8
+sig UE5.8 45A1
+sig UE5.11 C646
+sig UD4.6 C4U4
+sig UD4.8 0600
+sig UF5.11 C835
+# 753F: the 2nd printing reads C53F (its first stroke runs into R42's lead)
+sig UF5.6 753F
+sig UE4.11 CC34
+# Slices, printed under their pin columns (8, 16 starred)
+sig UE2.16 9AFH
+sig UE2.31 1781
+sig UE2.34 A1F7
+sig UJ2.8 7U19
+sig UJ2.16 11C5
+# 8631: the 2nd printing reads 8638
+sig UJ2.33 8631
+sig UF/H2.8 78AA
+sig UF/H2.16 11C5
+sig UF/H2.33 9CPP
+sig UK/L2.8 809A
+sig UK/L2.16 9AFH
+sig UK/L2.33 6PUP
+# Program counter outputs: left column (Test #1) beside the address lines; right
+# column in the box printed "TEST #2" (rows 15 1 2 3 4 7 6 5 = MA7 ... MA0)
+sig UC1.11 H58A
+sig UC1.12 77F7
+sig UC1.13 85PA
+sig UC1.14 7P25
+sig UD1.11 5CP0
+sig UD1.12 P5PH
+sig UD1.13 725C
+sig UD1.14 96PF
+sig UC1.11 92F3 2
+sig UC1.12 A856 2
+sig UC1.13 3050 2
+sig UC1.14 H8F9 2
+sig UD1.11 9569 2
+sig UD1.12 3U53 2
+sig UD1.13 9F47 2
+sig UD1.14 4FUF 2
+# Entry PROM A1, inputs and outputs. These sit on the flow band numbered "2" with no
+# test name of their own; Battlezone's sheet calls them 2A (and the counter column 2B).
+sig UA1.14 F722 2
+sig UA1.13 C4P5 2
+sig UA1.12 6UAC 2
+sig UA1.11 3441 2
+sig UA1.10 2P61 2
+sig UA1.9 92F3 2
+sig UA1.7 A856 2
+sig UA1.6 3050 2
+sig UA1.5 H8F9 2
+sig UA1.4 9569 2
+sig UA1.3 3U53 2
+sig UA1.2 9F47 2
+# 4FUF: the 2nd printing writes AFUF here (and 4FUF in the TEST #2 box)
+sig UA1.1 4FUF 2
+# Data bus, printed on the EDB lines right of the bow-ties, flow band "3"
+sig UE2.39 1441 3
+sig UE2.38 2883 3
+sig UE2.37 5107 3
+sig UE2.36 A20P 3
+sig UJ2.39 441H 3
+sig UJ2.38 883A 3
+sig UJ2.37 1074 3
+sig UJ2.36 20P9 3
+
+# ===========================================================================
+# High Score Memory
+# ===========================================================================
+#
+# Source: DP-190 sheet 3 Side B, 4th printing (ad5d39e0e6ea), 300 dpi tiles r2-r4 c1-c3
+# and 600 dpi crops. Box spans roughly sheet x 1457-4107, y 3497-6330
+# (300 dpi). Cross-checked against the 2nd printing (ba4e9f648414) everywhere and the
+# 1st printing (a2e9aa09a858) at the analogue section, A3/J3/C3, H3/F3 and E3's enables.
+# The three printings agree on every connection here except K3 (see the QUERY there).
+# No signature-analysis annotations (blue) fall inside this box.
+#
+# Parts drawn in this box:
+# part UA3 74LS174
+# part UJ3 74LS175
+# part UC3 ER2055 (64 x 8 EAROM)
+# part UE3 74LS244
+# part UH3 74LS244
+# part UF3 74LS374
+# part UF4 74LS14 (one inverter here, pins 9 -> 8; the type is printed at F4's other gate in the decoder, "F4 LS14")
+# part UK3 LM324
+#
+# Jumpers: the sheet draws three two-pad jumpers (a pair of half-circles), undesignated.
+# A bar across the pads = fitted; bare pads = open. Named JP1-JP3 here (ours).
+
+# ---------------------------------------------------------------------------
+# EAROM supply: -28V from a charge pump on -22V
+# ---------------------------------------------------------------------------
+# A 3 kHz square from the game PCB is AC-coupled into K3, an LM324 used as a comparator
+# (the 4th printing parallels all four sections). K3 runs between GND (pin 4) and -22V
+# (pin 11), so its output swings ~0 V to ~-22 V. C19/CR4/CR3/C21 pump that to about
+# -43 V; R27 and the 33 V zener CR2, referenced to +5V, regulate it to -28V for the
+# ER2055's VEE (C3 pin 14). No transistors in this section.
+net 3KHZ: J17.6 C11.1
+# Uncertain: K3's sections. 4th printing: - inputs 9,13,2,6; + inputs 10,12,3,5; outputs
+# 1,7,8,14 (all four sections in parallel). 2nd and 1st printings: 2,6 / 3,5 / 1,7 only
+# (two sections; 8,9,10,12,13,14 not drawn). Read here as the 4th printing (primary).
+wire C11.2 R6.1 UK3.9 UK3.13 UK3.2 UK3.6
+wire R28.1 UK3.10 UK3.12 UK3.3 UK3.5
+# Bias divider GND - R5 1K - node - R29 4.7K - -22V (about -3.9 V), filtered by C13
+wire R5.2 R6.2 R28.2 R29.1 C13.2
+net GND: R5.1 C13.1 UK3.4
+# C13 is drawn + to ground (the node it filters is negative)
+net -22V: R29.2 UK3.11 CR4.1 C21.1
+# The paralleled outputs are drawn joined on one net: the checker's "more than one
+# output drives it" is the drawing, not a misread (two outputs in the 1st/2nd printings).
+wire UK3.1 UK3.7 UK3.8 UK3.14 C19.1
+parallel UK3.1 UK3.7 UK3.8 UK3.14
+# C19 + on the op-amp side. CR4: anode (2) on the pump node, cathode (1) on -22V.
+# CR3: cathode (1) on the pump node, anode (2) on C21's negative end.
+wire C19.2 CR4.2 CR3.1
+# C21 is drawn + on the -22V line, - on the CR3/R27 node
+wire CR3.2 C21.2 R27.1
+# CR2 1N5257B (33 V zener): cathode (1) to +5V, anode (2) on -28V.
+# C20 + to +5V, - on -28V. C16 .01 from -28V to ground.
+net -28V: R27.2 CR2.2 C20.2 C16.1 UC3.14
+net +5V: CR2.1 C20.1
+net GND: C16.2
+value C11 .1uF
+value R5 1K
+value R6 47K
+value R28 47K
+value R29 4.7K
+value C13 47uF 25V
+value C19 47uF 50V
+value C21 47uF 50V
+value C20 47uF 50V
+value C16 .01uF
+value R27 1K 1/2W
+# Uncertain: CR3 and CR4 are printed "1N100" (read as IN100) in all three printings --
+# recorded as printed; not a part number I can place.
+value CR3 1N100
+value CR4 1N100
+value CR2 1N5257B
+
+# ---------------------------------------------------------------------------
+# EAROM address latch A3 (LS174), clocked by /EARWR
+# ---------------------------------------------------------------------------
+# EAB0-5 arrive by the address-bus arrow at the bracket left of A3. Each EAB line also
+# has a short vertical stub up to a second copy of its name above A3; the stubs join
+# nothing else.
+net EAB5: UA3.14
+net EAB4: UA3.3
+net EAB3: UA3.13
+net EAB2: UA3.4
+net EAB1: UA3.11
+net EAB0: UA3.6
+net /EARWR: UA3.9 UF3.11
+# "P,1" at A3 pin 1 (clear): pulled up through R1 (Power Inputs: "R1,54 1K PULLUP")
+wire UA3.1 R1.1
+# Latched address to the EAROM, each line pulled up 10K (R19-R25, "10K 6PL")
+wire UA3.15 UC3.7 R25.1
+wire UA3.2 UC3.8 R23.1
+wire UA3.12 UC3.9 R22.1
+wire UA3.5 UC3.10 R21.1
+wire UA3.10 UC3.11 R20.1
+wire UA3.7 UC3.12 R19.1
+net +5V: R25.2 R23.2 R22.2 R21.2 R20.2 R19.2
+value R19 10K
+value R20 10K
+value R21 10K
+value R22 10K
+value R23 10K
+value R25 10K
+
+# ---------------------------------------------------------------------------
+# EAROM C3 (ER2055)
+# ---------------------------------------------------------------------------
+# Pin names as printed: 1 D3, 2 D7, 3 D6, 4 D5, 5 D4, 6 VSS, 7 A5, 8 A4, 9 A3, 10 A2,
+# 11 A1, 12 A0, 13 CK, 14 VEE, 15 C1, 16 C2, 17 CS1, 18 /CS2, 19 VG1, 20 D0, 21 D1,
+# 22 D2. (VG1 is lettered "VGI"; the draughtsman writes 1 as a bare stroke throughout --
+# A1, CS1, D1, EAB1.) VSS is drawn to +5V, VEE to -28V.
+net +5V: UC3.6
+# VG1 (19) and /CS2 (18) are tied together and grounded
+net GND: UC3.19 UC3.18
+
+# ---------------------------------------------------------------------------
+# EAROM control latch J3 (74LS175), clocked by /EARCON
+# ---------------------------------------------------------------------------
+# J3's D inputs come from the H3-buffered data bus. Read off the wiring:
+#   CK  = EDB0 (2D -> 2Q pin 7)      C2 = EDB1 (4D -> 4Q pin 15)
+#   C1  = /EDB2 (3D -> /3Q pin 11)   CS1 = EDB3 (1D -> 1Q pin 2)
+# Each of the four control lines is pulled up 10K (R26, R24, R9, R8, "10K 4PL").
+net /EARCON: UJ3.9
+net /RESET: UJ3.1
+wire UH3.3 UF3.3 UJ3.4
+wire UH3.18 UF3.18 UJ3.12
+wire UH3.16 UF3.17 UJ3.13
+wire UH3.14 UF3.14 UJ3.5
+wire UJ3.2 R26.1 UC3.17
+wire UJ3.15 R24.1 UC3.16
+# C1 also drives F3's output enable: the write latch drives the EAROM's data pins only
+# while C1 is low
+wire UJ3.11 R9.1 UC3.15 UF3.1
+wire UJ3.7 R8.1 UC3.13
+nc UJ3.3 UJ3.10 UJ3.14 UJ3.6
+net +5V: R26.2 R24.2 R9.2 R8.2
+value R26 10K
+value R24 10K
+value R9 10K
+value R8 10K
+
+# ---------------------------------------------------------------------------
+# EAROM data: write latch F3 (LS374) in, read buffer E3 (LS244) out
+# ---------------------------------------------------------------------------
+# Each EAROM data pin is one node with its 10K pull-up (R13-R18, R11, R12, R14, R16,
+# "10K 8PL"), F3's Q and E3's input. F3 is clocked by /EARWR (pin 11).
+wire UC3.2 R16.1 UE3.4 UF3.5
+wire UC3.3 R14.1 UE3.6 UF3.6
+wire UC3.4 R12.1 UE3.8 UF3.9
+wire UC3.5 R11.1 UE3.11 UF3.12
+wire UC3.1 R18.1 UE3.2 UF3.2
+wire UC3.22 R17.1 UE3.17 UF3.19
+wire UC3.21 R15.1 UE3.15 UF3.16
+wire UC3.20 R13.1 UE3.13 UF3.15
+net +5V: R16.2 R14.2 R12.2 R11.2 R18.2 R17.2 R15.2 R13.2
+value R11 10K
+value R12 10K
+value R13 10K
+value R14 10K
+value R15 10K
+value R16 10K
+value R17 10K
+value R18 10K
+net EDB7: UE3.16
+net EDB6: UE3.14
+net EDB5: UE3.12
+net EDB4: UE3.9
+net EDB3: UE3.18
+net EDB2: UE3.3
+net EDB1: UE3.5
+net EDB0: UE3.7
+# E3 enables: /1G (pin 1) on /EARD, which also feeds the F4 inverter. /2G (pin 19)
+# reaches /EARD through JP1 (drawn fitted) or F4's inverted /EARD through JP2
+# (drawn open). Same in all three printings.
+net /EARD: UE3.1 UF4.9 JP1.1
+wire UE3.19 JP1.2 JP2.1
+wire UF4.8 JP2.2
+value JP1 fitted
+value JP2 open
+
+# ---------------------------------------------------------------------------
+# Data-bus buffer H3 (LS244): EDB and the 3 MHz clock in, to F3/J3 and E3MHZ out
+# ---------------------------------------------------------------------------
+# EDB6 is not buffered: its slot on H3 (pin 13) carries the 3 MHz clock, and EDB6 runs
+# round H3 straight to F3 pin 7.
+net EDB7: UH3.15
+net EDB5: UH3.11
+net EDB4: UH3.8
+net EDB3: UH3.17
+net EDB2: UH3.2
+net EDB1: UH3.4
+net EDB0: UH3.6
+net EDB6: UF3.7
+wire UH3.5 UF3.4
+wire UH3.9 UF3.8
+wire UH3.12 UF3.13
+# Uncertain: the sheet prints E3MHZ twice here -- beside the J17 pin 4 hexagon (the clock
+# off the cable, terminated by R65 220 to ground) and at H3 pin 7 (the same clock
+# buffered, with a test-point flag, running off as a net label). They are the two
+# sides of a buffer, so they cannot be one net. The decoder (C5 pin 9) and the Math
+# Box (A2 pin 2) take E3MHZ by name with no hexagon of their own, so the buffered
+# side keeps the sheet's name and the cable side gets a label of ours.
+label E3MHZ-IN: J17.4 R65.1 UH3.13
+net GND: R65.2
+value R65 220
+# TP8: test-point flag labelled "E3MHZ" on H3 pin 7
+net E3MHZ: UH3.7 TP8.1
+# H3 enables: /1G (pin 1) grounded; /2G (pin 19) to ground through JP3 (drawn fitted),
+# otherwise held high by R10 10K. R10's supply is lettered "+5V" in the 1st printing;
+# the 2nd and 4th lost the vertical stroke of the + ("-5V" at a glance).
+net GND: UH3.1 JP3.1
+wire UH3.19 JP3.2 R10.1
+net +5V: R10.2
+value R10 10K
+value JP3 fitted
+
+# ---------------------------------------------------------------------------
+# Named lines that leave this box (joined by name; no unnamed exits)
+# ---------------------------------------------------------------------------
+# /EARCON: from J3 pin 9 up the left side at sheet x~1690, crosses the box top at
+#   y~3497, then right along y~3405 to x~3757 and up towards the decoder.
+# /EARD:   up the right side at sheet x~3901 from y~5345, through the box top.
+# /EARWR:  from F3 pin 11 right along y~6085, up at x~3932 through the box top.
+# /RESET:  from J3 pin 1 right along y~5410, down at x~3901, then right along y~6243
+#   out through the box's right edge (x~4107) towards the Player Inputs box.
+# -22V:    a label at the end of R29's wire; the rail comes in on J18 pins 4 and N
+#   (Power Inputs box, C37 470 25V).
+# EAB0-5:  the black address-bus arrow into A3's bracket.
+# EDB0-7:  the grey data-bus arrow into H3's bracket; E3's outputs to the grey bus
+#   that runs down the right of the box to the bottom bus.
+
+# ===========================================================================
+# Player Inputs and Audio Output
+# ===========================================================================
+#
+# Source: DP-190 sheet 3 Side B, 4th printing (ad5d39e0e6ea, "037585-01 B +"),
+# read from the 300 dpi tiles and 600 dpi crops. Every section was
+# compared with the 2nd printing (ba4e9f648414) and the 1st (a2e9aa09a858,
+# "037585-01 A", box titled "Switch Inputs & Audio Output"); they agree except
+# where a QUERY says otherwise. Values were checked against the typeset parts
+# list, TM-190 2nd printing Figure 22 (doc 56a2f53adedf p45-46).
+#
+# Extent: the box from sheet x~4205 to ~10010, y~3507 to ~6445 (300 dpi), which
+# also holds the Encoder Wheel PCB inset, the NOTE legend and the NOTICE text.
+# The grey EDB bus runs inside the box's right and bottom edges.
+#
+# Legend (NOTE box, bottom centre of this box): square = edge connector J18,
+# hexagon = interconnect connection J17, circle = SA connector J16, flag = test
+# point. No hexagons appear in this box. TP9 and TP10 are ours.
+#
+# Power pins are drawn only on the POKEYs (17 +5V, 1 GND) and on K6 (4 +22V,
+# 11 GND); the build adds every other supply pin from the standard pinout.
+
+# part UC/D2 C012294-01 (POKEY, "Audio 2" in the TM-190 self-test)
+# part UB/C2 C012294-01 (POKEY, "Audio 1" in the TM-190 self-test)
+# part UD6 74LS157
+# part UC6 74LS74
+# part UA4 74LS191
+# part UE6 4584B
+# part UH4 74LS174
+# part UK6 LM324
+# part UF4 74LS14
+# part UF5 74S03
+# part SW1 4-position DIP switch (66-114P1T "4-Station Bit Switch", TM-190 parts list)
+
+# ---------------------------------------------------------------------------
+# Encoder Wheel PCB (A035220-01 A) -- a different board, drawn as an inset.
+# None of its parts are in this netlist.
+# ---------------------------------------------------------------------------
+# The inset shows the encoder ("coupler") PCB: two IR LEDs in series from +5V
+# through its own R1 (100 ohm) to GND, and two phototransistors, collectors on
+# +5V, emitters out as CLK 1 and DIR 1. Its four-pin connector is drawn with the
+# same square symbol as J18 and numbered 1 CLK 1, 2 +5V, 3 GND, 4 DIR 1 -- these
+# are the encoder board's own pins, NOT J18.1-4 (J18.1/J18.2 are this board's
+# GND/+5V on the Power Inputs box). Its R1 is not this board's R1 (the 1K pull-up
+# printed "P,R1" on the POKEYs' CS1).
+# The sheet draws no wire from the inset to this board. Its signals arrive on
+# J18.J, J18.8, J18.H and J18.7 below. By function: J/8 feed the direction latch
+# (C6 D) and H/7 the count clock (C6 CK, A4 CK), and J/H are the mux's A inputs
+# (FLIP low), 8/7 its B inputs (FLIP high, the other cocktail player). So J18.J
+# and J18.H carry DIR and CLK of one encoder, J18.8 and J18.7 of the other --
+# an inference from the circuit; the sheet does not label these pins.
+
+# ---------------------------------------------------------------------------
+# Encoder inputs -- each: 0.1 + 3.3K to ground, AC-coupled through 1.0uF 50V
+# into a 4584B Schmitt inverter biased at its own threshold through 10K
+# ---------------------------------------------------------------------------
+# Electrolytics: "+" is printed on the inverter side; pin 1 (+) is that side.
+wire J18.J C42.1 R47.1 C46.2
+wire C46.1 R52.1 UE6.13
+wire J18.8 C43.1 R46.1 C45.2
+wire C45.1 R51.1 UE6.11
+wire J18.H C28.1 R40.1 C32.2
+wire C32.1 R50.1 UE6.5
+wire J18.7 C29.1 R39.1 C31.2
+wire C31.1 R49.1 UE6.9
+net GND: C42.2 R47.2 C43.2 R46.2 C28.2 R40.2 C29.2 R39.2
+# Bias generator: E6 1->2 with R53 from output back to input and C48 to ground
+# is a relaxation oscillator; R48/C47 average it to the 4584B's own switching
+# threshold, and R49-R52 hold each coupled input at that level. The vertical
+# bias line at x~4750 crosses the J18.8, H, 7 signal lines without dots.
+wire C48.1 R48.1 R53.1 UE6.1
+wire R53.2 UE6.2
+wire R48.2 R49.2 R50.2 R51.2 R52.2 C47.1
+net GND: C47.2 C48.2
+# E6 gate 3->4 is not drawn anywhere on the sheet (checked the decoder, Math Box
+# and High Score Memory boxes); the drawing leaves the CMOS inputs open.
+nc UE6.3 UE6.4
+value C42 .1uF
+value C43 .1uF
+value C28 .1uF
+value C29 .1uF
+value R47 3.3K
+value R46 3.3K
+value R40 3.3K
+value R39 3.3K
+value C46 1.0uF 50V
+value C45 1.0uF 50V
+value C32 1.0uF 50V
+value C31 1.0uF 50V
+value R52 10K
+value R51 10K
+value R50 10K
+value R49 10K
+value R48 10K
+value R53 1K
+value C48 1000pF
+value C47 1.0uF 50V
+
+# ---------------------------------------------------------------------------
+# Encoder select, direction latch and up/down counter
+# ---------------------------------------------------------------------------
+# D6 (LS157) picks one player's encoder with FLIP: section 1 (2A/3B -> 4) is
+# the direction, section 4 (14A/13B -> 12) the clock. C6 latches direction on
+# the clock edge; A4 counts up or down on the same edge. The count TBC0-3 is
+# read by POKEY B/C2 on P0-P3. A4's load is never asserted (LD pulled up) and
+# its data inputs are grounded.
+wire UE6.12 UD6.2
+wire UE6.10 UD6.3
+wire UE6.6 UD6.14
+wire UE6.8 UD6.13
+net FLIP: UD6.1
+net GND: UD6.15
+wire UD6.4 UC6.2
+wire UD6.12 UC6.3 UA4.14
+wire UC6.5 UA4.5
+# "P,R54" at C6 pin 4 (preset), C6 pin 1 (clear) and A4 pin 11 (load)
+wire UC6.4 UC6.1 UA4.11 R54.1
+nc UC6.6
+# C6's second flip-flop is not drawn anywhere on the sheet
+nc UC6.8 UC6.9 UC6.10 UC6.11 UC6.12 UC6.13
+net GND: UA4.4 UA4.15 UA4.1 UA4.10 UA4.9
+nc UA4.12 UA4.13
+net TBC0: UA4.3 UB/C2.14
+net TBC1: UA4.2 UB/C2.15
+net TBC2: UA4.6 UB/C2.12
+net TBC3: UA4.7 UB/C2.13
+
+# ---------------------------------------------------------------------------
+# Player control panel -- each switch: 470 pull-up, 1K series, .1 to ground
+# ---------------------------------------------------------------------------
+net ZAP1: J18.10 R60.1 R56.1
+net ZAP2: J18.L R59.1 R55.1
+net FIRE1: J18.9 R62.1 R58.1
+net FIRE2: J18.K R61.1 R57.1
+net +5V: R60.2 R59.2 R62.2 R61.2
+# D6 section 3 (11A/10B -> 9) picks the ZAP button, section 2 (5A/6B -> 7) FIRE
+wire R56.2 C53.1 UD6.11
+wire R55.2 C52.1 UD6.10
+wire R58.2 C50.1 UD6.5
+wire R57.2 C51.1 UD6.6
+net GND: C50.2 C51.2 C52.2 C53.2
+wire UD6.9 UC/D2.13
+wire UD6.7 UC/D2.10
+value R60 470
+value R59 470
+value R62 470
+value R61 470
+value R56 1K
+value R55 1K
+value R57 1K
+# Uncertain: the 4th printing letters R58 "15 K" (clearly, in a hand unlike the
+# other three "1K"s). The 1st and 2nd printings print 1K, and the typeset TM-190
+# parts list puts R58 in "1K Ohm (R1, 5, 7, 41, 45, 53-58, 64, 66-70)". 15K in
+# series with an LS157 input could never pull it low, so FIRE1 would be dead.
+# Recorded as 1K on the house rule (typeset beats hand-lettered).
+value R58 1K
+value C50 .1uF
+value C51 .1uF
+value C52 .1uF
+value C53 .1uF
+
+# START buttons
+# The two 470 pull-ups are drawn side by side under one "+5V": the left one
+# (label "R44" to its left) dots onto the START1 line and crosses START2 without
+# a dot; the right one (label "R63" between the two) dots onto START2. All three
+# printings draw it the same way.
+net START2: J18.M R63.1 R45.1
+net START1: J18.11 R44.1 R64.1
+net +5V: R44.2 R63.2
+wire R45.2 C40.1 UC/D2.8
+wire R64.2 C55.1 UC/D2.11
+net GND: C40.2 C55.2
+value R44 470
+value R63 470
+value R45 1K
+value R64 1K
+value C40 .1uF
+value C55 .1uF
+
+# Cocktail-cabinet input
+net /COCKTAIL: J18.C R43.1 R68.1
+net +5V: R43.2
+wire R68.2 C39.1 UB/C2.10
+# Uncertain: the 4th printing draws C39 from the P4 node UP to its own "+5V" label.
+# The 1st and 2nd printings draw C39 from the same node DOWN to a ground symbol.
+# Recorded per the 4th (primary); either way it only filters the input.
+net +5V: C39.2
+value R43 470
+value R68 1K
+value C39 .1uF
+
+# ---------------------------------------------------------------------------
+# Option switch D/E2 (TM-190: "Game Difficulty"), 1K pull-ups
+# ---------------------------------------------------------------------------
+# P5/P2/P1/P0 are hand-lettered labels at the switch ends and again beside the
+# POKEY pins (P2, P1, P0 at C/D2; P5 at B/C2). Same in all three printings.
+net P5: SW1.1 R66.1 UB/C2.11
+net P2: SW1.2 R70.1 UC/D2.12
+net P1: SW1.3 R67.1 UC/D2.15
+net P0: SW1.4 R69.1 UC/D2.14
+net +5V: R66.2 R70.2 R67.2 R69.2
+net GND: SW1.8 SW1.7 SW1.6 SW1.5
+value R66 1K
+value R70 1K
+value R67 1K
+value R69 1K
+
+# ---------------------------------------------------------------------------
+# POKEY C/D2 (C012294-01) -- "Audio 2": DIP switch, ZAP, FIRE, START1, START2
+# ---------------------------------------------------------------------------
+# Pin numbers checked against the Battlezone B/C2 POKEY and custom_pinouts.json:
+# no disagreement on any pin.
+net +5V: UC/D2.17
+net GND: UC/D2.1
+net EDB7: UC/D2.6
+net EDB6: UC/D2.5
+net EDB5: UC/D2.4
+net EDB4: UC/D2.3
+net EDB3: UC/D2.2
+net EDB2: UC/D2.40
+net EDB1: UC/D2.39
+net EDB0: UC/D2.38
+net EPHI2: UC/D2.7
+net ER/WB: UC/D2.32
+net /POKEY2: UC/D2.30
+net EAB3: UC/D2.33
+net EAB2: UC/D2.34
+net EAB1: UC/D2.35
+net EAB0: UC/D2.36
+# CS1 printed "P,R1" on both POKEYs
+wire UC/D2.31 UB/C2.31 R1.1
+# SOD looped straight back to SID (no pull-up drawn, unlike Battlezone's R46)
+wire UC/D2.28 UC/D2.24
+# P7 is drawn as a bare stub
+nc UC/D2.9
+net POKAU2: UC/D2.37 R3.1 C9.1 R33.1
+net +5V: R3.2
+net GND: C9.2
+value R3 10K
+value C9 .015uF
+# Keyboard scan, serial clocks and IRQ are not drawn
+nc UC/D2.16 UC/D2.18 UC/D2.19 UC/D2.20 UC/D2.21 UC/D2.22 UC/D2.23 UC/D2.25 UC/D2.26 UC/D2.27 UC/D2.29
+
+# ---------------------------------------------------------------------------
+# POKEY B/C2 (C012294-01) -- "Audio 1": encoder count, cocktail, DIP switch 1
+# ---------------------------------------------------------------------------
+net +5V: UB/C2.17
+net GND: UB/C2.1
+net EDB7: UB/C2.6
+net EDB6: UB/C2.5
+net EDB5: UB/C2.4
+net EDB4: UB/C2.3
+net EDB3: UB/C2.2
+net EDB2: UB/C2.40
+net EDB1: UB/C2.39
+net EDB0: UB/C2.38
+net EPHI2: UB/C2.7
+net ER/WB: UB/C2.32
+net /POKEY1: UB/C2.30
+net EAB3: UB/C2.33
+net EAB2: UB/C2.34
+net EAB1: UB/C2.35
+net EAB0: UB/C2.36
+wire UB/C2.28 UB/C2.24
+# P6 and P7 are drawn as bare stubs
+nc UB/C2.8 UB/C2.9
+net POKAU1: UB/C2.37 R4.1 C10.1 R32.1
+net +5V: R4.2
+net GND: C10.2
+value R4 10K
+value C10 .015uF
+nc UB/C2.16 UB/C2.18 UB/C2.19 UB/C2.20 UB/C2.21 UB/C2.22 UB/C2.23 UB/C2.25 UB/C2.26 UB/C2.27 UB/C2.29
+
+# Where the POKEYs' control lines come from (all named at the pins, so they join
+# by name; sheet coordinates at 300 dpi):
+#   EPHI2   enters through the box top running south at x~5745 (from a run along
+#           y~3307), east along y~4873 to a dot at x~7140, then up to C/D2.7 and
+#           down to B/C2.7. It crosses the address bus and the y~3412 line
+#           without dots.
+#   /POKEY2 south at x~6958 (from y~3278), east at y~4280 to C/D2.30.
+#   /POKEY1 south at x~7065 (from y~3242), east at y~5680 to B/C2.30.
+#   ER/WB   south at x~7108 (from y~3205), stubs east to C/D2.32 and B/C2.32.
+#   EAB0-3  the thick black address-bus arrow, down x~6990-7045 from y~3340,
+#           with an arrow into each POKEY's EAB3..EAB0 bracket.
+#   EDB0-7  the grey data bus, arrows into each POKEY's bracket.
+# The other D6 and START/ZAP/FIRE lines cross these verticals without dots.
+
+# ---------------------------------------------------------------------------
+# Audio output -- K6 sums the two POKEYs into AUD+ and inverts it for AUD-
+# ("To Regulator/Audio II PCB"; the 1st printing says "Regulator Audio Board")
+# ---------------------------------------------------------------------------
+# POKAU2 and POKAU1 each cross their POKEY's SOD-SID loop without a dot.
+wire R33.2 R32.2 R34.1 UK6.10
+net GND: R34.2 R36.1
+wire R36.2 R38.1 UK6.9
+# TP9: flag labelled "AUD+"
+net AUD+: UK6.8 R38.2 C27.1 TP9.1 J18.5
+wire C27.2 R35.1
+wire R35.2 R37.1 UK6.6
+net +5V: UK6.5
+# TP10: flag labelled "AUD-"
+net AUD-: UK6.7 R37.2 TP10.1 J18.D
+net +22V: UK6.4
+# J18.6 "AUD+ RET" and J18.E "AUD- RET" are both on K6's ground
+net GND: UK6.11 J18.6 J18.E
+# K6's first and fourth op-amps are not drawn anywhere on the sheet (the other
+# LM324, K3 in the High Score Memory, is the one with all four sections used)
+nc UK6.1 UK6.2 UK6.3 UK6.12 UK6.13 UK6.14
+value R33 330K
+value R32 330K
+value R34 22K
+value R36 10K
+value R38 100K
+value C27 .1uF
+value R35 100K
+value R37 100K
+
+# ---------------------------------------------------------------------------
+# Output latch H4 (LS174) on /OL: SA enable, FLIP, the two start-button LEDs
+# ---------------------------------------------------------------------------
+# /OL enters through the box top at x~8050 running south, east along y~5162 to
+# x~8606, down to H4.9. It is named at the pin.
+net /OL: UH4.9
+net EDB3: UH4.6
+net EDB2: UH4.11
+net EDB1: UH4.13
+net EDB0: UH4.14
+# Circle 10 = SA connector J16 pin 10
+net SAEN 2,3: UH4.7 J16.10
+# FLIP runs east along y~5730 to x~9327, down to y~6285, west along the bottom
+# of the box (crossing the /RESET run and under the grey bus at x~8030-8100
+# without dots) to x~5180 and up to D6.1. Nothing else taps it.
+net FLIP: UH4.10
+wire UH4.12 R30.1
+wire UH4.15 R31.1
+net START LED1: R30.2 J18.12
+net START LED2: R31.2 J18.13
+value R30 150
+value R31 150
+# D1 and D2 (pins 3, 4) and Q1, Q2 (pins 2, 5) are drawn as bare stubs, in all
+# three printings: the latch's first two flip-flops are unused.
+nc UH4.2 UH4.3 UH4.4 UH4.5
+# /RESET from J18.F clears H4 and leaves the box heading west along y~6242,
+# crossing the box's left edge at x~4205 (to J3.1 in the High Score Memory,
+# which names it /RESET too).
+net /RESET: J18.F UH4.1 R7.1
+net +5V: R7.2
+value R7 1K
+
+# ---------------------------------------------------------------------------
+# Math Box status read: /STREN gates STOP onto EDB7
+# ---------------------------------------------------------------------------
+# /STREN enters through the box top at x~8087 running south, east along y~5125
+# to x~9108, down to F4.13. STOP is a label at F5.10 (driven in the Math Box).
+# F5.8 is open collector, pulled up by R41; the EDB7 label carries an arrow down
+# into the grey data bus.
+net /STREN: UF4.13
+wire UF4.12 UF5.9
+net STOP: UF5.10
+net EDB7: UF5.8 R41.1
+net +5V: R41.2
+value R41 1K
+# F4's other inverters (1->2, 5->6, 9->8, 11->10) and F5's other gates (1-3,
+# 4-6) are drawn in the other boxes; their pins are theirs to account for.
+
+# ---------------------------------------------------------------------------
+# Lines in this box that touch nothing here
+# ---------------------------------------------------------------------------
+# A long horizontal at y~3412, between the Math Box and this box's top edge
+# (y~3507): from x~3935 (the High Score reader's /EARWR, going up through their
+# box top at x~3932) east to x~10010, under the grey bus, then north up the
+# sheet's right edge. It has no junction in the Player Inputs box, so it joins nothing.
+# No unnamed wire crosses this box's boundary: every line that does is named at
+# its pin here (EPHI2, ER/WB, /POKEY1, /POKEY2, EAB0-3, /OL, /STREN, /RESET),
+# a bus (EDB, EAB), or a "P,R" pull-up reference (R1.1, R54.1).
+
+# ===========================================================================
+# Pins the sheet does not draw anywhere
+# ===========================================================================
+# Every box was read gate by gate, and none of them draws these. Unused as far as the
+# drawing says; a spare gate's inputs may still be tied somewhere on the PCB that the
+# schematic does not show.
+# A2's second flip-flop (the LS109's pins 9-15)
+nc UA2.9 UA2.10 UA2.11 UA2.12 UA2.13 UA2.14 UA2.15
+# E4's first AND, E5's first two XORs, F5's first NAND
+nc UE4.1 UE4.2 UE4.3
+nc UE5.1 UE5.2 UE5.3 UE5.4 UE5.5 UE5.6
+nc UF5.1 UF5.2 UF5.3
+# J16 is a 12-pin header (TM-190 parts list); the sheet draws circles 1 and 3-10 only
+nc J16.2 J16.11 J16.12
+
+# ===========================================================================
+# Names for the parts the sheet does not designate (shown as their values)
+# ===========================================================================
+value J16 SA header
+value J17 Interconnect
+value J18 Edge connector
+value SW1 4-position DIP switch (D/E2)
+value TP1 EPHI2
+value TP2 ER/WB
+value TP3 +5V
+value TP4 GND
+value TP5 -22V
+value TP6 +22V
+value TP7 E6MHZ
+value TP8 E3MHZ
+value TP9 AUD+
+value TP10 AUD-

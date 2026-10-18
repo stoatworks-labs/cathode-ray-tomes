@@ -79,5 +79,22 @@
    "13": {"name": "A3", "type": "input"}, "14": {"name": "A4", "type": "input"},
    "15": {"name": "~{CE}", "type": "input"}, "16": {"name": "VCC", "type": "power_in"}
   }
+ },
+ "ER2055": {
+  "desc": "GI ER2055 64x8 electrically alterable ROM (Atari 137161-001), DIP-22. A PMOS part: its logic runs between VSS (+5V) and VGI (ground), and VGG is the -28V supply it programs from, so `rail` names each supply pin's net where the pin name alone would mislead",
+  "source": "MAME src/devices/machine/er2055.h connection diagram (Aaron Giles)",
+  "pins": {
+   "1": {"name": "D3", "type": "bidirectional"}, "2": {"name": "D7", "type": "bidirectional"},
+   "3": {"name": "D6", "type": "bidirectional"}, "4": {"name": "D5", "type": "bidirectional"},
+   "5": {"name": "D4", "type": "bidirectional"}, "6": {"name": "VSS", "type": "power_in", "rail": "+5V"},
+   "7": {"name": "A5", "type": "input"}, "8": {"name": "A4", "type": "input"},
+   "9": {"name": "A3", "type": "input"}, "10": {"name": "A2", "type": "input"},
+   "11": {"name": "A1", "type": "input"}, "12": {"name": "A0", "type": "input"},
+   "13": {"name": "CLK", "type": "input"}, "14": {"name": "VGG", "type": "power_in", "rail": "-28V"},
+   "15": {"name": "C1", "type": "input"}, "16": {"name": "C2", "type": "input"},
+   "17": {"name": "CS1", "type": "input"}, "18": {"name": "CS2", "type": "input"},
+   "19": {"name": "VGI", "type": "power_in", "rail": "GND"}, "20": {"name": "D0", "type": "bidirectional"},
+   "21": {"name": "D1", "type": "bidirectional"}, "22": {"name": "D2", "type": "bidirectional"}
+  }
  }
 }
