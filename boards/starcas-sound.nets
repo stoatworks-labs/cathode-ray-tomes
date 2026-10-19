@@ -1,0 +1,535 @@
+# Star Castle sound board -- netlist converted from MAME
+#
+# Cinematronics vector games carry a small audio board of their own, driven from the
+# CPU board's output latch: the latch bits arrive here as ports (OUT_0 ... OUT_7, MAME's
+# TTL_INPUT names), and the board's sound goes out to a final amplifier that MAME does
+# not simulate and this file therefore does not contain.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/cinematronics/nl_starcas.cpp,
+# NETLIST_START(starcas). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Aaron Giles (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/cinematronics/nl_starcas.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+# The sheet numbers its ICs IC1, IC2 ...; they are written U1, U2 ... here, because the
+# checker files every IC under a U designator.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 34: #define HLE_BACKGROUND_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 35: #define HLE_LASER_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 36: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 765: NET_C(GND, IC28.8, IC28.9, IC28.10, IC28.11) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 767: NET_C(GND, IC6.3) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 220: RES(R120, RES_K(390)) -- part of final amp (not emulated)
+#   line 221: RES(R121, RES_K(15))  -- part of final amp (not emulated)
+#   line 222: RES(R122, 150)        -- part of final amp (not emulated)
+#   line 223: RES(R123, RES_K(22))  -- part of final amp (not emulated)
+#   line 224: RES(R124, 150)        -- part of final amp (not emulated)
+#   line 231: CAP(C2, CAP_U(25))      // electrolytic
+#   line 232: CAP(C4, CAP_U(25))      // electrolytic
+#   line 233: CAP(C5, CAP_U(25))      // electrolytic
+#   line 234: CAP(C7, CAP_U(25))      // electrolytic
+#   line 235: CAP(C9, CAP_U(25))      // electrolytic
+#   line 268: CAP(C43, CAP_U(0.68))   // film -- part of final amp (not emulated)
+#   line 269: CAP(C44, CAP_P(470))    // disk -- part of final amp (not emulated)
+#   line 270: CAP(C45, CAP_P(470))    // disk -- part of final amp (not emulated)
+#   line 271: CAP(C46, CAP_P(470))    // disk -- part of final amp (not emulated)
+#   line 272: CAP(C47, CAP_U(0.005))  // disk -- part of final amp (not emulated)
+#   line 275: D_1N4003(D1)            // not needed
+#   line 276: D_1N4003(D2)            // not needed
+#   line 277: D_1N4003(D3)            // not needed
+#   line 278: D_1N4003(D4)            // not needed
+#   line 306: Q_2N6107(Q17)           // PNP -- part of final amp (not emulated)
+#   line 307: Q_2N6292(Q18)           // NPN -- part of final amp (not emulated)
+#   line 321: TTL_7815_DIP(IC4)       // +15V Regulator -- not needed
+#   line 322: TTL_7915_DIP(IC5)       // -15V Regulator -- not needed
+#   line 392: TL081_DIP(IC25)         // Op. Amp. -- part of final amp (not emulated)
+#
+# MAME's file says it is derived from the schematics and parts list in the Star Castle
+# manual. Compared with sheet 2 of the audio board, 72-10861-02 (doc 7f01a2f3c820 p87),
+# 2026-10-19: the noise generator (IC14 S2688, IC15 follower, C16-C18, R28), the +2.2V
+# reference (Q2, R29-R31, C19), the 60 Hz 555 IC16 (R32, R33, C20, C21), the laser VCO
+# (IC17 566, C22-C25, R41-R43, Q5, R44-R46, D10) with the 74LS393 IC12 and its taps
+# R47-R49, the CA3080 IC18's input network (R57-R62), the summing follower IC26 (R127, C48)
+# and the output amplifier IC27 (R125, R126, the SJ junction, the 10K volume pot R128) all
+# agree with MAME pin for pin and value for value. Sheet 1 (p86: latches, shift register,
+# the background VCO) was not compared, nor the other four CA3080 channels or the star
+# sound 555s beyond their values (R112-R119, which agree).
+
+# part U1 7414
+# part U2 74LS164
+# part U3 74LS377
+# part U6 7406
+# part U7 TL081
+# part U8 TL081
+# part U9 LM566
+# part U10 74LS163
+# part U11 74LS163
+# part U12 74LS393
+# part U13 74LS393
+# part U14 S2688
+# part U15 TL081
+# part U16 LM555
+# part U17 LM566
+# part U18 CA3080
+# part U19 CA3080
+# part U20 CA3080
+# part U21 CA3080
+# part U22 CA3080
+# part U23 LM555
+# part U24 LM555
+# part U26 TL081
+# part U27 TL081
+# part U28 74LS107
+
+value R1 1K
+value R2 160
+value R3 1K
+value R4 1K
+value R5 2K
+value R6 2K
+value R7 4.7K
+value R8 3.3K
+value R9 820
+value R10 3.3M
+value R11 3.3M
+value R12 5.1M
+value R13 1.6M
+value R14 2K
+value R15 18K
+value R16 10K
+value R17 10K
+value R18 91K
+value R19 10K
+value R20 1K
+value R21 2K
+value R22 1K
+value R24 200K
+value R25 30K
+value R26 200K
+value R27 51K
+value R28 1M
+value R29 430
+value R30 560
+value R31 3.3K
+value R32 2K
+value R33 130K
+value R34 4.7K
+value R35 2.7K
+value R36 1K
+value R37 39K
+value R38 12K
+value R39 51K
+value R40 2.4K
+value R41 270K
+value R42 1M
+value R43 4.3K
+value R44 10K
+value R45 1K
+value R46 2K
+value R47 82K
+value R48 39K
+value R49 20K
+value R50 1K
+value R51 12K
+value R52 4.7K
+value R53 1K
+value R54 39K
+value R55 12K
+value R56 1K
+value R57 100K
+value R58 18K
+value R59 15K
+value R60 7.5K
+value R61 430
+value R62 430
+value R63 4.7K
+value R64 1K
+value R65 39K
+value R66 12K
+value R67 1K
+value R68 100K
+value R69 6.8K
+value R70 18K
+value R71 47K
+value R72 390
+value R73 390
+value R74 4.7K
+value R75 2.7K
+value R76 4.7K
+value R77 39K
+value R78 12K
+value R79 1K
+value R80 200K
+value R81 300K
+value R82 240K
+value R83 200
+value R84 200
+value R85 4.7K
+value R86 2.7K
+value R87 4.7K
+value R88 1K
+value R89 1.8K
+value R90 3.9K
+value R91 39K
+value R92 12K
+value R93 620
+value R94 360K
+value R95 27K
+value R96 33K
+value R97 47
+value R98 47
+value R99 4.7K
+value R100 2.7K
+value R101 4.7K
+value R102 39K
+value R103 12K
+value R104 1K
+value R105 36K
+value R106 36K
+value R107 8.2K
+value R108 47K
+value R109 22K
+value R110 1K
+value R111 1K
+value R112 10K
+value R113 160K
+value R114 39K
+value R115 47K
+value R116 3.9K
+value R117 5.1K
+value R118 820K
+value R119 100K
+value R125 8.2K
+value R126 20K
+value R127 30K
+value R128 10K
+value C11 0.68uF
+value C12 0.001uF
+value C13 0.0022uF
+value C14 0.1uF
+value C15 0.1uF
+value C16 0.1uF
+value C17 100uF
+value C18 0.1uF
+value C19 0.1uF
+value C20 0.1uF
+value C21 0.01uF
+value C22 0.68uF
+value C23 0.001uF
+value C24 0.0047uF
+value C25 0.1uF
+value C26 0.1uF
+value C27 2.2uF
+value C28 0.22uF
+value C29 0.1uF
+value C30 4.7uF
+value C31 0.1uF
+value C32 0.01uF
+value C33 0.68uF
+value C34 3.3uF
+value C35 0.22uF
+value C36 0.33uF
+value C37 0.47uF
+value C38 0.01uF
+value C39 0.68uF
+value C40 0.1uF
+value C41 0.01uF
+value C42 0.1uF
+value C48 0.33uF
+value D5 1N5240B
+value D6 1N5236B
+value D7 1N914B
+value D8 1N914B
+value D9 1N914B
+value D10 1N914B
+value Q1 2N3904
+value Q2 2N3904
+value Q3 2N3906
+value Q4 2N3904
+value Q5 2N3904
+value Q6 2N3906
+value Q7 2N3906
+value Q8 2N3906
+value Q9 2N3906
+value Q10 2N3906
+value Q11 2N3906
+value Q12 2N3906
+value Q13 2N3906
+value Q14 2N3906
+value Q15 2N3906
+value Q16 2N3906
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C16.2 C17.2 C19.2 C20.2 C21.2 C22.2 C24.2 C28.2 C29.2 C31.2 C32.2 C35.2 C36.2 C37.1 C38.1 C39.1 C40.1 C41.1 D10.2 D5.2 D6.1 D7.2 D8.2 D9.2 U1.7 U10.4 U10.5 U10.6 U10.8 U11.3 U11.4 U11.8 U12.12 U12.7 U13.12 U13.7 U14.1 U14.2 U16.1 U17.1 U2.7 U23.1 U24.1 U27.3 U28.4 U28.7 U3.1 U3.10 U6.7 U7.3 U9.8 Q4.E R103.1 R104.1 R110.1 R111.1 R119.1 R127.1 R128.1 R13.1 R16.1 R17.1 R27.1 R28.1 R30.1 R31.1 R38.1 R42.1 R50.1 R55.1 R56.1 R61.2 R62.1 R66.1 R67.1 R72.2 R73.1 R78.1 R79.1 R83.1 R84.1 R92.1 R93.1 R97.1 R98.1
+net +15V: C16.1 C17.1 U14.4 U15.7 U17.8 U18.7 U19.7 U20.7 U21.7 U22.7 U26.7 U27.7 U7.7 U8.7 R2.1 R39.1 R43.1
+net +5V: U1.14 U10.16 U11.16 U12.14 U13.14 U16.4 U16.8 U2.14 U23.8 U24.8 U28.14 U3.20 U6.14 Q10.E Q12.E Q15.E Q2.C Q3.E R1.1 R101.1 R112.1 R117.1 R20.1 R22.1 R29.1 R32.1 R34.1 R36.1 R45.1 R52.1 R63.1 R74.1 R76.1 R85.1 R87.1 R88.1 R99.1
+net -15V: C13.2 C27.2 C30.2 C33.2 C34.2 U15.4 U18.4 U19.4 U20.4 U21.4 U22.4 U26.4 U27.4 U7.4 U8.4 U9.1 R102.1 R12.1 R18.1 R21.1 R37.1 R46.1 R54.1 R65.1 R77.1 R91.1
+
+# ---------------------------------------------------------------------------
+# Sheet 1, shift register (top left)
+# ---------------------------------------------------------------------------
+label HI: U10.10 U10.3 U10.7 U11.5 U11.6 U11.7 U2.2 U2.9 R1.2
+port OUT_7: U1.13  # in MAME: TTL_INPUT(I_OUT_7)
+wire U1.1 U1.12
+wire U1.2 U2.1
+port OUT_4: U1.9  # in MAME: TTL_INPUT(I_OUT_4)
+wire U1.5 U1.8
+wire U1.6 U2.8
+port OUT_0: U1.11  # in MAME: TTL_INPUT(I_OUT_0)
+wire U1.10 U1.3
+wire U1.4 U3.11
+wire U2.3 U3.3
+wire U2.4 U3.4
+wire U2.5 U3.7
+wire U2.6 U3.8
+wire U2.10 U3.13
+wire U2.11 U3.14
+wire U2.12 U3.17
+wire U2.13 U3.18
+
+# ---------------------------------------------------------------------------
+# Sheet 1, BACKGROUND (top portion)
+# ---------------------------------------------------------------------------
+wire D5.1 R2.2 R3.1 R5.1 R7.1
+label BL2: U3.15 U6.9
+wire U6.8 R3.2 R4.1
+label BL1: U3.16 U6.11
+wire U6.10 R5.2 R6.1
+label BL0: U3.19 U6.13
+wire U6.12 R7.2 R8.1
+wire U7.2 R4.2 R6.2 R8.2 R9.1
+wire U7.6 R10.1 R9.2
+wire C11.1 U8.2 R10.2 R11.1
+wire U8.3 R12.2 R13.2
+wire C11.2 U8.6 R11.2 R14.1
+wire D6.2 R14.2 R15.1
+wire C12.2 U9.5 R15.2 R17.2 R18.2
+wire C13.1 U9.7
+wire C12.1 U9.6 R16.2
+wire C14.1 U9.3
+wire C14.2 D7.1 R19.1
+wire Q1.B R19.2
+wire D8.1 Q1.E R21.2
+label CLK: U10.2 U11.2 U13.1 U28.12 Q1.C R20.2
+
+# ---------------------------------------------------------------------------
+# Sheet 1, BACKGROUND (bottom portion)
+# ---------------------------------------------------------------------------
+label BACKGROUND_EN: U13.2 U3.12 U6.1
+wire U10.1 U11.1 U6.2 R22.2
+wire U10.15 U11.10
+wire U11.15 U28.1 U28.13
+wire U10.9 U11.9 U12.13 U28.2
+wire U12.11 R24.1
+wire C15.1 R24.2 R26.2 R27.2
+wire U13.13 U13.6
+wire U13.9 R26.1
+wire C15.2 R25.1
+
+# ---------------------------------------------------------------------------
+# Sheet 2, NOISE GENERATOR
+# ---------------------------------------------------------------------------
+wire C18.2 U14.3
+wire C18.1 U15.3 R28.2
+label NOISE: U15.2 U15.6 R107.1 R58.1 R69.1 R81.1 R95.1
+
+# ---------------------------------------------------------------------------
+# Sheet 2, +2.2V
+# ---------------------------------------------------------------------------
+wire Q2.B R29.2 R30.2
+label V2_2: C19.1 Q2.E Q6.E Q8.E R31.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, SQUARE WAVE
+# ---------------------------------------------------------------------------
+wire U16.7 R32.2 R33.1
+wire C20.1 U16.2 U16.6 R33.2
+wire C21.1 U16.5
+
+# ---------------------------------------------------------------------------
+# Sheet 2, LASER VCO
+# ---------------------------------------------------------------------------
+port OUT_3: U12.2 U6.5  # in MAME: TTL_INPUT(I_OUT_3)
+wire U6.6 R35.1 R36.2
+wire Q3.B R34.2 R35.2
+wire Q3.C R37.2 R38.2 R40.1
+wire Q4.B R40.2
+wire C22.1 C23.2 U17.5 R39.2 R41.1 R42.2
+wire Q4.C R41.2
+wire C23.1 U17.6 R43.2
+wire C24.1 U17.7
+wire C25.1 U17.3
+wire C25.2 D9.1 R44.1
+wire Q5.B R44.2
+wire D10.1 Q5.E R46.2
+wire U12.1 Q5.C R45.2
+wire U12.3 R47.1
+wire U12.4 R48.1
+wire U12.6 R49.1
+wire R47.2 R48.2 R49.2 R50.2 R51.1
+wire C26.1 R51.2
+label SJ: C26.2 C42.2 U27.2 R125.2 R126.1 R25.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, SOFT EXPLOSION
+# ---------------------------------------------------------------------------
+port OUT_2: R52.2 R53.1  # in MAME: TTL_INPUT(I_OUT_2)
+wire Q6.B R53.2
+wire Q6.C Q7.E R54.2 R55.2
+wire Q7.B R56.2
+wire C27.1 Q7.C R57.1
+wire U18.5 R57.2
+wire C28.1 R58.2 R59.1
+wire C29.1 R59.2 R60.1
+wire U18.2 R60.2 R61.1
+wire U18.3 R62.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, LOUD EXPLOSION
+# ---------------------------------------------------------------------------
+port OUT_1: R63.2 R64.1  # in MAME: TTL_INPUT(I_OUT_1)
+wire Q8.B R64.2
+wire Q8.C Q9.E R65.2 R66.2
+wire Q9.B R67.2
+wire C30.1 Q9.C R68.1
+wire U19.5 R68.2
+wire C31.1 R69.2 R70.1
+wire C32.1 R70.2 R71.1
+wire U19.2 R71.2 R72.1
+wire U19.3 R73.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, FIREBALL
+# ---------------------------------------------------------------------------
+label FIREBALL_EN: U3.2 R74.2 R75.1
+wire Q10.B R75.2 R76.2
+wire Q10.C Q11.E R77.2 R78.2
+wire Q11.B R79.2
+wire C33.1 Q11.C R80.1
+wire U20.5 R80.2
+label SQUAREWAVE: U16.3 R82.1 R88.2 R89.1 R96.1
+wire U20.2 R81.2 R82.2 R83.2
+wire U20.3 R84.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, SHIELD
+# ---------------------------------------------------------------------------
+label SHIELD_EN: U3.5 R85.2 R86.1
+wire Q12.B R86.2 R87.2
+wire Q12.C Q13.E R90.1
+wire Q13.B R89.2 R90.2
+wire Q13.C Q14.E R91.2 R92.2
+wire Q14.B R93.2
+wire Q14.C R94.1
+wire U21.5 R94.2
+wire U21.2 R95.2 R96.2 R97.2
+wire U21.3 R98.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, THRUST
+# ---------------------------------------------------------------------------
+label THRUST_EN: U3.9 R100.1 R99.2
+wire Q15.B R100.2 R101.2
+wire Q15.C Q16.E R102.2 R103.2
+wire Q16.B R104.2
+wire Q16.C R105.1
+wire C34.1 R105.2 R106.1
+wire U22.5 R106.2
+wire C35.1 R107.2 R108.1
+wire C36.1 R108.2 R109.1
+wire U22.2 R109.2 R110.2
+wire U22.3 R111.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, STAR SOUND
+# ---------------------------------------------------------------------------
+label STAR_EN: U23.4 U24.4 U3.6
+wire U23.7 R112.2 R113.1
+wire C37.2 U23.2 U23.6 R113.2
+wire C38.2 U23.5
+wire U23.3 R114.1
+wire C39.2 R114.2 R115.1
+wire C40.2 U24.2 U24.6 R115.2 R116.1
+wire U24.7 R116.2 R117.2
+wire C41.2 U24.5
+wire U24.3 R118.1 R119.2
+wire C42.1 R118.2
+
+# ---------------------------------------------------------------------------
+# Sheet 2, preamp
+# ---------------------------------------------------------------------------
+wire U18.6 U19.6 U20.6 U21.6 U22.6 U26.3 R127.2
+parallel U18.6 U19.6 U20.6 U21.6 U22.6  # transconductance outputs: currents, summed here
+wire C48.1 U26.2 U26.6
+wire C48.2 R125.1
+port OUTPUT: U27.6 R126.2 R128.3  # to the final amplifier, which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc U28.8 U28.9 U28.10 U28.11  # line 765: tied to GND in MAME's "Unconnected inputs" block
+nc U6.3  # line 767: tied to GND in MAME's "Unconnected inputs" block
+nc U28.3  # line 774: MAME's own HINT(NC)
+nc U28.5  # line 775: MAME's own HINT(NC)
+nc U28.6  # line 776: MAME's own HINT(NC)
+nc U6.4  # line 779: MAME's own HINT(NC)
+nc U10.11  # line 781: MAME's own HINT(NC)
+nc U10.12  # line 782: MAME's own HINT(NC)
+nc U10.13  # line 783: MAME's own HINT(NC)
+nc U10.14  # line 784: MAME's own HINT(NC)
+nc U11.11  # line 785: MAME's own HINT(NC)
+nc U11.12  # line 786: MAME's own HINT(NC)
+nc U11.13  # line 787: MAME's own HINT(NC)
+nc U11.14  # line 788: MAME's own HINT(NC)
+nc U12.5  # line 789: MAME's own HINT(NC)
+nc U12.8  # line 790: MAME's own HINT(NC)
+nc U12.9  # line 791: MAME's own HINT(NC)
+nc U12.10  # line 792: MAME's own HINT(NC)
+nc U13.3  # line 793: MAME's own HINT(NC)
+nc U13.4  # line 794: MAME's own HINT(NC)
+nc U13.5  # line 795: MAME's own HINT(NC)
+nc U13.8  # line 796: MAME's own HINT(NC)
+nc U13.10  # line 797: MAME's own HINT(NC)
+nc U13.11  # line 798: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U7.1 U7.5 U7.8  # NULL NULL NC
+nc U8.1 U8.5 U8.8  # NULL NULL NC
+nc U9.2 U9.4  # NC TRIANGLE
+nc U14.5 U14.6 U14.7 U14.8  # NC NC NC NC
+nc U15.1 U15.5 U15.8  # NULL NULL NC
+nc U17.2 U17.4  # NC TRIANGLE
+nc U18.1 U18.8  # NC NC
+nc U19.1 U19.8  # NC NC
+nc U20.1 U20.8  # NC NC
+nc U21.1 U21.8  # NC NC
+nc U22.1 U22.8  # NC NC
+nc U26.1 U26.5 U26.8  # NULL NULL NC
+nc U27.1 U27.5 U27.8  # NULL NULL NC

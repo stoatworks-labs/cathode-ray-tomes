@@ -1,0 +1,29 @@
+{
+ "name": "Barrier audio board",
+ "mfr": "Vectorbeam",
+ "year": "1979",
+ "machine": "barrier",
+ "drawing": "Audio Board Schematic (Barrier) 18-10781 Rev A, in the Barrier manual (doc 458c844b4ab1 p23) -- via MAME's netlist, compared with the sheet",
+ "revision": "Vectorbeam audio board 18-10781 Rev A: triangle, diamond and explosion sounds from three latch bits, mixed into a TL081 power amplifier.",
+ "coverage": "Converted from MAME's netlist, which stops at the summing node: the final amplifier (U6, Q4, Q5, R20-R23, R28-R30, C12-C14) and the regulators U4/U7 are on the sheet but not in the netlist.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "barrier-sound",
+ "ics": {
+  "1": "TL081",
+  "2": "7406",
+  "3": "TL081",
+  "5": "TL182",
+  "8": "TL081",
+  "9": "TL081"
+ },
+ "source": {
+  "mame": "src/mame/cinematronics/nl_barrier.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "barrier",
+  "licence": "CC0-1.0",
+  "copyright": "Aaron Giles"
+ }
+}

@@ -1,0 +1,434 @@
+# Frogs sound board -- netlist converted from MAME
+#
+# Sega/Gremlin G-80 games carry a sound board of their own, driven from the CPU board's
+# output ports: the port bits arrive here as ports (MAME's TTL_INPUT names, HI_D0 ...
+# LO_D7 or SOUND_0 ...), and the mixed sound goes out to the amplifier.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/sega/nl_frogs.cpp,
+# NETLIST_START(frogs). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Aaron Giles (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/sega/nl_frogs.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 24: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 25: #define UNDERCLOCK_NOISE_GEN 1 -> 0 (a part run slower than the board runs it)
+# line 370: RU4 is not a part -- a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
+# line 380: RU15 is not a part -- a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_SOUND_0), TTL_INPUT(I_SOUND_1), TTL_INPUT(I_SOUND_2), TTL_INPUT(I_SOUND_3), TTL_INPUT(I_SOUND_4), TTL_INPUT(I_SOUND_5), TTL_INPUT(I_SOUND_6), TTL_INPUT(I_SOUND_7)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 138: RES(R60, RES_K(10))     -- final amp
+#   line 175: CAP(C1, CAP_U(10))
+#   line 176: CAP(C2, CAP_U(10))
+#   line 208: CAP(C34, CAP_U(0.05))   -- final amp
+#   line 209: CAP(C35, CAP_U(0.05))   -- final amp
+#   line 232: CAP(C58, CAP_U(0.1))    -- final amp
+#   line 297: LM741_DIP(U13)          // Op. Amp. -- final amp
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part U1 MM5837
+# part U2 NE555
+# part U3 NE555
+# part U4 NE555
+# part U5 NE555
+# part U6 NE555
+# part U7 NE555
+# part U8 LM741
+# part U9 NE555
+# part U10 LM741
+# part U11 LM741
+# part U12 NE555
+# part U14 LM741
+# part U15 NE555
+# part U16 LM741
+# part U17 LM741
+# part U18 LM741
+# part U19 NE555
+# part U20 LM741
+
+value R1 3.3K
+value R2 3.3K
+value R3 3.3K
+value R4 3.3K
+value R5 3.3K
+value R6 3.3K
+value R7 3.3K
+value R8 3.3K
+value R9 3.3K
+value R10 3.3K
+value R11 3.3K
+value R12 10K
+value R13 10K
+value R14 4.7K
+value R15 100K
+value R16 4.7K
+value R17 330K
+value R18 4.7K
+value R19 100K
+value R20 4.7K
+value R21 3.3K
+value R22 4.7K
+value R23 150K
+value R24 4.7K
+value R25 22K
+value R26 51
+value R27 10K
+value R28 22K
+value R29 100K
+value R30 470K
+value R31 220
+value R32 33K
+value R33 330
+value R34 820
+value R35 100K
+value R36 2.2K
+value R37 2.2K
+value R38 10K
+value R39 10K
+value R40 68K
+value R41 4.7K
+value R42 1K
+value R43 82K
+value R44 3.3K
+value R45 100K
+value R46 3.3K
+value R48 47K
+value R49 3.3K
+value R50 100K
+value R51 39K
+value R52 51
+value R53 62K
+value R54 470
+value R55 22K
+value R56 2.2M
+value R57 22K
+value R58 22K
+value R59 3.3K
+value R61 100K
+value R62 47K
+value R63 33K
+value R64 820K
+value R65 150K
+value R66 51
+value R67 51
+value R68 1K
+value R69 82K
+value R70 51
+value R71 4.7K
+value R72 27K
+value R73 10K
+value R74 1K
+value R75 10K
+value R76 10K
+value R77 560
+value R78 10K
+value R79 10K
+value R80 39K
+value R81 100K
+value R82 10K
+value R83 100K
+value R84 1K
+value R85 10K
+value R86 1K
+value R87 100K
+value R88 82K
+value R90 56K
+value R47 50K
+value R91 100K
+value R92 1M
+value R93 1M
+value R94 1M
+value R95 1M
+value R96 50K
+value C3 0.047uF
+value C4 1uF
+value C5 1uF
+value C6 0.1uF
+value C7 0.1uF
+value C8 1uF
+value C9 0.1uF
+value C10 0.1uF
+value C11 0.05uF
+value C12 0.05uF
+value C13 0.05uF
+value C14 0.05uF
+value C15 0.05uF
+value C16 0.05uF
+value C17 0.05uF
+value C18 0.05uF
+value C19 0.05uF
+value C20 0.05uF
+value C21 0.05uF
+value C22 2.2uF
+value C23 10uF
+value C24 0.1uF
+value C25 4.7uF
+value C26 0.05uF
+value C27 1uF
+value C28 0.05uF
+value C29 0.047uF
+value C30 10uF
+value C31 0.47uF
+value C32 0.47uF
+value C33 0.05uF
+value C36 0.05uF
+value C37 0.05uF
+value C38 0.05uF
+value C39 0.1uF
+value C40 0.1uF
+value C41 0.05uF
+value C42 0.05uF
+value C43 0.05uF
+value C44 10uF
+value C45 0.01uF
+value C46 0.01uF
+value C47 1uF
+value C48 0.05uF
+value C49 0.1uF
+value C50 0.01uF
+value C51 0.01uF
+value C52 0.1uF
+value C53 0.05uF
+value C54 0.01uF
+value C55 0.05uF
+value C56 0.05uF
+value C57 2.2uF
+value C59 0.05uF
+value C60 0.05uF
+value C61 0.05uF
+value C62 0.1uF
+value C63 0.05uF
+value C64 0.05uF
+value C65 0.1uF
+value C66 2.2uF
+value C67 0.05uF
+value C68 0.05uF
+value C69 0.05uF
+value C70 0.05uF
+value C71 0.05uF
+value C72 1uF
+value C73 0.047uF
+value C74 0.05uF
+value D1 1N914
+value D2 1N914
+value D3 1N914
+value D4 1N914
+value D5 1N914
+value D6 1N914
+value D7 1N914
+value D8 1N914
+value D9 1N914
+value Q1 2N4401
+value Q2 2N4401
+value Q3 2N4401
+value Q4 2N4401
+value Q5 2N4401
+value Q6 2N4401
+value Q7 2N4401
+value Q8 2N4403
+value Q9 2N4403
+value Q10 2N4093
+value Q11 2N4401
+value Q12 2N4401
+value Q13 2N4403
+value Q14 2N4401
+value Q15 2N4403
+value Q16 2N4401
+value Q17 2N4403
+value Q18 2N4093
+value Q19 2N4401
+value Q20 2N4401
+value Q21 2N4401
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C11.1 C12.1 C13.1 C14.1 C15.1 C16.1 C17.1 C18.1 C19.1 C20.1 C21.1 C23.2 C24.1 C26.1 C27.2 C28.1 C3.1 C30.2 C33.1 C36.1 C37.1 C38.1 C4.2 C41.1 C42.1 C43.1 C48.1 C49.1 C5.2 C52.1 C53.1 C55.1 C56.1 C59.1 C6.1 C60.1 C61.1 C63.1 C64.1 C66.2 C67.1 C68.1 C69.1 C7.1 C70.1 C71.1 C74.1 C8.2 D7.2 Q14.E Q17.B Q19.B Q2.E Q3.E Q4.E Q5.E Q6.E Q7.E Q8.B Q9.B R10.1 R11.1 R2.1 R34.1 R38.1 R4.1 R51.1 R52.1 R54.1 R6.1 R62.1 R63.1 R65.1 R66.1 R72.1 R74.1 R75.1 R77.1 R8.1 R84.1 R86.1 R88.1 R90.2 U1.1 U10.3 U11.3 U12.1 U15.1 U16.3 U18.3 U19.1 U2.1 U3.1 U4.1 U5.1 U6.1 U7.1 U8.3 U9.1
+net +12V: C17.2 C18.2 C20.2 C25.1 C28.2 C33.2 C36.2 C38.2 C42.2 C48.2 C55.2 C59.2 C61.2 C63.2 C67.2 C68.2 C69.2 C70.2 C74.2 Q11.C Q15.E R12.2 R14.2 R15.2 R16.2 R17.2 R18.2 R19.2 R20.2 R21.2 R22.2 R23.2 R24.2 R28.2 R35.2 R41.2 R42.2 R44.2 R47.3 R68.2 R76.2 R78.2 R87.2 U1.4 U10.7 U11.7 U12.8 U14.7 U15.4 U15.8 U16.7 U17.7 U18.7 U19.4 U19.8 U2.4 U2.8 U20.7 U3.4 U3.8 U4.4 U4.8 U5.4 U5.8 U6.4 U6.8 U7.8 U8.7 U9.8
+net -12V: C21.2 C26.2 C37.2 C43.2 C56.2 C60.2 C64.2 C71.2 R26.1 R43.1 R58.1 R64.1 R67.1 R70.2 R71.1 U1.2 U10.4 U11.4 U14.4 U16.4 U17.4 U18.4 U20.4 U8.4
+
+# ---------------------------------------------------------------------------
+# JUMP
+# ---------------------------------------------------------------------------
+port I_JUMP: R9.1  # in MAME: TTL_INPUT(I_SOUND_1)
+wire Q2.B R10.2 R9.2
+wire Q2.C R22.1 U6.2
+wire C15.2 U6.5
+wire C7.2 R23.1 U6.6 U6.7
+wire C22.1 R33.1 U6.3
+wire Q8.E R33.2
+wire C44.1 Q8.C R57.1
+wire C44.2 R70.1
+wire Q16.B R57.2 R58.2
+wire Q16.E R71.2
+wire C22.2 C31.1 C32.1 R34.2
+wire C32.2 R56.1 U11.2
+wire C31.2 R55.1 R56.2 U11.6
+wire Q21.B R54.2 R55.2
+wire D7.1 Q16.C Q21.E
+wire Q19.E Q20.E Q21.C
+wire Q19.C R76.1 R85.1 U20.2
+wire Q20.C R75.2 R78.1 U20.3
+wire Q20.B R83.1 R84.2
+wire R79.1 R85.2 U20.6
+wire C62.1 R83.2
+wire C51.1 C54.1 R77.2 R79.2
+wire C62.2 U19.3
+wire C53.2 U19.5
+wire C52.2 R69.1 U19.2 U19.6
+wire R68.1 R69.2 U19.7
+wire C54.2 R53.1 U16.2
+label BOING: C51.2 R53.2 R95.1 U16.6
+
+# ---------------------------------------------------------------------------
+# TONGUE
+# ---------------------------------------------------------------------------
+port I_TONGUE: R5.1  # in MAME: TTL_INPUT(I_SOUND_2)
+wire Q4.B R5.2 R6.2
+wire Q4.C R18.1 U4.2
+wire C13.2 U4.5
+wire C5.1 R19.1 R29.1 U4.6 U4.7
+nc U4.3  # MAME hangs RU4 on it: a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
+wire Q11.B R29.2
+wire Q11.E Q12.B
+wire Q12.E R51.2
+wire Q12.C Q13.B R28.1
+wire Q13.E R42.1
+wire C49.2 C50.1 Q13.C U15.2 U15.6 U15.7
+wire C41.2 U15.5
+nc U15.3  # MAME hangs RU15 on it: a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
+
+# ---------------------------------------------------------------------------
+# HOP
+# ---------------------------------------------------------------------------
+port I_HOP: R7.1  # in MAME: TTL_INPUT(I_SOUND_0)
+wire Q3.B R7.2 R8.2
+wire Q3.C R20.1 U5.2
+wire C14.2 U5.5
+wire C6.2 R21.1 U5.6 U5.7
+wire D2.2 R31.1 U5.3
+wire C30.1 D2.1 R32.2
+wire Q9.E R32.1
+wire C72.1 Q10.G Q9.C R43.2
+wire C72.2 R26.2
+wire C29.1 C73.1 Q10.D R31.2
+wire Q10.S R52.2
+wire C29.2 R30.1 U10.2
+label HOP: C73.2 R30.2 R94.1 U10.6
+
+# ---------------------------------------------------------------------------
+# CAPTURE
+# ---------------------------------------------------------------------------
+port I_CAPTURE: R3.1  # in MAME: TTL_INPUT(I_SOUND_3)
+wire Q5.B R3.2 R4.2
+wire Q5.C R16.1 U3.2
+wire C12.2 U3.5
+wire C4.1 R17.1 U3.6 U3.7
+wire U3.3 U9.4
+wire C19.2 U9.5
+wire D4.2 R41.1 R48.2 U9.7
+wire C27.1 D4.1 R48.1 U9.2 U9.6
+wire R49.1 R50.2 U9.3
+wire C47.1 Q17.C Q18.G R64.2 R65.2
+wire C47.2 R67.2
+wire Q17.E R50.1
+wire C39.1 C40.1 Q18.D R49.2
+wire Q18.S R66.2
+wire C39.2 R40.1 U8.2
+label CROAK: C40.2 R40.2 R92.1 U8.6
+
+# ---------------------------------------------------------------------------
+# SPLASH
+# ---------------------------------------------------------------------------
+port I_SPLASH: R1.1  # in MAME: TTL_INPUT(I_SOUND_7)
+wire Q6.B R1.2 R2.2
+wire Q6.C R14.1 U2.2
+wire C11.2 U2.5
+wire C3.2 R15.1 U2.6 U2.7
+wire R39.1 U2.3
+wire Q14.B R38.2 R39.2
+wire Q14.C R37.1
+wire C25.2 R25.1 R37.2 R47.1
+wire C10.1 C9.1 R13.2 R25.2
+wire C10.2 Q15.C
+wire D1.1 R13.1
+wire D1.2 D5.1
+wire D5.2 U1.3
+wire C9.2 R63.2 U14.3
+wire R61.1 R62.2 U14.2
+label SPLASH: R61.2 R91.1 U14.6
+
+# ---------------------------------------------------------------------------
+# FLY
+# ---------------------------------------------------------------------------
+port I_FLY: Q1.E  # in MAME: TTL_INPUT(I_SOUND_4)
+wire Q1.B R11.2 R12.1
+wire Q1.C R24.1 U12.4 U7.2 U7.4
+wire C16.2 U7.5
+wire C8.1 R35.1 U7.6 U7.7
+wire D3.2 R27.1 U7.3
+wire Q7.B R27.2
+wire Q7.C R36.1
+wire C23.1 R36.2 U12.5
+wire C24.2 D6.1 R45.1 U12.2 U12.6
+wire D6.2 R44.1 R45.2 U12.7
+wire C46.1 U12.3
+wire C45.1 C46.2 R59.1
+wire C45.2 R72.2 U17.3
+wire C57.1 R59.2 U17.2 U17.6
+wire C57.2 R73.1
+wire D3.1 R46.1
+wire C66.1 R46.2 R80.2 R87.1 R88.2
+wire D8.1 R73.2 R74.2
+wire D8.2 D9.2 R80.1
+wire C65.1 D9.1 R86.2
+wire C65.2 R82.1
+wire R81.1 R82.2 U18.2
+label BUZZZ: R81.2 R96.1 U18.6
+
+# ---------------------------------------------------------------------------
+# Mixer
+# ---------------------------------------------------------------------------
+label ZIP: C50.2 R93.1
+port OUTPUT: R90.1 R91.3 R92.3 R93.3 R94.3 R95.3 R96.3  # the board's output
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U1.5 U1.6 U1.7 U1.8  # NC NC NC NC
+nc U8.1 U8.5 U8.8  # NULL NULL NC
+nc U10.1 U10.5 U10.8  # NULL NULL NC
+nc U11.1 U11.5 U11.8  # NULL NULL NC
+nc U14.1 U14.5 U14.8  # NULL NULL NC
+nc U16.1 U16.5 U16.8  # NULL NULL NC
+nc U17.1 U17.5 U17.8  # NULL NULL NC
+nc U18.1 U18.5 U18.8  # NULL NULL NC
+nc U20.1 U20.5 U20.8  # NULL NULL NC

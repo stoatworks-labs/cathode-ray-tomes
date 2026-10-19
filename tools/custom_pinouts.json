@@ -96,5 +96,146 @@
    "19": {"name": "VGI", "type": "power_in", "rail": "GND"}, "20": {"name": "D0", "type": "bidirectional"},
    "21": {"name": "D1", "type": "bidirectional"}, "22": {"name": "D2", "type": "bidirectional"}
   }
+ },
+ "TL182": {
+  "desc": "TI TL182 dual SPST analog switch with TTL-compatible control inputs, DIP-14. VCC, VLL and VEE are the +15V, +5V and -15V supplies and VREF the logic reference, so `rail` names each",
+  "source": "MAME src/mame/cinematronics/nl_cinemat_common.h _TL182_DIP (Aaron Giles, CC0), agreeing with the Barrier audio sheet 18-10781 at U5 (2A on 10, 2S on 14, 2D on 13)",
+  "pins": {
+   "1": {"name": "1S", "type": "passive"}, "2": {"name": "1D", "type": "passive"},
+   "3": {"name": "NC", "type": "no_connect"}, "4": {"name": "NC", "type": "no_connect"},
+   "5": {"name": "1A", "type": "input"}, "6": {"name": "VCC", "type": "power_in", "rail": "+15V"},
+   "7": {"name": "VLL", "type": "power_in", "rail": "+5V"}, "8": {"name": "VREF", "type": "power_in", "rail": "GND"},
+   "9": {"name": "VEE", "type": "power_in", "rail": "-15V"}, "10": {"name": "2A", "type": "input"},
+   "11": {"name": "NC", "type": "no_connect"}, "12": {"name": "NC", "type": "no_connect"},
+   "13": {"name": "2D", "type": "passive"}, "14": {"name": "2S", "type": "passive"}
+  }
+ },
+ "LM566": {
+  "desc": "National LM566 voltage-controlled oscillator, DIP-8",
+  "source": "MAME src/lib/netlist/macro/nlm_otheric_lib.cpp NE566_DIP pin aliases (1 GND, 3 square out, 4 triangle out, 5 modulation in, 6 R1, 7 C1, 8 V+), which follow the National LM566C data sheet",
+  "pins": {
+   "1": {"name": "GND", "type": "power_in"}, "2": {"name": "NC", "type": "no_connect"},
+   "3": {"name": "SQUARE", "type": "output"}, "4": {"name": "TRIANGLE", "type": "output"},
+   "5": {"name": "MOD", "type": "input"}, "6": {"name": "R1", "type": "passive"},
+   "7": {"name": "C1", "type": "passive"}, "8": {"name": "V+", "type": "power_in"}
+  }
+ },
+ "NE566": {
+  "same_as": "LM566",
+  "desc": "Signetics NE566: the LM566's pinout"
+ },
+ "MM5837": {
+  "desc": "National MM5837 digital noise source, DIP-8 (pins 5-8 not connected)",
+  "source": "MAME src/lib/netlist/macro/nlm_cd4xxx_lib.cpp MM5837_DIP (1 VDD, 2 VGG, 3 OUT, 4 VSS)",
+  "pins": {
+   "1": {"name": "VDD", "type": "power_in"}, "2": {"name": "VGG", "type": "power_in"},
+   "3": {"name": "OUT", "type": "output"}, "4": {"name": "VSS", "type": "power_in"},
+   "5": {"name": "NC", "type": "no_connect"}, "6": {"name": "NC", "type": "no_connect"},
+   "7": {"name": "NC", "type": "no_connect"}, "8": {"name": "NC", "type": "no_connect"}
+  }
+ },
+ "S2688": {
+  "same_as": "MM5837",
+  "desc": "AMI S2688 noise generator: the MM5837's pinout, as MAME's nl_cinemat_common.h maps it"
+ },
+ "LM3900": {
+  "desc": "National LM3900 quad Norton (current-mode) amplifier, DIP-14",
+  "source": "MAME src/mame/cinematronics/nl_cinemat_common.h _LM3900_DIP (Aaron Giles, CC0), which is the National LM3900 data sheet's connection diagram",
+  "pins": {
+   "1": {"name": "1IN+", "type": "input"}, "2": {"name": "2IN+", "type": "input"},
+   "3": {"name": "2IN-", "type": "input"}, "4": {"name": "2OUT", "type": "output"},
+   "5": {"name": "1OUT", "type": "output"}, "6": {"name": "1IN-", "type": "input"},
+   "7": {"name": "GND", "type": "power_in"}, "8": {"name": "3IN-", "type": "input"},
+   "9": {"name": "3OUT", "type": "output"}, "10": {"name": "4OUT", "type": "output"},
+   "11": {"name": "4IN-", "type": "input"}, "12": {"name": "4IN+", "type": "input"},
+   "13": {"name": "3IN+", "type": "input"}, "14": {"name": "V+", "type": "power_in"}
+  }
+ },
+ "MC3340": {
+  "desc": "Motorola MC3340 electronic attenuator, DIP-8",
+  "source": "MAME src/lib/netlist/macro/nlm_opamp_lib.cpp MC3340_DIP aliases (1 input, 2 control, 3 GND, 6 roll-off, 7 output, 8 VCC), from Motorola's data books",
+  "pins": {
+   "1": {"name": "IN", "type": "input"}, "2": {"name": "CONTROL", "type": "input"},
+   "3": {"name": "GND", "type": "power_in"}, "4": {"name": "NC", "type": "no_connect"},
+   "5": {"name": "NC", "type": "no_connect"}, "6": {"name": "ROLLOFF", "type": "passive"},
+   "7": {"name": "OUT", "type": "output"}, "8": {"name": "VCC", "type": "power_in"}
+  }
+ },
+ "MK28000": {
+  "desc": "Mostek MK28000 2048x8 / 4096x4 bipolar PROM, tri-state outputs, DIP-24",
+  "source": "MAME src/lib/netlist/macro/nlm_roms_lib.cpp PROM_MK28000_DIP aliases, which follow the Mostek data sheet's naming (A1-A11, O1-O8, ARQ, OE1, OE2)",
+  "pins": {
+   "1": {"name": "VCC", "type": "power_in"}, "2": {"name": "A1", "type": "input"},
+   "3": {"name": "A2", "type": "input"}, "4": {"name": "A3", "type": "input"},
+   "5": {"name": "A4", "type": "input"}, "6": {"name": "A5", "type": "input"},
+   "7": {"name": "A6", "type": "input"}, "8": {"name": "A10", "type": "input"},
+   "9": {"name": "GND", "type": "power_in"}, "10": {"name": "A9", "type": "input"},
+   "11": {"name": "A8", "type": "input"}, "12": {"name": "A7", "type": "input"},
+   "13": {"name": "ARQ", "type": "input"}, "14": {"name": "OE2", "type": "input"},
+   "15": {"name": "A11", "type": "input"}, "16": {"name": "O8", "type": "tri_state"},
+   "17": {"name": "O7", "type": "tri_state"}, "18": {"name": "O6", "type": "tri_state"},
+   "19": {"name": "O5", "type": "tri_state"}, "20": {"name": "O4", "type": "tri_state"},
+   "21": {"name": "O3", "type": "tri_state"}, "22": {"name": "O2", "type": "tri_state"},
+   "23": {"name": "O1", "type": "tri_state"}, "24": {"name": "OE1", "type": "input"}
+  }
+ },
+ "9602": {
+  "desc": "Fairchild 9602 dual retriggerable, resettable one-shot, DIP-16",
+  "source": "MAME src/lib/netlist/macro/nlm_ttl74xx_lib.cpp TTL_9602_DIP, whose pin aliases cite the Fairchild DM9602 data sheet (C1, RC1, /CLR1, B1, A1, Q1, /Q1 on 1-7)",
+  "pins": {
+   "1": {"name": "C1", "type": "passive"}, "2": {"name": "RC1", "type": "passive"},
+   "3": {"name": "~{CLR1}", "type": "input"}, "4": {"name": "B1", "type": "input"},
+   "5": {"name": "A1", "type": "input"}, "6": {"name": "Q1", "type": "output"},
+   "7": {"name": "~{Q1}", "type": "output"}, "8": {"name": "GND", "type": "power_in"},
+   "9": {"name": "~{Q2}", "type": "output"}, "10": {"name": "Q2", "type": "output"},
+   "11": {"name": "A2", "type": "input"}, "12": {"name": "B2", "type": "input"},
+   "13": {"name": "~{CLR2}", "type": "input"}, "14": {"name": "RC2", "type": "passive"},
+   "15": {"name": "C2", "type": "passive"}, "16": {"name": "VCC", "type": "power_in"}
+  }
+ },
+ "8277": {
+  "desc": "Signetics 8277 dual 8-bit shift register with data select, DIP-16",
+  "source": "MAME src/lib/netlist/macro/nlm_ttl74xx_lib.cpp TTL_8277_DIP -- marked 'FIXME: Documentation' there, and not checked against a Signetics data sheet here",
+  "pins": {
+   "1": {"name": "RESET", "type": "input"}, "2": {"name": "~{Q7A}", "type": "output"},
+   "3": {"name": "Q7A", "type": "output"}, "4": {"name": "DSA", "type": "input"},
+   "5": {"name": "D1A", "type": "input"}, "6": {"name": "D0A", "type": "input"},
+   "7": {"name": "CLKA", "type": "input"}, "8": {"name": "GND", "type": "power_in"},
+   "9": {"name": "CLK", "type": "input"}, "10": {"name": "CLKB", "type": "input"},
+   "11": {"name": "D0B", "type": "input"}, "12": {"name": "D1B", "type": "input"},
+   "13": {"name": "DSB", "type": "input"}, "14": {"name": "Q7B", "type": "output"},
+   "15": {"name": "~{Q7B}", "type": "output"}, "16": {"name": "VCC", "type": "power_in"}
+  }
+ },
+ "74S287": {
+  "same_as": "82S129",
+  "desc": "256x4 bipolar PROM: the 82S129's pinout, as MAME's PROM_74S287_DIP aliases it"
+ },
+ "MFC6040": {
+  "desc": "Motorola MFC6040 electronic attenuator -- the MC3340's circuit in an older package with its own pin numbers. Only pins 1-6 are drawn",
+  "source": "Tank Board I sheet 2 (003110 rev J) at K6 and L6 and Tank Board II sheet 1 (003112 rev H) at N15 and F15: input 3, gain control 2, GND 1, +12V 4, output 5, roll-off capacitor 6 on all four. MAME's MC3340 model (nlm_opamp_lib.cpp) says the two parts share a circuit and differ only in packaging. Not checked against a Motorola data sheet",
+  "pins": {
+   "1": {"name": "GND", "type": "power_in"}, "2": {"name": "CONTROL", "type": "input"},
+   "3": {"name": "IN", "type": "input"}, "4": {"name": "VCC", "type": "power_in", "rail": "+12V"},
+   "5": {"name": "OUT", "type": "output"}, "6": {"name": "ROLLOFF", "type": "passive"}
+  }
+ },
+ "EA-ROM": {
+  "desc": "the 24-pin Electronic Arrays MOS ROM Tank's Board II draws at K10 (printed '24-PIN EA ROM', no part number): +5V on 1, -12V on 9, its outputs pulled to -12V. MAME and a handwritten note on Board II rev F substitute an MK28000 bipolar PROM, whose pin 9 is GND",
+  "source": "supplies and enables from Tank Board II sheet 1 (003112 rev H) at K10: 1 +5V, 9 -12V, 13 16H (drawn active low), 14 and 24 to P. Address and data pin names are those of MAME's MK28000 model of the part (A1-A11, O1-O8), which is what MAME's ROM dump is ordered by; the EA part's own pin names are not on the sheet",
+  "pins": {
+   "1": {"name": "VCC", "type": "power_in", "rail": "+5V"}, "2": {"name": "A1", "type": "input"},
+   "3": {"name": "A2", "type": "input"}, "4": {"name": "A3", "type": "input"},
+   "5": {"name": "A4", "type": "input"}, "6": {"name": "A5", "type": "input"},
+   "7": {"name": "A6", "type": "input"}, "8": {"name": "A10", "type": "input"},
+   "9": {"name": "VGG", "type": "power_in", "rail": "-12V"}, "10": {"name": "A9", "type": "input"},
+   "11": {"name": "A8", "type": "input"}, "12": {"name": "A7", "type": "input"},
+   "13": {"name": "~{CS}", "type": "input"}, "14": {"name": "CS2", "type": "input"},
+   "15": {"name": "A11", "type": "input"}, "16": {"name": "O8", "type": "output"},
+   "17": {"name": "O7", "type": "output"}, "18": {"name": "O6", "type": "output"},
+   "19": {"name": "O5", "type": "output"}, "20": {"name": "O4", "type": "output"},
+   "21": {"name": "O3", "type": "output"}, "22": {"name": "O2", "type": "output"},
+   "23": {"name": "O1", "type": "output"}, "24": {"name": "CS3", "type": "input"}
+  }
  }
 }

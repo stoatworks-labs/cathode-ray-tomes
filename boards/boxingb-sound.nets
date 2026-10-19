@@ -1,0 +1,947 @@
+# Boxing Bugs sound board -- netlist converted from MAME
+#
+# Cinematronics vector games carry a small audio board of their own, driven from the
+# CPU board's output latch: the latch bits arrive here as ports (OUT_0 ... OUT_7, MAME's
+# TTL_INPUT names), and the board's sound goes out to a final amplifier that MAME does
+# not simulate and this file therefore does not contain.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/cinematronics/nl_boxingb.cpp,
+# NETLIST_START(boxingb). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Aaron Giles (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/cinematronics/nl_boxingb.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 21: #define HACK_SIMPLIFY_INPUTS 1 -> 0 (simulation hack)
+# line 22: #define HACK_VOLTAGE_SWITCH 1 -> 0 (simulation hack)
+# line 30: #define HLE_SFX_CLOCK 1 -> 0 (high-level stand-in for a real circuit)
+# line 31: #define HLE_MUSIC_CLOCK 1 -> 0 (high-level stand-in for a real circuit)
+# line 32: #define HLE_CHIRPING_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 33: #define HLE_DYING_BUG_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 34: #define HLE_CRACKING_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 35: #define HLE_BEETLE_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 36: #define HLE_BOUNCE_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 37: #define HLE_CANNON_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 38: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 1704: NET_C(U2.9, U2.11, U9.1, U9.4, U9.12, U9.13, U15.1, U15.2, U20.4, U20.6, U20.8, U20.10, U20.12, U33.8, U33.9, U33.10, U33.11, U35.5, U35.6, U40.1, U40.3, U40.5) -> nc -- tied to one another in MAME's "Unconnected inputs" block
+# line 1602: MAME ties U25.5 off as unused, but the circuit uses them -- the tie is dropped
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7), CLOCK(Y1)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 70: RES(R4, 620)             -- part of voltage converter (not emulated)
+#   line 71: RES(R5, 620)             -- part of voltage converter (not emulated)
+#   line 72: RES(R6, 430)             -- part of 2.2V voltage converter (not emulated)
+#   line 73: RES(R7, 560)             -- part of 2.2V voltage converter (not emulated)
+#   line 74: RES(R8, RES_K(3.3))      -- part of 2.2V voltage converter (not emulated)
+#   line 225: RES(R151, RES_K(15))    -- part of final amp (not emulated)
+#   line 226: RES(R152, 150)          -- part of final amp (not emulated)
+#   line 227: RES(R153, 150)          -- part of final amp (not emulated)
+#   line 228: RES(R154, RES_K(22))    -- part of final amp (not emulated)
+#   line 229: RES(R155, RES_K(390))   -- part of final amp (not emulated)
+#   line 230: RES(R156, 0.51)         -- part of final amp (not emulated)
+#   line 231: RES(R157, 0.51)         -- part of final amp (not emulated)
+#   line 232: RES(R158, RES_K(390))   -- part of final amp (not emulated)
+#   line 236: RES(R162, RES_K(10))    -- part of shaft encoder (not emulated)
+#   line 237: RES(R163, RES_K(100))   -- part of shaft encoder (not emulated)
+#   line 238: RES(R164, RES_M(1.8))   -- part of shaft encoder (not emulated)
+#   line 239: RES(R165, RES_K(10))    -- part of shaft encoder (not emulated)
+#   line 240: RES(R166, RES_K(2.4))   -- part of shaft encoder (not emulated)
+#   line 241: RES(R167, RES_K(1))     -- part of shaft encoder (not emulated)
+#   line 242: RES(R168, RES_K(470))   -- part of shaft encoder (not emulated)
+#   line 243: RES(R169, RES_K(10))    -- part of shaft encoder (not emulated)
+#   line 244: RES(R170, RES_K(470))   -- part of shaft encoder (not emulated)
+#   line 245: RES(R171, RES_K(100))   -- part of shaft encoder (not emulated)
+#   line 246: RES(R172, RES_M(1.8))   -- part of shaft encoder (not emulated)
+#   line 247: RES(R173, RES_K(10))    -- part of shaft encoder (not emulated)
+#   line 248: RES(R174, RES_K(2.4))   -- part of shaft encoder (not emulated)
+#   line 249: RES(R175, RES_K(1))     -- part of shaft encoder (not emulated)
+#   line 250: RES(R176, RES_K(1))     -- part of shaft encoder (not emulated)
+#   line 285: CAP(C1, CAP_U(0.1))     -- part of voltage converter (not emulated)
+#   line 286: CAP(C2, CAP_U(0.1))     -- part of voltage converter (not emulated)
+#   line 287: CAP(C3, CAP_U(22))      -- part of voltage converter (not emulated)
+#   line 288: CAP(C4, CAP_U(22))      -- part of voltage converter (not emulated)
+#   line 289: CAP(C5, CAP_U(22))      -- part of voltage converter (not emulated)
+#   line 290: CAP(C6, CAP_U(22))      -- part of voltage converter (not emulated)
+#   line 291: CAP(C7, CAP_U(22))      -- part of voltage converter (not emulated)
+#   line 292: CAP(C8, CAP_U(0.1))     -- part of voltage converter (not emulated)
+#   line 293: CAP(C9, CAP_U(0.1))     -- part of voltage converter (not emulated)
+#   line 294: CAP(C10, CAP_U(0.1))    -- part of 2.2V voltage converter (not emulated)
+#   line 339: CAP(C55, CAP_U(0.68))
+#   line 340: CAP(C56, CAP_U(0.005))  -- part of final amp (not emulated)
+#   line 341: CAP(C57, CAP_P(470))    -- part of final amp (not emulated)
+#   line 342: CAP(C58, CAP_P(470))    -- part of final amp (not emulated)
+#   line 343: CAP(C59, CAP_P(470))    -- part of final amp (not emulated)
+#   line 346: CAP(C62, CAP_U(0.1))    -- part of shaft encoder (not emulated)
+#   line 347: CAP(C63, CAP_P(330))    -- part of shaft encoder (not emulated)
+#   line 348: CAP(C64, CAP_P(330))    -- part of shaft encoder (not emulated)
+#   line 349: CAP(C65, CAP_P(330))    -- part of shaft encoder (not emulated)
+#   line 350: CAP(C66, CAP_P(330))    -- part of shaft encoder (not emulated)
+#   line 361: Q_2N3904(Q1)            // NPN -- part of 2.2V voltage converter (not emulated)
+#   line 397: Q_2N6292(Q27)           // PNP -- part of final amp (not emulated)
+#   line 398: Q_2N6107(Q28)           // NPN -- part of final amp (not emulated)
+#   line 399: Q_2N5210(Q29)           // NPN -- not used
+#   line 400: Q_2N5210(Q30)           // NPN -- not used
+#   line 406: D_1N4003(D1)            -- part of voltage converter (not emulated)
+#   line 407: D_1N4003(D2)            -- part of voltage converter (not emulated)
+#   line 408: D_1N4003(D3)            -- part of voltage converter (not emulated)
+#   line 409: D_1N4003(D4)            -- part of voltage converter (not emulated)
+#   line 410: D_1N914(D5)             -- part of voltage converter (not emulated)
+#   line 411: D_1N914(D6)             -- part of voltage converter (not emulated)
+#   line 412: D_1N5236(D7)            -- part of voltage converter (not emulated)
+#   line 413: D_1N5236(D8)            -- part of voltage converter (not emulated)
+#   line 414: D_1N5236(D9)            -- part of voltage converter (not emulated)
+#   line 415: D_1N5236(D10)           -- part of voltage converter (not emulated)
+#   line 416: D_1N914(D11)            -- part of voltage converter (not emulated)
+#   line 417: D_1N914(D12)            -- part of voltage converter (not emulated)
+#   line 428: D_1N4003(D23)           -- part of final amp (not emulated)
+#   line 429: D_1N4003(D24)           -- part of final amp (not emulated)
+#   line 451: TTL_74LS74_DIP(U7)      // Dual D Flip Flop -- part of shaft encoder (not emulated)
+#   line 455: TTL_74LS74_DIP(U8)      // Dual D Flip Flop -- part of shaft encoder (not emulated)
+#   line 463: TTL_74LS74_DIP(U10)     // Dual D Flip Flop -- part of shaft encoder (not emulated)
+#   line 483: TTL_74LS191_DIP(U16)    // Presettable 4-bit Binary Up/Down Counter -- part of shaft e
+#   line 487: TTL_74LS191_DIP(U17)    // Presettable 4-bit Binary Up/Down Counter -- part of shaft e
+#   line 491: TTL_74LS157_DIP(U18)    // Quad 2-Input Multiplexor -- part of shaft encoder (not emul
+#   line 673: TL081_DIP(U65)          // Op. Amp. -- part of shaft encoder (not emulated)
+#   line 677: TL081_DIP(U66)          // Op. Amp. -- part of shaft encoder (not emulated)
+#   line 685: TTL_7815_DIP(U68)       // +15V Regulator -- part of voltage converter (not emulated)
+#   line 686: TTL_7915_DIP(U69)       // -15V Regulator -- part of voltage converter (not emulated)
+#   line 688: TL081_DIP(U70)          // Op. Amp. --  part of final amp (not emulated)
+#
+# MAME's file calls this netlist 'WIP'.
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part U1 74LS393
+# part U2 74S04
+# part U9 74LS107
+# part U11 74LS164
+# part U12 74LS86
+# part U13 74LS393
+# part U15 74LS393
+# part U19 LM555
+# part U20 7414
+# part U21 74LS393
+# part U22 74LS393
+# part U23 74S113
+# part U24 74LS74
+# part U25 74LS74
+# part U26 74LS393
+# part U27 74LS163
+# part U28 74LS163
+# part U29 74LS74
+# part U30 7414
+# part U31 74LS04
+# part U32 74LS393
+# part U33 74LS107
+# part U34 74LS107
+# part U35 74LS02
+# part U36 74LS163
+# part U37 74LS163
+# part U38 74LS377
+# part U39 74LS164
+# part U40 7406
+# part U41 74LS393
+# part U42 74LS393
+# part U43 74LS163
+# part U44 74LS74
+# part U45 74LS74
+# part U46 74LS163
+# part U47 74LS377
+# part U48 74LS377
+# part U49 74LS164
+# part U50 7414
+# part U51 LM566
+# part U52 LM566
+# part U53 LM566
+# part U54 TL081
+# part U55 TL081
+# part U56 LM566
+# part U57 LM566
+# part U58 LM555
+# part U59 CA3080
+# part U60 LM566
+# part U61 CA3080
+# part U62 S2688
+# part U63 TL081
+# part U64 CA3080
+# part U67 CA3080
+
+value R9 1K
+value R10 4.7K
+value R11 1K
+value R12 39K
+value R13 12K
+value R14 1K
+value R15 4.7K
+value R16 75K
+value R17 75K
+value R18 200
+value R19 200
+value R20 200K
+value R21 4.7K
+value R22 4.7K
+value R23 2.7K
+value R24 4.7K
+value R25 39K
+value R26 12K
+value R27 2.4K
+value R28 51K
+value R29 270K
+value R30 1M
+value R31 16K
+value R32 10K
+value R33 1K
+value R34 4.7K
+value R35 2.7K
+value R36 4.7K
+value R37 39K
+value R38 12K
+value R39 2.4K
+value R40 51K
+value R41 270K
+value R42 1M
+value R43 11K
+value R44 10K
+value R45 1K
+value R46 2K
+value R47 1K
+value R48 12K
+value R49 1K
+value R50 20K
+value R51 20K
+value R52 20K
+value R53 20K
+value R54 2K
+value R55 4.7K
+value R56 2.7K
+value R57 4.7K
+value R58 39K
+value R59 12K
+value R60 2.4K
+value R61 51K
+value R62 270K
+value R63 1M
+value R64 6.2K
+value R65 10K
+value R66 1K
+value R67 2K
+value R68 22K
+value R69 39K
+value R70 47K
+value R71 1K
+value R72 10K
+value R73 2K
+value R74 910K
+value R75 390
+value R76 4.7K
+value R77 2.7K
+value R78 4.7K
+value R79 39K
+value R80 12K
+value R81 2.4K
+value R82 51K
+value R83 270K
+value R84 1M
+value R85 12K
+value R86 10K
+value R87 1K
+value R88 2K
+value R89 20K
+value R90 2K
+value R91 20K
+value R92 4.7K
+value R93 2.7K
+value R94 4.7K
+value R95 39K
+value R96 12K
+value R97 2.4K
+value R98 51K
+value R99 330K
+value R100 1K
+value R101 1M
+value R102 47
+value R103 4.7K
+value R104 1K
+value R105 39K
+value R106 12K
+value R107 1K
+value R108 6.8K
+value R109 100K
+value R110 270K
+value R111 100
+value R112 100
+value R113 4.7K
+value R114 1K
+value R115 39K
+value R116 12K
+value R117 2.4K
+value R118 51K
+value R119 270K
+value R120 1M
+value R121 10K
+value R122 10K
+value R123 1K
+value R124 2K
+value R125 20K
+value R126 2K
+value R127 3.9K
+value R128 10
+value R129 1M
+value R130 6.8K
+value R131 18K
+value R132 47K
+value R133 390
+value R134 390
+value R135 4.7K
+value R136 2.7K
+value R137 4.7K
+value R138 39K
+value R139 12K
+value R140 1K
+value R141 75K
+value R142 4.7K
+value R143 2.7K
+value R144 4.7K
+value R145 39K
+value R146 12K
+value R147 1K
+value R148 240K
+value R149 300K
+value R150 300K
+value R159 30K
+value R160 8.2K
+value R161 20K
+value R177 1K
+value R178 330
+value R179 330
+value R180 1K
+value R181 1K
+value R182 1K
+value R183 4.7K
+value R184 510K
+value R185 470
+value R186 470
+value R187 4.7K
+value R188 2.7K
+value R189 4.7K
+value R190 39K
+value R191 12K
+value R192 1K
+value R193 24K
+value R194 100K
+value R195 4.7K
+value R196 2.7K
+value R197 4.7K
+value R198 39K
+value R199 12K
+value R200 1K
+value R201 51K
+value R202 36K
+value R203 1K
+value R204 1K
+value R205 2K
+value R206 1K
+value R207 1K
+value R208 1K
+value R209 1K
+value C11 0.1uF
+value C12 0.1uF
+value C13 1uF
+value C14 2.2uF
+value C15 0.001uF
+value C16 0.001uF
+value C17 0.1uF
+value C18 2.2uF
+value C19 0.001uF
+value C20 0.001uF
+value C21 0.1uF
+value C22 0.01uF
+value C23 0.1uF
+value C24 0.68uF
+value C25 0.001uF
+value C26 0.0022uF
+value C27 0.1uF
+value C28 0.1uF
+value C29 0.1uF
+value C30 0.01uF
+value C31 4.7uF
+value C32 0.001uF
+value C33 0.01uF
+value C34 0.1uF
+value C35 0.1uF
+value C36 2.2uF
+value C37 0.1uF
+value C38 0.01uF
+value C39 0.001uF
+value C40 0.47uF
+value C41 1uF
+value C42 0.1uF
+value C43 0.47uF
+value C44 0.001uF
+value C45 0.1uF
+value C46 0.1uF
+value C47 100uF
+value C48 0.1uF
+value C49 0.1uF
+value C50 0.01uF
+value C51 4.7uF
+value C52 0.47uF
+value C53 0.1uF
+value C54 0.1uF
+value C60 0.33uF
+value C61 330pF
+value C67 0.001uF
+value C68 680pF
+value C69 0.001uF
+value C70 0.001uF
+value C71 0.68uF
+value C72 0.22uF
+value C73 0.1uF
+value C74 0.1uF
+value C75 0.01uF
+value D13 1N914
+value D14 1N914
+value D15 1N914
+value D16 1N914
+value D17 1N914
+value D18 1N914
+value D19 1N914
+value D20 1N914
+value D21 1N914
+value D22 1N914
+value D25 1N914
+value D26 1N914
+value D27 1N914
+value D28 1N914
+value D29 1N914
+value D30 1N914
+value Q2 2N3906
+value Q3 2N3906
+value Q4 2N3906
+value Q5 2N3904
+value Q6 2N3904
+value Q7 2N3906
+value Q8 2N3904
+value Q9 2N3904
+value Q10 2N3906
+value Q11 2N3904
+value Q12 2N3904
+value Q13 2N3906
+value Q14 2N3904
+value Q15 2N3904
+value Q16 2N3906
+value Q17 2N3904
+value Q18 2N3906
+value Q19 2N3906
+value Q20 2N3906
+value Q21 2N3904
+value Q22 2N3904
+value Q23 2N3906
+value Q24 2N3906
+value Q25 2N3906
+value Q26 2N3906
+value Q31 2N3906
+value Q32 2N3906
+value Q33 2N3906
+value Q34 2N3906
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C14.2 C16.2 C18.2 C20.2 C24.2 C26.2 C29.2 C30.2 C31.2 C33.2 C36.2 C38.2 C40.2 C43.2 C47.2 C49.2 C50.2 C67.1 C69.1 C70.1 C74.2 C75.2 D13.2 D14.2 D15.2 D16.2 D17.2 D18.2 D19.2 D20.2 D21.2 D22.2 D25.2 D26.2 D27.2 D28.2 D29.2 D30.2 Q11.E Q14.E Q17.E Q21.E Q5.E Q8.E R101.1 R106.1 R107.1 R111.1 R112.1 R116.1 R120.1 R126.2 R129.1 R13.1 R133.1 R134.1 R139.1 R14.1 R140.1 R146.1 R147.1 R159.1 R18.1 R185.2 R186.1 R19.1 R191.2 R192.1 R199.2 R200.1 R26.1 R30.1 R38.1 R42.1 R49.1 R54.1 R59.1 R63.1 R71.1 R75.1 R80.1 R84.1 R90.1 R96.1 U1.12 U1.2 U1.7 U11.7 U12.7 U13.12 U13.7 U15.7 U19.1 U2.7 U20.7 U21.7 U22.7 U23.7 U24.7 U25.5 U25.7 U26.12 U26.2 U26.7 U27.3 U27.8 U28.4 U28.5 U28.8 U29.7 U30.7 U31.7 U32.12 U32.7 U33.7 U34.7 U35.7 U36.8 U37.8 U38.1 U38.10 U39.7 U40.7 U41.7 U42.7 U43.4 U43.6 U43.8 U44.7 U45.7 U46.8 U47.1 U47.10 U48.1 U48.10 U49.7 U50.7 U51.1 U52.1 U53.1 U54.3 U56.1 U57.1 U58.1 U58.7 U60.1 U62.1 U62.2 U9.7
+net +15V: R108.2 R118.2 R121.2 R128.2 R28.2 R31.2 R40.2 R43.2 R61.2 R64.2 R82.2 R85.2 R98.2 U51.8 U52.8 U53.8 U54.7 U55.7 U56.8 U57.8 U59.7 U60.8 U61.7 U63.7 U64.7 U67.7
+net +5V: Q10.E Q13.E Q16.E Q23.E Q25.E Q31.E Q33.E Q4.E Q7.E R10.2 R100.2 R103.2 R113.2 R123.2 R135.2 R137.2 R142.2 R144.2 R15.2 R177.2 R180.2 R181.2 R182.1 R183.2 R187.2 R189.2 R195.2 R197.2 R203.1 R204.1 R206.1 R207.1 R208.1 R209.1 R21.2 R22.2 R24.2 R33.2 R34.2 R36.2 R45.2 R47.2 R55.2 R57.2 R66.2 R73.2 R76.2 R78.2 R87.2 R9.1 R92.2 R94.2 U1.14 U11.14 U12.14 U13.14 U15.14 U19.8 U2.14 U20.14 U21.14 U22.14 U23.14 U24.14 U25.14 U26.14 U27.16 U28.16 U29.14 U30.14 U31.14 U32.14 U33.14 U34.14 U35.14 U36.16 U37.16 U38.20 U39.14 U40.14 U41.14 U42.14 U43.16 U44.14 U45.14 U46.16 U47.20 U48.20 U49.14 U50.14 U58.4 U58.8 U9.14
+net -15V: C13.2 C41.2 C51.2 C52.2 C72.1 C73.1 R105.1 R115.1 R12.1 R124.1 R138.1 R145.1 R190.1 R198.1 R205.1 R25.1 R37.1 R46.1 R58.1 R67.1 R79.1 R88.1 R95.1 U54.4 U55.4 U59.4 U61.4 U63.4 U64.4 U67.4
+
+# ---------------------------------------------------------------------------
+# Page 1, top right
+# ---------------------------------------------------------------------------
+label HIB_P: R207.2 U27.1 U27.4 U27.5 U27.6 U27.7 U28.1 U28.10 U28.3 U28.6 U28.7 U29.1 U29.10 U29.13 U29.4
+label BCLK_P: U26.1 U27.2 U29.9
+wire U27.10 U28.15
+wire U24.12 U27.15
+label BLOAD_M: U24.8 U27.9 U28.9
+wire R9.2 U24.13
+wire U24.9 U34.12
+label HIA_P: R206.2 U24.10 U25.10 U25.2 U25.4 U34.1 U34.10 U34.11 U34.13 U34.4 U34.8 U36.1 U37.1 U39.2 U39.9 U44.1 U44.10 U44.13 U44.4 U45.13 U45.4 U46.1 U49.2 U49.9
+label _588USEC_P: C11.1 R21.1 U1.1 U21.1 U21.13 U34.3
+wire U26.13 U26.6
+wire C12.2 R15.1 U26.11
+wire C12.1 R16.1
+wire R16.2 R17.1 R18.2 U61.2
+wire C11.2 R17.2
+wire R19.2 U61.3
+port BELL_EN_M: D30.1 R10.1 R11.1  # in MAME: TTL_INPUT(I_OUT_3)
+wire Q2.B R11.2
+port V2_2: Q18.E Q2.E Q20.E  # in MAME: ANALOG_INPUT(I_V2_2)
+wire Q2.C Q3.E R12.2 R13.2
+wire Q3.B R14.2
+wire C13.1 Q3.C R20.1
+wire R20.2 U61.5
+
+# ---------------------------------------------------------------------------
+# Page 1, bottom-right
+# ---------------------------------------------------------------------------
+wire U13.8 U9.9
+label HID_P: R209.2 U12.10 U9.10 U9.11 U9.8
+wire U29.3 U9.5
+wire U29.11 U9.6
+label BCLK_M: U24.11 U29.2 U29.8
+label ACLK_P: U29.12 U29.5
+label ACLK_M: U28.2 U29.6
+
+# ---------------------------------------------------------------------------
+# Page 2, top (noise generator)
+# ---------------------------------------------------------------------------
+wire U1.13 U1.6
+wire U1.10 U11.8 U32.1
+label ERRCLR_M: U11.9 U35.1
+label IN_M: U11.1 U11.2 U12.8
+label RANDOM_NOISE_P: U11.13 U12.1 U31.5 U41.2
+wire U11.6 U12.2
+wire U11.5 U12.5
+wire U11.4 U12.4
+wire U12.13 U12.3
+wire U12.12 U12.6
+wire U12.11 U12.9 U32.2
+wire U32.6 U35.2 U35.3
+
+# ---------------------------------------------------------------------------
+# Page 2, middle (Chirping Birds)
+# ---------------------------------------------------------------------------
+wire R22.1 R23.1 U31.6
+wire Q4.B R23.2 R24.1
+wire Q4.C R25.2 R26.2 R27.1
+wire Q5.B R27.2
+wire Q5.C R29.1
+wire C14.1 C15.2 R28.1 R29.2 R30.2 U51.5
+wire C15.1 R31.1 U51.6
+wire C16.1 U51.7
+wire C17.2 U51.3
+wire C17.1 D13.1 R32.1
+wire Q6.B R32.2
+wire D14.1 Q6.E R205.2
+wire Q6.C R33.1 U41.1
+wire U41.13 U41.3
+wire R47.1 R48.1 U41.10
+wire C22.2 R48.2 R49.2
+
+# ---------------------------------------------------------------------------
+# Page 2, bottom (Dying Bug)
+# ---------------------------------------------------------------------------
+wire R34.1 R35.1 U31.4
+wire Q7.B R35.2 R36.1
+wire Q7.C R37.2 R38.2 R39.1
+wire Q8.B R39.2
+wire Q8.C R41.1
+wire C18.1 C19.2 R40.1 R41.2 R42.2 U52.5
+wire C19.1 R43.1 U52.6
+wire C20.1 U52.7
+wire C21.2 U52.3
+wire C21.1 D15.1 R44.1
+wire Q9.B R44.2
+wire D16.1 Q9.E R46.2
+wire Q9.C R45.1 U42.1
+label _327USEC_P: U26.8 U32.13
+label _2616USEC_P: U32.9 U42.2
+wire U42.13 U42.3
+label BUG_DYING_M: U31.3 U42.12 U47.16
+wire R51.1 U42.8
+wire R52.1 U42.9
+wire R53.1 U42.10
+wire R50.1 R51.2 R52.2 R53.2 R54.2
+wire C23.2 R50.2
+label SJ: C22.1 C23.1 C28.1 C35.1 C46.1 C53.2 C54.1 C61.1 R160.2 R161.1 U54.2
+
+# ---------------------------------------------------------------------------
+# Page 3, top (Egg Cracking)
+# ---------------------------------------------------------------------------
+wire R55.1 R56.1 U31.12
+wire Q10.B R56.2 R57.1
+wire Q10.C R58.2 R59.2 R60.1
+wire Q11.B R60.2
+wire Q11.C R62.1
+wire C24.1 C25.2 R61.1 R62.2 R63.2 U53.5
+wire C25.1 R64.1 U53.6
+wire C26.1 U53.7
+wire C27.2 U53.3
+wire C27.1 D17.1 R65.1
+wire Q12.B R65.2
+wire D18.1 Q12.E R67.2
+wire Q12.C R66.1 U22.13
+label EGG_CRACKING_M: U22.12 U31.13 U47.9
+wire R68.1 U22.8
+wire R69.1 U22.9
+wire R70.1 U22.10
+wire R68.2 R69.2 R70.2 R71.2 R72.1
+wire C28.2 R72.2
+
+# ---------------------------------------------------------------------------
+# Page 3, middle (Beetle on screen)
+# ---------------------------------------------------------------------------
+wire U19.4 U31.2
+wire R73.1 R74.2 U19.7
+wire C29.1 R74.1 U19.2 U19.6
+wire C30.1 U19.5
+wire R75.2 U19.3 U20.1
+wire R76.1 R77.1 U20.2
+wire Q13.B R77.2 R78.1
+wire Q13.C R79.2 R80.2 R81.1
+wire Q14.B R81.2
+wire Q14.C R83.1
+wire C31.1 C32.2 R82.1 R83.2 R84.2 U56.5
+wire C32.1 R85.1 U56.6
+wire C33.1 U56.7
+wire C34.2 U56.3
+wire C34.1 D19.1 R86.1
+wire Q15.B R86.2
+wire D20.1 Q15.E R88.2
+wire Q15.C R87.1 U22.1
+label BEETLE_ON_SCREEN_M: U22.2 U31.1 U47.19
+wire R89.1 U22.4
+wire R89.2 R90.2 R91.1
+wire C35.2 R91.2
+
+# ---------------------------------------------------------------------------
+# Page 3, bottom (BOUNCE)
+# ---------------------------------------------------------------------------
+label BOUNCE_EN_P: R92.1 R93.1 U50.6
+wire Q16.B R93.2 R94.1
+wire Q16.C R95.2 R96.2 R97.1
+wire Q17.B R97.2
+wire Q17.C R99.1
+wire C36.1 C39.2 R101.2 R102.2 R98.1 R99.2 U57.5
+label _5232USEC_P: R100.1 U32.8 U58.2 U58.6
+wire C38.1 U58.5
+wire C37.2 U58.3
+wire C37.1 R102.1
+wire C39.1 R108.1 U57.6
+wire C40.1 U57.7
+wire C42.2 U57.3
+wire C42.1 R109.1
+wire R109.2 R111.2 U59.2
+wire R112.2 U59.3
+port BOUNCE_EN_M: D29.1 R103.1 R104.1 U50.5  # in MAME: TTL_INPUT(I_OUT_2)
+wire Q18.B R104.2
+wire Q18.C Q19.E R105.2 R106.2
+wire Q19.B R107.2
+wire C41.1 Q19.C R110.1
+wire R110.2 U59.5
+label CS: R159.2 U55.3 U59.6 U61.6 U64.6 U67.6
+parallel U59.6 U61.6 U64.6 U67.6  # transconductance outputs: currents, summed here
+
+# ---------------------------------------------------------------------------
+# Page 4, top (Cannon)
+# ---------------------------------------------------------------------------
+label CANNON_M: R113.1 R114.1 U13.2 U48.5
+wire Q20.B R114.2
+wire Q20.C R115.2 R116.2 R117.1
+wire Q21.B R117.2
+wire Q21.C R119.1
+wire C43.1 C44.2 R118.1 R119.2 R120.2 U60.5
+wire C44.1 R121.1 U60.6
+wire C75.1 U60.7
+wire C45.2 U60.3
+wire C45.1 D21.1 R122.1
+wire Q22.B R122.2
+wire D22.1 Q22.E R124.2
+wire Q22.C R123.1 U13.1
+wire R125.1 U13.4
+wire R125.2 R126.1 R127.2
+wire C46.2 R127.1
+
+# ---------------------------------------------------------------------------
+# Page 4, bottom-left (explosions)
+# ---------------------------------------------------------------------------
+wire C47.1 C74.1 R128.1 U62.4
+wire C48.2 U62.3
+wire C48.1 R129.2 U63.3
+wire R130.1 U63.2 U63.6
+wire C49.1 R130.2 R131.1
+wire C50.1 R131.2 R132.1
+wire R132.2 R133.2 U64.2
+wire R134.2 U64.3
+label LOUD_EXPL_M: R135.1 R136.1 U47.5
+wire Q23.B R136.2 R137.1
+wire Q23.C Q24.E R138.2 R139.2
+wire Q24.B R140.2
+wire C51.1 Q24.C R141.1
+wire R141.2 R148.2 U64.5
+label SOFT_EXPL_M: R142.1 R143.1 U47.2
+wire Q25.B R143.2 R144.1
+wire Q25.C Q26.E R145.2 R146.2
+wire Q26.B R147.2
+wire C52.1 Q26.C R148.1
+
+# ---------------------------------------------------------------------------
+# Page 4, bottom-right (bug pushing and final mix)
+# ---------------------------------------------------------------------------
+wire U21.2 U31.8
+wire R149.1 U21.5
+wire C53.1 R149.2
+wire U21.12 U31.10
+wire R150.1 U21.8
+wire C54.2 R150.2
+port OUTPUT: C61.2 R161.2 U54.6  # to the final amplifier, which MAME does not simulate
+wire C60.2 U55.2 U55.6
+wire C60.1 R160.1
+
+# ---------------------------------------------------------------------------
+# Page 6, top left
+# ---------------------------------------------------------------------------
+port OUT_7: D25.1 U50.9  # in MAME: TTL_INPUT(I_OUT_7)
+wire U50.1 U50.8
+label DATA_P: U49.1 U50.2
+port OUT_4: D26.1 U50.13  # in MAME: TTL_INPUT(I_OUT_4)
+wire U40.9 U50.12
+wire C67.2 R177.1 U30.13 U40.8
+wire U30.1 U30.12
+wire U30.2 U39.8 U49.8
+wire U47.3 U48.3 U49.3
+wire U47.4 U48.4 U49.4
+wire U47.7 U48.7 U49.5
+wire U47.8 U48.8 U49.6
+wire U47.13 U48.13 U49.10
+wire U47.14 U48.14 U49.11
+wire U47.17 U48.17 U49.12
+wire U39.1 U47.18 U48.18 U49.13
+wire U38.3 U39.3
+wire U38.4 U39.4
+wire U38.7 U39.5
+wire U38.8 U39.6
+wire U38.13 U39.10
+wire U38.14 U39.11
+wire U38.17 U39.12
+wire U38.18 U39.13
+label MLATCH_P: U38.11 U45.2 U45.9 U48.11
+label CHIRPING_BIRDS_M: U41.12 U47.6
+label BUG_PUSHING_A_P: U31.9 U47.12
+label BUG_PUSHING_B_P: U31.11 U47.15
+label SLATCH_P: U30.6 U47.11
+
+# ---------------------------------------------------------------------------
+# Page 6, middle-left
+# ---------------------------------------------------------------------------
+wire C68.1 R178.1 U2.3
+port Y1: R178.2 U2.4  # in MAME: CLOCK(Y1)
+port Y1: R179.1 U2.1  # in MAME: CLOCK(Y1)
+wire C68.2 R179.2 U2.13 U2.2
+wire U2.12 U23.1
+label HIC_P: R208.2 U23.10 U23.11 U23.12 U23.2 U23.3 U23.4 U24.4 U33.1 U33.13 U33.4 U43.1 U43.10 U43.3 U43.5 U43.7
+wire U23.13 U23.5
+label _5MHZ_M: U13.13 U23.8 U24.3
+
+# ---------------------------------------------------------------------------
+# Page 6, bottom-left
+# ---------------------------------------------------------------------------
+port OUT_1: D27.1 U50.3  # in MAME: TTL_INPUT(I_OUT_1)
+wire U40.13 U50.4
+wire C69.2 R180.1 U30.9 U40.12
+wire U30.5 U30.8
+port OUT_0: D28.1 U50.11  # in MAME: TTL_INPUT(I_OUT_0)
+wire U40.11 U50.10
+wire C70.2 R181.1 U30.11 U40.10
+wire U30.10 U30.3
+
+# ---------------------------------------------------------------------------
+# Page 6, bottom-middle
+# ---------------------------------------------------------------------------
+label _5MHZ_P: U23.9 U43.2
+wire U24.6 U33.12 U43.9
+wire U24.2 U43.15
+wire R204.2 U24.1
+label _227KC_P: U33.3 U44.3
+label _227KC_M: U33.2 U44.11
+label MBCLK_P: U44.12 U44.5 U45.11 U46.2
+label MACLK_M: U25.11 U44.2 U44.8
+wire R182.2 U25.13
+label MLOAD_P: U25.9 U34.9 U35.8
+label LATCH_CLK_P: U25.3 U30.4
+wire U25.1 U45.6
+wire U15.12 U25.6 U35.9
+label MBCLK_M: U15.13 U37.2 U44.6
+wire U15.9 U35.11 U35.12
+wire U35.13 U45.10
+wire U35.10 U45.12
+wire R203.2 U45.1
+label MACLK_P: U36.2 U44.9 U45.3
+
+# ---------------------------------------------------------------------------
+# Page 6, right (music generator)
+# ---------------------------------------------------------------------------
+label FS11_P: U46.6 U48.12
+label FS10_P: U46.5 U48.15
+label FS09_P: U46.4 U48.16
+label FS08_P: U46.3 U48.19
+label MEN_P: U36.7 U37.10 U37.7 U46.7 U48.2
+label MLOAD_M: U25.8 U36.9 U37.9 U46.9
+label MCARRY_P: U25.12 U46.15
+wire U36.15 U46.10
+label FS07_P: U36.6 U38.2
+label FS06_P: U36.5 U38.5
+label FS05_P: U36.4 U38.6
+label FS04_P: U36.3 U38.9
+wire U36.10 U37.15
+label FS03_P: U37.6 U38.12
+label FS02_P: U37.5 U38.15
+label FS01_P: U37.4 U38.16
+label FS00_P: U37.3 U38.19
+label DMUSIC_P: R183.1 R184.1 U34.5
+wire C71.1 R184.2
+wire C71.2 R185.1 U67.2
+wire R186.2 U67.3
+label AS1_M: R187.1 R188.1 U48.6
+wire Q31.B R188.2 R189.1
+wire Q31.C Q32.E R190.2 R191.1
+wire Q32.B R192.2
+wire Q32.C R193.1
+wire C72.2 R193.2 R194.1
+wire R194.2 R202.2 U67.5
+label AS0_M: R195.1 R196.1 U48.9
+wire Q33.B R196.2 R197.1
+wire Q33.C Q34.E R198.2 R199.1
+wire Q34.B R200.2
+wire Q34.C R201.1
+wire C73.2 R201.2 R202.1
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc U2.9 U2.11 U9.1 U9.4 U9.12 U9.13 U15.1 U15.2 U20.4 U20.6 U20.8 U20.10 U20.12 U33.8 U33.9 U33.10 U33.11 U35.5 U35.6 U40.1 U40.3 U40.5  # line 1704: tied to one another in MAME's "Unconnected inputs" block
+nc U27.11  # line 704: MAME's own HINT(NC)
+nc U27.12  # line 705: MAME's own HINT(NC)
+nc U27.13  # line 706: MAME's own HINT(NC)
+nc U27.14  # line 707: MAME's own HINT(NC)
+nc U28.11  # line 713: MAME's own HINT(NC)
+nc U28.12  # line 714: MAME's own HINT(NC)
+nc U28.13  # line 715: MAME's own HINT(NC)
+nc U28.14  # line 716: MAME's own HINT(NC)
+nc U34.2  # line 729: MAME's own HINT(NC)
+nc U26.5  # line 733: MAME's own HINT(NC)
+nc U26.4  # line 734: MAME's own HINT(NC)
+nc U26.3  # line 735: MAME's own HINT(NC)
+nc U26.9  # line 738: MAME's own HINT(NC)
+nc U26.10  # line 739: MAME's own HINT(NC)
+nc U2.6  # line 787: MAME's own HINT(NC)
+nc U13.9  # line 792: MAME's own HINT(NC)
+nc U13.10  # line 793: MAME's own HINT(NC)
+nc U13.11  # line 794: MAME's own HINT(NC)
+nc U1.5  # line 819: MAME's own HINT(NC)
+nc U1.4  # line 820: MAME's own HINT(NC)
+nc U1.3  # line 821: MAME's own HINT(NC)
+nc U1.8  # line 823: MAME's own HINT(NC)
+nc U1.9  # line 824: MAME's own HINT(NC)
+nc U1.11  # line 826: MAME's own HINT(NC)
+nc U11.12  # line 832: MAME's own HINT(NC)
+nc U11.11  # line 833: MAME's own HINT(NC)
+nc U11.10  # line 834: MAME's own HINT(NC)
+nc U11.3  # line 838: MAME's own HINT(NC)
+nc U32.5  # line 847: MAME's own HINT(NC)
+nc U32.4  # line 848: MAME's own HINT(NC)
+nc U32.3  # line 849: MAME's own HINT(NC)
+nc U51.4  # line 895: MAME's own HINT(NC)
+nc U41.6  # line 908: MAME's own HINT(NC)
+nc U41.5  # line 909: MAME's own HINT(NC)
+nc U41.4  # line 910: MAME's own HINT(NC)
+nc U41.8  # line 914: MAME's own HINT(NC)
+nc U41.9  # line 915: MAME's own HINT(NC)
+nc U41.11  # line 917: MAME's own HINT(NC)
+nc U52.4  # line 966: MAME's own HINT(NC)
+nc U32.10  # line 983: MAME's own HINT(NC)
+nc U32.11  # line 984: MAME's own HINT(NC)
+nc U42.6  # line 986: MAME's own HINT(NC)
+nc U42.5  # line 987: MAME's own HINT(NC)
+nc U42.4  # line 988: MAME's own HINT(NC)
+nc U42.11  # line 994: MAME's own HINT(NC)
+nc U53.4  # line 1042: MAME's own HINT(NC)
+nc U22.11  # line 1058: MAME's own HINT(NC)
+nc U56.4  # line 1117: MAME's own HINT(NC)
+nc U22.6  # line 1130: MAME's own HINT(NC)
+nc U22.5  # line 1131: MAME's own HINT(NC)
+nc U22.3  # line 1133: MAME's own HINT(NC)
+nc U57.4  # line 1203: MAME's own HINT(NC)
+nc U60.4  # line 1271: MAME's own HINT(NC)
+nc U13.6  # line 1284: MAME's own HINT(NC)
+nc U13.5  # line 1285: MAME's own HINT(NC)
+nc U13.3  # line 1287: MAME's own HINT(NC)
+nc U21.6  # line 1349: MAME's own HINT(NC)
+nc U21.4  # line 1351: MAME's own HINT(NC)
+nc U21.3  # line 1352: MAME's own HINT(NC)
+nc U21.9  # line 1359: MAME's own HINT(NC)
+nc U21.10  # line 1360: MAME's own HINT(NC)
+nc U21.11  # line 1361: MAME's own HINT(NC)
+nc U23.6  # line 1500: MAME's own HINT(NC)
+nc U43.11  # line 1560: MAME's own HINT(NC)
+nc U43.12  # line 1561: MAME's own HINT(NC)
+nc U43.13  # line 1562: MAME's own HINT(NC)
+nc U43.14  # line 1563: MAME's own HINT(NC)
+nc U24.5  # line 1567: MAME's own HINT(NC)
+nc U34.6  # line 1597: MAME's own HINT(NC)
+nc U15.8  # line 1606: MAME's own HINT(NC)
+nc U15.10  # line 1608: MAME's own HINT(NC)
+nc U15.11  # line 1609: MAME's own HINT(NC)
+nc U45.8  # line 1615: MAME's own HINT(NC)
+nc U45.5  # line 1618: MAME's own HINT(NC)
+nc U46.11  # line 1637: MAME's own HINT(NC)
+nc U46.12  # line 1638: MAME's own HINT(NC)
+nc U46.13  # line 1639: MAME's own HINT(NC)
+nc U46.14  # line 1640: MAME's own HINT(NC)
+nc U36.11  # line 1651: MAME's own HINT(NC)
+nc U36.12  # line 1652: MAME's own HINT(NC)
+nc U36.13  # line 1653: MAME's own HINT(NC)
+nc U36.14  # line 1654: MAME's own HINT(NC)
+nc U37.11  # line 1664: MAME's own HINT(NC)
+nc U37.12  # line 1665: MAME's own HINT(NC)
+nc U37.13  # line 1666: MAME's own HINT(NC)
+nc U37.14  # line 1667: MAME's own HINT(NC)
+nc U2.8  # line 1710: MAME's own HINT(NC)
+nc U2.10  # line 1711: MAME's own HINT(NC)
+nc U40.2  # line 1712: MAME's own HINT(NC)
+nc U40.4  # line 1713: MAME's own HINT(NC)
+nc U40.6  # line 1714: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U2.5  # input
+nc U9.2 U9.3  # ~{Q} Q
+nc U15.3 U15.4 U15.5 U15.6  # Q0 Q1 Q2 Q3
+nc U20.3 U20.5 U20.9 U20.11 U20.13  # input input input input input
+nc U33.5 U33.6  # Q ~{Q}
+nc U35.4  # output
+nc U51.2  # NC
+nc U52.2  # NC
+nc U53.2  # NC
+nc U54.1 U54.5 U54.8  # NULL NULL NC
+nc U55.1 U55.5 U55.8  # NULL NULL NC
+nc U56.2  # NC
+nc U57.2  # NC
+nc U59.1 U59.8  # NC NC
+nc U60.2  # NC
+nc U61.1 U61.8  # NC NC
+nc U62.5 U62.6 U62.7 U62.8  # NC NC NC NC
+nc U63.1 U63.5 U63.8  # NULL NULL NC
+nc U64.1 U64.8  # NC NC
+nc U67.1 U67.8  # NC NC

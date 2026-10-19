@@ -1,0 +1,482 @@
+# Armor Attack sound board -- netlist converted from MAME
+#
+# Cinematronics vector games carry a small audio board of their own, driven from the
+# CPU board's output latch: the latch bits arrive here as ports (OUT_0 ... OUT_7, MAME's
+# TTL_INPUT names), and the board's sound goes out to a final amplifier that MAME does
+# not simulate and this file therefore does not contain.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/cinematronics/nl_armora.cpp,
+# NETLIST_START(armora). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Aaron Giles (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/cinematronics/nl_armora.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+# The sheet numbers its ICs IC1, IC2 ...; they are written U1, U2 ... here, because the
+# checker files every IC under a U designator.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 27: #define HLE_TANK_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 654: NET_C(GND, IC7.1, IC9.4, IC9.5, IC9.12, IC9.13, IC27.1, IC27.2) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 655: NET_C(GND, IC24.2, IC24.3) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# Declarations MAME comments out but the restored circuit uses, restored: Q1 (line 228)
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 85: RES(R24, RES_K(390))  -- part of final amp (not emulated)
+#   line 86: RES(R25, RES_K(390))  -- part of final amp (not emulated)
+#   line 145: RES(R84, RES_K(15))   -- part of final amp (not emulated)
+#   line 146: RES(R85, 150)         -- part of final amp (not emulated)
+#   line 147: RES(R86, RES_K(22))   -- part of final amp (not emulated)
+#   line 148: RES(R87, 150)         -- part of final amp (not emulated)
+#   line 149: RES(R88, 0.51)        -- part of final amp (not emulated)
+#   line 150: RES(R89, 0.51)        -- part of final amp (not emulated)
+#   line 154: POT(R93, RES_K(10))   -- part of final amp (not emulated)
+#   line 173: CAP(C1, CAP_U(0.1))   -- part of voltage converter (not emulated)
+#   line 174: CAP(C2, CAP_U(22))    -- part of voltage converter (not emulated)
+#   line 175: CAP(C3, CAP_U(0.1))   -- part of voltage converter (not emulated)
+#   line 176: CAP(C4, CAP_U(22))    -- part of voltage converter (not emulated)
+#   line 177: CAP(C5, CAP_U(22))    -- part of voltage converter (not emulated)
+#   line 178: CAP(C6, CAP_U(0.1))   -- part of voltage converter (not emulated)
+#   line 179: CAP(C7, CAP_U(22))    -- part of voltage converter (not emulated)
+#   line 180: CAP(C8, CAP_U(0.1))   -- part of voltage converter (not emulated)
+#   line 181: CAP(C9, CAP_U(22))    -- part of voltage converter (not emulated)
+#   line 182: CAP(C10, CAP_U(0.1))  -- part of voltage converter (not emulated)
+#   line 200: CAP(C28, CAP_U())   -- don't see it anywhere
+#   line 210: CAP(C38, CAP_U(0.68))  -- part of final amp (not emulated)
+#   line 211: CAP(C39, CAP_P(470))   -- part of final amp (not emulated)
+#   line 212: CAP(C40, CAP_P(470))   -- part of final amp (not emulated)
+#   line 213: CAP(C41, CAP_U(0.005)) -- part of final amp (not emulated)
+#   line 214: CAP(C42, CAP_P(470))   -- part of final amp (not emulated)
+#   line 218: D_1N4003(D1)        -- part of voltage converter (not emulated)
+#   line 219: D_1N4003(D2)        -- part of voltage converter (not emulated)
+#   line 220: D_1N4003(D3)        -- part of voltage converter (not emulated)
+#   line 221: D_1N4003(D4)        -- part of voltage converter (not emulated)
+#   line 223: D_1N4003(D6)        -- part of final amp (not emulated)
+#   line 224: D_1N4003(D7)        -- part of final amp (not emulated)
+#   line 228: Q_2N3904(Q1)            // NPN -- not used
+#   line 239: Q_2N6292(Q12)           // NPN -- part of final amp (not emulated)
+#   line 240: Q_2N6107(Q13)           // PNP -- part of final amp (not emulated)
+#   line 260: TTL_7815_DIP(IC4)       // +15V Regulator -- part of voltage converter (not emulated)
+#   line 261: TTL_7915_DIP(IC5)       // -15V Regulator -- part of voltage converter (not emulated)
+#
+# MAME's file says 'Entire schematic needs a verification pass'. With HLE_TANK_VCO off the
+# tread VCO is MAME's own description of the board's circuit; it uses Q1, which MAME
+# declares only in a comment ('not used' -- by the stand-in), so the declaration is
+# restored.
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part U1 7414
+# part U2 74LS164
+# part U3 74LS377
+# part U6 LM555
+# part U7 7406
+# part U8 74LS163
+# part U9 74LS00
+# part U10 74LS393
+# part U11 74LS163
+# part U13 74LS393
+# part U15 LM566
+# part U17 S2688
+# part U18 TL081
+# part U19 CA3080
+# part U20 CA3080
+# part U21 CA3080
+# part U22 CA3080
+# part U23 LM555
+# part U24 TL081
+# part U25 TL081
+# part U26 TL081
+# part U27 7414
+
+value R1 1K
+value R2 1.3K
+value R3 1.3K
+value R4 2K
+value R5 2K
+value R6 12K
+value R7 24K
+value R8 1K
+value R9 2K
+value R10 1K
+value R11 3.6K
+value R12 10K
+value R13 1K
+value R14 240K
+value R15 22K
+value R16 22K
+value R17 22K
+value R18 20K
+value R19 430K
+value R20 1.5M
+value R21 390K
+value R22 1.5M
+value R23 51K
+value R26 1M
+value R27 4.7K
+value R28 2.7K
+value R29 4.7K
+value R30 39K
+value R31 12K
+value R32 1K
+value R33 240K
+value R34 18K
+value R35 16K
+value R36 7.5K
+value R37 620
+value R38 620
+value R39 4.7K
+value R40 2.7K
+value R41 4.7K
+value R42 39K
+value R43 12K
+value R44 1K
+value R45 150K
+value R46 20K
+value R47 22K
+value R48 30K
+value R49 680
+value R50 680
+value R51 4.7K
+value R52 2.7K
+value R53 4.7K
+value R54 39K
+value R55 12K
+value R56 1K
+value R57 220K
+value R58 10K
+value R59 47K
+value R60 750
+value R61 750
+value R62 4.7K
+value R63 2.7K
+value R64 4.7K
+value R65 39K
+value R66 12K
+value R67 1K
+value R68 910K
+value R69 8.2K
+value R70 43K
+value R71 22K
+value R72 750
+value R73 750
+value R74 4.7K
+value R75 2.7K
+value R76 4.7K
+value R77 39K
+value R78 12K
+value R79 1K
+value R80 750K
+value R81 20K
+value R82 8.2K
+value R83 330K
+value R90 100K
+value R91 8.2K
+value R92 20K
+value R94 30K
+value R95 4.7K
+value R96 2.7K
+value R97 39K
+value R98 12K
+value R99 2.4K
+value R100 4.7K
+value R101 2.7K
+value R102 39K
+value R103 12K
+value R104 2.4K
+value R105 4.7K
+value R106 2.7K
+value R107 39K
+value R108 12K
+value R109 2.4K
+value R110 1K
+value C11 0.047uF
+value C12 0.01uF
+value C13 0.047uF
+value C14 0.47uF
+value C15 0.001uF
+value C16 0.1uF
+value C17 0.0047uF
+value C18 2.2uF
+value C19 0.1uF
+value C20 100uF
+value C21 0.1uF
+value C22 2.2uF
+value C23 0.22uF
+value C24 0.22uF
+value C25 3.3uF
+value C26 0.1uF
+value C27 0.047uF
+value C29 0.047uF
+value C30 0.047uF
+value C31 0.22uF
+value C32 0.22uF
+value C33 0.0047uF
+value C34 1uF
+value C35 0.1uF
+value C36 0.1uF
+value C37 0.01uF
+value C43 0.33uF
+value D5 1N914
+value D8 1N914
+value Q1 2N3904
+value Q2 2N3906
+value Q3 2N3906
+value Q4 2N3906
+value Q5 2N3906
+value Q6 2N3906
+value Q7 2N3906
+value Q8 2N3906
+value Q9 2N3906
+value Q10 2N3906
+value Q11 2N3906
+value Q14 2N3906
+value Q15 2N3904
+value Q16 2N3906
+value Q17 2N3904
+value Q18 2N3906
+value Q19 2N3904
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C11.2 C12.2 C13.2 C17.2 C18.2 C20.2 C23.2 C24.2 C26.2 C27.2 C29.2 C30.2 C32.2 C33.2 C35.2 C37.2 D5.2 D8.2 U1.7 U10.12 U10.2 U10.7 U11.5 U11.6 U11.8 U13.7 U15.1 U17.1 U17.2 U2.7 U23.1 U26.3 U27.7 U3.1 U3.10 U6.1 U7.7 U8.8 U9.7 Q15.E Q17.E Q19.E R103.1 R108.1 R18.1 R22.1 R26.1 R31.1 R32.1 R37.1 R38.1 R43.1 R44.1 R49.1 R50.1 R55.1 R56.1 R60.1 R61.1 R66.1 R67.1 R72.1 R73.1 R78.1 R79.1 R90.1 R98.1
+net +15V: C20.1 U15.8 U17.4 U18.7 U19.7 U20.7 U21.7 U22.7 U24.7 U25.7 U26.7 R11.2 R23.2
+net +5V: U1.14 U10.14 U11.16 U13.14 U2.14 U23.8 U27.14 U3.20 U6.8 U7.14 U8.16 U9.14 Q10.E Q14.E Q16.E Q18.E Q2.E Q4.E Q6.E Q8.E R1.1 R10.2 R100.2 R105.2 R110.2 R13.2 R2.2 R27.2 R29.2 R39.2 R41.2 R5.2 R51.2 R53.2 R62.2 R64.2 R74.2 R76.2 R8.2 R81.2 R9.2 R95.2
+net -15V: C22.2 C25.2 C31.2 C34.2 U18.4 U19.4 U20.4 U21.4 U22.4 U24.4 U25.4 U26.4 R102.1 R107.1 R30.1 R4.1 R42.1 R54.1 R65.1 R77.1 R97.1
+
+# ---------------------------------------------------------------------------
+# Page 1: inputs and shift register
+# ---------------------------------------------------------------------------
+port OUT_1: U27.13  # in MAME: TTL_INPUT(I_OUT_1)
+port OUT_2: U27.9  # in MAME: TTL_INPUT(I_OUT_2)
+port OUT_3: U27.3  # in MAME: TTL_INPUT(I_OUT_3)
+label HI: U11.1 U11.10 U11.3 U11.4 U11.7 U2.1 U2.9 U8.1 U8.10 U8.7 R1.2
+port OUT_7: U1.13  # in MAME: TTL_INPUT(I_OUT_7)
+wire U1.1 U1.12
+wire U1.2 U2.2
+port OUT_4: U1.11  # in MAME: TTL_INPUT(I_OUT_4)
+wire U1.10 U1.5
+wire U1.6 U2.8
+wire U2.3 U3.3
+wire U2.4 U3.4
+wire U2.5 U3.7
+wire U2.6 U3.8
+wire U2.10 U3.13
+wire U2.11 U3.14
+wire U2.12 U3.17
+wire U2.13 U3.18
+port OUT_0: U27.11  # in MAME: TTL_INPUT(I_OUT_0)
+wire U27.10 U27.5
+wire U27.6 U3.11
+wire U3.12 U8.6
+wire U3.15 U8.5
+wire U3.16 U8.4
+wire U3.19 U8.3
+
+# ---------------------------------------------------------------------------
+# Page 1: Tank EN
+# ---------------------------------------------------------------------------
+wire U6.7 R2.1 R3.2
+wire C11.1 U6.2 U6.6 R3.1
+label TANK_EN: U27.12 U6.4 U7.9
+wire C12.1 U6.5
+wire U1.9 U6.3
+wire U1.8 U8.2
+wire U10.1 U11.2 U8.15 U9.1 U9.2
+wire U8.9 U9.3
+wire U10.6 U13.13 U9.9
+wire U1.3 U11.15
+wire U1.4 U11.9
+wire U11.11 U9.10
+wire U10.13 U9.8
+wire U10.11 R6.1
+wire C13.1 C14.2 R6.2
+wire C14.1 R7.1
+wire U13.12 U7.8 R8.1
+label SH2_1: U13.8 U7.5 R5.1 R96.1
+label SH2_3: U13.9 U7.11 U7.13 R101.1 R9.1
+label SH2_5: U7.10 U7.6 R10.1 R106.1
+wire C15.2 C18.1 U15.5 R19.2 R20.2 R21.2 R22.2 R23.1
+wire C17.1 U15.7
+wire C15.1 U15.6 R11.1
+wire C16.2 U15.3
+wire C16.1 D5.1 R12.1
+wire Q1.B R12.2
+wire D8.1 Q1.E R4.2
+wire U13.1 Q1.C R13.1
+wire U13.2 U7.12 R110.1
+wire U13.5 R15.1
+wire U13.4 R16.1
+wire U13.3 R17.1
+wire C19.2 R15.2 R16.2 R17.2 R18.2
+wire C19.1 R14.1
+label SJ: C36.2 U26.2 R14.2 R7.2 R91.2 R92.1
+
+# ---------------------------------------------------------------------------
+# Page 2 stuff
+# ---------------------------------------------------------------------------
+wire Q14.B R95.1 R96.2
+wire Q14.C R97.2 R98.2 R99.1
+wire Q15.B R99.2
+label SH2_2: Q15.C R19.1
+wire Q16.B R100.1 R101.2
+wire Q16.C R102.2 R103.2 R104.1
+wire Q17.B R104.2
+label SH2_4: Q17.C R20.1
+wire Q18.B R105.1 R106.2
+wire Q18.C R107.2 R108.2 R109.1
+wire Q19.B R109.2
+label SH2_6: Q19.C R21.1
+
+# ---------------------------------------------------------------------------
+# Page 3
+# ---------------------------------------------------------------------------
+wire C21.2 U17.3
+wire C21.1 U18.3 R26.2
+label NOISE: U18.2 U18.6 R34.1 R46.1 R58.1 R69.1
+
+# ---------------------------------------------------------------------------
+# TANK FIRE
+# ---------------------------------------------------------------------------
+label TANK_FIRE: U3.2 R27.1 R28.1
+wire Q2.B R28.2 R29.1
+wire Q2.C Q3.E R30.2 R31.2
+wire Q3.B R32.2
+wire C22.1 Q3.C R33.1
+wire U19.5 R33.2
+wire C23.1 R34.2 R35.1
+wire C24.1 R35.2 R36.1
+wire U19.2 R36.2 R37.2
+wire U19.3 R38.2
+wire U19.6 U20.6 U21.6 U22.6 U25.3 R90.2
+parallel U19.6 U20.6 U21.6 U22.6  # transconductance outputs: currents, summed here
+
+# ---------------------------------------------------------------------------
+# LO EXP
+# ---------------------------------------------------------------------------
+label LO_EXP: U3.9 R39.1 R40.1
+wire Q4.B R40.2 R41.1
+wire Q4.C Q5.E R42.2 R43.2
+wire Q5.B R44.2
+wire C25.1 Q5.C R45.1
+wire U20.5 R45.2
+wire C26.1 R46.2 R47.1
+wire C27.1 R47.2 R48.1
+wire U20.2 R48.2 R49.2
+wire U20.3 R50.2
+
+# ---------------------------------------------------------------------------
+# CHOPPER SW
+# ---------------------------------------------------------------------------
+label CHOPPER_SW: U27.4 U7.3
+wire U7.4 R51.1 R52.1
+wire Q6.B R52.2 R53.1
+wire Q6.C Q7.E R54.2 R55.2
+wire Q7.B R56.2
+wire Q7.C R57.1
+wire U21.5 R57.2
+wire C29.1 R58.2 R59.1
+wire C30.1 R59.2 R94.1
+wire U21.2 R60.2 R94.2
+wire U21.3 R61.2
+
+# ---------------------------------------------------------------------------
+# JEEP FIRE
+# ---------------------------------------------------------------------------
+label JEEP_FIRE: U3.6 R62.1 R63.1
+wire Q8.B R63.2 R64.1
+wire Q8.C Q9.E R65.2 R66.2
+wire Q9.B R67.2
+wire C31.1 Q9.C R68.1
+wire U22.5 R68.2 R80.2
+wire C32.1 R69.2 R70.1
+wire C33.1 R70.2 R71.1
+wire U22.2 R71.2 R72.2
+wire U22.3 R73.2
+
+# ---------------------------------------------------------------------------
+# HI EXP
+# ---------------------------------------------------------------------------
+label HI_EXP: U3.5 R74.1 R75.1
+wire Q10.B R75.2 R76.1
+wire Q10.C Q11.E R77.2 R78.2
+wire Q11.B R79.2
+wire C34.1 Q11.C R80.1
+
+# ---------------------------------------------------------------------------
+# BEEP EN
+# ---------------------------------------------------------------------------
+label BEEP_EN: U23.4 U27.8
+wire C35.1 U23.2 U23.6 R81.1 R82.1
+wire U23.7 R82.2
+wire C37.1 U23.5
+wire U23.3 R83.1
+wire C36.1 R83.2
+
+# ---------------------------------------------------------------------------
+# Final mix
+# ---------------------------------------------------------------------------
+wire C43.1 U25.2 U25.6
+wire C43.2 R91.1
+port OUTPUT: U26.6 R92.2  # to the final amplifier, which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc U7.1 U9.4 U9.5 U9.12 U9.13 U27.1 U27.2  # line 654: tied to GND in MAME's "Unconnected inputs" block
+nc U24.2 U24.3  # line 655: tied to GND in MAME's "Unconnected inputs" block
+nc U7.2  # line 661: MAME's own HINT(NC)
+nc U8.11  # line 662: MAME's own HINT(NC)
+nc U8.12  # line 663: MAME's own HINT(NC)
+nc U8.13  # line 664: MAME's own HINT(NC)
+nc U8.14  # line 665: MAME's own HINT(NC)
+nc U9.6  # line 666: MAME's own HINT(NC)
+nc U9.11  # line 667: MAME's own HINT(NC)
+nc U10.3  # line 668: MAME's own HINT(NC)
+nc U10.4  # line 669: MAME's own HINT(NC)
+nc U10.5  # line 670: MAME's own HINT(NC)
+nc U10.8  # line 671: MAME's own HINT(NC)
+nc U10.9  # line 672: MAME's own HINT(NC)
+nc U10.10  # line 673: MAME's own HINT(NC)
+nc U11.12  # line 674: MAME's own HINT(NC)
+nc U11.13  # line 675: MAME's own HINT(NC)
+nc U11.14  # line 676: MAME's own HINT(NC)
+nc U13.6  # line 677: MAME's own HINT(NC)
+nc U13.10  # line 678: MAME's own HINT(NC)
+nc U13.11  # line 679: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U15.2 U15.4  # NC TRIANGLE
+nc U17.5 U17.6 U17.7 U17.8  # NC NC NC NC
+nc U18.1 U18.5 U18.8  # NULL NULL NC
+nc U19.1 U19.8  # NC NC
+nc U20.1 U20.8  # NC NC
+nc U21.1 U21.8  # NC NC
+nc U22.1 U22.8  # NC NC
+nc U24.1 U24.5 U24.6 U24.8  # NULL NULL output NC
+nc U25.1 U25.5 U25.8  # NULL NULL NC
+nc U26.1 U26.5 U26.8  # NULL NULL NC

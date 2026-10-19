@@ -1,0 +1,42 @@
+{
+ "name": "Frogs sound board",
+ "mfr": "Gremlin",
+ "year": "1978",
+ "machine": "frogs",
+ "drawing": "Sound board schematic in the Frogs manual (doc a2ffd17fee9b) -- via MAME's netlist, not read here",
+ "revision": "Gremlin Frogs sound board: hop, jump, zip, splash, buzz, boing and croak from 555s and 741 filters.",
+ "coverage": "Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. See the .nets file for what was undone and what MAME leaves out.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "frogs-sound",
+ "ics": {
+  "1": "MM5837",
+  "2": "NE555",
+  "3": "NE555",
+  "4": "NE555",
+  "5": "NE555",
+  "6": "NE555",
+  "7": "NE555",
+  "8": "LM741",
+  "9": "NE555",
+  "10": "LM741",
+  "11": "LM741",
+  "12": "NE555",
+  "14": "LM741",
+  "15": "NE555",
+  "16": "LM741",
+  "17": "LM741",
+  "18": "LM741",
+  "19": "NE555",
+  "20": "LM741"
+ },
+ "source": {
+  "mame": "src/mame/sega/nl_frogs.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "frogs",
+  "licence": "CC0-1.0",
+  "copyright": "Aaron Giles"
+ }
+}

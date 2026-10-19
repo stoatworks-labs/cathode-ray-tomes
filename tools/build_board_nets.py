@@ -16,6 +16,12 @@ leaves undrawn, and then argues with the result:
   * pins on one net share a signature, so two different codes printed in the
     same test on one net mean one of the joins is wrong
 
+A `port NAME: PIN ...` is a net that leaves what the file describes without a
+connector pin to land on -- a netlist converted from MAME names the signal its
+CPU or the other board drives, not the contact it arrives on. It is exempt
+from the one-pin and nothing-drives-it checks, because what drives it is
+somewhere else; a hand read has a connector and should not need one.
+
   tools/build_board_nets.py battlezone-math-box            # check and write JSON
   tools/build_board_nets.py battlezone-math-box --check    # check only
 
@@ -43,6 +49,29 @@ KICAD = {
     "74S04": "74xx:74LS04",
     # The 4584 is the 40106's pinout: six Schmitt inverters, 14 VDD, 7 VSS.
     "4584B": "4xxx:40106",
+    # Parts the MAME conversions use (tools/mame_netlist.py), by the name the
+    # netlist gives them. Plain TTL and LS share a pinout; the 9316 is the
+    # 74161, the 9322 the 74157 and the 9321 the 74139, pin for pin; the 74S113
+    # is the 74LS113. The 74LS92's QB is pin 11 and QD pin 8, as TI's sheet has
+    # it -- MAME's own 7492 model swaps them.
+    "7400": "74xx:74LS00", "7402": "74xx:74LS02", "7404": "74xx:74LS04", "74H04": "74xx:74LS04",
+    "7406": "74xx:74LS06", "7407": "74xx:74LS07", "7408": "74xx:74LS08",
+    "7410": "74xx:74LS10", "7414": "74xx:74LS14", "7420": "74xx:74LS20",
+    "7427": "74xx:74LS27", "7474": "74xx:74LS74", "7486": "74xx:74LS86",
+    "7492": "74xx:74LS92", "7493": "74xx:74LS93", "74107": "74xx:74LS107",
+    "74153": "74xx:74LS153", "74165": "74xx:74LS165", "74193": "74xx:74HC193",
+    "9316": "74xx:74LS161", "9321": "74xx:74LS139", "9322": "74xx:74LS157",
+    "74LS21": "74xx:74LS21", "74LS107": "74xx:74LS107", "74LS125": "74xx:74LS125",
+    "74LS75": "74xx:74LS75", "74LS123": "74xx:74LS123", "74LS259": "74xx:74LS259",
+    "74LS163": "74xx:74LS163", "74LS377": "74xx:74LS377", "74LS393": "74xx:74LS393",
+    "74S113": "74xx:74LS113", "74S113A": "74xx:74LS113",
+    "74S20": "74xx:74LS20", "74H08": "74xx:74LS08",
+    "TL081": "Amplifier_Operational:TL081", "TL082": "Amplifier_Operational:TL082",
+    "TL084": "Amplifier_Operational:TL084", "CA3080": "Amplifier_Operational:CA3080",
+    "LM741": "Amplifier_Operational:LM741", "UA741": "Amplifier_Operational:LM741",
+    "LM555": "Timer:NE555P", "NE555": "Timer:NE555P", "NE556": "Timer:NE556",
+    "LM556": "Timer:NE556", "CD4011": "4xxx:4011", "CD4017": "4xxx:4017",
+    "CD4024": "4xxx_IEEE:4024", "CD4053": "4xxx:4053", "CD4069": "4xxx:4069",
 }
 # Electrical types that may share a net with another driver.
 LETS_GO = {"open_collector", "open_emitter", "tri_state", "bidirectional", "passive"}
@@ -91,10 +120,17 @@ def kicad_pins(libsym):
     return pins
 
 
-def custom_pins(part):
+def custom_entry(part):
+    """A custom pinout, following `same_as` for a second source's name."""
     table = json.load(open(os.path.join(ROOT, "tools", "custom_pinouts.json")))
     entry = table[part]
-    return {str(n): (p["name"], p["type"]) for n, p in entry["pins"].items()}
+    while "same_as" in entry:
+        entry = table[entry["same_as"]]
+    return entry
+
+
+def custom_pins(part):
+    return {str(n): (p["name"], p["type"]) for n, p in custom_entry(part)["pins"].items()}
 
 
 def pinout(part):
@@ -108,8 +144,7 @@ def supply_rail(part, num, pname):
     outright (`rail`) -- on a PMOS part like the ER2055, VSS is the *positive*
     supply, and going by the name would ground it."""
     if part not in KICAD:
-        entry = json.load(open(os.path.join(ROOT, "tools", "custom_pinouts.json")))[part]
-        rail = entry["pins"][num].get("rail")
+        rail = custom_entry(part)["pins"][num].get("rail")
         if rail:
             return rail
     return "GND" if pname.upper() in ("GND", "VSS", "V-") else "+5V"
@@ -127,7 +162,7 @@ def parse(path):
         if not line:
             continue
         kind, _, rest = line.partition(" ")
-        if kind in ("net", "label"):
+        if kind in ("net", "label", "port"):
             name, _, pins = rest.partition(":")
             out.append((kind, name.strip(), pins.split(), None, n))
         elif kind in ("wire", "nc", "parallel"):
@@ -189,7 +224,7 @@ def build(slug):
             parallel.append(pins)               # declares; the wire itself joins them
             continue
         seen.update(pins)
-        if kind in ("net", "label"):
+        if kind in ("net", "label", "port"):
             for p in pins:
                 u.join(p, f"#{name}")
             names[f"#{name}"].append((kind, name))
@@ -242,9 +277,12 @@ def build(slug):
             continue                                # an unconnected pin is not a net
         sheet = [nm for lst in labels for k, nm in lst if k == "net"]
         ours = [nm for lst in labels for k, nm in lst if k == "label"]
-        sheet, ours = list(dict.fromkeys(sheet)), list(dict.fromkeys(ours))
+        port = [nm for lst in labels for k, nm in lst if k == "port"]
+        sheet, ours, port = (list(dict.fromkeys(x)) for x in (sheet, ours, port))
         if sheet:
             name, named_by = sheet[0], "sheet"
+        elif port:
+            name, named_by = port[0], "port"
         elif ours:
             name, named_by = ours[0], "ours"
         else:
@@ -253,8 +291,10 @@ def build(slug):
         if name in nets:
             problems.append(f"two separate nets would both be called {name}")
         nets[name] = {"pins": pins, "named": named_by,
-                      "aliases": [a for a in sheet + ours if a != name]}
-        if len(pins) == 1 and pins[0] not in nc:
+                      "aliases": [a for a in sheet + port + ours if a != name]}
+        if port:
+            nets[name]["port"] = True
+        if len(pins) == 1 and pins[0] not in nc and not port and not is_rail(name):
             problems.append(f"{name}: only one pin ({pins[0]}) -- a wire that goes nowhere")
 
     # Pin existence and coverage.
@@ -300,7 +340,7 @@ def build(slug):
     # Undriven nets: inputs only, nothing that could set the level -- no
     # output, no connector, no passive. Usually a join that was missed.
     for name, n in nets.items():
-        if is_rail(name):
+        if is_rail(name) or n.get("port"):
             continue
         types = []
         for p in n["pins"]:

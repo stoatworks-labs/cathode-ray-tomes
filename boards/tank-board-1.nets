@@ -1,0 +1,683 @@
+# Tank Board I (003110) -- netlist converted from MAME
+#
+# Tank is two boards with no CPU. MAME's netlist (nl_tank.cpp) describes both as one circuit
+# at the pin level, on one grid of designators -- but the boards each have their own grid,
+# so Board I's D11 is not Board II's D11. This file is the part of MAME's circuit the sheets
+# put on Board I, with every net that crosses to the other board landing on the cable
+# contact Board I's sheet prints for it (Board I J1/J2 to Board II J4/J5).
+#
+# MAME's passive designators carry suffixes it added to tell the boards apart (R53A, R48B,
+# C33C, R4V, R102MX, R74M1); they are stripped here, so the designators are the sheet's.
+# Where a part's board was in doubt, the sheets decided: MAME's "A" mostly means Board I's
+# sheet 2, but R8A-R11A and R37A are Board II's.
+#
+# Board I: tank and shell motion (sheet 1); coin logic, the play timer, the antenna, noise,
+# shot and boom sounds and the audio mixers (sheet 2).
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/atari/nl_tank.cpp,
+# NETLIST_START(tank). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Ryan Holtz (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/atari/nl_tank.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 357: dropped NET_C(IC_B6.2, IC_B6.6, IC_D6.9) -- MAME's 7400 latch; Board I sheet 2 draws a 7404 pair (below)
+# line 358: dropped NET_C(IC_B6.4, IC_B6.3, IC_N6.5) -- as above
+# line 359: dropped NET_C(IC_B6.12, IC_B6.8, IC_D6.8) -- as above
+# line 360: dropped NET_C(IC_B6.10, IC_B6.11, IC_N6.6) -- as above
+# line 376: dropped NET_C(GND, IC_D6.3) -- the 25c/50c switch in its 25c position; the switch is put back (SW1)
+# line 382: dropped NET_C(PLAYTIME.1, R54A.1, R53A.1) -- took R53A.1 out of it: R53 is switched in by the 25c/50c switch (SW2), not fixed
+# line 395: dropped NET_C(V5, IC_E6.10) -- 'No antenna to spark, so we pretend we never get a spark'; the antenna latch is put back
+# line 400: dropped NET_C(GND, IC_N6.8) -- as above
+# line 1494: dropped NET_C(VLD1, IC_M2.1, IC_M2.2) -- Board I sheet 1 puts /FIRE1 on M2 pins 1-2 and VLD1 on 13
+# line 1495: dropped NET_C(FIRE1Q, IC_M2.13) -- as above
+# line 1499: dropped NET_C(HMCE, IC_F2.12, IC_F2.5, IC_F2.9, IC_C1.1) -- Board I makes its own HMCE from /HMCE with J3 pins 9-8; MAME takes Board II's
+# line 1500: dropped NET_C(IC_D2.5, IC_F2.13) -- Board I sheet 1: D2.5 goes to F2.12
+# line 1501: dropped NET_C(IC_E2.5, IC_F2.4) -- Board I sheet 1: E2.5 goes to F2.5
+# line 1502: dropped NET_C(IC_D2.9, IC_F2.10) -- Board I sheet 1: the 2^3 latch D2.9 goes to C1.1 (the NAND), not F2
+# line 1503: dropped NET_C(IC_E2.9, IC_C1.2) -- Board I sheet 1: the 2^2 latch E2.9 goes to F2.9, not C1
+# line 1506: dropped NET_C(EXPL1Q, IC_C1.5) -- Board I takes /EXPL1 from its own J3.12, not Board II's
+# line 1630: dropped NET_C(HMCE, IC_F4.1, IC_F4.4, IC_F4.10, IC_C5.4) -- as for line 1499
+# line 1662: dropped NET_C(EXPL2Q, IC_C5.2) -- Board I takes /EXPL2 from its own H3.10, not Board II's
+# line 1748: dropped NET_C(R71A.2, C40A.1, HLE_NOISE.1) -- a random-noise stand-in; the noise transistor Q5 is put back
+# line 1750: dropped NET_C(GND, HLE_NOISE.2, C43A.2, R73A.2, C38A.1) -- took HLE_NOISE.2 out of it: as above
+# line 1761: dropped NET_C(C31A.2, IC_K6.2) -- C31 feeds K6's input (MFC6040 pin 3); MAME puts it on the control pin
+# line 1884: dropped NET_C(C101.2, GND) -- on to VOLUME 1 and the LM380 amplifier, which MAME does not have; MAME grounds it
+# line 1885: dropped NET_C(C106.2, GND) -- on to VOLUME 2 and the second LM380, likewise
+# line 1905: NET_C(GND, IC_A6.11, IC_A6.13) -> nc -- tied to GND in MAME's "Unused Gates / Pins" block
+# line 1906: NET_C(GND, IC_N6.11, IC_N6.12) -> nc -- tied to GND in MAME's "Unused Gates / Pins" block
+# line 1904: MAME ties UN4.1, UN4.3 off as unused, but the circuit uses them -- the tie is dropped
+# line 1905: MAME ties UA6.13 off as unused, but the circuit uses them -- the tie is dropped
+# line 1910: MAME ties UJ3.9 off as unused, but the circuit uses them -- the tie is dropped
+# lines 1797-1833: restored from a comment -- the Motor 1 sound, which MAME comments out; compared with Board II sheet 1 and corrected below
+# lines 1837-1872: restored from a comment -- the Motor 2 sound, likewise
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   UB6: the sheet's part is 7404, MAME's 7400 -- Board I sheet 2: two cross-coupled inverter pairs, not NAND latches
+#   UK6: the sheet's part is MFC6040, MAME's MC3340 -- Board I sheet 2 prints MFC6040; its pin numbers differ from the MC3340's, so MAME's pins are mapped onto it
+#   UL6: the sheet's part is MFC6040, MAME's MC3340 -- Board I sheet 2 prints MFC6040; pins mapped as for K6
+#   UA6: the sheet's part is 74H04, MAME's 7404 -- Board I sheet 1 prints H04
+#   UM1: the sheet's part is 74S20, MAME's 7420 -- Board I sheet 1 prints S20
+#   UM5: the sheet's part is 74S20, MAME's 7420 -- Board I sheet 1 prints S20
+#   UM3: the sheet's part is 74H08, MAME's 7408 -- Board I sheet 1 prints H08
+#   R53: the sheet's value is 330K, MAME's 220K -- Board I sheet 2 rev J, and rev G
+#   parts the sheet draws that MAME does not have: Q1 2N3643, C15 0.1uF, C16 0.1uF, C17 0.1uF, CR9 1N914, CR12 1N914, R41 4.7K, R42 100K, R49 1K, R101 1K, R100 100, Q40 2N3643, Q41 2N5190, SW1 25c/50c (coin logic), SW2 25c/50c (play time), R48 560, Q5 2N3643 (selected noise transistor)
+#   Board I sheet 2: coin 1 NC (J3-13) on B6.13, cross-coupled with B6.10: UB6.13 UB6.10 UD6.9 (COIN1_NC)
+#   Board I sheet 2: coin 1 NO (J3-14) on B6.11, cross-coupled with B6.12: UB6.11 UB6.12 UN6.5 (COIN1_NO)
+#   Board I sheet 2: coin 2 NO (J3-12) on B6.5, cross-coupled with B6.2: UB6.5 UB6.2 UN6.6 (COIN2_NO)
+#   Board I sheet 2: coin 2 NC (J3-11) on B6.1, cross-coupled with B6.6: UB6.1 UB6.6 UD6.8 (COIN2_NC)
+#   Board I sheet 2: the 25c/50c switch, which MAME hard-wires in the 25c position. Not designated on the sheet; SW1/SW2 are ours: UD6.3 SW1.1 R48.1; R48.2 SW1.2; UN6.1 SW1.3; R53.1 SW2.1; VR1.1 SW2.2
+#   Board I sheet 2: the antenna circuit MAME replaces with a tie: C17.1 (ANT); C17.2 CR12.K R42.1 C16.2 Q1.B; CR12.A R42.2 CR9.K C15.2; R49.1; R49.2 C15.1 C16.1; Q1.E CR9.A; Q1.C UN4.1 R41.1; UN4.2 UN4.3 UN6.8; UN4.4 R41.2 UE6.10
+#   Board I sheet 2: the coin counter driver, which MAME does not draw: UD6.10 UA6.13; UA6.12 R101.1; R101.2 Q40.B; R100.1; R100.2 Q40.C; Q40.E Q41.B; Q41.C (COIN_COUNTER); Q41.E (TV_GROUND)
+#   Board I sheet 2: Q5's emitter is the noise source; base and collector grounded: R71.2 C40.1 Q5.E
+#   as above: Q5.B Q5.C
+#   Board I sheet 2: C31 into K6 pin 3: C31.2 UK6.3
+#   Board I sheet 1: UD2.5 UF2.12; UE2.5 UF2.5; UE2.9 UF2.9; UD2.9 UC1.1; UM2.13; UM2.1 UM2.2
+#   Board I sheet 1: HMCE, inverted on the board from /HMCE (J1-25): UJ3.8 UF2.13 UF2.4 UF2.10 UC1.2 UF4.1 UF4.4 UF4.10 UC5.4 (HMCE_B1)
+#   Board I sheet 1: /HMCE in from J1-25: UJ3.9
+#   Board I sheet 1: /EXPL1 from J3.12: UJ3.12 UC1.5
+#   Board I sheet 1: /EXPL2 from H3.10: UH3.10 UC5.2
+# line 1093: RVID is not a part -- MAME's 10K to ground standing in for the monitor's input
+# line 1830: R555OUT1 is not a part -- a 1K to ground on the 555's output, which the sheet leaves undrawn
+# line 1869: R555OUT2 is not a part -- a 1K to ground on the 555's output, which the sheet leaves undrawn
+# Stand-ins that are not parts (the nets they drive are ports): SWITCH(P1_LEFT_UP), SWITCH(P1_LEFT_DOWN), SWITCH(P1_RIGHT_UP), SWITCH(P1_RIGHT_DOWN), SWITCH(P1_FIRE), SWITCH(P2_LEFT_UP), SWITCH(P2_LEFT_DOWN), SWITCH(P2_RIGHT_UP), SWITCH(P2_RIGHT_DOWN), SWITCH(P2_FIRE), SWITCH2(COIN1), SWITCH2(COIN2), CLOCK(CLK), CLOCK(NOISE_CLOCK)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 158: CAP(C34A, CAP_U(0.01)) Decoupling
+#   line 1090: RES(RPROBE, 220)
+#
+# Compared with both Board I sheets in full (003110 rev J; rev H and rev G for faint spots),
+# 2026-10-19. MAME agrees with the sheet on the tank motion counters and their presets
+# (B1/B5 3-5 to P and 6 grounded; C2/C4/J1/J5 4 grounded), the clock inverters on A6, F3
+# and the WINDO outputs, the shell counters and the 2^7 latches cleared by /EXPL, shell 2's
+# latch routing, the shell and blast output gating, the coin flip-flops apart from B6, and
+# the play timer, noise, shot and boom values apart from R53. Its errors here, all corrected
+# above: B6 is a 7404, not a 7400; K6 and L6 are MFC6040s, whose pins are not the MC3340's;
+# C31 feeds K6's input, not its control pin; R53 is 330K; shell 1's 2^2 and 2^3 latches are
+# crossed between the F2 and C1 gates; M2's inputs are swapped (electrically the same NAND);
+# and Board I makes its own HMCE, /EXPL1 and /EXPL2 from what the cable brings, where MAME
+# takes Board II's. MAME's antenna tie, 25c hard-wiring, unused-input ties on N4 and A6 (the
+# antenna latch and the coin counter use them) and grounded mixer outputs are undone.
+#
+# Open questions, each as printed and not settled:
+# * The cable. This sheet prints VLD1 on J1-9 and /FIRE1 on J1-24; Board II's prints
+#   FIRE1-bar on J4-9 and VLD1 on J4-24. Every other contact agrees pin for pin, and the
+#   only Board I load (M2, a 3-input NAND of both) cannot tell them apart. Each board is
+#   given its own sheet's contact.
+# * J6's second 7474 half is printed "J4" on rev H and rev J (pins 1-6, the coin latch). J4
+#   is a 9316 on sheet 1; MAME calls this half J6, and so does this file.
+# * BOOM COM reaches Q6 through two series 1N914s, both labelled CR22. MAME has one CR22;
+#   this file follows MAME.
+# * M1's first gate prints input "3" (MAME, and tank 2's M5, use 5); L3 prints an input
+#   "10" that is its own output (MAME uses 8); N1 and N5 print their /CLR numbers swapped
+#   (both go to /HRST, so it is harmless). MAME's pins are kept.
+# * SW1 and SW2 are the 25c/50c switch as drawn in two places; whether they are two poles of
+#   one switch is not on the sheet. The 50c contact of SW2 is drawn unconnected.
+#
+# Ours, not printed: UX1 (the noise amplifier's 741, which has no grid position), VR1-VR3
+# (the PLAY TIME pot and the shot and boom noise pots), SW1, SW2. Not in this file: the
+# +5V, +12V and -12V supplies and the two LM380 amplifiers with their volume pots, which are
+# on sheet 2 and not in MAME; OUT1 and OUT2 are where the mixers hand over to them.
+
+# part UA1 9316
+# part UA2 9316
+# part UA3 74165
+# part UA4 9316
+# part UA5 9316
+# part UA6 74H04
+# part UB1 9316
+# part UB2 9316
+# part UB3 74165
+# part UB4 9316
+# part UB5 9316
+# part UB6 7404
+# part UC1 7400
+# part UC2 9316
+# part UC3 74165
+# part UC4 9316
+# part UC5 7400
+# part UC6 7402
+# part UD1 7474
+# part UD2 7474
+# part UD3 74165
+# part UD4 7474
+# part UD5 7474
+# part UD6 7402
+# part UE1 7474
+# part UE2 7474
+# part UE4 7474
+# part UE5 7474
+# part UE6 74107
+# part UF1 9316
+# part UF2 7408
+# part UF3 7474
+# part UF4 7408
+# part UF5 9316
+# part UH1 9316
+# part UH2 9316
+# part UH3 7404
+# part UH4 9316
+# part UH5 9316
+# part UH6 NE555
+# part UJ1 9316
+# part UJ2 9316
+# part UJ3 7404
+# part UJ4 9316
+# part UJ5 9316
+# part UJ6 7474
+# part UK1 7402
+# part UK2 7486
+# part UK3 7486
+# part UK4 7486
+# part UK5 7402
+# part UK6 MFC6040
+# part UL1 74107
+# part UL2 7420
+# part UL3 7402
+# part UL4 7420
+# part UL5 74107
+# part UL6 MFC6040
+# part UM1 74S20
+# part UM2 7410
+# part UM3 74H08
+# part UM4 7410
+# part UM5 74S20
+# part UN1 74107
+# part UN3 7474
+# part UN4 7404
+# part UN5 74107
+# part UN6 7402
+# part UX1 UA741  (MAME: IC_NOISE_OP)
+
+value R4 3.3K
+value R5 3.3K
+value R6 3.3K
+value R7 3.3K
+value R8 3.3K
+value R9 3.3K
+value R10 3.3K
+value R11 3.3K
+value R41 4.7K  # MAME: R41A
+value R42 100K  # MAME: R42A
+value R48 560  # MAME: R48A
+value R49 1K  # MAME: R49A
+value R53 330K  # MAME: R53A
+value R54 680K  # MAME: R54A
+value R55 10K  # MAME: R55A
+value R56 100K  # MAME: R56A
+value R59 180K  # MAME: R59A
+value R60 1M  # MAME: R60A
+value R63 2.2M  # MAME: R63A
+value R64 180K  # MAME: R64A
+value R69 470K
+value R70 1M  # MAME: R70A
+value R71 680K  # MAME: R71A
+value R72 180K  # MAME: R72A
+value R73 1M  # MAME: R73A
+value R100 100
+value R101 1K
+value R102 33K  # MAME: R102MX
+value R103 33K  # MAME: R103MX
+value R104 33K  # MAME: R104MX
+value R106 33K  # MAME: R106MX
+value R107 33K  # MAME: R107MX
+value R108 33K  # MAME: R108MX
+value VR1 1M  # MAME: PLAYTIME
+value VR2 50K  # MAME: SHOT_NOISE_VOL
+value VR3 50K  # MAME: BOOM_NOISE_VOL
+value C15 0.1uF  # MAME: C15A
+value C16 0.1uF  # MAME: C16A
+value C17 0.1uF  # MAME: C17A
+value C24 0.1uF
+value C25 100uF
+value C27 0.001uF  # MAME: C27A
+value C28 1uF  # MAME: C28A
+value C30 0.001uF  # MAME: C30A
+value C31 1uF  # MAME: C31A
+value C32 0.1uF  # MAME: C32A
+value C35 5uF  # MAME: C35A
+value C36 0.1uF  # MAME: C36A
+value C38 5uF  # MAME: C38A
+value C39 0.001uF  # MAME: C39A
+value C40 0.1uF  # MAME: C40A
+value C41 5uF  # MAME: C41A
+value C43 220pF  # MAME: C43A
+value C101 1uF
+value C106 1uF
+value C110 0.001uF
+value C111 0.001uF
+value CR9 1N914  # MAME: CR9A
+value CR12 1N914  # MAME: CR12A
+value CR19 1N914
+value CR22 1N914
+value Q1 2N3643
+value Q2 2N3644
+value Q3 2N3643
+value Q4 2N3643
+value Q5 2N3643 (selected noise transistor)
+value Q6 2N3644
+value Q7 2N3644
+value Q40 2N3643
+value Q41 2N5190
+value SW1 25c/50c (coin logic)
+value SW2 25c/50c (play time)
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: VR3.1 C110.2 C111.2 C15.2 C24.2 C25.2 C27.2 C28.2 C30.2 C32.2 C36.2 C38.1 C41.2 C43.2 CR12.2 CR9.1 UA1.8 UA2.8 UA3.8 UA4.8 UA5.8 UA6.7 UB1.6 UB1.8 UB2.8 UB3.8 UB4.8 UB5.6 UB5.8 UB6.7 UC1.7 UC2.4 UC2.8 UC3.8 UC4.4 UC4.8 UC5.7 UC6.7 UD1.7 UD2.7 UD3.8 UD4.7 UD5.7 UD6.7 UE1.7 UE2.7 UE4.7 UE5.7 UE6.7 UF1.8 UF2.7 UF3.7 UF4.7 UF5.8 UH1.8 UH2.8 UH3.7 UH4.8 UH5.8 UH6.1 UJ1.4 UJ1.8 UJ2.6 UJ2.8 UJ3.7 UJ4.6 UJ4.8 UJ5.4 UJ5.8 UJ6.7 UK1.7 UK2.7 UK3.7 UK4.7 UK5.7 UK6.1 UL1.7 UL2.7 UL3.7 UL4.7 UL5.7 UM1.7 UM2.7 UM3.7 UM4.7 UM5.7 UN1.7 UN3.12 UN3.2 UN3.7 UN4.7 UN5.7 UN6.7 Q3.E Q4.E Q5.B Q5.C Q6.C Q7.C R42.2 R48.2 R73.2 VR2.1 SW1.2
+net +12V: UK6.4 UL6.4 UX1.7 R70.1 R71.1
+net +5V: UA1.10 UA1.16 UA1.7 UA2.10 UA2.16 UA2.7 UA3.10 UA3.16 UA4.10 UA4.16 UA4.7 UA5.10 UA5.16 UA5.7 UA6.14 UB1.10 UB1.16 UB1.3 UB1.4 UB1.5 UB2.10 UB2.16 UB2.3 UB2.4 UB2.5 UB2.6 UB3.16 UB4.10 UB4.16 UB4.3 UB4.4 UB4.5 UB4.6 UB5.10 UB5.16 UB5.3 UB5.4 UB5.5 UB6.14 UC1.14 UC2.16 UC2.3 UC2.5 UC2.6 UC3.10 UC3.16 UC4.16 UC4.3 UC4.5 UC4.6 UC5.14 UC6.14 UD1.1 UD1.13 UD1.14 UD2.10 UD2.14 UD2.4 UD3.16 UD4.10 UD4.14 UD4.4 UD5.1 UD5.13 UD5.14 UD6.14 UE1.1 UE1.10 UE1.14 UE2.10 UE2.14 UE2.4 UE4.10 UE4.14 UE4.4 UE5.1 UE5.10 UE5.14 UE6.1 UE6.14 UE6.4 UF1.1 UF1.10 UF1.16 UF1.7 UF2.14 UF3.1 UF3.13 UF3.14 UF4.14 UF5.1 UF5.10 UF5.16 UF5.7 UH1.1 UH1.10 UH1.16 UH1.3 UH1.4 UH1.5 UH1.6 UH2.1 UH2.10 UH2.16 UH2.7 UH3.14 UH4.1 UH4.10 UH4.16 UH4.7 UH5.1 UH5.10 UH5.16 UH5.3 UH5.4 UH5.5 UH5.6 UH6.8 UJ1.1 UJ1.16 UJ1.3 UJ1.5 UJ1.6 UJ2.1 UJ2.10 UJ2.16 UJ2.3 UJ2.4 UJ2.5 UJ3.14 UJ4.1 UJ4.10 UJ4.16 UJ4.3 UJ4.4 UJ4.5 UJ5.1 UJ5.16 UJ5.3 UJ5.5 UJ5.6 UJ6.10 UJ6.14 UJ6.4 UK1.14 UK2.14 UK3.14 UK4.14 UK5.14 UL1.1 UL1.11 UL1.14 UL1.4 UL1.8 UL2.14 UL3.14 UL4.14 UL5.1 UL5.11 UL5.14 UL5.4 UL5.8 UM1.14 UM2.14 UM3.14 UM4.14 UM5.14 UN1.1 UN1.11 UN1.14 UN1.4 UN1.8 UN3.1 UN3.13 UN3.14 UN4.14 UN5.1 UN5.11 UN5.14 UN5.4 UN5.8 UN6.14 VR1.2 VR1.3 R10.1 R100.1 R11.1 R4.1 R49.1 R5.1 R55.1 R56.1 R6.1 R64.1 R7.1 R72.1 R8.1 R9.1
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+label START: UD6.1 UE6.8 UH3.3 J2.15  # to Tank Board II (003112)
+wire UC5.2 UD4.1 UD4.13 UD5.10 UD5.4 UE4.1 UE4.13 UE5.13 UE5.4 UH3.10
+wire UC1.5 UD1.10 UD1.4 UD2.1 UD2.13 UE1.13 UE1.4 UE2.1 UE2.13 UJ3.12
+label FIRE1Q: C110.1 UC1.4 UJ3.5 UM2.1 UM2.2 J1.24  # to Tank Board II (003112)
+label VLD1: UM2.13 J1.9  # to Tank Board II (003112)
+label HMCEQ: UJ3.9 J1.25  # to Tank Board II (003112)
+label HMCE_B1: UC1.2 UC5.4 UF2.10 UF2.13 UF2.4 UF4.1 UF4.10 UF4.4 UJ3.8
+wire UC1.1 UD2.9
+wire UE2.9 UF2.9
+wire UE2.5 UF2.5
+wire UD2.5 UF2.12
+wire C31.2 UK6.3
+wire C40.1 Q5.E R71.2
+label TV_GROUND: Q41.E J3.21
+label COIN_COUNTER: Q41.C J3.20
+wire Q40.E Q41.B
+wire Q40.C R100.2
+wire Q40.B R101.2
+wire UA6.12 R101.1
+wire UA6.13 UD6.10 UD6.11
+wire UE6.10 UN4.4 R41.2
+wire UN4.2 UN4.3 UN6.8
+wire UN4.1 Q1.C R41.1
+wire CR9.2 Q1.E
+wire C15.1 C16.1 R49.2
+wire C16.2 C17.2 CR12.1 Q1.B R42.1
+label ANT: C17.1 J3.9
+wire VR1.1 R54.1 SW2.2
+wire R53.1 SW2.1
+wire UN6.1 SW1.3
+wire UD6.3 R48.1 SW1.1
+label COIN2_NC: UB6.1 UB6.6 UD6.8 J3.11  # in MAME: SWITCH2(COIN2)
+label COIN2_NO: UB6.2 UB6.5 UN6.6 J3.12  # in MAME: SWITCH2(COIN2)
+label COIN1_NO: UB6.11 UB6.12 UN6.5 J3.14  # in MAME: SWITCH2(COIN1)
+label COIN1_NC: UB6.10 UB6.13 UD6.9 J3.13  # in MAME: SWITCH2(COIN1)
+
+# ---------------------------------------------------------------------------
+# Coin Handling
+# ---------------------------------------------------------------------------
+label ATTRACTQ: UD6.12 UE6.5 UH6.4 UN6.9 J2.24  # to Tank Board II (003112)
+wire UD6.13 UJ6.1 UJ6.12 UJ6.13
+wire UJ6.2 UJ6.9
+label V128: UE6.9 UJ6.11 UJ6.3 J2.26  # to Tank Board II (003112)
+label COIN: UE6.12 UJ6.5
+wire UE6.3 UN6.3
+wire UN6.2 UN6.4
+label COINQ: UD6.2 UJ6.6
+
+# ---------------------------------------------------------------------------
+# Game Timer / Attract
+# ---------------------------------------------------------------------------
+wire C25.1 UH6.6 UH6.7 R53.2 R54.2 R60.1
+wire Q2.B R60.2
+wire C24.1 UH6.5 R59.1
+wire Q2.E R59.2 R63.1
+wire Q3.C Q4.B R56.2
+wire UH3.5 Q4.C R55.2 R63.2
+wire UD6.5 UH6.3
+wire UD6.4 UE6.11
+label ATTRACT: UD6.6 UE6.6
+wire UE6.13 UN6.10
+wire UH3.4 UH6.2
+
+# ---------------------------------------------------------------------------
+# Tank Resets
+# ---------------------------------------------------------------------------
+label TANK2: UC6.1 J2.13  # to Tank Board II (003112)
+label TANK1: UL3.13 J1.41  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# HMCE
+# ---------------------------------------------------------------------------
+label VLD2: UM4.13 J2.3  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Shell 1 Control
+# ---------------------------------------------------------------------------
+label BLO_UP2: UC5.13 J2.11  # to Tank Board II (003112)
+label SRS1: UK1.10 UK1.11 J1.6  # to Tank Board II (003112)
+label SHELL1: UN4.6 J1.13  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Shell 2 Control
+# ---------------------------------------------------------------------------
+label BLO_UP1: UC1.9 J1.8  # to Tank Board II (003112)
+label SRS2: UC6.10 UC6.11 J2.12  # to Tank Board II (003112)
+label SHELL2: UN4.10 J2.5  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Memory
+# ---------------------------------------------------------------------------
+label P1T2: UA2.13 J1.19  # to Tank Board II (003112)
+label P2T2: UA4.13 J1.48  # to Tank Board II (003112)
+label P1T3: UA2.12 J1.17  # to Tank Board II (003112)
+label P2T3: UA4.12 J1.46  # to Tank Board II (003112)
+label P1T4: UA2.11 J1.15  # to Tank Board II (003112)
+label P2T4: UA4.11 J1.44  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Video Summing
+# ---------------------------------------------------------------------------
+label ROM_D0: UA3.11 UB3.11 UC3.11 UD2.2 UD3.11 UE4.2 R4.2 J1.27  # to Tank Board II (003112)
+label ROM_D1: UA3.12 UB3.12 UC3.12 UD3.12 UD4.2 UE2.2 R6.2 J1.29  # to Tank Board II (003112)
+label ROM_D2: UA3.13 UB3.13 UC3.13 UD3.13 UE2.12 UE4.12 R8.2 J1.31  # to Tank Board II (003112)
+label ROM_D3: UA3.14 UB3.14 UC3.14 UD2.12 UD3.14 UD4.12 R10.2 J1.33  # to Tank Board II (003112)
+label ROM_D4: UA3.3 UB3.3 UC3.3 UD1.2 UD3.3 UD5.2 R11.2 J1.34  # to Tank Board II (003112)
+label ROM_D5: UA3.4 UB3.4 UC3.4 UD1.12 UD3.4 UD5.12 R9.2 J1.32  # to Tank Board II (003112)
+label ROM_D6: UA3.5 UB3.5 UC3.5 UD3.5 UE1.2 UE5.2 R7.2 J1.30  # to Tank Board II (003112)
+label ROM_D7: UA3.6 UB3.6 UC3.6 UD3.6 UE1.12 UE5.12 R5.2 J1.28  # to Tank Board II (003112)
+label GNE: UH3.6 J1.40  # to Tank Board II (003112)
+label FLASH: UC1.10 UC5.12 UJ3.3 J1.7  # to Tank Board II (003112)
+label BLAST1: UN4.8 J1.14  # to Tank Board II (003112)
+label BLAST2: UN4.12 J2.4  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Horizontal & Vertical Load
+# ---------------------------------------------------------------------------
+label LDH1AQ: UA3.1 J1.35  # to Tank Board II (003112)
+label LDH1BQ: UB3.1 J1.36  # to Tank Board II (003112)
+label LDH2BQ: UD3.1 J1.38  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Horizontal & Vertical Motion Latches
+# ---------------------------------------------------------------------------
+label H_COUNTQ: UA6.1 UA6.3 J2.18  # to Tank Board II (003112)
+
+# ---------------------------------------------------------------------------
+# Tank 1 Motion
+# ---------------------------------------------------------------------------
+label HA1: UA1.3 J1.4  # to Tank Board II (003112)
+label HB1: UA1.4 J1.3  # to Tank Board II (003112)
+label HC1: UA1.5 J1.2  # to Tank Board II (003112)
+label HD1: UA1.6 J1.1  # to Tank Board II (003112)
+label VA1: UA2.3 J1.21  # to Tank Board II (003112)
+label VB1: UA2.4 J1.20  # to Tank Board II (003112)
+label VC1: UA2.5 J1.18  # to Tank Board II (003112)
+label VD1: UA2.6 J1.16  # to Tank Board II (003112)
+label HRST1Q: UA1.1 UB1.1 UN1.10 UN1.13 J1.5  # to Tank Board II (003112)
+label VRST1Q: UA2.1 UB2.1 UC2.1 J1.22  # to Tank Board II (003112)
+label CLOCKQ: UA6.5 UA6.9 UH4.2 UJ4.2 J2.17  # to Tank Board II (003112); MAME also calls it CLOCK2
+label CLOCK1: UA1.2 UA3.2 UA6.8 UB1.2 UB3.2 UF3.11 UH2.2 UJ2.2
+label H_COUNT1: UA2.2 UA6.2 UB2.2 UC2.2 UF1.2 UH1.2 UJ1.2
+wire UA1.15 UB1.7 UM1.5
+wire UB1.15 UM1.1 UM2.5 UN1.12
+wire UM1.2 UM2.4 UN1.3 UN1.9
+wire UM1.4 UM2.3 UN1.6
+label THR1Q: UA1.9 UB1.9 UM1.6
+wire UA2.15 UB2.7 UC1.12 UC2.7
+wire UB2.15 UC2.10
+wire UC1.13 UC2.15 UF3.10
+label TVR1Q: UA2.9 UB2.9 UC1.11 UC2.9 UK1.8
+label THW1Q: UF3.12 UL3.3 UM2.6
+label WINDO1: UF3.8 J1.12
+wire UA3.15 UB3.15 UF3.9 UL3.11
+wire UA3.9 UB3.10
+wire UB3.7 UK3.1
+wire UC1.8 UC6.2 UK3.2
+wire UK3.3 UK3.5 UL3.12
+
+# ---------------------------------------------------------------------------
+# Tank 2 Motion Circuit
+# ---------------------------------------------------------------------------
+wire UA5.2 UA6.6 UB5.2 UC3.2 UD3.2 UF3.3
+label HRST2Q: UA5.1 UB5.1 UN5.10 UN5.13 J2.10  # to Tank Board II (003112)
+wire UB4.15 UC4.10
+wire UC3.9 UD3.10
+label THW2Q: UC6.5 UF3.2 UM4.6
+label TVW2: UC4.15 UC5.9 UF3.4
+wire UC3.15 UC6.3 UD3.15 UF3.5
+label HA2: UA5.3 J2.9  # to Tank Board II (003112)
+label HB2: UA5.4 J2.8  # to Tank Board II (003112)
+label HC2: UA5.5 J2.7  # to Tank Board II (003112)
+label HD2: UA5.6 J2.6  # to Tank Board II (003112)
+wire UA5.15 UB5.7 UM5.1
+wire UB5.15 UM4.5 UM5.2 UN5.12
+wire UM4.3 UM5.5 UN5.3 UN5.9
+wire UM4.4 UM5.4 UN5.6
+label THR2Q: UA5.9 UB5.9 UM5.6
+label WINDO2: UF3.6 J1.11
+label LDH2AQ: UC3.1 J1.37  # to Tank Board II (003112)
+wire UC5.11 UK3.10
+wire UD3.9 UK3.9
+label VA2: UA4.3 J1.49  # to Tank Board II (003112)
+label VB2: UA4.4 J1.47  # to Tank Board II (003112)
+label VC2: UA4.5 J1.45  # to Tank Board II (003112)
+label VD2: UA4.6 J1.43  # to Tank Board II (003112)
+label HCOUNT2: UA4.2 UA6.4 UB4.2 UC4.2 UF5.2 UH5.2 UJ5.2
+label VRST2Q: UA4.1 UB4.1 UC4.1 J1.50  # to Tank Board II (003112)
+wire UA4.15 UB4.7 UC4.7 UC5.10
+label TVR2Q: UA4.9 UB4.9 UC4.9 UC5.8 UC6.9
+
+# ---------------------------------------------------------------------------
+# Shell 1 Motion
+# ---------------------------------------------------------------------------
+wire UD1.11 UD1.3 UD2.11 UD2.3 UE1.11 UE1.3 UE2.11 UE2.3 UM2.12
+label EXPL1: UJ3.13 UL2.10 J1.23  # to Tank Board II (003112)
+label FPE1: UC1.6 UK1.9 UL3.2
+wire UJ3.1 UL3.1
+wire UJ3.2 UM3.4 UN3.4
+wire UH2.9 UJ2.9 UM3.6
+wire UM1.8 UM3.5
+wire UF2.11 UH2.3
+wire UF2.6 UH2.4
+wire UF2.8 UH2.5
+wire UC1.3 UH2.6
+wire UH2.15 UJ2.7 UM1.13 UN3.3
+wire UJ2.15 UL1.12 UM1.12 UM2.9
+wire UL1.3 UL1.9 UM1.10 UM2.10
+wire UL1.5 UM1.9 UM2.11
+wire UL1.10 UL1.13 UN3.6
+wire UD1.5 UF1.3
+wire UD1.9 UF1.4
+wire UE1.5 UF1.5
+wire UE1.9 UF1.6
+wire UF1.15 UF2.2 UH1.7 UJ1.7
+wire UH1.15 UJ1.10
+wire UF2.1 UJ1.15 UJ3.11
+wire UF2.3 UK1.12
+wire UF1.9 UH1.9 UJ1.9 UK1.13
+wire UJ3.10 UL3.5
+wire UL3.6 UM2.8
+wire UL2.1 UL2.9 UL3.4
+wire UJ3.6 UL2.2
+label S4V1: UF1.12 UK2.5 UL3.9
+label S8H1: UH2.11 UK2.9 UL3.8
+wire UL2.4 UL3.10
+label S4H1: UH2.12 UK2.10 UM3.9
+label S8V1: UF1.11 UK2.4 UM3.10
+wire UL2.5 UM3.8
+wire UL2.6 UN4.5
+label S2V1: UF1.13 UK2.12
+label S2H1: UH2.13 UK2.13
+wire UK1.2 UK2.2 UK2.6
+wire UK1.3 UK2.1 UK2.8
+label FLASHQ: UJ3.4 UK3.12 UK3.4
+wire UK3.6 UL2.12
+wire UK1.1 UK1.6
+wire UK1.5 UK2.11
+wire UK1.4 UL2.13
+wire UL2.8 UN4.9
+
+# ---------------------------------------------------------------------------
+# Shell 2 Motion
+# ---------------------------------------------------------------------------
+label FIRE2Q: C111.1 UC5.1 UH3.9 UM4.1 UM4.2 J2.1  # to Tank Board II (003112)
+wire UD4.11 UD4.3 UD5.11 UD5.3 UE4.11 UE4.3 UE5.11 UE5.3 UM4.12
+label EXPL2: UH3.11 UL4.9 J1.39  # to Tank Board II (003112)
+wire UE4.5 UF4.2
+wire UD4.5 UF4.5
+wire UE4.9 UF4.9
+wire UC5.5 UD4.9
+wire UF4.3 UH4.3
+wire UF4.6 UH4.4
+wire UF4.8 UH4.5
+wire UC5.6 UH4.6
+wire UH5.15 UJ5.10
+wire UF4.12 UH3.13 UJ5.15
+wire UF4.13 UF5.15 UH5.7 UJ5.7
+wire UC6.12 UF4.11
+label FPE2: UC5.3 UC6.6 UC6.8
+wire UC6.13 UF5.9 UH5.9 UJ5.9
+wire UD5.5 UF5.3
+wire UD5.9 UF5.4
+wire UE5.5 UF5.5
+wire UE5.9 UF5.6
+wire UH4.15 UJ4.7 UM5.9 UN3.11
+wire UJ4.15 UL5.9 UM4.11 UM5.10
+wire UL5.12 UL5.5 UM4.10 UM5.12
+wire UL5.3 UM4.9 UM5.13
+wire UK5.11 UK5.8 UM4.8
+wire UH3.12 UK5.12
+wire UC6.4 UH3.1
+wire UH3.2 UM3.2 UN3.10
+wire UM3.1 UM5.8
+wire UH4.9 UJ4.9 UM3.3
+wire UL5.10 UL5.13 UN3.8
+label S4H2: UH4.12 UK4.10 UM3.12
+label S8V2: UF5.11 UK4.2 UM3.13
+label S4V2: UF5.12 UK4.1 UK5.3
+label S8H2: UH4.11 UK4.9 UK5.2
+wire UL4.5 UM3.11
+wire UK5.1 UL4.2
+wire UH3.8 UL4.4
+wire UK5.13 UL4.1 UL4.13
+wire UL4.6 UN4.11
+label S2H2: UH4.13 UK4.12
+label S2V2: UF5.13 UK4.13
+wire UK4.3 UK4.4 UK5.6
+wire UK4.5 UK4.8 UK5.5
+wire UK3.13 UK4.6
+wire UK5.4 UK5.9
+wire UK3.11 UL4.12
+wire UK5.10 UL4.10
+wire UL4.8 UN4.13
+
+# ---------------------------------------------------------------------------
+# Noise Generation
+# ---------------------------------------------------------------------------
+wire C40.2 C43.1 UX1.4 R70.2 R73.1
+wire C38.2 C39.1 UX1.2 R69.1
+wire C39.2 UX1.3 R69.2
+
+# ---------------------------------------------------------------------------
+# Shot Sound
+# ---------------------------------------------------------------------------
+label NOISE: VR3.3 UX1.6 VR2.3
+wire C31.1 C32.1 VR2.2
+wire C27.1 UK6.6
+label SHOT_COM: CR19.1 J2.29  # to Tank Board II (003112)
+wire C28.1 CR19.2 Q7.B R64.2
+wire UK6.2 Q7.E
+
+# ---------------------------------------------------------------------------
+# Boom Sound
+# ---------------------------------------------------------------------------
+wire VR3.2 C35.1 C36.1
+wire C35.2 UL6.3
+label BOOM_COM: CR22.1 J2.28  # to Tank Board II (003112)
+wire C41.1 CR22.2 Q6.B R72.2
+wire UL6.2 Q6.E
+wire C30.1 UL6.6
+
+# ---------------------------------------------------------------------------
+# Mixer
+# ---------------------------------------------------------------------------
+label MOTOR1: R102.1 J2.31  # to Tank Board II (003112)
+label MOTOR2: R106.1 J2.30  # to Tank Board II (003112)
+label BOOM: UL6.5 R103.1 R107.1
+label SHOT: UK6.5 R104.1 R108.1
+wire C101.1 R102.2 R103.2 R104.2
+wire C106.1 R106.2 R107.2 R108.2
+port OUT1: C101.2  # on to VOLUME 1 and the LM380 amplifier, which MAME does not have; MAME grounds it
+port OUT2: C106.2  # on to VOLUME 2 and the second LM380, likewise
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UA6.11  # line 1905: tied to GND in MAME's "Unused Gates / Pins" block
+nc UN6.11 UN6.12  # line 1906: tied to GND in MAME's "Unused Gates / Pins" block
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UA1.11 UA1.12 UA1.13 UA1.14  # Q3 Q2 Q1 Q0
+nc UA2.14  # Q0
+nc UA3.7  # ~{Q7}
+nc UA4.14  # Q0
+nc UA5.11 UA5.12 UA5.13 UA5.14  # Q3 Q2 Q1 Q0
+nc UA6.10  # output
+nc UB1.11 UB1.12 UB1.13 UB1.14  # Q3 Q2 Q1 Q0
+nc UB2.11 UB2.12 UB2.13 UB2.14  # Q3 Q2 Q1 Q0
+nc UB3.9  # Q7
+nc UB4.11 UB4.12 UB4.13 UB4.14  # Q3 Q2 Q1 Q0
+nc UB5.11 UB5.12 UB5.13 UB5.14  # Q3 Q2 Q1 Q0
+nc UB6.3 UB6.4 UB6.8 UB6.9  # input output output input
+nc UC2.11 UC2.12 UC2.13 UC2.14  # Q3 Q2 Q1 Q0
+nc UC3.7  # ~{Q7}
+nc UC4.11 UC4.12 UC4.13 UC4.14  # Q3 Q2 Q1 Q0
+nc UD1.6 UD1.8  # ~{Q} ~{Q}
+nc UD2.6 UD2.8  # ~{Q} ~{Q}
+nc UD3.7  # ~{Q7}
+nc UD4.6 UD4.8  # ~{Q} ~{Q}
+nc UD5.6 UD5.8  # ~{Q} ~{Q}
+nc UE1.6 UE1.8  # ~{Q} ~{Q}
+nc UE2.6 UE2.8  # ~{Q} ~{Q}
+nc UE4.6 UE4.8  # ~{Q} ~{Q}
+nc UE5.6 UE5.8  # ~{Q} ~{Q}
+nc UE6.2  # ~{Q}
+nc UF1.14  # Q0
+nc UF5.14  # Q0
+nc UH1.11 UH1.12 UH1.13 UH1.14  # Q3 Q2 Q1 Q0
+nc UH2.14  # Q0
+nc UH4.14  # Q0
+nc UH5.11 UH5.12 UH5.13 UH5.14  # Q3 Q2 Q1 Q0
+nc UJ1.11 UJ1.12 UJ1.13 UJ1.14  # Q3 Q2 Q1 Q0
+nc UJ2.11 UJ2.12 UJ2.13 UJ2.14  # Q3 Q2 Q1 Q0
+nc UJ4.11 UJ4.12 UJ4.13 UJ4.14  # Q3 Q2 Q1 Q0
+nc UJ5.11 UJ5.12 UJ5.13 UJ5.14  # Q3 Q2 Q1 Q0
+nc UJ6.8  # ~{Q}
+nc UK2.3  # output
+nc UK3.8  # output
+nc UK4.11  # output
+nc UL1.2 UL1.6  # ~{Q} ~{Q}
+nc UL5.2 UL5.6  # ~{Q} ~{Q}
+nc UN1.2 UN1.5  # ~{Q} Q
+nc UN3.5 UN3.9  # Q Q
+nc UN5.2 UN5.5  # ~{Q} Q
+nc UN6.13  # output
+nc UX1.1 UX1.5 UX1.8  # NULL NULL NC

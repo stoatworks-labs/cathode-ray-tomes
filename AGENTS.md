@@ -575,6 +575,118 @@ same pipeline ran end to end. What it added:
   EXPLO EN / SAEN2,3 net changed name from run to run. The first name the read declares now
   wins; Battlezone's read lists SAEN2,3 first because that is what its drawn schematic says.
 
+## Netlists converted from MAME
+
+MAME's `src/mame/*/nl_*.cpp` files are circuit descriptions for its netlist simulator,
+written by people reading the same schematics this repo reads. The DIP-level ones name real
+designators and pin numbers (`NET_C(VCC, IC_A7.14)`, `CAP(C2, CAP_U(0.1))`), so they are a
+machine-readable second reading of a sheet. `tools/mame_netlist.py` turns one into a
+`boards/<slug>.nets` that `build_board_nets.py` checks like any hand read; the judgements
+about each file live in `tools/mame_targets.py`, so the converter holds only rules.
+
+    tools/mame_netlist.py --list               targets, with each file's licence
+    tools/mame_netlist.py tank barrier-sound   -> boards/<slug>.nets and boards/<slug>.json
+    tools/build_board_nets.py <slug>           as for a hand read
+
+**Converted (2026-10-19, MAME 0.289, commit f34f02505e32), all passing with 0 problems:**
+Tank, split into `tank-board-1` and `tank-board-2` (Ryan Holtz, BSD-3-Clause), and fourteen
+sound boards by Aaron Giles (CC0-1.0): Barrier, Armor Attack, Boxing Bugs, Rip Off, Solar
+Quest, Speed Freak, Star Castle, Starhawk, Sundance, Tailgunner, Astro Blaster, Eliminator,
+Frogs and Space Fury. Only CC0 and BSD-3 files are converted -- the converter reads the
+licence off line 1 and refuses anything else -- and MAME's DICE-derived GPL files
+(Breakout, Rebound, Pong Doubles) are left to the DICE conversion. Every `.nets` header
+names the file, the licence line, the tag and the commit. The source is fetched file by
+file into `cache/mame/<tag>/`, never the whole repository.
+
+**A simulator's netlist is not a board's, and most of the converter is undoing that.** The
+rules every target gets:
+
+- `#if` switches are re-evaluated with every `HLE_*`, `*FRONTIER*`, `*HACK*`, `UNDERCLOCK_*`,
+  `ADD_CLIPPING_DIODES` and the like off, so where MAME keeps the real circuit beside a
+  stand-in the real one is taken. A switch the converter does not recognise keeps its
+  default and is reported.
+- Virtual sources -- `TTL_INPUT` (the CPU's latch), `CLOCK`, `SWITCH`, noise generators,
+  `AFUNC` -- are not parts. The nets they drive become `port`s, a statement added to the DSL
+  for this: a net that leaves what the file describes, exempt from the one-pin and
+  nothing-drives-it checks. A hand read has a connector instead and should not need one.
+- A value multiplied by a named constant (`RES_K(100) * FRND1`) is written unscaled.
+- A NET_C in a block MAME calls "Unused" or "Unconnected" becomes `nc` -- unless the circuit
+  uses the pin, in which case the tie is dropped and logged. On Tank that is thirteen
+  pins: the "unused" A7 pins are the crystal oscillator, N4's are the antenna latch.
+- **Parked parts.** When a stand-in replaces a circuit without a switch, MAME parks the
+  circuit's parts by tying *both* ends to a rail (`NET_C(R142.1, R142.2, C68.1, C68.2,
+  U32.5, U32.9, GND)` on Eliminator). The checker cannot see this -- a resistor shorted to
+  ground is electrically legal -- so the converter detects it and lists the parts as on the
+  board but not in the file. Astro Blaster, Eliminator and Space Fury all do it.
+- The real-circuit branches MAME never runs are bit-rotted: Armor Attack's and Tailgunner's
+  use a Q1 declared only in a comment marked "not used" (by the stand-in), so commented
+  declarations the real branch needs are brought back. Warrior's names a part `A3` that does
+  not exist, and is not converted.
+
+Per-target judgements: `undo` (a specific line, guarded by a fragment of its text so a wrong
+number fails loudly), `restore` (commented-out circuitry), `loads` and `not_parts` (dummy
+loads on open 555 outputs, a sound chip's outputs as 1K resistors), `fix_parts`,
+`fix_values`, `repin`, `add_parts` and `add` (corrections read off the sheet), `contacts`
+(the connector contact a named net lands on), and `split` for a netlist that spans boards.
+CA3080 outputs on one node are declared `parallel`: they are currents, summed by design.
+
+**Tank is two boards on one grid of designators**, so Board I's D11 is not Board II's. MAME's
+single netlist is split by what each sheet draws, and every net that crosses lands on the
+cable contact (Board I J1/J2 to Board II J4/J5) or stays a port where the sheet prints no
+number. MAME's passive suffixes (R53A, R48B, C33C, R4V, R102MX, R74M1) are its own way of
+telling the boards apart and are stripped; they are not a reliable board marker (R8A-R11A
+are Board II's). The four sheets were read in full against the conversion -- the reports
+are worth keeping in mind for any further work on Tank:
+
+- MAME is right almost everywhere: motion counters and presets, the ROM's address and data
+  wiring, the multiplexers, minefield, mine control, video summing, the one-shots, the stick
+  inputs, the 556, and the 7492 at A12 -- whose pin numbers are the sheet's even though
+  MAME's own 7492 *model* swaps QB and QD against TI (the MiSTer Tank core's point).
+- Its errors, all corrected in the target: the score counters (D11's QA/QD into E11 the wrong
+  way round, SCR1E on the wrong pin -- MiSTer's "score counter wiring"); HD1/HD2 taken from Q
+  instead of Q-bar (MiSTer's "output pin of the HD1/HD2 flip-flops"); B6 a 7404, not a 7400;
+  K6, L6, N15, F15 MFC6040s, whose pins are not the MC3340's (`repin`); shell 1's 2^2/2^3
+  latches crossed; R53 330K; C50/C51 .22uF; the ROM's pin 9 and pull-downs on -12V.
+- MAME feeds one board's signal straight into the other where the real board re-derives it
+  from the cable: Board I makes its own HMCE, /EXPL1 and /EXPL2; Board II its own /START and
+  ATTRACT. Splitting by board is what exposes this.
+- Put back from the sheets in place of MAME's stand-ins: the crystal oscillator, the antenna
+  latch, the noise transistor, the 25c/50c switch, the coin counter driver, and the motor
+  sounds MAME comments out.
+- The ROM is printed "24-PIN EA ROM" -- an Electronic Arrays MOS part, -12V on pin 9. MAME's
+  MK28000 is a substitute (a handwritten note on one print agrees) whose pin 9 is GND.
+
+**Compared with the sheet beyond Tank:** Barrier (the whole board -- every net and value
+MAME has agrees, with one open question: the sheet draws U8's output onto the summing line,
+which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2).
+The other twelve sound boards are MAME's reading, internally consistent and unchecked, and
+their files say so.
+
+**What does not convert, and why** (survey in the shared notes, `mame-netlist-survey.md`):
+
+- **Gate-level netlists.** `TTL_7400_NAND(ic_e4a, ...)` names a gate, not a package or a
+  pin, so it cannot become a pin-level net without reading the gate-to-package assignment
+  off the sheet. That rules out Pong, Gran Trak 10 and Stunt Cycle -- of MAME's seven
+  whole-board netlists only Tank is pin-level -- and a dozen others. DICE's game files
+  name chips and pins, and are the better source for those boards.
+- Space Wars: drawn from a redrawn schematic with part numbers borrowed from Barrier, so its
+  designators name nothing on a Space Wars board.
+- Warrior (the bit-rotted branch above); Sega's Universal Sound Board and speech board
+  (mostly MAME devices, the netlist is a fragment).
+- Not yet attempted, and mostly small resolver or pinout gaps: 280-ZZZAP, Gun Fight and
+  Speed Race (Colin Howell, CC0, carefully documented), Destroyer, Flyball, Tank Battalion,
+  Rally-X, Kid Niki and others.
+
+Traps:
+
+- **`CAP` has no polarity in MAME**, so an electrolytic's pins are MAME's 1/2, not + and -.
+- **Pin-name maps for MAME's non-DIP devices** (`OPAMP`, `NE555`) are in the converter; a
+  new one fails loudly rather than guessing.
+- **A custom pinout can be `same_as` another** (NE566 = LM566, S2688 = MM5837, 74S287 =
+  82S129); `build_board_nets.py` follows it.
+- **Undo line numbers are of the file at the tag.** Moving `TAG` means re-checking every
+  guard, which the guards make impossible to skip.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV
@@ -803,6 +915,18 @@ convention and legitimately uses G.
   logic pin for pin and the sound section part for part, not the whole sheet.
 - The full-corpus ingest was still running when this was written; `data/ingest-state.json`
   is the source of truth for how far it got.
+- **The MAME conversions are MAME's reading, not ours,** except where a sheet was read.
+  Verified: all sixteen pass `build_board_nets.py` with no problems; Tank's four sheets were
+  read in full and every disagreement found is corrected and logged; Barrier was compared
+  net for net and Star Castle's sheet 2 net for net. Not verified: the other twelve sound
+  boards against their sheets; Tank's cable contacts where the two boards' sheets disagree
+  (VLD1 and /FIRE1); the MFC6040 pinout against a Motorola data sheet (it is read off four
+  places on Tank's two boards, which agree); the 8277's pinout (MAME's, marked "FIXME" there);
+  and whether Tank's two 25c/50c switches are one part. The sheet readings themselves were
+  done by four parallel readers and spot-checked by eye at the points that changed the
+  netlist (B6, the antenna, the oscillator, the score counters, HD1/HD2, the ROM's -12V,
+  C51), not at every point.
+- None of the MAME conversions is redrawn in KiCad or published; they are netlists only.
 
 ## Submissions — the one write path
 

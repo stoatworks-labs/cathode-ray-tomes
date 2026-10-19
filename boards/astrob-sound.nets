@@ -1,0 +1,759 @@
+# Astro Blaster sound board -- netlist converted from MAME
+#
+# Sega/Gremlin G-80 games carry a sound board of their own, driven from the CPU board's
+# output ports: the port bits arrive here as ports (MAME's TTL_INPUT names, HI_D0 ...
+# LO_D7 or SOUND_0 ...), and the mixed sound goes out to the amplifier.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/sega/nl_astrob.cpp,
+# NETLIST_START(astrob). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Aaron Giles (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/sega/nl_astrob.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 31: #define HLE_LASER_1_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 32: #define HLE_LASER_2_VCO 1 -> 0 (high-level stand-in for a real circuit)
+# line 35: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 36: #define UNDERCLOCK_NOISE_GEN 1 -> 0 (a part run slower than the board runs it)
+# line 44: #define ADD_CLIPPING_DIODES 1 -> 0 (diodes standing in for the chip's own input clamps)
+# line 173: R1 written as 100K, without the FRND1 MAME multiplies it by
+# line 174: R2 written as 1.5K, without the FRND2 MAME multiplies it by
+# line 175: R3 written as 330K, without the FRND3 MAME multiplies it by
+# line 176: R4 written as 10K, without the FRND4 MAME multiplies it by
+# line 181: R5 written as 68K, without the FRND5 MAME multiplies it by
+# line 213: R36 written as 100K, without the FRND6 MAME multiplies it by
+# line 214: R37 written as 1.5K, without the FRND7 MAME multiplies it by
+# line 215: R38 written as 330K, without the FRND8 MAME multiplies it by
+# line 216: R39 written as 10K, without the FRND9 MAME multiplies it by
+# line 217: R40 written as 68K, without the FRND10 MAME multiplies it by
+# line 239: R62 written as 100K, without the FRND11 MAME multiplies it by
+# line 240: R63 written as 1.5K, without the FRND12 MAME multiplies it by
+# line 241: R64 written as 330K, without the FRND13 MAME multiplies it by
+# line 242: R65 written as 10K, without the FRND14 MAME multiplies it by
+# line 243: R66 written as 68K, without the FRND15 MAME multiplies it by
+# line 268: R91 written as 100K, without the FRND16 MAME multiplies it by
+# line 269: R92 written as 1.5K, without the FRND17 MAME multiplies it by
+# line 270: R93 written as 330K, without the FRND18 MAME multiplies it by
+# line 271: R94 written as 10K, without the FRND19 MAME multiplies it by
+# line 272: R95 written as 68K, without the FRND20 MAME multiplies it by
+# line 867: NET_C(R18.1, R18.2, C3.1, C3.2, U9.1, U9.2, U9.5, U9.6, GND) -> nc -- parked on a rail with C3, R18 -- MAME replaces this circuit with a stand-in
+# line 889: NET_C(R46.1, R46.2, C20.1, C20.2, U9.8, U9.9, GND) -> nc -- parked on a rail with C20, R46 -- MAME replaces this circuit with a stand-in
+# line 1102: NET_C(R22.1, R22.2, C5.1, C5.2, U11.8, U11.9, U11.12, U11.13, GND) -> nc -- parked on a rail with C5, R22 -- MAME replaces this circuit with a stand-in
+# line 1158: NET_C(R80.1, R80.2, C35.1, C35.2, U10.8, U10.9, U10.12, U10.13, GND) -> nc -- parked on a rail with C35, R80 -- MAME replaces this circuit with a stand-in
+# line 1197: NET_C(GND, U7.5, U7.6, U7.12, U7.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 1198: NET_C(GND, U26.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 1199: NET_C(GND, U29.1, U29.3, U29.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 1200: NET_C(GND, U30.1, U30.11) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# Parked by MAME, both ends on a rail, because a stand-in replaces their circuit; on
+# the board, not in this file: C3 0.1uF, C5 0.1uF, C20 0.1uF, C35 0.1uF, R18 2.7M, R22 470K, R46 470K, R80 1M
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_LO_D0), TTL_INPUT(I_LO_D1), TTL_INPUT(I_LO_D2), TTL_INPUT(I_LO_D3), TTL_INPUT(I_LO_D4), TTL_INPUT(I_LO_D5), TTL_INPUT(I_LO_D6), TTL_INPUT(I_LO_D7), TTL_INPUT(I_HI_D0), TTL_INPUT(I_HI_D1), TTL_INPUT(I_HI_D2), TTL_INPUT(I_HI_D3), TTL_INPUT(I_HI_D4), TTL_INPUT(I_HI_D5), TTL_INPUT(I_HI_D6), TTL_INPUT(I_HI_D7), CLOCK(OSC1), CLOCK(OSC2), AFUNC(MUTEFUNC), CLOCK(OSC3), CLOCK(OSC4)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 196: RES(R19, RES_K(1))
+#   line 292: RES(R115, RES_K(100))   -- part of final amp (not emulated)
+#   line 293: RES(R116, RES_K(470))   -- part of final amp (not emulated)
+#   line 300: RES(R123, RES_K(1))     -- part of final amp (not emulated)
+#   line 301: RES(R124, RES_K(100))   -- part of final amp (not emulated)
+#   line 312: RES(R135, RES_K(22))    -- part of final amp (not emulated)
+#   line 318: RES(R141, RES_K(22))
+#   line 319: RES(R142, RES_M(1))     -- part of final amp (not emulated)
+#   line 320: RES(R143, RES_K(22))    -- part of final amp (not emulated)
+#   line 321: RES(R144, RES_K(22))    -- part of final amp (not emulated)
+#   line 374: CAP(C10, CAP_U(0.05))
+#   line 375: CAP(C11, CAP_U(0.05))
+#   line 377: CAP(C13, CAP_U(0.05))
+#   line 378: CAP(C14, CAP_U(0.05))
+#   line 393: CAP(C29, CAP_U(0.05))
+#   line 394: CAP(C30, CAP_U(0.05))
+#   line 406: CAP(C42, CAP_U(0.001))
+#   line 407: CAP(C43, CAP_U(10))
+#   line 408: CAP(C44, CAP_U(0.001))
+#   line 409: CAP(C45, CAP_U(0.001))
+#   line 410: CAP(C46, CAP_U(10))
+#   line 412: CAP(C48, CAP_U(22))     -- part of final amp (not emulated)
+#   line 418: CAP(C54, CAP_U(0.05))
+#   line 422: CAP(C58, CAP_U(4.7))    -- part of final amp (not emulated)
+#   line 430: CAP(C66, CAP_U(0.05))
+#   line 437: CAP(C73, CAP_U(0.05))
+#   line 443: CAP(C79, CAP_U(0.05))
+#   line 460: D_1N914(D13)            -- part of final amp (not emulated)
+#   line 483: Q_2N4093(Q4)  // avoid singular matrix being created
+#   line 612: TTL_74LS374_DIP(U32)    // Octal D-Type Transparent Latches And Edge-Triggered Flip-Fl
+#   line 616: TTL_74LS374_DIP(U33)    // Octal D-Type Transparent Latches And Edge-Triggered Flip-Fl
+#   line 620: TTL_74LS00_DIP(U34)     // Quad 4-Input NAND Gate
+#   line 624: TTL_74LS30_DIP(U35)     // 8-Input NAND Gate
+#   line 628: TTL_74LS04_DIP(U36)     // Hex Inverting Gates
+#
+# Undone beyond the switches: twenty resistors in the sonar circuit that MAME multiplies by
+# 1.001-1.049 (its comment: the circuit 'relies on subtle part differences') are written
+# at their nominal value; and ENABLE_SONAR_ALT, which adds four 1M
+# resistors to a 0.1V source to start the oscillators, is off. The four slow oscillators
+# MAME runs as ideal clocks (OSC1-OSC4) are ports, and the timing parts it parks on a rail
+# in their place are listed above. The mute is an AFUNC in MAME, so the output is a port
+# fed from it.
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part U1 TL084
+# part U2 TL084
+# part U3 CD4017
+# part U4 NE555
+# part U5 NE555
+# part U6 NE555
+# part U7 TL084
+# part U8 MM5837
+# part U9 CD4011
+# part U10 CD4011
+# part U11 CD4011
+# part U12 CD4024
+# part U13 NE555
+# part U14 CD4024
+# part U15 CD4017
+# part U16 TL084
+# part U17 NE555
+# part U18 NE555
+# part U19 CD4024
+# part U20 NE555
+# part U21 CD4011
+# part U22 TL084
+# part U23 NE555
+# part U24 NE555
+# part U25 CD4011
+# part U26 7407
+# part U27 CD4011
+# part U28 CD4024
+# part U29 7407
+# part U30 7406
+# part U31 7406
+# part U37 NE555
+# part U38 NE555
+
+value R1 100K
+value R2 1.5K
+value R3 330K
+value R4 10K
+value R5 68K
+value R6 68K
+value R7 22K
+value R8 18K
+value R9 33K
+value R10 100K
+value R11 150K
+value R12 39K
+value R13 330K
+value R14 47K
+value R15 220K
+value R16 10K
+value R17 10K
+value R20 1M
+value R21 100K
+value R23 100K
+value R24 2.2M
+value R25 10K
+value R26 820K
+value R27 47K
+value R28 22K
+value R29 10K
+value R30 82K
+value R31 10K
+value R32 22K
+value R33 39K
+value R34 4.7K
+value R35 4.7K
+value R36 100K
+value R37 1.5K
+value R38 330K
+value R39 10K
+value R40 68K
+value R41 10K
+value R42 100K
+value R43 470K
+value R44 1M
+value R45 100K
+value R47 10K
+value R48 82K
+value R49 39K
+value R50 22K
+value R51 10K
+value R52 68K
+value R53 10K
+value R54 22K
+value R55 2.2M
+value R56 33K
+value R57 33K
+value R58 820K
+value R59 100K
+value R60 10K
+value R61 100K
+value R62 100K
+value R63 1.5K
+value R64 330K
+value R65 10K
+value R66 68K
+value R67 10K
+value R68 82K
+value R69 470K
+value R70 100K
+value R71 10K
+value R72 10K
+value R73 100K
+value R74 4.7K
+value R75 100K
+value R76 22K
+value R77 330K
+value R78 1K
+value R79 150K
+value R81 10K
+value R82 100K
+value R83 1K
+value R84 5.6K
+value R85 150K
+value R86 10K
+value R87 10K
+value R88 100K
+value R89 10K
+value R90 100K
+value R91 100K
+value R92 1.5K
+value R93 330K
+value R94 10K
+value R95 68K
+value R96 10K
+value R97 4.7K
+value R98 1M
+value R99 1M
+value R100 1M
+value R101 1M
+value R102 470K
+value R103 1M
+value R104 10K
+value R105 10K
+value R106 2.7M
+value R107 100K
+value R108 100K
+value R109 10K
+value R110 10K
+value R111 10K
+value R112 10K
+value R113 10K
+value R114 100
+value R117 1K
+value R118 470K
+value R119 470K
+value R120 220K
+value R121 10K
+value R122 4.7K
+value R125 82K
+value R126 39K
+value R127 10K
+value R128 22K
+value R129 10K
+value R130 22K
+value R131 39K
+value R132 82K
+value R133 100K
+value R134 2.7M
+value R136 1K
+value R137 4.7K
+value R138 2.2M
+value R139 4.7K
+value R140 4.7K
+value R145 4.7K
+value R146 100K
+value R147 2.2M
+value R148 100K
+value R149 100K
+value R150 33K
+value R151 1M
+value R152 22K
+value R153 47K
+value R154 24K
+value R155 56K
+value R156 39K
+value R157 27K
+value R158 33K
+value R159 62K
+value R160 82K
+value R161 120K
+value R162 4.7K
+value R163 10K
+value R164 10K
+value R165 1M
+value R166 1M
+value R167 1K
+value R168 1M
+value R169 100K
+value R170 2.2M
+value R171 100K
+value R172 33K
+value R173 47K
+value R174 47K
+value R175 47K
+value R176 47K
+value R177 47K
+value R178 22K
+value R179 47K
+value R180 47K
+value R181 47K
+value R182 10K
+value R183 10K
+value R184 4.7K
+value R185 1M
+value R186 1K
+value C1 0.01uF
+value C2 0.01uF
+value C4 0.05uF
+value C6 10uF
+value C7 0.1uF
+value C8 0.1uF
+value C9 0.1uF
+value C12 10uF
+value C15 10uF
+value C16 0.01uF
+value C17 0.01uF
+value C18 0.022uF
+value C19 0.05uF
+value C21 0.33uF
+value C22 0.33uF
+value C23 0.01uF
+value C24 0.01uF
+value C25 0.01uF
+value C26 0.022uF
+value C27 10uF
+value C28 0.05uF
+value C31 0.0047uF
+value C32 0.05uF
+value C33 10uF
+value C34 10uF
+value C36 0.0022uF
+value C37 0.1uF
+value C38 0.1uF
+value C39 0.1uF
+value C40 0.01uF
+value C41 0.01uF
+value C47 4.7uF
+value C49 0.05uF
+value C50 0.05uF
+value C51 0.05uF
+value C52 0.05uF
+value C53 0.1uF
+value C55 0.05uF
+value C56 10uF
+value C57 0.1uF
+value C59 0.33uF
+value C60 4.7uF
+value C61 4.7uF
+value C62 10uF
+value C63 0.1uF
+value C64 0.1uF
+value C65 0.01uF
+value C67 0.05uF
+value C68 0.0047uF
+value C69 4.7uF
+value C70 0.1uF
+value C71 0.022uF
+value C72 0.05uF
+value C74 0.05uF
+value C75 0.05uF
+value C76 0.022uF
+value C77 0.0047uF
+value C78 0.1uF
+value C80 4.7uF
+value C81 0.05uF
+value C82 0.1uF
+value D1 1N5231
+value D2 1N914
+value D3 1N5231
+value D4 1N5231
+value D5 1N5231
+value D6 1N5231
+value D7 1N914
+value D8 1N914
+value D9 1N914
+value D10 1N5231
+value D11 1N914
+value D12 1N914
+value D14 1N914
+value D15 1N914
+value D16 1N914
+value D17 1N914
+value D18 1N914
+value D19 1N914
+value D20 1N914
+value D21 1N914
+value D22 1N914
+value D23 1N914
+value D24 1N914
+value D25 1N914
+value D26 1N914
+value D27 1N914
+value D28 1N914
+value D29 1N914
+value D30 1N914
+value D31 1N914
+value Q1 2N4403
+value Q2 2N4403
+value Q3 2N4403
+value Q5 2N4093
+value Q6 2N4093
+value Q7 2N4403
+value Q8 2N4403
+value Q9 2N4403
+value Q10 2N4403
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C15.2 C18.1 C23.1 C26.1 C27.2 C28.1 C31.1 C32.1 C33.2 C36.1 C37.1 C38.1 C39.1 C53.1 C56.2 C57.1 C59.1 C6.2 C62.2 C65.1 C68.1 C69.2 C7.1 C71.1 C77.1 C80.2 D25.2 D26.2 D27.2 Q10.C Q2.B Q5.S Q6.S Q7.C Q9.C R110.1 R114.2 R151.1 R163.1 R165.1 R182.1 R2.1 R27.1 R37.1 R56.1 R63.1 R92.1 U1.10 U1.12 U1.3 U1.5 U10.7 U11.7 U12.7 U13.1 U14.7 U15.13 U15.8 U17.1 U18.1 U19.7 U2.10 U2.12 U2.3 U2.5 U20.1 U21.7 U22.10 U22.12 U22.3 U22.5 U23.1 U24.1 U25.7 U26.7 U27.7 U28.7 U29.7 U3.13 U3.8 U30.7 U31.7 U37.1 U38.1 U4.1 U5.1 U6.1 U8.1 U9.7
+net +12V: C15.1 C27.1 C33.1 C34.1 C47.1 C56.1 C6.1 C62.1 R106.2 R108.1 R109.1 R134.2 R138.2 R139.2 R145.2 R146.2 R147.2 R148.2 R149.2 R162.2 R166.2 R169.2 R17.2 R170.2 R171.2 R185.2 R20.2 R21.2 R23.2 R41.2 R44.2 R45.2 R51.2 R59.2 R60.2 R67.2 R70.2 R73.2 R74.2 R77.2 R81.2 R83.2 R84.2 R85.2 R88.2 R89.2 R96.2 R97.2 U1.4 U10.14 U11.14 U12.14 U13.8 U14.14 U15.16 U16.4 U17.8 U18.8 U19.14 U2.4 U20.8 U21.14 U22.4 U23.8 U24.8 U25.14 U27.14 U28.14 U3.16 U37.4 U37.8 U38.8 U4.8 U5.8 U6.4 U6.8 U7.4 U8.4 U9.14
+net +5V: U26.14 U29.14 U30.14 U31.14
+net -12V: R111.1 R112.1 U1.11 U16.11 U2.11 U22.11 U7.11 U8.2
+
+# ---------------------------------------------------------------------------
+# 12V used in this circuit.
+# ---------------------------------------------------------------------------
+port LO_D0: U31.1  # in MAME: TTL_INPUT(I_LO_D0)
+port LO_D1: U31.3  # in MAME: TTL_INPUT(I_LO_D1)
+port LO_D2: U31.11  # in MAME: TTL_INPUT(I_LO_D2)
+port LO_D3: U31.9  # in MAME: TTL_INPUT(I_LO_D3)
+port LO_D4: U30.13  # in MAME: TTL_INPUT(I_LO_D4)
+port LO_D6: U29.11 U30.3  # in MAME: TTL_INPUT(I_LO_D6)
+port W: U30.5 U30.9 U31.5  # in MAME: TTL_INPUT(I_LO_D7)
+port HI_D0: U26.5  # in MAME: TTL_INPUT(I_HI_D0)
+port HI_D1: U26.3  # in MAME: TTL_INPUT(I_HI_D1)
+port HI_D2: U26.11  # in MAME: TTL_INPUT(I_HI_D2)
+port HI_D3: U26.9  # in MAME: TTL_INPUT(I_HI_D3)
+port HI_D4: U26.1  # in MAME: TTL_INPUT(I_HI_D4)
+port HI_D5: U31.13  # in MAME: TTL_INPUT(I_HI_D5)
+port HI_D6: U29.9  # in MAME: TTL_INPUT(I_HI_D6)
+port HI_D7: U29.5  # in MAME: TTL_INPUT(I_HI_D7)
+
+# ---------------------------------------------------------------------------
+# Sheet 7, top-left (SONAR)
+# ---------------------------------------------------------------------------
+wire D1.2 R4.1 U1.2
+wire D1.1 R1.1 U1.1
+wire C1.1 C2.1 R1.2 R2.2
+wire C2.2 R3.2 R4.2 R5.2 U1.7
+wire C1.2 R3.1 U1.6
+wire D4.2 R39.1 U1.13
+wire D4.1 R36.1 U1.14
+wire C16.1 C17.1 R36.2 R37.2
+wire C17.2 R38.2 R39.2 R40.2 U1.8
+wire C16.2 R38.1 U1.9
+wire D6.2 R65.1 U2.2
+wire D6.1 R62.1 U2.1
+wire C24.1 C25.1 R62.2 R63.2
+wire C25.2 R64.2 R65.2 R66.2 U2.7
+wire C24.2 R64.1 U2.6
+wire D10.2 R94.1 U2.13
+wire D10.1 R91.1 U2.14
+wire C40.1 C41.1 R91.2 R92.2
+wire C41.2 R93.2 R94.2 R95.2 U2.8
+wire C40.2 R93.1 U2.9
+wire Q3.B R114.1 R40.1 R5.1 R66.1 R95.1
+wire Q1.C Q2.E Q3.E
+wire C47.2 Q1.B R108.2 R117.2
+wire Q1.E R109.2
+wire D2.2 R117.1
+wire C4.2 D2.1 U11.4
+wire C4.1 R20.1 U11.2
+wire U11.3 U11.5 U11.6
+label I_SONAR: R21.1 U11.1 U29.6
+wire Q2.C R110.2 R111.2 U7.3
+wire Q3.C R112.2 R113.1 U7.2
+label SONAR: R113.2 R120.1 U7.1
+
+# ---------------------------------------------------------------------------
+# Sheet 7, middle-left (LASER-1)
+# ---------------------------------------------------------------------------
+label I_LASER_1: R146.1 U25.9 U26.6
+wire C64.2 R138.1 U25.8
+wire D11.1 U24.4 U25.10 U25.5 U25.6
+wire C64.1 U19.2 U25.4
+wire C57.2 D11.2 R107.1
+wire Q10.B R107.2 R134.1
+wire Q10.E U24.5
+wire U19.1 U24.3
+wire C65.2 R140.1 U24.2 U24.6
+wire R139.1 R140.2 U24.7
+wire R132.1 U19.12
+wire R131.1 U19.11
+wire R130.1 U19.9
+wire R105.1 U19.6
+wire R104.1 U19.4
+wire C52.1 R104.2 R105.2 R130.2 R131.2 R132.2
+
+# ---------------------------------------------------------------------------
+# Sheet 7, bottom-left (LASER-2)
+# ---------------------------------------------------------------------------
+label I_LASER_2: R149.1 U25.12 U26.4
+wire C63.2 R147.1 U25.13
+wire D12.1 U20.4 U25.1 U25.11 U25.2
+wire C63.1 U14.2 U25.3
+wire C53.2 D12.2 R133.1
+wire Q9.B R106.1 R133.2
+wire Q9.E U20.5
+wire U14.1 U20.3
+wire C68.2 R137.1 U20.2 U20.6
+wire R137.2 R145.1 U20.7
+wire R125.1 U14.12
+wire R126.1 U14.11
+wire R128.1 U14.9
+wire R129.1 U14.6
+wire R127.1 U14.4
+wire C51.1 R125.2 R126.2 R127.2 R128.2 R129.2
+
+# ---------------------------------------------------------------------------
+# Sheet 7, middle-top (REFILL)
+# ---------------------------------------------------------------------------
+label I_REFILL: R59.1 U29.10 U3.15
+port OSC1: U3.14  # in MAME: CLOCK(OSC1)
+wire R8.1 U3.3
+wire R7.1 U3.2
+wire R9.1 U3.4
+wire R12.1 U3.7
+wire R14.1 U3.10
+wire R6.1 U3.1
+wire R10.1 U3.5
+wire R11.1 U3.6
+wire R15.1 U3.9
+wire R13.1 U3.11
+wire R10.2 R11.2 R12.2 R13.2 R14.2 R15.2 R16.2 R17.1 R6.2 R7.2 R8.2 R9.2
+wire Q7.B R16.1
+port OSC2: U4.4 U9.12 U9.13  # in MAME: CLOCK(OSC2)
+wire U5.4 U9.11
+wire R67.1 R68.2 U5.7
+wire C26.2 R68.1 U5.2 U5.6
+wire Q7.E U4.5 U5.5
+wire R41.1 R42.2 U4.7
+wire C18.2 R42.1 U4.2 U4.6
+wire R69.2 U5.3
+wire R43.2 U4.3
+label I_REFILL_Q: C49.1 R43.1 R69.1 U30.4
+
+# ---------------------------------------------------------------------------
+# Sheet 7, middle-bottom (ATTACK, RATE RESET)
+# ---------------------------------------------------------------------------
+label I_RATE_RESET: R96.1 U15.15 U31.12
+label I_ATTACK_RATE: R148.1 U21.5 U26.2
+wire C67.2 R166.1 U21.6
+wire C67.1 U21.3
+wire U15.14 U21.1 U21.2 U21.4
+wire D23.2 U15.3
+wire D23.1 R161.1
+wire D22.2 U15.2
+wire D22.1 R160.1
+wire D21.2 U15.4
+wire D21.1 R159.1
+wire D17.2 U15.7
+wire D17.1 R155.1
+wire D15.2 U15.10
+wire D15.1 R153.1
+wire D18.2 U15.1
+wire D18.1 R156.1
+wire D20.2 U15.5
+wire D20.1 R158.1
+wire D19.2 U15.6
+wire D19.1 R157.1
+wire D16.2 U15.9
+wire D16.1 R154.1
+wire D14.2 U15.11
+wire D14.1 R152.1
+wire R152.2 R153.2 R154.2 R155.2 R156.2 R157.2 R158.2 R159.2 R160.2 R161.2 R178.2 U16.6
+label I_WARP: R164.1 U31.6
+wire R162.1 R163.2 R164.2 U16.5
+label V: R178.1 R34.1 R35.2 R53.2 R71.1 R87.1 U16.7
+
+# ---------------------------------------------------------------------------
+# Sheet 7, top-right (EXPLOSIONS)
+# ---------------------------------------------------------------------------
+label I_SHORT_EXPL: R169.1 U26.10 U27.2
+wire C81.2 R185.1 U27.1
+wire C81.1 U27.11
+wire R184.1 U27.12 U27.13 U27.3
+wire D31.2 R184.2
+wire D30.2 D31.1 R182.2 R183.2
+wire C80.1 D29.1 D30.1 R180.1 R181.1
+wire R179.1 R180.2 U16.9
+wire R177.1 R179.2 U16.8
+wire D26.1 Q6.D R181.2 U16.10
+wire C72.2 Q5.G Q6.G R151.2
+wire C72.1 U8.3
+wire C69.1 D24.1 D29.2
+wire D28.1 R183.1 R186.2 U27.4 U27.8 U27.9
+wire C75.1 R186.1
+wire C75.2 R168.2 U21.8 U21.9
+wire R168.1 U21.11
+label I_LONG_EXPL: R171.1 U26.8 U27.6
+wire C82.2 R170.1 U27.5
+wire C82.1 U27.10
+wire C74.1 R165.2 U21.12 U21.13
+wire C74.2 R167.1 U21.10
+wire D24.2 R167.2
+wire C78.1 R176.1 R177.2
+wire C61.1 C78.2 U16.1 U16.2
+wire C76.2 C77.2 R176.2 U16.3
+wire C76.1 D27.1 D28.2
+
+# ---------------------------------------------------------------------------
+# Sheet 7, middle-right (ASTROIDS)
+# ---------------------------------------------------------------------------
+label I_ASTROIDS: R174.1 R175.1 R97.1 U30.12
+wire R173.1 R174.2 U16.13
+wire D25.1 Q5.D R175.2 U16.12
+wire R172.1 R173.2 U16.14
+wire C70.1 R150.1 R172.2
+wire C70.2 R136.1 U7.8 U7.9
+wire C71.2 R150.2 U7.10
+wire C59.2 C60.1 R136.2
+
+# ---------------------------------------------------------------------------
+# Sheet 7, bottom-right (mixer)
+# ---------------------------------------------------------------------------
+wire C55.1 R100.2 R101.2 R98.2 R99.2
+label ASTROIDS: C60.2 R121.1
+label EXPLOSIONS: C61.2 R122.1
+label REFILL: C49.2 R119.1
+label LASER_1: C52.2 R102.1
+label LASER_2: C51.2 R103.1
+port MUTEFUNC: C55.2 R102.2 R103.2 R118.2 R119.2 R120.2 R121.2 R122.2  # in MAME: AFUNC(MUTEFUNC)
+
+# ---------------------------------------------------------------------------
+# Sheet 8, middle-top (INVADER_1)
+# ---------------------------------------------------------------------------
+wire D5.2 R29.1 U22.9
+wire C21.2 R29.2 R55.2 R72.1 U22.14
+wire D5.1 R58.1 U22.8
+wire C21.1 C22.1 R56.2 R57.2 R58.2
+wire R57.1 U30.6
+wire C22.2 R55.1 U22.13
+wire R85.1 R86.2 U23.7
+wire C38.2 R86.1 U23.2 U23.6
+label I_INVADER_1: R73.1 U18.4 U23.4 U31.2
+wire C28.2 U18.5
+wire U18.2 U23.3
+wire R87.2 U23.5
+wire D9.2 R83.1
+wire D9.1 Q8.B R72.2
+wire Q8.E R84.1
+wire C37.2 Q8.C U18.6 U18.7
+label INVADER_1: R98.1 U18.3
+
+# ---------------------------------------------------------------------------
+# Sheet 8, middle (INVADER_2)
+# ---------------------------------------------------------------------------
+wire R81.1 R82.2 U13.7
+wire C36.2 R82.1 U13.2 U13.6
+wire R71.2 U13.5
+label I_INVADER_2: R70.1 U13.4 U31.4
+wire U12.1 U13.3
+port OSC3: U12.2  # in MAME: CLOCK(OSC3)
+wire R48.1 U12.12
+wire R49.1 U12.11
+wire R50.1 U12.9
+wire R47.1 U12.6
+label INVADER_2: R47.2 R48.2 R49.2 R50.2 R99.1
+
+# ---------------------------------------------------------------------------
+# Sheet 8, middle-bottom (INVADER_4)
+# ---------------------------------------------------------------------------
+wire R89.1 R90.2 U37.7
+wire C39.2 R90.1 U37.2 U37.6
+wire R35.1 U37.5
+wire U28.1 U37.3
+wire U28.2 U28.5
+wire R31.1 U28.12
+wire R32.1 U28.11
+wire R33.1 U28.9
+wire R30.1 U28.6
+wire R30.2 R31.2 R32.2 R33.2 R34.2 U38.5
+wire C23.2 R61.1 U38.2 U38.6
+wire R60.1 R61.2 U38.7
+label I_INVADER_4: R88.1 U31.8 U38.4
+label INVADER_4: R101.1 U38.3
+
+# ---------------------------------------------------------------------------
+# Sheet 8, middle-bottom (BONUS)
+# ---------------------------------------------------------------------------
+label I_BONUS: R45.1 U10.6 U29.8
+wire C19.1 R44.1 U10.5
+wire U10.1 U10.2 U10.4
+wire C19.2 D7.1 U10.3
+wire D7.2 R78.1
+wire C34.2 R76.1 R77.1 R78.2
+port OSC4: R79.1  # in MAME: CLOCK(OSC4)
+wire R74.1 R75.2 R79.2 U6.7
+wire C31.2 R75.1 U6.2 U6.6
+wire C32.2 U6.5
+wire C50.1 D8.1 R76.2
+wire D8.2 U6.3
+label BONUS: C50.2 R118.1
+
+# ---------------------------------------------------------------------------
+# Sheet 8, top-right (INVADER_3)
+# ---------------------------------------------------------------------------
+wire D3.2 R25.1 U22.6
+wire C12.2 C8.2 R24.2 R25.2 U22.1
+wire D3.1 R26.1 U22.7
+wire R28.1 U30.8
+wire C8.1 C9.1 R26.2 R27.2 R28.2
+wire C9.2 R24.1 U22.2
+wire C12.1 R54.1
+wire R53.1 R54.2 U17.5
+wire C7.2 R52.1 U17.2 U17.6
+wire R51.1 R52.2 U17.7
+label I_INVADER_3: R23.1 U17.4 U31.10
+label INVADER_3: R100.1 U17.3
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc U9.1 U9.2 U9.5 U9.6  # line 867: parked on a rail with C3, R18 -- MAME replaces this circuit with a stand-in
+nc U9.8 U9.9  # line 889: parked on a rail with C20, R46 -- MAME replaces this circuit with a stand-in
+nc U11.8 U11.9 U11.12 U11.13  # line 1102: parked on a rail with C5, R22 -- MAME replaces this circuit with a stand-in
+nc U10.8 U10.9 U10.12 U10.13  # line 1158: parked on a rail with C35, R80 -- MAME replaces this circuit with a stand-in
+nc U7.5 U7.6 U7.12 U7.13  # line 1197: tied to GND in MAME's "Unconnected inputs" block
+nc U26.13  # line 1198: tied to GND in MAME's "Unconnected inputs" block
+nc U29.1 U29.3 U29.13  # line 1199: tied to GND in MAME's "Unconnected inputs" block
+nc U30.1 U30.11  # line 1200: tied to GND in MAME's "Unconnected inputs" block
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U3.12  # Cout
+nc U7.7 U7.14  # output output
+nc U8.5 U8.6 U8.7 U8.8  # NC NC NC NC
+nc U9.3 U9.4 U9.10  # output output output
+nc U10.10 U10.11  # output output
+nc U11.10 U11.11  # output output
+nc U12.3 U12.4 U12.5  # Q6 Q5 Q4
+nc U14.3 U14.5  # Q6 Q4
+nc U15.12  # Cout
+nc U19.3 U19.5  # Q6 Q4
+nc U26.12  # open collector
+nc U28.3 U28.4  # Q6 Q5
+nc U29.2 U29.4 U29.12  # open collector open collector open collector
+nc U30.2 U30.10  # open collector open collector

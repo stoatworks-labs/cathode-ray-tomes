@@ -1,0 +1,41 @@
+{
+ "name": "Sundance sound board",
+ "mfr": "Cinematronics",
+ "year": "1979",
+ "machine": "sundance",
+ "drawing": "Sound board schematic in the Sundance manual (doc 7130101e6e69) -- via MAME's netlist, not read here",
+ "revision": "Cinematronics audio board for Sundance: pings and bongs (555s), a whoosh, a wideband noise generator, CA3080 mixing.",
+ "coverage": "Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. See the .nets file for what was undone and what MAME leaves out.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "sundance-sound",
+ "ics": {
+  "1": "TL081",
+  "2": "TL081",
+  "3": "TL081",
+  "4": "LM3900",
+  "7": "LM555",
+  "8": "TL081",
+  "9": "CA3080",
+  "10": "CA3080",
+  "11": "LM555",
+  "12": "CA3080",
+  "13": "74LS125",
+  "14": "LM555",
+  "15": "LM555",
+  "16": "LM555",
+  "17": "CA3080",
+  "18": "CA3080",
+  "19": "CA3080",
+  "20": "TL081"
+ },
+ "source": {
+  "mame": "src/mame/cinematronics/nl_sundance.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "sundance",
+  "licence": "CC0-1.0",
+  "copyright": "Aaron Giles"
+ }
+}
