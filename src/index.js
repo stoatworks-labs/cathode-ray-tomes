@@ -349,6 +349,31 @@ async function handleApi(url, env, request) {
     return map ? json(map) : notFound("no ROM map for this machine");
   }
 
+  // /api/layouts, /api/layouts/<dir>/<driver> and /api/layout/<dir>/<driver>/<n>
+  // -- the ASCII "PCB Layout" diagrams in MAME's driver comments, read into
+  // partial board maps. Weaker again than a ROM map in one way (positions are a
+  // character cell on a sketch) and stronger in another (every major device, not
+  // just the memory). Kept apart from both for the same reason ROM maps are.
+  // Sharded by MAME source directory, so a lookup reads one file of the 71.
+  if (p === "layouts") {
+    return json((await index(env, request, "layouts")) || []);
+  }
+  const lay = url.pathname.match(
+    /^\/api\/layouts?\/([a-z0-9_]{1,40})\/([a-z0-9_-]{1,60})(?:\/(\d{1,3}))?$/);
+  if (lay && (lay[3] ? p.startsWith("layout/") : p.startsWith("layouts/"))) {
+    const shard = await asset(env, request, `/data/layout/${lay[1]}.json`);
+    const list = shard && shard[`${lay[1]}/${lay[2]}.cpp`];
+    if (!list) return notFound("no PCB layouts in this driver");
+    if (lay[3]) {
+      const one = list.find((l) => l.n === +lay[3]);
+      return one ? json(one) : notFound("no such PCB layout");
+    }
+    // The machine page only needs to know which layouts are its own; the art
+    // and devices come with the layout's own page.
+    return json(list.map(({ art, devices, notes, ...rest }) =>
+      ({ ...rest, count: devices.length })));
+  }
+
   if (p === "boards") {
     return json((await index(env, request, "boards")) || []);
   }
@@ -386,6 +411,8 @@ const PAGE_ROUTES = [
     idx.some((b) => b.slug === decodeURIComponent(id))],
   [/^\/rom\/(.+)$/, "rommaps", (idx, id) =>
     idx.some((r) => r.machine === decodeURIComponent(id))],
+  [/^\/layout\/(.+)$/, "layouts", (idx, id) =>
+    idx.some((l) => l.id === decodeURIComponent(id))],
 ];
 
 async function servePage(url, env, request) {

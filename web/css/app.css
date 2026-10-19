@@ -435,7 +435,7 @@ body.lb-open { overflow: hidden; }
   display: inline-flex; align-items: center; gap: 6px;
 }
 .wirelegend .chip::before { content: ""; width: 10px; height: 10px; border-radius: 2px; background: var(--wc); }
-.wirelegend .chip.on { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.wirelegend .chip.on { background: var(--surface-2); border-color: var(--ink); color: var(--ink); font-weight: 600; }
 .wiregrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 16px; align-items: start; }
 @media (max-width: 820px) { .wiregrid { grid-template-columns: 1fr; } }
 .conns { display: grid; gap: 14px; min-width: 0; }
@@ -487,3 +487,39 @@ table.pins td.fn.lit { font-weight: 600; }
 h3.wireh { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-3);
   margin: 20px 0 8px; font-weight: 600; }
 .wiresrc { margin: 4px 0 0; padding-left: 18px; font-size: 14px; display: grid; gap: 8px; }
+
+/* ---- PCB layouts from MAME's driver notes ----
+   The sketch is shown as MAME prints it, monospaced and unwrapped; it scrolls
+   inside its own box so a 140-column board never widens the page. A word read
+   as a device is a quiet target; the one picked, and a kind picked from the
+   chips, take the accent. One hue, on or off: the label itself says what it is. */
+.chips.lk { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 10px; }
+.chips.lk .chip { font-size: 12.5px; padding: 3px 10px; }
+.artbox {
+  overflow: auto; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); max-height: 78vh;
+}
+pre.art {
+  margin: 0; padding: 12px 14px; width: max-content;
+  font: 12.5px/1.3 var(--mono); color: var(--ink-3); white-space: pre;
+}
+pre.art .dv {
+  color: var(--ink); background: var(--surface-2); border-radius: 2px; cursor: pointer;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+pre.art .dv:hover { background: color-mix(in srgb, var(--accent) 22%, var(--surface)); }
+pre.art.only .dv { color: var(--ink-3); background: transparent; box-shadow: none; }
+pre.art.only .dv.hl,
+pre.art .dv.hl { color: var(--ink); background: color-mix(in srgb, var(--accent) 28%, var(--surface)); }
+pre.art .dv.sel, pre.art.only .dv.sel { background: var(--accent); color: var(--accent-ink); }
+.pick { margin-top: 10px; font-size: 14px; color: var(--ink-2); }
+.pick b { color: var(--ink); }
+.pick .meta { color: var(--ink-3); font-size: 13px; }
+table.lay td { vertical-align: top; }
+table.lay tbody tr { cursor: pointer; }
+table.lay tr.sel { background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+table.lay .badge { font-size: 11px; }
+@media (max-width: 620px) {
+  pre.art { font-size: 11px; padding: 10px; }
+  table.lay th:nth-child(5), table.lay td:nth-child(5) { display: none; }
+}

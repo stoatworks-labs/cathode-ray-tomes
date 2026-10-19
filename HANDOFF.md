@@ -22,6 +22,7 @@ about your board revision.
 | Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
 | MAME ROM sets | 7,444 machines · 90,264 ROM files (MAME 0.289) — the whole page for the 6,427 with no document |
+| MAME PCB layouts | 950 sketches from 319 BSD drivers, 32,544 major devices — shown on 1,588 machines (398 for their own set); partial, kept apart from board maps |
 | Nets traced | Battlezone Math Box in full (186 nets, 845 pins) · Tempest Auxiliary in full (216 nets, 1,036 pins), both redrawn in KiCad · Pong 8 of ~200 |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
