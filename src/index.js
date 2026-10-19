@@ -353,6 +353,13 @@ async function handleApi(url, env, request) {
     return json((await index(env, request, "boards")) || []);
   }
 
+  // /api/wiring — the cabinet connector standards a machine page's generated
+  // wiring view is drawn from. The per-game part rides on /api/machine/<slug>.
+  if (p === "wiring") {
+    const lib = await index(env, request, "wiring");
+    return lib ? json(lib) : notFound("no connector library");
+  }
+
   return notFound("unknown endpoint");
 }
 

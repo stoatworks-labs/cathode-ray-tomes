@@ -439,6 +439,98 @@ only their older data. The four machines with no CPU in the upstream list (`higu
 `systemy2`, `kof2002um` on Sega System Y2, and the Tandberg `tdv2115l`) have no CPU in MAME
 either -- they are not emulated -- but do have ROM sets or a driver, so none was empty.
 
+## Generated wiring views
+
+Only 51 machines have a whole document filed as a wiring diagram, and nothing open maps games
+to harnesses. So 1,153 machine pages carry a wiring view that is **generated, not read**: a
+connector standard with the game's own controls placed on it. The page says so before any
+pin, says what it leaves out (wire colours, lamps, the coin door's own wiring, the power
+interconnect), and lists every control it could not place.
+
+    data/wiring/library.json          connector standards, by hand, every pin table cited
+    tools/check_wiring.py <mame>      the library against the MAME tables it came from
+    tools/tag_harness.py <mame>       -> data/wiring/drivers.json: driver -> standard + evidence
+    tools/wiring_data.py              generated view per machine; wiring pages in the corpus
+    python3 tools/build_assets.py --wiring-only    onto web/data/machine/*.json + web/data/wiring.json
+
+`<mame>` is a sparse 0.289 checkout of `src/mame` (275 MB, never committed); the commands to
+make one are in `tag_harness.py`. `build_index.py` applies the views on a full rebuild, and the
+full `build_assets.py` links the wiring pages last, once the documents are written.
+
+**The JAMMA edge is read from the standard itself.** jamma-docs cites it and archive.org has
+it: *Game Machine* no. 275, 1 January 1986, pp. 16-17, Table 1 (enacted 26 November 1985).
+Read pin by pin from the scan, it disagrees with the community tables in two places, and both
+are logged on the connector rather than smoothed over: pins 11/M are audio (+)/audio (GND), not
+NC; and 25/c and 26/d are *spare inputs*, with 27/e GND. Buttons beyond three are therefore never
+placed on a generic JAMMA edge -- jamma-docs puts button 6 on 27/e, which is a short on a board
+that grounds it, as every MAME table says boards do.
+
+**What `check_wiring.py` proves.** Every connector taken from a MAME table (CPS-1, CPS-2 and both
+its CN5 wirings, CPS-3 and its CN5, both Neo-Geo edges, the Konami 18-way) is re-read from the
+driver comment and compared pin for pin: no differences except the logged conflicts. The 1986
+edge is then voted against eleven independent JAMMA tables in MAME's comments plus a measured
+cabinet in arcade-docs: on 50 of 56 pins no table names a different standard signal. The six
+that differ are 11/M (Lethal Justice puts its right speaker there) and R, 14, S, 15, which one
+bootleg in `sfkick.cpp` uses for joystick lines. Parsing the tables is fiddly -- each driver
+draws them differently, and cps3.cpp's header labels share lines with the JAMMA table -- so
+read the parser before trusting a new table to it.
+
+**Conflicts logged, not decided:**
+- CPS-2 CN5 29/30: cps2.cpp has volume down/up, the CAPCOM-H2 sheet up/down.
+- CPS-3 CN5 9, 15, 19, 21, 23: cps3.cpp orders the kicks the other way round from cps2.cpp, and
+  the CAPCOM-H2 sheet (which says it covers CPS-2 and CPS-III) agrees with cps2.cpp. Drawn as
+  cps3.cpp, struck through on the page.
+- MVS 26: neogeo.cpp says "data input", NeoGeoDev unused. Not placed.
+- The MVS has no kick harness, whatever the brief that started this said: button D is on 25/c in
+  both sources. jamma-docs mentions a 15-pin MVS kick connector with no pin map; nothing confirms it.
+
+**Tagging is per driver file, and the page says which kind it got.** `platform` (8 drivers,
+reviewed by hand): a pin table in the driver (cps2, cps3, neogeo, shaolins), the CPS-1 edge
+from kenseim.cpp (a CPS-1 board in a mole cabinet; cps1.cpp has no table), or a Sega 837-13551
+JVS board instantiated in the machine config (naomi, chihiro, hikaru) -- code, not a comment.
+`comment` (95 drivers): the driver's comments say its board has a JAMMA edge ("1x JAMMA edge
+connector", a PCB layout with JAMMA at the edge, "Pinout = JAMMA"), quoted on the page with a
+link to the line. A file with any line saying something is *not* JAMMA is left out; 30 drivers
+are left out in all, each with its reason in `drivers.json` -- System 246 because its games
+mostly run through Namco JVS I/O, Viper because its pots sit on JAMMA pins, PGM because its only
+JAMMA line is about the 4-player link cable. Three filters on top, all in `wiring_data.py`:
+comment tags only from 1985 on (a driver that mentions a JAMMA bootleg also holds the 1980
+original), no gambling, mahjong, hanafuda, keyboard, keypad or mouse games (their "JAMMA edge"
+carries their own assignment), and no CPS Changer.
+
+**Coverage at 0.289:** 1,153 machines -- 674 generic JAMMA by comment, and by platform 230 JVS
+(NAOMI, Chihiro, Hikaru), 163 Neo-Geo MVS, 40 CPS-2 (35 kick wiring, 5 on the 3-4 player CN5),
+38 CPS-1, 7 CPS-3 and 1 Konami 18-way. 711 have every control placed; the rest list what is
+not (mostly a fourth button on a generic edge, then light guns, analog sticks, pedals). The
+estimate this started from was a floor of 555 on known platforms; the platform count is 479
+because Sega PC and the CPS-1-like boards turned out to have no pin table to tag them from.
+
+**Not in the library, and why.** Irem: no open pin table found. Sega JVS "Type 4": none either;
+the Type 1 board (837-13551) is drawn in full, the Type 2 (837-13844) and the JVS-to-JAMMA board
+(838-13683) only as far as naomi.cpp names their pins. The CPS-1 kick connector for Street
+Fighter II: no open source gives its map, so kicks are listed as not placed. The JVS PDF and the
+CAPCOM-H2 sheet are linked, never hosted, and KLOV was not used.
+
+**The Konami 18-way is checked against a manual.** shaolins.cpp is the only open table, so only
+its games are tagged. Kicker's own conversion kit manual is in the collection, and its harness
+page (scan p. 8) agrees on all 36 positions. It letters the solder side A-V and numbers the parts
+side 1-18, like JAMMA; the library uses those names, not MAME's A1-A18/B1-B18.
+
+**Wiring pages already in the corpus.** `wiring_data.page_kind` flags a published page when a
+heading near its top names a wiring diagram, harness or pin-out *and* the page shows it (wire
+colours, a solder/parts side, a drawing's score), or when six or more two-colour wire codes
+(WHT-BLK) sit on a drawing or pin table. 350 pages in 250 documents, linked from 204 machine
+pages above the generated view, because they were drawn for the machine. A hand-read sample of
+50 found two false hits, troubleshooting tables quoting wire colours, which are now excluded.
+
+Traps:
+- **A loader that finds its box before awaiting finds nothing.** `machine()` starts the loaders
+  before it writes the page; `loadWiring` must await something first even when the library is
+  cached, or the section silently never appears on the second machine a reader opens.
+- **The browser holds API JSON for five minutes**, and `index()` memoises per isolate. After
+  republishing, restart `dev_server.mjs` and fetch with `cache: 'reload'` before believing the page.
+- **A pin a game does not use is greyed, never hidden.** A harness still has to know it is there.
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
@@ -786,8 +878,20 @@ convention and legitimately uses G.
   where each is on the sheet. The bar for a redraw is 0 *unexplained* ERC errors.
   Not checked against a board: the B1/BEGIN conflict, the 4th printing's K3, R58 and C39
   readings, and which spinner edge pins carry clock and which direction (inferred).
+- Wiring library: the JAMMA edge read pin by pin from the 1986 standard's Table 1 and voted
+  against twelve independent tables (`check_wiring.py`); every MAME-derived connector re-read
+  from its driver with no differences beyond the logged conflicts; the Konami 18-way agreeing
+  on all 36 positions with Kicker's manual. The wiring section was looked at in a browser on
+  CPS-1, CPS-2 (both CN5 wirings), CPS-3, MVS (both boards), NAOMI, Konami and generic JAMMA
+  pages at desktop width in the dark theme, and on a generic JAMMA page at phone width in the
+  light theme (no sideways scroll).
 
 **Assumed / not yet done:**
+- **Every generated wiring view is generated.** None of the 1,153 has been checked against
+  that game's own wiring diagram; the standard is right for the platform, and the game's
+  controls come from MAME. The 674 comment-tagged ones rest on one line in a driver that may
+  describe a different board from the one a given game shipped on. The CPS-3 kick order and the
+  CPS-2 volume pins are open between sources; nobody has put a meter on either.
 - **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in
   `pong_signal_nets.py`, and `pong_power_nets.py` wires the rails from datasheet pinouts;
   the rest of the schematic shows placed devices, not wired circuitry. Sheet 002826 Rev E

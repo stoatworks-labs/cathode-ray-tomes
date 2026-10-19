@@ -27,6 +27,7 @@ about your board revision.
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
 | Parts lists | 194 documents, 12,617 rows — **reachable from the reader since 2026-09-06** |
+| Wiring | 1,153 machines with a **generated** wiring view (JAMMA, CPS-1/2/3, MVS, Sega JVS, Konami 18-way) · 350 wiring pages found in 250 manuals, linked from 204 machines — see AGENTS.md |
 
 Corpus ships as **static assets** (`web/data/` ~13,000 files 194 MB, plus
 `web/pages/` 4,513 page scans 928 MB). No KV, no R2 — a deploy publishes code and data

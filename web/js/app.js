@@ -478,6 +478,7 @@ async function machine(slug) {
   loadDiagnostics(slug);
   loadSignatures(slug);
   loadPower(slug);
+  if (m.wiring || m.wpages) loadWiring(m);
 
   const cpu = (m.cpu || []).map((c) => `${esc(c.n)}${c.mhz ? ` @ ${c.mhz} MHz` : ""}`).join("<br>") || "—";
   const aud = (m.audio || []).map((a) => `${esc(a.n)}${a.mhz ? ` @ ${a.mhz} MHz` : ""}`).join("<br>") || "—";
@@ -520,6 +521,8 @@ async function machine(slug) {
       ${m.boards.map((b) => `<dt><code>${esc(b.rev)}</code></dt>
         <dd>${esc(b.note || "")}</dd>`).join("")}
       </dl></div>` : ""}
+
+    <div id="wiring"></div>
 
     ${romSection(m.mame)}
 
@@ -680,6 +683,233 @@ async function loadRomMap(slug) {
   const n = Object.keys(r.devices).length;
   box.innerHTML = `<div class="note"><b>ROM map.</b> ${n} memory device${n === 1 ? "" : "s"}
     placed from MAME's romset — <a href="/rom/${esc(slug)}">see which device sits where</a>.</div>`;
+}
+
+/* ---------- generated wiring view ----------
+   A machine's `wiring` block names a harness standard and the signals the game
+   uses (tools/wiring_data.py); /api/wiring is the connector library it is drawn
+   from. Nothing here was read off the game's own wiring diagram, and the page
+   says so first, before any pin. */
+let wiringLib = null;
+
+const WIRE_GROUPS = [
+  ["power", "Power"], ["gnd", "Ground"], ["video", "Video"], ["audio", "Audio"],
+  ["sys", "Test & service"], ["coin", "Coin door"], ["p1", "Player 1"], ["p2", "Player 2"],
+  ["p3", "Player 3"], ["p4", "Player 4"], ["aux", "Other I/O"], ["off", "Not used by this game"],
+];
+const WIRE_LABEL = { start: "Start", up: "Up", down: "Down", left: "Left", right: "Right" };
+
+/** Which colour group a pin belongs to, for this game. */
+function wireGroup(s, used) {
+  if (s === "gnd" || s === "video.gnd" || s === "audio.gnd") return "gnd";
+  if (/^[+-]\d+v$/.test(s)) return "power";
+  if (s.startsWith("video.")) return "video";
+  if (/^(spk|audio)/.test(s)) return "audio";
+  if (/^(service|test|tilt|vol\.|select\.)/.test(s)) return "sys";
+  if (/^coin\d$/.test(s)) return used.has(s) ? "coin" : "off";
+  if (/^(counter|lockout)/.test(s)) return "coin";
+  const p = s.match(/^(p[1-4])\./);
+  if (p) return used.has(s) ? p[1] : "off";
+  if (s === "nc" || s === "spare" || s === "key") return "nc";
+  return "aux";
+}
+
+/** How the page says what a signal is, for the control list. */
+function wireName(s) {
+  const m = s.match(/^p(\d)\.(.+)$/);
+  if (m) return m[2].startsWith("b") ? `Button ${m[2].slice(1)}` : WIRE_LABEL[m[2]] || m[2];
+  const c = s.match(/^coin(\d)$/);
+  return c ? `Coin ${c[1]}` : s;
+}
+
+function wirePin(p, g) {
+  const flag = p.disputed ? " disputed" : p.alt ? " alt" : "";
+  return `<td class="pad g-${g}${flag}" data-g="${g}" data-s="${esc(p.s)}"
+      title="${esc(p.p)}: ${esc(p.n)}${p.disputed ? " (disputed between sources)" : p.alt ? " (only some games)" : ""}">${esc(p.p)}</td>`;
+}
+function wireFn(p, g, side) {
+  const flag = p.disputed ? " disputed" : p.alt ? " alt" : "";
+  return `<td class="fn ${side} g-${g}${flag}" data-g="${g}" data-s="${esc(p.s)}">${esc(p.n || "")}</td>`;
+}
+
+/** One connector as a pin table: an edge or header pair-by-pair, a list
+    pin-by-pin with runs of the same signal folded into one row. */
+function wireConnector(conn, used) {
+  const g = (p) => wireGroup(p.s, used);
+  let body;
+  if (conn.layout === "list") {
+    const runs = [];
+    for (const [p] of conn.rows) {
+      const last = runs[runs.length - 1];
+      if (last && last.s === p.s && last.n === p.n && +last.to + 1 === +p.p) last.to = p.p;
+      else runs.push({ ...p, to: p.p });
+    }
+    body = `<table class="pins list"><tbody>${runs.map((r) => `<tr>
+      ${wirePin({ ...r, p: r.p === r.to ? r.p : `${r.p}–${r.to}` }, g(r))}${wireFn(r, g(r), "r")}</tr>`).join("")}
+      </tbody></table>`;
+  } else {
+    body = `<table class="pins edge"><thead><tr>
+        <th class="l">${esc(conn.sides[0])}</th><th colspan="2"></th><th class="r">${esc(conn.sides[1])}</th>
+      </tr></thead><tbody>${conn.rows.map(([a, b]) => `<tr>
+        ${wireFn(a, g(a), "l")}${wirePin(a, g(a))}${wirePin(b, g(b))}${wireFn(b, g(b), "r")}</tr>`).join("")}
+      </tbody></table>`;
+  }
+  return `<div class="conn"><div class="connhead"><strong>${esc(conn.name)}</strong>
+      <span class="meta">${esc(conn.pitch || "")}</span></div>${body}</div>`;
+}
+
+/** The connector's sources, checks, notes and logged conflicts. */
+function wireProvenance(lib, ids) {
+  const conns = ids.map((id) => lib.connectors[id]);
+  const srcIds = [...new Set(conns.flatMap((c) => c.sources || []))];
+  const conflicts = conns.flatMap((c) => (c.conflicts || []).map((x) => ({ ...x, conn: c.short })));
+  return `${conflicts.length ? `<h3 class="wireh">Open questions</h3><div class="questions">${conflicts.map((c) =>
+      `<div class="note warn"><b>${esc(c.conn)} ${esc(c.pins.join(", "))}.</b> ${esc(c.text)}</div>`).join("")}</div>` : ""}
+    <details class="readnotes"><summary>Sources and how the pin tables were checked</summary>
+      <div class="questions">
+        ${conns.map((c) => c.checked ? `<div class="note"><b>Checked.</b> ${esc(c.checked)}</div>` : "").join("")}
+        ${conns.flatMap((c) => c.notes || []).map((n) => `<div class="note">${esc(n)}</div>`).join("")}
+      </div>
+      <ul class="wiresrc">${srcIds.map((id) => lib.sources[id]).filter(Boolean).map((s) =>
+        `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>
+          <span class="meta">— ${esc(s.licence)}</span>${s.note ? `<div class="meta">${esc(s.note)}</div>` : ""}</li>`).join("")}</ul>
+    </details>`;
+}
+
+/** Wiring pages found in this machine's own documents (`wpages`). They were
+    drawn for the machine, so they go above anything generated. */
+function wirePages(m) {
+  const list = m.wpages || [];
+  if (!list.length) return "";
+  const title = new Map((m.docs || []).map((d) => [d.id, prettyTitle(d.title)]));
+  return `<div class="note"><b>Wiring in the documents.</b> ${list.length === 1 ? "A page" : `${list.length} pages`}
+      of this machine's own manuals ${list.length === 1 ? "reads" : "read"} as a wiring diagram, harness
+      chart or connector pin-out. Drawn for this machine, ${list.length === 1 ? "it is" : "they are"} the
+      better source.</div>
+    <div class="rows wirepages">${list.map((x) => `
+      <a class="row" href="/doc/${esc(x.d)}#p${x.p}">
+        <span class="nm">${esc(x.h || "Wiring drawing, found by its wire colours")}</span>
+        <span class="grow"></span>
+        <span class="meta">${esc(title.get(x.d) || "")}</span>
+        <span class="badge">p${x.p}</span>
+      </a>`).join("")}</div>`;
+}
+
+async function loadWiring(m) {
+  const w = m.wiring;
+  // Always await before looking for the box, even with the library cached:
+  // machine() starts the loaders before it writes the page, so the box only
+  // exists once the code that called this has run to its end.
+  wiringLib = (w && !wiringLib) ? await api("wiring").catch(() => null) : await wiringLib;
+  const box = document.getElementById("wiring");
+  if (!box) return;
+  if (!w) {
+    box.innerHTML = `<h2>Wiring</h2>${wirePages(m)}`;
+    return;
+  }
+  const lib = wiringLib;
+  const std = lib && lib.standards[w.std];
+  if (!std) return;
+  const used = new Set(w.use || []);
+  const tag = "mame" + String((m.mame || {}).v || "0.289").replace(".", "");
+  const at = `https://github.com/mamedev/mame/blob/${tag}/src/mame/${w.ev.file}#L${w.ev.line}`;
+  const where = `<a href="${esc(at)}" target="_blank" rel="noopener"><code>${esc(w.ev.file)}</code> line ${w.ev.line} ↗</a>`;
+  const why = w.basis === "comment"
+    ? `MAME's driver for this hardware describes a JAMMA edge — “${esc(w.ev.text)}”, ${where}. The tag is
+       taken per driver file, so a game in the same file on a different board may be wired otherwise.`
+    : w.std === "jvs"
+      ? `MAME emulates this game with a Sega 837-13551 JVS I/O board (${where}).`
+      : `MAME prints this hardware's connector pinout (${where}).`;
+  const doc = w.doc ? (m.docs || []).find((d) => d.id === w.doc) : null;
+  // A standard with more than one way to wire it -- an MVS cartridge goes in
+  // a 1-slot or a multi-slot board -- gets a choice; one picked by the game
+  // (CPS-2's CN5, by player count) does not.
+  const choose = std.variants.length > 1 && !std.variants.some((v) => v.players);
+  let vid = w.var;
+
+  const draw = () => {
+    const v = std.variants.find((x) => x.id === vid) || std.variants[0];
+    const have = new Map();
+    for (const id of v.connectors) {
+      const c = lib.connectors[id];
+      for (const row of c.rows) for (const p of row) {
+        if (!have.has(p.s)) have.set(p.s, []);
+        have.get(p.s).push({ ...p, conn: c.short });
+      }
+    }
+    const pinsOf = (s) => (have.get(s) || []).map((p) =>
+      `<span class="pinref${p.alt ? " alt" : ""}${p.disputed ? " disputed" : ""}" data-s="${esc(s)}">${
+        v.connectors.length > 1 ? esc(p.conn) + " " : ""}${esc(p.p)}</span>`).join(" or ");
+    const byPlayer = new Map();
+    for (const s of used) {
+      const k = (s.match(/^p(\d)\./) || [])[1] ? `Player ${s[1]}` : "Coin door";
+      if (!byPlayer.has(k)) byPlayer.set(k, []);
+      byPlayer.get(k).push(s);
+    }
+    const groups = new Set();
+    for (const id of v.connectors) for (const row of lib.connectors[id].rows)
+      for (const p of row) groups.add(wireGroup(p.s, used));
+    box.querySelector(".wirebody").innerHTML = `
+      <div class="wirelegend">${WIRE_GROUPS.filter(([g]) => groups.has(g)).map(([g, label]) =>
+        `<button type="button" class="chip g-${g}" data-focus="${g}">${esc(label)}</button>`).join("")}</div>
+      <div class="wiregrid">
+        <div class="conns">${v.connectors.map((id) => wireConnector(lib.connectors[id], used)).join("")}</div>
+        <div class="panel wirectl"><strong>This game's controls</strong>
+          <dl class="kv">${[...byPlayer].map(([k, list]) => `<dt>${esc(k)}</dt><dd>${list.map((s) =>
+            `<span class="ctl" data-s="${esc(s)}">${esc(wireName(s))} ${pinsOf(s)}</span>`).join("")}</dd>`).join("")}
+          </dl>
+          ${(w.miss || []).length ? `<div class="miss"><strong>Not placed</strong>
+            <ul>${w.miss.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+            <p class="meta">The standard has no pin for these. They go to a connector of the board's
+              own, or to pins the game reassigns — the game's manual says which.</p></div>` : ""}
+          <p class="meta">Dashed: only some games use that pin. Struck through: the sources disagree about it.</p>
+        </div>
+      </div>
+      ${wireProvenance(lib, v.connectors)}
+      ${(std.reference || []).length ? `<details class="readnotes"><summary>Other ${esc(std.name)} boards</summary>
+        <div class="conns">${std.reference.map((id) => wireConnector(lib.connectors[id], used)).join("")}</div></details>` : ""}`;
+  };
+
+  box.innerHTML = `<h2>Wiring — generated</h2>
+    ${wirePages(m)}
+    <div class="note warn"><b>Generated, not read.</b> Nobody traced this from ${esc(m.name)}'s own wiring
+      diagram. It places MAME's list of the game's controls on the ${esc(std.name)} connector standard.
+      It does not show wire colours, lamps, the coin door's own wiring, or the power interconnect
+      (supply, transformer, fuses). Check it against the manual before building a harness.</div>
+    ${doc ? `<div class="note"><b>A wiring diagram is in the documents.</b>
+      <a href="/doc/${esc(doc.id)}">${esc(prettyTitle(doc.title))}</a> was drawn for this machine; where
+      it and this view disagree, it is right.</div>` : ""}
+    <p class="sub">${esc(std.about)} ${why}</p>
+    ${choose ? `<div class="seg wirevar">${std.variants.map((v) =>
+      `<button type="button" data-v="${esc(v.id)}" class="${v.id === vid ? "on" : ""}">${esc(v.name)}</button>`).join("")}</div>` : ""}
+    <div class="wirebody"></div>`;
+  draw();
+
+  // A legend chip or a control lights its pins and dims the rest; a second
+  // click on the same one clears it. One handler for the whole section,
+  // because the body is redrawn when the board variant changes.
+  let focus = null;
+  const apply = () => box.querySelectorAll("td[data-s]").forEach((td) => {
+    const on = !focus || (focus.g ? td.dataset.g === focus.g : td.dataset.s === focus.s);
+    td.classList.toggle("dim", !on);
+    td.classList.toggle("lit", !!focus && on);
+  });
+  box.addEventListener("click", (e) => {
+    const vb = e.target.closest(".wirevar button");
+    if (vb) {
+      vid = vb.dataset.v;
+      box.querySelectorAll(".wirevar button").forEach((b) => b.classList.toggle("on", b === vb));
+      draw(); focus = null; return;
+    }
+    const chip = e.target.closest("[data-focus]");
+    const ctl = e.target.closest(".ctl");
+    const next = chip ? { g: chip.dataset.focus } : ctl ? { s: ctl.dataset.s } : null;
+    if (!next) return;
+    focus = focus && JSON.stringify(focus) === JSON.stringify(next) ? null : next;
+    box.querySelectorAll("[data-focus], .ctl").forEach((el) => el.classList.toggle("on",
+      !!focus && (focus.g ? el.dataset.focus === focus.g : el.dataset.s === focus.s)));
+    apply();
+  });
 }
 
 /** Power supply reference — fuses and rails, checked first on a dead machine. */

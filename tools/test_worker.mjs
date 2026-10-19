@@ -69,6 +69,7 @@ const CASES = [
   ["/api/signals/nosuchboard",        404, "unknown board signals"],
   ["/api/diagnostics/does-not-exist", 200, "diagnostics answer [] for unknown"],
   ["/api/rommap/does-not-exist",      404, "unknown ROM map"],
+  ["/api/wiring",                     200, "connector library"],
   ["/api/stats",                      200, "stats"],
   ["/api/machines?kind=console",      200, "console filter"],
   ["/pdf/d282ad622596",               302, "healthy document redirects upstream"],
@@ -159,6 +160,29 @@ CONTENT.push([
   "an undocumented machine carries MAME's ROM set and driver source",
 ]);
 
+// The generated wiring view rides on the machine record and is drawn from
+// /api/wiring. Both halves have to be there, and the exclusions have to hold:
+// a gambling board on a "JAMMA edge" wires its own assignment onto it, and a
+// view that placed a joystick there would be confidently wrong.
+CONTENT.push([
+  "/api/machine/sf2",
+  (body) => body.wiring?.std === "cps1" && body.wiring.use.includes("p1.b3")
+    && body.wiring.miss?.some((m) => m.startsWith("Player 1 button")),
+  "Street Fighter II: CPS-1 edge, kick buttons listed as not placed",
+]);
+CONTENT.push([
+  "/api/machine/goldstar",
+  (body) => !!body.slug && !body.wiring,
+  "a gambling board gets no generated wiring view",
+]);
+CONTENT.push([
+  "/api/wiring",
+  (body) => body.connectors?.jamma?.rows?.length === 28
+    && (body.standards?.cps2?.variants || []).length === 2
+    && Object.values(body.connectors).every((c) => (c.sources || []).every((s) => body.sources[s])),
+  "56-way JAMMA edge, both CPS-2 CN5 wirings, every cited source defined",
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {
@@ -183,7 +207,9 @@ for (const [path, ok, why] of CONTENT) {
 // still served, and for seven weeks no page read it. There is no browser here, so
 // this only asserts that the script still reads the fields; it cannot see
 // whether they render well.
-const APP_READS = ["b.conflicts", "b.notes", "v.note"];
+// The wiring view's warning and its not-placed list are what stop a generated
+// diagram being taken for a traced one; they get the same guard.
+const APP_READS = ["b.conflicts", "b.notes", "v.note", "w.miss", "Generated, not read."];
 const appJs = await (await worker.fetch(
   new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
 for (const field of APP_READS) {

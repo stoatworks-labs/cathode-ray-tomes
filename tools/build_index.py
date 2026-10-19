@@ -29,6 +29,7 @@ import json, os, re, hashlib, sys, unicodedata
 from collections import Counter
 
 import mame_data
+import wiring_data
 
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW     = os.path.join(ROOT, "data", "machines.raw.json")
@@ -220,6 +221,10 @@ def main():
     rom_to_slug = {rec["rom"]: slug for slug, rec in detail.items() if rec.get("rom")}
     for slug, rec in detail.items():
         mame_data.apply(rec, rom_to_slug)
+        # A wiring view generated from the harness standard MAME's driver
+        # implies (tools/wiring_data.py) -- after the docs are attached, so it
+        # can point at a real wiring diagram where one exists.
+        wiring_data.apply(rec)
         if not by_slug[slug]["c"] and rec.get("cpu"):
             by_slug[slug]["c"] = [c["n"] for c in rec["cpu"]][:3]
 

@@ -1,0 +1,758 @@
+{
+ "drivers": {
+  "astrocorp/astrcorp.cpp": {
+   "basis": "comment",
+   "file": "astrocorp/astrcorp.cpp",
+   "line": 2049,
+   "std": "jamma",
+   "text": "Note 1x 28x2 JAMMA edge connector"
+  },
+  "atari/jaguar.cpp": {
+   "basis": "comment",
+   "file": "atari/jaguar.cpp",
+   "line": 262,
+   "std": "jamma",
+   "text": "| JSPKR |--| JAMMA |--| JSYNC JVUPDN XTRACOIN1 JGUN1 JGUN2|"
+  },
+  "atlus/cave.cpp": {
+   "basis": "comment",
+   "file": "atlus/cave.cpp",
+   "line": 2945,
+   "std": "jamma",
+   "text": "On PCB near JAMMA connector is a small push button to access test mode."
+  },
+  "bmc/bmcpokr.cpp": {
+   "basis": "comment",
+   "file": "bmc/bmcpokr.cpp",
+   "line": 1736,
+   "std": "jamma",
+   "text": "| BATT SW JAMMA Y|"
+  },
+  "bmc/popobear.cpp": {
+   "basis": "comment",
+   "file": "bmc/popobear.cpp",
+   "line": 70,
+   "std": "jamma",
+   "text": "JAMMA CONNECTOR"
+  },
+  "capcom/bionicc.cpp": {
+   "basis": "comment",
+   "file": "capcom/bionicc.cpp",
+   "line": 44,
+   "std": "jamma",
+   "text": "Timings verified at SYNC pin and BLUE pin (jamma edge),"
+  },
+  "capcom/cps1.cpp": {
+   "basis": "platform",
+   "file": "capcom/kenseim.cpp",
+   "line": 66,
+   "std": "cps1",
+   "text": "Jamma (on CPS board)"
+  },
+  "capcom/cps2.cpp": {
+   "basis": "platform",
+   "file": "capcom/cps2.cpp",
+   "line": 150,
+   "std": "cps2",
+   "text": "JAMMA Connector Extra Button Connector"
+  },
+  "capcom/cps3.cpp": {
+   "basis": "platform",
+   "file": "capcom/cps3.cpp",
+   "line": 355,
+   "std": "cps3",
+   "text": "JAMMA Connector Extra Button Connector"
+  },
+  "cave/cv1k.cpp": {
+   "basis": "comment",
+   "file": "cave/cv1k.cpp",
+   "line": 124,
+   "std": "jamma",
+   "text": "S3 (MICRO PUSH BUTTON) Test switch, same as on the JAMMA connector"
+  },
+  "dataeast/battlera.cpp": {
+   "basis": "comment",
+   "file": "dataeast/battlera.cpp",
+   "line": 85,
+   "std": "jamma",
+   "text": "MB3730 - Fujitsu MB3730 14W BTL Audio Power Amplifier. Audio output is mono via the JAMMA connector"
+  },
+  "dataeast/cbuster.cpp": {
+   "basis": "comment",
+   "file": "dataeast/cbuster.cpp",
+   "line": 136,
+   "std": "jamma",
+   "text": "final resistors before the JAMMA connector. It also suggests that if the"
+  },
+  "dataeast/dec8.cpp": {
+   "basis": "comment",
+   "file": "dataeast/dec8.cpp",
+   "line": 3298,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "dataeast/deco_mlc.cpp": {
+   "basis": "comment",
+   "file": "dataeast/deco_mlc.cpp",
+   "line": 7,
+   "std": "jamma",
+   "text": "The MLC system is basically an 8\" x 6\" x 2\" plastic box with a JAMMA connector on it."
+  },
+  "dataeast/fghthist.cpp": {
+   "basis": "comment",
+   "file": "dataeast/fghthist.cpp",
+   "line": 102,
+   "std": "jamma",
+   "text": "Other - There's a small push button near the JAMMA connector to access test mode."
+  },
+  "dataeast/tumbleb.cpp": {
+   "basis": "comment",
+   "file": "dataeast/tumbleb.cpp",
+   "line": 3351,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "dynax/dynax.cpp": {
+   "basis": "comment",
+   "file": "dynax/dynax.cpp",
+   "line": 6095,
+   "std": "jamma",
+   "text": "|-| SW1 JAMMA |--| TIC06 |"
+  },
+  "edevices/fantland.cpp": {
+   "basis": "comment",
+   "file": "edevices/fantland.cpp",
+   "line": 1748,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "edevices/twins.cpp": {
+   "basis": "comment",
+   "file": "edevices/twins.cpp",
+   "line": 679,
+   "std": "jamma",
+   "text": "1x jamma edge connector"
+  },
+  "eolith/ghosteo.cpp": {
+   "basis": "comment",
+   "file": "eolith/ghosteo.cpp",
+   "line": 39,
+   "std": "jamma",
+   "text": "- JAMMA Standard ( Application of PACK TYPE ) : 1P,2P ? Joystick (Up, Down, Left, Right), 4 Push Buttons, Start Button"
+  },
+  "funworld/4roses.cpp": {
+   "basis": "comment",
+   "file": "funworld/4roses.cpp",
+   "line": 36,
+   "std": "jamma",
+   "text": "Other: 1x JAMMA edge connector."
+  },
+  "gaelco/gaelco2.cpp": {
+   "basis": "comment",
+   "file": "gaelco/gaelco2.cpp",
+   "line": 3023,
+   "std": "jamma",
+   "text": "Main Jamma Connector"
+  },
+  "ice/calchase.cpp": {
+   "basis": "comment",
+   "file": "ice/calchase.cpp",
+   "line": 82,
+   "std": "jamma",
+   "text": "JAMMA edge connector"
+  },
+  "ice/lethalj.cpp": {
+   "basis": "comment",
+   "file": "ice/lethalj.cpp",
+   "line": 62,
+   "std": "jamma",
+   "text": "Egg Venture & Lethal Justice JAMMA Pinout"
+  },
+  "ice/vp101.cpp": {
+   "basis": "comment",
+   "file": "ice/vp101.cpp",
+   "line": 60,
+   "std": "jamma",
+   "text": "Standard JAMMA I/O interface, including player 3 and 4 connectors"
+  },
+  "igs/goldstar.cpp": {
+   "basis": "comment",
+   "file": "igs/goldstar.cpp",
+   "line": 28474,
+   "std": "jamma",
+   "text": "1x 2x28 JAMMA edge connector."
+  },
+  "igs/igs011.cpp": {
+   "basis": "comment",
+   "file": "igs/igs011.cpp",
+   "line": 3870,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "igs/igs_68k_023vid.cpp": {
+   "basis": "comment",
+   "file": "igs/igs_68k_023vid.cpp",
+   "line": 294,
+   "std": "jamma",
+   "text": "| TLP521(x6) |--| JAMMA |--| |"
+  },
+  "igs/igs_m027.cpp": {
+   "basis": "comment",
+   "file": "igs/igs_m027.cpp",
+   "line": 2976,
+   "std": "jamma",
+   "text": "| |--| JAMMA |--| |"
+  },
+  "igs/igs_m027_link.cpp": {
+   "basis": "comment",
+   "file": "igs/igs_m027_link.cpp",
+   "line": 87,
+   "std": "jamma",
+   "text": "| JAMMA |"
+  },
+  "igs/igs_m036.cpp": {
+   "basis": "comment",
+   "file": "igs/igs_m036.cpp",
+   "line": 277,
+   "std": "jamma",
+   "text": "| |--| JAMMA |--| |"
+  },
+  "igs/igspoker.cpp": {
+   "basis": "comment",
+   "file": "igs/igspoker.cpp",
+   "line": 2703,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector."
+  },
+  "igs/lordgun.cpp": {
+   "basis": "comment",
+   "file": "igs/lordgun.cpp",
+   "line": 936,
+   "std": "jamma",
+   "text": "Lord of Gun JAMMA Pinout"
+  },
+  "itech/iteagle.cpp": {
+   "basis": "comment",
+   "file": "itech/iteagle.cpp",
+   "line": 74,
+   "std": "jamma",
+   "text": "|-----------------------------------------| JAMMA |----|"
+  },
+  "jaleco/tetrisp2.cpp": {
+   "basis": "comment",
+   "file": "jaleco/tetrisp2.cpp",
+   "line": 2125,
+   "std": "jamma",
+   "text": "// Bottom screen comes directly off JAMMA harness"
+  },
+  "kaneko/djboy.cpp": {
+   "basis": "comment",
+   "file": "kaneko/djboy.cpp",
+   "line": 40,
+   "std": "jamma",
+   "text": "| 6264 IO-JAMMA|"
+  },
+  "kaneko/kaneko16.cpp": {
+   "basis": "comment",
+   "file": "kaneko/kaneko16.cpp",
+   "line": 4135,
+   "std": "jamma",
+   "text": "There are two extra pin connectors near the JAMMA connector."
+  },
+  "konami/konamigx.cpp": {
+   "basis": "comment",
+   "file": "konami/konamigx.cpp",
+   "line": 3381,
+   "std": "jamma",
+   "text": "cable feeds the RGB from the game board to the JAMMA connector via"
+  },
+  "konami/kpython2.cpp": {
+   "basis": "comment",
+   "file": "konami/kpython2.cpp",
+   "line": 83,
+   "std": "jamma",
+   "text": "| JAMMA |--| CN17 CN16 CN11 CN12 CN13 CN14 CN15 |"
+  },
+  "konami/ksys573.cpp": {
+   "basis": "comment",
+   "file": "konami/ksys573.cpp",
+   "line": 191,
+   "std": "jamma",
+   "text": "standard JAMMA connector"
+  },
+  "konami/rungun.cpp": {
+   "basis": "comment",
+   "file": "konami/rungun.cpp",
+   "line": 708,
+   "std": "jamma",
+   "text": "// for dual-screen output Run and Gun requires the video de-multiplexer board connected to the Jamma output, this gives you 2 Jamma connectors, one for each screen."
+  },
+  "konami/shaolins.cpp": {
+   "basis": "platform",
+   "file": "konami/shaolins.cpp",
+   "line": 74,
+   "std": "konami18",
+   "text": "Note this is the standard Konami pinout used in many"
+  },
+  "konami/simpsons.cpp": {
+   "basis": "comment",
+   "file": "konami/simpsons.cpp",
+   "line": 58,
+   "std": "jamma",
+   "text": "(left speaker also outputs via JAMMA connector)"
+  },
+  "metro/metro.cpp": {
+   "basis": "comment",
+   "file": "metro/metro.cpp",
+   "line": 4870,
+   "std": "jamma",
+   "text": "| JAMMA 26.666MHz |"
+  },
+  "misc/4enlinea.cpp": {
+   "basis": "comment",
+   "file": "misc/4enlinea.cpp",
+   "line": 39,
+   "std": "jamma",
+   "text": "CN6: 2 x 28 Jamma connector."
+  },
+  "misc/ampoker2.cpp": {
+   "basis": "comment",
+   "file": "misc/ampoker2.cpp",
+   "line": 1650,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "misc/ddz.cpp": {
+   "basis": "comment",
+   "file": "misc/ddz.cpp",
+   "line": 178,
+   "std": "jamma",
+   "text": "| _____ ___ JAMMA _____ Switch |"
+  },
+  "misc/galaxi.cpp": {
+   "basis": "comment",
+   "file": "misc/galaxi.cpp",
+   "line": 467,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector."
+  },
+  "misc/gms.cpp": {
+   "basis": "comment",
+   "file": "misc/gms.cpp",
+   "line": 2978,
+   "std": "jamma",
+   "text": "|-| JAMMA |--| SW5 |"
+  },
+  "misc/itgamble.cpp": {
+   "basis": "comment",
+   "file": "misc/itgamble.cpp",
+   "line": 632,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "misc/jackpot.cpp": {
+   "basis": "comment",
+   "file": "misc/jackpot.cpp",
+   "line": 36,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "misc/jungleyo.cpp": {
+   "basis": "comment",
+   "file": "misc/jungleyo.cpp",
+   "line": 67,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "misc/limenko.cpp": {
+   "basis": "comment",
+   "file": "misc/limenko.cpp",
+   "line": 1021,
+   "std": "jamma",
+   "text": "|---| JAMMA |------| 22-WAY |---|"
+  },
+  "misc/luckybal.cpp": {
+   "basis": "comment",
+   "file": "misc/luckybal.cpp",
+   "line": 76,
+   "std": "jamma",
+   "text": "1x 2x28 JAMMA type connector."
+  },
+  "misc/magic10.cpp": {
+   "basis": "comment",
+   "file": "misc/magic10.cpp",
+   "line": 1087,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "misc/oneshot.cpp": {
+   "basis": "comment",
+   "file": "misc/oneshot.cpp",
+   "line": 112,
+   "std": "jamma",
+   "text": "There is an additional board that connects to the JAMMA connector that has some logic chips,"
+  },
+  "misc/policetr.cpp": {
+   "basis": "comment",
+   "file": "misc/policetr.cpp",
+   "line": 52,
+   "std": "jamma",
+   "text": "|------------JAMMA Connector------------|"
+  },
+  "misc/sanremmg.cpp": {
+   "basis": "comment",
+   "file": "misc/sanremmg.cpp",
+   "line": 22,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "misc/sanremo.cpp": {
+   "basis": "comment",
+   "file": "misc/sanremo.cpp",
+   "line": 33,
+   "std": "jamma",
+   "text": "- 1x 28x2 JAMMA edge connector [CN3]"
+  },
+  "misc/smotor.cpp": {
+   "basis": "comment",
+   "file": "misc/smotor.cpp",
+   "line": 63,
+   "std": "jamma",
+   "text": "1x (2x28) JAMMA edge connector."
+  },
+  "misc/spool99.cpp": {
+   "basis": "comment",
+   "file": "misc/spool99.cpp",
+   "line": 53,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "misc/truco.cpp": {
+   "basis": "comment",
+   "file": "misc/truco.cpp",
+   "line": 89,
+   "std": "jamma",
+   "text": "JAMMA connector."
+  },
+  "misc/trucocl.cpp": {
+   "basis": "comment",
+   "file": "misc/trucocl.cpp",
+   "line": 18,
+   "std": "jamma",
+   "text": "Mainboard: Pacman bootleg jamma board."
+  },
+  "namco/namcos11.cpp": {
+   "basis": "comment",
+   "file": "namco/namcos11.cpp",
+   "line": 294,
+   "std": "jamma",
+   "text": "of the JAMMA connector. A Namco gun can also be connected the same way, with or without the kickback solenoid."
+  },
+  "namco/namcos12.cpp": {
+   "basis": "comment",
+   "file": "namco/namcos12.cpp",
+   "line": 186,
+   "std": "jamma",
+   "text": "powered by the JAMMA connector as well. It's presence is purely for convenience when"
+  },
+  "nintendo/aleck64.cpp": {
+   "basis": "comment",
+   "file": "nintendo/aleck64.cpp",
+   "line": 85,
+   "std": "jamma",
+   "text": "via the standard JAMMA connector also."
+  },
+  "nintendo/snesb.cpp": {
+   "basis": "comment",
+   "file": "nintendo/snesb.cpp",
+   "line": 96,
+   "std": "jamma",
+   "text": "| |---| JAMMA |---| |"
+  },
+  "nmk/nmk16.cpp": {
+   "basis": "comment",
+   "file": "nmk/nmk16.cpp",
+   "line": 10662,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "pce/uapce.cpp": {
+   "basis": "comment",
+   "file": "pce/uapce.cpp",
+   "line": 11,
+   "std": "jamma",
+   "text": "The system consists of a stock PC-Engine console, JAMMA interface board,"
+  },
+  "playmark/playmark.cpp": {
+   "basis": "comment",
+   "file": "playmark/playmark.cpp",
+   "line": 51,
+   "std": "jamma",
+   "text": "that plugs onto the main boards Jamma connector and provides extra I/O using the"
+  },
+  "playmark/sderby.cpp": {
+   "basis": "comment",
+   "file": "playmark/sderby.cpp",
+   "line": 1162,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "rare/kinst.cpp": {
+   "basis": "comment",
+   "file": "rare/kinst.cpp",
+   "line": 112,
+   "std": "jamma",
+   "text": "Note the 3 'high' buttons for player 1 and player 2 are on the JAMMA connector. JAMMA pins 25 & 26 top and bottom have no connection."
+  },
+  "sega/chihiro.cpp": {
+   "basis": "platform",
+   "file": "sega/chihiro.cpp",
+   "line": 1951,
+   "std": "jvs",
+   "text": "sega_837_13551_device &sega837(SEGA_837_13551(config, \"837_13551\", \"jvs_master\"));"
+  },
+  "sega/hikaru.cpp": {
+   "basis": "platform",
+   "file": "sega/hikaru.cpp",
+   "line": 1057,
+   "std": "jvs",
+   "text": "sega_837_13551_device& sega837(SEGA_837_13551(config, \"837_13551\", \"jvs\"));"
+  },
+  "sega/hshavoc.cpp": {
+   "basis": "comment",
+   "file": "sega/hshavoc.cpp",
+   "line": 31,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "sega/naomi.cpp": {
+   "basis": "platform",
+   "file": "sega/naomi.cpp",
+   "line": 2485,
+   "std": "jvs",
+   "text": "sega_837_13551_device &sega837(SEGA_837_13551(config, \"837_13551\", \"mie\"));"
+  },
+  "sega/segas32.cpp": {
+   "basis": "comment",
+   "file": "sega/segas32.cpp",
+   "line": 207,
+   "std": "jamma",
+   "text": "--| JAMMA |----| CNJ |----| JAMMA |--|"
+  },
+  "sega/stv.cpp": {
+   "basis": "comment",
+   "file": "sega/stv.cpp",
+   "line": 49,
+   "std": "jamma",
+   "text": "PORT-A 1st player inputs JAMMA (56P)"
+  },
+  "seibu/cabal.cpp": {
+   "basis": "comment",
+   "file": "seibu/cabal.cpp",
+   "line": 734,
+   "std": "jamma",
+   "text": "the third button, Pin 24 of the JAMMA connector ('JAMMA button 3')"
+  },
+  "seibu/seibuspi.cpp": {
+   "basis": "comment",
+   "file": "seibu/seibuspi.cpp",
+   "line": 612,
+   "std": "jamma",
+   "text": "SPI motherboard's JAMMA connector."
+  },
+  "seta/champbwl.cpp": {
+   "basis": "comment",
+   "file": "seta/champbwl.cpp",
+   "line": 107,
+   "std": "jamma",
+   "text": "Main Jamma Connector"
+  },
+  "seta/downtown.cpp": {
+   "basis": "comment",
+   "file": "seta/downtown.cpp",
+   "line": 87,
+   "std": "jamma",
+   "text": "| |--| JAMMA |--| |"
+  },
+  "seta/seta.cpp": {
+   "basis": "comment",
+   "file": "seta/seta.cpp",
+   "line": 508,
+   "std": "jamma",
+   "text": "On PCB near JAMMA connector is a small push button to reset the PCB."
+  },
+  "seta/simple_st0016.cpp": {
+   "basis": "comment",
+   "file": "seta/simple_st0016.cpp",
+   "line": 831,
+   "std": "jamma",
+   "text": "| JAMMA |"
+  },
+  "snk/neogeo.cpp": {
+   "basis": "platform",
+   "file": "snk/neogeo.cpp",
+   "line": 462,
+   "std": "mvs",
+   "text": "MVS JAMMA"
+  },
+  "snk/neopcb.cpp": {
+   "basis": "comment",
+   "file": "snk/neopcb.cpp",
+   "line": 111,
+   "std": "jamma",
+   "text": "* Jamma PCB sets of NeoGeo games"
+  },
+  "sony/zn.cpp": {
+   "basis": "comment",
+   "file": "sony/zn.cpp",
+   "line": 1900,
+   "std": "jamma",
+   "text": "You'll have to get the +5V for the guns from the JAMMA harness."
+  },
+  "subsino/subsino2.cpp": {
+   "basis": "comment",
+   "file": "subsino/subsino2.cpp",
+   "line": 3323,
+   "std": "jamma",
+   "text": "28x2 JAMMA edge connector"
+  },
+  "suna/suna8.cpp": {
+   "basis": "comment",
+   "file": "suna/suna8.cpp",
+   "line": 2982,
+   "std": "jamma",
+   "text": "Suna Electronics IND. CO., LTD 1989 KRB-16 60136-0081 Pinout = JAMMA"
+  },
+  "taito/invqix.cpp": {
+   "basis": "comment",
+   "file": "taito/invqix.cpp",
+   "line": 37,
+   "std": "jamma",
+   "text": "+-------------+ JAMMA Connector +-------------+"
+  },
+  "taito/kikikai.cpp": {
+   "basis": "comment",
+   "file": "taito/kikikai.cpp",
+   "line": 122,
+   "std": "jamma",
+   "text": "The final output of each PROM connects to the JAMMA connector pins for the red, green or blue video output."
+  },
+  "taito/taito_l.cpp": {
+   "basis": "comment",
+   "file": "taito/taito_l.cpp",
+   "line": 2201,
+   "std": "jamma",
+   "text": "custom 48CR-1 resistor arrays on the edge near the JAMMA connector."
+  },
+  "taito/tnzs.cpp": {
+   "basis": "comment",
+   "file": "taito/tnzs.cpp",
+   "line": 3490,
+   "std": "jamma",
+   "text": "This pcb uses 32-pin 27c1000d EPROMs for the 8 gfx ROMs, and the final K1100356A/J1100156A pcb uses 28 pin 23c1000 mask ROMs instead. Some capacitors near the jamma connector were moved as well."
+  },
+  "tch/wheelfir.cpp": {
+   "basis": "comment",
+   "file": "tch/wheelfir.cpp",
+   "line": 50,
+   "std": "jamma",
+   "text": "1x JAMMA connector"
+  },
+  "technos/chinagat.cpp": {
+   "basis": "comment",
+   "file": "technos/chinagat.cpp",
+   "line": 139,
+   "std": "jamma",
+   "text": "JAMMA - Standard JAMMA connector"
+  },
+  "technos/ddragon.cpp": {
+   "basis": "comment",
+   "file": "technos/ddragon.cpp",
+   "line": 1652,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "tecmo/gaiden.cpp": {
+   "basis": "comment",
+   "file": "tecmo/gaiden.cpp",
+   "line": 1471,
+   "std": "jamma",
+   "text": "1x JAMMA edge connector"
+  },
+  "toaplan/truxton2.cpp": {
+   "basis": "comment",
+   "file": "toaplan/truxton2.cpp",
+   "line": 28,
+   "std": "jamma",
+   "text": "truxton2 - Although the truxton2 PCB has only standard JAMMA mono audio output, and uses a YM3014B"
+  },
+  "unico/unico.cpp": {
+   "basis": "comment",
+   "file": "unico/unico.cpp",
+   "line": 1209,
+   "std": "jamma",
+   "text": "Zero Point 2 board JAMMA Pinout"
+  },
+  "vsystem/pspikes.cpp": {
+   "basis": "comment",
+   "file": "vsystem/pspikes.cpp",
+   "line": 3016,
+   "std": "jamma",
+   "text": "1x 28x2 JAMMA edge connector"
+  },
+  "williams/midvunit.cpp": {
+   "basis": "comment",
+   "file": "williams/midvunit.cpp",
+   "line": 1302,
+   "std": "jamma",
+   "text": "|P3 P4 |--| JAMMA |--|P8 P9 SN75176 SN75176 P10 ADC0844|"
+  },
+  "williams/midwunit.cpp": {
+   "basis": "comment",
+   "file": "williams/midwunit.cpp",
+   "line": 71,
+   "std": "jamma",
+   "text": "| |----| JAMMA |----| P9 P10 P11 P12 |"
+  },
+  "williams/vegas.cpp": {
+   "basis": "comment",
+   "file": "williams/vegas.cpp",
+   "line": 259,
+   "std": "jamma",
+   "text": "standard JAMMA connection"
+  }
+ },
+ "rejected": {
+  "atari/atetris.cpp": "the board does not take its power from the JAMMA edge (line 1008)",
+  "capcom/mitchell.cpp": "mixed: line 1985 says \"PCB is jamma standard while the original is mahjong pinout and require matrix inputs.\"",
+  "funworld/funworld.cpp": "mixed: line 5890 says \"- 1x 28x2 connector (maybe NOT jamma)\"",
+  "igs/igs017.cpp": "mixed: line 6341 says \"Uses JAMMA & common 10-way/18-way Mahjong pinout\"",
+  "igs/pgm.cpp": "its only description of a JAMMA connector (line 184) is the cable linking a second cabinet for players 3 and 4",
+  "itech/itech32.cpp": "one of its boards has its JAMMA edge reversed (line 253)",
+  "konami/hornet.cpp": "the only JAMMA line is a register comment",
+  "konami/kpython.cpp": "the board's JAMMA edge is marked not used (line 155)",
+  "konami/plygonet.cpp": "the only JAMMA line is a DIP switch comment about network IDs",
+  "konami/viper.cpp": "its analog controls connect to JAMMA pins (line 280), so a standard placement would be wrong for the driving games",
+  "konami/zr107.cpp": "the only JAMMA line is a DIP switch comment",
+  "misc/artmagic.cpp": "the JAMMA edge is described as not connected (line 1043)",
+  "misc/itgambl2.cpp": "mixed: line 503 says \"1x 28x2 edge connector (not JAMMA)\"",
+  "misc/itgambl3.cpp": "mixed: line 329 says \"1x JAMMA style edge connector\"",
+  "misc/plsonic4.cpp": "a switcher that JAMMA boards plug into, not a game board",
+  "namco/namcona1.cpp": "quiz games on this hardware reassign the JAMMA button pins (line 74)",
+  "namco/namcops2.cpp": "System 246/256 games mostly reach the cabinet through Namco JVS I/O boards; the JAMMA PCB at line 352 is one variant",
+  "namco/namcos10.cpp": "the only JAMMA line (1112) is a TODO about tracing the I/O, not a description of the board",
+  "pacman/pacman.cpp": "the JAMMA line (4405) is about one bootleg board, not the hardware the driver is for",
+  "pce/paranoia.cpp": "the JAMMA lines describe emulation work, not the board",
+  "pce/tourvis.cpp": "the JAMMA line is an emulation TODO, not a description of the board",
+  "sega/megadriv_sunmix.cpp": "mixed: line 116 says \"There is an edge connector, but it isn't JAMMA.\"",
+  "sega/system16.cpp": "the JAMMA line (2980) is about a single bootleg board",
+  "snk/hng64.cpp": "only one of its I/O boards has a JAMMA edge (line 242)",
+  "snk/snk.cpp": "mixed: line 3041 says \"// non-JAMMA system inputs\"",
+  "success/kurukuru.cpp": "the edge drawn at line 124 is a medal-game assignment, not JAMMA's",
+  "taito/cchance.cpp": "the driver says its pinout is likely non-JAMMA (line 11)",
+  "taito/superqix.cpp": "the board's edge is reversed relative to a standard JAMMA harness (line 57)",
+  "taito/taitojc.cpp": "mixed: line 179 says \"had a 28-way edge connector, which is actually almost JAMMA. The power/GND, video and\"",
+  "toaplan/sunwise.cpp": "only the S951060-VGP board is said to have a standard JAMMA connector (line 629)"
+ },
+ "version": "0.289"
+}
