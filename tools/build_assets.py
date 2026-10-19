@@ -16,6 +16,8 @@ versioned and published together.
   web/data/chips/<board>.json   designator -> part, function and revision
   web/data/rommaps.json         index of ROM maps recovered from MAME
   web/data/rommap/<machine>.json  ROM positions for one machine
+  web/data/layouts.json         index of the PCB layouts read from MAME's driver notes
+  web/data/layout/<dir>.json    those layouts, one file per MAME source directory
 """
 import json, os, shutil, glob, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -178,11 +180,48 @@ def publish_mame_only():
           f"{filled} CPU list(s) filled -- the corpus index was left untouched")
 
 
+def publish_layouts(out=OUT):
+    """Copy the PCB layouts read from MAME's driver notes into web/data/.
+
+    tools/extract_mame_layouts.py writes them to data/mame/; this publishes the
+    shards as they are and the index without its measurement block, which is
+    for the repository and not the reader. Returns (files, bytes).
+    """
+    src = os.path.join(ROOT, "data", "mame", "layouts.json")
+    if not os.path.exists(src):
+        return 0, 0
+    dst = os.path.join(out, "layout")
+    if os.path.isdir(dst):
+        shutil.rmtree(dst)          # a directory MAME no longer has must not linger
+    files = total = 0
+    for p in glob.glob(os.path.join(ROOT, "data", "mame", "layouts", "*.json")):
+        total += copy(p, os.path.join(dst, os.path.basename(p))); files += 1
+    rows = json.load(open(src))["layouts"]
+    keep = ("id", "src", "line", "name", "mfr", "year", "caption", "scope", "slugs",
+            "devices")
+    with open(os.path.join(out, "layouts.json"), "w") as f:
+        json.dump([{k: r[k] for k in keep if k in r} for r in rows], f,
+                  ensure_ascii=False, separators=(",", ":"))
+    total += os.path.getsize(os.path.join(out, "layouts.json")); files += 1
+    return files, total
+
+
+def publish_layouts_only():
+    """Publish just the PCB layouts. Same reasoning as the other targeted
+    publishers: a full rebuild needs data/index/, which a worktree does not
+    have, and would clobber the corpus."""
+    files, total = publish_layouts()
+    print(f"{files} PCB layout file(s), {total / 1e6:.1f} MB, refreshed in web/data/ -- "
+          f"the corpus index was left untouched")
+
+
 def main():
     if "--boards-only" in sys.argv:
         return publish_boards_only()
     if "--mame-only" in sys.argv:
         return publish_mame_only()
+    if "--layouts-only" in sys.argv:
+        return publish_layouts_only()
     if "--tables-only" in sys.argv:
         return publish_tables_only()
 
@@ -276,6 +315,9 @@ def main():
 
     for p in glob.glob(os.path.join(ROOT, "data", "rommap", "*.json")):
         total += copy(p, os.path.join(OUT, "rommap", os.path.basename(p))); files += 1
+
+    n, size = publish_layouts()
+    files += n; total += size
 
     print(f"{files:,} files, {total/1e6:.1f} MB -> web/data/")
     if files > 19000:

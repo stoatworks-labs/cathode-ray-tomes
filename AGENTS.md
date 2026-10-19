@@ -439,6 +439,80 @@ only their older data. The four machines with no CPU in the upstream list (`higu
 `systemy2`, `kof2002um` on Sega System Y2, and the Tandberg `tdv2115l`) have no CPU in MAME
 either -- they are not emulated -- but do have ROM sets or a driver, so none was empty.
 
+## PCB layouts from MAME's driver notes are a third asset, and the weakest
+
+Hundreds of MAME drivers carry an ASCII sketch of a board in a comment -- most of them the
+Guru's, drawn off real PCBs -- with a `Notes:` legend under it saying what each part is.
+For the makers whose designators are sequential (the harvest above is Atari-only because
+U34 does not say where U34 is), this is the widest licence-clean source of *where things
+sit*. `tools/extract_mame_layouts.py` reads them:
+
+    git clone --depth 1 --branch mame0289 --filter=blob:none --sparse \
+        https://github.com/mamedev/mame.git /tmp/mame
+    git -C /tmp/mame sparse-checkout set src/mame
+    python3 -I tools/extract_mame_layouts.py /tmp/mame    # -> data/mame/layouts{.json,/}
+    python3 tools/build_assets.py --layouts-only           # -> web/data/layout{s.json,/}
+
+A layout is the sketch verbatim (`art`), its devices -- label, designator where the label
+carries one (`SR02.F2` is at F2), kind, the legend's description, position as a fraction of
+the frame, and the source line each was read from -- and the layout's own provenance: driver
+file, lines, MAME tag and commit, licence, copyright holders. Pages are `/layouts` and
+`/layout/<dir>/<driver>/<n>`; a machine page links its own. **Never merge one into
+`boards/` or `data/rommap/`**: major devices only, positions are a character cell on a
+sketch, one reading of one board. The pages say "partial: major devices only" every time.
+
+At mame0289: 391 files mention a PCB layout; **16 are GPL-2.0+ or LGPL-2.1+ and are skipped**
+(taito_b, opwolf, naomi, hng64, raiden2, saturn ... -- the extractor reads `// license:` and
+only BSD-3-Clause and CC0 go in; `check_pages.py` fails the deploy on anything else). 1,003
+boards parsed; 950 in 319 drivers that have a machine on this site are published (32,544
+devices, 9,233 described by a legend, 3,507 at a position a romset file is named after).
+Reach, by the rule the machine page applies: **1,588 site machines show a layout** -- 398
+for their own set or its parent, 44 only through a clone's board, 1,146 only from the
+driver's general notes -- of 2,511 in a driver that has one. 1,352 of the 1,588 have no
+document, and 16 are Atari's, so this does reach the makers the harvest cannot: Konami 180,
+Namco 148, Sega 103, IGS 50, Capcom 49.
+
+How a layout is tied to a set (`scope`), strongest first: **set** -- the comment sits directly
+above that set's `ROM_START`, the Guru's habit; **title** -- a line just above the drawing *is*
+the title of a parent set in the same file ("Arkanoid" / "Taito 1986"); **driver** / **file**
+-- tied to no set, shown on every machine in the driver as "tied to no set". A set's clones
+come with it from the `GAME` macros. `layouts_for` in the extractor and `layoutsFor` in
+`app.js` are one rule written twice, so the measurement is what the pages do; change both.
+
+Traps, every one hit:
+
+- **A ruled table is shaped like a board.** Game lists (`triforce.cpp`), ROM-size grids
+  (`psikyosh.cpp`), Namco's jumper charts all have a frame and words. A table's rules run the
+  whole height -- but so do two boards drawn side by side (`mwarr.cpp`) and chips drawn as
+  tall outlines (`funworld.cpp`, `namcos23.cpp`). `is_table` needs the full-height rule *and*
+  table content: mixed-case words, a `-+-` junction, or fewer than six part-shaped words.
+- **A legend key of `*` matches everything.** Arkanoid's notes have `* - these NC pins ...`,
+  and as a wildcard it described the crystal, the volume pot and a DIP sheet as joystick
+  pins. A key has to carry two alphanumerics before it can be a glob.
+- **Text runs down the board's edge.** `|2` `|8` `|W` `|A` `|Y` is the 28-way connector.
+  Single characters stacked in one column are rejoined, but only with a letter in them: a
+  column of digits is the board's own grid numbering.
+- **Kind is the first thing a legend names**, not the first match in a fixed order:
+  `Mitsubishi M58725 2kBx8-bit SRAM (sound program RAM)` is RAM, and `palette` is not a PAL.
+  Where no legend speaks, `SR08.A1` -- a sticker and a socket -- is taken as a ROM and marked
+  as a guess; a match with the romset (`dumps_for`) settles it.
+- **A header that lists every game on a system board is not naming one.** Namco System 12's
+  header has twenty titles; matching the two nearest the sketch tied a shared motherboard to
+  Tekken 3. Title matching gives up past two matching lines.
+- **Captions walk up into the previous board's notes.** The lines above a sketch name it
+  ("Top board:", a PCB number) but only until a blank line, a paragraph or a legend.
+
+`check_pages.py` checks every published layout: permitted licence, full provenance, index
+and shards in step, and that each device's position lands on its own label in `art` -- the
+page lights up exactly that span, so a wrong offset would point confidently at the wrong
+word. `test_worker.mjs` has routing and content cases, including that a layout leaves the
+Worker with its licence, copyright and commit.
+
+The BSD licence asks that the copyright notice travel with what is reproduced; every layout
+page states the licence and the file's copyright holders and links the lines at the commit.
+`ATTRIBUTIONS.md` is generated in `stoatworks-backend`, so its MAME entry should mention these
+there. The shards cost 72 files (17,668 -> 17,740 under `web/`).
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
@@ -803,6 +877,12 @@ convention and legitimately uses G.
   logic pin for pin and the sound section part for part, not the whole sheet.
 - The full-corpus ingest was still running when this was written; `data/ingest-state.json`
   is the source of truth for how far it got.
+- **The MAME PCB layouts are a parser's reading of hand-drawn ASCII.** About fifteen were
+  read against their source by eye while the parser was built, and `check_pages.py` proves
+  each label sits where the page says; neither proves a label is a part or that a kind is
+  right. 7,503 devices are "other" (op-amps, drivers, regulators and words the patterns do
+  not know), and outline-drawn sketches (`kurukuru.cpp`, `funworld.cpp`) lose names split
+  across lines. Title-scoped layouts were spot-checked, not audited.
 
 ## Submissions — the one write path
 
