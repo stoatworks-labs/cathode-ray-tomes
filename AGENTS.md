@@ -912,8 +912,8 @@ Traps, all hit once:
 
 DICE (dice-libretro, GPL-3.0) emulates the CPU-less games by simulating every chip, so each
 game is a netlist -- `CHIP("A1", 7400)`, `CONNECTION("A1", 3, "B2", 4)` -- at the positions
-Atari's drawings use. `tools/import_dice.py` turns 15 of them into boards (`data/dice.json`
-says which, and why the other six are not), under the same rules as jtcores: GPL-3.0 on
+Atari's drawings use. `tools/import_dice.py` turns 16 of them into boards (`data/dice.json`
+says which, and why the other five are not), under the same rules as jtcores: GPL-3.0 on
 everything made from them, the source copied into `kicad/<slug>/` with DICE's LICENSE.txt
 and a NOTICE.md, and a page that says whose it is. There is no drawing, so the page carries
 the netlist instead of a schematic.
@@ -941,6 +941,14 @@ undo DICE's shortcuts or it publishes them as wiring:
 - **Where a board map read off the drawings exists, the two are compared** (`compare` in the
   manifest). Crash 'n Score's map names 38 positions and DICE agrees on 36; H10 (7404
   against 7414) and B8 are logged on the page as open questions, not settled.
+- **Hand-traced nets are compared pin for pin** (`compare_nets`, a script's `NETS` table read
+  with `ast` because the script itself wants pcbnew). Pong is the case: DICE agrees with its
+  map at 65 of 66 positions and with all three traced nets that join pins.
+- **Pong comes from DICE, not MAME.** MAME's `nl_pong.cpp` is gate-level -- it names gates
+  (`TTL_7400_NAND(ic_e4a, ...)`), not package pins -- so it cannot give pin-level nets; the
+  MAME-netlist work found only Tank is DIP-level. MAME is the cross-check instead, and on F1
+  it agrees with DICE (a 7493, the ball-speed counter) against the hand map's 7433. That is
+  logged on the Pong board, not settled: the map changes when the drawing is re-read.
 
 ## Structure detection
 
@@ -1166,9 +1174,9 @@ convention and legitimately uses G.
   those copies. Not checked: anything in them against a manual or a board -- they are
   jtcores' readings, published as such -- or how complete each is beyond what its sheet
   names say (five are flagged partial).
-- DICE boards: every CONNECTION in the 15 games is read, every wired pin of a part KiCad has
-  a symbol for exists on it, and Crash 'n Score agrees with its hand-read map at 36 of 38
-  positions. Not checked: that DICE's circuit is the board's -- it is an emulator's, and its
+- DICE boards: every CONNECTION in the 16 games is read, every wired pin of a part KiCad has
+  a symbol for exists on it, Crash 'n Score agrees with its hand-read map at 36 of 38
+  positions, and Pong at 65 of 66 and on all three hand-traced nets that join pins. Not checked: that DICE's circuit is the board's -- it is an emulator's, and its
   simplifications beyond the four undone here are not undone.
 
 **Assumed / not yet done:**

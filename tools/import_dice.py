@@ -476,7 +476,8 @@ def import_board(entry, cfg, dice):
     dump(os.path.join(ROOT, "data", "chips", slug + ".json"), chips)
 
     NOTES.clear()
-    conflicts = cross_check(entry, real) + [f"DICE wires {p}." for p in problems]
+    conflicts = cross_check(entry, real) + cross_check_nets(entry, netlist) \
+        + [f"DICE wires {p}." for p in problems]
     if helpers:
         NOTES.append(f"Parts DICE adds to model the circuit, not on the board: "
                      f"{', '.join(sorted(helpers, key=natural))}.")
@@ -540,6 +541,49 @@ def cross_check(entry, real):
                      f"positions it names, DICE agrees on {len(agree)}"
                      + (f" and disagrees on {len(both) - len(agree)}" if len(both) > len(agree) else "")
                      + f"; DICE names {len(set(real) - set(theirs))} the map does not.")
+    return out
+
+
+def cross_check_nets(entry, netlist):
+    """Where nets have been traced by hand here, compare them pin for pin.
+
+    `compare_nets` names a script holding a NETS table of {name: [(ref, pad)]}
+    with U-prefixed grid refs (tools/pong_signal_nets.py). It is read as data
+    -- the script itself wants pcbnew -- and a traced net agrees when DICE puts
+    every one of its pins on one net.
+    """
+    out = []
+    path = entry.get("compare_nets")
+    if not path:
+        return out
+    import ast
+    tree = ast.parse(open(os.path.join(ROOT, path)).read())
+    nets = next(ast.literal_eval(n.value) for n in tree.body if isinstance(n, ast.Assign)
+                and any(getattr(t, "id", None) == "NETS" for t in n.targets))
+    where = {}
+    for name, net in netlist["nets"].items():
+        for p in net["pins"]:
+            where[p] = name
+    joined = agree = named = 0
+    for name, pins in nets.items():
+        ours = [f"{ref[1:] if ref.startswith('U') else ref}.{pad}" for ref, pad in pins]
+        found = {p: where.get(p) for p in ours}
+        if any(n is None for n in found.values()):
+            out.append(f"Hand-traced {name}: DICE has nothing on "
+                       f"{', '.join(p for p, n in found.items() if n is None)}.")
+            continue
+        if len(ours) > 1:
+            joined += 1
+            if len(set(found.values())) == 1:
+                agree += 1
+            else:
+                out.append(f"Hand-traced {name} joins {', '.join(ours)}; DICE puts them on "
+                           f"{', '.join(sorted(set(found.values())))}.")
+        if name in found.values() or any(name in netlist["nets"][n]["aliases"] for n in found.values()):
+            named += 1
+    NOTES.append(f"Checked against the {len(nets)} nets traced by hand in {path}: of the "
+                 f"{joined} that join pins, DICE agrees on {agree}; DICE gives {named} of the "
+                 f"{len(nets)} the same signal name.")
     return out
 
 
