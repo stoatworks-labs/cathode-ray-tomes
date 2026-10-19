@@ -150,6 +150,15 @@ if (withConflicts) CONTENT.push([
   `serves ${withConflicts.slug}'s ${withConflicts.conflicts.length} conflicts`,
 ]);
 
+// Most machines have no document, and MAME's account of the board -- its ROM
+// set and driver source -- is the whole page for them. A targeted publisher
+// puts it there (build_assets.py --mame-only); a full rebuild must too.
+CONTENT.push([
+  "/api/machine/88games",
+  (body) => (body.mame?.roms || []).length > 0 && !!body.mame?.src,
+  "an undocumented machine carries MAME's ROM set and driver source",
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {

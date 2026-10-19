@@ -120,6 +120,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 24px 16px 80px; }
    without competing with the part number, which is what people came for. */
 .badge.src { font-size: 10px; color: var(--ink-3); border-style: dashed; }
 .badge.warn { border-color: var(--warn); color: var(--warn); }
+.badge.none { color: var(--ink-3); border-style: dashed; }
 /* Console or handheld. Only the minority carries one, so it reads as the
    exception it is rather than labelling 7,812 arcade rows with "arcade". */
 .badge.kind { text-transform: capitalize; border-color: var(--ok); color: var(--ok); }
@@ -139,6 +140,10 @@ table.dip th, table.dip td { text-align: left; padding: 6px 10px; border-bottom:
 table.dip th { color: var(--ink-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
 table.dip td.sw { font-family: var(--mono); color: var(--ink-2); }
 table.dip tr.def td { color: var(--ok); font-weight: 600; }
+table.roms tr.region td { color: var(--ink-3); font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: .06em; padding-top: 12px; }
+table.roms td.meta { color: var(--ink-3); font-size: 13px; }
+details.panel > summary { cursor: pointer; color: var(--accent); }
 
 /* ---- reader ---- */
 .reader { display: grid; grid-template-columns: 190px 1fr; gap: 20px; align-items: start; }

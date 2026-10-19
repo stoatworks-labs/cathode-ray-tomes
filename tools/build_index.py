@@ -28,6 +28,8 @@ anyway. The record therefore carries a `machines` list alongside its primary
 import json, os, re, hashlib, sys, unicodedata
 from collections import Counter
 
+import mame_data
+
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW     = os.path.join(ROOT, "data", "machines.raw.json")
 SYSTEMS = os.path.join(ROOT, "data", "systems.json")
@@ -210,6 +212,16 @@ def main():
     if missing:
         print(f"WARNING  overlay names {len(missing)} unknown machine slug(s): "
               + ", ".join(sorted(missing)), file=sys.stderr)
+
+    # MAME's own account of each machine -- ROM files, driver source, parent
+    # set -- from the XML MAME publishes (tools/import_mame.py). For most of the
+    # machines here it is all there is until a document turns up.
+    by_slug = {m["s"]: m for m in out_machines}
+    rom_to_slug = {rec["rom"]: slug for slug, rec in detail.items() if rec.get("rom")}
+    for slug, rec in detail.items():
+        mame_data.apply(rec, rom_to_slug)
+        if not by_slug[slug]["c"] and rec.get("cpu"):
+            by_slug[slug]["c"] = [c["n"] for c in rec["cpu"]][:3]
 
     os.makedirs(os.path.join(OUT, "index"), exist_ok=True)
     os.makedirs(os.path.join(OUT, "machine"), exist_ok=True)

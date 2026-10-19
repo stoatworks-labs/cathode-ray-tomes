@@ -21,6 +21,7 @@ about your board revision.
 | Documents digitised | 2,435 of 2,448 (100% block structure) |
 | Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
+| MAME ROM sets | 7,444 machines · 90,264 ROM files (MAME 0.289) — the whole page for the 6,427 with no document |
 | Nets traced | Battlezone Math Box in full (186 nets, 845 pins) · Tempest Auxiliary in full (216 nets, 1,036 pins), both redrawn in KiCad · Pong 8 of ~200 |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |

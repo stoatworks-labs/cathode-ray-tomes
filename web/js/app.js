@@ -457,7 +457,7 @@ async function home() {
         ${m.t ? `<span class="badge kind">${esc(m.t)}</span>` : ""}
         ${boardMachines.has(m.s) ? '<span class="badge kicad">KiCad</span>' : ""}
         ${m.k ? `<span class="badge doc">${m.k} schematic${m.k > 1 ? "s" : ""}</span>` : ""}
-        ${m.d ? `<span class="badge">${m.d} doc${m.d > 1 ? "s" : ""}</span>` : ""}
+        ${m.d ? `<span class="badge">${m.d} doc${m.d > 1 ? "s" : ""}</span>` : (m.t ? "" : '<span class="badge none">no docs yet</span>')}
         ${m.p ? `<span class="badge">${m.p} ${m.t ? "board rev" : "DIP"}${m.p > 1 && m.t ? "s" : ""}</span>` : ""}
       </a>`).join("")}</div>` : '<div class="empty">Nothing matches that search.</div>')
       + pagerHtml(page, data.total);
@@ -495,6 +495,11 @@ async function machine(slug) {
       ${m.rom ? ` · <code>${esc(m.rom)}</code>` : ""}
       ${isConsole ? ` · <span class="badge kind">${esc(m.kind)}</span>` : ""}</p>
 
+    ${!(m.docs || []).length && !isConsole ? `<div class="note"><b>No documentation yet.</b>
+      Nothing in the collection covers this machine. What's here comes from MAME${m.mame ? ` ${esc(m.mame.v)}` : ""}:
+      the chips, the controls, the DIP switches${m.mame && (m.mame.roms || []).length ? " and the ROMs that make up the set" : ""}.
+      If you have a manual, a schematic or a wiring diagram for it, <a href="/submit">send it in</a>.</div>` : ""}
+
     ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
       ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a hand-built KiCad
       project with a schematic and bill of materials —
@@ -516,6 +521,8 @@ async function machine(slug) {
         <dd>${esc(b.note || "")}</dd>`).join("")}
       </dl></div>` : ""}
 
+    ${romSection(m.mame)}
+
     <div id="power"></div>
     <div id="sigs"></div>
     <div id="diag"></div>
@@ -532,6 +539,49 @@ async function machine(slug) {
           <td>${esc(o.n)}${o.n === b.def ? " (default)" : ""}</td>
           <td class="sw">${esc(o.sw || "")}</td></tr>`).join("")}
         </tbody></table></div>`).join("")}` : ""}`;
+}
+
+/** The ROM set as MAME lists it, by memory region, with the driver source the
+    set is defined in. For most machines here this is the only first-hand
+    account of the board there is, so it is shown in full rather than counted. */
+function romSection(mm) {
+  if (!mm || !((mm.roms || []).length || (mm.disks || []).length || mm.src)) return "";
+  const roms = mm.roms || [], disks = mm.disks || [];
+  const size = (s) => s >= 1048576 ? `${+(s / 1048576).toFixed(2)} MB`
+                    : s >= 1024 ? `${+(s / 1024).toFixed(1)} KB` : `${s} B`;
+  const note = (r) => [r.st === "baddump" ? "bad dump" : r.st === "nodump" ? "not dumped" : "",
+                       r.b ? `BIOS ${r.b}` : "", r.m ? "shared with parent set" : ""]
+                      .filter(Boolean).join(" · ");
+  const tag = "mame" + String(mm.v || "").replace(".", "");
+  const src = mm.src ? `<a href="https://github.com/mamedev/mame/blob/${esc(tag)}/src/mame/${esc(mm.src)}"
+      target="_blank" rel="noopener"><code>${esc(mm.src)}</code> ↗</a>` : "";
+  const parent = mm.parent ? (mm.parentSlug
+      ? `<a href="/machine/${esc(mm.parentSlug)}"><code>${esc(mm.parent)}</code></a>`
+      : `<code>${esc(mm.parent)}</code>`) : "";
+  const regions = new Map();
+  roms.forEach((r) => {
+    const k = r.r || "—";
+    if (!regions.has(k)) regions.set(k, []);
+    regions.get(k).push(r);
+  });
+  const total = roms.reduce((a, r) => a + (r.s || 0), 0);
+  const table = `<table class="dip roms"><thead><tr><th>File</th><th>Size</th><th>CRC32</th><th></th></tr></thead>
+    <tbody>${[...regions.entries()].map(([reg, list]) => `
+      <tr class="region"><td colspan="4">${esc(reg)}</td></tr>
+      ${list.map((r) => `<tr><td class="sw">${esc(r.n)}</td><td>${size(r.s || 0)}</td>
+        <td class="sw">${esc(r.c || "—")}</td><td class="meta">${esc(note(r))}</td></tr>`).join("")}`).join("")}
+    ${disks.map((d) => `<tr><td class="sw">${esc(d.n)}.chd</td><td>disk image</td><td class="sw">—</td>
+      <td class="meta">${esc([d.r ? `region ${d.r}` : "", d.st === "nodump" ? "not dumped" : ""].filter(Boolean).join(" · "))}</td></tr>`).join("")}
+    </tbody></table>`;
+  return `<h2>ROM set (MAME ${esc(mm.v || "")})</h2>
+    <p class="sub">${roms.length} ROM file${roms.length === 1 ? "" : "s"}, ${size(total)} in all,
+      across ${regions.size} region${regions.size === 1 ? "" : "s"}${disks.length ? `, plus ${disks.length} disk image${disks.length === 1 ? "" : "s"}` : ""}.
+      File names often end in the chip's position on the board.
+      ${src ? `Defined in ${src} — MAME's driver source, which often describes the board itself.` : ""}
+      ${parent ? ` A clone of ${parent}.` : ""}</p>
+    ${roms.length || disks.length ? (roms.length > 24
+      ? `<details class="panel"><summary>Show all ${roms.length} ROM files</summary>${table}</details>`
+      : `<div class="panel">${table}</div>`) : ""}`;
 }
 
 /** Upstream filenames carry the real title but in filesystem form. */

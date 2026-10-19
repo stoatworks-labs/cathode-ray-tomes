@@ -410,6 +410,35 @@ Three traps, all of which cost a wrong measurement before they were found:
   4016B is the CD4016B, AM8304B is the LS245 — or a third of the
   "disagreements" are two names for one part.
 
+## MAME's account of each machine
+
+6,427 of the 7,823 machines have no document. Their pages are kept, and listed, as
+placeholders: everything on them comes from MAME, and the page says so ("No documentation
+yet", with a link to the submission form), as does a muted badge in the browse list. Allan's
+call (2026-10-19): no machine is removed for lacking documents, and the non-arcade entries
+MAME carries (plug-and-play TV games, chess computers, Psion PDAs, fruit machines) stay too.
+
+The CPU, sound, display, input and DIP data came with arcadertfm's machine list. The ROM set
+did not, so it comes from the XML MAME publishes with every release:
+
+    curl -LO https://github.com/mamedev/mame/releases/download/mame0289/mame0289lx.zip   # 19 MiB
+    unzip mame0289lx.zip                                                                  # 326 MB
+    python3 -I tools/import_mame.py mame0289.xml   # -> data/mame/machines.json (6 MB, committed)
+    python3 tools/build_assets.py --mame-only      # onto web/data/machine/*.json
+
+`import_mame.py` keeps, per romset on the site: the driver source file (linked on the page
+at the release tag; MAME's driver comments often describe the PCB, and some 380 driver
+files carry a "PCB Layout" sketch of where the chips sit), the parent set, every ROM file (name, size, CRC32, region, bad/no dump,
+BIOS, merge) and disks. `tools/mame_data.py` puts it on a detail record; `build_index.py`
+and `--mame-only` both call it, so a full rebuild and a targeted one agree. Never commit
+the XML.
+
+At 0.289: 7,444 of the site's 7,450 romsets match, with 90,264 ROM files. Six sets are gone
+from that MAME (`dreamcha`, `gradiusb`, `hanaren2`, `twinbeeb`, `unkalba`, `unkamst`) and keep
+only their older data. The four machines with no CPU in the upstream list (`higurashi`,
+`systemy2`, `kof2002um` on Sega System Y2, and the Tandberg `tdv2115l`) have no CPU in MAME
+either -- they are not emulated -- but do have ROM sets or a driver, so none was empty.
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;

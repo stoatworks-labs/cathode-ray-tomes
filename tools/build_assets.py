@@ -21,6 +21,7 @@ import json, os, shutil, glob, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from build_drawings import apply_flags  # noqa: E402
 from page_tables import apply_tables, load as load_tables  # noqa: E402
+import mame_data  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "web", "data")
@@ -142,9 +143,46 @@ def publish_tables_only():
           f"web/data/ — the corpus index was left untouched")
 
 
+def publish_mame_only():
+    """Put MAME's account of each machine on the published machine pages.
+
+    The same reasoning as the other targeted publishers: a full rebuild needs
+    data/index/, which a worktree does not have, and would clobber the corpus.
+    This touches only web/data/machine/ and the CPU column of machines.json,
+    which a machine with no upstream CPU data gets from MAME's chip list.
+    """
+    path = os.path.join(OUT, "machines.json")
+    machines = json.load(open(path))
+    by = {m["s"]: m for m in machines}
+    changed = filled = 0
+    pages = sorted(glob.glob(os.path.join(OUT, "machine", "*.json")))
+    rom_to_slug = {}
+    for p in pages:
+        rec = json.load(open(p))
+        if rec.get("rom"):
+            rom_to_slug[rec["rom"]] = rec["slug"]
+    for p in pages:
+        rec = json.load(open(p))
+        if not mame_data.apply(rec, rom_to_slug):
+            continue
+        with open(p, "w") as f:
+            json.dump(rec, f, separators=(",", ":"))
+        changed += 1
+        m = by.get(rec.get("slug"))
+        if m is not None and not m.get("c") and rec.get("cpu"):
+            m["c"] = [c["n"] for c in rec["cpu"]][:3]
+            filled += 1
+    with open(path, "w") as f:
+        json.dump(machines, f, separators=(",", ":"))
+    print(f"{changed} machine page(s) given MAME {mame_data.load().get('version')} data, "
+          f"{filled} CPU list(s) filled -- the corpus index was left untouched")
+
+
 def main():
     if "--boards-only" in sys.argv:
         return publish_boards_only()
+    if "--mame-only" in sys.argv:
+        return publish_mame_only()
     if "--tables-only" in sys.argv:
         return publish_tables_only()
 
