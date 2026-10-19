@@ -69,6 +69,14 @@ const CASES = [
   ["/api/signals/nosuchboard",        404, "unknown board signals"],
   ["/api/diagnostics/does-not-exist", 200, "diagnostics answer [] for unknown"],
   ["/api/rommap/does-not-exist",      404, "unknown ROM map"],
+  ["/api/wiring",                     200, "connector library"],
+  ["/api/layouts",                    200, "PCB layout index"],
+  ["/api/layouts/capcom/1942",        200, "a driver's PCB layouts"],
+  ["/api/layouts/capcom/nosuchdriver", 404, "a driver with no PCB layout"],
+  ["/api/layouts/nosuchdir/1942",     404, "a directory with no PCB layout"],
+  ["/api/layout/capcom/1942/1",       200, "one PCB layout"],
+  ["/api/layout/capcom/1942/99",      404, "unknown PCB layout"],
+  ["/api/layout/capcom/1942",         404, "a layout needs its number"],
   ["/api/stats",                      200, "stats"],
   ["/api/machines?kind=console",      200, "console filter"],
   ["/pdf/d282ad622596",               302, "healthy document redirects upstream"],
@@ -89,6 +97,9 @@ const CASES = [
   ["/board/does-not-exist",           404, "unknown board page"],
   ["/rom/centiped",                   200, "known ROM map page"],
   ["/rom/does-not-exist",             404, "unknown ROM map page"],
+  ["/layouts",                        200, "a route that names nothing"],
+  ["/layout/capcom/1942/1",           200, "known PCB layout page"],
+  ["/layout/capcom/1942/99",          404, "unknown PCB layout page"],
   ["/search",                         200, "a route that names nothing"],
   ["/boards",                         200, "a route that names nothing"],
   ["/about",                          200, "a route that names nothing"],
@@ -181,6 +192,47 @@ if (imported) {
   ]);
 }
 
+// The generated wiring view rides on the machine record and is drawn from
+// /api/wiring. Both halves have to be there, and the exclusions have to hold:
+// a gambling board on a "JAMMA edge" wires its own assignment onto it, and a
+// view that placed a joystick there would be confidently wrong.
+CONTENT.push([
+  "/api/machine/sf2",
+  (body) => body.wiring?.std === "cps1" && body.wiring.use.includes("p1.b3")
+    && body.wiring.miss?.some((m) => m.startsWith("Player 1 button")),
+  "Street Fighter II: CPS-1 edge, kick buttons listed as not placed",
+]);
+CONTENT.push([
+  "/api/machine/goldstar",
+  (body) => !!body.slug && !body.wiring,
+  "a gambling board gets no generated wiring view",
+]);
+CONTENT.push([
+  "/api/wiring",
+  (body) => body.connectors?.jamma?.rows?.length === 28
+    && (body.standards?.cps2?.variants || []).length === 2
+    && Object.values(body.connectors).every((c) => (c.sources || []).every((s) => body.sources[s])),
+  "56-way JAMMA edge, both CPS-2 CN5 wirings, every cited source defined",
+]);
+
+// A PCB layout is reproduced from MAME's source, and the BSD licence it is
+// reproduced under asks that the notice travel with it. A layout that arrives
+// without its licence, copyright holders or the commit it was read at is one the
+// page cannot credit, so check they leave the Worker -- and that only a
+// permissive licence ever does.
+CONTENT.push([
+  "/api/layout/capcom/1942/1",
+  (body) => ["BSD-3-Clause", "CC0-1.0"].includes(body.licence) && !!body.copyright
+    && /^[0-9a-f]{40}$/.test(body.commit) && body.devices.length > 0
+    && body.devices.every((d) => d.line >= body.line && d.line <= body.end),
+  "a layout carries its licence, copyright and commit, and its devices their lines",
+]);
+CONTENT.push([
+  "/api/layouts/capcom/1942",
+  (body) => body.length > 0 && body.every((l) => !l.art && !l.devices && l.count > 0),
+  "a driver's list is a summary, without the art",
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {
@@ -205,7 +257,9 @@ for (const [path, ok, why] of CONTENT) {
 // still served, and for seven weeks no page read it. There is no browser here, so
 // this only asserts that the script still reads the fields; it cannot see
 // whether they render well.
-const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines"];
+// The wiring view's warning and its not-placed list are what stop a generated
+// diagram being taken for a traced one; they get the same guard.
+const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines", "l.licence", "l.copyright", "PARTIAL_NOTE", "w.miss", "Generated, not read."];
 const appJs = await (await worker.fetch(
   new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
 for (const field of APP_READS) {

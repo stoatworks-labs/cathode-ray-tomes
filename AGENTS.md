@@ -439,6 +439,172 @@ only their older data. The four machines with no CPU in the upstream list (`higu
 `systemy2`, `kof2002um` on Sega System Y2, and the Tandberg `tdv2115l`) have no CPU in MAME
 either -- they are not emulated -- but do have ROM sets or a driver, so none was empty.
 
+## Generated wiring views
+
+Only 51 machines have a whole document filed as a wiring diagram, and nothing open maps games
+to harnesses. So 1,153 machine pages carry a wiring view that is **generated, not read**: a
+connector standard with the game's own controls placed on it. The page says so before any
+pin, says what it leaves out (wire colours, lamps, the coin door's own wiring, the power
+interconnect), and lists every control it could not place.
+
+    data/wiring/library.json          connector standards, by hand, every pin table cited
+    tools/check_wiring.py <mame>      the library against the MAME tables it came from
+    tools/tag_harness.py <mame>       -> data/wiring/drivers.json: driver -> standard + evidence
+    tools/wiring_data.py              generated view per machine; wiring pages in the corpus
+    python3 tools/build_assets.py --wiring-only    onto web/data/machine/*.json + web/data/wiring.json
+
+`<mame>` is a sparse 0.289 checkout of `src/mame` (275 MB, never committed); the commands to
+make one are in `tag_harness.py`. `build_index.py` applies the views on a full rebuild, and the
+full `build_assets.py` links the wiring pages last, once the documents are written.
+
+**The JAMMA edge is read from the standard itself.** jamma-docs cites it and archive.org has
+it: *Game Machine* no. 275, 1 January 1986, pp. 16-17, Table 1 (enacted 26 November 1985).
+Read pin by pin from the scan, it disagrees with the community tables in two places, and both
+are logged on the connector rather than smoothed over: pins 11/M are audio (+)/audio (GND), not
+NC; and 25/c and 26/d are *spare inputs*, with 27/e GND. Buttons beyond three are therefore never
+placed on a generic JAMMA edge -- jamma-docs puts button 6 on 27/e, which is a short on a board
+that grounds it, as every MAME table says boards do.
+
+**What `check_wiring.py` proves.** Every connector taken from a MAME table (CPS-1, CPS-2 and both
+its CN5 wirings, CPS-3 and its CN5, both Neo-Geo edges, the Konami 18-way) is re-read from the
+driver comment and compared pin for pin: no differences except the logged conflicts. The 1986
+edge is then voted against eleven independent JAMMA tables in MAME's comments plus a measured
+cabinet in arcade-docs: on 50 of 56 pins no table names a different standard signal. The six
+that differ are 11/M (Lethal Justice puts its right speaker there) and R, 14, S, 15, which one
+bootleg in `sfkick.cpp` uses for joystick lines. Parsing the tables is fiddly -- each driver
+draws them differently, and cps3.cpp's header labels share lines with the JAMMA table -- so
+read the parser before trusting a new table to it.
+
+**Conflicts logged, not decided:**
+- CPS-2 CN5 29/30: cps2.cpp has volume down/up, the CAPCOM-H2 sheet up/down.
+- CPS-3 CN5 9, 15, 19, 21, 23: cps3.cpp orders the kicks the other way round from cps2.cpp, and
+  the CAPCOM-H2 sheet (which says it covers CPS-2 and CPS-III) agrees with cps2.cpp. Drawn as
+  cps3.cpp, struck through on the page.
+- MVS 26: neogeo.cpp says "data input", NeoGeoDev unused. Not placed.
+- The MVS has no kick harness, whatever the brief that started this said: button D is on 25/c in
+  both sources. jamma-docs mentions a 15-pin MVS kick connector with no pin map; nothing confirms it.
+
+**Tagging is per driver file, and the page says which kind it got.** `platform` (8 drivers,
+reviewed by hand): a pin table in the driver (cps2, cps3, neogeo, shaolins), the CPS-1 edge
+from kenseim.cpp (a CPS-1 board in a mole cabinet; cps1.cpp has no table), or a Sega 837-13551
+JVS board instantiated in the machine config (naomi, chihiro, hikaru) -- code, not a comment.
+`comment` (95 drivers): the driver's comments say its board has a JAMMA edge ("1x JAMMA edge
+connector", a PCB layout with JAMMA at the edge, "Pinout = JAMMA"), quoted on the page with a
+link to the line. A file with any line saying something is *not* JAMMA is left out; 30 drivers
+are left out in all, each with its reason in `drivers.json` -- System 246 because its games
+mostly run through Namco JVS I/O, Viper because its pots sit on JAMMA pins, PGM because its only
+JAMMA line is about the 4-player link cable. Three filters on top, all in `wiring_data.py`:
+comment tags only from 1985 on (a driver that mentions a JAMMA bootleg also holds the 1980
+original), no gambling, mahjong, hanafuda, keyboard, keypad or mouse games (their "JAMMA edge"
+carries their own assignment), and no CPS Changer.
+
+**Coverage at 0.289:** 1,153 machines -- 674 generic JAMMA by comment, and by platform 230 JVS
+(NAOMI, Chihiro, Hikaru), 163 Neo-Geo MVS, 40 CPS-2 (35 kick wiring, 5 on the 3-4 player CN5),
+38 CPS-1, 7 CPS-3 and 1 Konami 18-way. 711 have every control placed; the rest list what is
+not (mostly a fourth button on a generic edge, then light guns, analog sticks, pedals). The
+estimate this started from was a floor of 555 on known platforms; the platform count is 479
+because Sega PC and the CPS-1-like boards turned out to have no pin table to tag them from.
+
+**Not in the library, and why.** Irem: no open pin table found. Sega JVS "Type 4": none either;
+the Type 1 board (837-13551) is drawn in full, the Type 2 (837-13844) and the JVS-to-JAMMA board
+(838-13683) only as far as naomi.cpp names their pins. The CPS-1 kick connector for Street
+Fighter II: no open source gives its map, so kicks are listed as not placed. The JVS PDF and the
+CAPCOM-H2 sheet are linked, never hosted, and KLOV was not used.
+
+**The Konami 18-way is checked against a manual.** shaolins.cpp is the only open table, so only
+its games are tagged. Kicker's own conversion kit manual is in the collection, and its harness
+page (scan p. 8) agrees on all 36 positions. It letters the solder side A-V and numbers the parts
+side 1-18, like JAMMA; the library uses those names, not MAME's A1-A18/B1-B18.
+
+**Wiring pages already in the corpus.** `wiring_data.page_kind` flags a published page when a
+heading near its top names a wiring diagram, harness or pin-out *and* the page shows it (wire
+colours, a solder/parts side, a drawing's score), or when six or more two-colour wire codes
+(WHT-BLK) sit on a drawing or pin table. 350 pages in 250 documents, linked from 204 machine
+pages above the generated view, because they were drawn for the machine. A hand-read sample of
+50 found two false hits, troubleshooting tables quoting wire colours, which are now excluded.
+
+Traps:
+- **A loader that finds its box before awaiting finds nothing.** `machine()` starts the loaders
+  before it writes the page; `loadWiring` must await something first even when the library is
+  cached, or the section silently never appears on the second machine a reader opens.
+- **The browser holds API JSON for five minutes**, and `index()` memoises per isolate. After
+  republishing, restart `dev_server.mjs` and fetch with `cache: 'reload'` before believing the page.
+- **A pin a game does not use is greyed, never hidden.** A harness still has to know it is there.
+
+## PCB layouts from MAME's driver notes are a third asset, and the weakest
+
+Hundreds of MAME drivers carry an ASCII sketch of a board in a comment -- most of them the
+Guru's, drawn off real PCBs -- with a `Notes:` legend under it saying what each part is.
+For the makers whose designators are sequential (the harvest above is Atari-only because
+U34 does not say where U34 is), this is the widest licence-clean source of *where things
+sit*. `tools/extract_mame_layouts.py` reads them:
+
+    git clone --depth 1 --branch mame0289 --filter=blob:none --sparse \
+        https://github.com/mamedev/mame.git /tmp/mame
+    git -C /tmp/mame sparse-checkout set src/mame
+    python3 -I tools/extract_mame_layouts.py /tmp/mame    # -> data/mame/layouts{.json,/}
+    python3 tools/build_assets.py --layouts-only           # -> web/data/layout{s.json,/}
+
+A layout is the sketch verbatim (`art`), its devices -- label, designator where the label
+carries one (`SR02.F2` is at F2), kind, the legend's description, position as a fraction of
+the frame, and the source line each was read from -- and the layout's own provenance: driver
+file, lines, MAME tag and commit, licence, copyright holders. Pages are `/layouts` and
+`/layout/<dir>/<driver>/<n>`; a machine page links its own. **Never merge one into
+`boards/` or `data/rommap/`**: major devices only, positions are a character cell on a
+sketch, one reading of one board. The pages say "partial: major devices only" every time.
+
+At mame0289: 391 files mention a PCB layout; **16 are GPL-2.0+ or LGPL-2.1+ and are skipped**
+(taito_b, opwolf, naomi, hng64, raiden2, saturn ... -- the extractor reads `// license:` and
+only BSD-3-Clause and CC0 go in; `check_pages.py` fails the deploy on anything else). 1,003
+boards parsed; 950 in 319 drivers that have a machine on this site are published (32,544
+devices, 9,233 described by a legend, 3,507 at a position a romset file is named after).
+Reach, by the rule the machine page applies: **1,588 site machines show a layout** -- 398
+for their own set or its parent, 44 only through a clone's board, 1,146 only from the
+driver's general notes -- of 2,511 in a driver that has one. 1,352 of the 1,588 have no
+document, and 16 are Atari's, so this does reach the makers the harvest cannot: Konami 180,
+Namco 148, Sega 103, IGS 50, Capcom 49.
+
+How a layout is tied to a set (`scope`), strongest first: **set** -- the comment sits directly
+above that set's `ROM_START`, the Guru's habit; **title** -- a line just above the drawing *is*
+the title of a parent set in the same file ("Arkanoid" / "Taito 1986"); **driver** / **file**
+-- tied to no set, shown on every machine in the driver as "tied to no set". A set's clones
+come with it from the `GAME` macros. `layouts_for` in the extractor and `layoutsFor` in
+`app.js` are one rule written twice, so the measurement is what the pages do; change both.
+
+Traps, every one hit:
+
+- **A ruled table is shaped like a board.** Game lists (`triforce.cpp`), ROM-size grids
+  (`psikyosh.cpp`), Namco's jumper charts all have a frame and words. A table's rules run the
+  whole height -- but so do two boards drawn side by side (`mwarr.cpp`) and chips drawn as
+  tall outlines (`funworld.cpp`, `namcos23.cpp`). `is_table` needs the full-height rule *and*
+  table content: mixed-case words, a `-+-` junction, or fewer than six part-shaped words.
+- **A legend key of `*` matches everything.** Arkanoid's notes have `* - these NC pins ...`,
+  and as a wildcard it described the crystal, the volume pot and a DIP sheet as joystick
+  pins. A key has to carry two alphanumerics before it can be a glob.
+- **Text runs down the board's edge.** `|2` `|8` `|W` `|A` `|Y` is the 28-way connector.
+  Single characters stacked in one column are rejoined, but only with a letter in them: a
+  column of digits is the board's own grid numbering.
+- **Kind is the first thing a legend names**, not the first match in a fixed order:
+  `Mitsubishi M58725 2kBx8-bit SRAM (sound program RAM)` is RAM, and `palette` is not a PAL.
+  Where no legend speaks, `SR08.A1` -- a sticker and a socket -- is taken as a ROM and marked
+  as a guess; a match with the romset (`dumps_for`) settles it.
+- **A header that lists every game on a system board is not naming one.** Namco System 12's
+  header has twenty titles; matching the two nearest the sketch tied a shared motherboard to
+  Tekken 3. Title matching gives up past two matching lines.
+- **Captions walk up into the previous board's notes.** The lines above a sketch name it
+  ("Top board:", a PCB number) but only until a blank line, a paragraph or a legend.
+
+`check_pages.py` checks every published layout: permitted licence, full provenance, index
+and shards in step, and that each device's position lands on its own label in `art` -- the
+page lights up exactly that span, so a wrong offset would point confidently at the wrong
+word. `test_worker.mjs` has routing and content cases, including that a layout leaves the
+Worker with its licence, copyright and commit.
+
+The BSD licence asks that the copyright notice travel with what is reproduced; every layout
+page states the licence and the file's copyright holders and links the lines at the commit.
+`ATTRIBUTIONS.md` is generated in `stoatworks-backend`, so its MAME entry should mention these
+there. The shards cost 72 files (17,668 -> 17,740 under `web/`).
+
 ## The Pong board
 
 `tools/build_pong_pcb.py` builds the layout from assembly drawing A001433 Rev E;
@@ -875,6 +1041,13 @@ convention and legitimately uses G.
   where each is on the sheet. The bar for a redraw is 0 *unexplained* ERC errors.
   Not checked against a board: the B1/BEGIN conflict, the 4th printing's K3, R58 and C39
   readings, and which spinner edge pins carry clock and which direction (inferred).
+- Wiring library: the JAMMA edge read pin by pin from the 1986 standard's Table 1 and voted
+  against twelve independent tables (`check_wiring.py`); every MAME-derived connector re-read
+  from its driver with no differences beyond the logged conflicts; the Konami 18-way agreeing
+  on all 36 positions with Kicker's manual. The wiring section was looked at in a browser on
+  CPS-1, CPS-2 (both CN5 wirings), CPS-3, MVS (both boards), NAOMI, Konami and generic JAMMA
+  pages at desktop width in the dark theme, and on a generic JAMMA page at phone width in the
+  light theme (no sideways scroll).
 
 - jtcores boards: every copied sheet under `kicad/<slug>/` matches upstream at the pinned
   commit (`import_jtcores.py --verify`), and each board's netlist is KiCad's own export of
@@ -887,6 +1060,11 @@ convention and legitimately uses G.
   simplifications beyond the four undone here are not undone.
 
 **Assumed / not yet done:**
+- **Every generated wiring view is generated.** None of the 1,153 has been checked against
+  that game's own wiring diagram; the standard is right for the platform, and the game's
+  controls come from MAME. The 674 comment-tagged ones rest on one line in a driver that may
+  describe a different board from the one a given game shipped on. The CPS-3 kick order and the
+  CPS-2 volume pins are open between sources; nobody has put a meter on either.
 - **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in
   `pong_signal_nets.py`, and `pong_power_nets.py` wires the rails from datasheet pinouts;
   the rest of the schematic shows placed devices, not wired circuitry. Sheet 002826 Rev E
@@ -902,6 +1080,12 @@ convention and legitimately uses G.
   logic pin for pin and the sound section part for part, not the whole sheet.
 - The full-corpus ingest was still running when this was written; `data/ingest-state.json`
   is the source of truth for how far it got.
+- **The MAME PCB layouts are a parser's reading of hand-drawn ASCII.** About fifteen were
+  read against their source by eye while the parser was built, and `check_pages.py` proves
+  each label sits where the page says; neither proves a label is a part or that a kind is
+  right. 7,503 devices are "other" (op-amps, drivers, regulators and words the patterns do
+  not know), and outline-drawn sketches (`kurukuru.cpp`, `funworld.cpp`) lose names split
+  across lines. Title-scoped layouts were spot-checked, not audited.
 
 ## Submissions — the one write path
 
