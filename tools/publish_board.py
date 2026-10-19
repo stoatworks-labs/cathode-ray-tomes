@@ -25,6 +25,34 @@ def compose_status(spec):
     return " ".join(x for x in (spec.get("revision"), spec.get("coverage")) if x)
 
 
+def publish_imported(slug, spec, web):
+    """Export an imported schematic -- one this repository did not draw.
+
+    A jtcores board runs to a dozen sheets or more and there are forty of them,
+    so the page gets one PDF and a list of its sheets, each linked to its page,
+    rather than an SVG a sheet: the deploy is within a few thousand files of the
+    Workers Assets cap. The sheet on each page is read back off the PDF's own
+    title block, so the list cannot drift from the order KiCad plots in.
+    """
+    sch = os.path.join(ROOT, "kicad", slug, spec["kicadRoot"])
+    pdf = os.path.join(web, "schematic.pdf")
+    shutil.rmtree(os.path.join(web, "schematic"), ignore_errors=True)
+    subprocess.run([KICAD_CLI, "sch", "export", "pdf", "-o", pdf, sch], check=True, capture_output=True)
+    text = subprocess.run(["pdftotext", "-layout", pdf, "-"], check=True, capture_output=True,
+                          text=True).stdout
+    sheets = []
+    for i, page in enumerate(text.split("\f"), 1):
+        if not page.strip():
+            continue
+        m = re.search(r"Sheet: (/.*?/|/)(?:\s{2,}|\n|$)", page)
+        path = m.group(1) if m else ""
+        title = " / ".join(x for x in path.strip("/").split("/") if x) or "Top sheet"
+        sheets.append({"title": title, "page": i})
+    return {"pdf": f"/boards/{slug}/schematic.pdf", "sheets": sheets,
+            "project": spec["origin"]["source"],
+            "netlist": f"{REPO}/blob/main/boards/{slug}.netlist.json"}
+
+
 def publish_schematic(slug, web):
     """Export a board's redrawn KiCad schematic, where it has one, for the site.
 
@@ -83,15 +111,22 @@ def main():
     os.makedirs(web, exist_ok=True)
 
     pcb = os.path.join(ROOT, "kicad", a.slug, a.slug + ".kicad_pcb")
-    subprocess.run([KP, IBOM, "--no-browser", "--dark-mode", "--show-fabrication",
-                    "--layer-view", "F", "--include-nets",
-                    "--name-format", f"{a.slug}-ibom", "--dest-dir", web, pcb],
-                   capture_output=True, timeout=600)
+    has_pcb = os.path.exists(pcb) and bool(spec["ics"])
+    if has_pcb:
+        subprocess.run([KP, IBOM, "--no-browser", "--dark-mode", "--show-fabrication",
+                        "--layer-view", "F", "--include-nets",
+                        "--name-format", f"{a.slug}-ibom", "--dest-dir", web, pcb],
+                       capture_output=True, timeout=600)
 
-    redrawn = publish_schematic(a.slug, web)
+    # An imported board brings its schematic (jtcores) or only a netlist
+    # (DICE, whose source is an emulator's, not a drawing).
+    redrawn = publish_imported(a.slug, spec, web) if spec.get("kicadRoot") \
+        else publish_schematic(a.slug, web)
 
+    # An imported drawing names every part, passives and all, so its bill of
+    # materials can too; a board read off a location drawing has only `ics`.
     by = collections.defaultdict(list)
-    for desig, part in spec["ics"].items():
+    for desig, part in spec.get("parts", spec["ics"]).items():
         by[part].append(desig)
     with open(os.path.join(web, "bom.csv"), "w", newline="") as f:
         w = csv.writer(f)
@@ -130,13 +165,22 @@ def main():
         # each device, because it changes how much the whole map is worth.
         "singleSource": spec.get("singleSource", prev.get("singleSource", False)),
         "status": compose_status(spec) or prev.get("status", ""),
-        "ibom": f"/boards/{a.slug}/{a.slug}-ibom.html",
+        "ibom": f"/boards/{a.slug}/{a.slug}-ibom.html" if has_pcb else "",
         "bom": f"/boards/{a.slug}/bom.csv",
         "conflicts": conflicts,
         "notes": notes,
     })
     if redrawn:
         boards[-1]["redrawn"] = redrawn
+    # A board that belongs to several machines -- a system board, or one game
+    # board its sequels run on -- lists the rest; `machine` stays the first.
+    # Licence and origin go with a board this repository did not draw: the
+    # page has to say whose drawing it is and on what terms.
+    for k in ("machines", "license", "origin", "partial"):
+        if spec.get(k):
+            boards[-1][k] = spec[k]
+    if spec.get("origin") and not redrawn:
+        boards[-1]["netlist"] = f"{REPO}/blob/main/boards/{a.slug}.netlist.json"
     # The schematic is built by tools/build_board_schematic.py, not from the
     # spec, so it is only ever in the previous record. Rebuilding without it
     # silently dropped Pong's sheet -- the file kept shipping, nothing pointed

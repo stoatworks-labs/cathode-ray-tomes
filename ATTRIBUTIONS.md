@@ -32,7 +32,30 @@ All 43 of its documents, 2,772 pages, are on the site: console and handheld serv
 
 <https://github.com/openscopeproject/InteractiveHtmlBom>
 
-The 50 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions, and each page carries its viewer code together with Split.js, lz-string and PEP.
+The 108 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions and the jtcores and DICE imports, and each page carries its viewer code together with Split.js, lz-string and PEP.
+
+### jtcores — Jose Tejada (jotego) and contributors
+
+<https://github.com/jotego/jtcores>  
+Licence: GPL-3.0
+
+43 of the board pages are KiCad redraws of arcade boards made for jtcores' FPGA recreations, by Jose Tejada, etriana85, Ulf Skutnabba, cartman135, Fran.R, RafaP, Rafael Paiva, Leo Tejada, rp-jt and Andrea Bogazzi -- Gradius III, the CP System III, Sega System 18, Twin 16 and the rest. Each drawing is in kicad/<slug>/ unchanged, with jtcores' LICENSE and a NOTICE.md naming who drew it and what was added; the board view, netlist, chip and signal lookups and bill of materials made from it (boards/, data/chips/, data/signals/, web/boards/) are GPL-3.0 as well. Pinned to commit e7b11263 and imported by tools/import_jtcores.py; the board page states the licence and the authors.
+
+### jtkicad — Jose Tejada
+
+<https://github.com/jotego/jtcores/tree/master/modules/jtkicad>  
+Licence: GPL-3.0  
+Copyright: Jose Tejada
+
+The schematic symbol library the jtcores drawings are made with; its symbols are embedded in every sheet under kicad/ that came from jtcores.
+
+### DICE (dice-libretro) — the DICE Team and Ken Mitton
+
+<https://github.com/mittonk/dice-libretro>  
+Licence: GPL-3.0  
+Copyright: 2008-2025 DICE Team
+
+15 board pages -- Breakout, Space Race, Stunt Cycle, Jet Fighter, Rebound and the other CPU-less games of the Pong era -- take their connectivity from DICE's netlists, converted by tools/import_dice.py: its stand-ins for a wire undone, its analogue models left off the board, and Crash 'n Score's checked against the hand-read map. Each game's source is in kicad/<slug>/ unchanged with DICE's LICENSE.txt and a NOTICE.md, and everything made from it is GPL-3.0.
 
 ### Split.js v1.3.5
 

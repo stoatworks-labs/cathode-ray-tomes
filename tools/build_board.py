@@ -45,8 +45,15 @@ def build(spec, out_path):
     # Always start from a fresh board: board.Remove() corrupts SWIG's type
     # registry for the rest of the process.
     board = pcbnew.NewBoard(out_path)
-    g = spec["grid"]
-    rows = g["rows"]
+    g = spec.get("grid") or {}
+    rows = g.get("rows", "")
+    # A board whose layout was worked out elsewhere -- an imported redraw, see
+    # tools/import_jtcores.py -- gives each device's position and footprint
+    # itself, and keeps its drawing's own designators (`refPrefix` "") because
+    # that drawing already keeps them apart from the passives'.
+    place = spec.get("place", {})
+    given = spec.get("footprints", {})
+    prefix = spec.get("refPrefix", "U")
 
     # A device drawn across two or three grid cells is keyed at its first cell
     # (a grid cell is the only thing `ics` may be keyed by), with the sheet's
@@ -78,20 +85,27 @@ def build(spec, out_path):
     n_ic = 0
     unsized = {}
     for cell, part in spec["ics"].items():
-        parsed = parse_desig(cell, transposed)
-        if not parsed:
-            raise ValueError(f"`ics` key {cell!r} is not a grid cell on this "
-                             f"board (transposed={transposed})")
-        row, col = parsed[0][0], parsed[1]
-        letters = list(parse_desig(spans[cell], transposed)[0]) \
-            if cell in spans else [row]
-        ri = sum(rows.index(r) for r in letters) / len(letters)
-        x = g["x0"] + (col - 1) * g["col_pitch"]
-        y = g["y0"] + ri * g["row_pitch"]
-        lib, name, src = package_for(part)
-        if src in ("no packaging entry",) or src.startswith("unidentified"):
-            unsized.setdefault(part, []).append(cell)
-        add(board, f"{lib}:{name}", f"U{cell}", part, x, y, g.get("rotation", 0))
+        if cell in place:
+            x, y, rot = place[cell]
+        else:
+            parsed = parse_desig(cell, transposed)
+            if not parsed:
+                raise ValueError(f"`ics` key {cell!r} is not a grid cell on this "
+                                 f"board (transposed={transposed})")
+            row, col = parsed[0][0], parsed[1]
+            letters = list(parse_desig(spans[cell], transposed)[0]) \
+                if cell in spans else [row]
+            ri = sum(rows.index(r) for r in letters) / len(letters)
+            x = g["x0"] + (col - 1) * g["col_pitch"]
+            y = g["y0"] + ri * g["row_pitch"]
+            rot = g.get("rotation", 0)
+        if cell in given:
+            lib, name = given[cell].split(":")
+        else:
+            lib, name, src = package_for(part)
+            if src in ("no packaging entry",) or src.startswith("unidentified"):
+                unsized.setdefault(part, []).append(cell)
+        add(board, f"{lib}:{name}", f"{prefix}{cell}", part, x, y, rot)
         n_ic += 1
 
     d = spec.get("decoupling")
@@ -176,11 +190,14 @@ def main():
 
     n_ic, total, unsized, nets = build(spec, out)
     parts, packages = {}, {}
+    given = spec.get("footprints", {})
     for cell, p in spec["ics"].items():
         parts[p] = parts.get(p, 0) + 1
-        packages[package_for(p)[1]] = packages.get(package_for(p)[1], 0) + 1
-    print(f"{spec['name']}: {total} footprints ({n_ic} ICs on the "
-          f"{spec['grid']['rows'][-1]}-{spec['grid']['rows'][0]} grid)")
+        pkg = given[cell].split(":")[1] if cell in given else package_for(p)[1]
+        packages[pkg] = packages.get(pkg, 0) + 1
+    rows = (spec.get("grid") or {}).get("rows")
+    print(f"{spec['name']}: {total} footprints ({n_ic} ICs"
+          + (f" on the {rows[-1]}-{rows[0]} grid)" if rows else ", placed by the board's own layout)"))
     print(f"  distinct IC types: {len(parts)}")
     print("  packages: " + ", ".join(
         f"{k.split('_')[0]}x{v}" for k, v in sorted(

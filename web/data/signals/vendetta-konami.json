@@ -1,0 +1,981 @@
+{
+ "/+12V": {
+  "top sheet": 2,
+  "icu": 1
+ },
+ "/COIN_1": {
+  "icu": 2,
+  "top sheet": 1
+ },
+ "/COIN_2": {
+  "icu": 2,
+  "top sheet": 1
+ },
+ "/COIN_CNT_1": {
+  "icu": 2,
+  "top sheet": 1
+ },
+ "/COIN_CNT_2": {
+  "icu": 2,
+  "top sheet": 1
+ },
+ "/CPU~{RES}": {
+  "icu": 3,
+  "scroll": 2
+ },
+ "/CR~{CS}": {
+  "icu": 1,
+  "objects": 1
+ },
+ "/DS": {
+  "objects": 2
+ },
+ "/GND": {
+  "top sheet": 2
+ },
+ "/IRQEN": {
+  "icu": 2
+ },
+ "/MAIN_A0": {
+  "objects": 4,
+  "icu": 3,
+  "scroll": 2
+ },
+ "/MAIN_A1": {
+  "icu": 3,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_A2": {
+  "icu": 3,
+  "objects": 3,
+  "scroll": 1
+ },
+ "/MAIN_A3": {
+  "icu": 3,
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A4": {
+  "icu": 1,
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A5": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A6": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A7": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A8": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A9": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A10": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A11": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_A12": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/MAIN_DB0": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB1": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB2": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB3": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB4": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB5": {
+  "icu": 4,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/MAIN_DB6": {
+  "icu": 3,
+  "objects": 2,
+  "scroll": 1
+ },
+ "/MAIN_DB7": {
+  "icu": 3,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/M~{RESET}": {
+  "scroll": 2
+ },
+ "/OBJCHA": {
+  "icu": 1,
+  "objects": 1
+ },
+ "/OBJCLK6": {
+  "objects": 2,
+  "scroll": 1
+ },
+ "/OBJCLK12": {
+  "objects": 2,
+  "scroll": 1
+ },
+ "/PE": {
+  "scroll": 2
+ },
+ "/PQ": {
+  "scroll": 2
+ },
+ "/RMRD": {
+  "scroll": 2,
+  "icu": 1
+ },
+ "/SCR~{CLK}": {
+  "scroll": 2,
+  "icu": 1
+ },
+ "/SND~{RES}": {
+  "scroll": 2
+ },
+ "/SYS~{RES}": {
+  "icu": 2,
+  "scroll": 2,
+  "objects": 2
+ },
+ "/VBLK": {
+  "scroll": 2,
+  "icu": 1
+ },
+ "/VRAM~{CS}": {
+  "scroll": 3
+ },
+ "/objects/EA0": {
+  "objects": 3
+ },
+ "/objects/EA1": {
+  "objects": 3
+ },
+ "/objects/EA2": {
+  "objects": 3
+ },
+ "/objects/EA3": {
+  "objects": 3
+ },
+ "/objects/EA4": {
+  "objects": 3
+ },
+ "/objects/EN0": {
+  "objects": 3
+ },
+ "/objects/EN1": {
+  "objects": 3
+ },
+ "/objects/EN2": {
+  "objects": 3
+ },
+ "/objects/EN3": {
+  "objects": 3
+ },
+ "/objects/EN4": {
+  "objects": 3
+ },
+ "/objects/EN5": {
+  "objects": 3
+ },
+ "/objects/EN6": {
+  "objects": 3
+ },
+ "/objects/EN7": {
+  "objects": 3
+ },
+ "/objects/G2D0": {
+  "objects": 2
+ },
+ "/objects/G2D1": {
+  "objects": 2
+ },
+ "/objects/G2D2": {
+  "objects": 2
+ },
+ "/objects/G2D3": {
+  "objects": 2
+ },
+ "/objects/G2D4": {
+  "objects": 2
+ },
+ "/objects/G2D5": {
+  "objects": 2
+ },
+ "/objects/G2D6": {
+  "objects": 2
+ },
+ "/objects/G2D7": {
+  "objects": 2
+ },
+ "/objects/G2D8": {
+  "objects": 2
+ },
+ "/objects/G2D9": {
+  "objects": 2
+ },
+ "/objects/G2D10": {
+  "objects": 2
+ },
+ "/objects/G2D11": {
+  "objects": 2
+ },
+ "/objects/G2D12": {
+  "objects": 2
+ },
+ "/objects/G2D13": {
+  "objects": 2
+ },
+ "/objects/G2D14": {
+  "objects": 2
+ },
+ "/objects/G2D15": {
+  "objects": 2
+ },
+ "/objects/G2D16": {
+  "objects": 2
+ },
+ "/objects/G2D17": {
+  "objects": 2
+ },
+ "/objects/G2D18": {
+  "objects": 2
+ },
+ "/objects/G2D19": {
+  "objects": 2
+ },
+ "/objects/G2D20": {
+  "objects": 2
+ },
+ "/objects/G2D21": {
+  "objects": 2
+ },
+ "/objects/LUTD0": {
+  "objects": 3
+ },
+ "/objects/LUTD1": {
+  "objects": 3
+ },
+ "/objects/LUTD2": {
+  "objects": 3
+ },
+ "/objects/LUTD3": {
+  "objects": 3
+ },
+ "/objects/LUTD4": {
+  "objects": 3
+ },
+ "/objects/LUTD5": {
+  "objects": 3
+ },
+ "/objects/LUTD6": {
+  "objects": 3
+ },
+ "/objects/LUTD7": {
+  "objects": 3
+ },
+ "/objects/OBJROMA0": {
+  "objects": 5
+ },
+ "/objects/OBJROMA1": {
+  "objects": 5
+ },
+ "/objects/OBJROMA2": {
+  "objects": 5
+ },
+ "/objects/OBJROMA3": {
+  "objects": 5
+ },
+ "/objects/OBJROMA4": {
+  "objects": 5
+ },
+ "/objects/OBJROMA5": {
+  "objects": 5
+ },
+ "/objects/OBJROMA6": {
+  "objects": 5
+ },
+ "/objects/OBJROMA7": {
+  "objects": 5
+ },
+ "/objects/OBJROMA8": {
+  "objects": 5
+ },
+ "/objects/OBJROMA9": {
+  "objects": 5
+ },
+ "/objects/OBJROMA10": {
+  "objects": 5
+ },
+ "/objects/OBJROMA11": {
+  "objects": 5
+ },
+ "/objects/OBJROMA12": {
+  "objects": 5
+ },
+ "/objects/OBJROMA13": {
+  "objects": 5
+ },
+ "/objects/OBJROMA14": {
+  "objects": 5
+ },
+ "/objects/OBJROMA15": {
+  "objects": 5
+ },
+ "/objects/OBJROMA16": {
+  "objects": 5
+ },
+ "/objects/OBJROMA17": {
+  "objects": 5
+ },
+ "/objects/OBJROMA18": {
+  "objects": 5
+ },
+ "/objects/OBJROMA19": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'0": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'1": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'2": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'3": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'4": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'5": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'6": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'7": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'8": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'9": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'10": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'11": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'12": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'13": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'14": {
+  "objects": 5
+ },
+ "/objects/OBJROMD'15": {
+  "objects": 5
+ },
+ "/objects/ROMD0": {
+  "objects": 2
+ },
+ "/objects/ROMD1": {
+  "objects": 2
+ },
+ "/objects/ROMD2": {
+  "objects": 2
+ },
+ "/objects/ROMD3": {
+  "objects": 2
+ },
+ "/objects/ROMD4": {
+  "objects": 2
+ },
+ "/objects/ROMD5": {
+  "objects": 2
+ },
+ "/objects/ROMD6": {
+  "objects": 2
+ },
+ "/objects/ROMD7": {
+  "objects": 2
+ },
+ "/objects/ROMD8": {
+  "objects": 2
+ },
+ "/objects/ROMD9": {
+  "objects": 2
+ },
+ "/objects/ROMD10": {
+  "objects": 2
+ },
+ "/objects/ROMD11": {
+  "objects": 2
+ },
+ "/objects/ROMD12": {
+  "objects": 2
+ },
+ "/objects/ROMD13": {
+  "objects": 2
+ },
+ "/objects/ROMD14": {
+  "objects": 2
+ },
+ "/objects/ROMD15": {
+  "objects": 2
+ },
+ "/objects/ROMD16": {
+  "objects": 2
+ },
+ "/objects/ROMD17": {
+  "objects": 2
+ },
+ "/objects/ROMD18": {
+  "objects": 2
+ },
+ "/objects/ROMD19": {
+  "objects": 2
+ },
+ "/objects/ROMD20": {
+  "objects": 2
+ },
+ "/objects/ROMD21": {
+  "objects": 2
+ },
+ "/objects/ROMD22": {
+  "objects": 2
+ },
+ "/objects/ROMD23": {
+  "objects": 2
+ },
+ "/objects/ROMD24": {
+  "objects": 2
+ },
+ "/objects/ROMD25": {
+  "objects": 2
+ },
+ "/objects/ROMD26": {
+  "objects": 2
+ },
+ "/objects/ROMD27": {
+  "objects": 2
+ },
+ "/objects/ROMD28": {
+  "objects": 2
+ },
+ "/objects/ROMD29": {
+  "objects": 2
+ },
+ "/objects/ROMD30": {
+  "objects": 2
+ },
+ "/objects/ROMD31": {
+  "objects": 2
+ },
+ "/objects/ROMD32": {
+  "objects": 2
+ },
+ "/objects/ROMD33": {
+  "objects": 2
+ },
+ "/objects/ROMD34": {
+  "objects": 2
+ },
+ "/objects/ROMD35": {
+  "objects": 2
+ },
+ "/objects/ROMD36": {
+  "objects": 2
+ },
+ "/objects/ROMD37": {
+  "objects": 2
+ },
+ "/objects/ROMD38": {
+  "objects": 2
+ },
+ "/objects/ROMD39": {
+  "objects": 2
+ },
+ "/objects/ROMD40": {
+  "objects": 2
+ },
+ "/objects/ROMD41": {
+  "objects": 2
+ },
+ "/objects/ROMD42": {
+  "objects": 2
+ },
+ "/objects/ROMD43": {
+  "objects": 2
+ },
+ "/objects/ROMD44": {
+  "objects": 2
+ },
+ "/objects/ROMD45": {
+  "objects": 2
+ },
+ "/objects/ROMD46": {
+  "objects": 2
+ },
+ "/objects/ROMD47": {
+  "objects": 2
+ },
+ "/objects/ROMD48": {
+  "objects": 2
+ },
+ "/objects/ROMD49": {
+  "objects": 2
+ },
+ "/objects/ROMD50": {
+  "objects": 2
+ },
+ "/objects/ROMD51": {
+  "objects": 2
+ },
+ "/objects/ROMD52": {
+  "objects": 2
+ },
+ "/objects/ROMD53": {
+  "objects": 2
+ },
+ "/objects/ROMD54": {
+  "objects": 2
+ },
+ "/objects/ROMD55": {
+  "objects": 2
+ },
+ "/objects/ROMD56": {
+  "objects": 2
+ },
+ "/objects/ROMD57": {
+  "objects": 2
+ },
+ "/objects/ROMD58": {
+  "objects": 2
+ },
+ "/objects/ROMD59": {
+  "objects": 2
+ },
+ "/objects/ROMD60": {
+  "objects": 2
+ },
+ "/objects/ROMD61": {
+  "objects": 2
+ },
+ "/objects/ROMD62": {
+  "objects": 2
+ },
+ "/objects/ROMD63": {
+  "objects": 2
+ },
+ "/objects/SCK": {
+  "objects": 9
+ },
+ "/objects/~{RD}B": {
+  "objects": 3
+ },
+ "/objects/~{REG}": {
+  "objects": 3
+ },
+ "/objects/~{SET0}": {
+  "objects": 4
+ },
+ "/objects/~{SET1}": {
+  "objects": 4
+ },
+ "/objects/~{SET2}": {
+  "objects": 4
+ },
+ "/objects/~{SET3}": {
+  "objects": 4
+ },
+ "/scroll/CAB1": {
+  "scroll": 2
+ },
+ "/scroll/CAB2": {
+  "scroll": 2
+ },
+ "/scroll/COL2": {
+  "scroll": 2
+ },
+ "/scroll/COL3": {
+  "scroll": 2
+ },
+ "/scroll/COL4": {
+  "scroll": 2
+ },
+ "/scroll/COL5": {
+  "scroll": 2
+ },
+ "/scroll/COL6": {
+  "scroll": 2
+ },
+ "/scroll/COL7": {
+  "scroll": 2
+ },
+ "/scroll/COLB5": {
+  "scroll": 2
+ },
+ "/scroll/COLB6": {
+  "scroll": 2
+ },
+ "/scroll/COLB7": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMA0": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA1": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA2": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA3": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA4": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA5": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA6": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA7": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA8": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA9": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA10": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA11": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA12": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA13": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA14": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA15": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA16": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMA17": {
+  "scroll": 3
+ },
+ "/scroll/GFXROMD0": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD1": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD2": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD3": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD4": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD5": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD6": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD7": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD8": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD9": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD10": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD11": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD12": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD13": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD14": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD15": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD16": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD17": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD18": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD19": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD20": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD21": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD22": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD23": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD24": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD25": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD26": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD27": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD28": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD29": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD30": {
+  "scroll": 2
+ },
+ "/scroll/GFXROMD31": {
+  "scroll": 2
+ },
+ "/scroll/PREPE": {
+  "scroll": 2
+ },
+ "/scroll/PREPQ": {
+  "scroll": 2
+ },
+ "/scroll/SCRAMA0": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA1": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA2": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA3": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA4": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA5": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA6": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA7": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA8": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA9": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA10": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA11": {
+  "scroll": 3
+ },
+ "/scroll/SCRAMA12": {
+  "scroll": 3
+ },
+ "/scroll/S~{RESET}": {
+  "scroll": 2
+ },
+ "/scroll/VD0": {
+  "scroll": 2
+ },
+ "/scroll/VD1": {
+  "scroll": 2
+ },
+ "/scroll/VD2": {
+  "scroll": 2
+ },
+ "/scroll/VD3": {
+  "scroll": 2
+ },
+ "/scroll/VD4": {
+  "scroll": 2
+ },
+ "/scroll/VD5": {
+  "scroll": 2
+ },
+ "/scroll/VD6": {
+  "scroll": 2
+ },
+ "/scroll/VD7": {
+  "scroll": 2
+ },
+ "/scroll/VD8": {
+  "scroll": 2
+ },
+ "/scroll/VD9": {
+  "scroll": 2
+ },
+ "/scroll/VD10": {
+  "scroll": 2
+ },
+ "/scroll/VD11": {
+  "scroll": 2
+ },
+ "/scroll/VD12": {
+  "scroll": 2
+ },
+ "/scroll/VD13": {
+  "scroll": 2
+ },
+ "/scroll/VD14": {
+  "scroll": 2
+ },
+ "/scroll/VD15": {
+  "scroll": 2
+ },
+ "/scroll/ZA1H": {
+  "scroll": 2
+ },
+ "/scroll/ZA2H": {
+  "scroll": 2
+ },
+ "/scroll/ZA4H": {
+  "scroll": 2
+ },
+ "/scroll/ZB1H": {
+  "scroll": 2
+ },
+ "/scroll/ZB2H": {
+  "scroll": 2
+ },
+ "/scroll/ZB4H": {
+  "scroll": 2
+ },
+ "/scroll/~{BE}": {
+  "scroll": 2
+ },
+ "/scroll/~{RCS1}": {
+  "scroll": 2
+ },
+ "/scroll/~{ROE1}": {
+  "scroll": 2
+ },
+ "/scroll/~{ROE2}": {
+  "scroll": 2
+ },
+ "/scroll/~{RWE1}": {
+  "scroll": 2
+ },
+ "/scroll/~{RWE2}": {
+  "scroll": 2
+ },
+ "/scroll/~{VSYNC}": {
+  "scroll": 2
+ },
+ "/~{CPU}": {
+  "objects": 4
+ },
+ "/~{HSYNC}": {
+  "scroll": 2
+ },
+ "/~{RD}": {
+  "scroll": 2,
+  "objects": 2
+ },
+ "/~{VBLANK}": {
+  "scroll": 1,
+  "objects": 1
+ },
+ "/~{WR}": {
+  "icu": 2
+ },
+ "/~{XSYNC}": {
+  "objects": 2,
+  "scroll": 1
+ },
+ "VCC": {
+  "objects": 27,
+  "scroll": 18,
+  "icu": 10,
+  "top sheet": 3
+ },
+ "VSS": {
+  "objects": 44,
+  "scroll": 43,
+  "top sheet": 12,
+  "icu": 10
+ }
+}

@@ -1,0 +1,1885 @@
+{
+ "slug": "wwf-superstars",
+ "name": "WWF Superstars PCB",
+ "mfr": "Technos Japan",
+ "year": "1989",
+ "machine": "wwfsstar",
+ "drawing": "jtcores cores/wwfss/sch at e7b11263",
+ "revision": "",
+ "coverage": "333 parts, 216 of them ICs, and 1080 nets over 3692 pins, on sheets for bottom, bottom / object / dual line buffer, bottom / object / dual line buffer / line buffer A, bottom / object / dual line buffer / line buffer B, bottom / object / object RAM, bottom / object / object ROM, bottom / scroll / scroll RAM, bottom / scroll / scroll ROM, bottom / timing, top, top / char, top / char / char pixels, top / color mixer, top / io, top / main, top / sound, top / sound / analog. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/wwfss/sch",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/wwfss/sch",
+  "authors": [
+   "Jose Tejada"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/wwf-superstars/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/wwf-superstars",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "wwfsstar.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 379.2,
+  "h": 453.8
+ },
+ "ics": {
+  "IC1": "74LS00",
+  "IC2": "74LS245",
+  "IC3": "74LS10",
+  "IC4": "74LS273",
+  "IC5": "74LS153",
+  "IC6": "74LS153",
+  "IC7": "74LS153",
+  "IC8": "74LS153",
+  "IC9": "74LS157",
+  "IC10": "74LS157",
+  "IC11": "74LS157",
+  "IC12": "27C256",
+  "IC13": "Z80CPU",
+  "IC14": "74LS04",
+  "IC15": "RAM_2016",
+  "IC16": "RAM_2016",
+  "IC17": "74LS10",
+  "IC18": "74LS32",
+  "IC19": "RAM_2016",
+  "IC20": "RAM_2016",
+  "IC21": "74LS25",
+  "IC22": "RAM_2016",
+  "IC23": "RAM_2016",
+  "IC24": "YM2151",
+  "IC25": "74LS10",
+  "IC26": "74LS74",
+  "IC27": "74LS245",
+  "IC28": "74LS245",
+  "IC29": "74LS153",
+  "IC30": "74LS148",
+  "IC31": "74LS174",
+  "IC32": "74LS245",
+  "IC33": "74LS374",
+  "IC34": "27C1000",
+  "IC35": "27C1000",
+  "IC36": "74LS30",
+  "IC37": "74LS00",
+  "IC38": "74LS174",
+  "IC39": "74LS273",
+  "IC40": "74LS273",
+  "IC41": "74LS174",
+  "IC42": "74LS273",
+  "IC43": "74LS273",
+  "IC44": "74LS157",
+  "IC45": "24J8-0",
+  "IC46": "27C1000",
+  "IC47": "OKI6295",
+  "IC48": "74LS138",
+  "IC49": "74LS244",
+  "IC50": "74LS138",
+  "IC51": "74LS138",
+  "IC52": "R2R4",
+  "IC53": "74LS374",
+  "IC54": "74AHC273",
+  "IC55": "74LS374",
+  "IC56": "74LS157",
+  "IC57": "74LS194",
+  "IC58": "27C1000",
+  "IC59": "74LS32",
+  "IC60": "74LS138",
+  "IC61": "YM3012",
+  "IC62": "74LS244",
+  "IC63": "68000D",
+  "IC64": "74LS04",
+  "IC65": "74LS148",
+  "IC66": "74LS74",
+  "IC67": "74LS174",
+  "IC68": "74LS00",
+  "IC69": "74LS374",
+  "IC70": "74LS194",
+  "IC71": "74LS74",
+  "IC72": "74LS04",
+  "IC73": "HA17558",
+  "IC74": "HA17558",
+  "IC75": "74LS244",
+  "IC76": "74LS244",
+  "IC77": "74LS244",
+  "IC78": "74LS244",
+  "IC79": "74LS244",
+  "IC80": "74LS244",
+  "IC81": "HA17558",
+  "IC82": "74LS74",
+  "IC83": "74LS05",
+  "IC84": "74LS14",
+  "IC86": "XXCRXXXX",
+  "IC87": "74LS157",
+  "IC88": "XXCRXXXX",
+  "IC89": "XXCRXXXX",
+  "IC90": "XXCRXXXX",
+  "IC91": "M51516L",
+  "IC92": "HA17558",
+  "IC93": "74LS245",
+  "IC94": "74LS32",
+  "IC95": "74LS10",
+  "VIC1": "74LS273",
+  "VIC2": "74LS273",
+  "VIC3": "74LS10",
+  "VIC4": "74LS86",
+  "VIC5": "74LS273",
+  "VIC6": "74LS283",
+  "VIC7": "74LS283",
+  "VIC8": "74LS245",
+  "VIC9": "74LS273",
+  "VIC10": "74LS157",
+  "VIC11": "74LS273",
+  "VIC12": "74LS157",
+  "VIC13": "74LS157",
+  "VIC14": "74LS157",
+  "VIC15": "74LS157",
+  "VIC16": "74LS273",
+  "VIC17": "74LS273",
+  "VIC18": "74LS367",
+  "VIC19": "74LS174",
+  "VIC20": "74LS157",
+  "VIC21": "74LS283",
+  "VIC22": "74LS283",
+  "VIC23": "74LS245",
+  "VIC24": "SRAM2K8B",
+  "VIC25": "74LS157",
+  "VIC26": "74LS157",
+  "VIC27": "74LS157",
+  "VIC28": "74LS257",
+  "VIC29": "74LS257",
+  "VIC30": "74LS257",
+  "VIC31": "74LS257",
+  "VIC32": "TJ-001",
+  "VIC33": "74LS174",
+  "VIC34": "74LS157",
+  "VIC35": "74LS157",
+  "VIC36": "74LS157",
+  "VIC37": "74LS86",
+  "VIC38": "74LS273",
+  "VIC39": "SRAM2K8B",
+  "VIC40": "SRAM2K8B",
+  "VIC41": "74LS157",
+  "VIC42": "74LS157",
+  "VIC43": "74LS163",
+  "VIC44": "74LS86",
+  "VIC45": "SRAM2K8B",
+  "VIC46": "74LS163",
+  "VIC47": "74LS86",
+  "VIC48": "SRAM2K8B",
+  "VIC49": "74LS86",
+  "VIC50": "74LS30",
+  "VIC51": "74LS74",
+  "VIC52": "74LS283",
+  "VIC53": "74LS374",
+  "VIC54": "74AHC273",
+  "VIC55": "74LS374",
+  "VIC56": "74LS374",
+  "VIC57": "74LS161",
+  "VIC58": "74LS86",
+  "VIC59": "74LS157",
+  "VIC60": "74LS08",
+  "VIC60E1": "74LS08",
+  "VIC61": "74LS174",
+  "VIC62": "74LS174",
+  "VIC63": "74LS161",
+  "VIC64": "74LS86",
+  "VIC65": "74LS32",
+  "VIC66": "74LS00",
+  "VIC67": "74LS04",
+  "VIC68": "74LS04",
+  "VIC69": "74LS374",
+  "VIC70": "74LS157",
+  "VIC71": "SRAM2K8B",
+  "VIC72": "74LS374",
+  "VIC73": "74LS273",
+  "VIC74": "74LS163",
+  "VIC75": "74LS163",
+  "VIC76": "74LS04",
+  "VIC77": "74LS86",
+  "VIC78": "74LS174",
+  "VIC79": "74LS157",
+  "VIC80": "74LS157",
+  "VIC81": "74LS273",
+  "VIC82": "74LS273",
+  "VIC83": "74LS273",
+  "VIC84": "74LS273",
+  "VIC85": "74LS27",
+  "VIC86": "74LS161",
+  "VIC87": "74LS157",
+  "VIC88": "74LS157",
+  "VIC89": "74LS157",
+  "VIC90": "74LS86",
+  "VIC91": "74LS86",
+  "VIC92": "74LS163",
+  "VIC93": "74LS02",
+  "VIC94": "74LS163",
+  "VIC95": "74LS174",
+  "VIC96": "74LS86",
+  "VIC97": "74LS194",
+  "VIC98": "74LS194",
+  "VIC99": "74LS194",
+  "VIC100": "74LS194",
+  "VIC101": "74LS158",
+  "VIC102": "74LS194",
+  "VIC103": "74LS194",
+  "VIC104": "74LS25",
+  "VIC105": "74LS157",
+  "VIC106": "74LS194",
+  "VIC107": "74LS194",
+  "VIC108": "74LS273",
+  "VIC109": "74LS273",
+  "VIC110": "74LS273",
+  "VIC111": "74LS273",
+  "VIC112": "24J6-0",
+  "VIC113": "24J7-0",
+  "VIC114": "TC534000AP",
+  "VIC115": "24J",
+  "VIC116": "24J",
+  "VIC117": "74LS86",
+  "VIC118": "24J",
+  "VIC119": "24J",
+  "VIC126": "74LS04",
+  "VU117": "TC534000AP"
+ },
+ "place": {
+  "IC1": [
+   10.0,
+   10.0,
+   0
+  ],
+  "IC2": [
+   24.62,
+   10.0,
+   0
+  ],
+  "IC3": [
+   39.24,
+   10.0,
+   0
+  ],
+  "IC4": [
+   53.86,
+   10.0,
+   0
+  ],
+  "IC5": [
+   68.48,
+   10.0,
+   0
+  ],
+  "IC6": [
+   83.1,
+   10.0,
+   0
+  ],
+  "IC7": [
+   97.72,
+   10.0,
+   0
+  ],
+  "IC8": [
+   112.34,
+   10.0,
+   0
+  ],
+  "IC9": [
+   126.96,
+   10.0,
+   0
+  ],
+  "IC10": [
+   141.58,
+   10.0,
+   0
+  ],
+  "IC11": [
+   156.2,
+   10.0,
+   0
+  ],
+  "IC12": [
+   170.82,
+   10.0,
+   0
+  ],
+  "IC13": [
+   193.06,
+   10.0,
+   0
+  ],
+  "IC14": [
+   215.3,
+   10.0,
+   0
+  ],
+  "IC15": [
+   229.92,
+   10.0,
+   0
+  ],
+  "IC16": [
+   252.16,
+   10.0,
+   0
+  ],
+  "IC17": [
+   274.4,
+   10.0,
+   0
+  ],
+  "IC18": [
+   289.02,
+   10.0,
+   0
+  ],
+  "IC19": [
+   303.64,
+   10.0,
+   0
+  ],
+  "IC20": [
+   325.88,
+   10.0,
+   0
+  ],
+  "IC21": [
+   348.12,
+   10.0,
+   0
+  ],
+  "IC22": [
+   10.0,
+   65.26,
+   0
+  ],
+  "IC23": [
+   32.24,
+   65.26,
+   0
+  ],
+  "IC24": [
+   54.48,
+   65.26,
+   0
+  ],
+  "IC25": [
+   76.72,
+   65.26,
+   0
+  ],
+  "IC26": [
+   91.34,
+   65.26,
+   0
+  ],
+  "IC27": [
+   105.96,
+   65.26,
+   0
+  ],
+  "IC28": [
+   120.58,
+   65.26,
+   0
+  ],
+  "IC29": [
+   135.2,
+   65.26,
+   0
+  ],
+  "IC30": [
+   149.82,
+   65.26,
+   0
+  ],
+  "IC31": [
+   164.44,
+   65.26,
+   0
+  ],
+  "IC32": [
+   179.06,
+   65.26,
+   0
+  ],
+  "IC33": [
+   193.68,
+   65.26,
+   0
+  ],
+  "IC34": [
+   208.3,
+   65.26,
+   0
+  ],
+  "IC35": [
+   230.54,
+   65.26,
+   0
+  ],
+  "IC36": [
+   252.78,
+   65.26,
+   0
+  ],
+  "IC37": [
+   267.4,
+   65.26,
+   0
+  ],
+  "IC38": [
+   282.02,
+   65.26,
+   0
+  ],
+  "IC39": [
+   296.64,
+   65.26,
+   0
+  ],
+  "IC40": [
+   311.26,
+   65.26,
+   0
+  ],
+  "IC41": [
+   325.88,
+   65.26,
+   0
+  ],
+  "IC42": [
+   340.5,
+   65.26,
+   0
+  ],
+  "IC43": [
+   355.12,
+   65.26,
+   0
+  ],
+  "IC44": [
+   10.0,
+   110.36,
+   0
+  ],
+  "IC45": [
+   24.62,
+   110.36,
+   0
+  ],
+  "IC46": [
+   46.86,
+   110.36,
+   0
+  ],
+  "IC47": [
+   69.1,
+   110.36,
+   0
+  ],
+  "IC48": [
+   91.34,
+   110.36,
+   0
+  ],
+  "IC49": [
+   105.96,
+   110.36,
+   0
+  ],
+  "IC50": [
+   120.58,
+   110.36,
+   0
+  ],
+  "IC51": [
+   135.2,
+   110.36,
+   0
+  ],
+  "IC52": [
+   149.82,
+   110.36,
+   0
+  ],
+  "IC53": [
+   164.44,
+   110.36,
+   0
+  ],
+  "IC54": [
+   179.06,
+   110.36,
+   0
+  ],
+  "IC55": [
+   193.68,
+   110.36,
+   0
+  ],
+  "IC56": [
+   208.3,
+   110.36,
+   0
+  ],
+  "IC57": [
+   222.92,
+   110.36,
+   0
+  ],
+  "IC58": [
+   237.54,
+   110.36,
+   0
+  ],
+  "IC59": [
+   259.78,
+   110.36,
+   0
+  ],
+  "IC60": [
+   274.4,
+   110.36,
+   0
+  ],
+  "IC61": [
+   289.02,
+   110.36,
+   0
+  ],
+  "IC62": [
+   303.64,
+   110.36,
+   0
+  ],
+  "IC63": [
+   318.26,
+   110.36,
+   0
+  ],
+  "IC64": [
+   340.5,
+   110.36,
+   0
+  ],
+  "IC65": [
+   355.12,
+   110.36,
+   0
+  ],
+  "IC66": [
+   10.0,
+   196.1,
+   0
+  ],
+  "IC67": [
+   24.62,
+   196.1,
+   0
+  ],
+  "IC68": [
+   39.24,
+   196.1,
+   0
+  ],
+  "IC69": [
+   53.86,
+   196.1,
+   0
+  ],
+  "IC70": [
+   68.48,
+   196.1,
+   0
+  ],
+  "IC71": [
+   83.1,
+   196.1,
+   0
+  ],
+  "IC72": [
+   97.72,
+   196.1,
+   0
+  ],
+  "IC73": [
+   112.34,
+   196.1,
+   0
+  ],
+  "IC74": [
+   126.96,
+   196.1,
+   0
+  ],
+  "IC75": [
+   141.58,
+   196.1,
+   0
+  ],
+  "IC76": [
+   156.2,
+   196.1,
+   0
+  ],
+  "IC77": [
+   170.82,
+   196.1,
+   0
+  ],
+  "IC78": [
+   185.44,
+   196.1,
+   0
+  ],
+  "IC79": [
+   200.06,
+   196.1,
+   0
+  ],
+  "IC80": [
+   214.68,
+   196.1,
+   0
+  ],
+  "IC81": [
+   229.3,
+   196.1,
+   0
+  ],
+  "IC82": [
+   243.92,
+   196.1,
+   0
+  ],
+  "IC83": [
+   258.54,
+   196.1,
+   0
+  ],
+  "IC84": [
+   273.16,
+   196.1,
+   0
+  ],
+  "IC86": [
+   287.78,
+   196.1,
+   0
+  ],
+  "IC87": [
+   302.4,
+   196.1,
+   0
+  ],
+  "IC88": [
+   317.02,
+   196.1,
+   0
+  ],
+  "IC89": [
+   331.64,
+   196.1,
+   0
+  ],
+  "IC90": [
+   346.26,
+   196.1,
+   0
+  ],
+  "IC91": [
+   360.88,
+   196.1,
+   0
+  ],
+  "IC92": [
+   10.0,
+   225.96,
+   0
+  ],
+  "IC93": [
+   24.62,
+   225.96,
+   0
+  ],
+  "IC94": [
+   39.24,
+   225.96,
+   0
+  ],
+  "IC95": [
+   53.86,
+   225.96,
+   0
+  ],
+  "VIC1": [
+   68.48,
+   225.96,
+   0
+  ],
+  "VIC2": [
+   83.1,
+   225.96,
+   0
+  ],
+  "VIC3": [
+   97.72,
+   225.96,
+   0
+  ],
+  "VIC4": [
+   112.34,
+   225.96,
+   0
+  ],
+  "VIC5": [
+   126.96,
+   225.96,
+   0
+  ],
+  "VIC6": [
+   141.58,
+   225.96,
+   0
+  ],
+  "VIC7": [
+   156.2,
+   225.96,
+   0
+  ],
+  "VIC8": [
+   170.82,
+   225.96,
+   0
+  ],
+  "VIC9": [
+   185.44,
+   225.96,
+   0
+  ],
+  "VIC10": [
+   200.06,
+   225.96,
+   0
+  ],
+  "VIC11": [
+   214.68,
+   225.96,
+   0
+  ],
+  "VIC12": [
+   229.3,
+   225.96,
+   0
+  ],
+  "VIC13": [
+   243.92,
+   225.96,
+   0
+  ],
+  "VIC14": [
+   258.54,
+   225.96,
+   0
+  ],
+  "VIC15": [
+   273.16,
+   225.96,
+   0
+  ],
+  "VIC16": [
+   287.78,
+   225.96,
+   0
+  ],
+  "VIC17": [
+   302.4,
+   225.96,
+   0
+  ],
+  "VIC18": [
+   317.02,
+   225.96,
+   0
+  ],
+  "VIC19": [
+   331.64,
+   225.96,
+   0
+  ],
+  "VIC20": [
+   346.26,
+   225.96,
+   0
+  ],
+  "VIC21": [
+   360.88,
+   225.96,
+   0
+  ],
+  "VIC22": [
+   10.0,
+   255.82,
+   0
+  ],
+  "VIC23": [
+   24.62,
+   255.82,
+   0
+  ],
+  "VIC24": [
+   39.24,
+   255.82,
+   0
+  ],
+  "VIC25": [
+   61.48,
+   255.82,
+   0
+  ],
+  "VIC26": [
+   76.1,
+   255.82,
+   0
+  ],
+  "VIC27": [
+   90.72,
+   255.82,
+   0
+  ],
+  "VIC28": [
+   105.34,
+   255.82,
+   0
+  ],
+  "VIC29": [
+   119.96,
+   255.82,
+   0
+  ],
+  "VIC30": [
+   134.58,
+   255.82,
+   0
+  ],
+  "VIC31": [
+   149.2,
+   255.82,
+   0
+  ],
+  "VIC32": [
+   171.82,
+   263.82,
+   0
+  ],
+  "VIC33": [
+   186.82,
+   255.82,
+   0
+  ],
+  "VIC34": [
+   201.44,
+   255.82,
+   0
+  ],
+  "VIC35": [
+   216.06,
+   255.82,
+   0
+  ],
+  "VIC36": [
+   230.68,
+   255.82,
+   0
+  ],
+  "VIC37": [
+   245.3,
+   255.82,
+   0
+  ],
+  "VIC38": [
+   259.92,
+   255.82,
+   0
+  ],
+  "VIC39": [
+   274.54,
+   255.82,
+   0
+  ],
+  "VIC40": [
+   296.78,
+   255.82,
+   0
+  ],
+  "VIC41": [
+   319.02,
+   255.82,
+   0
+  ],
+  "VIC42": [
+   333.64,
+   255.82,
+   0
+  ],
+  "VIC43": [
+   348.26,
+   255.82,
+   0
+  ],
+  "VIC44": [
+   10.0,
+   290.76,
+   0
+  ],
+  "VIC45": [
+   24.62,
+   290.76,
+   0
+  ],
+  "VIC46": [
+   46.86,
+   290.76,
+   0
+  ],
+  "VIC47": [
+   61.48,
+   290.76,
+   0
+  ],
+  "VIC48": [
+   76.1,
+   290.76,
+   0
+  ],
+  "VIC49": [
+   98.34,
+   290.76,
+   0
+  ],
+  "VIC50": [
+   112.96,
+   290.76,
+   0
+  ],
+  "VIC51": [
+   127.58,
+   290.76,
+   0
+  ],
+  "VIC52": [
+   142.2,
+   290.76,
+   0
+  ],
+  "VIC53": [
+   156.82,
+   290.76,
+   0
+  ],
+  "VIC54": [
+   171.44,
+   290.76,
+   0
+  ],
+  "VIC55": [
+   186.06,
+   290.76,
+   0
+  ],
+  "VIC56": [
+   200.68,
+   290.76,
+   0
+  ],
+  "VIC57": [
+   215.3,
+   290.76,
+   0
+  ],
+  "VIC58": [
+   229.92,
+   290.76,
+   0
+  ],
+  "VIC59": [
+   244.54,
+   290.76,
+   0
+  ],
+  "VIC60": [
+   259.16,
+   290.76,
+   0
+  ],
+  "VIC60E1": [
+   273.78,
+   290.76,
+   0
+  ],
+  "VIC61": [
+   288.4,
+   290.76,
+   0
+  ],
+  "VIC62": [
+   303.02,
+   290.76,
+   0
+  ],
+  "VIC63": [
+   317.64,
+   290.76,
+   0
+  ],
+  "VIC64": [
+   332.26,
+   290.76,
+   0
+  ],
+  "VIC65": [
+   346.88,
+   290.76,
+   0
+  ],
+  "VIC66": [
+   361.5,
+   290.76,
+   0
+  ],
+  "VIC67": [
+   10.0,
+   325.7,
+   0
+  ],
+  "VIC68": [
+   24.62,
+   325.7,
+   0
+  ],
+  "VIC69": [
+   39.24,
+   325.7,
+   0
+  ],
+  "VIC70": [
+   53.86,
+   325.7,
+   0
+  ],
+  "VIC71": [
+   68.48,
+   325.7,
+   0
+  ],
+  "VIC72": [
+   90.72,
+   325.7,
+   0
+  ],
+  "VIC73": [
+   105.34,
+   325.7,
+   0
+  ],
+  "VIC74": [
+   119.96,
+   325.7,
+   0
+  ],
+  "VIC75": [
+   134.58,
+   325.7,
+   0
+  ],
+  "VIC76": [
+   149.2,
+   325.7,
+   0
+  ],
+  "VIC77": [
+   163.82,
+   325.7,
+   0
+  ],
+  "VIC78": [
+   178.44,
+   325.7,
+   0
+  ],
+  "VIC79": [
+   193.06,
+   325.7,
+   0
+  ],
+  "VIC80": [
+   207.68,
+   325.7,
+   0
+  ],
+  "VIC81": [
+   222.3,
+   325.7,
+   0
+  ],
+  "VIC82": [
+   236.92,
+   325.7,
+   0
+  ],
+  "VIC83": [
+   251.54,
+   325.7,
+   0
+  ],
+  "VIC84": [
+   266.16,
+   325.7,
+   0
+  ],
+  "VIC85": [
+   280.78,
+   325.7,
+   0
+  ],
+  "VIC86": [
+   295.4,
+   325.7,
+   0
+  ],
+  "VIC87": [
+   310.02,
+   325.7,
+   0
+  ],
+  "VIC88": [
+   324.64,
+   325.7,
+   0
+  ],
+  "VIC89": [
+   339.26,
+   325.7,
+   0
+  ],
+  "VIC90": [
+   353.88,
+   325.7,
+   0
+  ],
+  "VIC91": [
+   10.0,
+   360.64,
+   0
+  ],
+  "VIC92": [
+   24.62,
+   360.64,
+   0
+  ],
+  "VIC93": [
+   39.24,
+   360.64,
+   0
+  ],
+  "VIC94": [
+   53.86,
+   360.64,
+   0
+  ],
+  "VIC95": [
+   68.48,
+   360.64,
+   0
+  ],
+  "VIC96": [
+   83.1,
+   360.64,
+   0
+  ],
+  "VIC97": [
+   97.72,
+   360.64,
+   0
+  ],
+  "VIC98": [
+   112.34,
+   360.64,
+   0
+  ],
+  "VIC99": [
+   126.96,
+   360.64,
+   0
+  ],
+  "VIC100": [
+   141.58,
+   360.64,
+   0
+  ],
+  "VIC101": [
+   156.2,
+   360.64,
+   0
+  ],
+  "VIC102": [
+   170.82,
+   360.64,
+   0
+  ],
+  "VIC103": [
+   185.44,
+   360.64,
+   0
+  ],
+  "VIC104": [
+   200.06,
+   360.64,
+   0
+  ],
+  "VIC105": [
+   214.68,
+   360.64,
+   0
+  ],
+  "VIC106": [
+   229.3,
+   360.64,
+   0
+  ],
+  "VIC107": [
+   243.92,
+   360.64,
+   0
+  ],
+  "VIC108": [
+   258.54,
+   360.64,
+   0
+  ],
+  "VIC109": [
+   273.16,
+   360.64,
+   0
+  ],
+  "VIC110": [
+   287.78,
+   360.64,
+   0
+  ],
+  "VIC111": [
+   302.4,
+   360.64,
+   0
+  ],
+  "VIC112": [
+   317.02,
+   360.64,
+   0
+  ],
+  "VIC113": [
+   339.26,
+   360.64,
+   0
+  ],
+  "VIC114": [
+   10.0,
+   405.74,
+   0
+  ],
+  "VIC115": [
+   32.24,
+   405.74,
+   0
+  ],
+  "VIC116": [
+   54.48,
+   405.74,
+   0
+  ],
+  "VIC117": [
+   76.72,
+   405.74,
+   0
+  ],
+  "VIC118": [
+   91.34,
+   405.74,
+   0
+  ],
+  "VIC119": [
+   113.58,
+   405.74,
+   0
+  ],
+  "VIC126": [
+   135.82,
+   405.74,
+   0
+  ],
+  "VU117": [
+   150.44,
+   405.74,
+   0
+  ]
+ },
+ "footprints": {
+  "IC1": "Package_DIP:DIP-14_W7.62mm",
+  "IC2": "Package_DIP:DIP-20_W7.62mm",
+  "IC3": "Package_DIP:DIP-14_W7.62mm",
+  "IC4": "Package_DIP:DIP-20_W7.62mm",
+  "IC5": "Package_DIP:DIP-16_W7.62mm",
+  "IC6": "Package_DIP:DIP-16_W7.62mm",
+  "IC7": "Package_DIP:DIP-16_W7.62mm",
+  "IC8": "Package_DIP:DIP-16_W7.62mm",
+  "IC9": "Package_DIP:DIP-16_W7.62mm",
+  "IC10": "Package_DIP:DIP-16_W7.62mm",
+  "IC11": "Package_DIP:DIP-16_W7.62mm",
+  "IC12": "Package_DIP:DIP-28_W15.24mm",
+  "IC13": "Package_DIP:DIP-40_W15.24mm",
+  "IC14": "Package_DIP:DIP-14_W7.62mm",
+  "IC15": "Package_DIP:DIP-28_W15.24mm",
+  "IC16": "Package_DIP:DIP-28_W15.24mm",
+  "IC17": "Package_DIP:DIP-14_W7.62mm",
+  "IC18": "Package_DIP:DIP-14_W7.62mm",
+  "IC19": "Package_DIP:DIP-24_W15.24mm",
+  "IC20": "Package_DIP:DIP-24_W15.24mm",
+  "IC21": "Package_DIP:DIP-14_W7.62mm",
+  "IC22": "Package_DIP:DIP-24_W15.24mm",
+  "IC23": "Package_DIP:DIP-24_W15.24mm",
+  "IC24": "Package_DIP:DIP-24_W15.24mm",
+  "IC25": "Package_DIP:DIP-14_W7.62mm",
+  "IC26": "Package_DIP:DIP-14_W7.62mm",
+  "IC27": "Package_DIP:DIP-20_W7.62mm",
+  "IC28": "Package_DIP:DIP-20_W7.62mm",
+  "IC29": "Package_DIP:DIP-16_W7.62mm",
+  "IC30": "Package_DIP:DIP-16_W7.62mm",
+  "IC31": "Package_DIP:DIP-16_W7.62mm",
+  "IC32": "Package_DIP:DIP-20_W7.62mm",
+  "IC33": "Package_DIP:DIP-20_W7.62mm",
+  "IC34": "Package_DIP:DIP-32_W15.24mm",
+  "IC35": "Package_DIP:DIP-32_W15.24mm",
+  "IC36": "Package_DIP:DIP-14_W7.62mm",
+  "IC37": "Package_DIP:DIP-14_W7.62mm",
+  "IC38": "Package_DIP:DIP-16_W7.62mm",
+  "IC39": "Package_DIP:DIP-20_W7.62mm",
+  "IC40": "Package_DIP:DIP-20_W7.62mm",
+  "IC41": "Package_DIP:DIP-16_W7.62mm",
+  "IC42": "Package_DIP:DIP-20_W7.62mm",
+  "IC43": "Package_DIP:DIP-20_W7.62mm",
+  "IC44": "Package_DIP:DIP-16_W7.62mm",
+  "IC45": "Package_DIP:DIP-28_W15.24mm",
+  "IC46": "Package_DIP:DIP-32_W15.24mm",
+  "IC47": "Package_DIP:DIP-48_W15.24mm",
+  "IC48": "Package_DIP:DIP-16_W7.62mm",
+  "IC49": "Package_DIP:DIP-20_W7.62mm",
+  "IC50": "Package_DIP:DIP-16_W7.62mm",
+  "IC51": "Package_DIP:DIP-16_W7.62mm",
+  "IC52": "Package_DIP:DIP-8_W7.62mm",
+  "IC53": "Package_DIP:DIP-8_W7.62mm",
+  "IC54": "Package_DIP:DIP-8_W7.62mm",
+  "IC55": "Package_DIP:DIP-20_W7.62mm",
+  "IC56": "Package_DIP:DIP-16_W7.62mm",
+  "IC57": "Package_DIP:DIP-16_W7.62mm",
+  "IC58": "Package_DIP:DIP-32_W15.24mm",
+  "IC59": "Package_DIP:DIP-14_W7.62mm",
+  "IC60": "Package_DIP:DIP-16_W7.62mm",
+  "IC61": "Package_DIP:DIP-16_W7.62mm",
+  "IC62": "Package_DIP:DIP-20_W7.62mm",
+  "IC63": "Package_DIP:DIP-64_W15.24mm",
+  "IC64": "Package_DIP:DIP-14_W7.62mm",
+  "IC65": "Package_DIP:DIP-16_W7.62mm",
+  "IC66": "Package_DIP:DIP-14_W7.62mm",
+  "IC67": "Package_DIP:DIP-16_W7.62mm",
+  "IC68": "Package_DIP:DIP-14_W7.62mm",
+  "IC69": "Package_DIP:DIP-20_W7.62mm",
+  "IC70": "Package_DIP:DIP-16_W7.62mm",
+  "IC71": "Package_DIP:DIP-14_W7.62mm",
+  "IC72": "Package_DIP:DIP-14_W7.62mm",
+  "IC73": "Package_DIP:DIP-8_W7.62mm",
+  "IC74": "Package_DIP:DIP-8_W7.62mm",
+  "IC75": "Package_DIP:DIP-20_W7.62mm",
+  "IC76": "Package_DIP:DIP-20_W7.62mm",
+  "IC77": "Package_DIP:DIP-20_W7.62mm",
+  "IC78": "Package_DIP:DIP-20_W7.62mm",
+  "IC79": "Package_DIP:DIP-20_W7.62mm",
+  "IC80": "Package_DIP:DIP-20_W7.62mm",
+  "IC81": "Package_DIP:DIP-8_W7.62mm",
+  "IC82": "Package_DIP:DIP-14_W7.62mm",
+  "IC83": "Package_DIP:DIP-14_W7.62mm",
+  "IC84": "Package_DIP:DIP-14_W7.62mm",
+  "IC86": "Package_DIP:DIP-10_W7.62mm",
+  "IC87": "Package_DIP:DIP-16_W7.62mm",
+  "IC88": "Package_DIP:DIP-10_W7.62mm",
+  "IC89": "Package_DIP:DIP-10_W7.62mm",
+  "IC90": "Package_DIP:DIP-10_W7.62mm",
+  "IC91": "Package_DIP:DIP-10_W7.62mm",
+  "IC92": "Package_DIP:DIP-8_W7.62mm",
+  "IC93": "Package_DIP:DIP-20_W7.62mm",
+  "IC94": "Package_DIP:DIP-14_W7.62mm",
+  "IC95": "Package_DIP:DIP-14_W7.62mm",
+  "VIC1": "Package_DIP:DIP-20_W7.62mm",
+  "VIC2": "Package_DIP:DIP-20_W7.62mm",
+  "VIC3": "Package_DIP:DIP-14_W7.62mm",
+  "VIC4": "Package_DIP:DIP-14_W7.62mm",
+  "VIC5": "Package_DIP:DIP-20_W7.62mm",
+  "VIC6": "Package_DIP:DIP-16_W7.62mm",
+  "VIC7": "Package_DIP:DIP-16_W7.62mm",
+  "VIC8": "Package_DIP:DIP-20_W7.62mm",
+  "VIC9": "Package_DIP:DIP-20_W7.62mm",
+  "VIC10": "Package_DIP:DIP-16_W7.62mm",
+  "VIC11": "Package_DIP:DIP-20_W7.62mm",
+  "VIC12": "Package_DIP:DIP-16_W7.62mm",
+  "VIC13": "Package_DIP:DIP-16_W7.62mm",
+  "VIC14": "Package_DIP:DIP-16_W7.62mm",
+  "VIC15": "Package_DIP:DIP-16_W7.62mm",
+  "VIC16": "Package_DIP:DIP-20_W7.62mm",
+  "VIC17": "Package_DIP:DIP-20_W7.62mm",
+  "VIC18": "Package_DIP:DIP-16_W7.62mm",
+  "VIC19": "Package_DIP:DIP-16_W7.62mm",
+  "VIC20": "Package_DIP:DIP-16_W7.62mm",
+  "VIC21": "Package_DIP:DIP-16_W7.62mm",
+  "VIC22": "Package_DIP:DIP-16_W7.62mm",
+  "VIC23": "Package_DIP:DIP-20_W7.62mm",
+  "VIC24": "Package_DIP:DIP-24_W15.24mm",
+  "VIC25": "Package_DIP:DIP-16_W7.62mm",
+  "VIC26": "Package_DIP:DIP-16_W7.62mm",
+  "VIC27": "Package_DIP:DIP-16_W7.62mm",
+  "VIC28": "Package_DIP:DIP-16_W7.62mm",
+  "VIC29": "Package_DIP:DIP-16_W7.62mm",
+  "VIC30": "Package_DIP:DIP-16_W7.62mm",
+  "VIC31": "Package_DIP:DIP-16_W7.62mm",
+  "VIC32": "Package_QFP:PQFP-80_14x14mm_P0.65mm",
+  "VIC33": "Package_DIP:DIP-16_W7.62mm",
+  "VIC34": "Package_DIP:DIP-16_W7.62mm",
+  "VIC35": "Package_DIP:DIP-16_W7.62mm",
+  "VIC36": "Package_DIP:DIP-16_W7.62mm",
+  "VIC37": "Package_DIP:DIP-14_W7.62mm",
+  "VIC38": "Package_DIP:DIP-20_W7.62mm",
+  "VIC39": "Package_DIP:DIP-24_W15.24mm",
+  "VIC40": "Package_DIP:DIP-24_W15.24mm",
+  "VIC41": "Package_DIP:DIP-16_W7.62mm",
+  "VIC42": "Package_DIP:DIP-16_W7.62mm",
+  "VIC43": "Package_DIP:DIP-16_W7.62mm",
+  "VIC44": "Package_DIP:DIP-14_W7.62mm",
+  "VIC45": "Package_DIP:DIP-24_W15.24mm",
+  "VIC46": "Package_DIP:DIP-16_W7.62mm",
+  "VIC47": "Package_DIP:DIP-14_W7.62mm",
+  "VIC48": "Package_DIP:DIP-24_W15.24mm",
+  "VIC49": "Package_DIP:DIP-14_W7.62mm",
+  "VIC50": "Package_DIP:DIP-14_W7.62mm",
+  "VIC51": "Package_DIP:DIP-14_W7.62mm",
+  "VIC52": "Package_DIP:DIP-16_W7.62mm",
+  "VIC53": "Package_DIP:DIP-20_W7.62mm",
+  "VIC54": "Package_DIP:DIP-20_W7.62mm",
+  "VIC55": "Package_DIP:DIP-20_W7.62mm",
+  "VIC56": "Package_DIP:DIP-20_W7.62mm",
+  "VIC57": "Package_DIP:DIP-16_W7.62mm",
+  "VIC58": "Package_DIP:DIP-14_W7.62mm",
+  "VIC59": "Package_DIP:DIP-16_W7.62mm",
+  "VIC60": "Package_DIP:DIP-14_W7.62mm",
+  "VIC60E1": "Package_DIP:DIP-14_W7.62mm",
+  "VIC61": "Package_DIP:DIP-16_W7.62mm",
+  "VIC62": "Package_DIP:DIP-16_W7.62mm",
+  "VIC63": "Package_DIP:DIP-16_W7.62mm",
+  "VIC64": "Package_DIP:DIP-14_W7.62mm",
+  "VIC65": "Package_DIP:DIP-14_W7.62mm",
+  "VIC66": "Package_DIP:DIP-14_W7.62mm",
+  "VIC67": "Package_DIP:DIP-14_W7.62mm",
+  "VIC68": "Package_DIP:DIP-14_W7.62mm",
+  "VIC69": "Package_DIP:DIP-20_W7.62mm",
+  "VIC70": "Package_DIP:DIP-16_W7.62mm",
+  "VIC71": "Package_DIP:DIP-24_W15.24mm",
+  "VIC72": "Package_DIP:DIP-20_W7.62mm",
+  "VIC73": "Package_DIP:DIP-20_W7.62mm",
+  "VIC74": "Package_DIP:DIP-16_W7.62mm",
+  "VIC75": "Package_DIP:DIP-16_W7.62mm",
+  "VIC76": "Package_DIP:DIP-14_W7.62mm",
+  "VIC77": "Package_DIP:DIP-14_W7.62mm",
+  "VIC78": "Package_DIP:DIP-16_W7.62mm",
+  "VIC79": "Package_DIP:DIP-16_W7.62mm",
+  "VIC80": "Package_DIP:DIP-16_W7.62mm",
+  "VIC81": "Package_DIP:DIP-20_W7.62mm",
+  "VIC82": "Package_DIP:DIP-20_W7.62mm",
+  "VIC83": "Package_DIP:DIP-20_W7.62mm",
+  "VIC84": "Package_DIP:DIP-20_W7.62mm",
+  "VIC85": "Package_DIP:DIP-14_W7.62mm",
+  "VIC86": "Package_DIP:DIP-16_W7.62mm",
+  "VIC87": "Package_DIP:DIP-16_W7.62mm",
+  "VIC88": "Package_DIP:DIP-16_W7.62mm",
+  "VIC89": "Package_DIP:DIP-16_W7.62mm",
+  "VIC90": "Package_DIP:DIP-14_W7.62mm",
+  "VIC91": "Package_DIP:DIP-14_W7.62mm",
+  "VIC92": "Package_DIP:DIP-16_W7.62mm",
+  "VIC93": "Package_DIP:DIP-14_W7.62mm",
+  "VIC94": "Package_DIP:DIP-16_W7.62mm",
+  "VIC95": "Package_DIP:DIP-16_W7.62mm",
+  "VIC96": "Package_DIP:DIP-14_W7.62mm",
+  "VIC97": "Package_DIP:DIP-16_W7.62mm",
+  "VIC98": "Package_DIP:DIP-16_W7.62mm",
+  "VIC99": "Package_DIP:DIP-16_W7.62mm",
+  "VIC100": "Package_DIP:DIP-16_W7.62mm",
+  "VIC101": "Package_DIP:DIP-16_W7.62mm",
+  "VIC102": "Package_DIP:DIP-16_W7.62mm",
+  "VIC103": "Package_DIP:DIP-16_W7.62mm",
+  "VIC104": "Package_DIP:DIP-14_W7.62mm",
+  "VIC105": "Package_DIP:DIP-16_W7.62mm",
+  "VIC106": "Package_DIP:DIP-16_W7.62mm",
+  "VIC107": "Package_DIP:DIP-16_W7.62mm",
+  "VIC108": "Package_DIP:DIP-20_W7.62mm",
+  "VIC109": "Package_DIP:DIP-14_W7.62mm",
+  "VIC110": "Package_DIP:DIP-20_W7.62mm",
+  "VIC111": "Package_DIP:DIP-20_W7.62mm",
+  "VIC112": "Package_DIP:DIP-32_W15.24mm",
+  "VIC113": "Package_DIP:DIP-32_W15.24mm",
+  "VIC114": "Package_DIP:DIP-32_W15.24mm",
+  "VIC115": "Package_DIP:DIP-32_W15.24mm",
+  "VIC116": "Package_DIP:DIP-32_W15.24mm",
+  "VIC117": "Package_DIP:DIP-14_W7.62mm",
+  "VIC118": "Package_DIP:DIP-32_W15.24mm",
+  "VIC119": "Package_DIP:DIP-32_W15.24mm",
+  "VIC126": "Package_DIP:DIP-14_W7.62mm",
+  "VU117": "Package_DIP:DIP-32_W15.24mm"
+ },
+ "parts": {
+  "C7": "100 nF",
+  "C8": "100 nF",
+  "C9": "100 nF",
+  "C14": "100 nF",
+  "C15": "100 nF",
+  "C16": "100 nF",
+  "C17": "C15",
+  "C28": "C",
+  "C29": "C",
+  "C36": "4.7μF",
+  "C40": "0.1μF",
+  "C41": "0.1μF",
+  "C42": "3.3 nF",
+  "C43": "0.1μF",
+  "C44": "0.1μF",
+  "C45": "3.3 nF",
+  "C48": "C",
+  "C49": "10μF",
+  "C50": "10μF",
+  "C51": "0.1μF",
+  "C52": "10nF",
+  "C53": "0.1μF",
+  "C54": "0.068 nF",
+  "C56": "C",
+  "C57": "10nF",
+  "C58": "22nF",
+  "C59": "4.7 nF",
+  "C60": "1.5nF",
+  "C61": "25V",
+  "C62": "C_Polarized_US",
+  "C63": "C",
+  "C64": "C",
+  "C65": "10μF",
+  "C66": "1000μF",
+  "C67": "1000μF",
+  "C68": "470μF",
+  "C69": "150 nF",
+  "C70": "4.7μF",
+  "C71": "10nF",
+  "C72": "10μF",
+  "C73": "100μF",
+  "C74": "0.1μF",
+  "C75": "0.1μF",
+  "C76": "22nF",
+  "C77": "33u",
+  "CFIX1": "33u",
+  "IC1": "74LS00",
+  "IC2": "74LS245",
+  "IC3": "74LS10",
+  "IC4": "74LS273",
+  "IC5": "74LS153",
+  "IC6": "74LS153",
+  "IC7": "74LS153",
+  "IC8": "74LS153",
+  "IC9": "74LS157",
+  "IC10": "74LS157",
+  "IC11": "74LS157",
+  "IC12": "27C256",
+  "IC13": "Z80CPU",
+  "IC14": "74LS04",
+  "IC15": "RAM_2016",
+  "IC16": "RAM_2016",
+  "IC17": "74LS10",
+  "IC18": "74LS32",
+  "IC19": "RAM_2016",
+  "IC20": "RAM_2016",
+  "IC21": "74LS25",
+  "IC22": "RAM_2016",
+  "IC23": "RAM_2016",
+  "IC24": "YM2151",
+  "IC25": "74LS10",
+  "IC26": "74LS74",
+  "IC27": "74LS245",
+  "IC28": "74LS245",
+  "IC29": "74LS153",
+  "IC30": "74LS148",
+  "IC31": "74LS174",
+  "IC32": "74LS245",
+  "IC33": "74LS374",
+  "IC34": "27C1000",
+  "IC35": "27C1000",
+  "IC36": "74LS30",
+  "IC37": "74LS00",
+  "IC38": "74LS174",
+  "IC39": "74LS273",
+  "IC40": "74LS273",
+  "IC41": "74LS174",
+  "IC42": "74LS273",
+  "IC43": "74LS273",
+  "IC44": "74LS157",
+  "IC45": "24J8-0",
+  "IC46": "27C1000",
+  "IC47": "OKI6295",
+  "IC48": "74LS138",
+  "IC49": "74LS244",
+  "IC50": "74LS138",
+  "IC51": "74LS138",
+  "IC52": "R2R4",
+  "IC53": "74LS374",
+  "IC54": "74AHC273",
+  "IC55": "74LS374",
+  "IC56": "74LS157",
+  "IC57": "74LS194",
+  "IC58": "27C1000",
+  "IC59": "74LS32",
+  "IC60": "74LS138",
+  "IC61": "YM3012",
+  "IC62": "74LS244",
+  "IC63": "68000D",
+  "IC64": "74LS04",
+  "IC65": "74LS148",
+  "IC66": "74LS74",
+  "IC67": "74LS174",
+  "IC68": "74LS00",
+  "IC69": "74LS374",
+  "IC70": "74LS194",
+  "IC71": "74LS74",
+  "IC72": "74LS04",
+  "IC73": "HA17558",
+  "IC74": "HA17558",
+  "IC75": "74LS244",
+  "IC76": "74LS244",
+  "IC77": "74LS244",
+  "IC78": "74LS244",
+  "IC79": "74LS244",
+  "IC80": "74LS244",
+  "IC81": "HA17558",
+  "IC82": "74LS74",
+  "IC83": "74LS05",
+  "IC84": "74LS14",
+  "IC85": "BF457",
+  "IC86": "XXCRXXXX",
+  "IC87": "74LS157",
+  "IC88": "XXCRXXXX",
+  "IC89": "XXCRXXXX",
+  "IC90": "XXCRXXXX",
+  "IC91": "M51516L",
+  "IC92": "HA17558",
+  "IC93": "74LS245",
+  "IC94": "74LS32",
+  "IC95": "74LS10",
+  "J1": "Conn_02x25_Odd_Even",
+  "J2": "Conn_02x25_Odd_Even",
+  "J3": "JAMMA_CONN",
+  "R1": "470 Ohms 5%",
+  "R2": "470±5%",
+  "R3": "470±5%",
+  "R4": "470±5%",
+  "R5": "100±5%",
+  "R6": "4.7k 5%",
+  "R7": "470 Ohms 5%",
+  "R8": "10k 5%",
+  "R9": "5.6k 5%",
+  "R10": "47k±5%",
+  "R11": "10k 5%",
+  "R12": "47±1%",
+  "R13": "47±1%",
+  "R14": "R_US",
+  "R15": "R_US",
+  "R16": "1k 5%",
+  "R17": "4.7k 5%",
+  "R18": "10k 5%",
+  "R19": "10k 5%",
+  "R20": "1k±5%",
+  "R21": "51±5%",
+  "R22": "47±5%",
+  "R23": "10k±5%",
+  "R24": "R_US",
+  "R25": "R_US",
+  "R26": "1k 5%",
+  "R27": "10k 5%",
+  "R28": "5.6k 5%",
+  "R29": "10k 5%",
+  "R30": "10k 5%",
+  "R31": "10k 5%",
+  "RFIX1": "47±1%",
+  "RM1": "R_Network08_US",
+  "RM2": "R_Network08_US",
+  "RV2": "1.5 nF",
+  "SW1": "SW_DIP_x08",
+  "SW2": "SW_DIP_x08",
+  "TR1": "BF457",
+  "TR2": "BF457",
+  "TR3": "BF457",
+  "TR4": "BF457",
+  "V6": "470 Ohms 5%",
+  "VC4": "101",
+  "VC5": "101",
+  "VC6": "101",
+  "VC7": "101",
+  "VC8": "101",
+  "VC9": "101",
+  "VC10": "101",
+  "VC11": "101",
+  "VC12": "C12",
+  "VC13": "C13",
+  "VC14": "C14",
+  "VC15": "C15",
+  "VC16": "C15",
+  "VC18": "C15",
+  "VC19": "C15",
+  "VIC1": "74LS273",
+  "VIC2": "74LS273",
+  "VIC3": "74LS10",
+  "VIC4": "74LS86",
+  "VIC5": "74LS273",
+  "VIC6": "74LS283",
+  "VIC7": "74LS283",
+  "VIC8": "74LS245",
+  "VIC9": "74LS273",
+  "VIC10": "74LS157",
+  "VIC11": "74LS273",
+  "VIC12": "74LS157",
+  "VIC13": "74LS157",
+  "VIC14": "74LS157",
+  "VIC15": "74LS157",
+  "VIC16": "74LS273",
+  "VIC17": "74LS273",
+  "VIC18": "74LS367",
+  "VIC19": "74LS174",
+  "VIC20": "74LS157",
+  "VIC21": "74LS283",
+  "VIC22": "74LS283",
+  "VIC23": "74LS245",
+  "VIC24": "SRAM2K8B",
+  "VIC25": "74LS157",
+  "VIC26": "74LS157",
+  "VIC27": "74LS157",
+  "VIC28": "74LS257",
+  "VIC29": "74LS257",
+  "VIC30": "74LS257",
+  "VIC31": "74LS257",
+  "VIC32": "TJ-001",
+  "VIC33": "74LS174",
+  "VIC34": "74LS157",
+  "VIC35": "74LS157",
+  "VIC36": "74LS157",
+  "VIC37": "74LS86",
+  "VIC38": "74LS273",
+  "VIC39": "SRAM2K8B",
+  "VIC40": "SRAM2K8B",
+  "VIC41": "74LS157",
+  "VIC42": "74LS157",
+  "VIC43": "74LS163",
+  "VIC44": "74LS86",
+  "VIC45": "SRAM2K8B",
+  "VIC46": "74LS163",
+  "VIC47": "74LS86",
+  "VIC48": "SRAM2K8B",
+  "VIC49": "74LS86",
+  "VIC50": "74LS30",
+  "VIC51": "74LS74",
+  "VIC52": "74LS283",
+  "VIC53": "74LS374",
+  "VIC54": "74AHC273",
+  "VIC55": "74LS374",
+  "VIC56": "74LS374",
+  "VIC57": "74LS161",
+  "VIC58": "74LS86",
+  "VIC59": "74LS157",
+  "VIC60": "74LS08",
+  "VIC60E1": "74LS08",
+  "VIC61": "74LS174",
+  "VIC62": "74LS174",
+  "VIC63": "74LS161",
+  "VIC64": "74LS86",
+  "VIC65": "74LS32",
+  "VIC66": "74LS00",
+  "VIC67": "74LS04",
+  "VIC68": "74LS04",
+  "VIC69": "74LS374",
+  "VIC70": "74LS157",
+  "VIC71": "SRAM2K8B",
+  "VIC72": "74LS374",
+  "VIC73": "74LS273",
+  "VIC74": "74LS163",
+  "VIC75": "74LS163",
+  "VIC76": "74LS04",
+  "VIC77": "74LS86",
+  "VIC78": "74LS174",
+  "VIC79": "74LS157",
+  "VIC80": "74LS157",
+  "VIC81": "74LS273",
+  "VIC82": "74LS273",
+  "VIC83": "74LS273",
+  "VIC84": "74LS273",
+  "VIC85": "74LS27",
+  "VIC86": "74LS161",
+  "VIC87": "74LS157",
+  "VIC88": "74LS157",
+  "VIC89": "74LS157",
+  "VIC90": "74LS86",
+  "VIC91": "74LS86",
+  "VIC92": "74LS163",
+  "VIC93": "74LS02",
+  "VIC94": "74LS163",
+  "VIC95": "74LS174",
+  "VIC96": "74LS86",
+  "VIC97": "74LS194",
+  "VIC98": "74LS194",
+  "VIC99": "74LS194",
+  "VIC100": "74LS194",
+  "VIC101": "74LS158",
+  "VIC102": "74LS194",
+  "VIC103": "74LS194",
+  "VIC104": "74LS25",
+  "VIC105": "74LS157",
+  "VIC106": "74LS194",
+  "VIC107": "74LS194",
+  "VIC108": "74LS273",
+  "VIC109": "74LS273",
+  "VIC110": "74LS273",
+  "VIC111": "74LS273",
+  "VIC112": "24J6-0",
+  "VIC113": "24J7-0",
+  "VIC114": "TC534000AP",
+  "VIC115": "24J",
+  "VIC116": "24J",
+  "VIC117": "74LS86",
+  "VIC118": "24J",
+  "VIC119": "24J",
+  "VIC126": "74LS04",
+  "VJ1": "Conn_02x25_Odd_Even",
+  "VJ2": "Conn_02x25_Odd_Even",
+  "VR2": "470 Ohms 5%",
+  "VR3": "470 Ohms 5%",
+  "VR4": "470 Ohms 5%",
+  "VR5": "470 Ohms 5%",
+  "VR8": "470 Ohms 5%",
+  "VU117": "TC534000AP",
+  "X1": "24. 000 MHz",
+  "X2": "1.05 MHz",
+  "X3": "20.000MHz"
+ }
+}

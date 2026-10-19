@@ -1,0 +1,206 @@
+{
+ "slug": "street-fighter-audio",
+ "name": "Street Fighter PCB (audio amplifier)",
+ "mfr": "Capcom",
+ "year": "1987",
+ "machine": "sf",
+ "drawing": "jtcores cores/sf/sch at e7b11263",
+ "revision": "",
+ "coverage": "75 parts, 12 of them ICs, and 55 nets over 188 pins, on sheets for one sheet. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/sf/sch",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/sf/sch",
+  "authors": [
+   "etriana85",
+   "Jose Tejada"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/street-fighter-audio/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/street-fighter-audio",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "sf.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 175.8,
+  "h": 244.9
+ },
+ "partial": true,
+ "grid": {
+  "rows": "ABCDEFKU",
+  "cols": 13,
+  "transposed": false
+ },
+ "ics": {
+  "A1": "HA13001",
+  "B1": "HA13001",
+  "C1": "LM358",
+  "D1": "OKI-M5205",
+  "D2": "OKI-M5205",
+  "D3": "LM324",
+  "E1": "74LS174",
+  "E2": "74LS174",
+  "F1": "74LS32",
+  "K13": "74LS74",
+  "U2": "Z80CPU",
+  "U3": "27C1000"
+ },
+ "place": {
+  "A1": [
+   10.0,
+   10.0,
+   0
+  ],
+  "B1": [
+   10.0,
+   34.8,
+   0
+  ],
+  "C1": [
+   10.0,
+   59.6,
+   0
+  ],
+  "D1": [
+   10.0,
+   84.4,
+   0
+  ],
+  "D2": [
+   22.1,
+   84.4,
+   0
+  ],
+  "D3": [
+   34.2,
+   84.4,
+   0
+  ],
+  "E1": [
+   10.0,
+   109.2,
+   0
+  ],
+  "E2": [
+   22.1,
+   109.2,
+   0
+  ],
+  "F1": [
+   10.0,
+   134.0,
+   0
+  ],
+  "K13": [
+   155.2,
+   158.8,
+   0
+  ],
+  "U2": [
+   22.1,
+   183.6,
+   0
+  ],
+  "U3": [
+   34.2,
+   198.84,
+   90
+  ]
+ },
+ "footprints": {
+  "A1": "Package_DIP:DIP-12_W7.62mm",
+  "B1": "Package_DIP:DIP-12_W7.62mm",
+  "C1": "Package_DIP:DIP-8_W7.62mm",
+  "D1": "Package_DIP:DIP-18_W7.62mm",
+  "D2": "Package_DIP:DIP-18_W7.62mm",
+  "D3": "Package_DIP:DIP-14_W7.62mm",
+  "E1": "Package_DIP:DIP-16_W7.62mm",
+  "E2": "Package_DIP:DIP-16_W7.62mm",
+  "F1": "Package_DIP:DIP-14_W7.62mm",
+  "K13": "Package_DIP:DIP-14_W7.62mm",
+  "U2": "Package_DIP:DIP-40_W15.24mm",
+  "U3": "Package_DIP:DIP-32_W15.24mm"
+ },
+ "parts": {
+  "A1": "HA13001",
+  "B1": "HA13001",
+  "C1": "LM358",
+  "C2": "C_Small",
+  "C3": "C_Small",
+  "C4": "22nF K",
+  "C5": "C_Small",
+  "C6": "C_Small",
+  "C10": "22nF K",
+  "C13": "C_Small",
+  "C14": "C_Small",
+  "C48": "22nf",
+  "C50": "100nF M",
+  "C51": "100nF M",
+  "C52": "22nf",
+  "C54": "100nF M",
+  "C55": "100nF M",
+  "C56": "22nF",
+  "C57": "22nF",
+  "C59": "100nF",
+  "C60": "100nF",
+  "C76": "100nF M",
+  "CC2": "100uF",
+  "CC3": "100uF",
+  "CC4": "4.7uF",
+  "CC5": "10uF",
+  "CC6": "100uF",
+  "CC7": "100uF",
+  "CC8": "100uF",
+  "CC9": "100uF",
+  "CC10": "4.7uF",
+  "CC11": "10uF",
+  "CC12": "100uF",
+  "CC13": "100uF",
+  "CC14": "10uF",
+  "CC15": "47uF",
+  "CC16": "10uF",
+  "CC17": "10uF",
+  "CC18": "10uF",
+  "D1": "OKI-M5205",
+  "D2": "OKI-M5205",
+  "D3": "LM324",
+  "E1": "74LS174",
+  "E2": "74LS174",
+  "F1": "74LS32",
+  "FB11": "NOT POPULATED",
+  "FB35": "NOT POPULATED",
+  "K13": "74LS74",
+  "R1": "1K",
+  "R2": "33K",
+  "R4": "1K",
+  "R5": "33K",
+  "R6": "15K",
+  "R7": "15k",
+  "R8": "15k",
+  "R9": "6.8K",
+  "R10": "6.8K",
+  "R11": "R_US",
+  "R12": "R_US",
+  "R13": "R_US",
+  "R14": "R_US",
+  "R15": "R_US",
+  "R16": "R_US",
+  "R17": "R_US",
+  "R18": "R_US",
+  "R19": "10K",
+  "R20": "10K",
+  "R21": "R_US",
+  "R22": "R_US",
+  "R28": "22K",
+  "RV1": "R_Potentiometer_US",
+  "RV2": "~",
+  "U1": "JAMMA_MALE",
+  "U2": "Z80CPU",
+  "U3": "27C1000"
+ }
+}

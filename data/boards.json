@@ -73,6 +73,42 @@
   }
  },
  {
+  "slug": "anti-aircraft-dice",
+  "name": "Anti-Aircraft (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1975",
+  "machine": "antiairc",
+  "drawing": "DICE games/antiaircraft.cpp at 4b4596b8",
+  "devices": 97,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "97 ICs and 333 nets over 1268 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, BUTTONS2_INPUT, CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, RANDOM_CLOCK_GEN, START_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/anti-aircraft-dice/anti-aircraft-dice-ibom.html",
+  "bom": "/boards/anti-aircraft-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/antiaircraft.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: POT1 (POT_555_MONO)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/antiaircraft.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/antiaircraft.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/anti-aircraft-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/anti-aircraft-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/anti-aircraft-dice.netlist.json"
+ },
+ {
   "slug": "asteroids-03",
   "name": "Asteroids (034986-03)",
   "mfr": "Atari",
@@ -1411,6 +1447,41 @@
   }
  },
  {
+  "slug": "breakout-dice",
+  "name": "Breakout (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1976",
+  "machine": "breakout",
+  "drawing": "DICE games/breakout.cpp at 4b4596b8",
+  "devices": 100,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "100 ICs and 359 nets over 1325 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (53137, BUTTONS1_INPUT, CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, MIXER, PADDLE1_HORIZONTAL_INPUT, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/breakout-dice/breakout-dice-ibom.html",
+  "bom": "/boards/breakout-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/breakout.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/breakout.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/breakout.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/breakout-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/breakout-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/breakout-dice.netlist.json"
+ },
+ {
   "slug": "centipede",
   "name": "Centipede",
   "mfr": "Atari",
@@ -1619,6 +1690,49 @@
    "Fairchild numbering rather than 74-series: 9312 is the 74151 multiplexer and 9602 the 74123 dual monostable, both on this board alongside plain 7400-series parts. Atari had not standardised on 74-series numbers yet."
   ],
   "schematicDocs": []
+ },
+ {
+  "slug": "crash-n-score-dice",
+  "name": "Crash 'n Score (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1975",
+  "machine": "crash-n-score",
+  "drawing": "DICE games/crashnscore.cpp at 4b4596b8",
+  "devices": 132,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "132 ICs and 446 nets over 1600 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, BUTTONS2_INPUT, CLOCK_14_318_MHZ, COIN_INPUT, CRASHNSCORE_SPEED_CONTROL, DIPSWITCH, DIPSWITCH_4SPST, LATCH, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/crash-n-score-dice/crash-n-score-dice-ibom.html",
+  "bom": "/boards/crash-n-score-dice/bom.csv",
+  "conflicts": [
+   "H10: DICE has a 7404, the Crash 'n Score board map (read off the drawings) a 7414.",
+   "The Crash 'n Score board map places B8, where DICE has no chip."
+  ],
+  "notes": [
+   "Converted from DICE's games/crashnscore.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Checked against the Crash 'n Score board map: of the 38 positions it names, DICE agrees on 36 and disagrees on 1; DICE names 95 the map does not.",
+   "Parts DICE adds to model the circuit, not on the board: CARGASAND (7408), POT1 (POT_555_ASTABLE)."
+  ],
+  "machines": [
+   "crashnsc"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/crashnscore.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/crashnscore.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/crash-n-score-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/crash-n-score-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/crash-n-score-dice.netlist.json"
  },
  {
   "slug": "fast-freddie",
@@ -2288,6 +2402,42 @@
   }
  },
  {
+  "slug": "pin-pong-dice",
+  "name": "Pin Pong (DICE netlist)",
+  "mfr": "Atari",
+  "year": "",
+  "machine": "pin-pong",
+  "drawing": "DICE games/pinpong.cpp at 4b4596b8",
+  "devices": 108,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "108 ICs and 373 nets over 1399 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, START_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/pin-pong-dice/pin-pong-dice-ibom.html",
+  "bom": "/boards/pin-pong-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/pinpong.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: D9-1 (7474), D9-2 (7474), WIRE_OR (7432)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/pinpong.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/pinpong.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/pin-pong-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/pin-pong-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/pin-pong-dice.netlist.json"
+ },
+ {
   "slug": "pole-position",
   "name": "Pole Position",
   "mfr": "Atari",
@@ -2411,6 +2561,41 @@
   }
  },
  {
+  "slug": "pong-doubles-dice",
+  "name": "Pong Doubles (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1973",
+  "machine": "pongd",
+  "drawing": "DICE games/pongdoubles.cpp at 4b4596b8",
+  "devices": 80,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "80 ICs and 250 nets over 958 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, PADDLE1_VERTICAL_INPUT, PADDLE2_VERTICAL_INPUT, PADDLE3_VERTICAL_INPUT, PADDLE4_VERTICAL_INPUT, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/pong-doubles-dice/pong-doubles-dice-ibom.html",
+  "bom": "/boards/pong-doubles-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/pongdoubles.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/pongdoubles.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/pongdoubles.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/pong-doubles-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/pong-doubles-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/pong-doubles-dice.netlist.json"
+ },
+ {
   "slug": "quantum",
   "name": "Quantum",
   "mfr": "Atari",
@@ -2444,6 +2629,41 @@
    "doc": "c0f0e131c97e",
    "page": 20
   }
+ },
+ {
+  "slug": "rebound-dice",
+  "name": "Rebound (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1974",
+  "machine": "rebound",
+  "drawing": "DICE games/rebound.cpp at 4b4596b8",
+  "devices": 72,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "72 ICs and 236 nets over 889 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, PADDLE1_HORIZONTAL_INPUT, PADDLE2_HORIZONTAL_INPUT, START_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/rebound-dice/rebound-dice-ibom.html",
+  "bom": "/boards/rebound-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/rebound.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/rebound.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/rebound.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/rebound-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rebound-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rebound-dice.netlist.json"
  },
  {
   "slug": "red-baron",
@@ -2816,6 +3036,42 @@
   }
  },
  {
+  "slug": "space-race-dice",
+  "name": "Space Race (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1973",
+  "machine": "space-race",
+  "drawing": "DICE games/spacerace.cpp at 4b4596b8",
+  "devices": 79,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "79 ICs and 259 nets over 922 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_14_318_MHZ, COIN_INPUT, DIODE_MATRIX, DIPSWITCH, JOYSTICK1_INPUT, JOYSTICK2_INPUT, LATCH, MIXER, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/space-race-dice/space-race-dice-ibom.html",
+  "bom": "/boards/space-race-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/spacerace.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: POT1 (POT_555_MONO)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/spacerace.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/spacerace.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/space-race-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/space-race-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/space-race-dice.netlist.json"
+ },
+ {
   "slug": "starship-1",
   "name": "Starship 1",
   "mfr": "Atari",
@@ -2837,6 +3093,76 @@
    "The grid spacing is nominal \u2014 the designators are what the parts list gives, but nothing has measured the board. Rows run R to A and columns 1 to 11; the row span is the standard Atari alphabet between the outermost letters seen, so rows with no device on them are still drawn as positions the board has."
   ],
   "schematicDocs": []
+ },
+ {
+  "slug": "steeplechase-dice",
+  "name": "Steeplechase (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1975",
+  "machine": "steeplec",
+  "drawing": "DICE games/steeplechase.cpp at 4b4596b8",
+  "devices": 94,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "94 ICs and 289 nets over 1167 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, BUTTONS2_INPUT, BUTTONS3_INPUT, BUTTONS4_INPUT, BUTTONS5_INPUT, BUTTONS6_INPUT, CLOCK_12_096_MHZ, COIN_INPUT, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/steeplechase-dice/steeplechase-dice-ibom.html",
+  "bom": "/boards/steeplechase-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/steeplechase.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/steeplechase.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/steeplechase.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/steeplechase-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/steeplechase-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/steeplechase-dice.netlist.json"
+ },
+ {
+  "slug": "stunt-cycle-dice",
+  "name": "Stunt Cycle (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1976",
+  "machine": "stuntcyc",
+  "drawing": "DICE games/stuntcycle.cpp at 4b4596b8",
+  "devices": 100,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "100 ICs and 348 nets over 1297 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (53137, CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, SERIES_RC, START_INPUT, STUNTCYCLE_THROTTLE, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/stunt-cycle-dice/stunt-cycle-dice-ibom.html",
+  "bom": "/boards/stunt-cycle-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/stuntcycle.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/stuntcycle.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/stuntcycle.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/stunt-cycle-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/stunt-cycle-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/stunt-cycle-dice.netlist.json"
  },
  {
   "slug": "super-breakout",
@@ -3415,6 +3741,3763 @@
   "sheetSource": {
    "doc": "aa27a357873e",
    "page": 8
+  }
+ },
+ {
+  "slug": "jet-fighter-dice",
+  "name": "Jet Fighter (DICE netlist)",
+  "mfr": "Atari Inc.",
+  "year": "1975",
+  "machine": "jet-fighter",
+  "drawing": "DICE games/jetfighter.cpp at 4b4596b8",
+  "devices": 110,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "110 ICs and 421 nets over 1495 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, BUTTONS2_INPUT, CLOCK_12_096_MHZ, COIN_INPUT, DIPSWITCH, JOYSTICK1_INPUT, JOYSTICK2_INPUT, LATCH, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/jet-fighter-dice/jet-fighter-dice-ibom.html",
+  "bom": "/boards/jet-fighter-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/jetfighter.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: POT1 (POT_555_ASTABLE)."
+  ],
+  "machines": [
+   "jetfight"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/jetfighter.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/jetfighter.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/jet-fighter-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/jet-fighter-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/jet-fighter-dice.netlist.json"
+ },
+ {
+  "slug": "highway-dice",
+  "name": "Hi-way (DICE netlist)",
+  "mfr": "Atari Incorporated",
+  "year": "1975",
+  "machine": "highway",
+  "drawing": "DICE games/highway.cpp at 4b4596b8",
+  "devices": 107,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "107 ICs and 389 nets over 1315 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, CLOCK_12_096_MHZ, COIN_INPUT, DIPSWITCH, DIPSWITCH_4SPST, HIGHWAY_SPEED_CONTROL, WHEEL1_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/highway-dice/highway-dice-ibom.html",
+  "bom": "/boards/highway-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/highway.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: E9POT (POT_555_ASTABLE)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/highway.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/highway.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/highway-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/highway-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/highway-dice.netlist.json"
+ },
+ {
+  "slug": "shark-jaws-dice",
+  "name": "Shark JAWS (DICE netlist)",
+  "mfr": "Atari/Horror Games",
+  "year": "1975",
+  "machine": "sharkjaw",
+  "drawing": "DICE games/sharkjaws.cpp at 4b4596b8",
+  "devices": 99,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "99 ICs and 329 nets over 1284 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (3OR, CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, JOYSTICK1_INPUT, LATCH, START_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/shark-jaws-dice/shark-jaws-dice-ibom.html",
+  "bom": "/boards/shark-jaws-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/sharkjaws.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: POT1 (POT_555_MONO), XA (9322), XB (9322), XC (9314), XE (74174), XF (7404)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/sharkjaws.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/sharkjaws.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/shark-jaws-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/shark-jaws-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/shark-jaws-dice.netlist.json"
+ },
+ {
+  "slug": "dragon-ball-z",
+  "name": "Dragon Ball Z PCB",
+  "mfr": "Banpresto",
+  "year": "1993",
+  "machine": "dbz",
+  "drawing": "jtcores cores/riders/sch/dbz at e7b11263",
+  "devices": 188,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "236 parts, 188 of them ICs, and 1142 nets over 4376 pins, on sheets for IO, MAIN_PSAC, MAIN_PSAC / PSAC_1, MAIN_PSAC / PSAC_1 / ROM1, MAIN_PSAC / PSAC_2, MAIN_PSAC / PSAC_2 / ROM2, analog, colmix, colmix / rgb, main, objects, scroll, sound, unpopulated. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/dragon-ball-z/dragon-ball-z-ibom.html",
+  "bom": "/boards/dragon-ball-z/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/dragon-ball-z/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "colmix",
+     "page": 5
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 6
+    },
+    {
+     "title": "MAIN_PSAC",
+     "page": 7
+    },
+    {
+     "title": "MAIN_PSAC / PSAC_1",
+     "page": 8
+    },
+    {
+     "title": "MAIN_PSAC / PSAC_1 / ROM1",
+     "page": 9
+    },
+    {
+     "title": "MAIN_PSAC / PSAC_2",
+     "page": 10
+    },
+    {
+     "title": "MAIN_PSAC / PSAC_2 / ROM2",
+     "page": 11
+    },
+    {
+     "title": "sound",
+     "page": 12
+    },
+    {
+     "title": "IO",
+     "page": 13
+    },
+    {
+     "title": "analog",
+     "page": 14
+    },
+    {
+     "title": "unpopulated",
+     "page": 15
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/dragon-ball-z",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/dragon-ball-z.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/dbz",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/riders/sch/dbz",
+   "authors": [
+    "Fran.R"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/dragon-ball-z/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/dragon-ball-z",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "cp-system-iii",
+  "name": "CP System III",
+  "mfr": "Capcom",
+  "year": "1997",
+  "machine": "sfiii",
+  "drawing": "jtcores cores/cps3/sch at e7b11263",
+  "devices": 98,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "536 parts, 98 of them ICs, and 949 nets over 5691 pins, on sheets for capacitors_uu, cassette, cassette / memories_scu, ccu, iou, objects, ppu, ppu / buffer_line_driver, ppu / memories_fb, simms_flash / scroll, simms_flash / simm3, simms_flash / simm4, simms_flash / simm5, simms_flash / simm6, simms_flash / simm_connector, simms_flash / simms_2~1_snd, simms_flash / slots_female, sound, ssu, video_dac. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/cp-system-iii/cp-system-iii-ibom.html",
+  "bom": "/boards/cp-system-iii/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/cp-system-iii/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "simms_flash",
+     "page": 2
+    },
+    {
+     "title": "simms_flash / simm_connector",
+     "page": 3
+    },
+    {
+     "title": "simms_flash / simms_2~1_snd",
+     "page": 4
+    },
+    {
+     "title": "simms_flash / simm3",
+     "page": 5
+    },
+    {
+     "title": "simms_flash / simm4",
+     "page": 6
+    },
+    {
+     "title": "simms_flash / simm5",
+     "page": 7
+    },
+    {
+     "title": "simms_flash / simm6",
+     "page": 8
+    },
+    {
+     "title": "simms_flash / slots_female",
+     "page": 9
+    },
+    {
+     "title": "simms_flash / scroll",
+     "page": 10
+    },
+    {
+     "title": "iou",
+     "page": 11
+    },
+    {
+     "title": "sound",
+     "page": 12
+    },
+    {
+     "title": "ppu",
+     "page": 13
+    },
+    {
+     "title": "ppu / memories_fb",
+     "page": 14
+    },
+    {
+     "title": "ppu / buffer_line_driver",
+     "page": 15
+    },
+    {
+     "title": "capacitors_uu",
+     "page": 16
+    },
+    {
+     "title": "objects",
+     "page": 17
+    },
+    {
+     "title": "video_dac",
+     "page": 18
+    },
+    {
+     "title": "ssu",
+     "page": 19
+    },
+    {
+     "title": "ccu",
+     "page": 20
+    },
+    {
+     "title": "cassette",
+     "page": 21
+    },
+    {
+     "title": "cassette / memories_scu",
+     "page": 22
+    },
+    {
+     "title": "h_description",
+     "page": 23
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/cp-system-iii",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/cp-system-iii.netlist.json"
+  },
+  "machines": [
+   "cps3boot",
+   "jojo",
+   "jojoba",
+   "redearth",
+   "sfiii2",
+   "sfiii3"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/cps3/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/cps3/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/cp-system-iii/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/cp-system-iii",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "exed-exes",
+  "name": "Exed Exes PCB",
+  "mfr": "Capcom",
+  "year": "1985",
+  "machine": "exedexes",
+  "drawing": "jtcores cores/exed/sch at e7b11263",
+  "devices": 235,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "505 parts, 235 of them ICs, and 1035 nets over 4245 pins, on sheets for capacitors, h_counter, interruption, last_u, main, main / ds_cabinet, main / ram_rom, sound, sound / psg, sound / snd_c_latch, v_counter, video / char, video / colmix, video / h_scroll, video / obj_counters, video / obj_counters / mux, video / obj_lut, video / obj_lut / rom_olut, video / obj_ram, video / object_table, video / object_table / mux_ot, video / scroll1, video / scroll2, video / v_scroll, video_timings. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/exed-exes/exed-exes-ibom.html",
+  "bom": "/boards/exed-exes/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/exed-exes/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "video",
+     "page": 2
+    },
+    {
+     "title": "video / h_scroll",
+     "page": 3
+    },
+    {
+     "title": "video / v_scroll",
+     "page": 4
+    },
+    {
+     "title": "video / scroll1",
+     "page": 5
+    },
+    {
+     "title": "video / scroll2",
+     "page": 6
+    },
+    {
+     "title": "video / object_table",
+     "page": 7
+    },
+    {
+     "title": "video / object_table / mux_ot",
+     "page": 8
+    },
+    {
+     "title": "video / char",
+     "page": 9
+    },
+    {
+     "title": "video / obj_lut",
+     "page": 10
+    },
+    {
+     "title": "video / obj_lut / rom_olut",
+     "page": 11
+    },
+    {
+     "title": "video / obj_counters",
+     "page": 12
+    },
+    {
+     "title": "video / obj_counters / mux",
+     "page": 13
+    },
+    {
+     "title": "video / colmix",
+     "page": 14
+    },
+    {
+     "title": "video / obj_ram",
+     "page": 15
+    },
+    {
+     "title": "video / logics_gates",
+     "page": 16
+    },
+    {
+     "title": "sound",
+     "page": 17
+    },
+    {
+     "title": "sound / snd_c_latch",
+     "page": 18
+    },
+    {
+     "title": "sound / psg",
+     "page": 19
+    },
+    {
+     "title": "video_timings",
+     "page": 20
+    },
+    {
+     "title": "main",
+     "page": 21
+    },
+    {
+     "title": "main / ram_rom",
+     "page": 22
+    },
+    {
+     "title": "main / ds_cabinet",
+     "page": 23
+    },
+    {
+     "title": "interruption",
+     "page": 24
+    },
+    {
+     "title": "v_counter",
+     "page": 25
+    },
+    {
+     "title": "h_counter",
+     "page": 26
+    },
+    {
+     "title": "last_u",
+     "page": 27
+    },
+    {
+     "title": "capacitors",
+     "page": 28
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/exed-exes",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/exed-exes.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/exed/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/exed/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/exed-exes/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/exed-exes",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "side-arms",
+  "name": "Side Arms PCB (section)",
+  "mfr": "Capcom",
+  "year": "1986",
+  "machine": "sidearms",
+  "drawing": "jtcores cores/sarms/sch at e7b11263",
+  "devices": 36,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "42 parts, 36 of them ICs, and 150 nets over 412 pins, on sheets for sarms. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/side-arms/side-arms-ibom.html",
+  "bom": "/boards/side-arms/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/side-arms/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "sarms",
+     "page": 2
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/side-arms",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/side-arms.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/sarms/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/sarms/sch",
+   "authors": [
+    "Jose Tejada",
+    "etriana85"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/side-arms/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/side-arms",
+   "imported": "2026-10-19"
+  },
+  "partial": true
+ },
+ {
+  "slug": "street-fighter-audio",
+  "name": "Street Fighter PCB (audio amplifier)",
+  "mfr": "Capcom",
+  "year": "1987",
+  "machine": "sf",
+  "drawing": "jtcores cores/sf/sch at e7b11263",
+  "devices": 12,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "75 parts, 12 of them ICs, and 55 nets over 188 pins, on sheets for one sheet. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/street-fighter-audio/street-fighter-audio-ibom.html",
+  "bom": "/boards/street-fighter-audio/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/street-fighter-audio/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/street-fighter-audio",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/street-fighter-audio.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/sf/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/sf/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/street-fighter-audio/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/street-fighter-audio",
+   "imported": "2026-10-19"
+  },
+  "partial": true
+ },
+ {
+  "slug": "speed-rumbler",
+  "name": "The Speed Rumbler PCB (timing section)",
+  "mfr": "Capcom",
+  "year": "1986",
+  "machine": "srumbler",
+  "drawing": "jtcores cores/rumble/sch at e7b11263",
+  "devices": 28,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "30 parts, 28 of them ICs, and 61 nets over 189 pins, on sheets for timing. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/speed-rumbler/speed-rumbler-ibom.html",
+  "bom": "/boards/speed-rumbler/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/speed-rumbler/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "timing",
+     "page": 2
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/speed-rumbler",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/speed-rumbler.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rumble/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/rumble/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/speed-rumbler/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/speed-rumbler",
+   "imported": "2026-10-19"
+  },
+  "partial": true
+ },
+ {
+  "slug": "sly-spy",
+  "name": "Sly Spy PCB",
+  "mfr": "Data East Corporation",
+  "year": "1989",
+  "machine": "secretag",
+  "drawing": "jtcores cores/slyspy/sch at e7b11263",
+  "devices": 113,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Sly Spy is the US title of Secret Agent; MAME's parent set is secretag. 136 parts, 113 of them ICs, and 676 nets over 2325 pins, on sheets for colmix, gfx1_2.sch, gfx3, gfxrom, main, main / mainmem, objects, objram, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/sly-spy/sly-spy-ibom.html",
+  "bom": "/boards/sly-spy/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/sly-spy/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "objram",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "gfxrom",
+     "page": 4
+    },
+    {
+     "title": "main",
+     "page": 5
+    },
+    {
+     "title": "main / mainmem",
+     "page": 6
+    },
+    {
+     "title": "gfx1_2.sch",
+     "page": 7
+    },
+    {
+     "title": "colmix",
+     "page": 8
+    },
+    {
+     "title": "gfx3",
+     "page": 9
+    },
+    {
+     "title": "sound",
+     "page": 10
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sly-spy",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sly-spy.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/slyspy/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/slyspy/sch",
+   "authors": [
+    "Jose Tejada",
+    "etriana85"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/sly-spy/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sly-spy",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "capcom-bowling",
+  "name": "Capcom Bowling PCB",
+  "mfr": "Incredible Technologies / Capcom",
+  "year": "1988",
+  "machine": "capbowl",
+  "drawing": "jtcores cores/capbowl/sch at e7b11263",
+  "devices": 46,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "132 parts, 46 of them ICs, and 208 nets over 1159 pins, on sheets for main, main / memories, sound, video. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/capcom-bowling/capcom-bowling-ibom.html",
+  "bom": "/boards/capcom-bowling/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/capcom-bowling/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "video",
+     "page": 2
+    },
+    {
+     "title": "sound",
+     "page": 3
+    },
+    {
+     "title": "main",
+     "page": 4
+    },
+    {
+     "title": "main / memories",
+     "page": 5
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/capcom-bowling",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/capcom-bowling.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/capbowl/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/capbowl/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/capcom-bowling/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/capcom-bowling",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "asterix-konami",
+  "name": "Asterix PCB",
+  "mfr": "Konami",
+  "year": "1992",
+  "machine": "asterix",
+  "drawing": "jtcores cores/riders/sch/asterix at e7b11263",
+  "devices": 87,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "177 parts, 87 of them ICs, and 615 nets over 2678 pins, on sheets for capacitors, colmix, colmix / rgb, io_cabinet, main, objects, pcm, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/asterix-konami/asterix-konami-ibom.html",
+  "bom": "/boards/asterix-konami/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/asterix-konami/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "colmix",
+     "page": 6
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 7
+    },
+    {
+     "title": "sound",
+     "page": 8
+    },
+    {
+     "title": "pcm",
+     "page": 9
+    },
+    {
+     "title": "capacitors",
+     "page": 10
+    },
+    {
+     "title": "description",
+     "page": 11
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/asterix-konami",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/asterix-konami.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/asterix",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/riders/sch/asterix",
+   "authors": [
+    "cartman135",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/asterix-konami/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/asterix-konami",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "golfing-greats",
+  "name": "Golfing Greats PCB",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "glfgreat",
+  "drawing": "jtcores cores/riders/sch/glfgreat at e7b11263",
+  "devices": 71,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "75 parts, 71 of them ICs, and 433 nets over 1443 pins, on sheets for cabinet, main, objects, scroll, sound, zlayer. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/golfing-greats/golfing-greats-ibom.html",
+  "bom": "/boards/golfing-greats/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/golfing-greats/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "sound",
+     "page": 3
+    },
+    {
+     "title": "zlayer",
+     "page": 4
+    },
+    {
+     "title": "scroll",
+     "page": 5
+    },
+    {
+     "title": "objects",
+     "page": 6
+    },
+    {
+     "title": "cabinet",
+     "page": 7
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/golfing-greats",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/golfing-greats.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/glfgreat",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/riders/sch/glfgreat",
+   "authors": [
+    "Jose Tejada",
+    "cartman135"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/golfing-greats/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/golfing-greats",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "gradius-iii-gx945",
+  "name": "Gradius III PCB (GX945)",
+  "mfr": "Konami",
+  "year": "1989",
+  "machine": "gradius3",
+  "drawing": "jtcores cores/grad3/sch/grad3 at e7b11263",
+  "devices": 180,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "257 parts, 180 of them ICs, and 952 nets over 3966 pins, on sheets for CPU Master, CPU Slave, Color Mixer, IO, Misc, Object Layer, PCM, Shared RAM, Sound, Tile Layers, Tile Logic. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/gradius-iii-gx945/gradius-iii-gx945-ibom.html",
+  "bom": "/boards/gradius-iii-gx945/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/gradius-iii-gx945/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU Master",
+     "page": 2
+    },
+    {
+     "title": "CPU Slave",
+     "page": 3
+    },
+    {
+     "title": "Shared RAM",
+     "page": 4
+    },
+    {
+     "title": "Tile Logic",
+     "page": 5
+    },
+    {
+     "title": "Tile Layers",
+     "page": 6
+    },
+    {
+     "title": "Object Layer",
+     "page": 7
+    },
+    {
+     "title": "Color Mixer",
+     "page": 8
+    },
+    {
+     "title": "Sound",
+     "page": 9
+    },
+    {
+     "title": "PCM",
+     "page": 10
+    },
+    {
+     "title": "IO",
+     "page": 11
+    },
+    {
+     "title": "Misc",
+     "page": 12
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/gradius-iii-gx945",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/gradius-iii-gx945.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/grad3/sch/grad3",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/grad3/sch/grad3",
+   "authors": [
+    "Ulf Skutnabba",
+    "RafaP"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/gradius-iii-gx945/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/gradius-iii-gx945",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "kicker-konami",
+  "name": "Kicker PCB",
+  "mfr": "Konami",
+  "year": "1985",
+  "machine": "kicker",
+  "drawing": "jtcores cores/kicker/sch at e7b11263",
+  "devices": 92,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "170 parts, 92 of them ICs, and 512 nets over 1711 pins, on sheets for one sheet. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/kicker-konami/kicker-konami-ibom.html",
+  "bom": "/boards/kicker-konami/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/kicker-konami/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/kicker-konami",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/kicker-konami.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kicker/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kicker/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/kicker-konami/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/kicker-konami",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "konami-ping-pong",
+  "name": "Konami's Ping-Pong PCB",
+  "mfr": "Konami",
+  "year": "1985",
+  "machine": "pingpong",
+  "drawing": "jtcores cores/pinpon/sch at e7b11263",
+  "devices": 84,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "221 parts, 84 of them ICs, and 438 nets over 1615 pins, on sheets for capacitors, connectors, gfx, gfx / pwb400322_gfx, hvcounter, main, object, object / linebuffer, object / pwb400322, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/konami-ping-pong/konami-ping-pong-ibom.html",
+  "bom": "/boards/konami-ping-pong/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/konami-ping-pong/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "connectors",
+     "page": 3
+    },
+    {
+     "title": "gfx",
+     "page": 4
+    },
+    {
+     "title": "gfx / pwb400322_gfx",
+     "page": 5
+    },
+    {
+     "title": "sound",
+     "page": 6
+    },
+    {
+     "title": "object",
+     "page": 7
+    },
+    {
+     "title": "object / pwb400322",
+     "page": 8
+    },
+    {
+     "title": "object / linebuffer",
+     "page": 9
+    },
+    {
+     "title": "hvcounter",
+     "page": 10
+    },
+    {
+     "title": "capacitors",
+     "page": 11
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/konami-ping-pong",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/konami-ping-pong.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/pinpon/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/pinpon/sch",
+   "authors": [
+    "Jose Tejada",
+    "etriana85"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/konami-ping-pong/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/konami-ping-pong",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "mia-pwb351392a",
+  "name": "M.I.A. PCB (PWB351392A)",
+  "mfr": "Konami",
+  "year": "1989",
+  "machine": "mia",
+  "drawing": "jtcores cores/tmnt/sch/mia at e7b11263",
+  "devices": 15,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "25 parts, 15 of them ICs, and 88 nets over 281 pins, on sheets for one sheet. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/mia-pwb351392a/mia-pwb351392a-ibom.html",
+  "bom": "/boards/mia-pwb351392a/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/mia-pwb351392a/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/mia-pwb351392a",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/mia-pwb351392a.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/tmnt/sch/mia",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/tmnt/sch/mia",
+   "authors": [
+    "Jose Tejada",
+    "etriana85"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/mia-pwb351392a/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/mia-pwb351392a",
+   "imported": "2026-10-19"
+  },
+  "partial": true
+ },
+ {
+  "slug": "mega-zone-gx319",
+  "name": "Mega Zone PCB (GX319)",
+  "mfr": "Konami",
+  "year": "1983",
+  "machine": "megazone",
+  "drawing": "jtcores cores/mzone/sch at e7b11263",
+  "devices": 171,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "323 parts, 171 of them ICs, and 895 nets over 3272 pins, on sheets for Color mixer, IO, Main CPU, Objects, Objects 2, Shared RAM, Sub CPU, Tiles, Timing. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/mega-zone-gx319/mega-zone-gx319-ibom.html",
+  "bom": "/boards/mega-zone-gx319/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/mega-zone-gx319/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Tiles",
+     "page": 2
+    },
+    {
+     "title": "Objects",
+     "page": 3
+    },
+    {
+     "title": "Objects 2",
+     "page": 4
+    },
+    {
+     "title": "Timing",
+     "page": 5
+    },
+    {
+     "title": "Color mixer",
+     "page": 6
+    },
+    {
+     "title": "Main CPU",
+     "page": 7
+    },
+    {
+     "title": "Sub CPU",
+     "page": 8
+    },
+    {
+     "title": "IO",
+     "page": 9
+    },
+    {
+     "title": "Shared RAM",
+     "page": 10
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/mega-zone-gx319",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/mega-zone-gx319.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/mzone/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/mzone/sch",
+   "authors": [
+    "Ulf Skutnabba"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/mega-zone-gx319/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/mega-zone-gx319",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "parodius-da",
+  "name": "Parodius Da! PCB",
+  "mfr": "Konami",
+  "year": "1990",
+  "machine": "parodius",
+  "drawing": "jtcores cores/paroda/sch/parodius at e7b11263",
+  "devices": 79,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "192 parts, 79 of them ICs, and 644 nets over 2574 pins, on sheets for capacitors, colmix, colmix / rgb, io_cabinet, main, objects, pcm, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/parodius-da/parodius-da-ibom.html",
+  "bom": "/boards/parodius-da/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/parodius-da/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "colmix",
+     "page": 6
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 7
+    },
+    {
+     "title": "sound",
+     "page": 8
+    },
+    {
+     "title": "pcm",
+     "page": 9
+    },
+    {
+     "title": "capacitors",
+     "page": 10
+    },
+    {
+     "title": "description",
+     "page": 11
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/parodius-da",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/parodius-da.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/paroda/sch/parodius",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/paroda/sch/parodius",
+   "authors": [
+    "Jose Tejada",
+    "cartman135",
+    "Fran.R",
+    "Rafael Paiva",
+    "Leo Tejada",
+    "RafaP"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/parodius-da/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/parodius-da",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "premier-soccer",
+  "name": "Premier Soccer PCB",
+  "mfr": "Konami",
+  "year": "1993",
+  "machine": "prmrsocr",
+  "drawing": "jtcores cores/prmr/sch/prmrsocr at e7b11263",
+  "devices": 114,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "175 parts, 114 of them ICs, and 758 nets over 3053 pins, on sheets for capacitors, colmix, colmix / rgb, io_cabinet, main, objects, psac, scroll, sound, sound / 054986A. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/premier-soccer/premier-soccer-ibom.html",
+  "bom": "/boards/premier-soccer/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/premier-soccer/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "colmix",
+     "page": 6
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 7
+    },
+    {
+     "title": "sound",
+     "page": 8
+    },
+    {
+     "title": "sound / 054986A",
+     "page": 9
+    },
+    {
+     "title": "capacitors",
+     "page": 10
+    },
+    {
+     "title": "psac",
+     "page": 11
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/premier-soccer",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/premier-soccer.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/prmr/sch/prmrsocr",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/prmr/sch/prmrsocr",
+   "authors": [
+    "cartman135",
+    "Fran.R",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/premier-soccer/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/premier-soccer",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "rollergames",
+  "name": "Rollergames PCB",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "rollerg",
+  "drawing": "jtcores cores/roller/sch at e7b11263",
+  "devices": 88,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "133 parts, 88 of them ICs, and 651 nets over 2185 pins, on sheets for Capacitors, IO_Cabinet, Main, Not_Populated, Objects, PSAC, PSAC / RGB, Sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/rollergames/rollergames-ibom.html",
+  "bom": "/boards/rollergames/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/rollergames/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Main",
+     "page": 2
+    },
+    {
+     "title": "Objects",
+     "page": 3
+    },
+    {
+     "title": "Sound",
+     "page": 4
+    },
+    {
+     "title": "PSAC",
+     "page": 5
+    },
+    {
+     "title": "PSAC / RGB",
+     "page": 6
+    },
+    {
+     "title": "Capacitors",
+     "page": 7
+    },
+    {
+     "title": "Not_Populated",
+     "page": 8
+    },
+    {
+     "title": "IO_Cabinet",
+     "page": 9
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rollergames",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rollergames.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/roller/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/roller/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/rollergames/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rollergames",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "run-and-gun",
+  "name": "Run and Gun PCB (sound section)",
+  "mfr": "Konami",
+  "year": "1993",
+  "machine": "rungun",
+  "drawing": "jtcores cores/rungun/sch at e7b11263",
+  "devices": 13,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "13 parts, 13 of them ICs, and 98 nets over 307 pins, on sheets for PSAC, pcm / K054539. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/run-and-gun/run-and-gun-ibom.html",
+  "bom": "/boards/run-and-gun/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/run-and-gun/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "PSAC",
+     "page": 2
+    },
+    {
+     "title": "pcm",
+     "page": 3
+    },
+    {
+     "title": "pcm / K054539",
+     "page": 4
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/run-and-gun",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/run-and-gun.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rungun/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/rungun/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/run-and-gun/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/run-and-gun",
+   "imported": "2026-10-19"
+  },
+  "partial": true
+ },
+ {
+  "slug": "sunset-riders",
+  "name": "Sunset Riders PCB (PWB 352359C)",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "ssriders",
+  "drawing": "jtcores cores/riders/sch/ssriders at e7b11263",
+  "devices": 43,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "87 parts, 43 of them ICs, and 454 nets over 1668 pins, on sheets for colmix, objects, pcm_snd, protection, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/sunset-riders/sunset-riders-ibom.html",
+  "bom": "/boards/sunset-riders/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/sunset-riders/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "colmix",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "sound",
+     "page": 5
+    },
+    {
+     "title": "pcm_snd",
+     "page": 6
+    },
+    {
+     "title": "protection",
+     "page": 7
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sunset-riders",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sunset-riders.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/ssriders",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/riders/sch/ssriders",
+   "authors": [
+    "Jose Tejada",
+    "cartman135"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/sunset-riders/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sunset-riders",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "surprise-attack",
+  "name": "Surprise Attack PCB",
+  "mfr": "Konami",
+  "year": "1990",
+  "machine": "suratk",
+  "drawing": "jtcores cores/paroda/sch/suratk at e7b11263",
+  "devices": 79,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "192 parts, 79 of them ICs, and 638 nets over 2576 pins, on sheets for capacitors, colmix, colmix / rgb, io_cabinet, main, objects, pcm, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/surprise-attack/surprise-attack-ibom.html",
+  "bom": "/boards/surprise-attack/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/surprise-attack/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "colmix",
+     "page": 6
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 7
+    },
+    {
+     "title": "sound",
+     "page": 8
+    },
+    {
+     "title": "pcm",
+     "page": 9
+    },
+    {
+     "title": "capacitors",
+     "page": 10
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/surprise-attack",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/surprise-attack.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/paroda/sch/suratk",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/paroda/sch/suratk",
+   "authors": [
+    "cartman135",
+    "Leo Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/surprise-attack/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/surprise-attack",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "final-round-gx870",
+  "name": "The Final Round PCB (GX870)",
+  "mfr": "Konami",
+  "year": "1988",
+  "machine": "fround",
+  "drawing": "jtcores cores/fround/sch at e7b11263",
+  "devices": 205,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "295 parts, 205 of them ICs, and 1168 nets over 4165 pins, on sheets for CPU, Color mixer, GFX - Fixed layer, GFX - Tiles, IO, Sound, Sprites 2, Sprites1, Timing. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/final-round-gx870/final-round-gx870-ibom.html",
+  "bom": "/boards/final-round-gx870/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/final-round-gx870/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU",
+     "page": 2
+    },
+    {
+     "title": "Color mixer",
+     "page": 3
+    },
+    {
+     "title": "GFX - Fixed layer",
+     "page": 4
+    },
+    {
+     "title": "GFX - Tiles",
+     "page": 5
+    },
+    {
+     "title": "Sprites1",
+     "page": 6
+    },
+    {
+     "title": "Sprites 2",
+     "page": 7
+    },
+    {
+     "title": "Timing",
+     "page": 8
+    },
+    {
+     "title": "IO",
+     "page": 9
+    },
+    {
+     "title": "Sound",
+     "page": 10
+    },
+    {
+     "title": "Timing diagrams",
+     "page": 11
+    },
+    {
+     "title": "Sprite timing diagrams",
+     "page": 12
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/final-round-gx870",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/final-round-gx870.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/fround/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/fround/sch",
+   "authors": [
+    "Ulf Skutnabba",
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/final-round-gx870/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/final-round-gx870",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "simpsons-konami",
+  "name": "The Simpsons PCB (PWB352346B)",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "simpsons",
+  "drawing": "jtcores cores/simson/sch/simpsons at e7b11263",
+  "devices": 53,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "71 parts, 53 of them ICs, and 423 nets over 1470 pins, on sheets for colmix, colmix / rgb, objects, scroll. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/simpsons-konami/simpsons-konami-ibom.html",
+  "bom": "/boards/simpsons-konami/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/simpsons-konami/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "scroll",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "colmix",
+     "page": 4
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 5
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/simpsons-konami",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/simpsons-konami.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/simson/sch/simpsons",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/simson/sch/simpsons",
+   "authors": [
+    "etriana85",
+    "Jose Tejada",
+    "cartman135"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/simpsons-konami/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/simpsons-konami",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "turtles-in-time",
+  "name": "Turtles in Time PCB (PWB 352359C)",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "tmnt2",
+  "drawing": "jtcores cores/riders/sch/tmnt2 at e7b11263",
+  "devices": 43,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "87 parts, 43 of them ICs, and 454 nets over 1662 pins, on sheets for colmix, main2obj, objects, pcm_snd, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/turtles-in-time/turtles-in-time-ibom.html",
+  "bom": "/boards/turtles-in-time/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/turtles-in-time/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "colmix",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "sound",
+     "page": 5
+    },
+    {
+     "title": "pcm_snd",
+     "page": 6
+    },
+    {
+     "title": "main2obj",
+     "page": 7
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/turtles-in-time",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/turtles-in-time.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/tmnt2",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/riders/sch/tmnt2",
+   "authors": [
+    "Jose Tejada",
+    "cartman135"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/turtles-in-time/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/turtles-in-time",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "twin-16-gx687",
+  "name": "Twin 16 (GX687 / GX785)",
+  "mfr": "Konami",
+  "year": "1987",
+  "machine": "devilw",
+  "drawing": "jtcores cores/twin16/sch/darkadv at e7b11263",
+  "devices": 252,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "382 parts, 252 of them ICs, and 1343 nets over 5550 pins, on sheets for Battery Powered RAM, Color mixer, Fixed Layer, IO, Main CPU, Shared Resources, Slave CPU, Sound, Sound mixer, Sprite Frame Buffers, Sprite ROM and RAM, Sprite Table, Tile Layers, Timing. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/twin-16-gx687/twin-16-gx687-ibom.html",
+  "bom": "/boards/twin-16-gx687/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/twin-16-gx687/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Main CPU",
+     "page": 2
+    },
+    {
+     "title": "Slave CPU",
+     "page": 3
+    },
+    {
+     "title": "Shared Resources",
+     "page": 4
+    },
+    {
+     "title": "Timing",
+     "page": 5
+    },
+    {
+     "title": "Fixed Layer",
+     "page": 6
+    },
+    {
+     "title": "Tile Layers",
+     "page": 7
+    },
+    {
+     "title": "Sprite Table",
+     "page": 8
+    },
+    {
+     "title": "Sprite ROM and RAM",
+     "page": 9
+    },
+    {
+     "title": "Sprite Frame Buffers",
+     "page": 10
+    },
+    {
+     "title": "Color mixer",
+     "page": 11
+    },
+    {
+     "title": "IO",
+     "page": 12
+    },
+    {
+     "title": "Sound",
+     "page": 13
+    },
+    {
+     "title": "Sound mixer",
+     "page": 14
+    },
+    {
+     "title": "Timing diagrams",
+     "page": 15
+    },
+    {
+     "title": "Sprite timing diagrams",
+     "page": 16
+    },
+    {
+     "title": "Battery Powered RAM",
+     "page": 17
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/twin-16-gx687",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/twin-16-gx687.netlist.json"
+  },
+  "machines": [
+   "vulcan"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/twin16/sch/darkadv",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/twin16/sch/darkadv",
+   "authors": [
+    "Ulf Skutnabba",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/twin-16-gx687/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/twin-16-gx687",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "twin-16-rev-b",
+  "name": "Twin 16 rev B (GX785 / GX870 / GX808 / GX903)",
+  "mfr": "Konami",
+  "year": "1988",
+  "machine": "vulcan",
+  "drawing": "jtcores cores/twin16/sch/twin16b at e7b11263",
+  "devices": 297,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "435 parts, 297 of them ICs, and 1410 nets over 6753 pins, on sheets for Battery Powered RAM, Color mixer, Fixed Layer, IO, Main CPU, Shared Resources, Slave CPU, Sound, Sound mixer, Sprite Frame Buffers, Sprite RAM, Sprite ROM 1, Sprite ROM 2, Sprite ROM logic, Sprite Table, Tile Layers, Timing. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/twin-16-rev-b/twin-16-rev-b-ibom.html",
+  "bom": "/boards/twin-16-rev-b/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/twin-16-rev-b/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Main CPU",
+     "page": 2
+    },
+    {
+     "title": "Slave CPU",
+     "page": 3
+    },
+    {
+     "title": "Shared Resources",
+     "page": 4
+    },
+    {
+     "title": "Timing",
+     "page": 5
+    },
+    {
+     "title": "Fixed Layer",
+     "page": 6
+    },
+    {
+     "title": "Tile Layers",
+     "page": 7
+    },
+    {
+     "title": "Sprite Table",
+     "page": 8
+    },
+    {
+     "title": "Sprite RAM",
+     "page": 9
+    },
+    {
+     "title": "Sprite ROM 1",
+     "page": 10
+    },
+    {
+     "title": "Sprite ROM logic",
+     "page": 11
+    },
+    {
+     "title": "Sprite ROM 2",
+     "page": 12
+    },
+    {
+     "title": "Sprite Frame Buffers",
+     "page": 13
+    },
+    {
+     "title": "Color mixer",
+     "page": 14
+    },
+    {
+     "title": "IO",
+     "page": 15
+    },
+    {
+     "title": "Sound",
+     "page": 16
+    },
+    {
+     "title": "Sound mixer",
+     "page": 17
+    },
+    {
+     "title": "Battery Powered RAM",
+     "page": 18
+    },
+    {
+     "title": "Timing diagrams",
+     "page": 19
+    },
+    {
+     "title": "Sprite timing diagrams",
+     "page": 20
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/twin-16-rev-b",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/twin-16-rev-b.netlist.json"
+  },
+  "machines": [
+   "fround"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/twin16/sch/twin16b",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/twin16/sch/twin16b",
+   "authors": [
+    "Ulf Skutnabba"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/twin-16-rev-b/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/twin-16-rev-b",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "vendetta-konami",
+  "name": "Vendetta PCB (PWB352292A)",
+  "mfr": "Konami",
+  "year": "1991",
+  "machine": "vendetta",
+  "drawing": "jtcores cores/simson/sch/vendetta at e7b11263",
+  "devices": 43,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "51 parts, 43 of them ICs, and 324 nets over 1079 pins, on sheets for icu, objects, scroll. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/vendetta-konami/vendetta-konami-ibom.html",
+  "bom": "/boards/vendetta-konami/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/vendetta-konami/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "scroll",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "icu",
+     "page": 4
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/vendetta-konami",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/vendetta-konami.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/simson/sch/vendetta",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/simson/sch/vendetta",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/vendetta-konami/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/vendetta-konami",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "moo-mesa",
+  "name": "Wild West C.O.W.-Boys of Moo Mesa PCB",
+  "mfr": "Konami",
+  "year": "1992",
+  "machine": "moomesa",
+  "drawing": "jtcores cores/moo/sch/moomesa at e7b11263",
+  "devices": 109,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "jtcores carries a second copy of this redraw under cores/xmen/sch/moomesa; the one in the moo core is used here. 135 parts, 109 of them ICs, and 784 nets over 3080 pins, on sheets for capacitors, colmix / 053251, colmix / RGB, io_cabinet, main, not_populated, objects, scroll, sound, sound / 054986A. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/moo-mesa/moo-mesa-ibom.html",
+  "bom": "/boards/moo-mesa/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/moo-mesa/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "objects",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "sound",
+     "page": 5
+    },
+    {
+     "title": "sound / 054986A",
+     "page": 6
+    },
+    {
+     "title": "colmix",
+     "page": 7
+    },
+    {
+     "title": "colmix / RGB",
+     "page": 8
+    },
+    {
+     "title": "colmix / 053251",
+     "page": 9
+    },
+    {
+     "title": "io_cabinet",
+     "page": 10
+    },
+    {
+     "title": "capacitors",
+     "page": 11
+    },
+    {
+     "title": "not_populated",
+     "page": 12
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/moo-mesa",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/moo-mesa.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/moo/sch/moomesa",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/moo/sch/moomesa",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/moo-mesa/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/moo-mesa",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "x-men-pwb353018a",
+  "name": "X-Men PCB (PWB353018A)",
+  "mfr": "Konami",
+  "year": "1992",
+  "machine": "xmen",
+  "drawing": "jtcores cores/xmen/sch/xmen at e7b11263",
+  "devices": 105,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "229 parts, 105 of them ICs, and 758 nets over 3088 pins, on sheets for capacitors, colmix, colmix / rgb, io_cabinet, main, objects, pcm, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/x-men-pwb353018a/x-men-pwb353018a-ibom.html",
+  "bom": "/boards/x-men-pwb353018a/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/x-men-pwb353018a/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "colmix",
+     "page": 6
+    },
+    {
+     "title": "colmix / rgb",
+     "page": 7
+    },
+    {
+     "title": "sound",
+     "page": 8
+    },
+    {
+     "title": "pcm",
+     "page": 9
+    },
+    {
+     "title": "capacitors",
+     "page": 10
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/x-men-pwb353018a",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/x-men-pwb353018a.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/xmen/sch/xmen",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/xmen/sch/xmen",
+   "authors": [
+    "Jose Tejada",
+    "RafaP"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/x-men-pwb353018a/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/x-men-pwb353018a",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "tv-basketball-dice",
+  "name": "TV Basketball (DICE netlist)",
+  "mfr": "Midway Mfg. Co.",
+  "year": "1974",
+  "machine": "tv-basketball",
+  "drawing": "DICE games/tvbasketball.cpp at 4b4596b8",
+  "devices": 115,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "115 ICs and 381 nets over 1357 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_14_318_MHZ, COIN_INPUT, DIODE_MATRIX, DIODE_MATRIX_CUSTOM, LATCH, PADDLE1_VERTICAL_INPUT, PADDLE2_VERTICAL_INPUT, PADDLE3_VERTICAL_INPUT, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/tv-basketball-dice/tv-basketball-dice-ibom.html",
+  "bom": "/boards/tv-basketball-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/tvbasketball.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: POT1 (POT_555_ASTABLE)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/tvbasketball.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/tvbasketball.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/tv-basketball-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/tv-basketball-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tv-basketball-dice.netlist.json"
+ },
+ {
+  "slug": "gunbird-2",
+  "name": "Gunbird 2 PCB",
+  "mfr": "Psikyo",
+  "year": "1998",
+  "machine": "gunbird2",
+  "drawing": "jtcores cores/gunbird2/sch at e7b11263",
+  "devices": 54,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "198 parts, 54 of them ICs, and 436 nets over 2197 pins, on sheets for capacitors, main, main / memories, objects, objects / memories_vc, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/gunbird-2/gunbird-2-ibom.html",
+  "bom": "/boards/gunbird-2/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/gunbird-2/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "objects",
+     "page": 2
+    },
+    {
+     "title": "objects / memories_vc",
+     "page": 3
+    },
+    {
+     "title": "main",
+     "page": 4
+    },
+    {
+     "title": "main / memories",
+     "page": 5
+    },
+    {
+     "title": "sound",
+     "page": 6
+    },
+    {
+     "title": "capacitors",
+     "page": 7
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/gunbird-2",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/gunbird-2.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/gunbird2/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/gunbird2/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/gunbird-2/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/gunbird-2",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "clean-sweep-dice",
+  "name": "Clean Sweep (DICE netlist)",
+  "mfr": "Ramtek",
+  "year": "1974",
+  "machine": "cleanswp",
+  "drawing": "DICE games/cleansweep.cpp at 4b4596b8",
+  "devices": 114,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "114 ICs and 401 nets over 1560 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (BUTTONS1_INPUT, CLEAN_SWEEP_PADDLE, CLOCK_10_733_MHZ, COIN_INPUT, DIPSWITCH, MIXER, PADDLE1_HORIZONTAL_INPUT, START_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/clean-sweep-dice/clean-sweep-dice-ibom.html",
+  "bom": "/boards/clean-sweep-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/cleansweep.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Parts DICE adds to model the circuit, not on the board: 8B2 (74S174), COMBINE (9322)."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/cleansweep.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/cleansweep.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/clean-sweep-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/clean-sweep-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/clean-sweep-dice.netlist.json"
+ },
+ {
+  "slug": "wipe-out-dice",
+  "name": "Wipe Out (DICE netlist)",
+  "mfr": "Ramtek",
+  "year": "1974",
+  "machine": "wipeormt",
+  "drawing": "DICE games/wipeout.cpp at 4b4596b8",
+  "devices": 92,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "92 ICs and 348 nets over 1303 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_10_733_MHZ, COIN_INPUT, DIPSWITCH, MIXER, PADDLE1_VERTICAL_INPUT, PADDLE2_HORIZONTAL_INPUT, PADDLE3_VERTICAL_INPUT, PADDLE4_HORIZONTAL_INPUT, \u2026) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/wipe-out-dice/wipe-out-dice-ibom.html",
+  "bom": "/boards/wipe-out-dice/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from DICE's games/wipeout.cpp by tools/import_dice.py; every CONNECTION statement was read."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/wipeout.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/wipeout.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/wipe-out-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/wipe-out-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/wipe-out-dice.netlist.json"
+ },
+ {
+  "slug": "sega-system-18",
+  "name": "Sega System 18",
+  "mfr": "Sega",
+  "year": "1989",
+  "machine": "shdancer",
+  "drawing": "jtcores cores/s18/sch at e7b11263",
+  "devices": 114,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "423 parts, 114 of them ICs, and 884 nets over 4022 pins, on sheets for Capacitors, Color Mixer, Color Mixer / video_mux, Connectors, IO Controller, IO Controller / io_cabinet, Main CPU, MegaDrive VDP, Memory Mapper, ROM board / cpurom, ROM board / objjumpers, ROM board / objrom, ROM board / scrjumpers, ROM board / scrrom, ROM board / sndjumpers, S16B Ojects, S16B Ojects / spriteram, S16B Scroll, S16B Scroll / tilemapg_ram, Sound, Sound / PCM, Sound / amplifier, Sound / amplifier / audio_amplifier, Video Sync. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/sega-system-18/sega-system-18-ibom.html",
+  "bom": "/boards/sega-system-18/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/sega-system-18/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "ROM board",
+     "page": 2
+    },
+    {
+     "title": "ROM board / scrjumpers",
+     "page": 3
+    },
+    {
+     "title": "ROM board / sndjumpers",
+     "page": 4
+    },
+    {
+     "title": "ROM board / objjumpers",
+     "page": 5
+    },
+    {
+     "title": "ROM board / scrrom",
+     "page": 6
+    },
+    {
+     "title": "ROM board / cpurom",
+     "page": 7
+    },
+    {
+     "title": "ROM board / objrom",
+     "page": 8
+    },
+    {
+     "title": "Main CPU",
+     "page": 9
+    },
+    {
+     "title": "Memory Mapper",
+     "page": 10
+    },
+    {
+     "title": "MegaDrive VDP",
+     "page": 11
+    },
+    {
+     "title": "S16B Scroll",
+     "page": 12
+    },
+    {
+     "title": "S16B Scroll / tilemapg_ram",
+     "page": 13
+    },
+    {
+     "title": "S16B Ojects",
+     "page": 14
+    },
+    {
+     "title": "S16B Ojects / spriteram",
+     "page": 15
+    },
+    {
+     "title": "Color Mixer",
+     "page": 16
+    },
+    {
+     "title": "Color Mixer / video_mux",
+     "page": 17
+    },
+    {
+     "title": "Capacitors",
+     "page": 18
+    },
+    {
+     "title": "Sound",
+     "page": 19
+    },
+    {
+     "title": "Sound / amplifier",
+     "page": 20
+    },
+    {
+     "title": "Sound / amplifier / audio_amplifier",
+     "page": 21
+    },
+    {
+     "title": "Sound / PCM",
+     "page": 22
+    },
+    {
+     "title": "Connectors",
+     "page": 23
+    },
+    {
+     "title": "IO Controller",
+     "page": 24
+    },
+    {
+     "title": "IO Controller / io_cabinet",
+     "page": 25
+    },
+    {
+     "title": "Video Sync",
+     "page": 26
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sega-system-18",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sega-system-18.netlist.json"
+  },
+  "machines": [
+   "astorm",
+   "bloxeed",
+   "cltchitr",
+   "ddcrew",
+   "desertbr",
+   "hamaway",
+   "lghost",
+   "mwalk",
+   "pontoon",
+   "wwallyj"
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/s18/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/s18/sch",
+   "authors": [
+    "Jose Tejada",
+    "etriana85",
+    "rp-jt"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/sega-system-18/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sega-system-18",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "caliber-50-p0-044b",
+  "name": "Caliber 50 PCB (P0-044B)",
+  "mfr": "Seta",
+  "year": "1989",
+  "machine": "calibr50",
+  "drawing": "jtcores cores/cal50/sch at e7b11263",
+  "devices": 99,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "196 parts, 99 of them ICs, and 639 nets over 2500 pins, on sheets for CPU, Color Mixer, Graphics 1, Graphics 2, IO, Misc, Sound, Sound Output. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/caliber-50-p0-044b/caliber-50-p0-044b-ibom.html",
+  "bom": "/boards/caliber-50-p0-044b/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/caliber-50-p0-044b/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU",
+     "page": 2
+    },
+    {
+     "title": "Graphics 1",
+     "page": 3
+    },
+    {
+     "title": "Graphics 2",
+     "page": 4
+    },
+    {
+     "title": "Color Mixer",
+     "page": 5
+    },
+    {
+     "title": "IO",
+     "page": 6
+    },
+    {
+     "title": "Sound",
+     "page": 7
+    },
+    {
+     "title": "Sound Output",
+     "page": 8
+    },
+    {
+     "title": "Misc",
+     "page": 9
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/caliber-50-p0-044b",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/caliber-50-p0-044b.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/cal50/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/cal50/sch",
+   "authors": [
+    "Ulf Skutnabba"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/caliber-50-p0-044b/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/caliber-50-p0-044b",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "fairyland-story",
+  "name": "The FairyLand Story PCB",
+  "mfr": "Taito",
+  "year": "1985",
+  "machine": "flstory",
+  "drawing": "jtcores cores/flstory/sch/flstory at e7b11263",
+  "devices": 213,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "571 parts, 213 of them ICs, and 960 nets over 4265 pins, on sheets for Cabinet, Main, Main / MCU, Main / Watchdog, Shared, Sound, Sound / Analog, Sound / Clocks, Sound / Latches, Sound / Sound Generators, Sub, Video, Video / Line buffer, Video / Object RAM, Video / Palette, Video / Tile ROM, Video / Timing, Video / Video RAM, capacitors_lu. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/fairyland-story/fairyland-story-ibom.html",
+  "bom": "/boards/fairyland-story/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/fairyland-story/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Main",
+     "page": 2
+    },
+    {
+     "title": "Main / MCU",
+     "page": 3
+    },
+    {
+     "title": "Main / Watchdog",
+     "page": 4
+    },
+    {
+     "title": "Video",
+     "page": 5
+    },
+    {
+     "title": "Video / Tile ROM",
+     "page": 6
+    },
+    {
+     "title": "Video / Timing",
+     "page": 7
+    },
+    {
+     "title": "Video / Video RAM",
+     "page": 8
+    },
+    {
+     "title": "Video / Palette",
+     "page": 9
+    },
+    {
+     "title": "Video / Object RAM",
+     "page": 10
+    },
+    {
+     "title": "Video / Line buffer",
+     "page": 11
+    },
+    {
+     "title": "Sound",
+     "page": 12
+    },
+    {
+     "title": "Sound / Analog",
+     "page": 13
+    },
+    {
+     "title": "Sound / Latches",
+     "page": 14
+    },
+    {
+     "title": "Sound / Sound Generators",
+     "page": 15
+    },
+    {
+     "title": "Sound / Clocks",
+     "page": 16
+    },
+    {
+     "title": "Cabinet",
+     "page": 17
+    },
+    {
+     "title": "Shared",
+     "page": 18
+    },
+    {
+     "title": "capacitors_lu",
+     "page": 19
+    },
+    {
+     "title": "Sub",
+     "page": 20
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/fairyland-story",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/fairyland-story.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/flstory/sch/flstory",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/flstory/sch/flstory",
+   "authors": [
+    "Jose Tejada",
+    "Fran.R"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/fairyland-story/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/fairyland-story",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "rainbow-islands-extra",
+  "name": "Rainbow Islands Extra PCB (K1100319A)",
+  "mfr": "Taito Corporation",
+  "year": "1988",
+  "machine": "rbislande",
+  "drawing": "jtcores cores/rastan/sch/risle at e7b11263",
+  "devices": 80,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "242 parts, 80 of them ICs, and 602 nets over 2309 pins, on sheets for CPU main, Color mixer, IO, Misc, Sound, Sprites, Tile layers. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/rainbow-islands-extra/rainbow-islands-extra-ibom.html",
+  "bom": "/boards/rainbow-islands-extra/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/rainbow-islands-extra/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU main",
+     "page": 2
+    },
+    {
+     "title": "Tile layers",
+     "page": 3
+    },
+    {
+     "title": "Sprites",
+     "page": 4
+    },
+    {
+     "title": "Color mixer",
+     "page": 5
+    },
+    {
+     "title": "IO",
+     "page": 6
+    },
+    {
+     "title": "Sound",
+     "page": 7
+    },
+    {
+     "title": "Misc",
+     "page": 8
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rainbow-islands-extra",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rainbow-islands-extra.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rastan/sch/risle",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/rastan/sch/risle",
+   "authors": [
+    "Jose Tejada",
+    "Andrea Bogazzi"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/rainbow-islands-extra/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rainbow-islands-extra",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "arkanoid-2",
+  "name": "Arkanoid - Revenge of DOH PCB",
+  "mfr": "Taito Corporation Japan",
+  "year": "1987",
+  "machine": "arknoid2",
+  "drawing": "jtcores cores/kiwi/sch/arknoid2 at e7b11263",
+  "devices": 68,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "130 parts, 68 of them ICs, and 444 nets over 1639 pins, on sheets for CPU, GFX, IO, Misc, Sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/arkanoid-2/arkanoid-2-ibom.html",
+  "bom": "/boards/arkanoid-2/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/arkanoid-2/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU",
+     "page": 2
+    },
+    {
+     "title": "GFX",
+     "page": 3
+    },
+    {
+     "title": "IO",
+     "page": 4
+    },
+    {
+     "title": "Sound",
+     "page": 5
+    },
+    {
+     "title": "Misc",
+     "page": 6
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/arkanoid-2",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/arkanoid-2.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kiwi/sch/arknoid2",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kiwi/sch/arknoid2",
+   "authors": [
+    "etriana85",
+    "Ulf Skutnabba",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/arkanoid-2/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/arkanoid-2",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "extermination",
+  "name": "Extermination PCB",
+  "mfr": "Taito Corporation Japan",
+  "year": "1987",
+  "machine": "extrmatn",
+  "drawing": "jtcores cores/kiwi/sch/extrmatn at e7b11263",
+  "devices": 60,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "135 parts, 60 of them ICs, and 416 nets over 1601 pins, on sheets for capacitors, colmix, gfx, gfx / gfx_ram, gfx / gfx_rom, main, mcu, sound, watchdog. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/extermination/extermination-ibom.html",
+  "bom": "/boards/extermination/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/extermination/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "capacitors",
+     "page": 2
+    },
+    {
+     "title": "main",
+     "page": 3
+    },
+    {
+     "title": "colmix",
+     "page": 4
+    },
+    {
+     "title": "gfx",
+     "page": 5
+    },
+    {
+     "title": "gfx / gfx_ram",
+     "page": 6
+    },
+    {
+     "title": "gfx / gfx_rom",
+     "page": 7
+    },
+    {
+     "title": "watchdog",
+     "page": 8
+    },
+    {
+     "title": "sound",
+     "page": 9
+    },
+    {
+     "title": "mcu",
+     "page": 10
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/extermination",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/extermination.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kiwi/sch/extrmatn",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kiwi/sch/extrmatn",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/extermination/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/extermination",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "insector-x",
+  "name": "Insector X PCB",
+  "mfr": "Taito Corporation Japan",
+  "year": "1989",
+  "machine": "insectx",
+  "drawing": "jtcores cores/kiwi/sch/insectx at e7b11263",
+  "devices": 57,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "108 parts, 57 of them ICs, and 399 nets over 1336 pins, on sheets for CPU, Graphics, IO, Misc, Sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/insector-x/insector-x-ibom.html",
+  "bom": "/boards/insector-x/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/insector-x/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "CPU",
+     "page": 2
+    },
+    {
+     "title": "Graphics",
+     "page": 3
+    },
+    {
+     "title": "IO",
+     "page": 4
+    },
+    {
+     "title": "Sound",
+     "page": 5
+    },
+    {
+     "title": "Misc",
+     "page": 6
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/insector-x",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/insector-x.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kiwi/sch/insectx",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kiwi/sch/insectx",
+   "authors": [
+    "etriana85",
+    "Jose Tejada",
+    "Ulf Skutnabba"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/insector-x/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/insector-x",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "newzealand-story",
+  "name": "The NewZealand Story PCB",
+  "mfr": "Taito Corporation Japan",
+  "year": "1988",
+  "machine": "tnzs",
+  "drawing": "jtcores cores/kiwi/sch/tnzs at e7b11263",
+  "devices": 83,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "184 parts, 83 of them ICs, and 506 nets over 2052 pins, on sheets for CPU, Graphics, IO, Misc, Sound, Sub PCB. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/newzealand-story/newzealand-story-ibom.html",
+  "bom": "/boards/newzealand-story/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/newzealand-story/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "Sub PCB",
+     "page": 2
+    },
+    {
+     "title": "CPU",
+     "page": 3
+    },
+    {
+     "title": "Graphics",
+     "page": 4
+    },
+    {
+     "title": "Misc",
+     "page": 5
+    },
+    {
+     "title": "IO",
+     "page": 6
+    },
+    {
+     "title": "Sound",
+     "page": 7
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/newzealand-story",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/newzealand-story.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kiwi/sch/tnzs",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kiwi/sch/tnzs",
+   "authors": [
+    "etriana85",
+    "Ulf Skutnabba",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/newzealand-story/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/newzealand-story",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "wwf-superstars",
+  "name": "WWF Superstars PCB",
+  "mfr": "Technos Japan",
+  "year": "1989",
+  "machine": "wwfsstar",
+  "drawing": "jtcores cores/wwfss/sch at e7b11263",
+  "devices": 216,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "333 parts, 216 of them ICs, and 1080 nets over 3692 pins, on sheets for bottom, bottom / object / dual line buffer, bottom / object / dual line buffer / line buffer A, bottom / object / dual line buffer / line buffer B, bottom / object / object RAM, bottom / object / object ROM, bottom / scroll / scroll RAM, bottom / scroll / scroll ROM, bottom / timing, top, top / char, top / char / char pixels, top / color mixer, top / io, top / main, top / sound, top / sound / analog. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/wwf-superstars/wwf-superstars-ibom.html",
+  "bom": "/boards/wwf-superstars/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/wwf-superstars/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "top",
+     "page": 2
+    },
+    {
+     "title": "top / sound",
+     "page": 3
+    },
+    {
+     "title": "top / sound / analog",
+     "page": 4
+    },
+    {
+     "title": "top / char",
+     "page": 5
+    },
+    {
+     "title": "top / char / char pixels",
+     "page": 6
+    },
+    {
+     "title": "top / main",
+     "page": 7
+    },
+    {
+     "title": "top / io",
+     "page": 8
+    },
+    {
+     "title": "top / color mixer",
+     "page": 9
+    },
+    {
+     "title": "bottom",
+     "page": 10
+    },
+    {
+     "title": "bottom / scroll",
+     "page": 11
+    },
+    {
+     "title": "bottom / scroll / scroll ROM",
+     "page": 12
+    },
+    {
+     "title": "bottom / scroll / scroll RAM",
+     "page": 13
+    },
+    {
+     "title": "bottom / object",
+     "page": 14
+    },
+    {
+     "title": "bottom / object / dual line buffer",
+     "page": 15
+    },
+    {
+     "title": "bottom / object / dual line buffer / line buffer A",
+     "page": 16
+    },
+    {
+     "title": "bottom / object / dual line buffer / line buffer B",
+     "page": 17
+    },
+    {
+     "title": "bottom / object / object ROM",
+     "page": 18
+    },
+    {
+     "title": "bottom / object / object RAM",
+     "page": 19
+    },
+    {
+     "title": "bottom / timing",
+     "page": 20
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/wwf-superstars",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/wwf-superstars.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/wwfss/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/wwfss/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/wwf-superstars/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/wwf-superstars",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "renegade-technos",
+  "name": "Renegade PCB",
+  "mfr": "Technos Japan (Taito America license)",
+  "year": "1986",
+  "machine": "renegade",
+  "drawing": "jtcores cores/kunio/sch at e7b11263",
+  "devices": 216,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "406 parts, 216 of them ICs, and 909 nets over 4008 pins, on sheets for capacitors, characters, colmix, io, main, objects, objects / counters, objects / double_line_buffer.sch, objects / obj_draw, objects / obj_draw / memories_sprite.sch, objects / obj_lut_buf, scroll, scroll / scrom_memories, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/renegade-technos/renegade-technos-ibom.html",
+  "bom": "/boards/renegade-technos/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/renegade-technos/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "capacitors",
+     "page": 2
+    },
+    {
+     "title": "sound",
+     "page": 3
+    },
+    {
+     "title": "main",
+     "page": 4
+    },
+    {
+     "title": "scroll",
+     "page": 5
+    },
+    {
+     "title": "scroll / scrom_memories",
+     "page": 6
+    },
+    {
+     "title": "io",
+     "page": 7
+    },
+    {
+     "title": "objects",
+     "page": 8
+    },
+    {
+     "title": "objects / obj_lut_buf",
+     "page": 9
+    },
+    {
+     "title": "objects / counters",
+     "page": 10
+    },
+    {
+     "title": "objects / obj_draw",
+     "page": 11
+    },
+    {
+     "title": "objects / obj_draw / memories_sprite.sch",
+     "page": 12
+    },
+    {
+     "title": "objects / double_line_buffer.sch",
+     "page": 13
+    },
+    {
+     "title": "characters",
+     "page": 14
+    },
+    {
+     "title": "colmix",
+     "page": 15
+    },
+    {
+     "title": "last unit",
+     "page": 16
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/renegade-technos",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/renegade-technos.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kunio/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/kunio/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/renegade-technos/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/renegade-technos",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "tehkan-world-cup-bootleg",
+  "name": "Tehkan World Cup PCB (bootleg)",
+  "mfr": "Tehkan",
+  "year": "1985",
+  "machine": "tehkanwc",
+  "drawing": "jtcores cores/wc/sch/tehkanwch at e7b11263",
+  "devices": 262,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Drawn from a bootleg board, not Tehkan's own. 388 parts, 262 of them ICs, and 1166 nets over 4654 pins, on sheets for cpu board, cpu board / IO, cpu board / daughter, cpu board / main CPU, cpu board / palette, cpu board / shared, cpu board / sound, cpu board / sound / PCM, cpu board / sound / analog, cpu board / sub CPU, video board, video board / address decoder, video board / color mixer, video board / fix, video board / object, video board / object / frame buffer A, video board / object / frame buffer B, video board / object / object RAM, video board / object / object ROM, video board / object / object readout, video board / scroll / scroll RAM, video board / scroll / scroll ROM, video board / timing, video board / watchdog. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+  "ibom": "/boards/tehkan-world-cup-bootleg/tehkan-world-cup-bootleg-ibom.html",
+  "bom": "/boards/tehkan-world-cup-bootleg/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/tehkan-world-cup-bootleg/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "cpu board",
+     "page": 2
+    },
+    {
+     "title": "cpu board / shared",
+     "page": 3
+    },
+    {
+     "title": "cpu board / main CPU",
+     "page": 4
+    },
+    {
+     "title": "cpu board / sound",
+     "page": 5
+    },
+    {
+     "title": "cpu board / sound / PCM",
+     "page": 6
+    },
+    {
+     "title": "cpu board / sound / analog",
+     "page": 7
+    },
+    {
+     "title": "cpu board / sub CPU",
+     "page": 8
+    },
+    {
+     "title": "cpu board / IO",
+     "page": 9
+    },
+    {
+     "title": "cpu board / daughter",
+     "page": 10
+    },
+    {
+     "title": "cpu board / palette",
+     "page": 11
+    },
+    {
+     "title": "video board",
+     "page": 12
+    },
+    {
+     "title": "video board / scroll",
+     "page": 13
+    },
+    {
+     "title": "video board / scroll / scroll ROM",
+     "page": 14
+    },
+    {
+     "title": "video board / scroll / scroll RAM",
+     "page": 15
+    },
+    {
+     "title": "video board / fix",
+     "page": 16
+    },
+    {
+     "title": "video board / object",
+     "page": 17
+    },
+    {
+     "title": "video board / object / frame buffer B",
+     "page": 18
+    },
+    {
+     "title": "video board / object / frame buffer A",
+     "page": 19
+    },
+    {
+     "title": "video board / object / object ROM",
+     "page": 20
+    },
+    {
+     "title": "video board / object / object RAM",
+     "page": 21
+    },
+    {
+     "title": "video board / object / object readout",
+     "page": 22
+    },
+    {
+     "title": "video board / timing",
+     "page": 23
+    },
+    {
+     "title": "video board / color mixer",
+     "page": 24
+    },
+    {
+     "title": "video board / watchdog",
+     "page": 25
+    },
+    {
+     "title": "video board / address decoder",
+     "page": 26
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/tehkan-world-cup-bootleg",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tehkan-world-cup-bootleg.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/wc/sch/tehkanwch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/wc/sch/tehkanwch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/tehkan-world-cup-bootleg/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/tehkan-world-cup-bootleg",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "kyukyoku-tiger",
+  "name": "Kyukyoku Tiger PCB",
+  "mfr": "Toaplan / Taito Corporation",
+  "year": "1987",
+  "machine": "twincobr",
+  "drawing": "jtcores cores/ktiger/sch at e7b11263",
+  "devices": 292,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Kyukyoku Tiger is the Japanese release of Twin Cobra; jtcores' ktiger core runs both from this board. 406 parts, 292 of them ICs, and 1300 nets over 4984 pins, on sheets for boardb, boardb / line_buffer, boardb / line_counter, boardb / obj_ctrl, boardc / Board C Top, boardc / Board C middle, boardc / board c bot, capacitors, colmix, gfxa, main, memories, misc, object, prio, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/kyukyoku-tiger/kyukyoku-tiger-ibom.html",
+  "bom": "/boards/kyukyoku-tiger/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/kyukyoku-tiger/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "object",
+     "page": 2
+    },
+    {
+     "title": "boardc",
+     "page": 3
+    },
+    {
+     "title": "boardc / Board C Top",
+     "page": 4
+    },
+    {
+     "title": "boardc / Board C middle",
+     "page": 5
+    },
+    {
+     "title": "boardc / board c bot",
+     "page": 6
+    },
+    {
+     "title": "gfxa",
+     "page": 7
+    },
+    {
+     "title": "memories",
+     "page": 8
+    },
+    {
+     "title": "boardb",
+     "page": 9
+    },
+    {
+     "title": "boardb / obj_ctrl",
+     "page": 10
+    },
+    {
+     "title": "boardb / line_counter",
+     "page": 11
+    },
+    {
+     "title": "boardb / line_buffer",
+     "page": 12
+    },
+    {
+     "title": "misc",
+     "page": 13
+    },
+    {
+     "title": "colmix",
+     "page": 14
+    },
+    {
+     "title": "sound",
+     "page": 15
+    },
+    {
+     "title": "main",
+     "page": 16
+    },
+    {
+     "title": "prio",
+     "page": 17
+    },
+    {
+     "title": "capacitors",
+     "page": 18
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/kyukyoku-tiger",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/kyukyoku-tiger.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/ktiger/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/ktiger/sch",
+   "authors": [
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/kyukyoku-tiger/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/kyukyoku-tiger",
+   "imported": "2026-10-19"
+  }
+ },
+ {
+  "slug": "rally-bike",
+  "name": "Rally Bike PCB",
+  "mfr": "Toaplan / Taito Corporation",
+  "year": "1988",
+  "machine": "rallybik",
+  "drawing": "jtcores cores/rbike/sch at e7b11263",
+  "devices": 187,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "jtcores has no core for this board yet, only the schematic; the game is named on its own sheets. 358 parts, 187 of them ICs, and 810 nets over 3329 pins, on sheets for capacitors_lu, colmix_rgb, io_cabinet, main, objects, objects / Obj_fms, objects / obj_memories, objects / obj_pxl, scroll, sound. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+  "ibom": "/boards/rally-bike/rally-bike-ibom.html",
+  "bom": "/boards/rally-bike/bom.csv",
+  "conflicts": [],
+  "notes": [],
+  "redrawn": {
+   "pdf": "/boards/rally-bike/schematic.pdf",
+   "sheets": [
+    {
+     "title": "Top sheet",
+     "page": 1
+    },
+    {
+     "title": "main",
+     "page": 2
+    },
+    {
+     "title": "io_cabinet",
+     "page": 3
+    },
+    {
+     "title": "scroll",
+     "page": 4
+    },
+    {
+     "title": "objects",
+     "page": 5
+    },
+    {
+     "title": "objects / obj_memories",
+     "page": 6
+    },
+    {
+     "title": "objects / obj_pxl",
+     "page": 7
+    },
+    {
+     "title": "objects / Obj_fms",
+     "page": 8
+    },
+    {
+     "title": "colmix_rgb",
+     "page": 9
+    },
+    {
+     "title": "sound",
+     "page": 10
+    },
+    {
+     "title": "capacitors_lu",
+     "page": 11
+    },
+    {
+     "title": "description",
+     "page": 12
+    }
+   ],
+   "project": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rally-bike",
+   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rally-bike.netlist.json"
+  },
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "jtcores",
+   "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rbike/sch",
+   "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+   "path": "cores/rbike/sch",
+   "authors": [
+    "etriana85",
+    "Jose Tejada"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/rally-bike/LICENSE",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rally-bike",
+   "imported": "2026-10-19"
   }
  }
 ]

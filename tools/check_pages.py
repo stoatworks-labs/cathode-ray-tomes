@@ -38,6 +38,19 @@ Checks, and why each is a real failure rather than a smell:
   one-cell-row  A `tr` the reader cannot split into cells, so a table draws as
                 a single-column strip.
   control-char  A character that should never have survived extraction.
+
+And for the PCB layouts read from MAME's driver notes (web/data/layout/):
+
+  layout-licence    A layout from a file under anything but BSD-3-Clause or CC0.
+                    The extractor skips GPL and LGPL drivers; this is what makes
+                    sure none slipped through to the deploy.
+  layout-provenance A layout without its commit, tag, lines or copyright holders,
+                    which the page needs to credit it as the licence asks.
+  layout-misplaced  A device whose recorded position does not land on its own
+                    label in the published art: the page would light up the
+                    wrong word, and say so confidently.
+  layout-index      The index and the shards disagree, so a list row leads to a
+                    404 or a layout is published that nothing lists.
 """
 import argparse, glob, json, os, re, sys
 from collections import Counter, defaultdict
@@ -186,7 +199,43 @@ def check():
                      title=meta.get("title"), count=len(orphans),
                      files=orphans[:4]))
 
+    check_layouts(stats, found)
     return stats, found
+
+
+def check_layouts(stats, found):
+    lay_dir = os.path.join(ROOT, "web", "data", "layout")
+    ipath = os.path.join(ROOT, "web", "data", "layouts.json")
+    if not os.path.isdir(lay_dir):
+        return
+    listed = {r["id"] for r in json.load(open(ipath))} if os.path.exists(ipath) else set()
+    shipped = set()
+    for path in sorted(glob.glob(os.path.join(lay_dir, "*.json"))):
+        for src, lays in json.load(open(path)).items():
+            for l in lays:
+                stats["layouts"] += 1
+                stats["layout-devices"] += len(l["devices"])
+                shipped.add(l["id"])
+                where = dict(doc=l["id"], machine=src, title=" · ".join(l.get("caption") or []))
+                if l.get("licence") not in ("BSD-3-Clause", "CC0-1.0"):
+                    found["layout-licence"].append(dict(where, licence=l.get("licence")))
+                if not (re.match(r"^[0-9a-f]{40}$", l.get("commit") or "") and l.get("tag")
+                        and l.get("copyright") and l.get("line") and l.get("end")):
+                    found["layout-provenance"].append(where)
+                for d in l["devices"]:
+                    r, c0, c1 = d["at"][:3]
+                    if len(d["at"]) > 3:
+                        got = "".join((l["art"][k][c0:c0 + 1] if k < len(l["art"]) else "")
+                                      for k in range(r, d["at"][3] + 1))
+                    else:
+                        got = l["art"][r][c0:c1] if r < len(l["art"]) else ""
+                    if got != d["label"] or not (l["line"] <= d["line"] <= l["end"]):
+                        found["layout-misplaced"].append(
+                            dict(where, label=d["label"], found=got, line=d["line"]))
+    for lid in sorted(listed - shipped):
+        found["layout-index"].append(dict(doc=lid, machine=None, title="listed, not shipped"))
+    for lid in sorted(shipped - listed):
+        found["layout-index"].append(dict(doc=lid, machine=None, title="shipped, not listed"))
 
 
 def main():
@@ -205,6 +254,8 @@ def main():
     for mode in ("prose", "drawing", "scan+prose", "noise-collapsed"):
         if stats.get("mode:" + mode):
             print(f"  {stats['mode:' + mode]:>7,}  {mode}")
+    if stats.get("layouts"):
+        print(f"{stats['layouts']:,} PCB layouts · {stats['layout-devices']:,} devices")
     print()
     if not found:
         print("no pages a reader would find unusable")

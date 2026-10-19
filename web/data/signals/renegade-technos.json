@@ -1,0 +1,2438 @@
+{
+ "+12V": {
+  "top sheet": 3,
+  "sound": 1
+ },
+ "/-5V": {
+  "top sheet": 2
+ },
+ "/1P_BTN_1": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_BTN_2": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_BTN_3": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_DOWN": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_LEFT": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_RIGHT": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_START": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/1P_UP": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_BTN_1": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_BTN_2": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_BTN_3": {
+  "io": 3,
+  "top sheet": 1
+ },
+ "/2P_DOWN": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_LEFT": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_RIGHT": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_START": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/2P_UP": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/BLUE": {
+  "colmix": 4,
+  "top sheet": 1
+ },
+ "/CHPAL0": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHPAL1": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHPXL0": {
+  "colmix": 4,
+  "top sheet": 2
+ },
+ "/CHPXL1": {
+  "colmix": 4,
+  "top sheet": 2
+ },
+ "/CHPXL2": {
+  "colmix": 4
+ },
+ "/CHPXL3": {
+  "colmix": 3,
+  "top sheet": 2
+ },
+ "/CHPXL4": {
+  "colmix": 3,
+  "top sheet": 2
+ },
+ "/CHROM0": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHROM1": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHROM2": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHROM3": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHROM4": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CHROM5": {
+  "characters": 1,
+  "colmix": 1
+ },
+ "/CN2_C17": {
+  "top sheet": 3,
+  "objects / obj_draw": 2
+ },
+ "/CNT_VER": {
+  "objects / counters": 3,
+  "io": 2,
+  "top sheet": 2,
+  "main": 1
+ },
+ "/COIN_1": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/COIN_2": {
+  "io": 2,
+  "top sheet": 1
+ },
+ "/COUNTER_S0": {
+  "colmix": 3,
+  "top sheet": 2,
+  "scroll / scrom_memories": 1
+ },
+ "/COUNTER_S1": {
+  "colmix": 3,
+  "top sheet": 2,
+  "scroll / scrom_memories": 1
+ },
+ "/FLIP_B": {
+  "objects / counters": 10,
+  "objects / obj_lut_buf": 8,
+  "objects / double_line_buffer.sch": 2,
+  "top sheet": 2,
+  "sound": 1,
+  "colmix": 1
+ },
+ "/GREEN": {
+  "colmix": 4,
+  "top sheet": 1
+ },
+ "/H0": {
+  "objects / counters": 4,
+  "main": 2,
+  "scroll / scrom_memories": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "sound": 1
+ },
+ "/H1": {
+  "objects / counters": 6,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "main": 1
+ },
+ "/H2": {
+  "objects / counters": 4,
+  "characters": 3,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/H3": {
+  "objects / counters": 5,
+  "sound": 2,
+  "objects": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/H4": {
+  "objects / counters": 4,
+  "objects": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/H5": {
+  "objects / counters": 3,
+  "objects": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/H6": {
+  "objects / counters": 4,
+  "objects": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/H7": {
+  "objects / counters": 2,
+  "objects": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/H8": {
+  "objects / counters": 10,
+  "objects": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/HBLANKING": {
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/HF'0": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1
+ },
+ "/HF'1": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'2": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'3": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'4": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'5": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'6": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'7": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1,
+  "characters": 1
+ },
+ "/HF'8": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1
+ },
+ "/HF'9": {
+  "top sheet": 2,
+  "scroll": 1,
+  "objects / counters": 1
+ },
+ "/HF2": {
+  "objects / counters": 2,
+  "characters": 1
+ },
+ "/HF3": {
+  "objects / counters": 2
+ },
+ "/HF4": {
+  "objects / counters": 2
+ },
+ "/HF5": {
+  "objects / counters": 2
+ },
+ "/HF6": {
+  "objects / counters": 2
+ },
+ "/HF7": {
+  "objects / counters": 2,
+  "top sheet": 2
+ },
+ "/HF8": {
+  "objects / counters": 2
+ },
+ "/HF9": {
+  "objects / counters": 2
+ },
+ "/MAIN_AB0": {
+  "main": 3,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1
+ },
+ "/MAIN_AB1": {
+  "main": 3,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1
+ },
+ "/MAIN_AB2": {
+  "main": 3,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1
+ },
+ "/MAIN_AB3": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1,
+  "main": 1
+ },
+ "/MAIN_AB4": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1,
+  "main": 1
+ },
+ "/MAIN_AB5": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1,
+  "main": 1
+ },
+ "/MAIN_AB6": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1,
+  "main": 1
+ },
+ "/MAIN_AB7": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "colmix": 1,
+  "main": 1
+ },
+ "/MAIN_AB8": {
+  "colmix": 4,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1,
+  "main": 1
+ },
+ "/MAIN_AB9": {
+  "top sheet": 2,
+  "scroll": 1,
+  "characters": 1,
+  "main": 1
+ },
+ "/MAIN_AB10": {
+  "scroll": 4,
+  "top sheet": 2,
+  "characters": 1,
+  "main": 1
+ },
+ "/MAIN_AB11": {
+  "main": 2,
+  "top sheet": 2,
+  "characters": 1
+ },
+ "/MAIN_AB12": {
+  "main": 2,
+  "top sheet": 2,
+  "characters": 1
+ },
+ "/MAIN_AB13": {
+  "main": 2,
+  "top sheet": 2
+ },
+ "/MAIN_D0": {
+  "main": 4
+ },
+ "/MAIN_D1": {
+  "main": 4
+ },
+ "/MAIN_D2": {
+  "main": 4
+ },
+ "/MAIN_D3": {
+  "main": 4
+ },
+ "/MAIN_D4": {
+  "main": 4
+ },
+ "/MAIN_D5": {
+  "main": 4
+ },
+ "/MAIN_D6": {
+  "main": 4
+ },
+ "/MAIN_D7": {
+  "main": 4
+ },
+ "/MAIN_DB0": {
+  "main": 5,
+  "scroll": 4,
+  "io": 4,
+  "colmix": 2,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/MAIN_DB1": {
+  "scroll": 4,
+  "io": 4,
+  "main": 3,
+  "colmix": 2,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/MAIN_DB2": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "colmix": 2,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/MAIN_DB3": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "colmix": 2,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/MAIN_DB4": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1,
+  "colmix": 1
+ },
+ "/MAIN_DB5": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1,
+  "colmix": 1
+ },
+ "/MAIN_DB6": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1,
+  "colmix": 1
+ },
+ "/MAIN_DB7": {
+  "io": 4,
+  "scroll": 3,
+  "main": 3,
+  "top sheet": 2,
+  "sound": 1,
+  "characters": 1,
+  "objects / obj_lut_buf": 1,
+  "colmix": 1
+ },
+ "/MRAM_DB0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/MRAM_DB7": {
+  "objects / obj_lut_buf": 3
+ },
+ "/OBJBUF0": {
+  "colmix": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/OBJBUF1": {
+  "colmix": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/OBJBUF2": {
+  "colmix": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/OBJBUF3": {
+  "colmix": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/OBJBUF4": {
+  "colmix": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/OBJECT_A0": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A1": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A2": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A3": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A4": {
+  "objects / obj_draw / memories_sprite.sch": 13
+ },
+ "/OBJECT_A5": {
+  "objects / obj_draw / memories_sprite.sch": 13
+ },
+ "/OBJECT_A6": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A7": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A8": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A9": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A10": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A11": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A12": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJECT_A13": {
+  "objects / obj_draw / memories_sprite.sch": 12,
+  "objects / obj_lut_buf": 1
+ },
+ "/OBJPXL0": {
+  "colmix": 3,
+  "top sheet": 2
+ },
+ "/OBJPXL1": {
+  "colmix": 3,
+  "top sheet": 2
+ },
+ "/OBJPXL2": {
+  "colmix": 3,
+  "top sheet": 2
+ },
+ "/OBJPXL3": {
+  "colmix": 2,
+  "top sheet": 2
+ },
+ "/OBJPXL4": {
+  "colmix": 2,
+  "top sheet": 2
+ },
+ "/PXLCLK": {
+  "scroll / scrom_memories": 3,
+  "scroll": 2,
+  "colmix": 2,
+  "top sheet": 2,
+  "sound": 1
+ },
+ "/RAM0": {
+  "colmix": 3
+ },
+ "/RAM1": {
+  "colmix": 3
+ },
+ "/RAM2": {
+  "colmix": 3
+ },
+ "/RAM3": {
+  "colmix": 3
+ },
+ "/RAM4": {
+  "colmix": 3
+ },
+ "/RAM5": {
+  "colmix": 3
+ },
+ "/RAM6": {
+  "colmix": 3
+ },
+ "/RAM7": {
+  "colmix": 3
+ },
+ "/RED": {
+  "colmix": 4,
+  "top sheet": 1
+ },
+ "/RST_SND": {
+  "sound": 3
+ },
+ "/R_~{W}B": {
+  "main": 5,
+  "scroll": 2,
+  "colmix": 2,
+  "top sheet": 2,
+  "characters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/SCRPXL0": {
+  "scroll / scrom_memories": 1,
+  "colmix": 1
+ },
+ "/SCRPXL1": {
+  "scroll / scrom_memories": 1,
+  "colmix": 1
+ },
+ "/SCRPXL2": {
+  "scroll / scrom_memories": 1,
+  "colmix": 1
+ },
+ "/SCRPXL3": {
+  "colmix": 1,
+  "scroll": 1
+ },
+ "/SCRPXL4": {
+  "colmix": 1,
+  "scroll": 1
+ },
+ "/SCRPXL5": {
+  "colmix": 1,
+  "scroll": 1
+ },
+ "/SCR_AD0": {
+  "scroll": 3
+ },
+ "/SCR_AD1": {
+  "scroll": 3
+ },
+ "/SCR_AD2": {
+  "scroll": 3
+ },
+ "/SCR_AD3": {
+  "scroll": 3
+ },
+ "/SCR_AD4": {
+  "scroll": 3
+ },
+ "/SCR_AD5": {
+  "scroll": 3
+ },
+ "/SCR_AD6": {
+  "scroll": 3
+ },
+ "/SCR_AD7": {
+  "scroll": 3
+ },
+ "/SCR_AD8": {
+  "scroll": 3
+ },
+ "/SCR_AD9": {
+  "scroll": 3
+ },
+ "/SCR_AD10": {
+  "scroll": 3
+ },
+ "/SCR_AD11": {
+  "scroll": 2
+ },
+ "/SCR_AD12": {
+  "scroll": 2
+ },
+ "/SCR_AD13": {
+  "scroll": 3
+ },
+ "/SCR_AD14": {
+  "scroll": 3
+ },
+ "/SCR_AD15": {
+  "scroll": 3
+ },
+ "/SERVICE": {
+  "io": 3,
+  "top sheet": 1
+ },
+ "/SND_LATCH_WR": {
+  "sound": 2,
+  "top sheet": 2,
+  "objects / counters": 1,
+  "main": 1
+ },
+ "/SPEAKER+": {
+  "sound": 3,
+  "top sheet": 1
+ },
+ "/SPEAKER-": {
+  "sound": 3,
+  "top sheet": 1
+ },
+ "/SYNC": {
+  "top sheet": 3,
+  "objects / counters": 1
+ },
+ "/V0": {
+  "objects / obj_lut_buf": 5,
+  "objects / counters": 4,
+  "objects": 4
+ },
+ "/V1": {
+  "objects / obj_lut_buf": 1,
+  "objects / counters": 1
+ },
+ "/V2": {
+  "objects / obj_lut_buf": 1,
+  "objects / counters": 1
+ },
+ "/V3": {
+  "objects / counters": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "main": 1
+ },
+ "/V4": {
+  "objects / counters": 3,
+  "objects / obj_lut_buf": 1
+ },
+ "/V5": {
+  "objects / counters": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/V6": {
+  "objects / counters": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/V7": {
+  "objects / counters": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/VBLANKING": {
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/VF'0": {
+  "scroll / scrom_memories": 6,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "characters": 1
+ },
+ "/VF'1": {
+  "scroll / scrom_memories": 6,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "characters": 1
+ },
+ "/VF'2": {
+  "scroll / scrom_memories": 6,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "characters": 1
+ },
+ "/VF'3": {
+  "scroll / scrom_memories": 6,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "characters": 1
+ },
+ "/VF'4": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1
+ },
+ "/VF'5": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1
+ },
+ "/VF'6": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1
+ },
+ "/VF'7": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "scroll": 1,
+  "characters": 1
+ },
+ "/YDIFF0": {
+  "objects / obj_lut_buf": 2,
+  "objects / counters": 1
+ },
+ "/YDIFF1": {
+  "objects / obj_lut_buf": 2
+ },
+ "/YDIFF2": {
+  "objects / obj_lut_buf": 2,
+  "objects / counters": 1
+ },
+ "/YDIFF3": {
+  "objects / obj_lut_buf": 2,
+  "objects / counters": 1
+ },
+ "/YDIFF4": {
+  "objects / obj_lut_buf": 2
+ },
+ "/YDIFF5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/YDIFF6": {
+  "objects / obj_lut_buf": 2
+ },
+ "/YDIFF7": {
+  "objects / obj_lut_buf": 2
+ },
+ "/characters/CODE0": {
+  "characters": 2
+ },
+ "/characters/CODE1": {
+  "characters": 2
+ },
+ "/characters/CODE2": {
+  "characters": 2
+ },
+ "/characters/CODE3": {
+  "characters": 2
+ },
+ "/characters/CODE4": {
+  "characters": 2
+ },
+ "/characters/CODE5": {
+  "characters": 2
+ },
+ "/characters/CODE6": {
+  "characters": 2
+ },
+ "/characters/CODE7": {
+  "characters": 2
+ },
+ "/characters/CODE_Q0": {
+  "characters": 2
+ },
+ "/characters/CODE_Q1": {
+  "characters": 2
+ },
+ "/characters/VRAM_A0": {
+  "characters": 2
+ },
+ "/characters/VRAM_A1": {
+  "characters": 2
+ },
+ "/characters/VRAM_A2": {
+  "characters": 2
+ },
+ "/characters/VRAM_A3": {
+  "characters": 2
+ },
+ "/characters/VRAM_A4": {
+  "characters": 2
+ },
+ "/characters/VRAM_A5": {
+  "characters": 2
+ },
+ "/characters/VRAM_A6": {
+  "characters": 2
+ },
+ "/characters/VRAM_A7": {
+  "characters": 2
+ },
+ "/characters/VRAM_A8": {
+  "characters": 2
+ },
+ "/characters/VRAM_A9": {
+  "characters": 2
+ },
+ "/characters/VRAM_A10": {
+  "characters": 2
+ },
+ "/characters/VRAM_A11": {
+  "characters": 2
+ },
+ "/characters/VRAM_A12": {
+  "characters": 2
+ },
+ "/characters/VRAM_D0": {
+  "characters": 4
+ },
+ "/characters/VRAM_D1": {
+  "characters": 4
+ },
+ "/characters/VRAM_D2": {
+  "characters": 3
+ },
+ "/characters/VRAM_D3": {
+  "characters": 3
+ },
+ "/characters/VRAM_D4": {
+  "characters": 3
+ },
+ "/characters/VRAM_D5": {
+  "characters": 3
+ },
+ "/characters/VRAM_D6": {
+  "characters": 4
+ },
+ "/characters/VRAM_D7": {
+  "characters": 4
+ },
+ "/characters/VRAM_Q0": {
+  "characters": 2
+ },
+ "/characters/VRAM_Q1": {
+  "characters": 2
+ },
+ "/characters/~{WE_CHAR}": {
+  "characters": 2
+ },
+ "/colmix/BLUE_CE": {
+  "main": 1,
+  "colmix": 1
+ },
+ "/colmix/RAM_AD0": {
+  "colmix": 3
+ },
+ "/colmix/RAM_AD1": {
+  "colmix": 3
+ },
+ "/colmix/RAM_AD2": {
+  "colmix": 3
+ },
+ "/colmix/RAM_AD3": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D0": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D1": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D2": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D3": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D4": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D5": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D6": {
+  "colmix": 3
+ },
+ "/colmix/RAM_D7": {
+  "colmix": 3
+ },
+ "/colmix/RAM_~{CS}": {
+  "colmix": 2
+ },
+ "/colmix/S0": {
+  "colmix": 5
+ },
+ "/colmix/S1": {
+  "colmix": 5
+ },
+ "/colmix/TLS_MTPX0": {
+  "colmix": 2
+ },
+ "/colmix/TLS_MTPX1": {
+  "colmix": 2
+ },
+ "/colmix/TLS_MTPX2": {
+  "colmix": 2
+ },
+ "/colmix/TLS_MTPX3": {
+  "colmix": 2
+ },
+ "/colmix/TLS_MTPX4": {
+  "colmix": 2
+ },
+ "/colmix/TLS_MTPX5": {
+  "colmix": 2
+ },
+ "/colmix/~{RG_CE}": {
+  "colmix": 2
+ },
+ "/main/BANK": {
+  "main": 2
+ },
+ "/main/BANK_ROM": {
+  "main": 2
+ },
+ "/main/BANK_SEL": {
+  "main": 2
+ },
+ "/main/CLK_Ø2": {
+  "main": 2
+ },
+ "/main/CLKØ2_B": {
+  "main": 3
+ },
+ "/main/MAIN2MCU": {
+  "main": 3
+ },
+ "/main/MAIN_A0": {
+  "main": 4
+ },
+ "/main/MAIN_A1": {
+  "main": 4
+ },
+ "/main/MAIN_A2": {
+  "main": 4
+ },
+ "/main/MAIN_A3": {
+  "main": 4
+ },
+ "/main/MAIN_A4": {
+  "main": 4
+ },
+ "/main/MAIN_A5": {
+  "main": 4
+ },
+ "/main/MAIN_A6": {
+  "main": 4
+ },
+ "/main/MAIN_A7": {
+  "main": 4
+ },
+ "/main/MAIN_A8": {
+  "main": 4
+ },
+ "/main/MAIN_A9": {
+  "main": 4
+ },
+ "/main/MAIN_A10": {
+  "main": 4
+ },
+ "/main/MAIN_A11": {
+  "main": 4
+ },
+ "/main/MAIN_A12": {
+  "main": 4
+ },
+ "/main/MAIN_A13": {
+  "main": 4
+ },
+ "/main/MAIN_A14": {
+  "main": 4
+ },
+ "/main/MAIN_A15": {
+  "main": 4
+ },
+ "/main/MCU_INT": {
+  "main": 2
+ },
+ "/main/PA0": {
+  "main": 3
+ },
+ "/main/PA1": {
+  "main": 3
+ },
+ "/main/PA2": {
+  "main": 3
+ },
+ "/main/PA3": {
+  "main": 3
+ },
+ "/main/PA4": {
+  "main": 3
+ },
+ "/main/PA5": {
+  "main": 3
+ },
+ "/main/PA6": {
+  "main": 3
+ },
+ "/main/PA7": {
+  "main": 3
+ },
+ "/main/R_~{W}": {
+  "main": 2
+ },
+ "/main/R_~{W}MAIN": {
+  "main": 4
+ },
+ "/main/~{IRQ}": {
+  "main": 2
+ },
+ "/main/~{LATCHES}": {
+  "main": 4
+ },
+ "/main/~{MCU2MAIN}": {
+  "main": 3
+ },
+ "/main/~{MCUCLR}": {
+  "main": 4
+ },
+ "/main/~{MCU_RD}": {
+  "main": 3
+ },
+ "/main/~{MCU_WR}": {
+  "main": 4
+ },
+ "/objects/BANK0": {
+  "objects / obj_draw / memories_sprite.sch": 5,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/BANK1": {
+  "objects / obj_draw / memories_sprite.sch": 1,
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/BANK2": {
+  "objects / obj_draw / memories_sprite.sch": 2,
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/CLK_H": {
+  "objects": 2,
+  "objects / counters": 1
+ },
+ "/objects/CLK_H8": {
+  "objects / counters": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/CV": {
+  "objects / counters": 6,
+  "objects": 2,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/objects/H8_Q": {
+  "objects / counters": 2
+ },
+ "/objects/HFLIP": {
+  "objects / double_line_buffer.sch": 3,
+  "objects / obj_draw / memories_sprite.sch": 2,
+  "objects / counters": 1
+ },
+ "/objects/HFLIP'": {
+  "objects / obj_draw": 2,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/objects/LINE": {
+  "objects / double_line_buffer.sch": 5,
+  "objects / counters": 1
+ },
+ "/objects/LUTA_A0": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A1": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A2": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A3": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A4": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A5": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_A6": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B0": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B1": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B2": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B3": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B4": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B5": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/LUTA_B6": {
+  "objects": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/OBJIN0": {
+  "objects / double_line_buffer.sch": 3,
+  "objects / obj_draw": 1
+ },
+ "/objects/OBJIN1": {
+  "objects / double_line_buffer.sch": 3,
+  "objects / obj_draw": 1
+ },
+ "/objects/OBJIN2": {
+  "objects / double_line_buffer.sch": 3,
+  "objects / obj_draw": 1
+ },
+ "/objects/OBJPAL3": {
+  "objects / double_line_buffer.sch": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/OBJPAL4": {
+  "objects / double_line_buffer.sch": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/PXL_CLK": {
+  "objects / counters": 8,
+  "objects / obj_lut_buf": 2,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ0": {
+  "objects / obj_lut_buf": 5,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ1": {
+  "objects / obj_lut_buf": 5,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ2": {
+  "objects / obj_lut_buf": 5,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ3": {
+  "objects / obj_lut_buf": 5,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ4": {
+  "objects / obj_lut_buf": 5,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ5": {
+  "objects / obj_lut_buf": 4,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ6": {
+  "objects / obj_lut_buf": 4,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/RAM_AQ7": {
+  "objects / obj_lut_buf": 4,
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/SEL_SPRT0": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_lut_buf": 1,
+  "objects / obj_draw": 1
+ },
+ "/objects/VHQ": {
+  "objects / counters": 1,
+  "objects / double_line_buffer.sch": 1
+ },
+ "/objects/YAUX": {
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/counters/CLK_XTAL": {
+  "objects / counters": 4
+ },
+ "/objects/counters/HLC": {
+  "objects / counters": 4
+ },
+ "/objects/counters/HUC": {
+  "objects / counters": 3
+ },
+ "/objects/counters/TCV": {
+  "objects / counters": 3
+ },
+ "/objects/counters/V8": {
+  "objects / counters": 3
+ },
+ "/objects/counters/~{OBJST3}": {
+  "objects / counters": 2
+ },
+ "/objects/counters/~{PE}": {
+  "objects / counters": 3
+ },
+ "/objects/double_line_buffer.sch/1": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/2": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/3": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/BLANK": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/BLANK'": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/BUFIN0": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/BUFIN1": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/BUFIN2": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/BUFIN3": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/BUFIN4": {
+  "objects / double_line_buffer.sch": 2
+ },
+ "/objects/double_line_buffer.sch/LINEA0": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEA1": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEA2": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEA3": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEA4": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEB0": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEB1": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEB2": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEB3": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/LINEB4": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/~{MR_A}": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/~{MR_B}": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/double_line_buffer.sch/~{PE_LINEA}": {
+  "objects / double_line_buffer.sch": 4
+ },
+ "/objects/double_line_buffer.sch/~{PE_LINEB}": {
+  "objects / double_line_buffer.sch": 3
+ },
+ "/objects/obj_draw/OBJECT_D0": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D1": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D2": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D3": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D4": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D5": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D6": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJECT_D7": {
+  "objects / obj_draw / memories_sprite.sch": 4,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D0": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D1": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D2": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D3": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D4": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D5": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D6": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/OBJ_D7": {
+  "objects / obj_draw / memories_sprite.sch": 8,
+  "objects / obj_draw": 1
+ },
+ "/objects/obj_draw/SR0": {
+  "objects / obj_draw": 4
+ },
+ "/objects/obj_draw/SR1": {
+  "objects / obj_draw": 4
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXA0}": {
+  "objects / counters": 1,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXA1}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXA2}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXB0}": {
+  "objects / counters": 1,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXB1}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXB2}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXC0}": {
+  "objects / counters": 1,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXC1}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXC2}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXD0}": {
+  "objects / counters": 1,
+  "objects / obj_draw / memories_sprite.sch": 1
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXD1}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_draw/memories_sprite.sch/~{GFXD2}": {
+  "objects / obj_draw / memories_sprite.sch": 2
+ },
+ "/objects/obj_lut_buf/A0": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A1": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A2": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A3": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A4": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A5": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A6": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A7": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/A8": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/D0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/D7": {
+  "objects / obj_lut_buf": 4
+ },
+ "/objects/obj_lut_buf/GFX_A0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/GFX_A7": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/Q0": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/Q1": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/Q2": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/Q3": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/Q7": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/RAM_A0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_A7": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_B7": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/RAM_QM0": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/ROBJ_A'0": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/ROBJ_A'1": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/ROBJ_A'2": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/ROBJ_A'3": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/ROBJ_A'4": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/obj_lut_buf/VF0": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF1": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF2": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF3": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF4": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF5": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF6": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/VF7": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/~{V0}": {
+  "objects / obj_lut_buf": 3
+ },
+ "/objects/obj_lut_buf/~{WE}": {
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/~{B1}": {
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/~{B3}": {
+  "objects / counters": 1,
+  "objects / obj_lut_buf": 1
+ },
+ "/objects/~{B5}": {
+  "objects / counters": 2,
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/~{B7}": {
+  "objects / double_line_buffer.sch": 4,
+  "objects / counters": 2
+ },
+ "/objects/~{CLK_CNTER}": {
+  "objects / counters": 3,
+  "objects / obj_lut_buf": 2
+ },
+ "/objects/~{CLK_H}": {
+  "objects / counters": 3
+ },
+ "/objects/~{H8_Q}": {
+  "objects / obj_lut_buf": 1,
+  "objects / counters": 1
+ },
+ "/objects/~{MATCH}": {
+  "objects": 4,
+  "objects / counters": 1
+ },
+ "/objects/~{OBJST1}": {
+  "objects / obj_lut_buf": 4,
+  "objects / counters": 2
+ },
+ "/objects/~{OBJST2}": {
+  "objects": 2,
+  "objects / counters": 1
+ },
+ "/objects/~{WE}_LUTA": {
+  "objects / obj_lut_buf": 2,
+  "objects": 1
+ },
+ "/objects/~{WE}_LUTB": {
+  "objects / obj_lut_buf": 2,
+  "objects": 1
+ },
+ "/scroll/CARRY0": {
+  "scroll": 2
+ },
+ "/scroll/CLK_SCOLM": {
+  "main": 1,
+  "scroll / scrom_memories": 1,
+  "scroll": 1
+ },
+ "/scroll/REPAIR": {
+  "scroll": 2
+ },
+ "/scroll/SCOL0": {
+  "scroll": 2
+ },
+ "/scroll/SCOL1": {
+  "scroll": 2
+ },
+ "/scroll/SCOL2": {
+  "scroll": 2
+ },
+ "/scroll/SCR0": {
+  "scroll": 2
+ },
+ "/scroll/SCR1": {
+  "scroll": 2
+ },
+ "/scroll/SCR2": {
+  "scroll": 2
+ },
+ "/scroll/SCR3": {
+  "scroll": 2
+ },
+ "/scroll/SCR4": {
+  "scroll": 2
+ },
+ "/scroll/SCR5": {
+  "scroll": 2
+ },
+ "/scroll/SCR6": {
+  "scroll": 2
+ },
+ "/scroll/SCR7": {
+  "scroll": 2
+ },
+ "/scroll/SCR8": {
+  "scroll": 2
+ },
+ "/scroll/SCR9": {
+  "scroll": 2
+ },
+ "/scroll/SCR10": {
+  "scroll": 2
+ },
+ "/scroll/SCR13": {
+  "scroll": 2
+ },
+ "/scroll/SCR14": {
+  "scroll": 2
+ },
+ "/scroll/SCR15": {
+  "scroll": 2
+ },
+ "/scroll/SCROM_A4": {
+  "scroll / scrom_memories": 7,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A5": {
+  "scroll / scrom_memories": 6,
+  "main": 1
+ },
+ "/scroll/SCROM_A6": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A7": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A8": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A9": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A10": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A11": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A12": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A13": {
+  "scroll / scrom_memories": 6,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A14": {
+  "scroll / scrom_memories": 2,
+  "main": 1,
+  "scroll": 1
+ },
+ "/scroll/SCROM_A15": {
+  "scroll / scrom_memories": 5,
+  "scroll": 1
+ },
+ "/scroll/SCRPOS0": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS1": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS2": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS3": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS4": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS5": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS6": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS7": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS8": {
+  "scroll": 2
+ },
+ "/scroll/SCRPOS9": {
+  "scroll": 2
+ },
+ "/scroll/SCR_A0": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A1": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A2": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A3": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A4": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A5": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A6": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A7": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A8": {
+  "scroll": 3
+ },
+ "/scroll/SCR_A9": {
+  "scroll": 3
+ },
+ "/scroll/SCR_CA0": {
+  "scroll": 2
+ },
+ "/scroll/SCR_CA1": {
+  "scroll": 2
+ },
+ "/scroll/SCR_CA2": {
+  "scroll": 2
+ },
+ "/scroll/SCR_CA3": {
+  "scroll": 2
+ },
+ "/scroll/SCR_CA5": {
+  "scroll": 1,
+  "main": 1
+ },
+ "/scroll/SCR_CA6": {
+  "scroll": 1,
+  "scroll / scrom_memories": 1
+ },
+ "/scroll/SCR_CA7": {
+  "scroll": 1,
+  "scroll / scrom_memories": 1
+ },
+ "/scroll/SD0": {
+  "scroll": 2
+ },
+ "/scroll/SD1": {
+  "scroll": 2
+ },
+ "/scroll/SD2": {
+  "scroll": 2
+ },
+ "/scroll/SD3": {
+  "scroll": 2
+ },
+ "/scroll/SD4": {
+  "scroll": 2
+ },
+ "/scroll/SD5": {
+  "scroll": 2
+ },
+ "/scroll/SD6": {
+  "scroll": 2
+ },
+ "/scroll/SD7": {
+  "scroll": 2
+ },
+ "/scroll/scrom_memories/FLIP": {
+  "scroll / scrom_memories": 5,
+  "main": 1
+ },
+ "/scroll/scrom_memories/SCROM_D0": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D1": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D2": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D3": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D4": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D5": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D6": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D7": {
+  "scroll / scrom_memories": 3
+ },
+ "/scroll/scrom_memories/SCROM_D8": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D9": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D10": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D11": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D12": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D13": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D14": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SCROM_D15": {
+  "scroll / scrom_memories": 5
+ },
+ "/scroll/scrom_memories/SR0-0": {
+  "scroll / scrom_memories": 4
+ },
+ "/scroll/scrom_memories/SR0-1": {
+  "scroll / scrom_memories": 4
+ },
+ "/scroll/scrom_memories/~{CE_SCRB}": {
+  "scroll / scrom_memories": 1,
+  "main": 1
+ },
+ "/scroll/scrom_memories/~{CE_SCRC}": {
+  "scroll / scrom_memories": 1,
+  "main": 1
+ },
+ "/scroll/scrom_memories/~{CE_SCRD}": {
+  "scroll / scrom_memories": 1,
+  "main": 1
+ },
+ "/scroll/scrom_memories/~{CE_SCRE}": {
+  "scroll / scrom_memories": 1,
+  "main": 1
+ },
+ "/scroll/scrom_memories/~{CE_SCRF}": {
+  "scroll / scrom_memories": 1,
+  "main": 1
+ },
+ "/scroll/~{C4}": {
+  "scroll": 2
+ },
+ "/scroll/~{CA4}": {
+  "scroll": 2
+ },
+ "/scroll/~{CE_SCROM}": {
+  "main": 2,
+  "scroll / scrom_memories": 1,
+  "scroll": 1
+ },
+ "/scroll/~{CE}_SCR": {
+  "scroll": 2
+ },
+ "/scroll/~{CLK_SCOLM}": {
+  "scroll": 2,
+  "main": 1
+ },
+ "/scroll/~{CS_SCR}": {
+  "scroll": 2
+ },
+ "/scroll/~{RD}_SND": {
+  "main": 1,
+  "scroll": 1
+ },
+ "/scroll/~{WE}_SCR": {
+  "scroll": 3
+ },
+ "/sound/A-1": {
+  "sound": 2
+ },
+ "/sound/A0": {
+  "sound": 4
+ },
+ "/sound/A1": {
+  "sound": 4
+ },
+ "/sound/A2": {
+  "sound": 5
+ },
+ "/sound/A3": {
+  "sound": 4
+ },
+ "/sound/A4": {
+  "sound": 4
+ },
+ "/sound/A5": {
+  "sound": 4
+ },
+ "/sound/A6": {
+  "sound": 5
+ },
+ "/sound/A7": {
+  "sound": 4
+ },
+ "/sound/A8": {
+  "sound": 4
+ },
+ "/sound/A9": {
+  "sound": 4
+ },
+ "/sound/A10": {
+  "sound": 5
+ },
+ "/sound/A11": {
+  "sound": 4
+ },
+ "/sound/A12": {
+  "sound": 4
+ },
+ "/sound/A13": {
+  "sound": 4
+ },
+ "/sound/A14": {
+  "sound": 4
+ },
+ "/sound/D0": {
+  "sound": 4
+ },
+ "/sound/D1": {
+  "sound": 4
+ },
+ "/sound/D2": {
+  "sound": 4
+ },
+ "/sound/D3": {
+  "sound": 4
+ },
+ "/sound/D4": {
+  "sound": 4
+ },
+ "/sound/D5": {
+  "sound": 4
+ },
+ "/sound/D6": {
+  "sound": 4
+ },
+ "/sound/D7": {
+  "sound": 4
+ },
+ "/sound/E_SND": {
+  "sound": 2
+ },
+ "/sound/PCM_RST": {
+  "sound": 7
+ },
+ "/sound/R~{W}_SND": {
+  "sound": 3
+ },
+ "/sound/S1": {
+  "sound": 3
+ },
+ "/sound/SND_A0": {
+  "sound": 4
+ },
+ "/sound/SND_A1": {
+  "sound": 3
+ },
+ "/sound/SND_A2": {
+  "sound": 3
+ },
+ "/sound/SND_A3": {
+  "sound": 3
+ },
+ "/sound/SND_A4": {
+  "sound": 3
+ },
+ "/sound/SND_A5": {
+  "sound": 3
+ },
+ "/sound/SND_A6": {
+  "sound": 3
+ },
+ "/sound/SND_A7": {
+  "sound": 3
+ },
+ "/sound/SND_A8": {
+  "sound": 3
+ },
+ "/sound/SND_A9": {
+  "sound": 3
+ },
+ "/sound/SND_A10": {
+  "sound": 3
+ },
+ "/sound/SND_A11": {
+  "sound": 4
+ },
+ "/sound/SND_A12": {
+  "sound": 3
+ },
+ "/sound/SND_A13": {
+  "sound": 3
+ },
+ "/sound/SND_A14": {
+  "sound": 3
+ },
+ "/sound/SND_A15": {
+  "sound": 3
+ },
+ "/sound/SND_D0": {
+  "sound": 6
+ },
+ "/sound/SND_D1": {
+  "sound": 6
+ },
+ "/sound/SND_D2": {
+  "sound": 6
+ },
+ "/sound/SND_D3": {
+  "sound": 6
+ },
+ "/sound/SND_D4": {
+  "sound": 6
+ },
+ "/sound/SND_D5": {
+  "sound": 6
+ },
+ "/sound/SND_D6": {
+  "sound": 5
+ },
+ "/sound/SND_D7": {
+  "sound": 5
+ },
+ "/sound/~{CEA}": {
+  "sound": 2
+ },
+ "/sound/~{CEB}": {
+  "sound": 2
+ },
+ "/sound/~{CEC}": {
+  "sound": 2
+ },
+ "/sound/~{FIRQ}": {
+  "sound": 3
+ },
+ "/sound/~{IRQ}": {
+  "sound": 2
+ },
+ "/sound/~{NMI}": {
+  "sound": 2
+ },
+ "/sound/~{OE}": {
+  "sound": 4
+ },
+ "/sound/~{PCM_CTRL}": {
+  "sound": 2
+ },
+ "/sound/~{PCM_START}": {
+  "sound": 2
+ },
+ "/sound/~{PCM_STOP}": {
+  "sound": 2
+ },
+ "/sound/~{RAM_CE}": {
+  "sound": 2
+ },
+ "/sound/~{RESET}": {
+  "sound": 3
+ },
+ "/sound/~{SND_LATCH_RD}": {
+  "sound": 3
+ },
+ "/sound/~{VCK}": {
+  "sound": 2
+ },
+ "/sound/~{WE}": {
+  "sound": 4
+ },
+ "/~{BLANKING}": {
+  "colmix": 2,
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1
+ },
+ "/~{CLK_BLN}": {
+  "objects / obj_lut_buf": 3,
+  "colmix": 3,
+  "objects / obj_draw": 3,
+  "objects / counters": 2
+ },
+ "/~{FLIP_LATCH}": {
+  "main": 2
+ },
+ "/~{IN0}": {
+  "io": 2,
+  "main": 1
+ },
+ "/~{IN1}": {
+  "io": 2,
+  "main": 1
+ },
+ "/~{IN2}": {
+  "io": 2,
+  "main": 1
+ },
+ "/~{IN3}": {
+  "io": 2,
+  "main": 1
+ },
+ "/~{INT_MCU}": {
+  "main": 3,
+  "io": 1
+ },
+ "/~{MCU_ST}": {
+  "main": 2,
+  "io": 1
+ },
+ "/~{NMI_MAIN}": {
+  "main": 2
+ },
+ "/~{OBJ_CE}": {
+  "objects / obj_lut_buf": 7,
+  "top sheet": 2,
+  "main": 1
+ },
+ "/~{PAL_CE}": {
+  "colmix": 3,
+  "main": 1,
+  "sound": 1
+ },
+ "/~{PAL_WE}": {
+  "colmix": 2,
+  "sound": 1
+ },
+ "/~{RST_MAIN}": {
+  "objects / counters": 4,
+  "main": 3,
+  "sound": 2,
+  "top sheet": 2
+ },
+ "/~{R_NMI}": {
+  "main": 2
+ },
+ "/~{SCRPOS0}": {
+  "scroll": 1,
+  "main": 1
+ },
+ "/~{SCRPOS1}": {
+  "scroll": 1,
+  "main": 1
+ },
+ "/~{SCR_CE}": {
+  "scroll": 4,
+  "main": 1
+ },
+ "/~{VRAM_CE}": {
+  "characters": 4,
+  "objects / obj_lut_buf": 3,
+  "top sheet": 2,
+  "main": 1
+ },
+ "/~{WE_CLK}": {
+  "objects / double_line_buffer.sch": 11,
+  "colmix": 2,
+  "objects / counters": 1
+ },
+ "/~{WE_MAIN}": {
+  "top sheet": 2,
+  "objects / obj_lut_buf": 1,
+  "characters": 1,
+  "main": 1,
+  "sound": 1,
+  "scroll": 1
+ },
+ "/~{Ø0_MAIN}": {
+  "main": 2,
+  "scroll": 2
+ },
+ "VCC": {
+  "capacitors": 80,
+  "objects / counters": 51,
+  "sound": 36,
+  "main": 36,
+  "top sheet": 24,
+  "scroll / scrom_memories": 20,
+  "objects / double_line_buffer.sch": 16,
+  "objects / obj_draw / memories_sprite.sch": 14,
+  "objects / obj_lut_buf": 13,
+  "io": 13,
+  "scroll": 12,
+  "characters": 12,
+  "colmix": 8,
+  "objects / obj_draw": 5,
+  "objects": 4
+ },
+ "VSS": {
+  "capacitors": 80,
+  "top sheet": 39,
+  "objects / obj_draw / memories_sprite.sch": 39,
+  "io": 37,
+  "objects / counters": 35,
+  "sound": 34,
+  "objects / double_line_buffer.sch": 33,
+  "objects / obj_lut_buf": 29,
+  "colmix": 29,
+  "main": 25,
+  "scroll / scrom_memories": 22,
+  "scroll": 12,
+  "characters": 11,
+  "objects / obj_draw": 9,
+  "objects": 4
+ }
+}

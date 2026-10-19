@@ -3,6 +3,9 @@
 const app = document.getElementById("app");
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+/** "A", "A and B", "A, B and C". */
+const listOf = (xs) => (xs || []).length > 1
+  ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs || [])[0] || "";
 
 const api = async (path) => {
   const r = await fetch("/api/" + path);
@@ -321,6 +324,8 @@ const routes = [
   [/^\/boards\/?$/, boards],
   [/^\/roms\/?$/, rommaps],
   [/^\/rom\/(.+)$/, rommap],
+  [/^\/layouts\/?$/, layoutList],
+  [/^\/layout\/([a-z0-9_]+\/[a-z0-9_-]+\/\d+)$/, layoutPage],
   [/^\/board\/(.+)$/, board],
   [/^\/about\/?$/, about],
   [/^\/submit\/?$/, submit],
@@ -397,7 +402,7 @@ async function home() {
   // (asteroids-03 … asteroids-06 all belong to `asteroid`), so the badge is
   // keyed on that field. Matching board slug to machine slug found 13 of 50.
   const boardList = await api("boards").catch(() => []);
-  const boardMachines = new Set(boardList.map((b) => b.machine || b.slug));
+  const boardMachines = new Set(boardList.flatMap((b) => [b.machine || b.slug, ...(b.machines || [])]));
 
   const st = await api("stats");
   const put = (id, v) => (document.getElementById(id).textContent = v.toLocaleString());
@@ -472,12 +477,17 @@ async function machine(slug) {
   // A board names the machine it belongs to; its own slug is the board's
   // (asteroids-03 … asteroids-06 all belong to `asteroid`). Matching board
   // slug to machine slug found 13 of the 50 and told Asteroids it had none.
-  const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug);
+  // A system board (CP System III, Sega System 18) lists the other machines
+  // that run on it in `machines`.
+  const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug
+    || (b.machines || []).includes(slug));
   loadRomMap(slug);
+  loadLayouts(m);
 
   loadDiagnostics(slug);
   loadSignatures(slug);
   loadPower(slug);
+  if (m.wiring || m.wpages) loadWiring(m);
 
   const cpu = (m.cpu || []).map((c) => `${esc(c.n)}${c.mhz ? ` @ ${c.mhz} MHz` : ""}`).join("<br>") || "—";
   const aud = (m.audio || []).map((a) => `${esc(a.n)}${a.mhz ? ` @ ${a.mhz} MHz` : ""}`).join("<br>") || "—";
@@ -501,10 +511,12 @@ async function machine(slug) {
       If you have a manual, a schematic or a wiring diagram for it, <a href="/submit">send it in</a>.</div>` : ""}
 
     ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
-      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a hand-built KiCad
+      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a KiCad
       project with a schematic and bill of materials —
-      ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>`).join(" · ")}.</div>` : ""}
+      ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>${b.origin
+        ? ` (drawn for ${esc(b.origin.project)}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}
     <div id="rommap"></div>
+    <div id="layouts"></div>
 
     <h2>Hardware</h2>
     <div class="panel"><dl class="kv">
@@ -520,6 +532,8 @@ async function machine(slug) {
       ${m.boards.map((b) => `<dt><code>${esc(b.rev)}</code></dt>
         <dd>${esc(b.note || "")}</dd>`).join("")}
       </dl></div>` : ""}
+
+    <div id="wiring"></div>
 
     ${romSection(m.mame)}
 
@@ -680,6 +694,283 @@ async function loadRomMap(slug) {
   const n = Object.keys(r.devices).length;
   box.innerHTML = `<div class="note"><b>ROM map.</b> ${n} memory device${n === 1 ? "" : "s"}
     placed from MAME's romset — <a href="/rom/${esc(slug)}">see which device sits where</a>.</div>`;
+}
+
+/* ---------- generated wiring view ----------
+   A machine's `wiring` block names a harness standard and the signals the game
+   uses (tools/wiring_data.py); /api/wiring is the connector library it is drawn
+   from. Nothing here was read off the game's own wiring diagram, and the page
+   says so first, before any pin. */
+let wiringLib = null;
+
+const WIRE_GROUPS = [
+  ["power", "Power"], ["gnd", "Ground"], ["video", "Video"], ["audio", "Audio"],
+  ["sys", "Test & service"], ["coin", "Coin door"], ["p1", "Player 1"], ["p2", "Player 2"],
+  ["p3", "Player 3"], ["p4", "Player 4"], ["aux", "Other I/O"], ["off", "Not used by this game"],
+];
+const WIRE_LABEL = { start: "Start", up: "Up", down: "Down", left: "Left", right: "Right" };
+
+/** Which colour group a pin belongs to, for this game. */
+function wireGroup(s, used) {
+  if (s === "gnd" || s === "video.gnd" || s === "audio.gnd") return "gnd";
+  if (/^[+-]\d+v$/.test(s)) return "power";
+  if (s.startsWith("video.")) return "video";
+  if (/^(spk|audio)/.test(s)) return "audio";
+  if (/^(service|test|tilt|vol\.|select\.)/.test(s)) return "sys";
+  if (/^coin\d$/.test(s)) return used.has(s) ? "coin" : "off";
+  if (/^(counter|lockout)/.test(s)) return "coin";
+  const p = s.match(/^(p[1-4])\./);
+  if (p) return used.has(s) ? p[1] : "off";
+  if (s === "nc" || s === "spare" || s === "key") return "nc";
+  return "aux";
+}
+
+/** How the page says what a signal is, for the control list. */
+function wireName(s) {
+  const m = s.match(/^p(\d)\.(.+)$/);
+  if (m) return m[2].startsWith("b") ? `Button ${m[2].slice(1)}` : WIRE_LABEL[m[2]] || m[2];
+  const c = s.match(/^coin(\d)$/);
+  return c ? `Coin ${c[1]}` : s;
+}
+
+function wirePin(p, g) {
+  const flag = p.disputed ? " disputed" : p.alt ? " alt" : "";
+  return `<td class="pad g-${g}${flag}" data-g="${g}" data-s="${esc(p.s)}"
+      title="${esc(p.p)}: ${esc(p.n)}${p.disputed ? " (disputed between sources)" : p.alt ? " (only some games)" : ""}">${esc(p.p)}</td>`;
+}
+function wireFn(p, g, side) {
+  const flag = p.disputed ? " disputed" : p.alt ? " alt" : "";
+  return `<td class="fn ${side} g-${g}${flag}" data-g="${g}" data-s="${esc(p.s)}">${esc(p.n || "")}</td>`;
+}
+
+/** One connector as a pin table: an edge or header pair-by-pair, a list
+    pin-by-pin with runs of the same signal folded into one row. */
+function wireConnector(conn, used) {
+  const g = (p) => wireGroup(p.s, used);
+  let body;
+  if (conn.layout === "list") {
+    const runs = [];
+    for (const [p] of conn.rows) {
+      const last = runs[runs.length - 1];
+      if (last && last.s === p.s && last.n === p.n && +last.to + 1 === +p.p) last.to = p.p;
+      else runs.push({ ...p, to: p.p });
+    }
+    body = `<table class="pins list"><tbody>${runs.map((r) => `<tr>
+      ${wirePin({ ...r, p: r.p === r.to ? r.p : `${r.p}–${r.to}` }, g(r))}${wireFn(r, g(r), "r")}</tr>`).join("")}
+      </tbody></table>`;
+  } else {
+    body = `<table class="pins edge"><thead><tr>
+        <th class="l">${esc(conn.sides[0])}</th><th colspan="2"></th><th class="r">${esc(conn.sides[1])}</th>
+      </tr></thead><tbody>${conn.rows.map(([a, b]) => `<tr>
+        ${wireFn(a, g(a), "l")}${wirePin(a, g(a))}${wirePin(b, g(b))}${wireFn(b, g(b), "r")}</tr>`).join("")}
+      </tbody></table>`;
+  }
+  return `<div class="conn"><div class="connhead"><strong>${esc(conn.name)}</strong>
+      <span class="meta">${esc(conn.pitch || "")}</span></div>${body}</div>`;
+}
+
+/** The connector's sources, checks, notes and logged conflicts. */
+function wireProvenance(lib, ids) {
+  const conns = ids.map((id) => lib.connectors[id]);
+  const srcIds = [...new Set(conns.flatMap((c) => c.sources || []))];
+  const conflicts = conns.flatMap((c) => (c.conflicts || []).map((x) => ({ ...x, conn: c.short })));
+  return `${conflicts.length ? `<h3 class="wireh">Open questions</h3><div class="questions">${conflicts.map((c) =>
+      `<div class="note warn"><b>${esc(c.conn)} ${esc(c.pins.join(", "))}.</b> ${esc(c.text)}</div>`).join("")}</div>` : ""}
+    <details class="readnotes"><summary>Sources and how the pin tables were checked</summary>
+      <div class="questions">
+        ${conns.map((c) => c.checked ? `<div class="note"><b>Checked.</b> ${esc(c.checked)}</div>` : "").join("")}
+        ${conns.flatMap((c) => c.notes || []).map((n) => `<div class="note">${esc(n)}</div>`).join("")}
+      </div>
+      <ul class="wiresrc">${srcIds.map((id) => lib.sources[id]).filter(Boolean).map((s) =>
+        `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>
+          <span class="meta">— ${esc(s.licence)}</span>${s.note ? `<div class="meta">${esc(s.note)}</div>` : ""}</li>`).join("")}</ul>
+    </details>`;
+}
+
+/** Wiring pages found in this machine's own documents (`wpages`). They were
+    drawn for the machine, so they go above anything generated. */
+function wirePages(m) {
+  const list = m.wpages || [];
+  if (!list.length) return "";
+  const title = new Map((m.docs || []).map((d) => [d.id, prettyTitle(d.title)]));
+  return `<div class="note"><b>Wiring in the documents.</b> ${list.length === 1 ? "A page" : `${list.length} pages`}
+      of this machine's own manuals ${list.length === 1 ? "reads" : "read"} as a wiring diagram, harness
+      chart or connector pin-out. Drawn for this machine, ${list.length === 1 ? "it is" : "they are"} the
+      better source.</div>
+    <div class="rows wirepages">${list.map((x) => `
+      <a class="row" href="/doc/${esc(x.d)}#p${x.p}">
+        <span class="nm">${esc(x.h || "Wiring drawing, found by its wire colours")}</span>
+        <span class="grow"></span>
+        <span class="meta">${esc(title.get(x.d) || "")}</span>
+        <span class="badge">p${x.p}</span>
+      </a>`).join("")}</div>`;
+}
+
+async function loadWiring(m) {
+  const w = m.wiring;
+  // Always await before looking for the box, even with the library cached:
+  // machine() starts the loaders before it writes the page, so the box only
+  // exists once the code that called this has run to its end.
+  wiringLib = (w && !wiringLib) ? await api("wiring").catch(() => null) : await wiringLib;
+  const box = document.getElementById("wiring");
+  if (!box) return;
+  if (!w) {
+    box.innerHTML = `<h2>Wiring</h2>${wirePages(m)}`;
+    return;
+  }
+  const lib = wiringLib;
+  const std = lib && lib.standards[w.std];
+  if (!std) return;
+  const used = new Set(w.use || []);
+  const tag = "mame" + String((m.mame || {}).v || "0.289").replace(".", "");
+  const at = `https://github.com/mamedev/mame/blob/${tag}/src/mame/${w.ev.file}#L${w.ev.line}`;
+  const where = `<a href="${esc(at)}" target="_blank" rel="noopener"><code>${esc(w.ev.file)}</code> line ${w.ev.line} ↗</a>`;
+  const why = w.basis === "comment"
+    ? `MAME's driver for this hardware describes a JAMMA edge — “${esc(w.ev.text)}”, ${where}. The tag is
+       taken per driver file, so a game in the same file on a different board may be wired otherwise.`
+    : w.std === "jvs"
+      ? `MAME emulates this game with a Sega 837-13551 JVS I/O board (${where}).`
+      : `MAME prints this hardware's connector pinout (${where}).`;
+  const doc = w.doc ? (m.docs || []).find((d) => d.id === w.doc) : null;
+  // A standard with more than one way to wire it -- an MVS cartridge goes in
+  // a 1-slot or a multi-slot board -- gets a choice; one picked by the game
+  // (CPS-2's CN5, by player count) does not.
+  const choose = std.variants.length > 1 && !std.variants.some((v) => v.players);
+  let vid = w.var;
+
+  const draw = () => {
+    const v = std.variants.find((x) => x.id === vid) || std.variants[0];
+    const have = new Map();
+    for (const id of v.connectors) {
+      const c = lib.connectors[id];
+      for (const row of c.rows) for (const p of row) {
+        if (!have.has(p.s)) have.set(p.s, []);
+        have.get(p.s).push({ ...p, conn: c.short });
+      }
+    }
+    const pinsOf = (s) => (have.get(s) || []).map((p) =>
+      `<span class="pinref${p.alt ? " alt" : ""}${p.disputed ? " disputed" : ""}" data-s="${esc(s)}">${
+        v.connectors.length > 1 ? esc(p.conn) + " " : ""}${esc(p.p)}</span>`).join(" or ");
+    const byPlayer = new Map();
+    for (const s of used) {
+      const k = (s.match(/^p(\d)\./) || [])[1] ? `Player ${s[1]}` : "Coin door";
+      if (!byPlayer.has(k)) byPlayer.set(k, []);
+      byPlayer.get(k).push(s);
+    }
+    const groups = new Set();
+    for (const id of v.connectors) for (const row of lib.connectors[id].rows)
+      for (const p of row) groups.add(wireGroup(p.s, used));
+    box.querySelector(".wirebody").innerHTML = `
+      <div class="wirelegend">${WIRE_GROUPS.filter(([g]) => groups.has(g)).map(([g, label]) =>
+        `<button type="button" class="chip g-${g}" data-focus="${g}">${esc(label)}</button>`).join("")}</div>
+      <div class="wiregrid">
+        <div class="conns">${v.connectors.map((id) => wireConnector(lib.connectors[id], used)).join("")}</div>
+        <div class="panel wirectl"><strong>This game's controls</strong>
+          <dl class="kv">${[...byPlayer].map(([k, list]) => `<dt>${esc(k)}</dt><dd>${list.map((s) =>
+            `<span class="ctl" data-s="${esc(s)}">${esc(wireName(s))} ${pinsOf(s)}</span>`).join("")}</dd>`).join("")}
+          </dl>
+          ${(w.miss || []).length ? `<div class="miss"><strong>Not placed</strong>
+            <ul>${w.miss.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+            <p class="meta">The standard has no pin for these. They go to a connector of the board's
+              own, or to pins the game reassigns — the game's manual says which.</p></div>` : ""}
+          <p class="meta">Dashed: only some games use that pin. Struck through: the sources disagree about it.</p>
+        </div>
+      </div>
+      ${wireProvenance(lib, v.connectors)}
+      ${(std.reference || []).length ? `<details class="readnotes"><summary>Other ${esc(std.name)} boards</summary>
+        <div class="conns">${std.reference.map((id) => wireConnector(lib.connectors[id], used)).join("")}</div></details>` : ""}`;
+  };
+
+  box.innerHTML = `<h2>Wiring — generated</h2>
+    ${wirePages(m)}
+    <div class="note warn"><b>Generated, not read.</b> Nobody traced this from ${esc(m.name)}'s own wiring
+      diagram. It places MAME's list of the game's controls on the ${esc(std.name)} connector standard.
+      It does not show wire colours, lamps, the coin door's own wiring, or the power interconnect
+      (supply, transformer, fuses). Check it against the manual before building a harness.</div>
+    ${doc ? `<div class="note"><b>A wiring diagram is in the documents.</b>
+      <a href="/doc/${esc(doc.id)}">${esc(prettyTitle(doc.title))}</a> was drawn for this machine; where
+      it and this view disagree, it is right.</div>` : ""}
+    <p class="sub">${esc(std.about)} ${why}</p>
+    ${choose ? `<div class="seg wirevar">${std.variants.map((v) =>
+      `<button type="button" data-v="${esc(v.id)}" class="${v.id === vid ? "on" : ""}">${esc(v.name)}</button>`).join("")}</div>` : ""}
+    <div class="wirebody"></div>`;
+  draw();
+
+  // A legend chip or a control lights its pins and dims the rest; a second
+  // click on the same one clears it. One handler for the whole section,
+  // because the body is redrawn when the board variant changes.
+  let focus = null;
+  const apply = () => box.querySelectorAll("td[data-s]").forEach((td) => {
+    const on = !focus || (focus.g ? td.dataset.g === focus.g : td.dataset.s === focus.s);
+    td.classList.toggle("dim", !on);
+    td.classList.toggle("lit", !!focus && on);
+  });
+  box.addEventListener("click", (e) => {
+    const vb = e.target.closest(".wirevar button");
+    if (vb) {
+      vid = vb.dataset.v;
+      box.querySelectorAll(".wirevar button").forEach((b) => b.classList.toggle("on", b === vb));
+      draw(); focus = null; return;
+    }
+    const chip = e.target.closest("[data-focus]");
+    const ctl = e.target.closest(".ctl");
+    const next = chip ? { g: chip.dataset.focus } : ctl ? { s: ctl.dataset.s } : null;
+    if (!next) return;
+    focus = focus && JSON.stringify(focus) === JSON.stringify(next) ? null : next;
+    box.querySelectorAll("[data-focus], .ctl").forEach((el) => el.classList.toggle("on",
+      !!focus && (focus.g ? el.dataset.focus === focus.g : el.dataset.s === focus.s)));
+    apply();
+  });
+}
+
+/** Which of a driver's PCB layouts belong to this machine: tied to its set (or
+    the set it is a clone of), tied to one of its clones, or in the driver's notes
+    and tied to no set. Mirrored in tools/extract_mame_layouts.py (layouts_for),
+    which measures the site's reach by it; change both. */
+function layoutsFor(rom, parent, lays) {
+  const out = { set: [], variant: [], general: [] };
+  for (const l of lays) {
+    if (l.sets.includes(rom) || (parent && l.sets.includes(parent))) out.set.push(l);
+    else if (l.parent === rom) out.variant.push(l);
+    else if (l.scope === "driver" || l.scope === "file") out.general.push(l);
+  }
+  return out;
+}
+
+/** A layout's name in a list: the board's own lines from above the drawing --
+    'Top board', a PCB number -- not the "PCB Layout" heading or a paragraph. */
+function layoutLabel(l) {
+  const lines = (Array.isArray(l.caption) ? l.caption : [l.caption || ""])
+    .map((c) => c.replace(/:\s*$/, "").trim())
+    .filter((c) => c && c.length <= 60 && !/pcb\s+layouts?\b/i.test(c));
+  return lines.slice(-2).join(" · ") || (l.n ? `Drawing ${l.n}` : "");
+}
+
+/** The PCB layouts MAME's driver notes carry for this machine, as a note like
+    the ROM map's: a link to each, saying how it was tied to this machine. */
+async function loadLayouts(m) {
+  const src = m.mame && m.mame.src;
+  if (!src || !m.rom) return;
+  const lays = await api("layouts/" + src.replace(/\.cpp$/, "")).catch(() => null);
+  const box = document.getElementById("layouts");
+  if (!box || !lays) return;
+  const f = layoutsFor(m.rom, m.mame.parent, lays);
+  // A system driver can sketch twenty boards; past a handful, link the list.
+  const links = (list) => list.length > 4
+    ? `<a href="/layouts?q=${encodeURIComponent(src)}">see all ${list.length}</a>`
+    : list.map((l) => `<a href="/layout/${l.id}">${esc(layoutLabel(l))}</a>
+    <span class="meta">(${l.count} devices)</span>`).join(" · ");
+  const parts = [];
+  if (f.set.length) parts.push(`A sketch of this board in MAME's driver notes places its
+    major devices — ${links(f.set)}.`);
+  if (f.variant.length) parts.push(`Drawn for ${[...new Set(f.variant.flatMap((l) => l.sets.slice(0, 1)))]
+    .map((s) => `<code>${esc(s)}</code>`).join(", ")}, a variant of this set — ${links(f.variant)}.`);
+  if (f.general.length) parts.push(`${f.set.length || f.variant.length ? "The" : "MAME's"}
+    driver notes also sketch ${f.general.length > 1 ? `${f.general.length} boards` : "a board"} of this hardware,
+    tied to no set — ${links(f.general)}.`);
+  if (!parts.length) return;
+  box.innerHTML = `<div class="note"><b>PCB layout — partial, major devices only.</b>
+    ${parts.join(" ")}</div>`;
 }
 
 /** Power supply reference — fuses and rails, checked first on a dead machine. */
@@ -1119,7 +1410,8 @@ async function boards() {
   app.innerHTML = `
     <h1>KiCad conversions</h1>
     <p class="sub">Boards rebuilt from the original drawings as real KiCad projects,
-       with browsable schematics and bills of materials.</p>
+       with browsable schematics and bills of materials — and boards redrawn in KiCad for
+       jtcores' FPGA recreations, published here under the GPL-3.0 with their source.</p>
     <div id="list" class="listbox"></div>`;
   if (!list.length) {
     document.getElementById("list").innerHTML = '<div class="empty">No conversions published yet.</div>';
@@ -1134,7 +1426,9 @@ async function boards() {
         <span class="grow"></span>
         <span class="badge">${b.devices} devices</span>
         ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
-        <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? "nets traced" : "components only"}</span>
+        ${b.origin ? `<span class="badge" title="drawn for ${esc(b.origin.project)}, free software">${esc(b.license)}</span>` : ""}
+        ${b.partial ? `<span class="badge" title="the drawing covers only part of the board">partial</span>` : ""}
+        <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? (b.origin ? "full netlist" : "nets traced") : "components only"}</span>
       </a>`,
   });
 }
@@ -1188,7 +1482,7 @@ async function rommap(machine) {
   // The "board map" badge on the list promised something; this is where it
   // is. Boards name the machine they belong to, so match on that.
   const kbs = (await api("boards").catch(() => []))
-    .filter((b) => b.machine === machine || b.slug === machine);
+    .filter((b) => b.machine === machine || b.slug === machine || (b.machines || []).includes(machine));
   const kinds = [...new Set(rows.map(([, d]) => d.kind))];
   app.innerHTML = `
     <h1>${esc(r.name)} — ROM map</h1>
@@ -1221,6 +1515,198 @@ async function rommap(machine) {
        Source: MAME <code>${esc(r.source)}</code>.</p>`;
 }
 
+/* ---------- PCB layouts read from MAME's driver notes ----------
+   A third kind of board map, and the weakest: a sketch in a source comment, major
+   devices only, positions a character cell apart. Kept apart from the board maps
+   and the ROM maps on purpose, and every page says so. */
+const LAYOUT_KINDS = {
+  cpu: "CPU", rom: "ROM", ram: "RAM", pld: "PLD", custom: "Custom", sound: "Sound",
+  crystal: "Crystal", dip: "DIP switch", connector: "Connector", jumper: "Jumper",
+  switch: "Switch", pot: "Pot", battery: "Battery", logic: "Logic", other: "Other",
+};
+
+const PARTIAL_NOTE = `<div class="note warn"><b>Partial: major devices only.</b>
+  These are sketches of boards from comments in MAME's driver source, most of them the
+  Guru's, read off real PCBs. They name the CPUs, custom chips, ROMs, RAMs, PALs, sound
+  chips, crystals, DIP switches and connectors, and leave out the 74-series logic and
+  the passives — most of the parts on a board. A position is where the name sits on the
+  sketch, not a measured footprint, and nothing here has been checked against a
+  component-location drawing. The <a href="/boards">board maps</a> are the other thing:
+  every device, read off the factory's drawings.</div>`;
+
+async function layoutList() {
+  const list = await api("layouts");
+  const drivers = new Set(list.map((l) => l.src)).size;
+  const named = new Set(list.flatMap((l) => l.slugs || [])).size;
+  app.innerHTML = `
+    <h1>PCB layouts</h1>
+    <p class="sub">${list.length} sketches of boards from ${drivers} of MAME's driver source
+       files, each read into a list of its major devices and where they sit. ${named}
+       machines on this site are named by one; the rest describe the hardware a whole
+       driver emulates.</p>
+    ${PARTIAL_NOTE}
+    <div class="searchbar">
+      <input id="lq" placeholder="Filter by name, maker, board or driver…"
+             value="${esc(param("q"))}" autocomplete="off">
+    </div>
+    <div id="list" class="listbox"></div>`;
+  const title = (l) => l.name || layoutLabel(l) || l.src;
+  const view = pagedList(document.getElementById("list"), list, {
+    name: title,
+    filter: (l, q) => `${title(l)} ${l.mfr || ""} ${l.caption || ""} ${l.src}`.toLowerCase().includes(q),
+    empty: "No PCB layout matches that.",
+    row: (l) => `
+      <a class="row" href="/layout/${l.id}">
+        <span class="nm">${esc(title(l))}</span>
+        <span class="meta">${esc([l.mfr, l.year].filter(Boolean).join(" · "))}${l.name && l.caption
+          ? ` · ${esc(layoutLabel(l))}` : ""}</span>
+        <span class="grow"></span>
+        <span class="badge src">${esc(l.src)}</span>
+        ${l.scope === "driver" || l.scope === "file" ? '<span class="badge none">driver-wide</span>' : ""}
+        <span class="badge">${l.devices} devices</span>
+      </a>`,
+  });
+  const lq = document.getElementById("lq");
+  let timer;
+  lq.oninput = () => { clearTimeout(timer); timer = setTimeout(() => view.setQuery(lq.value.trim()), 140); };
+}
+
+/** The sketch itself, as MAME prints it, with every word read as a device made a
+    target. Positions are the parser's (row, first column, past-last column, and a
+    last row for text written down the board's edge), so what is lit is exactly
+    what was read: an unlit word on the sketch is one the parser did not take. */
+function layoutArt(l) {
+  const marks = l.art.map(() => []);
+  l.devices.forEach((d, i) => {
+    const [r, c0, c1, r1] = d.at;
+    if (r1 == null) marks[r]?.push([c0, c1, i]);
+    else for (let row = r; row <= r1; row++) marks[row]?.push([c0, c0 + 1, i]);
+  });
+  return l.art.map((line, row) => {
+    let out = "", at = 0;
+    for (const [c0, c1, i] of marks[row].sort((a, b) => a[0] - b[0])) {
+      if (c0 < at) continue;
+      out += esc(line.slice(at, c0)) + `<span class="dv" data-i="${i}">${esc(line.slice(c0, c1))}</span>`;
+      at = c1;
+    }
+    return out + esc(line.slice(at));
+  }).join("\n");
+}
+
+async function layoutPage(id) {
+  const l = await api("layout/" + id);
+  const gh = `https://github.com/mamedev/mame/blob/${esc(l.commit)}/src/mame/${esc(l.src)}`;
+  const lineLink = (n, text) => `<a href="${gh}#L${n}" target="_blank" rel="noopener">${text || "L" + n} ↗</a>`;
+  const machines = l.machines || [];
+  const title = machines.length ? machines[0][1] : l.game || layoutLabel(l);
+  const counts = {};
+  l.devices.forEach((d) => { counts[d.kind] = (counts[d.kind] || 0) + 1; });
+  const kinds = Object.keys(LAYOUT_KINDS).filter((k) => counts[k]);
+  const setList = l.sets.slice(0, 12).map((s) => {
+    const m = machines.find(([slug]) => slug === s);
+    return m ? `<a href="/machine/${esc(s)}"><code>${esc(s)}</code></a>` : `<code>${esc(s)}</code>`;
+  }).join(", ") + (l.sets.length > 12 ? `, and ${l.sets.length - 12} more` : "");
+  const why = {
+    set: `The comment sits directly above <code>ROM_START( ${esc(l.sets[0])} )</code>, so it
+          is the board of that set${l.sets.length > 1 ? " and its clones" : ""}: ${setList}.`,
+    title: `The lines above the drawing name the game, and the name is the title of a set in
+          this driver: ${setList}.`,
+    driver: `The drawing is in the driver's header notes and names no set. It describes the
+          hardware the driver emulates, which may not be every set's board.`,
+    file: `The drawing is in the driver's notes and is tied to no set.`,
+  }[l.scope];
+  const caption = (l.caption || []).filter((c) => !/^pcb\s+layouts?\b/i.test(c));
+
+  app.innerHTML = `
+    <h1>${esc(title)} — PCB layout</h1>
+    <p class="sub">${machines.length > 1 ? `${machines.slice(1, 6).map(([s, n]) =>
+       `<a href="/machine/${esc(s)}">${esc(n)}</a>`).join(" · ")}${machines.length > 6 ? " · …" : ""}<br>` : ""}
+       ${caption.map(esc).join(" · ") || "&nbsp;"}</p>
+    ${PARTIAL_NOTE}
+    <div class="panel"><dl class="kv">
+      <dt>Source</dt><dd><code>${esc(l.src)}</code>, lines ${lineLink(`${l.line}-L${l.end}`,
+        `${l.line}–${l.end}`)} — MAME ${esc(String(l.tag).replace(/^mame0?/, "0."))},
+        commit <code>${esc(String(l.commit).slice(0, 10))}</code></dd>
+      <dt>Licence</dt><dd>${esc(l.licence)} · copyright ${esc(l.copyright || "the MAME contributors")}</dd>
+      <dt>Belongs to</dt><dd>${why}${machines.length === 1 && l.scope !== "driver"
+        ? ` <a href="/machine/${esc(machines[0][0])}">${esc(machines[0][1])}</a> is on this site.` : ""}</dd>
+      <dt>Read</dt><dd>${l.devices.length} devices; ${l.devices.filter((d) => d.part).length} described
+        by the notes under the drawing, ${l.devices.filter((d) => d.dump).length} at a position a
+        romset file is named after.</dd>
+    </dl></div>
+
+    <h2>Board</h2>
+    <p class="sub">The sketch as the driver prints it. Every word read as a device is a
+       target — pick one to see what the notes say about it. Words left plain are ones
+       the reader did not take as a part.</p>
+    <div class="chips lk" role="toolbar" aria-label="Show a kind of device">
+      <button class="chip on" data-k="">All ${l.devices.length}</button>
+      ${kinds.map((k) => `<button class="chip" data-k="${k}">${esc(LAYOUT_KINDS[k])} ${counts[k]}</button>`).join("")}
+    </div>
+    <div class="artbox"><pre class="art" id="art">${layoutArt(l)}</pre></div>
+    <div id="pick" class="panel pick" hidden></div>
+
+    <h2>Devices</h2>
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="bom lay"><thead><tr><th>On the sketch</th><th>Position</th><th>Kind</th>
+        <th>What the notes say</th><th>Line</th></tr></thead>
+      <tbody>${l.devices.map((d, i) => `<tr data-i="${i}">
+        <td class="refs">${esc(d.label)}</td>
+        <td class="refs">${esc(d.ref || "—")}</td>
+        <td>${esc(LAYOUT_KINDS[d.kind] || d.kind)}${d.guess ? ' <span class="meta">(from its label)</span>' : ""}</td>
+        <td>${esc(d.part || "")}${d.dump ? ` <span class="badge" title="A file in MAME's romset is named after this position">romset: ${esc(d.dump.join(", "))}</span>` : ""}</td>
+        <td class="refs">${lineLink(d.line)}</td></tr>`).join("")}</tbody></table>
+    </div>
+    <p class="sub" style="margin-top:10px">A kind comes from the words the notes use for the
+       part, or failing that from the shape of its name. "From its label" means only that it
+       is written as a sticker and a socket, <code>SR08.A1</code>, which is nearly always a ROM.</p>
+
+    ${(l.notes || []).length ? `<details class="panel"><summary>The notes under the drawing
+       (${l.notes.length})</summary>
+      <table class="bom"><tbody>${l.notes.map((n) => `<tr><td class="refs">${esc(n.key)}</td>
+        <td>${esc(n.text)}</td><td class="refs">${lineLink(n.line)}</td></tr>`).join("")}</tbody></table>
+    </details>` : ""}`;
+
+  const art = document.getElementById("art");
+  const pick = document.getElementById("pick");
+  const rows = [...app.querySelectorAll("table.lay tbody tr")];
+  const spans = [...art.querySelectorAll(".dv")];
+  function select(i, fromTable) {
+    spans.forEach((s) => s.classList.toggle("sel", +s.dataset.i === i));
+    rows.forEach((r) => r.classList.toggle("sel", +r.dataset.i === i));
+    const d = l.devices[i];
+    pick.hidden = false;
+    pick.innerHTML = `<b class="mono">${esc(d.label)}</b>
+      ${d.ref ? ` at <b class="mono">${esc(d.ref)}</b>` : ""} · ${esc(LAYOUT_KINDS[d.kind] || d.kind)}
+      · ${lineLink(d.line, "line " + d.line)}
+      <div>${d.part ? esc(d.part) : '<span class="meta">The notes say nothing more about this part.</span>'}</div>
+      ${d.dump ? `<div class="meta">MAME's romset has a file named for this position:
+        <code>${esc(d.dump.join(", "))}</code>.</div>` : ""}`;
+    if (fromTable) {
+      // Bring the sketch into view, then centre the part in the sketch's own
+      // scroller: scrollIntoView would drag the whole page sideways as well.
+      const s = spans.find((x) => +x.dataset.i === i);
+      art.parentElement.scrollIntoView({ block: "nearest" });
+      if (s) art.parentElement.scrollLeft = s.offsetLeft - art.parentElement.clientWidth / 2;
+    }
+  }
+  art.addEventListener("click", (e) => {
+    const s = e.target.closest(".dv");
+    if (s) select(+s.dataset.i, false);
+  });
+  rows.forEach((r) => r.addEventListener("click", (e) => {
+    if (!e.target.closest("a")) select(+r.dataset.i, true);
+  }));
+  app.querySelector(".chips.lk").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-k]");
+    if (!b) return;
+    app.querySelectorAll(".chips.lk .chip").forEach((c) => c.classList.toggle("on", c === b));
+    const k = b.dataset.k;
+    art.classList.toggle("only", !!k);
+    spans.forEach((s) => s.classList.toggle("hl", !!k && l.devices[+s.dataset.i].kind === k));
+  });
+}
+
 /* ---------- board: schematic + BOM ---------- */
 
 /* Say which sheet this is, and say plainly what the reader is looking at. A
@@ -1250,6 +1736,15 @@ async function board(slug) {
        that test does real work — it is what catches an OCR of a part number that looks
        perfectly plausible on its own. Nothing here has had that test. Treat it as a
        lead, and check the chip against the board before you act on it.</div>` : ""}
+    ${b.origin ? `<div class="note"><b>${esc(b.license)} · drawn by ${esc(listOf(b.origin.authors))}
+       for <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">${esc(b.origin.project)}</a>.</b>
+       ${esc(b.origin.what || "The schematic is theirs, copied here unchanged; the board view, netlist "
+         + "and bill of materials are made from it.")} All of it is free software under the
+       <a href="/licenses/GPL-3.0.txt" target="_blank" rel="noopener">GNU General Public License v3</a> —
+       you may copy, change and share it on the same terms. The source is
+       <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${b.redrawn
+         ? "the KiCad project" : `${esc(b.origin.project)}'s, as copied here`}</a>, whose
+       NOTICE says what was added here.</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
     ${(b.conflicts || []).length ? `<h2>Open questions</h2>
     <p class="sub">Where the sources disagree, or a reading could not be settled. Each is
@@ -1260,11 +1755,40 @@ async function board(slug) {
        (${b.notes.length} note${b.notes.length > 1 ? "s" : ""})</summary>
     <div class="questions">${b.notes.map((n) => `<div class="note">${esc(n)}</div>`).join("")}</div></details>` : ""}
     ${b.ibom ? `<h2>Board</h2>
-    <p class="sub">Every device at its position on the board, cross-linked to the bill of
-       materials — click a row to find the part, or a part to find the row.</p>
+    <p class="sub">${b.origin
+      ? `Every IC in the ${b.redrawn ? "schematic" : "netlist"}, with its nets on their pins —
+         pick a net to light up every pin on it. The layout is not a scan of the board: see
+         the status above.`
+      : `Every device at its position on the board, cross-linked to the bill of
+         materials — click a row to find the part, or a part to find the row.`}</p>
     <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
     <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
-    ${b.redrawn ? `<h2>Redrawn schematic</h2>
+    ${b.redrawn && b.origin ? `<h2>Schematic</h2>
+    <p class="sub">The drawing as ${esc(b.origin.project)} publishes it: ${b.redrawn.sheets.length}
+       sheet${b.redrawn.sheets.length === 1 ? "" : "s"} in one PDF, each opening at its own page.
+       Nothing in it has been checked against a manual or a board here.</p>
+    <div class="rows">${b.redrawn.sheets.map((s) => `
+      <a class="row" href="${esc(b.redrawn.pdf)}#page=${s.page}" target="_blank" rel="noopener">
+        <span class="nm">${esc(s.title)}</span>
+        <span class="grow"></span>
+        <span class="meta">page ${s.page} ↗</span>
+      </a>`).join("")}</div>
+    <div class="zoombar">
+      <a href="${esc(b.redrawn.pdf)}" target="_blank" rel="noopener">All sheets as PDF ↗</a>
+      <a href="${esc(b.redrawn.netlist)}" target="_blank" rel="noopener">The netlist ↗</a>
+      <a href="${esc(b.redrawn.project)}" target="_blank" rel="noopener">KiCad project (source) ↗</a>
+      <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream in ${esc(b.origin.project)} ↗</a>
+    </div>` : ""}
+    ${b.origin && !b.redrawn && b.netlist ? `<h2>Netlist</h2>
+    <p class="sub">Every connection ${esc(b.origin.project)} makes between these chips, as JSON:
+       each net with the pins on it, named by ${esc(b.origin.project)}'s own signal names where
+       it gives one. There is no schematic drawing of this board here.</p>
+    <div class="zoombar">
+      <a href="${esc(b.netlist)}" target="_blank" rel="noopener">The netlist ↗</a>
+      <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${esc(b.origin.project)}'s source, as copied here ↗</a>
+      <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream ↗</a>
+    </div>` : ""}
+    ${b.redrawn && !b.origin ? `<h2>Redrawn schematic</h2>
     <p class="sub">Every connection on the drawing, redrawn in KiCad from a netlist read by hand
        off the scan and checked against it pin for pin. Each pin carries the name of its net, so
        a signal is followed by its label rather than by a wire. Signals the drawing leaves unnamed

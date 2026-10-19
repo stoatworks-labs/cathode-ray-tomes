@@ -1,0 +1,52 @@
+# Dragon Ball Z PCB
+
+A KiCad schematic of the Dragon Ball Z PCB, drawn for
+[jtcores](https://github.com/jotego/jtcores) -- jotego's FPGA recreations of arcade hardware -- and
+copied here from
+
+    https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/riders/sch/dbz
+
+**Drawn by** Fran.R (the people who committed these sheets to
+jtcores). The schematic symbols are from jtkicad, by Jose Tejada.
+
+**Licence:** GNU General Public License, version 3 -- see [LICENSE](LICENSE),
+which is jtcores' own copy. jtcores and jtkicad are both published under it,
+and so is everything made from these sheets.
+
+## What is unchanged
+
+These files are byte-for-byte copies of the upstream files at commit
+`e7b11263b04978790d4a3b9dd7e188b2dc976e4b`: the sheets the root reaches, and the project settings.
+
+- `IO.kicad_sch`
+- `PSAC.kicad_sch`
+- `PSAC_DGTR1.kicad_sch`
+- `PSAC_DGTR2.kicad_sch`
+- `ROM1.kicad_sch`
+- `ROM2.kicad_sch`
+- `analog.kicad_sch`
+- `colmix.kicad_sch`
+- `dbz.kicad_pro`
+- `dbz.kicad_sch`
+- `main.kicad_sch`
+- `objects.kicad_sch`
+- `rgb.kicad_sch`
+- `scroll.kicad_sch`
+- `sound.kicad_sch`
+- `unpopulated.kicad_sch`
+
+Sheets in the upstream directory that the root sheet does not reach are not
+copied.
+
+## What was added here
+
+On 2026-10-19, by `tools/import_jtcores.py` in this repository:
+
+- `dragon-ball-z.kicad_pcb` (and the `dragon-ball-z.kicad_pro` KiCad writes beside it) -- a
+  board view generated from this schematic's netlist by `tools/build_board.py`.
+  It carries the ICs and the nets between them on a nominal layout; it is not
+  the board's real layout, and jtcores has none.
+- Elsewhere in the repository, derived from these sheets and under the same
+  licence: `boards/dragon-ball-z.json`, `boards/dragon-ball-z.netlist.json`,
+  `data/chips/dragon-ball-z.json`, `data/signals/dragon-ball-z.json` and the published copy
+  under `web/boards/dragon-ball-z/`.

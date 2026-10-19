@@ -1,0 +1,150 @@
+{
+ "slug": "run-and-gun",
+ "name": "Run and Gun PCB (sound section)",
+ "mfr": "Konami",
+ "year": "1993",
+ "machine": "rungun",
+ "drawing": "jtcores cores/rungun/sch at e7b11263",
+ "revision": "",
+ "coverage": "13 parts, 13 of them ICs, and 98 nets over 307 pins, on sheets for PSAC, pcm / K054539. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rungun/sch",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/rungun/sch",
+  "authors": [
+   "Jose Tejada"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/run-and-gun/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/run-and-gun",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "rungun.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 461.7,
+  "h": 220.4
+ },
+ "partial": true,
+ "grid": {
+  "rows": "JMNPQSV",
+  "cols": 37,
+  "transposed": true
+ },
+ "ics": {
+  "2J": "HN624116P",
+  "2N": "HN624116P",
+  "4N": "HM62256BLP",
+  "8P": "054539",
+  "13M": "74LS04",
+  "33Q": "74LS273",
+  "34Q": "74LS244",
+  "34S": "74LS245",
+  "34V": "CXK58257ASP-70L",
+  "35S": "74LS245",
+  "35V": "CXK58257ASP-70L",
+  "37S": "74LS245",
+  "37V": "CXK58257ASP-70L"
+ },
+ "place": {
+  "2J": [
+   10.0,
+   10.0,
+   0
+  ],
+  "2N": [
+   10.0,
+   64.8,
+   0
+  ],
+  "4N": [
+   34.2,
+   64.8,
+   0
+  ],
+  "8P": [
+   97.6,
+   107.2,
+   0
+  ],
+  "13M": [
+   143.1,
+   37.4,
+   0
+  ],
+  "33Q": [
+   385.1,
+   119.6,
+   0
+  ],
+  "34Q": [
+   397.2,
+   119.6,
+   0
+  ],
+  "34S": [
+   397.2,
+   147.0,
+   0
+  ],
+  "34V": [
+   397.2,
+   174.4,
+   0
+  ],
+  "35S": [
+   409.3,
+   147.0,
+   0
+  ],
+  "35V": [
+   409.3,
+   189.64,
+   90
+  ],
+  "37S": [
+   433.5,
+   147.0,
+   0
+  ],
+  "37V": [
+   433.5,
+   174.4,
+   0
+  ]
+ },
+ "footprints": {
+  "2J": "Package_DIP:DIP-42_W15.24mm",
+  "2N": "Package_DIP:DIP-42_W15.24mm",
+  "4N": "Package_DIP:DIP-28_W15.24mm",
+  "8P": "Package_QFP:PQFP-160_28x28mm_P0.65mm",
+  "13M": "Package_DIP:DIP-14_W7.62mm",
+  "33Q": "Package_DIP:DIP-20_W7.62mm",
+  "34Q": "Package_DIP:DIP-20_W7.62mm",
+  "34S": "Package_DIP:DIP-20_W7.62mm",
+  "34V": "Package_DIP:DIP-28_W15.24mm",
+  "35S": "Package_DIP:DIP-20_W7.62mm",
+  "35V": "Package_DIP:DIP-28_W15.24mm",
+  "37S": "Package_DIP:DIP-20_W7.62mm",
+  "37V": "Package_DIP:DIP-28_W15.24mm"
+ },
+ "parts": {
+  "2J": "HN624116P",
+  "2N": "HN624116P",
+  "4N": "HM62256BLP",
+  "8P": "054539",
+  "13M": "74LS04",
+  "33Q": "74LS273",
+  "34Q": "74LS244",
+  "34S": "74LS245",
+  "34V": "CXK58257ASP-70L",
+  "35S": "74LS245",
+  "35V": "CXK58257ASP-70L",
+  "37S": "74LS245",
+  "37V": "CXK58257ASP-70L"
+ }
+}

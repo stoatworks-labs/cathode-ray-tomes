@@ -22,11 +22,13 @@ about your board revision.
 | Pages read | 65,582 · 45,593 sections |
 | Board maps | 50, across 41 machines · 2,726 devices |
 | MAME ROM sets | 7,444 machines · 90,264 ROM files (MAME 0.289) — the whole page for the 6,427 with no document |
+| MAME PCB layouts | 950 sketches from 319 BSD drivers, 32,544 major devices — shown on 1,588 machines (398 for their own set); partial, kept apart from board maps |
 | Nets traced | Battlezone Math Box in full (186 nets, 845 pins) · Tempest Auxiliary in full (216 nets, 1,036 pins), both redrawn in KiCad · Pong 8 of ~200 |
 | Signal indexes | 136 machines, 13,540 entries |
 | Diagnostics sections | 825 machines, 4,444 |
 | Signature analysis | 16 machines, 220 codes + 113 pin-level (Battlezone/Red Baron) |
 | Parts lists | 194 documents, 12,617 rows — **reachable from the reader since 2026-09-06** |
+| Wiring | 1,153 machines with a **generated** wiring view (JAMMA, CPS-1/2/3, MVS, Sega JVS, Konami 18-way) · 350 wiring pages found in 250 manuals, linked from 204 machines — see AGENTS.md |
 
 Corpus ships as **static assets** (`web/data/` ~13,000 files 194 MB, plus
 `web/pages/` 4,513 page scans 928 MB). No KV, no R2 — a deploy publishes code and data

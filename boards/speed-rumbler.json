@@ -1,0 +1,273 @@
+{
+ "slug": "speed-rumbler",
+ "name": "The Speed Rumbler PCB (timing section)",
+ "mfr": "Capcom",
+ "year": "1986",
+ "machine": "srumbler",
+ "drawing": "jtcores cores/rumble/sch at e7b11263",
+ "revision": "",
+ "coverage": "30 parts, 28 of them ICs, and 61 nets over 189 pins, on sheets for timing. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/rumble/sch",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/rumble/sch",
+  "authors": [
+   "etriana85",
+   "Jose Tejada"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/speed-rumbler/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/speed-rumbler",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "rumble.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 163.7,
+  "h": 194.2
+ },
+ "partial": true,
+ "grid": {
+  "rows": "DEFGHJ",
+  "cols": 15,
+  "transposed": false
+ },
+ "ics": {
+  "D8": "74LS86",
+  "D9": "74LS32",
+  "E4_BOTTOM": "74LS27",
+  "E8": "74LS86",
+  "F9": "74LS86",
+  "G4": "74LS04",
+  "G7": "74LS74",
+  "G9": "74LS174",
+  "G10": "74LS153",
+  "G11": "74LS10",
+  "G12": "74LS74",
+  "G13": "74LS04",
+  "G14": "74LS161",
+  "G15": "74LS161",
+  "H4": "74LS86",
+  "H7": "74LS00",
+  "H10": "74LS153",
+  "H11": "74LS153",
+  "H12": "74LS08",
+  "H14": "74LS161",
+  "H15": "74LS161",
+  "J7": "82S126-9",
+  "J9": "74LS273",
+  "J10": "74LS153",
+  "J11": "74LS74",
+  "J14": "74LS74",
+  "J15": "74LS245",
+  "K1_BOTTOM": "74LS273"
+ },
+ "place": {
+  "D8": [
+   58.4,
+   10.0,
+   0
+  ],
+  "D9": [
+   70.5,
+   10.0,
+   0
+  ],
+  "E4_BOTTOM": [
+   10.0,
+   161.36,
+   0
+  ],
+  "E8": [
+   58.4,
+   32.3,
+   0
+  ],
+  "F9": [
+   70.5,
+   54.6,
+   0
+  ],
+  "G4": [
+   10.0,
+   76.9,
+   0
+  ],
+  "G7": [
+   46.3,
+   76.9,
+   0
+  ],
+  "G9": [
+   70.5,
+   76.9,
+   0
+  ],
+  "G10": [
+   82.6,
+   76.9,
+   0
+  ],
+  "G11": [
+   94.7,
+   76.9,
+   0
+  ],
+  "G12": [
+   106.8,
+   76.9,
+   0
+  ],
+  "G13": [
+   118.9,
+   76.9,
+   0
+  ],
+  "G14": [
+   131.0,
+   76.9,
+   0
+  ],
+  "G15": [
+   143.1,
+   76.9,
+   0
+  ],
+  "H4": [
+   10.0,
+   99.2,
+   0
+  ],
+  "H7": [
+   46.3,
+   99.2,
+   0
+  ],
+  "H10": [
+   82.6,
+   99.2,
+   0
+  ],
+  "H11": [
+   94.7,
+   99.2,
+   0
+  ],
+  "H12": [
+   106.8,
+   99.2,
+   0
+  ],
+  "H14": [
+   131.0,
+   99.2,
+   0
+  ],
+  "H15": [
+   143.1,
+   99.2,
+   0
+  ],
+  "J7": [
+   46.3,
+   121.5,
+   0
+  ],
+  "J9": [
+   70.5,
+   121.5,
+   0
+  ],
+  "J10": [
+   82.6,
+   121.5,
+   0
+  ],
+  "J11": [
+   94.7,
+   121.5,
+   0
+  ],
+  "J14": [
+   131.0,
+   121.5,
+   0
+  ],
+  "J15": [
+   143.1,
+   121.5,
+   0
+  ],
+  "K1_BOTTOM": [
+   24.62,
+   161.36,
+   0
+  ]
+ },
+ "footprints": {
+  "D8": "Package_DIP:DIP-14_W7.62mm",
+  "D9": "Package_DIP:DIP-14_W7.62mm",
+  "E4_BOTTOM": "Package_DIP:DIP-20_W7.62mm",
+  "E8": "Package_DIP:DIP-14_W7.62mm",
+  "F9": "Package_DIP:DIP-14_W7.62mm",
+  "G4": "Package_DIP:DIP-14_W7.62mm",
+  "G7": "Package_DIP:DIP-14_W7.62mm",
+  "G9": "Package_DIP:DIP-16_W7.62mm",
+  "G10": "Package_DIP:DIP-16_W7.62mm",
+  "G11": "Package_DIP:DIP-14_W7.62mm",
+  "G12": "Package_DIP:DIP-14_W7.62mm",
+  "G13": "Package_DIP:DIP-14_W7.62mm",
+  "G14": "Package_DIP:DIP-16_W7.62mm",
+  "G15": "Package_DIP:DIP-16_W7.62mm",
+  "H4": "Package_DIP:DIP-14_W7.62mm",
+  "H7": "Package_DIP:DIP-14_W7.62mm",
+  "H10": "Package_DIP:DIP-16_W7.62mm",
+  "H11": "Package_DIP:DIP-16_W7.62mm",
+  "H12": "Package_DIP:DIP-14_W7.62mm",
+  "H14": "Package_DIP:DIP-16_W7.62mm",
+  "H15": "Package_DIP:DIP-16_W7.62mm",
+  "J7": "Package_DIP:DIP-16_W7.62mm",
+  "J9": "Package_DIP:DIP-20_W7.62mm",
+  "J10": "Package_DIP:DIP-16_W7.62mm",
+  "J11": "Package_DIP:DIP-14_W7.62mm",
+  "J14": "Package_DIP:DIP-14_W7.62mm",
+  "J15": "Package_DIP:DIP-20_W7.62mm",
+  "K1_BOTTOM": "Package_DIP:DIP-20_W7.62mm"
+ },
+ "parts": {
+  "D8": "74LS86",
+  "D9": "74LS32",
+  "E4_BOTTOM": "74LS27",
+  "E8": "74LS86",
+  "F9": "74LS86",
+  "G4": "74LS04",
+  "G7": "74LS74",
+  "G9": "74LS174",
+  "G10": "74LS153",
+  "G11": "74LS10",
+  "G12": "74LS74",
+  "G13": "74LS04",
+  "G14": "74LS161",
+  "G15": "74LS161",
+  "H4": "74LS86",
+  "H7": "74LS00",
+  "H10": "74LS153",
+  "H11": "74LS153",
+  "H12": "74LS08",
+  "H14": "74LS161",
+  "H15": "74LS161",
+  "J7": "82S126-9",
+  "J9": "74LS273",
+  "J10": "74LS153",
+  "J11": "74LS74",
+  "J14": "74LS74",
+  "J15": "74LS245",
+  "K1_BOTTOM": "74LS273",
+  "R2": "220 Ohms",
+  "U?": "JAMMA_CONN"
+ }
+}

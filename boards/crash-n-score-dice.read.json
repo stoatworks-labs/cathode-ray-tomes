@@ -1,0 +1,11 @@
+{
+ "notes": [
+  "Converted from DICE's games/crashnscore.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+  "Checked against the Crash 'n Score board map: of the 38 positions it names, DICE agrees on 36 and disagrees on 1; DICE names 95 the map does not.",
+  "Parts DICE adds to model the circuit, not on the board: CARGASAND (7408), POT1 (POT_555_ASTABLE)."
+ ],
+ "conflicts": [
+  "H10: DICE has a 7404, the Crash 'n Score board map (read off the drawings) a 7414.",
+  "The Crash 'n Score board map places B8, where DICE has no chip."
+ ]
+}
