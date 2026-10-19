@@ -1,0 +1,1744 @@
+{
+ "+12V": {
+  "IO": 6,
+  "Sound Output": 1
+ },
+ "/CPU/CC1": {
+  "IO": 2,
+  "CPU": 1
+ },
+ "/CPU/CC2": {
+  "IO": 2,
+  "CPU": 1
+ },
+ "/CPU/HBLK64": {
+  "CPU": 1,
+  "Sound": 1,
+  "Graphics 1": 1
+ },
+ "/CPU/LC1": {
+  "CPU": 1,
+  "IO": 1
+ },
+ "/CPU/LC2": {
+  "CPU": 1,
+  "IO": 1
+ },
+ "/CPU/MA14": {
+  "CPU": 7
+ },
+ "/CPU/MA15": {
+  "CPU": 7
+ },
+ "/CPU/MA16": {
+  "CPU": 6
+ },
+ "/CPU/MA17": {
+  "CPU": 3
+ },
+ "/CPU/MA18": {
+  "CPU": 3
+ },
+ "/CPU/MA19": {
+  "CPU": 4
+ },
+ "/CPU/MA20": {
+  "CPU": 4
+ },
+ "/CPU/MA21": {
+  "CPU": 4
+ },
+ "/CPU/MA22": {
+  "CPU": 4
+ },
+ "/CPU/MA23": {
+  "CPU": 4
+ },
+ "/CPU/MCLK": {
+  "CPU": 1,
+  "Misc": 1
+ },
+ "/CPU/MFC": {
+  "CPU": 2
+ },
+ "/CPU/MFC0": {
+  "CPU": 2
+ },
+ "/CPU/MFC1": {
+  "CPU": 2
+ },
+ "/CPU/MFC2": {
+  "CPU": 2
+ },
+ "/CPU/MR~{W}": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/CPU/M~{R}W": {
+  "CPU": 3,
+  "Graphics 1": 2,
+  "Graphics 2": 2,
+  "Color Mixer": 1
+ },
+ "/CPU/M~{R}W'": {
+  "CPU": 9
+ },
+ "/CPU/M~{R}W2": {
+  "CPU": 1,
+  "Graphics 1": 1
+ },
+ "/CPU/PXCKSEL": {
+  "CPU": 1,
+  "Misc": 1
+ },
+ "/CPU/VGFX": {
+  "CPU": 3
+ },
+ "/CPU/~{COINCOIL}": {
+  "CPU": 3
+ },
+ "/CPU/~{DIPSW}": {
+  "IO": 2,
+  "CPU": 2
+ },
+ "/CPU/~{HIRST}": {
+  "CPU": 3
+ },
+ "/CPU/~{IORD}": {
+  "CPU": 1,
+  "IO": 1
+ },
+ "/CPU/~{MAS}": {
+  "CPU": 4
+ },
+ "/CPU/~{MFC}": {
+  "CPU": 4
+ },
+ "/CPU/~{MLDS}": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/CPU/~{MLW}": {
+  "CPU": 4,
+  "Graphics 1": 1
+ },
+ "/CPU/~{MRAM}": {
+  "CPU": 4
+ },
+ "/CPU/~{MRMDTCK}": {
+  "CPU": 2
+ },
+ "/CPU/~{MROMH}": {
+  "CPU": 3
+ },
+ "/CPU/~{MROML}": {
+  "CPU": 3
+ },
+ "/CPU/~{MUDS}": {
+  "CPU": 3,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/CPU/~{MUW}": {
+  "CPU": 2,
+  "Graphics 1": 1
+ },
+ "/CPU/~{NVRAM}": {
+  "CPU": 4
+ },
+ "/CPU/~{PALET}": {
+  "CPU": 2,
+  "Color Mixer": 1
+ },
+ "/CPU/~{RST2}": {
+  "Misc": 2,
+  "CPU": 1
+ },
+ "/CPU/~{RST3}": {
+  "Misc": 2,
+  "CPU": 2,
+  "Graphics 1": 1
+ },
+ "/CPU/~{RST}": {
+  "Misc": 2,
+  "CPU": 2,
+  "Graphics 2": 1,
+  "Graphics 1": 1
+ },
+ "/CPU/~{SCPURD}": {
+  "CPU": 1,
+  "Sound": 1
+ },
+ "/CPU/~{SCPURST}": {
+  "Sound": 2,
+  "CPU": 1
+ },
+ "/CPU/~{SCPUWR}": {
+  "Sound": 3,
+  "CPU": 1
+ },
+ "/CPU/~{SNDRW}": {
+  "CPU": 4
+ },
+ "/CPU/~{TDTACK}": {
+  "CPU": 1,
+  "Graphics 2": 1
+ },
+ "/CPU/~{TMCTRL}": {
+  "CPU": 1,
+  "Graphics 2": 1
+ },
+ "/CPU/~{TMRAM}": {
+  "CPU": 1,
+  "Graphics 2": 1
+ },
+ "/CPU/~{VGFX1'}": {
+  "CPU": 3
+ },
+ "/CPU/~{VGFX1}": {
+  "CPU": 1,
+  "Graphics 1": 1
+ },
+ "/CPU/~{VGFX2}": {
+  "CPU": 2,
+  "Graphics 1": 1
+ },
+ "/CPU/~{VGFX}": {
+  "Graphics 1": 2,
+  "CPU": 1
+ },
+ "/CPU/~{VIRST}": {
+  "CPU": 3
+ },
+ "/CPU/~{VRAMWE}": {
+  "CPU": 3,
+  "Graphics 1": 2
+ },
+ "/CPU/~{WDRST}": {
+  "CPU": 3
+ },
+ "/Color Mixer/B'0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B'1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B'2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B'3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B'4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/B5": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/BLUE": {
+  "Color Mixer": 1,
+  "IO": 1
+ },
+ "/Color Mixer/CK16M3": {
+  "Graphics 2": 1,
+  "Color Mixer": 1,
+  "Sound": 1,
+  "Misc": 1
+ },
+ "/Color Mixer/G'0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G'1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G'2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G'3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G'4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/G5": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/GREEN": {
+  "Color Mixer": 1,
+  "IO": 1
+ },
+ "/Color Mixer/PXCK2": {
+  "Misc": 3,
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/R'0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R'1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R'2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R'3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R'4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R0": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R1": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R2": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R3": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R4": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/R5": {
+  "Color Mixer": 2
+ },
+ "/Color Mixer/RED": {
+  "Color Mixer": 1,
+  "IO": 1
+ },
+ "/Color Mixer/SYNC": {
+  "IO": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TC0": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC1": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC2": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC3": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC4": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC5": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC6": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC7": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC8": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC9": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC10": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC11": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC12": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC13": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC14": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TC15": {
+  "Color Mixer": 1,
+  "Graphics 2": 1
+ },
+ "/Color Mixer/TUK61": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK62": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK63": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK64": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK69": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK70": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK71": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/TUK72": {
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/VCA0": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA1": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA2": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA3": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA4": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA5": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA6": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA7": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCA8": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/VCX": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Color Mixer/~{CBLK}": {
+  "Color Mixer": 1,
+  "CPU": 1
+ },
+ "/Color Mixer/~{HSYNC'}": {
+  "Graphics 1": 2,
+  "CPU": 1,
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Color Mixer/~{HSYNC}": {
+  "Color Mixer": 1,
+  "CPU": 1
+ },
+ "/Color Mixer/~{VSYNC}": {
+  "Color Mixer": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/CK16M2": {
+  "Misc": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/CK16M3": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/GXSNC": {
+  "Graphics 1": 2,
+  "Graphics 2": 1,
+  "Color Mixer": 1
+ },
+ "/Graphics 1/H''1": {
+  "Graphics 1": 3,
+  "CPU": 1
+ },
+ "/Graphics 1/H0": {
+  "Misc": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/H1": {
+  "Graphics 1": 3,
+  "CPU": 1,
+  "Misc": 1
+ },
+ "/Graphics 1/H2": {
+  "CPU": 1,
+  "Misc": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/PXCK1": {
+  "Misc": 2,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/VA0": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA1": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA2": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA3": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA4": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA5": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA6": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA7": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA8": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA9": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA10": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA11": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VA12": {
+  "Graphics 1": 3
+ },
+ "/Graphics 1/VCD0": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD1": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD2": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD3": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD4": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD5": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD6": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD7": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD8": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD9": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD10": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD11": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD12": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD13": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD14": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD15": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD16": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD17": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD18": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD19": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD20": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD21": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD22": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD23": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD24": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD25": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD26": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD27": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD28": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD29": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD30": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCD31": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/VCHA0": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA1": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA2": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA3": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA4": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA5": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA6": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA7": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA8": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA9": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA10": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA11": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA12": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA13": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA14": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA15": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA16": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA17": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VCHA18": {
+  "Graphics 1": 5
+ },
+ "/Graphics 1/VD0": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD1": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD2": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD3": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD4": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD5": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD6": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD7": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD8": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD9": {
+  "Graphics 1": 3
+ },
+ "/Graphics 1/VD10": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD11": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD12": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD13": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD14": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/VD15": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/X1-001:44": {
+  "Graphics 2": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/~{H1}": {
+  "CPU": 3
+ },
+ "/Graphics 1/~{H2}": {
+  "CPU": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/~{HBLK'}": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/~{HBLK}": {
+  "Graphics 1": 4
+ },
+ "/Graphics 1/~{VBLK}": {
+  "CPU": 2,
+  "Graphics 2": 1,
+  "Graphics 1": 1
+ },
+ "/Graphics 1/~{VRAM1W}": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/~{VRAM2W}": {
+  "Graphics 1": 2
+ },
+ "/Graphics 1/~{VRAM}": {
+  "Graphics 1": 3,
+  "CPU": 1
+ },
+ "/Graphics 2/TA0": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA1": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA2": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA3": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA4": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA5": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA6": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA7": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA8": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA9": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA10": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA11": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA12": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA13": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA14": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA15": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA16": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA17": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TA18": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA0": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA1": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA2": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA3": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA4": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA5": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA6": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA7": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA8": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA9": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA10": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA11": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMA12": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD0": {
+  "Graphics 2": 3,
+  "Color Mixer": 1
+ },
+ "/Graphics 2/TMD1": {
+  "Graphics 2": 3,
+  "Color Mixer": 1
+ },
+ "/Graphics 2/TMD2": {
+  "Graphics 2": 3,
+  "Color Mixer": 1
+ },
+ "/Graphics 2/TMD3": {
+  "Graphics 2": 3,
+  "Color Mixer": 1
+ },
+ "/Graphics 2/TMD4": {
+  "Graphics 2": 3,
+  "Color Mixer": 1
+ },
+ "/Graphics 2/TMD5": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD6": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD7": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD8": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD9": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD10": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD11": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD12": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD13": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD14": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/TMD15": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/~{TCOE}": {
+  "Graphics 2": 3
+ },
+ "/Graphics 2/~{TMLDS}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TMLW}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TML}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TMUDS}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TMUW}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TMU}": {
+  "Graphics 2": 2
+ },
+ "/Graphics 2/~{TWR}": {
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/IO/1P_BTN_1": {
+  "IO": 2
+ },
+ "/IO/1P_BTN_2": {
+  "IO": 2
+ },
+ "/IO/1P_BTN_3": {
+  "IO": 2
+ },
+ "/IO/1P_DOWN": {
+  "IO": 2
+ },
+ "/IO/1P_LEFT": {
+  "IO": 2
+ },
+ "/IO/1P_LOOP1": {
+  "IO": 3
+ },
+ "/IO/1P_LOOP2": {
+  "IO": 3
+ },
+ "/IO/1P_RIGHT": {
+  "IO": 2
+ },
+ "/IO/1P_START": {
+  "IO": 2
+ },
+ "/IO/1P_UP": {
+  "IO": 2
+ },
+ "/IO/2P_BTN_1": {
+  "IO": 2
+ },
+ "/IO/2P_BTN_2": {
+  "IO": 2
+ },
+ "/IO/2P_BTN_3": {
+  "IO": 2
+ },
+ "/IO/2P_DOWN": {
+  "IO": 2
+ },
+ "/IO/2P_LEFT": {
+  "IO": 2
+ },
+ "/IO/2P_LOOP1": {
+  "IO": 3
+ },
+ "/IO/2P_LOOP2": {
+  "IO": 3
+ },
+ "/IO/2P_RIGHT": {
+  "IO": 2
+ },
+ "/IO/2P_START": {
+  "IO": 2
+ },
+ "/IO/2P_UP": {
+  "IO": 2
+ },
+ "/IO/COIN_1": {
+  "IO": 2
+ },
+ "/IO/COIN_2": {
+  "IO": 2
+ },
+ "/IO/COIN_CNT_1": {
+  "IO": 3
+ },
+ "/IO/COIN_CNT_2": {
+  "IO": 3
+ },
+ "/IO/LOCK_COIL_1": {
+  "IO": 2
+ },
+ "/IO/LOCK_COIL_2": {
+  "IO": 2
+ },
+ "/IO/RESETPOS": {
+  "IO": 3
+ },
+ "/IO/SERVICE": {
+  "IO": 2
+ },
+ "/IO/SOUND": {
+  "Sound Output": 1,
+  "IO": 1
+ },
+ "/IO/SPK+": {
+  "Sound Output": 2,
+  "IO": 1
+ },
+ "/IO/SPK-": {
+  "Sound Output": 2,
+  "IO": 1
+ },
+ "/IO/SW12": {
+  "IO": 3
+ },
+ "/IO/SW13": {
+  "IO": 3
+ },
+ "/IO/SW14": {
+  "IO": 3
+ },
+ "/IO/SW15": {
+  "IO": 3
+ },
+ "/IO/SW16": {
+  "IO": 3
+ },
+ "/IO/SW17": {
+  "IO": 3
+ },
+ "/IO/SW18": {
+  "IO": 3
+ },
+ "/IO/SW21": {
+  "IO": 3
+ },
+ "/IO/SW22": {
+  "IO": 3
+ },
+ "/IO/SW23": {
+  "IO": 3
+ },
+ "/IO/SW24": {
+  "IO": 3
+ },
+ "/IO/SW25": {
+  "IO": 3
+ },
+ "/IO/SW26": {
+  "IO": 3
+ },
+ "/IO/SW28": {
+  "IO": 3
+ },
+ "/IO/TEST": {
+  "IO": 2
+ },
+ "/IO/~{1P_LOOP1}": {
+  "IO": 2
+ },
+ "/IO/~{1P_LOOP2}": {
+  "IO": 2
+ },
+ "/IO/~{2P_LOOP1}": {
+  "IO": 2
+ },
+ "/IO/~{2P_LOOP2}": {
+  "IO": 2
+ },
+ "/IO/~{XYENC}": {
+  "IO": 2
+ },
+ "/MA1": {
+  "CPU": 8,
+  "IO": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA2": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "IO": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA3": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1,
+  "IO": 1
+ },
+ "/MA4": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1,
+  "IO": 1
+ },
+ "/MA5": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA6": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA7": {
+  "CPU": 8,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA8": {
+  "CPU": 9,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA9": {
+  "CPU": 9,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA10": {
+  "CPU": 8,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA11": {
+  "CPU": 8,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA12": {
+  "CPU": 7,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MA13": {
+  "CPU": 7,
+  "Graphics 2": 1,
+  "Graphics 1": 1
+ },
+ "/MD0": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD1": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD2": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD3": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD4": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD5": {
+  "CPU": 6,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD6": {
+  "CPU": 5,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD7": {
+  "CPU": 5,
+  "IO": 4,
+  "Sound": 2,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD8": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD9": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD10": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD11": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD12": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD13": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD14": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/MD15": {
+  "CPU": 4,
+  "Color Mixer": 1,
+  "Graphics 1": 1,
+  "Graphics 2": 1
+ },
+ "/Misc/CK8M": {
+  "Misc": 2,
+  "Sound Output": 2
+ },
+ "/Misc/CK8M'": {
+  "Sound": 1,
+  "Misc": 1,
+  "Sound Output": 1
+ },
+ "/Misc/CK16M1": {
+  "Misc": 3,
+  "Sound Output": 1
+ },
+ "/Misc/CLK2M": {
+  "Sound": 1,
+  "Misc": 1
+ },
+ "/Misc/CLK2M''": {
+  "Sound": 1,
+  "Misc": 1
+ },
+ "/Misc/H'0": {
+  "CPU": 2,
+  "Misc": 1
+ },
+ "/Misc/H'1": {
+  "Graphics 1": 6,
+  "Misc": 1,
+  "CPU": 1
+ },
+ "/Misc/H'2": {
+  "Graphics 1": 3,
+  "Misc": 1
+ },
+ "/Misc/PXCK1'": {
+  "Misc": 5
+ },
+ "/Misc/PXCK1''": {
+  "CPU": 1,
+  "Misc": 1
+ },
+ "/Misc/PXCK2'": {
+  "Misc": 3
+ },
+ "/Sound Output/LD'0": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'1": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'2": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'3": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'4": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'5": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'6": {
+  "Sound Output": 2
+ },
+ "/Sound Output/LD'7": {
+  "Sound Output": 3
+ },
+ "/Sound Output/LD0": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD1": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD2": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD3": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD4": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD5": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD6": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/LD7": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD'0": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'1": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'2": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'3": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'4": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'5": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'6": {
+  "Sound Output": 2
+ },
+ "/Sound Output/RD'7": {
+  "Sound Output": 3
+ },
+ "/Sound Output/RD0": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD1": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD2": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD3": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD4": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD5": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD6": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/RD7": {
+  "Sound": 1,
+  "Sound Output": 1
+ },
+ "/Sound Output/~{SNDMUTE}": {
+  "Sound Output": 2,
+  "Sound": 1
+ },
+ "/Sound/BNK0": {
+  "Sound": 2
+ },
+ "/Sound/BNK1": {
+  "Sound": 2
+ },
+ "/Sound/BNK2": {
+  "Sound": 2
+ },
+ "/Sound/BNK3": {
+  "Sound": 2
+ },
+ "/Sound/CLK2M'": {
+  "Sound": 3
+ },
+ "/Sound/PCMA0": {
+  "Sound": 5
+ },
+ "/Sound/PCMA1": {
+  "Sound": 5
+ },
+ "/Sound/PCMA2": {
+  "Sound": 5
+ },
+ "/Sound/PCMA3": {
+  "Sound": 5
+ },
+ "/Sound/PCMA4": {
+  "Sound": 5
+ },
+ "/Sound/PCMA5": {
+  "Sound": 5
+ },
+ "/Sound/PCMA6": {
+  "Sound": 5
+ },
+ "/Sound/PCMA7": {
+  "Sound": 5
+ },
+ "/Sound/PCMA8": {
+  "Sound": 5
+ },
+ "/Sound/PCMA9": {
+  "Sound": 5
+ },
+ "/Sound/PCMA10": {
+  "Sound": 5
+ },
+ "/Sound/PCMA11": {
+  "Sound": 5
+ },
+ "/Sound/PCMA12": {
+  "Sound": 5
+ },
+ "/Sound/PCMA13": {
+  "Sound": 3
+ },
+ "/Sound/PCMA14": {
+  "Sound": 3
+ },
+ "/Sound/PCMA15": {
+  "Sound": 3
+ },
+ "/Sound/PCMA16": {
+  "Sound": 3
+ },
+ "/Sound/PCMA17": {
+  "Sound": 3
+ },
+ "/Sound/PCMA18": {
+  "Sound": 3
+ },
+ "/Sound/PCMA19": {
+  "Sound": 2,
+  "CPU": 1
+ },
+ "/Sound/PCMD0": {
+  "Sound": 5
+ },
+ "/Sound/PCMD1": {
+  "Sound": 5
+ },
+ "/Sound/PCMD2": {
+  "Sound": 5
+ },
+ "/Sound/PCMD3": {
+  "Sound": 5
+ },
+ "/Sound/PCMD4": {
+  "Sound": 5
+ },
+ "/Sound/PCMD5": {
+  "Sound": 5
+ },
+ "/Sound/PCMD6": {
+  "Sound": 5
+ },
+ "/Sound/PCMD7": {
+  "Sound": 5
+ },
+ "/Sound/RA14": {
+  "Sound": 2
+ },
+ "/Sound/RA15": {
+  "Sound": 2
+ },
+ "/Sound/RA16": {
+  "Sound": 2
+ },
+ "/Sound/RA17": {
+  "Sound": 2
+ },
+ "/Sound/SA0": {
+  "Sound": 3
+ },
+ "/Sound/SA1": {
+  "Sound": 3
+ },
+ "/Sound/SA2": {
+  "Sound": 3
+ },
+ "/Sound/SA3": {
+  "Sound": 3
+ },
+ "/Sound/SA4": {
+  "Sound": 3
+ },
+ "/Sound/SA5": {
+  "Sound": 3
+ },
+ "/Sound/SA6": {
+  "Sound": 3
+ },
+ "/Sound/SA7": {
+  "Sound": 3
+ },
+ "/Sound/SA8": {
+  "Sound": 3
+ },
+ "/Sound/SA9": {
+  "Sound": 3
+ },
+ "/Sound/SA10": {
+  "Sound": 3
+ },
+ "/Sound/SA11": {
+  "Sound": 3
+ },
+ "/Sound/SA12": {
+  "Sound": 3
+ },
+ "/Sound/SA13": {
+  "Sound": 2
+ },
+ "/Sound/SA14": {
+  "Sound": 1,
+  "IO": 1
+ },
+ "/Sound/SA15": {
+  "CPU": 1,
+  "Sound": 1,
+  "IO": 1
+ },
+ "/Sound/SD0": {
+  "Sound": 6
+ },
+ "/Sound/SD1": {
+  "Sound": 6
+ },
+ "/Sound/SD2": {
+  "Sound": 6
+ },
+ "/Sound/SD3": {
+  "Sound": 6
+ },
+ "/Sound/SD4": {
+  "Sound": 6
+ },
+ "/Sound/SD5": {
+  "Sound": 6
+ },
+ "/Sound/SD6": {
+  "Sound": 6
+ },
+ "/Sound/SD7": {
+  "Sound": 6
+ },
+ "/Sound/SR~{W}": {
+  "Sound": 5
+ },
+ "/Sound/S~{R}W": {
+  "Sound": 2
+ },
+ "/Sound/~{PCMBUSZ}": {
+  "Sound": 4,
+  "CPU": 1
+ },
+ "/Sound/~{PCMRAMEN}": {
+  "Sound": 2
+ },
+ "/Sound/~{PCMRAMOE}": {
+  "Sound": 2
+ },
+ "/Sound/~{PCMRAMWR}": {
+  "Sound": 2
+ },
+ "/Sound/~{PCMRAM}": {
+  "IO": 1,
+  "Sound": 1,
+  "CPU": 1
+ },
+ "/Sound/~{PCMROMEN}": {
+  "Sound": 3
+ },
+ "/Sound/~{SIRQCLR}": {
+  "Sound": 2
+ },
+ "/Sound/~{SNMICLR}": {
+  "Sound": 2
+ },
+ "/Sound/~{SRD}": {
+  "Sound": 2,
+  "CPU": 1
+ },
+ "/Sound/~{SWR}": {
+  "CPU": 2,
+  "Sound": 1
+ },
+ "GND": {
+  "IO": 62,
+  "Graphics 1": 41,
+  "CPU": 37,
+  "Color Mixer": 31,
+  "Sound": 30,
+  "Sound Output": 25,
+  "Misc": 22,
+  "Graphics 2": 15
+ },
+ "VAA": {
+  "Sound Output": 9
+ },
+ "VCC": {
+  "CPU": 45,
+  "Graphics 1": 37,
+  "Sound": 26,
+  "IO": 24,
+  "Misc": 16,
+  "Graphics 2": 13,
+  "Color Mixer": 9,
+  "Sound Output": 4
+ },
+ "VCCB": {
+  "CPU": 2
+ }
+}

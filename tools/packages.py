@@ -45,6 +45,9 @@ TTL_PINS = {
     "191": 16, "193": 16, "194": 16, "244": 20, "245": 20, "251": 16, "253": 16,
     "257": 16, "259": 16, "273": 20, "367": 16, "373": 20, "374": 20, "393": 14,
     "670": 16,
+    # The DICE boards (tools/import_dice.py).
+    "05": 14, "13": 14, "21": 14, "37": 14, "51": 14, "54": 14, "112": 16, "132": 14,
+    "145": 16, "154": 24, "155": 16, "165": 16,
 }
 
 # KiCAD does not ship these three symbols, so they cannot be re-derived.
@@ -53,6 +56,8 @@ TTL_PINS_UNCHECKED = {
     "50": 14,    # dual 2-wide 2-input AOI
     "97": 16,    # synchronous 6-bit binary rate multiplier
     "260": 14,   # dual 5-input NOR
+    "116": 24,   # dual 4-bit latch with clear (DICE boards)
+    "287": 16,   # 256x4 bipolar PROM, the 74S287 (DICE boards)
 }
 
 # --- everything else ----------------------------------------------------------
@@ -95,6 +100,19 @@ PART_PINS = {
     "4066":       (14, "kicad", "quad bilateral switch; the parts lists' "
                                 "spelling of the CD4066"),
     "DAC-08":     (16, "kicad", "8-bit multiplying DAC"),
+    "556":        (14, "datasheet", "dual timer; KiCad has it as Timer:NE556"),
+    "566":        (8,  "datasheet", "function generator / VCO; DICE boards"),
+
+    # the Pong-era parts the DICE boards add (tools/import_dice.py)
+    "82S16":      (16, "datasheet", "256x1 bipolar RAM"),
+    "82S115":     (24, "datasheet", "512x8 bipolar PROM"),
+    "82S131":     (16, "datasheet", "512x4 bipolar PROM"),
+    "9314":       (16, "datasheet", "Fairchild quad latch"),
+    "9310":       (16, "datasheet", "Fairchild decade counter; the 74160's pinout"),
+    "9311":       (24, "datasheet", "Fairchild 1-of-16 decoder; the 74154's pinout"),
+    "9321":       (16, "datasheet", "Fairchild dual 1-of-4 decoder; the 74139's pinout"),
+    "8225":       (16, "unverified", "Signetics 64-bit (16x4) bipolar RAM"),
+    "2533":       (8,  "unverified", "Signetics 1024-bit static shift register"),
     "AD561J":     (16, "datasheet", "10-bit DAC"),
 
     "137108-001": (8,  "datasheet",

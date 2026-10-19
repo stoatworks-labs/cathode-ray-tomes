@@ -1,0 +1,31 @@
+{
+ "about": "Netlists of CPU-less TTL games from DICE, the Discrete Integrated Circuit Emulator (dice-libretro, GPL-3.0), imported by tools/import_dice.py. `game` is the file under games/ at `commit`; `compare` names a board map read off the drawings here, to be checked against DICE position by position. Games left out are under `skipped` with the reason.",
+ "repo": "https://github.com/mittonk/dice-libretro",
+ "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+ "license": "GPL-3.0",
+ "boards": [
+  {"slug": "anti-aircraft-dice", "game": "antiaircraft", "name": "Anti-Aircraft (DICE netlist)", "machine": "antiairc"},
+  {"slug": "breakout-dice", "game": "breakout", "name": "Breakout (DICE netlist)", "machine": "breakout"},
+  {"slug": "clean-sweep-dice", "game": "cleansweep", "name": "Clean Sweep (DICE netlist)", "machine": "cleanswp"},
+  {"slug": "crash-n-score-dice", "game": "crashnscore", "name": "Crash 'n Score (DICE netlist)", "machine": "crash-n-score", "machines": ["crashnsc"], "compare": ["crash-n-score"]},
+  {"slug": "highway-dice", "game": "highway", "layout": "hiway", "name": "Hi-way (DICE netlist)", "machine": "highway"},
+  {"slug": "jet-fighter-dice", "game": "jetfighter", "name": "Jet Fighter (DICE netlist)", "machine": "jet-fighter", "machines": ["jetfight"]},
+  {"slug": "pin-pong-dice", "game": "pinpong", "name": "Pin Pong (DICE netlist)", "machine": "pin-pong"},
+  {"slug": "pong-doubles-dice", "game": "pongdoubles", "name": "Pong Doubles (DICE netlist)", "machine": "pongd"},
+  {"slug": "rebound-dice", "game": "rebound", "name": "Rebound (DICE netlist)", "machine": "rebound"},
+  {"slug": "shark-jaws-dice", "game": "sharkjaws", "name": "Shark JAWS (DICE netlist)", "machine": "sharkjaw"},
+  {"slug": "space-race-dice", "game": "spacerace", "name": "Space Race (DICE netlist)", "machine": "space-race"},
+  {"slug": "steeplechase-dice", "game": "steeplechase", "name": "Steeplechase (DICE netlist)", "machine": "steeplec"},
+  {"slug": "stunt-cycle-dice", "game": "stuntcycle", "name": "Stunt Cycle (DICE netlist)", "machine": "stuntcyc"},
+  {"slug": "tv-basketball-dice", "game": "tvbasketball", "name": "TV Basketball (DICE netlist)", "machine": "tv-basketball"},
+  {"slug": "wipe-out-dice", "game": "wipeout", "name": "Wipe Out (DICE netlist)", "machine": "wipeormt"}
+ ],
+ "skipped": {
+  "pong": "Pong has its own board map here, and MAME's netlist of it is being converted separately; DICE's is a cross-check for that work",
+  "indy4": "four per-car sub-circuits on separate boards; Indy 4 already has a board map here",
+  "attack": "Exidy's Attack (1977) has no machine on the site (the site's Attack is Playmatic's)",
+  "crossfire": "no machine on the site",
+  "gotcha": "no machine on the site",
+  "quadrapong": "no machine on the site"
+ }
+}

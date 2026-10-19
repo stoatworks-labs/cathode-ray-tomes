@@ -1,0 +1,600 @@
+{
+ "slug": "extermination",
+ "name": "Extermination PCB",
+ "mfr": "Taito Corporation Japan",
+ "year": "1987",
+ "machine": "extrmatn",
+ "drawing": "jtcores cores/kiwi/sch/extrmatn at e7b11263",
+ "revision": "",
+ "coverage": "135 parts, 60 of them ICs, and 416 nets over 1601 pins, on sheets for capacitors, colmix, gfx, gfx / gfx_ram, gfx / gfx_rom, main, mcu, sound, watchdog. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/kiwi/sch/extrmatn",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/kiwi/sch/extrmatn",
+  "authors": [
+   "Jose Tejada"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/extermination/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/extermination",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "exterm.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 353.4,
+  "h": 429.0
+ },
+ "grid": {
+  "rows": "ABCDEFGHJ",
+  "cols": 17,
+  "transposed": false
+ },
+ "ics": {
+  "A2": "27C512",
+  "A4": "27C512",
+  "A5": "27C512",
+  "A7": "27C512",
+  "A8": "27C512",
+  "A10": "27C512",
+  "A12": "27C512",
+  "A13": "27C512",
+  "A15": "74LS174",
+  "A16": "74LS273",
+  "B1": "74LS04",
+  "B2": "74LS08",
+  "B3": "74LS74",
+  "B4": "74LS74",
+  "B5": "74LS174",
+  "B6": "74LS08",
+  "B7": "74LS74",
+  "B8": "74LS157",
+  "B9": "74LS157",
+  "B11": "74LS157",
+  "B12": "74LS157",
+  "B13": "74LS245",
+  "B14": "74LS367",
+  "B15": "YM3909",
+  "C2": "PAL16L8",
+  "C3": "PAL16L8",
+  "C4": "74LS245",
+  "C5": "74LS245",
+  "C6": "74LS32",
+  "C8": "MB8464A-10L-LL",
+  "C9": "27C512",
+  "C11": "27C512",
+  "C14": "74LS367",
+  "C17": "YM3906",
+  "D3": "Z80CPU",
+  "D6": "PAL16L8",
+  "D8": "PAL16L8",
+  "E1": "74LS174",
+  "E4": "27C512",
+  "E8": "Z80CPU",
+  "E11": "74LS245",
+  "E12": "74LS245",
+  "E13": "HM6116P-3",
+  "E14": "HM6116P-3",
+  "E16": "HM6116P-3",
+  "E17": "HM6116P-3",
+  "F15": "MB7124E",
+  "F17": "MB7124E",
+  "G3": "INTEL8742",
+  "G13": "74LS04",
+  "G14": "74HC4024",
+  "H3": "SETA-X1-004",
+  "H5": "74LS02",
+  "H11": "YM3014",
+  "H12": "NJM4558",
+  "HH16": "SETAX1-003",
+  "J8": "TL7705A",
+  "J16": "HA1388",
+  "JJ10": "PC050CM",
+  "YM_F8": "YM2203"
+ },
+ "place": {
+  "A2": [
+   29.7,
+   10.0,
+   0
+  ],
+  "A4": [
+   69.1,
+   10.0,
+   0
+  ],
+  "A5": [
+   88.8,
+   10.0,
+   0
+  ],
+  "A7": [
+   128.2,
+   10.0,
+   0
+  ],
+  "A8": [
+   147.9,
+   10.0,
+   0
+  ],
+  "A10": [
+   187.3,
+   10.0,
+   0
+  ],
+  "A12": [
+   226.7,
+   10.0,
+   0
+  ],
+  "A13": [
+   246.4,
+   10.0,
+   0
+  ],
+  "A15": [
+   285.8,
+   10.0,
+   0
+  ],
+  "A16": [
+   305.5,
+   10.0,
+   0
+  ],
+  "B1": [
+   10.0,
+   47.5,
+   0
+  ],
+  "B2": [
+   29.7,
+   47.5,
+   0
+  ],
+  "B3": [
+   49.4,
+   47.5,
+   0
+  ],
+  "B4": [
+   69.1,
+   47.5,
+   0
+  ],
+  "B5": [
+   88.8,
+   47.5,
+   0
+  ],
+  "B6": [
+   108.5,
+   47.5,
+   0
+  ],
+  "B7": [
+   128.2,
+   47.5,
+   0
+  ],
+  "B8": [
+   147.9,
+   47.5,
+   0
+  ],
+  "B9": [
+   167.6,
+   47.5,
+   0
+  ],
+  "B11": [
+   207.0,
+   47.5,
+   0
+  ],
+  "B12": [
+   226.7,
+   47.5,
+   0
+  ],
+  "B13": [
+   246.4,
+   47.5,
+   0
+  ],
+  "B14": [
+   266.1,
+   47.5,
+   0
+  ],
+  "B15": [
+   285.8,
+   47.5,
+   0
+  ],
+  "C2": [
+   29.7,
+   85.0,
+   0
+  ],
+  "C3": [
+   49.4,
+   85.0,
+   0
+  ],
+  "C4": [
+   69.1,
+   85.0,
+   0
+  ],
+  "C5": [
+   88.8,
+   85.0,
+   0
+  ],
+  "C6": [
+   108.5,
+   85.0,
+   0
+  ],
+  "C8": [
+   147.9,
+   85.0,
+   0
+  ],
+  "C9": [
+   167.6,
+   85.0,
+   0
+  ],
+  "C11": [
+   207.0,
+   85.0,
+   0
+  ],
+  "C14": [
+   266.1,
+   85.0,
+   0
+  ],
+  "C17": [
+   325.2,
+   85.0,
+   0
+  ],
+  "D3": [
+   49.4,
+   122.5,
+   0
+  ],
+  "D6": [
+   108.5,
+   122.5,
+   0
+  ],
+  "D8": [
+   147.9,
+   122.5,
+   0
+  ],
+  "E1": [
+   10.0,
+   160.0,
+   0
+  ],
+  "E4": [
+   69.1,
+   160.0,
+   0
+  ],
+  "E8": [
+   147.9,
+   160.0,
+   0
+  ],
+  "E11": [
+   207.0,
+   160.0,
+   0
+  ],
+  "E12": [
+   226.7,
+   160.0,
+   0
+  ],
+  "E13": [
+   246.4,
+   160.0,
+   0
+  ],
+  "E14": [
+   266.1,
+   160.0,
+   0
+  ],
+  "E16": [
+   305.5,
+   160.0,
+   0
+  ],
+  "E17": [
+   325.2,
+   160.0,
+   0
+  ],
+  "F15": [
+   285.8,
+   197.5,
+   0
+  ],
+  "F17": [
+   325.2,
+   197.5,
+   0
+  ],
+  "G3": [
+   49.4,
+   250.24,
+   90
+  ],
+  "G13": [
+   246.4,
+   235.0,
+   0
+  ],
+  "G14": [
+   269.05,
+   240.35,
+   0
+  ],
+  "H3": [
+   49.4,
+   272.5,
+   0
+  ],
+  "H5": [
+   88.8,
+   272.5,
+   0
+  ],
+  "H11": [
+   207.0,
+   272.5,
+   0
+  ],
+  "H12": [
+   226.7,
+   272.5,
+   0
+  ],
+  "HH16": [
+   10.0,
+   368.24,
+   0
+  ],
+  "J8": [
+   147.9,
+   310.0,
+   0
+  ],
+  "J16": [
+   305.5,
+   310.0,
+   0
+  ],
+  "JJ10": [
+   32.24,
+   368.24,
+   0
+  ],
+  "YM_F8": [
+   54.48,
+   368.24,
+   0
+  ]
+ },
+ "footprints": {
+  "A2": "Package_DIP:DIP-28_W15.24mm",
+  "A4": "Package_DIP:DIP-28_W15.24mm",
+  "A5": "Package_DIP:DIP-28_W15.24mm",
+  "A7": "Package_DIP:DIP-28_W15.24mm",
+  "A8": "Package_DIP:DIP-28_W15.24mm",
+  "A10": "Package_DIP:DIP-28_W15.24mm",
+  "A12": "Package_DIP:DIP-28_W15.24mm",
+  "A13": "Package_DIP:DIP-28_W15.24mm",
+  "A15": "Package_DIP:DIP-16_W7.62mm",
+  "A16": "Package_DIP:DIP-20_W7.62mm",
+  "B1": "Package_DIP:DIP-14_W7.62mm",
+  "B2": "Package_DIP:DIP-14_W7.62mm",
+  "B3": "Package_DIP:DIP-14_W7.62mm",
+  "B4": "Package_DIP:DIP-14_W7.62mm",
+  "B5": "Package_DIP:DIP-16_W7.62mm",
+  "B6": "Package_DIP:DIP-14_W7.62mm",
+  "B7": "Package_DIP:DIP-14_W7.62mm",
+  "B8": "Package_DIP:DIP-16_W7.62mm",
+  "B9": "Package_DIP:DIP-16_W7.62mm",
+  "B11": "Package_DIP:DIP-16_W7.62mm",
+  "B12": "Package_DIP:DIP-16_W7.62mm",
+  "B13": "Package_DIP:DIP-20_W7.62mm",
+  "B14": "Package_DIP:DIP-16_W7.62mm",
+  "B15": "Package_DIP:DIP-64_W15.24mm",
+  "C2": "Package_DIP:DIP-20_W7.62mm",
+  "C3": "Package_DIP:DIP-20_W7.62mm",
+  "C4": "Package_DIP:DIP-20_W7.62mm",
+  "C5": "Package_DIP:DIP-20_W7.62mm",
+  "C6": "Package_DIP:DIP-14_W7.62mm",
+  "C8": "Package_DIP:DIP-28_W15.24mm",
+  "C9": "Package_DIP:DIP-28_W15.24mm",
+  "C11": "Package_DIP:DIP-28_W15.24mm",
+  "C14": "Package_DIP:DIP-16_W7.62mm",
+  "C17": "Package_DIP:DIP-64_W15.24mm",
+  "D3": "Package_DIP:DIP-40_W15.24mm",
+  "D6": "Package_DIP:DIP-20_W7.62mm",
+  "D8": "Package_DIP:DIP-20_W7.62mm",
+  "E1": "Package_DIP:DIP-16_W7.62mm",
+  "E4": "Package_DIP:DIP-28_W15.24mm",
+  "E8": "Package_DIP:DIP-40_W15.24mm",
+  "E11": "Package_DIP:DIP-20_W7.62mm",
+  "E12": "Package_DIP:DIP-20_W7.62mm",
+  "E13": "Package_DIP:DIP-24_W15.24mm",
+  "E14": "Package_DIP:DIP-24_W15.24mm",
+  "E16": "Package_DIP:DIP-24_W15.24mm",
+  "E17": "Package_DIP:DIP-24_W15.24mm",
+  "F15": "Package_DIP:DIP-20_W7.62mm",
+  "F17": "Package_DIP:DIP-20_W7.62mm",
+  "G3": "Package_DIP:DIP-40_W15.24mm",
+  "G13": "Package_DIP:DIP-14_W7.62mm",
+  "G14": "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm",
+  "H3": "Package_DIP:DIP-64_W15.24mm",
+  "H5": "Package_DIP:DIP-14_W7.62mm",
+  "H11": "Package_DIP:DIP-8_W7.62mm",
+  "H12": "Package_DIP:DIP-8_W7.62mm",
+  "HH16": "Package_DIP:DIP-42_W15.24mm",
+  "J8": "Package_DIP:DIP-8_W7.62mm",
+  "J16": "Package_DIP:DIP-12_W7.62mm",
+  "JJ10": "Package_DIP:DIP-28_W15.24mm",
+  "YM_F8": "Package_DIP:DIP-40_W15.24mm"
+ },
+ "parts": {
+  "A2": "27C512",
+  "A4": "27C512",
+  "A5": "27C512",
+  "A7": "27C512",
+  "A8": "27C512",
+  "A10": "27C512",
+  "A12": "27C512",
+  "A13": "27C512",
+  "A15": "74LS174",
+  "A16": "74LS273",
+  "A17": "12.000MHz",
+  "B1": "74LS04",
+  "B2": "74LS08",
+  "B3": "74LS74",
+  "B4": "74LS74",
+  "B5": "74LS174",
+  "B6": "74LS08",
+  "B7": "74LS74",
+  "B8": "74LS157",
+  "B9": "74LS157",
+  "B11": "74LS157",
+  "B12": "74LS157",
+  "B13": "74LS245",
+  "B14": "74LS367",
+  "B15": "YM3909",
+  "C1": "1000μF",
+  "C2": "PAL16L8",
+  "C3": "PAL16L8",
+  "C4": "74LS245",
+  "C5": "74LS245",
+  "C6": "74LS32",
+  "C8": "MB8464A-10L-LL",
+  "C9": "27C512",
+  "C11": "27C512",
+  "C14": "74LS367",
+  "C17": "YM3906",
+  "C20": "C104J",
+  "C22": "104",
+  "C23": "104",
+  "C24": "104",
+  "C25": "104",
+  "C26": "104",
+  "C27": "104",
+  "C28": "104",
+  "C29": "104",
+  "C30": "104",
+  "C31": "104",
+  "C32": "104",
+  "C33": "104",
+  "C34": "104",
+  "C35": "104",
+  "C36": "104",
+  "C37": "104",
+  "CC2": "4.7μF",
+  "CC4": "C101",
+  "CC6": "C104",
+  "CC7": "4.7μF",
+  "CC8": "C683J",
+  "CC9": "4.7μF",
+  "CC10": "C104",
+  "CC11": "4.7μF",
+  "CC12": "C103J",
+  "CC13": "1μF",
+  "CC14": "4.7μF",
+  "CC15": "4.7μF",
+  "CC16": "4.7μF",
+  "CC17": "4.7μF",
+  "CC18": "4.7μF",
+  "CC19": "4.7μF",
+  "CC21": "C104J",
+  "CCC2": "4.7μF",
+  "D3": "Z80CPU",
+  "D6": "PAL16L8",
+  "D8": "PAL16L8",
+  "E1": "74LS174",
+  "E4": "27C512",
+  "E8": "Z80CPU",
+  "E11": "74LS245",
+  "E12": "74LS245",
+  "E13": "HM6116P-3",
+  "E14": "HM6116P-3",
+  "E16": "HM6116P-3",
+  "E17": "HM6116P-3",
+  "F15": "MB7124E",
+  "F17": "MB7124E",
+  "G3": "INTEL8742",
+  "G13": "74LS04",
+  "G14": "74HC4024",
+  "G15": "R_P",
+  "G17": "R_P",
+  "H3": "SETA-X1-004",
+  "H5": "74LS02",
+  "H11": "YM3014",
+  "H12": "NJM4558",
+  "H15": "R0-012",
+  "H16": "R0-012",
+  "H17": "R0-012",
+  "HH16": "SETAX1-003",
+  "J1": "R_Pack08",
+  "J2": "R_P",
+  "J5": "R_P",
+  "J8": "TL7705A",
+  "J16": "HA1388",
+  "JJ1": "Conn_01x04_Male",
+  "JJ10": "PC050CM",
+  "JM1": "JAMMA_CONN",
+  "JP1": "Jumper_2_Bridged",
+  "R1": "R1KΩ",
+  "R2": "R330Ω",
+  "R3": "22Ω",
+  "R4": "3.3kΩ",
+  "R6": "R1KΩ",
+  "R7": "R1KΩ",
+  "R8": "6.2kΩ",
+  "R9": "8.2KΩ",
+  "R10": "2.2Ω",
+  "R11": "2.2Ω",
+  "R12": "R2.2KΩ",
+  "R13": "R100Ω",
+  "R14": "R100Ω",
+  "R15": "R1KΩ",
+  "R16": "1KΩ",
+  "R18": "R1MΩ",
+  "R19": "R330Ω",
+  "R20": "R330Ω",
+  "R21": "1KΩ",
+  "R31": "R1KΩ",
+  "RR15": "R150Ω",
+  "RV1": "R_P",
+  "SW1": "SW_Push",
+  "SWA1": "SW_DIPS_08",
+  "SWB2": "SW_DIPS_08",
+  "YM_F8": "YM2203",
+  "ZD1": "BZD27",
+  "ZD2": "BZD27C"
+ }
+}

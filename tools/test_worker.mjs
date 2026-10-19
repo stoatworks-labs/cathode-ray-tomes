@@ -159,6 +159,28 @@ CONTENT.push([
   "an undocumented machine carries MAME's ROM set and driver source",
 ]);
 
+// A board imported from someone else's drawing is published under their
+// licence, and the page has to say so: whose drawing, on what terms, and where
+// the source is. If publish_board stops carrying `license`/`origin`, the board
+// still renders -- as though this repository had drawn it.
+const imported = boardList.find((b) => b.origin);
+if (imported) {
+  CONTENT.push([
+    "/api/boards",
+    (body) => {
+      const b = body.find((x) => x.slug === imported.slug);
+      return !!(b && b.license && b.origin?.authors?.length && b.origin?.source
+        && (b.redrawn?.sheets || []).every((s) => s.page > 0));
+    },
+    `serves ${imported.slug}'s licence, authors and source`,
+  ]);
+  CONTENT.push([
+    `/api/chips/${imported.slug}`,
+    (body) => Object.keys(body).length > 0,
+    `serves the chip lookup for ${imported.slug}`,
+  ]);
+}
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {
@@ -183,7 +205,7 @@ for (const [path, ok, why] of CONTENT) {
 // still served, and for seven weeks no page read it. There is no browser here, so
 // this only asserts that the script still reads the fields; it cannot see
 // whether they render well.
-const APP_READS = ["b.conflicts", "b.notes", "v.note"];
+const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines"];
 const appJs = await (await worker.fetch(
   new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
 for (const field of APP_READS) {

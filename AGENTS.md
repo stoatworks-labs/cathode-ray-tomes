@@ -575,6 +575,95 @@ same pipeline ran end to end. What it added:
   EXPLO EN / SAEN2,3 net changed name from run to run. The first name the read declares now
   wins; Battlezone's read lists SAEN2,3 first because that is what its drawn schematic says.
 
+## Boards from jtcores, and the GPL-3.0
+
+jtcores (jotego's FPGA recreations, github.com/jotego/jtcores) redraws the boards it studies
+in KiCad: 43 of its projects are whole boards or sections of one, against two traced here.
+They are GPL-3.0, and so is everything made from them, so they arrive as a different kind of
+board and must stay one:
+
+    data/jtcores.json          the manifest: board -> jtcores directory, site machine(s),
+                               pinned commit, and every jtcores project left out, with why
+    tools/import_jtcores.py    copy, netlist, layout, lookups (--verify checks the copies)
+    tools/build_board.py       the board view, from the import's own `place`/`footprints`
+    tools/publish_board.py     one PDF, the iBOM, the BOM, `license` and `origin`
+
+**What is GPL in this repository.** For each of those boards: `kicad/<slug>/` (upstream's
+sheets byte for byte, its LICENSE, and a NOTICE.md saying who drew it and what was added),
+`boards/<slug>.json`, `boards/<slug>.netlist.json`, `data/chips/<slug>.json`,
+`data/signals/<slug>.json` and `web/boards/<slug>/`. A board's registry entry carries
+`license` and `origin` (upstream URL at the commit, the authors, the source here), and the
+board page states both. **Never merge a GPL drawing into a hand-read board** -- the
+Tempest and Battlezone reads are this repository's own work and carry no such licence --
+and never copy one of these boards' data into a file that is not marked the same way.
+
+**Credit is the commit history.** The authors on a board are the people who committed its
+sheets to jtcores, with the aliases the history itself supports folded together (skutis is
+Ulf Skutnabba, @skutis77 in his title blocks; JOTEGO is Jose Tejada). Title blocks are
+missing or copied between projects too often to be the source.
+
+Traps, all hit once:
+
+- **KiCad 6 spelled it `"Sheet file"`, 7 onwards `"Sheetfile"`.** The importer copies only
+  the sheets the root reaches, and following one spelling lost every child sheet on five
+  boards: Capcom Bowling arrived as 4 parts of 132, Sly Spy as none at all, and nothing
+  failed.
+- **kicad-cli writes a `.kicad_prl` into the project as it exports.** The importer deletes
+  what it did not copy and then compares every copied file with upstream's, so NOTICE.md's
+  "byte for byte" is checked rather than asserted. Opening one of these projects in KiCad
+  and saving rewrites the files; `import_jtcores.py --verify` is the test.
+- **Every jtcores `.kicad_pcb` is an empty stub.** The board view is generated: ICs only,
+  each with a footprint sized from its symbol's pin numbers (DIP to 64 pins, a quad pack
+  above), nets from KiCad's netlist on their pads. Positions are nominal and the page says so.
+- **Where the drawing names board positions, the layout uses them -- but which way round
+  is read off the drawing.** `9B` against `B9` is the majority of the ICs (Premier Soccer
+  was laid out as a numbered board until this was detected rather than listed). A big part
+  takes several cells and the next IC along is numbered past it, so the pitch is where 19
+  in 20 numbered neighbours clear each other; each DIP stands upright unless that collides,
+  then lies down; what still collides is counted in the import log. A letter carrying most
+  of the board (U12, U34) is a numbering prefix, and boards whose designators are prefixed
+  by sub-board (Twin 16's `A_A3`, Fairyland's `B12`/`M12`) are laid out in designator order.
+- **The deploy is within a few thousand files of the Workers Assets cap**, so an imported
+  board publishes one PDF with its sheet list (each linked to its page, read back off the
+  PDF's own title block) rather than an SVG a sheet: three files a board.
+- **Custom chips are not boards.** jtcores also redraws the insides of Konami's gate
+  arrays (Twin 16's 007779-007787), Capcom's DL-series and Konami's 052535. They are
+  listed under `skipped` in the manifest: valuable for a dead custom, but a different asset.
+
+## Boards from DICE: an emulator's netlist, read as one
+
+DICE (dice-libretro, GPL-3.0) emulates the CPU-less games by simulating every chip, so each
+game is a netlist -- `CHIP("A1", 7400)`, `CONNECTION("A1", 3, "B2", 4)` -- at the positions
+Atari's drawings use. `tools/import_dice.py` turns 15 of them into boards (`data/dice.json`
+says which, and why the other six are not), under the same rules as jtcores: GPL-3.0 on
+everything made from them, the source copied into `kicad/<slug>/` with DICE's LICENSE.txt
+and a NOTICE.md, and a page that says whose it is. There is no drawing, so the page carries
+the netlist instead of a schematic.
+
+It is the circuit as an emulator simulates it, not a drawing, and the conversion has to
+undo DICE's shortcuts or it publishes them as wiring:
+
+- **A CAPACITOR, BUFFER, CLK_GATE or WIRED_AND in DICE is a wire.** The first two are RC
+  delays standing in a net, the third a speed hack between a clock and what it clocks, the
+  last open-collector outputs tied. Their pins are joined into one net. Everything else DICE
+  adds (VIDEO, the inputs, the power-on LATCH, the CLOCK, SERIES_RC) is not on the board.
+- **A part with a part number is only a chip if it is at a board position.** DICE adds gates
+  to model what the board does another way (Crash 'n Score's `CARGASAND`, a 7408); those are
+  listed in the read notes as helpers, not placed. Positions spanning two rows are written
+  without the slash (`DE1` is D/E1) and are placed between their rows.
+- **Two 555 halves at one position (`B9A`, `B9B`) are a 556**, renumbered to its pinout.
+- **VCC and GND are macros from DICE's C++ header**, which is not read; the importer seeds
+  them. Missing them silently lost a hundred tie-offs from Rebound.
+- **DICE's tie-high (`VCC`) is a net of its own,** not +5V: on the board it is a pull-up or
+  a direct connection, and DICE does not say which. Supply pins, which DICE never wires, are
+  joined to +5V and GND from each part's KiCad pinout.
+- **Every wired pin is checked against the part's KiCad symbol, except the standard-TTL
+  AND-OR-INVERT gates.** KiCad ships the 74LS54 and not the 7454, and they are pinned
+  differently; checking against it accused DICE of six pins TV Basketball really wires.
+- **Where a board map read off the drawings exists, the two are compared** (`compare` in the
+  manifest). Crash 'n Score's map names 38 positions and DICE agrees on 36; H10 (7404
+  against 7414) and B8 are logged on the page as open questions, not settled.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV
@@ -786,6 +875,16 @@ convention and legitimately uses G.
   where each is on the sheet. The bar for a redraw is 0 *unexplained* ERC errors.
   Not checked against a board: the B1/BEGIN conflict, the 4th printing's K3, R58 and C39
   readings, and which spinner edge pins carry clock and which direction (inferred).
+
+- jtcores boards: every copied sheet under `kicad/<slug>/` matches upstream at the pinned
+  commit (`import_jtcores.py --verify`), and each board's netlist is KiCad's own export of
+  those copies. Not checked: anything in them against a manual or a board -- they are
+  jtcores' readings, published as such -- or how complete each is beyond what its sheet
+  names say (five are flagged partial).
+- DICE boards: every CONNECTION in the 15 games is read, every wired pin of a part KiCad has
+  a symbol for exists on it, and Crash 'n Score agrees with its hand-read map at 36 of 38
+  positions. Not checked: that DICE's circuit is the board's -- it is an emulator's, and its
+  simplifications beyond the four undone here are not undone.
 
 **Assumed / not yet done:**
 - **Pong nets are mostly not traced.** Eight signal nets (the video output chain) are, in

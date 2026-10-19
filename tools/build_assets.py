@@ -112,6 +112,10 @@ def publish_boards_only():
     # the Math Box trace is what showed Red Baron's board is not Battlezone's.
     for p in glob.glob(os.path.join(ROOT, "data", "related", "*.json")):
         copy(p, os.path.join(OUT, "related", os.path.basename(p))); n += 1
+    # A board imported with its netlist (tools/import_jtcores.py) brings its
+    # own signal lookup, and the board page searches it beside the chips.
+    for p in glob.glob(os.path.join(ROOT, "data", "signals", "*.json")):
+        copy(p, os.path.join(OUT, "signals", os.path.basename(p))); n += 1
     print(f"{n} board asset(s) refreshed in web/data/ — the corpus index was "
           f"left untouched")
 

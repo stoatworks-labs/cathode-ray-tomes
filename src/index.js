@@ -169,7 +169,7 @@ async function handleApi(url, env, request) {
       // — asteroids-03 through -06 all point at `asteroid` — so the test is on
       // that field, not on the board slug matching the machine slug.
       const boards = (await index(env, request, "boards")) || [];
-      const withBoard = new Set(boards.map((b) => b.machine || b.slug));
+      const withBoard = new Set(boards.flatMap((b) => [b.machine || b.slug, ...(b.machines || [])]));
       out = out.filter((m) => withBoard.has(m.s));
     }
     if (kind === "arcade") out = out.filter((m) => !m.t);

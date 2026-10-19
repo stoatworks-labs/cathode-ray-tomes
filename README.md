@@ -60,7 +60,7 @@ drives the whole design: text has to be recovered by OCR, and diagrams have to b
 src/            Cloudflare Worker (API + asset serving)
 web/            Static front-end: browse, reader, schematic + BOM viewers
 tools/          Ingestion, indexing, search and vectorisation pipeline
-kicad/          Hand-built KiCad conversions (one directory per board)
+kicad/          KiCad conversions, one directory per board (jtcores' are GPL-3.0)
 data/           Generated indexes (machines, docs, chips, postings)
 cache/          Local ingest cache: PDFs, page images, OCR text (gitignored)
 ```
@@ -258,6 +258,21 @@ different positions, plus the high-score EAROM and the charge pump that makes it
 POKEYs and the audio stage, 216 nets in all. Its Math Box agrees with Battlezone's net for net,
 which is about the best check two drawings can give each other. Where the sheet contradicts
 itself, the board page says so instead of picking quietly.
+
+Forty-three more boards come from [jtcores](https://github.com/jotego/jtcores), jotego's FPGA
+recreations of arcade hardware, whose contributors redraw each board they study in KiCad:
+Gradius III, the CP System III, Sega System 18, Twin 16, Sunset Riders and the rest. Those
+drawings are theirs and GPL-3.0. `kicad/<slug>/` holds each one unchanged, with its licence
+and a notice saying who drew it and what was added here, and everything made from it — the
+board view, the netlist, the chip lookup and the bill of materials — is under the same
+licence. The board page says whose drawing it is.
+
+Fifteen of the CPU-less games of the Pong era — Breakout, Space Race, Stunt Cycle, Jet Fighter,
+Rebound and the rest — get their connectivity from [DICE](https://github.com/mittonk/dice-libretro),
+the emulator that runs them by simulating every chip. Its netlists are GPL-3.0 as well. They are
+an emulator's model of the board rather than a drawing of it, so the conversion undoes DICE's
+shortcuts (an RC delay standing in a wire is a wire again), leaves its analogue models off the
+board, and compares it against the hand-read map where there is one.
 
 ## Deployment
 

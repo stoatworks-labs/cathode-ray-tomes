@@ -1,0 +1,12362 @@
+{
+ "slug": "final-round-gx870",
+ "source": "kicad/final-round-gx870/fround.kicad_sch (jtcores, GPL-3.0)",
+ "license": "GPL-3.0",
+ "components": {
+  "A23": {
+   "value": "74LS07",
+   "sheet": ""
+  },
+  "A24": {
+   "value": "74LS07",
+   "sheet": "Color mixer"
+  },
+  "A25": {
+   "value": "74LS07",
+   "sheet": "Color mixer"
+  },
+  "C2": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C3": {
+   "value": "470pF",
+   "sheet": "Sound"
+  },
+  "C4": {
+   "value": "100nF",
+   "sheet": "Sound"
+  },
+  "C5": {
+   "value": "22nF",
+   "sheet": "Sound"
+  },
+  "C6": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C7": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C8": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C9": {
+   "value": "1000uF",
+   "sheet": "Sound"
+  },
+  "C10": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C11": {
+   "value": "22nF",
+   "sheet": "Sound"
+  },
+  "C12": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C13": {
+   "value": "470pF",
+   "sheet": "Sound"
+  },
+  "C14": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C15": {
+   "value": "100nF",
+   "sheet": "Sound"
+  },
+  "C16": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C17": {
+   "value": "100uF",
+   "sheet": "Sound"
+  },
+  "C18": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C19": {
+   "value": "10nF",
+   "sheet": "Sound"
+  },
+  "C21": {
+   "value": "4.7uF",
+   "sheet": "Sound"
+  },
+  "C22": {
+   "value": "2.2nF",
+   "sheet": "Sound"
+  },
+  "C23": {
+   "value": "10uF",
+   "sheet": "Sound"
+  },
+  "C24": {
+   "value": "100uF",
+   "sheet": "Sound"
+  },
+  "C25": {
+   "value": "2.2nF",
+   "sheet": "Sound"
+  },
+  "C26": {
+   "value": "220uF",
+   "sheet": "Sound"
+  },
+  "C28": {
+   "value": "100nF",
+   "sheet": "Sound"
+  },
+  "C32": {
+   "value": "100nF",
+   "sheet": "IO"
+  },
+  "C33": {
+   "value": "EMI222M",
+   "sheet": "IO"
+  },
+  "C34": {
+   "value": "33nF",
+   "sheet": "Sound"
+  },
+  "C35": {
+   "value": "10uF",
+   "sheet": "Sound"
+  },
+  "C36": {
+   "value": "33nF",
+   "sheet": "Sound"
+  },
+  "C58": {
+   "value": "C_Polarized",
+   "sheet": "IO"
+  },
+  "C60": {
+   "value": "100nF",
+   "sheet": "IO"
+  },
+  "C76": {
+   "value": "220pF",
+   "sheet": "Sound"
+  },
+  "C77": {
+   "value": "220pF",
+   "sheet": "Sound"
+  },
+  "H28": {
+   "value": "74LS04",
+   "sheet": "CPU"
+  },
+  "JP1": {
+   "value": "JP",
+   "sheet": "IO"
+  },
+  "N19": {
+   "value": "74LS157",
+   "sheet": "GFX - Fixed layer"
+  },
+  "O9": {
+   "value": "74LS157",
+   "sheet": "GFX - Fixed layer"
+  },
+  "O10": {
+   "value": "74LS157",
+   "sheet": "GFX - Fixed layer"
+  },
+  "P3": {
+   "value": "Conn_01x04_Male",
+   "sheet": "Timing"
+  },
+  "R3": {
+   "value": "12k",
+   "sheet": "Sound"
+  },
+  "R7": {
+   "value": "10k",
+   "sheet": "Sound"
+  },
+  "R9": {
+   "value": "7.5k",
+   "sheet": "Sound"
+  },
+  "R10": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R12": {
+   "value": "470",
+   "sheet": "IO"
+  },
+  "R13": {
+   "value": "2.2k",
+   "sheet": "Sound"
+  },
+  "R14": {
+   "value": "10k",
+   "sheet": "Sound"
+  },
+  "R15": {
+   "value": "5.6k",
+   "sheet": "Sound"
+  },
+  "R16": {
+   "value": "10k",
+   "sheet": "Sound"
+  },
+  "R17": {
+   "value": "20k",
+   "sheet": "Sound"
+  },
+  "R18": {
+   "value": "100",
+   "sheet": "IO"
+  },
+  "R19": {
+   "value": "5.6k",
+   "sheet": "Sound"
+  },
+  "R22": {
+   "value": "5.1k",
+   "sheet": "Sound"
+  },
+  "R23": {
+   "value": "47k",
+   "sheet": "Sound"
+  },
+  "R25": {
+   "value": "560",
+   "sheet": "Sound"
+  },
+  "R29": {
+   "value": "100k",
+   "sheet": "Sound"
+  },
+  "R31": {
+   "value": "20k",
+   "sheet": "Sound"
+  },
+  "R32": {
+   "value": "4.7k",
+   "sheet": "Sound"
+  },
+  "R33": {
+   "value": "47k",
+   "sheet": "Sound"
+  },
+  "R34": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R35": {
+   "value": "2k",
+   "sheet": "Sound"
+  },
+  "R36": {
+   "value": "82R",
+   "sheet": "Color mixer"
+  },
+  "R37": {
+   "value": "82R",
+   "sheet": "Color mixer"
+  },
+  "R38": {
+   "value": "82R",
+   "sheet": "Color mixer"
+  },
+  "R39": {
+   "value": "5.1k",
+   "sheet": "Sound"
+  },
+  "R40": {
+   "value": "5.1k",
+   "sheet": "Sound"
+  },
+  "R41": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R42": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R43": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R44": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R45": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R46": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R47": {
+   "value": "1k",
+   "sheet": "Sound"
+  },
+  "R48": {
+   "value": "1k",
+   "sheet": "CPU"
+  },
+  "RA2": {
+   "value": "4.7k x 4",
+   "sheet": "CPU"
+  },
+  "RA3": {
+   "value": "2.2k x 8",
+   "sheet": "IO"
+  },
+  "RA4": {
+   "value": "2.2k x 8",
+   "sheet": "IO"
+  },
+  "RA5": {
+   "value": "4.7k x 8",
+   "sheet": "CPU"
+  },
+  "RA6": {
+   "value": "4.7k x 4",
+   "sheet": "Sound"
+  },
+  "RA7": {
+   "value": "2.2k x 4",
+   "sheet": "IO"
+  },
+  "RA8": {
+   "value": "2.2k x 8",
+   "sheet": "Sprites1"
+  },
+  "RA9": {
+   "value": "2.2k x 8",
+   "sheet": "Sprites1"
+  },
+  "RA16": {
+   "value": "47k x 4",
+   "sheet": "Sound"
+  },
+  "RA17": {
+   "value": "47k x 4",
+   "sheet": "Sound"
+  },
+  "RN1": {
+   "value": "005273",
+   "sheet": "IO"
+  },
+  "RN2": {
+   "value": "005273",
+   "sheet": "IO"
+  },
+  "RN3": {
+   "value": "005273",
+   "sheet": "IO"
+  },
+  "RN4": {
+   "value": "005273",
+   "sheet": "IO"
+  },
+  "RN5": {
+   "value": "005273",
+   "sheet": "IO"
+  },
+  "RV1": {
+   "value": "890",
+   "sheet": "Sound"
+  },
+  "S1": {
+   "value": "052535",
+   "sheet": "Color mixer"
+  },
+  "S2": {
+   "value": "052535",
+   "sheet": "Color mixer"
+  },
+  "S3": {
+   "value": "052535",
+   "sheet": "Color mixer"
+  },
+  "S4": {
+   "value": "KONAMI_007341",
+   "sheet": "Sound"
+  },
+  "S5": {
+   "value": "007340",
+   "sheet": "Sound"
+  },
+  "S6": {
+   "value": "007340",
+   "sheet": "Sound"
+  },
+  "S7": {
+   "value": "KONAMI_007341",
+   "sheet": "Sound"
+  },
+  "S306": {
+   "value": "051550",
+   "sheet": "IO"
+  },
+  "SW1": {
+   "value": "SW_DIPS_08",
+   "sheet": "IO"
+  },
+  "SW2": {
+   "value": "SW_DIPS_08",
+   "sheet": "IO"
+  },
+  "SW3": {
+   "value": "SW_DIPS_04",
+   "sheet": "IO"
+  },
+  "U1": {
+   "value": "007786",
+   "sheet": "Sprites 2"
+  },
+  "U2": {
+   "value": "007787",
+   "sheet": "Sprites 2"
+  },
+  "U3": {
+   "value": "74LS138",
+   "sheet": "CPU"
+  },
+  "U5": {
+   "value": "27128",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U7": {
+   "value": "74LS174",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U8": {
+   "value": "007784",
+   "sheet": "Sprites1"
+  },
+  "U12": {
+   "value": "74LS273",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U14": {
+   "value": "74LS273",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U15": {
+   "value": "74LS374",
+   "sheet": "Sprites1"
+  },
+  "U17": {
+   "value": "74LS273",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U18": {
+   "value": "74LS157",
+   "sheet": "Sprites1"
+  },
+  "U19": {
+   "value": "74LS244",
+   "sheet": "Sprites 2"
+  },
+  "U23": {
+   "value": "74LS157",
+   "sheet": "Sprites1"
+  },
+  "U24": {
+   "value": "74LS245",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U27": {
+   "value": "74LS245",
+   "sheet": "Sprites1"
+  },
+  "U28": {
+   "value": "74LS374",
+   "sheet": "Sprites1"
+  },
+  "U29": {
+   "value": "74LS245",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U30": {
+   "value": "74LS157",
+   "sheet": "Sprites1"
+  },
+  "U31": {
+   "value": "74LS245",
+   "sheet": "GFX - Tiles"
+  },
+  "U32": {
+   "value": "74LS157",
+   "sheet": "Sprites1"
+  },
+  "U33": {
+   "value": "74LS245",
+   "sheet": "GFX - Tiles"
+  },
+  "U34": {
+   "value": "007779",
+   "sheet": "GFX - Tiles"
+  },
+  "U35": {
+   "value": "74LS157",
+   "sheet": "Sprites 2"
+  },
+  "U36": {
+   "value": "6264SL",
+   "sheet": "GFX - Tiles"
+  },
+  "U37": {
+   "value": "74LS244",
+   "sheet": "Sprites 2"
+  },
+  "U38": {
+   "value": "6264SL",
+   "sheet": "GFX - Tiles"
+  },
+  "U42": {
+   "value": "007787",
+   "sheet": "Sprites 2"
+  },
+  "U43": {
+   "value": "007783",
+   "sheet": "Sprites1"
+  },
+  "U44": {
+   "value": "74LS245",
+   "sheet": "Sprites1"
+  },
+  "U45": {
+   "value": "007781",
+   "sheet": "GFX - Tiles"
+  },
+  "U46": {
+   "value": "18.432MHz",
+   "sheet": "Timing"
+  },
+  "U52": {
+   "value": "74LS174",
+   "sheet": "GFX - Tiles"
+  },
+  "U53": {
+   "value": "74LS374",
+   "sheet": "Sprites1"
+  },
+  "U54": {
+   "value": "74LS174",
+   "sheet": "GFX - Tiles"
+  },
+  "U55": {
+   "value": "74LS374",
+   "sheet": "Sprites1"
+  },
+  "U59": {
+   "value": "74LS157",
+   "sheet": "Sprites1"
+  },
+  "U60": {
+   "value": "74LS153",
+   "sheet": "Color mixer"
+  },
+  "U61": {
+   "value": "74LS153",
+   "sheet": "Color mixer"
+  },
+  "U62": {
+   "value": "74LS153",
+   "sheet": "Color mixer"
+  },
+  "U63": {
+   "value": "007786",
+   "sheet": "Sprites 2"
+  },
+  "U64": {
+   "value": "74LS153",
+   "sheet": "Color mixer"
+  },
+  "U65": {
+   "value": "007786",
+   "sheet": "Sprites 2"
+  },
+  "U66": {
+   "value": "007782",
+   "sheet": "Timing"
+  },
+  "U68": {
+   "value": "74LS157",
+   "sheet": "Sprites 2"
+  },
+  "U69": {
+   "value": "6264SL",
+   "sheet": "Sprites1"
+  },
+  "U70": {
+   "value": "74LS244",
+   "sheet": "Sprites 2"
+  },
+  "U71": {
+   "value": "6264SL",
+   "sheet": "Sprites1"
+  },
+  "U72": {
+   "value": "74LS244",
+   "sheet": "Sprites 2"
+  },
+  "U75": {
+   "value": "007785",
+   "sheet": "Sprites1"
+  },
+  "U76": {
+   "value": "74LS157",
+   "sheet": "Color mixer"
+  },
+  "U77": {
+   "value": "74LS245",
+   "sheet": "Color mixer"
+  },
+  "U79": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U80": {
+   "value": "74LS138",
+   "sheet": "Sound"
+  },
+  "U81": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U83": {
+   "value": "74LS257",
+   "sheet": "GFX - Tiles"
+  },
+  "U84": {
+   "value": "HM6116P-3",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U85": {
+   "value": "HM6116P-3",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U86": {
+   "value": "HM6116P-3",
+   "sheet": "Sound"
+  },
+  "U87": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U88": {
+   "value": "27C010",
+   "sheet": "CPU"
+  },
+  "U89": {
+   "value": "74LS273",
+   "sheet": "CPU"
+  },
+  "U91": {
+   "value": "74LS257",
+   "sheet": "GFX - Tiles"
+  },
+  "U92": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U93": {
+   "value": "74LS157",
+   "sheet": "GFX - Tiles"
+  },
+  "U94": {
+   "value": "74LS273",
+   "sheet": "Color mixer"
+  },
+  "U95": {
+   "value": "HM6116P-3",
+   "sheet": "Color mixer"
+  },
+  "U96": {
+   "value": "74LS245",
+   "sheet": "CPU"
+  },
+  "U97": {
+   "value": "74LS174",
+   "sheet": "IO"
+  },
+  "U98": {
+   "value": "74LS257",
+   "sheet": "Sprites1"
+  },
+  "U99": {
+   "value": "Z80CPU",
+   "sheet": "Sound"
+  },
+  "U100": {
+   "value": "74LS257",
+   "sheet": "Sprites1"
+  },
+  "U101": {
+   "value": "74LS374",
+   "sheet": "Sound"
+  },
+  "U102": {
+   "value": "74LS257",
+   "sheet": "Sprites1"
+  },
+  "U103": {
+   "value": "YM3012",
+   "sheet": "Sound"
+  },
+  "U104": {
+   "value": "74LS257",
+   "sheet": "Sprites1"
+  },
+  "U105": {
+   "value": "6264SL",
+   "sheet": "CPU"
+  },
+  "U106": {
+   "value": "74LS273",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U107": {
+   "value": "74LS245",
+   "sheet": "CPU"
+  },
+  "U108": {
+   "value": "74LS157",
+   "sheet": "GFX - Tiles"
+  },
+  "U109": {
+   "value": "μPD7759",
+   "sheet": "Sound"
+  },
+  "U110": {
+   "value": "74LS257",
+   "sheet": "GFX - Tiles"
+  },
+  "U111": {
+   "value": "4066",
+   "sheet": "Sound"
+  },
+  "U112": {
+   "value": "74LS157",
+   "sheet": "GFX - Tiles"
+  },
+  "U114": {
+   "value": "74LS257",
+   "sheet": "GFX - Tiles"
+  },
+  "U115": {
+   "value": "74LS273",
+   "sheet": "Color mixer"
+  },
+  "U116": {
+   "value": "74LS157",
+   "sheet": "GFX - Tiles"
+  },
+  "U117": {
+   "value": "HM6116P-3",
+   "sheet": "Color mixer"
+  },
+  "U118": {
+   "value": "MX23C4100",
+   "sheet": "Sprites1"
+  },
+  "U119": {
+   "value": "74LS245",
+   "sheet": "Color mixer"
+  },
+  "U120": {
+   "value": "MX23C4100",
+   "sheet": "Sprites1"
+  },
+  "U121": {
+   "value": "74LS273",
+   "sheet": "Color mixer"
+  },
+  "U122": {
+   "value": "68000D",
+   "sheet": "CPU"
+  },
+  "U123": {
+   "value": "74LS157",
+   "sheet": "Color mixer"
+  },
+  "U124": {
+   "value": "74LS253",
+   "sheet": "IO"
+  },
+  "U125": {
+   "value": "74LS157",
+   "sheet": "Color mixer"
+  },
+  "U126": {
+   "value": "74LS253",
+   "sheet": "IO"
+  },
+  "U127": {
+   "value": "27256",
+   "sheet": "Sound"
+  },
+  "U128": {
+   "value": "74LS138",
+   "sheet": "CPU"
+  },
+  "U130": {
+   "value": "74LS253",
+   "sheet": "IO"
+  },
+  "U131": {
+   "value": "007232",
+   "sheet": "Sound"
+  },
+  "U132": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U133": {
+   "value": "YM2151",
+   "sheet": "Sound"
+  },
+  "U134": {
+   "value": "74LS374",
+   "sheet": "GFX - Tiles"
+  },
+  "U135": {
+   "value": "MB3731SS",
+   "sheet": "Sound"
+  },
+  "U136": {
+   "value": "MX23C4100",
+   "sheet": "GFX - Tiles"
+  },
+  "U137": {
+   "value": "27C010",
+   "sheet": "CPU"
+  },
+  "U138": {
+   "value": "MX23C4100",
+   "sheet": "GFX - Tiles"
+  },
+  "U139": {
+   "value": "6264SL",
+   "sheet": "CPU"
+  },
+  "U140": {
+   "value": "74LS157",
+   "sheet": "GFX - Tiles"
+  },
+  "U141": {
+   "value": "74LS245",
+   "sheet": "CPU"
+  },
+  "U142": {
+   "value": "74LS367",
+   "sheet": "IO"
+  },
+  "U143": {
+   "value": "74LS367",
+   "sheet": "CPU"
+  },
+  "U145": {
+   "value": "74LS273",
+   "sheet": "Sound"
+  },
+  "U147": {
+   "value": "74LS273",
+   "sheet": "Sound"
+  },
+  "U149": {
+   "value": "4066",
+   "sheet": "Sound"
+  },
+  "U150": {
+   "value": "74LS138",
+   "sheet": "IO"
+  },
+  "U151": {
+   "value": "3.58MHz",
+   "sheet": "Sound"
+  },
+  "U152": {
+   "value": "74LS257",
+   "sheet": "IO"
+  },
+  "U153": {
+   "value": "74LS257",
+   "sheet": "IO"
+  },
+  "U154": {
+   "value": "74LS253",
+   "sheet": "IO"
+  },
+  "U156": {
+   "value": "74LS174",
+   "sheet": "Color mixer"
+  },
+  "U157": {
+   "value": "74LS273",
+   "sheet": "Sound"
+  },
+  "U158": {
+   "value": "571001D",
+   "sheet": "Sound"
+  },
+  "U159": {
+   "value": "571001D",
+   "sheet": "Sound"
+  },
+  "U160": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U161": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U162": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U163": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U164": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U165": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U166": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U167": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U168": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U169": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U170": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U171": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U172": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U173": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U174": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U175": {
+   "value": "4464",
+   "sheet": "Sprites 2"
+  },
+  "U176": {
+   "value": "74LS174",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U177": {
+   "value": "74LS174",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U178": {
+   "value": "74LS399",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U180": {
+   "value": "63S141N",
+   "sheet": "Color mixer"
+  },
+  "U181": {
+   "value": "PAL16L8’",
+   "sheet": "Sprites1"
+  },
+  "U182": {
+   "value": "74LS367",
+   "sheet": "Timing"
+  },
+  "U183": {
+   "value": "UPC324",
+   "sheet": "Sound"
+  },
+  "U184": {
+   "value": "UPC324",
+   "sheet": "Sound"
+  },
+  "U186": {
+   "value": "74LS244",
+   "sheet": "Timing"
+  },
+  "U187": {
+   "value": "LA6358",
+   "sheet": "Sound"
+  },
+  "U188": {
+   "value": "74LS32",
+   "sheet": "CPU"
+  },
+  "U189": {
+   "value": "74LS32",
+   "sheet": "CPU"
+  },
+  "U190": {
+   "value": "74LS32",
+   "sheet": "Sprites1"
+  },
+  "U191": {
+   "value": "74LS32",
+   "sheet": "CPU"
+  },
+  "U192": {
+   "value": "74LS32",
+   "sheet": "CPU"
+  },
+  "U193": {
+   "value": "74LS86",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U195": {
+   "value": "74LS32",
+   "sheet": "GFX - Tiles"
+  },
+  "U196": {
+   "value": "74LS04",
+   "sheet": "Sound"
+  },
+  "U197": {
+   "value": "74LS07",
+   "sheet": ""
+  },
+  "U198": {
+   "value": "74LS32",
+   "sheet": ""
+  },
+  "U199": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U200": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U201": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U202": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U203": {
+   "value": "74LS20",
+   "sheet": "Color mixer"
+  },
+  "U204": {
+   "value": "74LS02",
+   "sheet": "CPU"
+  },
+  "U205": {
+   "value": "74LS07",
+   "sheet": ""
+  },
+  "U206": {
+   "value": "74LS04",
+   "sheet": "CPU"
+  },
+  "U207": {
+   "value": "74LS74",
+   "sheet": "Sound"
+  },
+  "U209": {
+   "value": "74LS74",
+   "sheet": "CPU"
+  },
+  "U210": {
+   "value": "74LS74",
+   "sheet": ""
+  },
+  "U211": {
+   "value": "74LS08",
+   "sheet": "CPU"
+  },
+  "U212": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U213": {
+   "value": "74LS32",
+   "sheet": "GFX - Fixed layer"
+  },
+  "U216": {
+   "value": "74LS04",
+   "sheet": ""
+  },
+  "U217": {
+   "value": "74LS32",
+   "sheet": "Sprites 2"
+  },
+  "U218": {
+   "value": "74LS32",
+   "sheet": "GFX - Tiles"
+  },
+  "U219": {
+   "value": "74LS32",
+   "sheet": "Sprites 2"
+  },
+  "U220": {
+   "value": "74LS02",
+   "sheet": "CPU"
+  },
+  "U221": {
+   "value": "74LS02",
+   "sheet": "Sprites 2"
+  },
+  "U222": {
+   "value": "74LS74",
+   "sheet": "CPU"
+  },
+  "U223": {
+   "value": "74LS139",
+   "sheet": "CPU"
+  },
+  "U224": {
+   "value": "74LS00",
+   "sheet": "CPU"
+  },
+  "U225": {
+   "value": "74LS08",
+   "sheet": ""
+  },
+  "U226": {
+   "value": "74LS08",
+   "sheet": ""
+  },
+  "U227": {
+   "value": "74LS74",
+   "sheet": "CPU"
+  },
+  "U228": {
+   "value": "74LS21",
+   "sheet": ""
+  },
+  "U229": {
+   "value": "74LS367",
+   "sheet": "CPU"
+  },
+  "U230": {
+   "value": "74LS32",
+   "sheet": "Color mixer"
+  },
+  "U999": {
+   "value": "JAMMA_CONN",
+   "sheet": "IO"
+  },
+  "Y1": {
+   "value": "640kHz",
+   "sheet": "Sound"
+  }
+ },
+ "nets": {
+  "+12V": {
+   "pins": [
+    "C9.1",
+    "C60.1",
+    "RA16.1",
+    "S306.19",
+    "U135.11",
+    "U183.4",
+    "U184.4",
+    "U999.6",
+    "U999.F"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A1": {
+   "pins": [
+    "O9.5",
+    "U3.1",
+    "U34.25",
+    "U43.16",
+    "U83.1",
+    "U91.1",
+    "U98.1",
+    "U100.1",
+    "U102.1",
+    "U104.1",
+    "U107.18",
+    "U110.1",
+    "U114.1",
+    "U124.14",
+    "U126.14",
+    "U130.14",
+    "U152.1",
+    "U153.1",
+    "U154.14",
+    "U201.2",
+    "U206.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A2": {
+   "pins": [
+    "O9.14",
+    "U3.2",
+    "U32.3",
+    "U34.24",
+    "U43.15",
+    "U76.2",
+    "U93.3",
+    "U107.17",
+    "U124.2",
+    "U126.2",
+    "U130.2",
+    "U154.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A3": {
+   "pins": [
+    "O9.11",
+    "U3.3",
+    "U32.6",
+    "U34.23",
+    "U43.14",
+    "U76.5",
+    "U93.6",
+    "U107.16",
+    "U150.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A4": {
+   "pins": [
+    "N19.2",
+    "U32.10",
+    "U34.22",
+    "U43.13",
+    "U76.14",
+    "U93.13",
+    "U107.15",
+    "U150.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A5": {
+   "pins": [
+    "N19.5",
+    "U32.13",
+    "U34.21",
+    "U43.12",
+    "U76.11",
+    "U93.10",
+    "U107.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A6": {
+   "pins": [
+    "N19.14",
+    "U34.20",
+    "U43.11",
+    "U59.3",
+    "U107.13",
+    "U108.3",
+    "U125.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A7": {
+   "pins": [
+    "N19.11",
+    "U34.19",
+    "U43.10",
+    "U59.6",
+    "U107.12",
+    "U108.6",
+    "U125.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A8": {
+   "pins": [
+    "O10.2",
+    "U34.18",
+    "U43.9",
+    "U59.10",
+    "U107.11",
+    "U108.13",
+    "U125.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A9": {
+   "pins": [
+    "O10.5",
+    "U34.17",
+    "U43.8",
+    "U59.13",
+    "U108.10",
+    "U125.11",
+    "U143.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A10": {
+   "pins": [
+    "O10.14",
+    "U30.3",
+    "U34.15",
+    "U43.7",
+    "U112.3",
+    "U123.2",
+    "U143.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A11": {
+   "pins": [
+    "O10.11",
+    "U30.6",
+    "U34.14",
+    "U43.6",
+    "U112.6",
+    "U123.5",
+    "U143.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A12": {
+   "pins": [
+    "U30.10",
+    "U34.13",
+    "U43.5",
+    "U112.13",
+    "U123.14",
+    "U143.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A13": {
+   "pins": [
+    "U30.13",
+    "U43.4",
+    "U112.10",
+    "U143.11",
+    "U211.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A14": {
+   "pins": [
+    "U18.3",
+    "U140.3",
+    "U143.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A15": {
+   "pins": [
+    "U18.6",
+    "U88.29",
+    "U122.43",
+    "U137.29",
+    "U140.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A16": {
+   "pins": [
+    "U18.10",
+    "U88.3",
+    "U122.44",
+    "U137.3",
+    "U140.13",
+    "U150.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A17": {
+   "pins": [
+    "U18.13",
+    "U88.2",
+    "U122.45",
+    "U128.1",
+    "U137.2",
+    "U140.10",
+    "U223.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A18": {
+   "pins": [
+    "U23.3",
+    "U122.46",
+    "U128.2",
+    "U223.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A19": {
+   "pins": [
+    "U23.6",
+    "U122.47",
+    "U128.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/A20": {
+   "pins": [
+    "H28.13",
+    "U122.48",
+    "U128.4",
+    "U191.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/CPUCLK": {
+   "pins": [
+    "RA2.5",
+    "U66.39",
+    "U209.3",
+    "U209.11",
+    "U229.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D0": {
+   "pins": [
+    "U8.22",
+    "U27.2",
+    "U29.9",
+    "U33.2",
+    "U34.26",
+    "U52.3",
+    "U54.3",
+    "U66.36",
+    "U77.9",
+    "U83.4",
+    "U89.3",
+    "U97.3",
+    "U98.4",
+    "U101.3",
+    "U119.2",
+    "U124.9",
+    "U132.3",
+    "U141.18",
+    "U142.9",
+    "U152.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D1": {
+   "pins": [
+    "U8.23",
+    "U27.3",
+    "U29.8",
+    "U33.3",
+    "U34.27",
+    "U52.4",
+    "U54.4",
+    "U77.8",
+    "U83.7",
+    "U89.4",
+    "U97.4",
+    "U98.7",
+    "U101.4",
+    "U119.3",
+    "U124.7",
+    "U132.4",
+    "U141.17",
+    "U142.7",
+    "U152.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D2": {
+   "pins": [
+    "U8.24",
+    "U27.4",
+    "U29.7",
+    "U33.4",
+    "U34.28",
+    "U52.6",
+    "U54.6",
+    "U77.7",
+    "U83.9",
+    "U89.7",
+    "U98.9",
+    "U101.7",
+    "U119.4",
+    "U132.7",
+    "U141.16",
+    "U142.5",
+    "U152.7",
+    "U154.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D3": {
+   "pins": [
+    "U8.25",
+    "U27.5",
+    "U29.6",
+    "U33.5",
+    "U34.29",
+    "U77.6",
+    "U83.12",
+    "U89.8",
+    "U97.6",
+    "U98.12",
+    "U101.8",
+    "U119.5",
+    "U132.8",
+    "U141.15",
+    "U142.3",
+    "U152.4",
+    "U154.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D4": {
+   "pins": [
+    "U8.26",
+    "U27.6",
+    "U29.5",
+    "U33.6",
+    "U34.30",
+    "U77.5",
+    "U89.13",
+    "U91.4",
+    "U101.13",
+    "U102.4",
+    "U119.6",
+    "U126.9",
+    "U132.13",
+    "U141.14",
+    "U153.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D5": {
+   "pins": [
+    "U8.27",
+    "U27.7",
+    "U29.4",
+    "U33.7",
+    "U34.31",
+    "U77.4",
+    "U89.14",
+    "U91.7",
+    "U97.11",
+    "U101.14",
+    "U102.7",
+    "U119.7",
+    "U126.7",
+    "U132.14",
+    "U141.13",
+    "U153.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D6": {
+   "pins": [
+    "U8.28",
+    "U27.8",
+    "U29.3",
+    "U33.8",
+    "U34.33",
+    "U77.3",
+    "U89.17",
+    "U91.9",
+    "U97.13",
+    "U101.17",
+    "U102.9",
+    "U119.8",
+    "U130.9",
+    "U132.17",
+    "U141.12",
+    "U153.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D7": {
+   "pins": [
+    "U8.29",
+    "U27.9",
+    "U29.2",
+    "U33.9",
+    "U34.34",
+    "U77.2",
+    "U89.18",
+    "U91.12",
+    "U97.14",
+    "U101.18",
+    "U102.12",
+    "U119.9",
+    "U130.7",
+    "U132.18",
+    "U141.11",
+    "U153.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D8": {
+   "pins": [
+    "U8.30",
+    "U24.9",
+    "U31.2",
+    "U34.35",
+    "U44.2",
+    "U96.18",
+    "U104.4",
+    "U114.4",
+    "U134.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D9": {
+   "pins": [
+    "U8.31",
+    "U24.8",
+    "U31.3",
+    "U44.3",
+    "U96.17",
+    "U104.7",
+    "U114.7",
+    "U134.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D10": {
+   "pins": [
+    "U8.33",
+    "U24.7",
+    "U31.4",
+    "U44.4",
+    "U96.16",
+    "U104.9",
+    "U114.9",
+    "U134.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D11": {
+   "pins": [
+    "U8.34",
+    "U24.6",
+    "U31.5",
+    "U44.5",
+    "U96.15",
+    "U104.12",
+    "U114.12",
+    "U134.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D12": {
+   "pins": [
+    "U8.35",
+    "U24.5",
+    "U31.6",
+    "U44.6",
+    "U96.14",
+    "U100.4",
+    "U110.4",
+    "U134.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D13": {
+   "pins": [
+    "U8.36",
+    "U24.4",
+    "U31.7",
+    "U44.7",
+    "U96.13",
+    "U100.7",
+    "U110.7",
+    "U134.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D14": {
+   "pins": [
+    "U8.37",
+    "U24.3",
+    "U31.8",
+    "U44.8",
+    "U96.12",
+    "U100.9",
+    "U110.9",
+    "U134.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/D15": {
+   "pins": [
+    "U8.38",
+    "U24.2",
+    "U31.9",
+    "U44.9",
+    "U96.11",
+    "U100.12",
+    "U110.12",
+    "U134.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/DMAINIT": {
+   "pins": [
+    "U66.6",
+    "U75.77",
+    "U181.11",
+    "U190.9",
+    "U220.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/HFLIP": {
+   "pins": [
+    "U1.35",
+    "U2.16",
+    "U42.16",
+    "U45.45",
+    "U63.35",
+    "U66.30",
+    "U89.5",
+    "U181.5",
+    "U193.2",
+    "U193.5",
+    "U193.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA1": {
+   "pins": [
+    "U88.12",
+    "U105.10",
+    "U107.2",
+    "U122.29",
+    "U137.12",
+    "U139.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA2": {
+   "pins": [
+    "U88.11",
+    "U105.9",
+    "U107.3",
+    "U122.30",
+    "U137.11",
+    "U139.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA3": {
+   "pins": [
+    "U88.10",
+    "U105.8",
+    "U107.4",
+    "U122.31",
+    "U137.10",
+    "U139.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA4": {
+   "pins": [
+    "U88.9",
+    "U105.7",
+    "U107.5",
+    "U122.32",
+    "U137.9",
+    "U139.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA5": {
+   "pins": [
+    "U88.8",
+    "U105.6",
+    "U107.6",
+    "U122.33",
+    "U137.8",
+    "U139.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA6": {
+   "pins": [
+    "U88.7",
+    "U105.5",
+    "U107.7",
+    "U122.34",
+    "U137.7",
+    "U139.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA7": {
+   "pins": [
+    "U88.6",
+    "U105.4",
+    "U107.8",
+    "U122.35",
+    "U137.6",
+    "U139.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA8": {
+   "pins": [
+    "U88.5",
+    "U105.3",
+    "U107.9",
+    "U122.36",
+    "U137.5",
+    "U139.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA9": {
+   "pins": [
+    "U88.27",
+    "U105.25",
+    "U122.37",
+    "U137.27",
+    "U139.25",
+    "U143.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA10": {
+   "pins": [
+    "U88.26",
+    "U105.24",
+    "U122.38",
+    "U137.26",
+    "U139.24",
+    "U143.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA11": {
+   "pins": [
+    "U88.23",
+    "U105.21",
+    "U122.39",
+    "U137.23",
+    "U139.21",
+    "U143.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA12": {
+   "pins": [
+    "U88.25",
+    "U105.23",
+    "U122.40",
+    "U137.25",
+    "U139.23",
+    "U143.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA13": {
+   "pins": [
+    "U88.4",
+    "U105.2",
+    "U122.41",
+    "U137.4",
+    "U139.2",
+    "U143.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA14": {
+   "pins": [
+    "U88.28",
+    "U122.42",
+    "U137.28",
+    "U143.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA21": {
+   "pins": [
+    "U122.50",
+    "U223.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA22": {
+   "pins": [
+    "U122.51",
+    "U223.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MA23": {
+   "pins": [
+    "U122.52",
+    "U191.5",
+    "U224.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD0": {
+   "pins": [
+    "U105.11",
+    "U122.5",
+    "U137.13",
+    "U141.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD1": {
+   "pins": [
+    "U105.12",
+    "U122.4",
+    "U137.14",
+    "U141.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD2": {
+   "pins": [
+    "U105.13",
+    "U122.3",
+    "U137.15",
+    "U141.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD3": {
+   "pins": [
+    "U105.15",
+    "U122.2",
+    "U137.17",
+    "U141.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD4": {
+   "pins": [
+    "U105.16",
+    "U122.1",
+    "U137.18",
+    "U141.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD5": {
+   "pins": [
+    "U105.17",
+    "U122.64",
+    "U137.19",
+    "U141.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD6": {
+   "pins": [
+    "U105.18",
+    "U122.63",
+    "U137.20",
+    "U141.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD7": {
+   "pins": [
+    "U105.19",
+    "U122.62",
+    "U137.21",
+    "U141.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD8": {
+   "pins": [
+    "U88.13",
+    "U96.2",
+    "U122.61",
+    "U139.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD9": {
+   "pins": [
+    "U88.14",
+    "U96.3",
+    "U122.60",
+    "U139.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD10": {
+   "pins": [
+    "U88.15",
+    "U96.4",
+    "U122.59",
+    "U139.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD11": {
+   "pins": [
+    "U88.17",
+    "U96.5",
+    "U122.58",
+    "U139.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD12": {
+   "pins": [
+    "U88.18",
+    "U96.6",
+    "U122.57",
+    "U139.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD13": {
+   "pins": [
+    "U88.19",
+    "U96.7",
+    "U122.56",
+    "U139.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD14": {
+   "pins": [
+    "U88.20",
+    "U96.8",
+    "U122.55",
+    "U139.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MD15": {
+   "pins": [
+    "U88.21",
+    "U96.9",
+    "U122.54",
+    "U139.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/MINT16EN": {
+   "pins": [
+    "U97.10",
+    "U222.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/TIM1": {
+   "pins": [
+    "U66.14",
+    "U189.10",
+    "U206.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/VBLANK": {
+   "pins": [
+    "U66.58",
+    "U222.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/VFLIP": {
+   "pins": [
+    "U1.36",
+    "U63.36",
+    "U66.31",
+    "U89.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{CPURES}": {
+   "pins": [
+    "U66.40",
+    "U205.3",
+    "U205.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{DMACS}": {
+   "pins": [
+    "U66.61",
+    "U188.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{FIXCS}": {
+   "pins": [
+    "U66.33",
+    "U213.5",
+    "U213.10",
+    "U223.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{FIXDTAC}": {
+   "pins": [
+    "U66.28",
+    "U226.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MAS}": {
+   "pins": [
+    "H28.1",
+    "H28.3",
+    "RA5.4",
+    "U122.6",
+    "U191.1",
+    "U191.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MBERR}": {
+   "pins": [
+    "RA5.9",
+    "U122.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MBGACK}": {
+   "pins": [
+    "RA5.7",
+    "U122.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MBR}": {
+   "pins": [
+    "RA5.8",
+    "U122.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MDTACK}": {
+   "pins": [
+    "RA5.6",
+    "U122.10",
+    "U205.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MHALT}": {
+   "pins": [
+    "RA2.2",
+    "U122.17",
+    "U205.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MLDS}": {
+   "pins": [
+    "RA5.2",
+    "U122.8",
+    "U192.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MLWR}": {
+   "pins": [
+    "U43.76",
+    "U192.3",
+    "U211.1",
+    "U213.13",
+    "U218.13",
+    "U230.2",
+    "U230.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MRESET}": {
+   "pins": [
+    "RA2.3",
+    "U122.18",
+    "U205.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MUDS}": {
+   "pins": [
+    "RA5.3",
+    "U122.7",
+    "U192.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MULWR}": {
+   "pins": [
+    "U3.4",
+    "U34.62",
+    "U188.4",
+    "U211.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{MUWR}": {
+   "pins": [
+    "U43.75",
+    "U105.27",
+    "U139.27",
+    "U192.6",
+    "U211.2",
+    "U213.1",
+    "U218.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{OBJCS}": {
+   "pins": [
+    "U43.77",
+    "U189.5",
+    "U220.9",
+    "U223.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{OBJSCRH}": {
+   "pins": [
+    "U3.14",
+    "U8.39"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{OBJSCRV}": {
+   "pins": [
+    "U3.13",
+    "U8.40"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{OCHAROMCS}": {
+   "pins": [
+    "U98.15",
+    "U100.15",
+    "U102.15",
+    "U104.15",
+    "U211.10",
+    "U223.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{ROMCS}": {
+   "pins": [
+    "U88.24",
+    "U137.24",
+    "U224.1",
+    "U226.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{SCVRAMCS}": {
+   "pins": [
+    "U189.9",
+    "U195.5",
+    "U204.5",
+    "U223.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{SVCHAROMCS}": {
+   "pins": [
+    "U83.15",
+    "U91.15",
+    "U110.15",
+    "U114.15",
+    "U211.9",
+    "U223.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{SYSWR}": {
+   "pins": [
+    "U3.5",
+    "U34.61",
+    "U128.9",
+    "U188.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{V1SCRH}": {
+   "pins": [
+    "U3.12",
+    "U52.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{V2SCRH}": {
+   "pins": [
+    "U3.10",
+    "U54.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{VOROMDTAC}": {
+   "pins": [
+    "U209.9",
+    "U226.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{VRCSET}": {
+   "pins": [
+    "U128.7",
+    "U188.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{WORKCS}": {
+   "pins": [
+    "U105.20",
+    "U128.13",
+    "U139.20",
+    "U224.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/CPU/~{XCS}": {
+   "pins": [
+    "U128.5",
+    "U189.1",
+    "U191.12",
+    "U223.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C0": {
+   "pins": [
+    "U45.50",
+    "U64.5",
+    "U192.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C1": {
+   "pins": [
+    "U45.49",
+    "U64.11",
+    "U192.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C2": {
+   "pins": [
+    "U45.31",
+    "U62.5",
+    "U191.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C3": {
+   "pins": [
+    "U45.30",
+    "U62.11",
+    "U191.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C4": {
+   "pins": [
+    "U45.29",
+    "U60.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C5": {
+   "pins": [
+    "U45.2",
+    "U60.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/1C6": {
+   "pins": [
+    "U45.1",
+    "U61.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C0": {
+   "pins": [
+    "U45.57",
+    "U64.6",
+    "U192.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C1": {
+   "pins": [
+    "U45.56",
+    "U64.10",
+    "U192.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C2": {
+   "pins": [
+    "U45.55",
+    "U62.6",
+    "U212.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C3": {
+   "pins": [
+    "U45.54",
+    "U62.10",
+    "U212.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C4": {
+   "pins": [
+    "U45.53",
+    "U60.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C5": {
+   "pins": [
+    "U45.52",
+    "U60.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/2C6": {
+   "pins": [
+    "U45.51",
+    "U61.6",
+    "U180.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/BLUE": {
+   "pins": [
+    "R38.1",
+    "S1.8",
+    "U999.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB0": {
+   "pins": [
+    "U76.3",
+    "U156.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB1": {
+   "pins": [
+    "U76.6",
+    "U156.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB2": {
+   "pins": [
+    "U76.13",
+    "U121.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB3": {
+   "pins": [
+    "U76.10",
+    "U121.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB4": {
+   "pins": [
+    "U121.6",
+    "U125.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB5": {
+   "pins": [
+    "U121.9",
+    "U125.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB6": {
+   "pins": [
+    "U121.12",
+    "U125.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB7": {
+   "pins": [
+    "U121.15",
+    "U125.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB8": {
+   "pins": [
+    "U121.16",
+    "U123.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CB9": {
+   "pins": [
+    "U121.19",
+    "U123.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CLK2": {
+   "pins": [
+    "U7.9",
+    "U14.11",
+    "U17.11",
+    "U34.5",
+    "U45.46",
+    "U94.11",
+    "U115.11",
+    "U121.11",
+    "U156.9",
+    "U178.9",
+    "U186.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL0": {
+   "pins": [
+    "U64.7",
+    "U156.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL1": {
+   "pins": [
+    "U64.9",
+    "U156.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL2": {
+   "pins": [
+    "U62.7",
+    "U121.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL3": {
+   "pins": [
+    "U62.9",
+    "U121.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL4": {
+   "pins": [
+    "U60.7",
+    "U121.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL5": {
+   "pins": [
+    "U60.9",
+    "U121.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL6": {
+   "pins": [
+    "U61.7",
+    "U121.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL7": {
+   "pins": [
+    "U61.9",
+    "U121.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL8": {
+   "pins": [
+    "U121.17",
+    "U225.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/COL9": {
+   "pins": [
+    "U121.18",
+    "U206.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/CRTKILL": {
+   "pins": [
+    "U18.1",
+    "U23.1",
+    "U30.1",
+    "U32.1",
+    "U59.1",
+    "U93.1",
+    "U97.15",
+    "U108.1",
+    "U112.1",
+    "U140.1",
+    "U202.2",
+    "U202.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX0": {
+   "pins": [
+    "U14.2",
+    "U64.3",
+    "U230.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX1": {
+   "pins": [
+    "U14.5",
+    "U64.13",
+    "U230.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX2": {
+   "pins": [
+    "U14.6",
+    "U62.3",
+    "U212.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX3": {
+   "pins": [
+    "U14.9",
+    "U62.13",
+    "U212.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX4": {
+   "pins": [
+    "U14.12",
+    "U60.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX5": {
+   "pins": [
+    "U14.15",
+    "U60.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX6": {
+   "pins": [
+    "U14.16",
+    "U61.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/FX7": {
+   "pins": [
+    "U14.19",
+    "U61.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/GREEN": {
+   "pins": [
+    "R37.1",
+    "S2.8",
+    "U999.N"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I0": {
+   "pins": [
+    "U77.11",
+    "U94.3",
+    "U117.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I1": {
+   "pins": [
+    "U77.12",
+    "U94.4",
+    "U117.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I2": {
+   "pins": [
+    "U77.13",
+    "U94.7",
+    "U117.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I3": {
+   "pins": [
+    "U77.14",
+    "U94.8",
+    "U117.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I4": {
+   "pins": [
+    "U77.15",
+    "U94.13",
+    "U117.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I5": {
+   "pins": [
+    "U77.16",
+    "U94.14",
+    "U117.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I6": {
+   "pins": [
+    "U77.17",
+    "U94.17",
+    "U117.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I7": {
+   "pins": [
+    "U77.18",
+    "U94.18",
+    "U117.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I8": {
+   "pins": [
+    "U95.17",
+    "U115.3",
+    "U119.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I9": {
+   "pins": [
+    "U95.16",
+    "U115.4",
+    "U119.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I10": {
+   "pins": [
+    "U95.15",
+    "U115.7",
+    "U119.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I11": {
+   "pins": [
+    "U95.14",
+    "U115.8",
+    "U119.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I12": {
+   "pins": [
+    "U95.13",
+    "U115.13",
+    "U119.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I13": {
+   "pins": [
+    "U95.11",
+    "U115.14",
+    "U119.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I14": {
+   "pins": [
+    "U95.10",
+    "U115.17",
+    "U119.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/I15": {
+   "pins": [
+    "U95.9",
+    "U119.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD0": {
+   "pins": [
+    "U2.21",
+    "U64.4",
+    "U199.2",
+    "U203.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD1": {
+   "pins": [
+    "U2.20",
+    "U64.12",
+    "U199.1",
+    "U203.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD2": {
+   "pins": [
+    "U2.19",
+    "U62.4",
+    "U200.10",
+    "U203.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD3": {
+   "pins": [
+    "U2.18",
+    "U62.12",
+    "U200.9",
+    "U203.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD4": {
+   "pins": [
+    "U42.21",
+    "U60.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD5": {
+   "pins": [
+    "U42.20",
+    "U60.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD6": {
+   "pins": [
+    "U42.19",
+    "U61.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/OCD7": {
+   "pins": [
+    "U42.18",
+    "U61.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R0": {
+   "pins": [
+    "U76.4",
+    "U95.2",
+    "U117.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R1": {
+   "pins": [
+    "U76.7",
+    "U95.1",
+    "U117.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R2": {
+   "pins": [
+    "U76.12",
+    "U95.5",
+    "U117.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R3": {
+   "pins": [
+    "U76.9",
+    "U95.6",
+    "U117.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R4": {
+   "pins": [
+    "U95.4",
+    "U117.7",
+    "U125.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R5": {
+   "pins": [
+    "U95.7",
+    "U117.3",
+    "U125.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R6": {
+   "pins": [
+    "U95.3",
+    "U117.8",
+    "U125.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R7": {
+   "pins": [
+    "U95.8",
+    "U117.5",
+    "U125.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R8": {
+   "pins": [
+    "U95.23",
+    "U117.23",
+    "U123.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R9": {
+   "pins": [
+    "U95.19",
+    "U117.19",
+    "U123.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/R10": {
+   "pins": [
+    "U95.22",
+    "U117.22",
+    "U123.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/RED": {
+   "pins": [
+    "R36.1",
+    "S3.8",
+    "U999.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/SELA": {
+   "pins": [
+    "H28.11",
+    "U60.14",
+    "U61.14",
+    "U62.14",
+    "U64.14",
+    "U202.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/SELB": {
+   "pins": [
+    "U60.2",
+    "U61.2",
+    "U62.2",
+    "U64.2",
+    "U202.6",
+    "U206.1",
+    "U225.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/SHAD1": {
+   "pins": [
+    "A23.9",
+    "U156.10",
+    "U197.9",
+    "U197.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/SHADOW": {
+   "pins": [
+    "U156.6",
+    "U180.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/~{CBLK''}": {
+   "pins": [
+    "A23.11",
+    "U115.19",
+    "U197.1",
+    "U197.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/~{CBLK'}": {
+   "pins": [
+    "U115.18",
+    "U156.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Color mixer/~{CBLK}": {
+   "pins": [
+    "U66.59",
+    "U156.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/1V": {
+   "pins": [
+    "U34.1",
+    "U66.50",
+    "U106.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/2V": {
+   "pins": [
+    "U66.51",
+    "U106.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/4V": {
+   "pins": [
+    "U66.52",
+    "U106.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/8H": {
+   "pins": [
+    "O9.6",
+    "U66.46",
+    "U181.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/8V": {
+   "pins": [
+    "N19.10",
+    "U66.53"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/16H": {
+   "pins": [
+    "O9.13",
+    "U66.45"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/16V": {
+   "pins": [
+    "O10.3",
+    "U66.54"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/32H": {
+   "pins": [
+    "O9.10",
+    "U66.44"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/32V": {
+   "pins": [
+    "O10.6",
+    "U66.55"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/64H": {
+   "pins": [
+    "N19.3",
+    "U66.43"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/64V": {
+   "pins": [
+    "O10.13",
+    "U66.56"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/128H": {
+   "pins": [
+    "N19.6",
+    "U66.42"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/128V": {
+   "pins": [
+    "O10.10",
+    "U66.57"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/256H": {
+   "pins": [
+    "N19.13",
+    "U66.41"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA0": {
+   "pins": [
+    "O9.7",
+    "U84.7",
+    "U85.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA1": {
+   "pins": [
+    "O9.12",
+    "U84.5",
+    "U85.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA2": {
+   "pins": [
+    "O9.9",
+    "U84.8",
+    "U85.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA3": {
+   "pins": [
+    "N19.4",
+    "U84.1",
+    "U85.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA4": {
+   "pins": [
+    "N19.7",
+    "U84.23",
+    "U85.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA5": {
+   "pins": [
+    "N19.12",
+    "U84.19",
+    "U85.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA6": {
+   "pins": [
+    "N19.9",
+    "U84.22",
+    "U85.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA7": {
+   "pins": [
+    "O10.4",
+    "U84.4",
+    "U85.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA8": {
+   "pins": [
+    "O10.7",
+    "U84.3",
+    "U85.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA9": {
+   "pins": [
+    "O10.12",
+    "U84.2",
+    "U85.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXA10": {
+   "pins": [
+    "O10.9",
+    "U84.6",
+    "U85.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD0": {
+   "pins": [
+    "U29.11",
+    "U85.17",
+    "U106.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD1": {
+   "pins": [
+    "U29.12",
+    "U85.16",
+    "U106.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD2": {
+   "pins": [
+    "U29.13",
+    "U85.15",
+    "U106.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD3": {
+   "pins": [
+    "U29.14",
+    "U85.14",
+    "U106.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD4": {
+   "pins": [
+    "U29.15",
+    "U85.13",
+    "U106.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD5": {
+   "pins": [
+    "U12.3",
+    "U29.16",
+    "U85.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD6": {
+   "pins": [
+    "U12.4",
+    "U29.17",
+    "U85.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD7": {
+   "pins": [
+    "U12.7",
+    "U29.18",
+    "U85.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD8": {
+   "pins": [
+    "U12.8",
+    "U24.11",
+    "U84.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD9": {
+   "pins": [
+    "U12.13",
+    "U24.12",
+    "U84.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD10": {
+   "pins": [
+    "U12.14",
+    "U24.13",
+    "U84.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD11": {
+   "pins": [
+    "U12.17",
+    "U24.14",
+    "U84.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD12": {
+   "pins": [
+    "U12.18",
+    "U24.15",
+    "U84.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD13": {
+   "pins": [
+    "U24.16",
+    "U84.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD14": {
+   "pins": [
+    "U24.17",
+    "U84.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD15": {
+   "pins": [
+    "U24.18",
+    "U84.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/FXD[0..15]": {
+   "pins": [
+    "U12.11",
+    "U106.11",
+    "U216.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/P1H": {
+   "pins": [
+    "U34.4",
+    "U75.46",
+    "U181.3",
+    "U186.18",
+    "U216.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/P2H": {
+   "pins": [
+    "N19.1",
+    "O9.1",
+    "O10.1",
+    "U66.17",
+    "U79.1",
+    "U81.1",
+    "U188.9",
+    "U188.12",
+    "U193.9",
+    "U193.12",
+    "U199.4",
+    "U201.10",
+    "U213.4",
+    "U216.3",
+    "U218.4",
+    "U220.3",
+    "U220.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/P4H": {
+   "pins": [
+    "U66.15",
+    "U87.11",
+    "U92.11",
+    "U188.10",
+    "U193.4",
+    "U211.4",
+    "U211.12",
+    "U216.5",
+    "U224.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/TIM3": {
+   "pins": [
+    "U43.3",
+    "U66.11",
+    "U213.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/~{MREAD2}": {
+   "pins": [
+    "O9.2",
+    "U24.1",
+    "U27.1",
+    "U29.1",
+    "U31.1",
+    "U33.1",
+    "U43.79",
+    "U44.1",
+    "U188.1",
+    "U188.13",
+    "U206.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/~{OE}": {
+   "pins": [
+    "O9.4",
+    "U84.20",
+    "U85.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Fixed layer/~{P1H}": {
+   "pins": [
+    "U176.9",
+    "U177.9",
+    "U193.1",
+    "U216.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/1S0": {
+   "pins": [
+    "U45.42",
+    "U52.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/1S1": {
+   "pins": [
+    "U45.43",
+    "U52.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/1S2": {
+   "pins": [
+    "U45.44",
+    "U52.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/1V1": {
+   "pins": [
+    "U34.9",
+    "U79.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/1V2": {
+   "pins": [
+    "U34.12",
+    "U92.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/2S0": {
+   "pins": [
+    "U45.39",
+    "U54.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/2S1": {
+   "pins": [
+    "U45.40",
+    "U54.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/2S2": {
+   "pins": [
+    "U45.41",
+    "U54.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/2V1": {
+   "pins": [
+    "U34.8",
+    "U79.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/2V2": {
+   "pins": [
+    "U34.11",
+    "U92.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/4V1": {
+   "pins": [
+    "U34.7",
+    "U79.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/4V2": {
+   "pins": [
+    "U34.10",
+    "U92.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B20": {
+   "pins": [
+    "U116.2",
+    "U132.2",
+    "U134.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B21": {
+   "pins": [
+    "U116.5",
+    "U132.5",
+    "U134.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B22": {
+   "pins": [
+    "U116.14",
+    "U132.6",
+    "U134.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B23": {
+   "pins": [
+    "U116.11",
+    "U132.9",
+    "U134.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B24": {
+   "pins": [
+    "U116.3",
+    "U132.12",
+    "U134.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B25": {
+   "pins": [
+    "U116.6",
+    "U132.15",
+    "U134.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B26": {
+   "pins": [
+    "U116.13",
+    "U132.16",
+    "U134.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/B27": {
+   "pins": [
+    "U116.10",
+    "U132.19",
+    "U134.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C0": {
+   "pins": [
+    "U45.63",
+    "U83.3",
+    "U138.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C1": {
+   "pins": [
+    "U45.62",
+    "U83.6",
+    "U138.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C2": {
+   "pins": [
+    "U45.61",
+    "U83.10",
+    "U138.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C3": {
+   "pins": [
+    "U45.36",
+    "U83.13",
+    "U138.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C4": {
+   "pins": [
+    "U45.35",
+    "U91.3",
+    "U138.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C5": {
+   "pins": [
+    "U45.34",
+    "U91.6",
+    "U138.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C6": {
+   "pins": [
+    "U45.33",
+    "U91.10",
+    "U138.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C7": {
+   "pins": [
+    "U45.28",
+    "U91.13",
+    "U138.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C8": {
+   "pins": [
+    "U45.27",
+    "U114.3",
+    "U138.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C9": {
+   "pins": [
+    "U45.26",
+    "U114.6",
+    "U138.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C10": {
+   "pins": [
+    "U45.25",
+    "U114.10",
+    "U138.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C11": {
+   "pins": [
+    "U45.24",
+    "U114.13",
+    "U138.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C12": {
+   "pins": [
+    "U45.23",
+    "U110.3",
+    "U138.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C13": {
+   "pins": [
+    "U45.22",
+    "U110.6",
+    "U138.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C14": {
+   "pins": [
+    "U45.21",
+    "U110.10",
+    "U138.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C15": {
+   "pins": [
+    "U45.20",
+    "U110.13",
+    "U138.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C16": {
+   "pins": [
+    "U45.19",
+    "U83.2",
+    "U136.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C17": {
+   "pins": [
+    "U45.18",
+    "U83.5",
+    "U136.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C18": {
+   "pins": [
+    "U45.17",
+    "U83.11",
+    "U136.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C19": {
+   "pins": [
+    "U45.15",
+    "U83.14",
+    "U136.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C20": {
+   "pins": [
+    "U45.14",
+    "U91.2",
+    "U136.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C21": {
+   "pins": [
+    "U45.13",
+    "U91.5",
+    "U136.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C22": {
+   "pins": [
+    "U45.12",
+    "U91.11",
+    "U136.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C23": {
+   "pins": [
+    "U45.11",
+    "U91.14",
+    "U136.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C24": {
+   "pins": [
+    "U45.10",
+    "U114.2",
+    "U136.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C25": {
+   "pins": [
+    "U45.9",
+    "U114.5",
+    "U136.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C26": {
+   "pins": [
+    "U45.8",
+    "U114.11",
+    "U136.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C27": {
+   "pins": [
+    "U45.7",
+    "U114.14",
+    "U136.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C28": {
+   "pins": [
+    "U45.6",
+    "U110.2",
+    "U136.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C29": {
+   "pins": [
+    "U45.5",
+    "U110.5",
+    "U136.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C30": {
+   "pins": [
+    "U45.4",
+    "U110.11",
+    "U136.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/C31": {
+   "pins": [
+    "U45.3",
+    "U110.14",
+    "U136.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA0": {
+   "pins": [
+    "U93.4",
+    "U136.9",
+    "U138.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA1": {
+   "pins": [
+    "U93.7",
+    "U136.8",
+    "U138.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA2": {
+   "pins": [
+    "U93.12",
+    "U136.7",
+    "U138.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA3": {
+   "pins": [
+    "U93.9",
+    "U136.6",
+    "U138.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA4": {
+   "pins": [
+    "U108.4",
+    "U136.5",
+    "U138.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA5": {
+   "pins": [
+    "U108.7",
+    "U136.4",
+    "U138.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA6": {
+   "pins": [
+    "U108.12",
+    "U136.3",
+    "U138.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA7": {
+   "pins": [
+    "U108.9",
+    "U136.2",
+    "U138.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA8": {
+   "pins": [
+    "U112.4",
+    "U136.40",
+    "U138.40"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA9": {
+   "pins": [
+    "U112.7",
+    "U136.39",
+    "U138.39"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA10": {
+   "pins": [
+    "U112.12",
+    "U136.38",
+    "U138.38"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA11": {
+   "pins": [
+    "U112.9",
+    "U136.37",
+    "U138.37"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA12": {
+   "pins": [
+    "U136.36",
+    "U138.36",
+    "U140.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA13": {
+   "pins": [
+    "U136.35",
+    "U138.35",
+    "U140.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA14": {
+   "pins": [
+    "U116.4",
+    "U136.34",
+    "U138.34"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA15": {
+   "pins": [
+    "U116.7",
+    "U136.33",
+    "U138.33"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA16": {
+   "pins": [
+    "U116.12",
+    "U136.32",
+    "U138.32"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/CA17": {
+   "pins": [
+    "U116.9",
+    "U136.1",
+    "U138.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E0": {
+   "pins": [
+    "U79.9",
+    "U92.9",
+    "U93.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E1": {
+   "pins": [
+    "U79.12",
+    "U92.12",
+    "U108.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E2": {
+   "pins": [
+    "U79.15",
+    "U92.15",
+    "U108.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E3": {
+   "pins": [
+    "U79.16",
+    "U92.16",
+    "U108.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E4": {
+   "pins": [
+    "U79.19",
+    "U92.19",
+    "U108.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E5": {
+   "pins": [
+    "U81.2",
+    "U87.2",
+    "U112.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E6": {
+   "pins": [
+    "U81.5",
+    "U87.5",
+    "U112.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E7": {
+   "pins": [
+    "U81.6",
+    "U87.6",
+    "U112.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E8": {
+   "pins": [
+    "U81.9",
+    "U87.9",
+    "U112.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E9": {
+   "pins": [
+    "U81.12",
+    "U87.12",
+    "U140.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E10": {
+   "pins": [
+    "U81.15",
+    "U87.15",
+    "U140.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E11": {
+   "pins": [
+    "U81.16",
+    "U87.16",
+    "U140.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/E12": {
+   "pins": [
+    "U81.19",
+    "U87.19",
+    "U140.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/EV1": {
+   "pins": [
+    "U79.2",
+    "U92.2",
+    "U93.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/EV2": {
+   "pins": [
+    "U79.5",
+    "U92.5",
+    "U93.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/EV4": {
+   "pins": [
+    "U79.6",
+    "U92.6",
+    "U93.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/N2H": {
+   "pins": [
+    "U15.11",
+    "U28.11",
+    "U53.11",
+    "U55.11",
+    "U87.1",
+    "U92.1",
+    "U189.13",
+    "U216.4",
+    "U224.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/SYNCRLDV": {
+   "pins": [
+    "U34.6",
+    "U66.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V0": {
+   "pins": [
+    "U33.18",
+    "U38.11",
+    "U79.8",
+    "U92.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V1": {
+   "pins": [
+    "U33.17",
+    "U38.12",
+    "U79.13",
+    "U92.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V2": {
+   "pins": [
+    "U33.16",
+    "U38.13",
+    "U79.14",
+    "U92.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V3": {
+   "pins": [
+    "U33.15",
+    "U38.15",
+    "U79.17",
+    "U92.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V4": {
+   "pins": [
+    "U33.14",
+    "U38.16",
+    "U79.18",
+    "U92.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V5": {
+   "pins": [
+    "U33.13",
+    "U38.17",
+    "U81.3",
+    "U87.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V6": {
+   "pins": [
+    "U33.12",
+    "U38.18",
+    "U81.4",
+    "U87.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V7": {
+   "pins": [
+    "U33.11",
+    "U38.19",
+    "U81.7",
+    "U87.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V8": {
+   "pins": [
+    "U31.18",
+    "U36.11",
+    "U81.8",
+    "U87.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V9": {
+   "pins": [
+    "U31.17",
+    "U36.12",
+    "U81.13",
+    "U87.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V10": {
+   "pins": [
+    "U31.16",
+    "U36.13",
+    "U81.14",
+    "U87.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V11": {
+   "pins": [
+    "U31.15",
+    "U36.15",
+    "U81.17",
+    "U87.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V12": {
+   "pins": [
+    "U31.14",
+    "U36.16",
+    "U81.18",
+    "U87.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V13": {
+   "pins": [
+    "U31.13",
+    "U36.17",
+    "U45.58"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V14": {
+   "pins": [
+    "U31.12",
+    "U36.18",
+    "U45.59"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/V15": {
+   "pins": [
+    "U31.11",
+    "U36.19",
+    "U45.60"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA0": {
+   "pins": [
+    "U34.46",
+    "U36.10",
+    "U38.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA1": {
+   "pins": [
+    "U34.47",
+    "U36.9",
+    "U38.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA2": {
+   "pins": [
+    "U34.49",
+    "U36.8",
+    "U38.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA3": {
+   "pins": [
+    "U34.50",
+    "U36.7",
+    "U38.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA4": {
+   "pins": [
+    "U34.51",
+    "U36.6",
+    "U38.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA5": {
+   "pins": [
+    "U34.52",
+    "U36.5",
+    "U38.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA6": {
+   "pins": [
+    "U34.53",
+    "U36.4",
+    "U38.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA7": {
+   "pins": [
+    "U34.54",
+    "U36.3",
+    "U38.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA8": {
+   "pins": [
+    "U34.55",
+    "U36.25",
+    "U38.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA9": {
+   "pins": [
+    "U34.56",
+    "U36.24",
+    "U38.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA10": {
+   "pins": [
+    "U34.57",
+    "U36.21",
+    "U38.21"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VA11": {
+   "pins": [
+    "U34.58",
+    "U36.23",
+    "U38.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/VCNTEN": {
+   "pins": [
+    "U1.30",
+    "U34.2",
+    "U63.30",
+    "U66.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{CLR}": {
+   "pins": [
+    "U1.29",
+    "U2.15",
+    "U8.41",
+    "U34.63",
+    "U42.15",
+    "U43.51",
+    "U45.47",
+    "U63.29",
+    "U65.29",
+    "U75.24",
+    "U186.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{HSYNC}": {
+   "pins": [
+    "U1.34",
+    "U34.3",
+    "U63.34",
+    "U66.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{N2HP4H}": {
+   "pins": [
+    "U189.4",
+    "U195.4",
+    "U224.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{RAMOE}": {
+   "pins": [
+    "U36.22",
+    "U38.22",
+    "U211.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{RAS}": {
+   "pins": [
+    "U66.19",
+    "U182.4",
+    "U182.6",
+    "U218.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{VRL}": {
+   "pins": [
+    "U38.27",
+    "U218.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/GFX - Tiles/~{VRU}": {
+   "pins": [
+    "U36.27",
+    "U218.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_DOWN": {
+   "pins": [
+    "RN3.6",
+    "U999.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_LEFT": {
+   "pins": [
+    "RN2.6",
+    "U999.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_RIGHT": {
+   "pins": [
+    "RN5.8",
+    "U999.21"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_SHOOT_1": {
+   "pins": [
+    "RN1.8",
+    "U999.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_SHOOT_2": {
+   "pins": [
+    "RN1.2",
+    "U999.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_SHOOT_3": {
+   "pins": [
+    "RN4.4",
+    "U999.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_START": {
+   "pins": [
+    "RN3.8",
+    "U999.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/1P_UP": {
+   "pins": [
+    "RN5.4",
+    "U999.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_DOWN": {
+   "pins": [
+    "RN3.4",
+    "U999.W"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_LEFT": {
+   "pins": [
+    "RN2.4",
+    "U999.X"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_RIGHT": {
+   "pins": [
+    "RN5.6",
+    "U999.Y"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_SHOOT_1": {
+   "pins": [
+    "RN1.6",
+    "U999.Z"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_SHOOT_2": {
+   "pins": [
+    "RN4.8",
+    "U999.a"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_SHOOT_3": {
+   "pins": [
+    "RN4.2",
+    "U999.b"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_START": {
+   "pins": [
+    "RN3.2",
+    "U999.U"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/2P_UP": {
+   "pins": [
+    "RN5.2",
+    "U999.V"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/BSY": {
+   "pins": [
+    "U80.7",
+    "U142.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/BUSY": {
+   "pins": [
+    "U109.18",
+    "U142.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/COIN_1": {
+   "pins": [
+    "RN2.8",
+    "U999.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/COIN_2": {
+   "pins": [
+    "RN2.2",
+    "U999.T"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/COIN_CNT_1": {
+   "pins": [
+    "S306.22",
+    "S306.23",
+    "U999.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/COIN_CNT_2": {
+   "pins": [
+    "S306.20",
+    "S306.21",
+    "U999.J"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/DMAON": {
+   "pins": [
+    "U43.2",
+    "U97.12",
+    "U210.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SERVICE": {
+   "pins": [
+    "RN4.6",
+    "U999.R"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SOUND-ON": {
+   "pins": [
+    "U97.7",
+    "U227.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SPEAKER+": {
+   "pins": [
+    "C4.1",
+    "C15.1",
+    "C17.2",
+    "U135.10",
+    "U999.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SPEAKER-": {
+   "pins": [
+    "C4.2",
+    "C24.2",
+    "C28.1",
+    "U135.8",
+    "U999.L"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW11": {
+   "pins": [
+    "RA3.9",
+    "SW1.1",
+    "U152.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW12": {
+   "pins": [
+    "RA3.8",
+    "SW1.2",
+    "U152.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW13": {
+   "pins": [
+    "RA3.5",
+    "SW1.3",
+    "U152.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW14": {
+   "pins": [
+    "RA3.2",
+    "SW1.4",
+    "U152.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW15": {
+   "pins": [
+    "RA3.6",
+    "SW1.5",
+    "U153.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW16": {
+   "pins": [
+    "RA3.3",
+    "SW1.6",
+    "U153.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW17": {
+   "pins": [
+    "RA3.4",
+    "SW1.7",
+    "U153.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW18": {
+   "pins": [
+    "RA3.7",
+    "SW1.8",
+    "U153.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW21": {
+   "pins": [
+    "RA4.7",
+    "SW2.1",
+    "U152.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW22": {
+   "pins": [
+    "RA4.4",
+    "SW2.2",
+    "U152.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW23": {
+   "pins": [
+    "RA4.5",
+    "SW2.3",
+    "U152.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW24": {
+   "pins": [
+    "RA4.8",
+    "SW2.4",
+    "U152.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW25": {
+   "pins": [
+    "RA4.6",
+    "SW2.5",
+    "U153.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW26": {
+   "pins": [
+    "RA4.3",
+    "SW2.6",
+    "U153.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW27": {
+   "pins": [
+    "RA4.2",
+    "SW2.7",
+    "U153.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW28": {
+   "pins": [
+    "RA4.9",
+    "SW2.8",
+    "U153.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW31": {
+   "pins": [
+    "RA7.5",
+    "SW3.1",
+    "U142.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW32": {
+   "pins": [
+    "RA7.2",
+    "SW3.2",
+    "U142.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW33": {
+   "pins": [
+    "RA7.3",
+    "SW3.3",
+    "U142.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SW34": {
+   "pins": [
+    "RA7.4",
+    "SW3.4",
+    "U142.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/SYNC": {
+   "pins": [
+    "R18.2",
+    "U999.P"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y6": {
+   "pins": [
+    "RN4.1",
+    "U130.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y8": {
+   "pins": [
+    "RN4.5",
+    "U130.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y10": {
+   "pins": [
+    "RN4.7",
+    "U126.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y11": {
+   "pins": [
+    "RN1.1",
+    "U126.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y14": {
+   "pins": [
+    "RN1.5",
+    "U126.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y15": {
+   "pins": [
+    "RN1.7",
+    "U126.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y16": {
+   "pins": [
+    "RN3.1",
+    "U126.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y18": {
+   "pins": [
+    "RN3.3",
+    "U154.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y19": {
+   "pins": [
+    "RN3.5",
+    "U154.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y20": {
+   "pins": [
+    "RN3.7",
+    "U154.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y22": {
+   "pins": [
+    "RN5.1",
+    "U154.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y23": {
+   "pins": [
+    "RN5.3",
+    "U154.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y26": {
+   "pins": [
+    "RN5.5",
+    "U124.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y27": {
+   "pins": [
+    "RN5.7",
+    "U124.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y28": {
+   "pins": [
+    "RN2.1",
+    "U124.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y30": {
+   "pins": [
+    "RN2.3",
+    "U124.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y31": {
+   "pins": [
+    "RN2.5",
+    "U124.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/Y32": {
+   "pins": [
+    "RN2.7",
+    "U124.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/YN": {
+   "pins": [
+    "RN4.3",
+    "U130.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/~{AFR}": {
+   "pins": [
+    "S306.1",
+    "U150.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/~{CSYNC}": {
+   "pins": [
+    "U66.37",
+    "U197.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/~{RST}": {
+   "pins": [
+    "S306.10",
+    "U182.14",
+    "U186.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/~{SHOOT}": {
+   "pins": [
+    "U124.1",
+    "U124.15",
+    "U126.1",
+    "U126.15",
+    "U130.1",
+    "U130.15",
+    "U150.11",
+    "U154.1",
+    "U154.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/IO/~{SOUND-DATA}": {
+   "pins": [
+    "U101.11",
+    "U150.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/MR~{W}": {
+   "pins": [
+    "RA5.5",
+    "U122.9",
+    "U150.3",
+    "U192.2",
+    "U192.5",
+    "U206.3",
+    "U206.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/PI0": {
+   "pins": [
+    "U89.6",
+    "U180.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/PI1": {
+   "pins": [
+    "U89.9",
+    "U180.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A0": {
+   "pins": [
+    "U109.26",
+    "U158.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A1": {
+   "pins": [
+    "U109.27",
+    "U158.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A2": {
+   "pins": [
+    "U109.28",
+    "U158.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A3": {
+   "pins": [
+    "U109.29",
+    "U158.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A4": {
+   "pins": [
+    "U109.30",
+    "U158.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A5": {
+   "pins": [
+    "U109.31",
+    "U158.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A6": {
+   "pins": [
+    "U109.32",
+    "U158.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A7": {
+   "pins": [
+    "U109.33",
+    "U158.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/A8": {
+   "pins": [
+    "U109.34",
+    "U158.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/CK3M58": {
+   "pins": [
+    "U133.24",
+    "U196.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA0": {
+   "pins": [
+    "U109.35",
+    "U147.3",
+    "U158.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA1": {
+   "pins": [
+    "U109.36",
+    "U147.4",
+    "U158.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA2": {
+   "pins": [
+    "U109.37",
+    "U147.7",
+    "U158.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA3": {
+   "pins": [
+    "U109.38",
+    "U147.8",
+    "U158.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA4": {
+   "pins": [
+    "U109.39",
+    "U147.13",
+    "U158.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA5": {
+   "pins": [
+    "U109.1",
+    "U147.14",
+    "U158.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA6": {
+   "pins": [
+    "U109.2",
+    "U147.17",
+    "U158.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/DA7": {
+   "pins": [
+    "U109.3",
+    "U147.18",
+    "U158.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA0": {
+   "pins": [
+    "U131.33",
+    "U159.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA1": {
+   "pins": [
+    "U131.34",
+    "U159.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA2": {
+   "pins": [
+    "U131.36",
+    "U159.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA3": {
+   "pins": [
+    "U131.38",
+    "U159.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA4": {
+   "pins": [
+    "U131.39",
+    "U159.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA5": {
+   "pins": [
+    "U131.41",
+    "U159.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA6": {
+   "pins": [
+    "U131.43",
+    "U159.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA7": {
+   "pins": [
+    "U131.45",
+    "U159.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA8": {
+   "pins": [
+    "U131.44",
+    "U159.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA9": {
+   "pins": [
+    "U131.42",
+    "U159.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA10": {
+   "pins": [
+    "U131.35",
+    "U159.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA11": {
+   "pins": [
+    "U131.40",
+    "U159.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA12": {
+   "pins": [
+    "U131.47",
+    "U159.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA13": {
+   "pins": [
+    "U131.46",
+    "U159.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA14": {
+   "pins": [
+    "U131.49",
+    "U159.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA15": {
+   "pins": [
+    "U131.50",
+    "U159.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RA16": {
+   "pins": [
+    "U131.37",
+    "U159.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD0": {
+   "pins": [
+    "U131.25",
+    "U159.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD1": {
+   "pins": [
+    "U131.27",
+    "U159.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD2": {
+   "pins": [
+    "U131.29",
+    "U159.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD3": {
+   "pins": [
+    "U131.31",
+    "U159.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD4": {
+   "pins": [
+    "U131.30",
+    "U159.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD5": {
+   "pins": [
+    "U131.28",
+    "U159.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD6": {
+   "pins": [
+    "U131.26",
+    "U159.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/RD7": {
+   "pins": [
+    "U131.24",
+    "U159.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD0": {
+   "pins": [
+    "U86.17",
+    "U99.14",
+    "U101.2",
+    "U127.11",
+    "U131.1",
+    "U133.10",
+    "U142.13",
+    "U145.3",
+    "U157.3",
+    "U207.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD1": {
+   "pins": [
+    "U86.16",
+    "U99.15",
+    "U101.5",
+    "U127.12",
+    "U131.2",
+    "U133.12",
+    "U145.4",
+    "U157.4",
+    "U207.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD2": {
+   "pins": [
+    "U86.15",
+    "U99.12",
+    "U101.6",
+    "U127.13",
+    "U131.3",
+    "U133.13",
+    "U145.7",
+    "U157.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD3": {
+   "pins": [
+    "U86.14",
+    "U99.8",
+    "U101.9",
+    "U127.15",
+    "U131.4",
+    "U133.14",
+    "U145.8",
+    "U157.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD4": {
+   "pins": [
+    "U86.13",
+    "U99.7",
+    "U101.12",
+    "U127.16",
+    "U131.5",
+    "U133.15",
+    "U145.13",
+    "U157.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD5": {
+   "pins": [
+    "U86.11",
+    "U99.9",
+    "U101.15",
+    "U127.17",
+    "U131.6",
+    "U133.16",
+    "U145.14",
+    "U157.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD6": {
+   "pins": [
+    "U86.10",
+    "U99.10",
+    "U101.16",
+    "U127.18",
+    "U131.7",
+    "U133.17",
+    "U145.17",
+    "U157.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SD7": {
+   "pins": [
+    "U86.9",
+    "U99.13",
+    "U101.19",
+    "U127.19",
+    "U131.8",
+    "U133.18",
+    "U145.18",
+    "U157.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA0": {
+   "pins": [
+    "U86.8",
+    "U99.30",
+    "U127.10",
+    "U133.4",
+    "U196.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA1": {
+   "pins": [
+    "U86.19",
+    "U99.31",
+    "U127.9",
+    "U131.59"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA2": {
+   "pins": [
+    "U86.2",
+    "U99.32",
+    "U127.8",
+    "U131.60"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA3": {
+   "pins": [
+    "U86.22",
+    "U99.33",
+    "U127.7",
+    "U131.61"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA4": {
+   "pins": [
+    "U86.23",
+    "U99.34",
+    "U127.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA5": {
+   "pins": [
+    "U86.1",
+    "U99.35",
+    "U127.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA6": {
+   "pins": [
+    "U86.6",
+    "U99.36",
+    "U127.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA7": {
+   "pins": [
+    "U86.7",
+    "U99.37",
+    "U127.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA8": {
+   "pins": [
+    "U86.3",
+    "U99.38",
+    "U127.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA9": {
+   "pins": [
+    "U86.4",
+    "U99.39",
+    "U127.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA10": {
+   "pins": [
+    "U86.5",
+    "U99.40",
+    "U127.21"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA11": {
+   "pins": [
+    "U99.1",
+    "U127.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA12": {
+   "pins": [
+    "U80.1",
+    "U99.2",
+    "U127.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA13": {
+   "pins": [
+    "U80.2",
+    "U99.3",
+    "U127.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA14": {
+   "pins": [
+    "U80.3",
+    "U99.4",
+    "U127.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SDA15": {
+   "pins": [
+    "U80.6",
+    "U99.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ0": {
+   "pins": [
+    "U145.2",
+    "U149.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ1": {
+   "pins": [
+    "U145.5",
+    "U149.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ2": {
+   "pins": [
+    "U145.6",
+    "U149.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ3": {
+   "pins": [
+    "U145.9",
+    "U149.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ4": {
+   "pins": [
+    "U111.12",
+    "U145.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ5": {
+   "pins": [
+    "U111.6",
+    "U145.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ6": {
+   "pins": [
+    "U111.5",
+    "U145.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/SQ7": {
+   "pins": [
+    "U111.13",
+    "U145.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{BUSRQ}": {
+   "pins": [
+    "RA6.4",
+    "U99.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{DACS}": {
+   "pins": [
+    "U80.12",
+    "U131.62"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{INT}": {
+   "pins": [
+    "U99.16",
+    "U227.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{NMI}": {
+   "pins": [
+    "RA6.2",
+    "U99.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{RFSH}": {
+   "pins": [
+    "U99.28",
+    "U196.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SDDATAEN}": {
+   "pins": [
+    "U80.13",
+    "U101.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SDMREQ}": {
+   "pins": [
+    "U80.5",
+    "U99.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SDRAMCS}": {
+   "pins": [
+    "U80.15",
+    "U86.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SDRD}": {
+   "pins": [
+    "U86.20",
+    "U99.21",
+    "U127.22",
+    "U133.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SDWR}": {
+   "pins": [
+    "U86.21",
+    "U99.22",
+    "U133.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{SRES}": {
+   "pins": [
+    "U80.14",
+    "U207.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{VDIN}": {
+   "pins": [
+    "U80.10",
+    "U157.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{VST}": {
+   "pins": [
+    "U80.9",
+    "U207.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sound/~{WAIT}": {
+   "pins": [
+    "RA6.5",
+    "U99.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/10W": {
+   "pins": [
+    "U35.9",
+    "U167.4",
+    "U168.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/11W": {
+   "pins": [
+    "U35.12",
+    "U164.4",
+    "U169.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/12W": {
+   "pins": [
+    "U35.7",
+    "U160.4",
+    "U161.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/13W": {
+   "pins": [
+    "U35.4",
+    "U163.4",
+    "U171.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/20W": {
+   "pins": [
+    "U68.9",
+    "U162.4",
+    "U166.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/21W": {
+   "pins": [
+    "U68.12",
+    "U165.4",
+    "U173.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/22W": {
+   "pins": [
+    "U68.7",
+    "U170.4",
+    "U172.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/23W": {
+   "pins": [
+    "U68.4",
+    "U174.4",
+    "U175.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/C0": {
+   "pins": [
+    "U19.2",
+    "U19.11",
+    "U70.2",
+    "U70.11",
+    "U75.83"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/C1": {
+   "pins": [
+    "U19.4",
+    "U19.13",
+    "U70.4",
+    "U70.13",
+    "U75.82"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/C2": {
+   "pins": [
+    "U19.6",
+    "U19.15",
+    "U70.6",
+    "U70.15",
+    "U75.81"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/C3": {
+   "pins": [
+    "U19.8",
+    "U19.17",
+    "U70.8",
+    "U70.17",
+    "U75.80"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CLK21": {
+   "pins": [
+    "U1.37",
+    "U2.14",
+    "U8.42",
+    "U42.14",
+    "U43.50",
+    "U63.37",
+    "U75.25",
+    "U181.8",
+    "U186.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CLK22": {
+   "pins": [
+    "U65.37",
+    "U186.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CX0": {
+   "pins": [
+    "U37.2",
+    "U37.11",
+    "U72.2",
+    "U72.11",
+    "U75.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CX1": {
+   "pins": [
+    "U37.4",
+    "U37.13",
+    "U72.4",
+    "U72.13",
+    "U75.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CX2": {
+   "pins": [
+    "U37.6",
+    "U37.15",
+    "U72.6",
+    "U72.15",
+    "U75.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/CX3": {
+   "pins": [
+    "U37.8",
+    "U37.17",
+    "U72.8",
+    "U72.17",
+    "U75.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA0": {
+   "pins": [
+    "U1.15",
+    "U174.14",
+    "U175.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA1": {
+   "pins": [
+    "U1.14",
+    "U174.13",
+    "U175.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA2": {
+   "pins": [
+    "U1.13",
+    "U174.12",
+    "U175.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA3": {
+   "pins": [
+    "U1.12",
+    "U174.11",
+    "U175.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA4": {
+   "pins": [
+    "U1.11",
+    "U174.8",
+    "U175.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA5": {
+   "pins": [
+    "U1.10",
+    "U174.7",
+    "U175.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA6": {
+   "pins": [
+    "U1.9",
+    "U174.6",
+    "U175.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA7": {
+   "pins": [
+    "U1.8",
+    "U174.10",
+    "U175.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA20": {
+   "pins": [
+    "U63.15",
+    "U163.14",
+    "U171.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA21": {
+   "pins": [
+    "U63.14",
+    "U163.13",
+    "U171.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA22": {
+   "pins": [
+    "U63.13",
+    "U163.12",
+    "U171.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA23": {
+   "pins": [
+    "U63.12",
+    "U163.11",
+    "U171.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA24": {
+   "pins": [
+    "U63.11",
+    "U163.8",
+    "U171.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA25": {
+   "pins": [
+    "U63.10",
+    "U163.7",
+    "U171.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA26": {
+   "pins": [
+    "U63.9",
+    "U163.6",
+    "U171.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FA27": {
+   "pins": [
+    "U63.8",
+    "U163.10",
+    "U171.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB0": {
+   "pins": [
+    "U1.25",
+    "U170.14",
+    "U172.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB1": {
+   "pins": [
+    "U1.24",
+    "U170.13",
+    "U172.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB2": {
+   "pins": [
+    "U1.23",
+    "U170.12",
+    "U172.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB3": {
+   "pins": [
+    "U1.22",
+    "U170.11",
+    "U172.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB4": {
+   "pins": [
+    "U1.21",
+    "U170.8",
+    "U172.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB5": {
+   "pins": [
+    "U1.20",
+    "U170.7",
+    "U172.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB6": {
+   "pins": [
+    "U1.19",
+    "U170.6",
+    "U172.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB7": {
+   "pins": [
+    "U1.18",
+    "U170.10",
+    "U172.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB20": {
+   "pins": [
+    "U63.25",
+    "U160.14",
+    "U161.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB21": {
+   "pins": [
+    "U63.24",
+    "U160.13",
+    "U161.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB22": {
+   "pins": [
+    "U63.23",
+    "U160.12",
+    "U161.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB23": {
+   "pins": [
+    "U63.22",
+    "U160.11",
+    "U161.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB24": {
+   "pins": [
+    "U63.21",
+    "U160.8",
+    "U161.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB25": {
+   "pins": [
+    "U63.20",
+    "U160.7",
+    "U161.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB26": {
+   "pins": [
+    "U63.19",
+    "U160.6",
+    "U161.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FB27": {
+   "pins": [
+    "U63.18",
+    "U160.10",
+    "U161.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC0": {
+   "pins": [
+    "U1.50",
+    "U165.14",
+    "U173.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC1": {
+   "pins": [
+    "U1.51",
+    "U165.13",
+    "U173.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC2": {
+   "pins": [
+    "U1.52",
+    "U165.12",
+    "U173.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC3": {
+   "pins": [
+    "U1.53",
+    "U165.11",
+    "U173.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC4": {
+   "pins": [
+    "U1.54",
+    "U165.8",
+    "U173.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC5": {
+   "pins": [
+    "U1.55",
+    "U165.7",
+    "U173.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC6": {
+   "pins": [
+    "U1.56",
+    "U165.6",
+    "U173.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC7": {
+   "pins": [
+    "U1.57",
+    "U165.10",
+    "U173.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC20": {
+   "pins": [
+    "U63.50",
+    "U164.14",
+    "U169.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC21": {
+   "pins": [
+    "U63.51",
+    "U164.13",
+    "U169.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC22": {
+   "pins": [
+    "U63.52",
+    "U164.12",
+    "U169.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC23": {
+   "pins": [
+    "U63.53",
+    "U164.11",
+    "U169.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC24": {
+   "pins": [
+    "U63.54",
+    "U164.8",
+    "U169.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC25": {
+   "pins": [
+    "U63.55",
+    "U164.7",
+    "U169.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC26": {
+   "pins": [
+    "U63.56",
+    "U164.6",
+    "U169.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FC27": {
+   "pins": [
+    "U63.57",
+    "U164.10",
+    "U169.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD0": {
+   "pins": [
+    "U1.40",
+    "U162.14",
+    "U166.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD1": {
+   "pins": [
+    "U1.41",
+    "U162.13",
+    "U166.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD2": {
+   "pins": [
+    "U1.42",
+    "U162.12",
+    "U166.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD3": {
+   "pins": [
+    "U1.43",
+    "U162.11",
+    "U166.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD4": {
+   "pins": [
+    "U1.44",
+    "U162.8",
+    "U166.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD5": {
+   "pins": [
+    "U1.45",
+    "U162.7",
+    "U166.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD6": {
+   "pins": [
+    "U1.46",
+    "U162.6",
+    "U166.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD7": {
+   "pins": [
+    "U1.47",
+    "U162.10",
+    "U166.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD20": {
+   "pins": [
+    "U63.40",
+    "U167.14",
+    "U168.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD21": {
+   "pins": [
+    "U63.41",
+    "U167.13",
+    "U168.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD22": {
+   "pins": [
+    "U63.42",
+    "U167.12",
+    "U168.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD23": {
+   "pins": [
+    "U63.43",
+    "U167.11",
+    "U168.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD24": {
+   "pins": [
+    "U63.44",
+    "U167.8",
+    "U168.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD25": {
+   "pins": [
+    "U63.45",
+    "U167.7",
+    "U168.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD26": {
+   "pins": [
+    "U63.46",
+    "U167.6",
+    "U168.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/FD27": {
+   "pins": [
+    "U63.47",
+    "U167.10",
+    "U168.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD2": {
+   "pins": [
+    "U1.27",
+    "U63.27",
+    "U75.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD3": {
+   "pins": [
+    "U1.26",
+    "U63.26",
+    "U75.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD4": {
+   "pins": [
+    "U1.7",
+    "U63.7",
+    "U75.30"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD5": {
+   "pins": [
+    "U1.6",
+    "U63.6",
+    "U75.31"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD6": {
+   "pins": [
+    "U1.5",
+    "U63.5",
+    "U75.32"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD7": {
+   "pins": [
+    "U1.4",
+    "U63.4",
+    "U75.33"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HD8": {
+   "pins": [
+    "U1.3",
+    "U63.3",
+    "U75.34"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HJ0": {
+   "pins": [
+    "U1.1",
+    "U63.1",
+    "U65.1",
+    "U75.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/HJ1": {
+   "pins": [
+    "U1.2",
+    "U63.2",
+    "U65.2",
+    "U75.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/P256VD": {
+   "pins": [
+    "U2.17",
+    "U35.1",
+    "U42.17",
+    "U63.33",
+    "U65.33",
+    "U66.23",
+    "U68.1",
+    "U75.53",
+    "U199.5",
+    "U206.9",
+    "U220.6",
+    "U224.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R0": {
+   "pins": [
+    "U2.39",
+    "U65.25",
+    "U167.2",
+    "U199.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R1": {
+   "pins": [
+    "U2.40",
+    "U65.24",
+    "U167.3",
+    "U199.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R2": {
+   "pins": [
+    "U2.41",
+    "U65.23",
+    "U167.15",
+    "U217.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R3": {
+   "pins": [
+    "U2.42",
+    "U65.22",
+    "U167.17",
+    "U217.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R4": {
+   "pins": [
+    "U42.39",
+    "U70.18",
+    "U168.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R5": {
+   "pins": [
+    "U42.40",
+    "U70.16",
+    "U168.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R6": {
+   "pins": [
+    "U42.41",
+    "U70.14",
+    "U168.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R7": {
+   "pins": [
+    "U42.42",
+    "U70.12",
+    "U168.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R8": {
+   "pins": [
+    "U2.1",
+    "U65.21",
+    "U164.2",
+    "U198.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R9": {
+   "pins": [
+    "U2.2",
+    "U65.20",
+    "U164.3",
+    "U198.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R10": {
+   "pins": [
+    "U2.3",
+    "U65.19",
+    "U164.15",
+    "U198.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R11": {
+   "pins": [
+    "U2.4",
+    "U65.18",
+    "U164.17",
+    "U198.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R12": {
+   "pins": [
+    "U42.1",
+    "U70.9",
+    "U169.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R13": {
+   "pins": [
+    "U42.2",
+    "U70.7",
+    "U169.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R14": {
+   "pins": [
+    "U42.3",
+    "U70.5",
+    "U169.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R15": {
+   "pins": [
+    "U42.4",
+    "U70.3",
+    "U169.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R16": {
+   "pins": [
+    "U2.5",
+    "U65.15",
+    "U160.2",
+    "U202.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R17": {
+   "pins": [
+    "U2.6",
+    "U65.14",
+    "U160.3",
+    "U202.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R18": {
+   "pins": [
+    "U2.7",
+    "U65.13",
+    "U160.15",
+    "U202.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R19": {
+   "pins": [
+    "U2.8",
+    "U65.12",
+    "U160.17",
+    "U202.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R20": {
+   "pins": [
+    "U19.18",
+    "U42.5",
+    "U161.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R21": {
+   "pins": [
+    "U19.16",
+    "U42.6",
+    "U161.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R22": {
+   "pins": [
+    "U19.14",
+    "U42.7",
+    "U161.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R23": {
+   "pins": [
+    "U19.12",
+    "U42.8",
+    "U161.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R24": {
+   "pins": [
+    "U2.9",
+    "U65.11",
+    "U163.2",
+    "U199.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R25": {
+   "pins": [
+    "U2.10",
+    "U65.10",
+    "U163.3",
+    "U199.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R26": {
+   "pins": [
+    "U2.12",
+    "U65.9",
+    "U163.15",
+    "U198.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R27": {
+   "pins": [
+    "U2.13",
+    "U65.8",
+    "U163.17",
+    "U198.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R28": {
+   "pins": [
+    "U19.9",
+    "U42.9",
+    "U171.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R29": {
+   "pins": [
+    "U19.7",
+    "U42.10",
+    "U171.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R30": {
+   "pins": [
+    "U19.5",
+    "U42.12",
+    "U171.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/R31": {
+   "pins": [
+    "U19.3",
+    "U42.13",
+    "U171.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD0": {
+   "pins": [
+    "U1.63",
+    "U63.63",
+    "U75.44"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD1": {
+   "pins": [
+    "U1.62",
+    "U63.62",
+    "U75.41"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD2": {
+   "pins": [
+    "U1.61",
+    "U63.61",
+    "U75.40"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD3": {
+   "pins": [
+    "U1.60",
+    "U63.60",
+    "U75.39"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD4": {
+   "pins": [
+    "U1.59",
+    "U63.59",
+    "U75.38"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD5": {
+   "pins": [
+    "U1.58",
+    "U63.58",
+    "U75.37"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD6": {
+   "pins": [
+    "U1.39",
+    "U63.39",
+    "U75.36"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VD7": {
+   "pins": [
+    "U1.38",
+    "U63.38",
+    "U75.35"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/VPD8": {
+   "pins": [
+    "H28.9",
+    "U75.45"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W0": {
+   "pins": [
+    "U28.2",
+    "U53.2",
+    "U65.63"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W1": {
+   "pins": [
+    "U28.5",
+    "U53.5",
+    "U65.62"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W2": {
+   "pins": [
+    "U28.6",
+    "U53.6",
+    "U65.61"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W3": {
+   "pins": [
+    "U28.9",
+    "U53.9",
+    "U65.60"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W4": {
+   "pins": [
+    "U28.12",
+    "U53.12",
+    "U65.59"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W5": {
+   "pins": [
+    "U28.15",
+    "U53.15",
+    "U65.58"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W6": {
+   "pins": [
+    "U28.16",
+    "U53.16",
+    "U65.39"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W7": {
+   "pins": [
+    "U28.19",
+    "U53.19",
+    "U65.38"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W8": {
+   "pins": [
+    "U15.2",
+    "U55.2",
+    "U65.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W9": {
+   "pins": [
+    "U15.5",
+    "U55.5",
+    "U65.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W10": {
+   "pins": [
+    "U15.6",
+    "U55.6",
+    "U65.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W11": {
+   "pins": [
+    "U15.9",
+    "U55.9",
+    "U65.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W12": {
+   "pins": [
+    "U15.12",
+    "U55.12",
+    "U65.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W13": {
+   "pins": [
+    "U15.15",
+    "U55.15",
+    "U65.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W14": {
+   "pins": [
+    "U15.16",
+    "U55.16",
+    "U65.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/W15": {
+   "pins": [
+    "U15.19",
+    "U55.19",
+    "U65.36"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS10": {
+   "pins": [
+    "U201.4",
+    "U221.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS11": {
+   "pins": [
+    "U219.4",
+    "U221.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS12": {
+   "pins": [
+    "U219.12",
+    "U221.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS13": {
+   "pins": [
+    "U219.1",
+    "U221.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS20": {
+   "pins": [
+    "U190.4",
+    "U220.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS21": {
+   "pins": [
+    "U195.9",
+    "U204.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS22": {
+   "pins": [
+    "U195.1",
+    "U204.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/WDS23": {
+   "pins": [
+    "U195.12",
+    "U204.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X0": {
+   "pins": [
+    "U2.22",
+    "U65.40",
+    "U166.2",
+    "U212.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X1": {
+   "pins": [
+    "U2.23",
+    "U65.41",
+    "U166.3",
+    "U212.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X1S": {
+   "pins": [
+    "U1.31",
+    "U63.31",
+    "U66.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X2": {
+   "pins": [
+    "U2.24",
+    "U65.42",
+    "U166.15",
+    "U212.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X3": {
+   "pins": [
+    "U2.25",
+    "U65.43",
+    "U166.17",
+    "U212.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X4": {
+   "pins": [
+    "U37.18",
+    "U42.22",
+    "U162.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X5": {
+   "pins": [
+    "U37.16",
+    "U42.23",
+    "U162.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X6": {
+   "pins": [
+    "U37.14",
+    "U42.24",
+    "U162.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X7": {
+   "pins": [
+    "U37.12",
+    "U42.25",
+    "U162.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X8": {
+   "pins": [
+    "U2.26",
+    "U65.44",
+    "U165.2",
+    "U190.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X9": {
+   "pins": [
+    "U2.27",
+    "U65.45",
+    "U165.3",
+    "U190.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X10": {
+   "pins": [
+    "U2.28",
+    "U65.46",
+    "U165.15",
+    "U190.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X11": {
+   "pins": [
+    "U2.29",
+    "U65.47",
+    "U165.17",
+    "U190.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X12": {
+   "pins": [
+    "U37.9",
+    "U42.26",
+    "U173.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X13": {
+   "pins": [
+    "U37.7",
+    "U42.27",
+    "U173.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X14": {
+   "pins": [
+    "U37.5",
+    "U42.28",
+    "U173.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X15": {
+   "pins": [
+    "U37.3",
+    "U42.29",
+    "U173.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X16": {
+   "pins": [
+    "U2.30",
+    "U65.50",
+    "U172.2",
+    "U217.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X17": {
+   "pins": [
+    "U2.31",
+    "U65.51",
+    "U172.3",
+    "U217.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X18": {
+   "pins": [
+    "U2.33",
+    "U65.52",
+    "U172.15",
+    "U219.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X19": {
+   "pins": [
+    "U2.34",
+    "U65.53",
+    "U172.17",
+    "U219.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X20": {
+   "pins": [
+    "U42.30",
+    "U72.18",
+    "U170.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X21": {
+   "pins": [
+    "U42.31",
+    "U72.16",
+    "U170.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X22": {
+   "pins": [
+    "U42.33",
+    "U72.14",
+    "U170.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X23": {
+   "pins": [
+    "U42.34",
+    "U72.12",
+    "U170.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X24": {
+   "pins": [
+    "U2.35",
+    "U65.54",
+    "U174.2",
+    "U217.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X25": {
+   "pins": [
+    "U2.36",
+    "U65.55",
+    "U174.3",
+    "U217.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X26": {
+   "pins": [
+    "U2.37",
+    "U65.56",
+    "U174.15",
+    "U217.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X27": {
+   "pins": [
+    "U2.38",
+    "U65.57",
+    "U174.17",
+    "U217.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X28": {
+   "pins": [
+    "U42.35",
+    "U72.9",
+    "U175.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X29": {
+   "pins": [
+    "U42.36",
+    "U72.7",
+    "U175.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X30": {
+   "pins": [
+    "U42.37",
+    "U72.5",
+    "U175.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/X31": {
+   "pins": [
+    "U42.38",
+    "U72.3",
+    "U175.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{CS1}": {
+   "pins": [
+    "U160.16",
+    "U161.16",
+    "U163.16",
+    "U164.16",
+    "U167.16",
+    "U168.16",
+    "U169.16",
+    "U171.16",
+    "U182.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{CS2}": {
+   "pins": [
+    "U162.16",
+    "U165.16",
+    "U166.16",
+    "U170.16",
+    "U172.16",
+    "U173.16",
+    "U174.16",
+    "U175.16",
+    "U182.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{FBWM1}": {
+   "pins": [
+    "U75.49",
+    "U203.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{FBWM2}": {
+   "pins": [
+    "U75.48",
+    "U203.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{OE1}": {
+   "pins": [
+    "U160.1",
+    "U161.1",
+    "U163.1",
+    "U164.1",
+    "U167.1",
+    "U168.1",
+    "U169.1",
+    "U171.1",
+    "U199.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{OE2}": {
+   "pins": [
+    "U162.1",
+    "U165.1",
+    "U166.1",
+    "U170.1",
+    "U172.1",
+    "U173.1",
+    "U174.1",
+    "U175.1",
+    "U201.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{P256VD}": {
+   "pins": [
+    "U1.33",
+    "U220.2",
+    "U224.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{RS1}": {
+   "pins": [
+    "U160.5",
+    "U161.5",
+    "U163.5",
+    "U164.5",
+    "U167.5",
+    "U168.5",
+    "U169.5",
+    "U171.5",
+    "U182.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{RS2}": {
+   "pins": [
+    "U162.5",
+    "U165.5",
+    "U166.5",
+    "U170.5",
+    "U172.5",
+    "U173.5",
+    "U174.5",
+    "U175.5",
+    "U182.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites 2/~{WR}": {
+   "pins": [
+    "H28.5",
+    "U66.21",
+    "U189.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/BEFLAG": {
+   "pins": [
+    "U8.4",
+    "U43.49",
+    "U181.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/CLK21'": {
+   "pins": [
+    "U181.13",
+    "U181.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/DMA": {
+   "pins": [
+    "U8.3",
+    "U43.36",
+    "U66.4",
+    "U181.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E0": {
+   "pins": [
+    "U53.3",
+    "U98.3",
+    "U118.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E1": {
+   "pins": [
+    "U53.4",
+    "U98.6",
+    "U118.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E2": {
+   "pins": [
+    "U53.7",
+    "U98.10",
+    "U118.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E3": {
+   "pins": [
+    "U53.8",
+    "U98.13",
+    "U118.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E4": {
+   "pins": [
+    "U53.13",
+    "U102.3",
+    "U118.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E5": {
+   "pins": [
+    "U53.14",
+    "U102.6",
+    "U118.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E6": {
+   "pins": [
+    "U53.17",
+    "U102.10",
+    "U118.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E7": {
+   "pins": [
+    "U53.18",
+    "U102.13",
+    "U118.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E8": {
+   "pins": [
+    "U15.3",
+    "U104.3",
+    "U118.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E9": {
+   "pins": [
+    "U15.4",
+    "U104.6",
+    "U118.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E10": {
+   "pins": [
+    "U15.7",
+    "U104.10",
+    "U118.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E11": {
+   "pins": [
+    "U15.8",
+    "U104.13",
+    "U118.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E12": {
+   "pins": [
+    "U15.13",
+    "U100.3",
+    "U118.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E13": {
+   "pins": [
+    "U15.14",
+    "U100.6",
+    "U118.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E14": {
+   "pins": [
+    "U15.17",
+    "U100.10",
+    "U118.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E15": {
+   "pins": [
+    "U15.18",
+    "U100.13",
+    "U118.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E16": {
+   "pins": [
+    "U28.3",
+    "U98.2",
+    "U120.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E17": {
+   "pins": [
+    "U28.4",
+    "U98.5",
+    "U120.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E18": {
+   "pins": [
+    "U28.7",
+    "U98.11",
+    "U120.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E19": {
+   "pins": [
+    "U28.8",
+    "U98.14",
+    "U120.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E20": {
+   "pins": [
+    "U28.13",
+    "U102.2",
+    "U120.22"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E21": {
+   "pins": [
+    "U28.14",
+    "U102.5",
+    "U120.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E22": {
+   "pins": [
+    "U28.17",
+    "U102.11",
+    "U120.26"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E23": {
+   "pins": [
+    "U28.18",
+    "U102.14",
+    "U120.28"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E24": {
+   "pins": [
+    "U55.3",
+    "U104.2",
+    "U120.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E25": {
+   "pins": [
+    "U55.4",
+    "U104.5",
+    "U120.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E26": {
+   "pins": [
+    "U55.7",
+    "U104.11",
+    "U120.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E27": {
+   "pins": [
+    "U55.8",
+    "U104.14",
+    "U120.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E28": {
+   "pins": [
+    "U55.13",
+    "U100.2",
+    "U120.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E29": {
+   "pins": [
+    "U55.14",
+    "U100.5",
+    "U120.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E30": {
+   "pins": [
+    "U55.17",
+    "U100.11",
+    "U120.27"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/E31": {
+   "pins": [
+    "U55.18",
+    "U100.14",
+    "U120.29"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/FBREF": {
+   "pins": [
+    "U43.53",
+    "U75.76",
+    "U186.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O0": {
+   "pins": [
+    "U32.2",
+    "U75.54"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O1": {
+   "pins": [
+    "U32.5",
+    "U75.55"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O2": {
+   "pins": [
+    "U32.11",
+    "U75.56"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O3": {
+   "pins": [
+    "U32.14",
+    "U75.57"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O4": {
+   "pins": [
+    "U59.2",
+    "U75.58"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O5": {
+   "pins": [
+    "U59.5",
+    "U75.59"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O6": {
+   "pins": [
+    "U59.11",
+    "U75.60"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O7": {
+   "pins": [
+    "U59.14",
+    "U75.61"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O8": {
+   "pins": [
+    "U30.2",
+    "U75.62"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O9": {
+   "pins": [
+    "U30.5",
+    "U75.63"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O10": {
+   "pins": [
+    "U30.11",
+    "U75.66"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O11": {
+   "pins": [
+    "U30.14",
+    "U75.67"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O12": {
+   "pins": [
+    "U18.2",
+    "U75.68"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O13": {
+   "pins": [
+    "U18.5",
+    "U75.69"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O14": {
+   "pins": [
+    "U18.11",
+    "U75.70"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O15": {
+   "pins": [
+    "U18.14",
+    "U75.71"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O16": {
+   "pins": [
+    "U23.2",
+    "U75.72"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/O17": {
+   "pins": [
+    "U23.5",
+    "U75.73"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA0": {
+   "pins": [
+    "U43.60",
+    "U69.10",
+    "U71.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA1": {
+   "pins": [
+    "U43.61",
+    "U69.9",
+    "U71.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA2": {
+   "pins": [
+    "U43.62",
+    "U69.8",
+    "U71.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA3": {
+   "pins": [
+    "U43.65",
+    "U69.7",
+    "U71.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA4": {
+   "pins": [
+    "U43.66",
+    "U69.6",
+    "U71.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA5": {
+   "pins": [
+    "U43.67",
+    "U69.5",
+    "U71.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA6": {
+   "pins": [
+    "U43.68",
+    "U69.4",
+    "U71.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA7": {
+   "pins": [
+    "U43.69",
+    "U69.3",
+    "U71.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA8": {
+   "pins": [
+    "U43.70",
+    "U69.25",
+    "U71.25"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA9": {
+   "pins": [
+    "U43.71",
+    "U69.24",
+    "U71.24"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA10": {
+   "pins": [
+    "U43.72",
+    "U69.21",
+    "U71.21"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA11": {
+   "pins": [
+    "U43.73",
+    "U69.23",
+    "U71.23"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OA12": {
+   "pins": [
+    "U43.74",
+    "U69.2",
+    "U71.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OBJBUFINIT": {
+   "pins": [
+    "U8.2",
+    "U43.55",
+    "U66.5",
+    "U181.7",
+    "U210.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OCHF": {
+   "pins": [
+    "U65.35",
+    "U75.47",
+    "U193.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD0": {
+   "pins": [
+    "RA8.4",
+    "U8.21",
+    "U27.18",
+    "U43.37",
+    "U71.11",
+    "U75.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD1": {
+   "pins": [
+    "RA8.8",
+    "U8.20",
+    "U27.17",
+    "U43.38",
+    "U71.12",
+    "U75.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD2": {
+   "pins": [
+    "RA8.9",
+    "U8.19",
+    "U27.16",
+    "U43.39",
+    "U71.13",
+    "U75.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD3": {
+   "pins": [
+    "RA8.2",
+    "U8.18",
+    "U27.15",
+    "U43.40",
+    "U71.15",
+    "U75.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD4": {
+   "pins": [
+    "RA8.7",
+    "U8.17",
+    "U27.14",
+    "U43.41",
+    "U71.16",
+    "U75.10"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD5": {
+   "pins": [
+    "RA8.6",
+    "U8.16",
+    "U27.13",
+    "U43.42",
+    "U71.17",
+    "U75.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD6": {
+   "pins": [
+    "RA8.3",
+    "U8.15",
+    "U27.12",
+    "U43.44",
+    "U71.18",
+    "U75.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD7": {
+   "pins": [
+    "RA8.5",
+    "U8.14",
+    "U27.11",
+    "U43.45",
+    "U71.19",
+    "U75.13"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD8": {
+   "pins": [
+    "RA9.6",
+    "U8.13",
+    "U44.18",
+    "U69.11",
+    "U75.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD9": {
+   "pins": [
+    "RA9.7",
+    "U8.12",
+    "U44.17",
+    "U69.12",
+    "U75.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD10": {
+   "pins": [
+    "RA9.5",
+    "U8.10",
+    "U44.16",
+    "U69.13",
+    "U75.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD11": {
+   "pins": [
+    "RA9.9",
+    "U8.9",
+    "U44.15",
+    "U69.15",
+    "U75.17"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD12": {
+   "pins": [
+    "RA9.8",
+    "U8.8",
+    "U44.14",
+    "U69.16",
+    "U75.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD13": {
+   "pins": [
+    "RA9.2",
+    "U8.7",
+    "U44.13",
+    "U69.17",
+    "U75.19"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD14": {
+   "pins": [
+    "RA9.3",
+    "U8.6",
+    "U44.12",
+    "U69.18",
+    "U75.20"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OD15": {
+   "pins": [
+    "RA9.4",
+    "U8.5",
+    "U44.11",
+    "U69.19",
+    "U75.21"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/OSCNTEN": {
+   "pins": [
+    "U43.52",
+    "U75.79"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA0": {
+   "pins": [
+    "U32.4",
+    "U118.9",
+    "U120.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA1": {
+   "pins": [
+    "U32.7",
+    "U118.8",
+    "U120.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA2": {
+   "pins": [
+    "U32.9",
+    "U118.7",
+    "U120.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA3": {
+   "pins": [
+    "U32.12",
+    "U118.6",
+    "U120.6"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA4": {
+   "pins": [
+    "U59.4",
+    "U118.5",
+    "U120.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA5": {
+   "pins": [
+    "U59.7",
+    "U118.4",
+    "U120.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA6": {
+   "pins": [
+    "U59.9",
+    "U118.3",
+    "U120.3"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA7": {
+   "pins": [
+    "U59.12",
+    "U118.2",
+    "U120.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA8": {
+   "pins": [
+    "U30.4",
+    "U118.40",
+    "U120.40"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA9": {
+   "pins": [
+    "U30.7",
+    "U118.39",
+    "U120.39"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA10": {
+   "pins": [
+    "U30.9",
+    "U118.38",
+    "U120.38"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA11": {
+   "pins": [
+    "U30.12",
+    "U118.37",
+    "U120.37"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA12": {
+   "pins": [
+    "U18.4",
+    "U118.36",
+    "U120.36"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA13": {
+   "pins": [
+    "U18.7",
+    "U118.35",
+    "U120.35"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA14": {
+   "pins": [
+    "U18.9",
+    "U118.34",
+    "U120.34"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA15": {
+   "pins": [
+    "U18.12",
+    "U118.33",
+    "U120.33"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA16": {
+   "pins": [
+    "U23.4",
+    "U118.32",
+    "U120.32"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/SPA17": {
+   "pins": [
+    "U23.7",
+    "U118.1",
+    "U120.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/TIM3": {
+   "pins": [
+    "U43.84",
+    "U66.12"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{DMACLR}": {
+   "pins": [
+    "U43.57",
+    "U66.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{DMAONS}": {
+   "pins": [
+    "U181.6",
+    "U210.8"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{LRW}": {
+   "pins": [
+    "U71.27",
+    "U181.15"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{LWR}": {
+   "pins": [
+    "U43.46",
+    "U181.18"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{OBJBUFCLR}": {
+   "pins": [
+    "U43.54",
+    "U66.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{OSCANCLR}": {
+   "pins": [
+    "U43.56",
+    "U66.26",
+    "U75.78"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{URW}": {
+   "pins": [
+    "U69.27",
+    "U181.16"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Sprites1/~{UWR}": {
+   "pins": [
+    "U43.47",
+    "U181.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/Timing/~{VSYNC}": {
+   "pins": [
+    "P3.1",
+    "U182.11"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/~{COLORCS}": {
+   "pins": [
+    "U76.1",
+    "U123.1",
+    "U125.1",
+    "U128.11",
+    "U200.1",
+    "U201.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/~{EXRES}": {
+   "pins": [
+    "RA6.3",
+    "U52.1",
+    "U54.1",
+    "U66.63",
+    "U89.1",
+    "U97.1",
+    "U99.26",
+    "U103.7",
+    "U131.63",
+    "U133.3",
+    "U157.1",
+    "U182.13",
+    "U186.3",
+    "U207.1",
+    "U207.13",
+    "U225.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/~{IOCS}": {
+   "pins": [
+    "U128.10",
+    "U150.5"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "/~{MREAD1}": {
+   "pins": [
+    "U77.1",
+    "U96.1",
+    "U119.1",
+    "U141.1",
+    "U206.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "GND": {
+   "pins": [
+    "C3.2",
+    "C9.2",
+    "C13.2",
+    "C15.2",
+    "C19.2",
+    "C22.2",
+    "C23.2",
+    "C25.2",
+    "C26.2",
+    "C28.2",
+    "C32.2",
+    "C33.2",
+    "C34.2",
+    "C36.2",
+    "C58.2",
+    "C60.2",
+    "C76.2",
+    "C77.2",
+    "N19.15",
+    "O9.3",
+    "O9.15",
+    "O10.15",
+    "P3.2",
+    "P3.3",
+    "R13.2",
+    "R15.2",
+    "RA8.1",
+    "RA9.1",
+    "RV1.3",
+    "S1.9",
+    "S2.9",
+    "S3.9",
+    "S5.1",
+    "S6.1",
+    "S306.13",
+    "S306.14",
+    "SW1.9",
+    "SW1.10",
+    "SW1.11",
+    "SW1.12",
+    "SW1.13",
+    "SW1.14",
+    "SW1.15",
+    "SW1.16",
+    "SW2.9",
+    "SW2.10",
+    "SW2.11",
+    "SW2.12",
+    "SW2.13",
+    "SW2.14",
+    "SW2.15",
+    "SW2.16",
+    "SW3.5",
+    "SW3.6",
+    "SW3.7",
+    "SW3.8",
+    "U1.16",
+    "U1.17",
+    "U1.28",
+    "U1.48",
+    "U1.49",
+    "U2.11",
+    "U3.8",
+    "U5.14",
+    "U5.20",
+    "U5.22",
+    "U8.1",
+    "U8.11",
+    "U15.10",
+    "U18.8",
+    "U18.15",
+    "U19.10",
+    "U23.8",
+    "U23.15",
+    "U28.10",
+    "U30.8",
+    "U30.15",
+    "U32.8",
+    "U32.15",
+    "U34.16",
+    "U34.36",
+    "U34.37",
+    "U34.38",
+    "U34.39",
+    "U34.40",
+    "U34.41",
+    "U34.42",
+    "U34.43",
+    "U34.44",
+    "U34.45",
+    "U34.48",
+    "U34.59",
+    "U34.60",
+    "U35.15",
+    "U36.20",
+    "U37.10",
+    "U38.20",
+    "U42.11",
+    "U43.1",
+    "U43.17",
+    "U43.18",
+    "U43.19",
+    "U43.20",
+    "U43.22",
+    "U43.23",
+    "U43.24",
+    "U43.25",
+    "U43.26",
+    "U43.27",
+    "U43.28",
+    "U43.29",
+    "U43.30",
+    "U43.31",
+    "U43.43",
+    "U43.58",
+    "U43.59",
+    "U43.64",
+    "U45.16",
+    "U45.48",
+    "U46.1",
+    "U46.2",
+    "U53.10",
+    "U55.10",
+    "U59.8",
+    "U59.15",
+    "U60.1",
+    "U60.15",
+    "U61.1",
+    "U61.11",
+    "U61.15",
+    "U62.1",
+    "U62.15",
+    "U63.16",
+    "U63.17",
+    "U63.28",
+    "U63.48",
+    "U63.49",
+    "U64.1",
+    "U64.15",
+    "U65.16",
+    "U65.17",
+    "U65.48",
+    "U65.49",
+    "U66.1",
+    "U66.16",
+    "U66.29",
+    "U66.35",
+    "U66.48",
+    "U68.15",
+    "U69.20",
+    "U70.10",
+    "U71.20",
+    "U72.10",
+    "U75.22",
+    "U75.42",
+    "U75.50",
+    "U75.51",
+    "U75.52",
+    "U75.64",
+    "U75.84",
+    "U76.15",
+    "U84.12",
+    "U84.18",
+    "U85.12",
+    "U85.18",
+    "U86.12",
+    "U88.16",
+    "U88.22",
+    "U93.15",
+    "U95.12",
+    "U95.18",
+    "U95.20",
+    "U99.29",
+    "U103.3",
+    "U103.8",
+    "U103.16",
+    "U105.22",
+    "U107.19",
+    "U108.15",
+    "U109.20",
+    "U109.25",
+    "U111.7",
+    "U112.15",
+    "U116.15",
+    "U117.12",
+    "U117.18",
+    "U117.20",
+    "U118.10",
+    "U118.11",
+    "U118.12",
+    "U118.30",
+    "U120.10",
+    "U120.11",
+    "U120.12",
+    "U120.30",
+    "U122.16",
+    "U122.53",
+    "U123.13",
+    "U123.15",
+    "U124.8",
+    "U125.15",
+    "U126.8",
+    "U127.14",
+    "U130.8",
+    "U131.16",
+    "U131.48",
+    "U133.1",
+    "U133.11",
+    "U135.3",
+    "U135.7",
+    "U136.10",
+    "U136.11",
+    "U136.12",
+    "U136.30",
+    "U137.16",
+    "U137.22",
+    "U138.10",
+    "U138.11",
+    "U138.12",
+    "U138.30",
+    "U139.22",
+    "U140.15",
+    "U143.1",
+    "U143.15",
+    "U149.7",
+    "U151.1",
+    "U151.2",
+    "U154.8",
+    "U158.16",
+    "U158.22",
+    "U159.2",
+    "U159.16",
+    "U159.22",
+    "U160.18",
+    "U161.18",
+    "U162.18",
+    "U163.18",
+    "U164.18",
+    "U165.18",
+    "U166.18",
+    "U167.18",
+    "U168.18",
+    "U169.18",
+    "U170.18",
+    "U171.18",
+    "U172.18",
+    "U173.18",
+    "U174.18",
+    "U175.18",
+    "U178.8",
+    "U180.8",
+    "U180.13",
+    "U180.14",
+    "U181.10",
+    "U182.1",
+    "U182.15",
+    "U183.11",
+    "U184.11",
+    "U186.1",
+    "U186.10",
+    "U186.19",
+    "U187.4",
+    "U204.6",
+    "U222.2",
+    "U222.12",
+    "U227.12",
+    "U229.1",
+    "U999.1",
+    "U999.2",
+    "U999.14",
+    "U999.27",
+    "U999.28",
+    "U999.A",
+    "U999.B",
+    "U999.e",
+    "U999.f"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "Net-(A23-Pad2)": {
+   "pins": [
+    "A23.2",
+    "S3.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A23-Pad4)": {
+   "pins": [
+    "A23.4",
+    "S2.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A23-Pad6)": {
+   "pins": [
+    "A23.6",
+    "S3.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A23-Pad8)": {
+   "pins": [
+    "A23.8",
+    "R36.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A23-Pad10)": {
+   "pins": [
+    "A23.10",
+    "S1.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad2)": {
+   "pins": [
+    "A24.2",
+    "S1.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad4)": {
+   "pins": [
+    "A24.4",
+    "S1.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad6)": {
+   "pins": [
+    "A24.6",
+    "S2.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad8)": {
+   "pins": [
+    "A24.8",
+    "S1.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad10)": {
+   "pins": [
+    "A24.10",
+    "S1.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A24-Pad12)": {
+   "pins": [
+    "A24.12",
+    "S1.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad2)": {
+   "pins": [
+    "A25.2",
+    "S3.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad4)": {
+   "pins": [
+    "A25.4",
+    "S3.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad6)": {
+   "pins": [
+    "A25.6",
+    "S3.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad8)": {
+   "pins": [
+    "A25.8",
+    "S2.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad10)": {
+   "pins": [
+    "A25.10",
+    "S2.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(A25-Pad12)": {
+   "pins": [
+    "A25.12",
+    "S2.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C2-Pad1)": {
+   "pins": [
+    "C2.1",
+    "R42.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C2-Pad2)": {
+   "pins": [
+    "C2.2",
+    "R46.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C5-Pad1)": {
+   "pins": [
+    "C5.1",
+    "R32.1",
+    "R34.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C6-Pad1)": {
+   "pins": [
+    "C6.1",
+    "R3.2",
+    "U183.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C6-Pad2)": {
+   "pins": [
+    "C6.2",
+    "R7.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C7-Pad1)": {
+   "pins": [
+    "C7.1",
+    "R45.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C7-Pad2)": {
+   "pins": [
+    "C7.2",
+    "R43.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C8-Pad2)": {
+   "pins": [
+    "C8.2",
+    "U111.2",
+    "U111.4",
+    "U111.8",
+    "U111.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C10-Pad2)": {
+   "pins": [
+    "C10.2",
+    "U149.2",
+    "U149.4",
+    "U149.8",
+    "U149.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C11-Pad1)": {
+   "pins": [
+    "C11.1",
+    "R14.1",
+    "R15.1",
+    "R19.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C12-Pad2)": {
+   "pins": [
+    "C12.2",
+    "C13.1",
+    "R17.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C14-Pad2)": {
+   "pins": [
+    "C3.1",
+    "C14.2",
+    "R31.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C16-Pad2)": {
+   "pins": [
+    "C16.2",
+    "R10.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C18-Pad1)": {
+   "pins": [
+    "C18.1",
+    "R16.2",
+    "U183.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C18-Pad2)": {
+   "pins": [
+    "C18.2",
+    "R22.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C21-Pad1)": {
+   "pins": [
+    "C21.1",
+    "RV1.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C34-Pad1)": {
+   "pins": [
+    "C34.1",
+    "R42.1",
+    "R47.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C36-Pad1)": {
+   "pins": [
+    "C36.1",
+    "R44.2",
+    "R45.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(H28-Pad2)": {
+   "pins": [
+    "H28.2",
+    "U224.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(H28-Pad6)": {
+   "pins": [
+    "H28.6",
+    "U203.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(H28-Pad8)": {
+   "pins": [
+    "H28.8",
+    "U203.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(H28-Pad10)": {
+   "pins": [
+    "H28.10",
+    "U225.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(H28-Pad12)": {
+   "pins": [
+    "H28.12",
+    "U189.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(JP1-A)": {
+   "pins": [
+    "JP1.1",
+    "S306.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(JP1-B)": {
+   "pins": [
+    "JP1.2",
+    "S306.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R7-Pad2)": {
+   "pins": [
+    "R7.2",
+    "RV1.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R10-Pad2)": {
+   "pins": [
+    "R9.2",
+    "R10.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R12-Pad2)": {
+   "pins": [
+    "R12.2",
+    "R18.1",
+    "U197.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R17-Pad1)": {
+   "pins": [
+    "R17.1",
+    "S6.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R31-Pad1)": {
+   "pins": [
+    "R31.1",
+    "S5.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R37-Pad2)": {
+   "pins": [
+    "R37.2",
+    "U197.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R38-Pad2)": {
+   "pins": [
+    "R38.2",
+    "U197.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(RA16-R1)": {
+   "pins": [
+    "C14.1",
+    "RA16.2",
+    "RA17.4",
+    "U184.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(RA16-R2)": {
+   "pins": [
+    "C35.1",
+    "RA16.3",
+    "RA17.2",
+    "RA17.3",
+    "U183.3",
+    "U183.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(RA16-R4)": {
+   "pins": [
+    "C12.1",
+    "RA16.5",
+    "RA17.5",
+    "U184.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(RA17-common)": {
+   "pins": [
+    "C35.2",
+    "RA17.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S2-Pad7)": {
+   "pins": [
+    "S2.7",
+    "U197.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S3-Pad7)": {
+   "pins": [
+    "S3.7",
+    "U197.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S4-Pad2)": {
+   "pins": [
+    "S4.2",
+    "U111.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S4-Pad3)": {
+   "pins": [
+    "S4.3",
+    "U111.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S4-Pad4)": {
+   "pins": [
+    "S4.4",
+    "U111.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S4-Pad5)": {
+   "pins": [
+    "S4.5",
+    "U111.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S7-Pad2)": {
+   "pins": [
+    "S7.2",
+    "U149.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S7-Pad3)": {
+   "pins": [
+    "S7.3",
+    "U149.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S7-Pad4)": {
+   "pins": [
+    "S7.4",
+    "U149.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S7-Pad5)": {
+   "pins": [
+    "S7.5",
+    "U149.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S306-+5V)": {
+   "pins": [
+    "C33.1",
+    "S306.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S306-CT)": {
+   "pins": [
+    "C32.1",
+    "S306.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S306-OUT1)": {
+   "pins": [
+    "S306.15",
+    "U97.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(S306-OUT2)": {
+   "pins": [
+    "S306.16",
+    "U97.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U3-O0)": {
+   "pins": [
+    "U3.15",
+    "U89.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U5-A0)": {
+   "pins": [
+    "U5.10",
+    "U193.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U5-A1)": {
+   "pins": [
+    "U5.9",
+    "U193.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q0)": {
+   "pins": [
+    "U5.21",
+    "U12.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q1)": {
+   "pins": [
+    "U5.23",
+    "U12.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q2)": {
+   "pins": [
+    "U5.2",
+    "U12.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q3)": {
+   "pins": [
+    "U5.26",
+    "U12.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q4)": {
+   "pins": [
+    "U12.12",
+    "U176.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q5)": {
+   "pins": [
+    "U12.15",
+    "U176.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q6)": {
+   "pins": [
+    "U12.16",
+    "U176.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U12-Q7)": {
+   "pins": [
+    "U12.19",
+    "U176.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D0)": {
+   "pins": [
+    "U14.3",
+    "U17.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D1)": {
+   "pins": [
+    "U14.4",
+    "U17.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D2)": {
+   "pins": [
+    "U14.7",
+    "U17.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D3)": {
+   "pins": [
+    "U14.8",
+    "U17.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D4)": {
+   "pins": [
+    "U14.13",
+    "U17.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D5)": {
+   "pins": [
+    "U14.14",
+    "U17.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D6)": {
+   "pins": [
+    "U14.17",
+    "U17.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U14-D7)": {
+   "pins": [
+    "U14.18",
+    "U17.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U15-OE)": {
+   "pins": [
+    "U15.1",
+    "U53.1",
+    "U216.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D0)": {
+   "pins": [
+    "U17.3",
+    "U178.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D1)": {
+   "pins": [
+    "U17.4",
+    "U178.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D2)": {
+   "pins": [
+    "U17.7",
+    "U178.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D3)": {
+   "pins": [
+    "U17.8",
+    "U178.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D4)": {
+   "pins": [
+    "U7.7",
+    "U17.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D5)": {
+   "pins": [
+    "U7.10",
+    "U17.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D6)": {
+   "pins": [
+    "U7.12",
+    "U17.17"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U17-D7)": {
+   "pins": [
+    "U7.15",
+    "U17.18"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U19-OEa)": {
+   "pins": [
+    "U19.1",
+    "U19.19",
+    "U70.1",
+    "U70.19",
+    "U220.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U24-~{CE})": {
+   "pins": [
+    "U24.19",
+    "U29.19",
+    "U213.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U27-~{CE})": {
+   "pins": [
+    "U27.19",
+    "U44.19",
+    "U190.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U28-OE)": {
+   "pins": [
+    "U28.1",
+    "U55.1",
+    "U193.11",
+    "U216.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U31-~{CE})": {
+   "pins": [
+    "U31.19",
+    "U33.19",
+    "U195.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U35-I0a)": {
+   "pins": [
+    "U35.2",
+    "U35.5",
+    "U35.11",
+    "U35.14",
+    "U68.3",
+    "U68.6",
+    "U68.10",
+    "U68.13",
+    "U189.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U35-I1a)": {
+   "pins": [
+    "U35.3",
+    "U219.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U35-I1b)": {
+   "pins": [
+    "U35.6",
+    "U219.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U35-I1c)": {
+   "pins": [
+    "U35.10",
+    "U201.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U35-I1d)": {
+   "pins": [
+    "U35.13",
+    "U219.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U36-A12)": {
+   "pins": [
+    "U36.2",
+    "U38.2",
+    "U218.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U37-OEa)": {
+   "pins": [
+    "U37.1",
+    "U37.19",
+    "U72.1",
+    "U72.19",
+    "U220.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U43-~{OOE})": {
+   "pins": [
+    "U43.48",
+    "U69.22",
+    "U71.22"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U66-P18M)": {
+   "pins": [
+    "U46.3",
+    "U66.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U68-I0a)": {
+   "pins": [
+    "U68.2",
+    "U195.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U68-I0b)": {
+   "pins": [
+    "U68.5",
+    "U195.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U68-I0c)": {
+   "pins": [
+    "U68.11",
+    "U190.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U68-I0d)": {
+   "pins": [
+    "U68.14",
+    "U195.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U77-~{CE})": {
+   "pins": [
+    "U77.19",
+    "U200.3",
+    "U230.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U79-Cp)": {
+   "pins": [
+    "U79.11",
+    "U81.11",
+    "U218.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U80-E1)": {
+   "pins": [
+    "U80.4",
+    "U196.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U84-~{WR})": {
+   "pins": [
+    "U84.21",
+    "U213.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U85-~{WR})": {
+   "pins": [
+    "U85.21",
+    "U213.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q0)": {
+   "pins": [
+    "A25.1",
+    "U94.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q1)": {
+   "pins": [
+    "A25.5",
+    "U94.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q2)": {
+   "pins": [
+    "A23.5",
+    "U94.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q3)": {
+   "pins": [
+    "A25.3",
+    "U94.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q4)": {
+   "pins": [
+    "A23.1",
+    "U94.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q5)": {
+   "pins": [
+    "A25.11",
+    "U94.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q6)": {
+   "pins": [
+    "A25.13",
+    "U94.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U94-Q7)": {
+   "pins": [
+    "A25.9",
+    "U94.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U95-~{WR})": {
+   "pins": [
+    "U95.21",
+    "U230.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U99-~{CLK})": {
+   "pins": [
+    "R41.2",
+    "U99.6",
+    "U196.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U99-~{IORQ})": {
+   "pins": [
+    "U99.20",
+    "U225.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-BC)": {
+   "pins": [
+    "U103.14",
+    "U183.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-BUFF)": {
+   "pins": [
+    "U103.12",
+    "U183.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-CH1)": {
+   "pins": [
+    "C22.1",
+    "U103.9",
+    "U184.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-CH2)": {
+   "pins": [
+    "C25.1",
+    "U103.10",
+    "U184.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-COM)": {
+   "pins": [
+    "R25.1",
+    "U103.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-MP)": {
+   "pins": [
+    "R13.1",
+    "U103.13",
+    "U183.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-RB)": {
+   "pins": [
+    "U103.15",
+    "U183.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-SAM1)": {
+   "pins": [
+    "U103.6",
+    "U133.20"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-SAM2)": {
+   "pins": [
+    "U103.5",
+    "U133.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-SD)": {
+   "pins": [
+    "U103.4",
+    "U133.21"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U103-ø1)": {
+   "pins": [
+    "U103.2",
+    "U133.23"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q0)": {
+   "pins": [
+    "U5.8",
+    "U106.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q1)": {
+   "pins": [
+    "U5.7",
+    "U106.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q2)": {
+   "pins": [
+    "U5.6",
+    "U106.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q3)": {
+   "pins": [
+    "U5.5",
+    "U106.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q4)": {
+   "pins": [
+    "U5.4",
+    "U106.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q5)": {
+   "pins": [
+    "U5.3",
+    "U106.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q6)": {
+   "pins": [
+    "U5.25",
+    "U106.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U106-Q7)": {
+   "pins": [
+    "U5.24",
+    "U106.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-ALE)": {
+   "pins": [
+    "U109.15",
+    "U196.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-AVO)": {
+   "pins": [
+    "R19.1",
+    "R35.2",
+    "U109.17"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I0)": {
+   "pins": [
+    "U109.4",
+    "U157.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I1)": {
+   "pins": [
+    "U109.5",
+    "U157.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I2)": {
+   "pins": [
+    "U109.6",
+    "U157.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I3)": {
+   "pins": [
+    "U109.7",
+    "U157.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I4)": {
+   "pins": [
+    "U109.8",
+    "U157.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I5)": {
+   "pins": [
+    "U109.9",
+    "U157.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I6)": {
+   "pins": [
+    "U109.10",
+    "U157.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-I7)": {
+   "pins": [
+    "U109.11",
+    "U157.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-REF)": {
+   "pins": [
+    "R33.2",
+    "U109.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-X1)": {
+   "pins": [
+    "C76.1",
+    "U109.23",
+    "Y1.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-X2)": {
+   "pins": [
+    "C77.1",
+    "U109.24",
+    "Y1.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-~{DRQ})": {
+   "pins": [
+    "U109.14",
+    "U158.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-~{MD})": {
+   "pins": [
+    "R23.2",
+    "U109.21"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-~{RESET})": {
+   "pins": [
+    "U109.19",
+    "U207.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U109-~{ST})": {
+   "pins": [
+    "U109.22",
+    "U207.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q0)": {
+   "pins": [
+    "A24.5",
+    "U115.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q1)": {
+   "pins": [
+    "A23.3",
+    "U115.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q2)": {
+   "pins": [
+    "A24.1",
+    "U115.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q3)": {
+   "pins": [
+    "A24.3",
+    "U115.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q4)": {
+   "pins": [
+    "A24.9",
+    "U115.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q5)": {
+   "pins": [
+    "A24.11",
+    "U115.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U115-Q6)": {
+   "pins": [
+    "A24.13",
+    "U115.16"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U116-S)": {
+   "pins": [
+    "U116.1",
+    "U140.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U117-~{WR})": {
+   "pins": [
+    "U117.21",
+    "U230.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U119-~{CE})": {
+   "pins": [
+    "U119.19",
+    "U201.3",
+    "U230.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U122-CLK)": {
+   "pins": [
+    "R48.2",
+    "U122.15",
+    "U229.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U122-IPL0)": {
+   "pins": [
+    "U122.23",
+    "U122.25",
+    "U222.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U122-VPA)": {
+   "pins": [
+    "U122.21",
+    "U224.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U128-O0)": {
+   "pins": [
+    "U128.15",
+    "U226.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U128-O1)": {
+   "pins": [
+    "U128.14",
+    "U226.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-AB0)": {
+   "pins": [
+    "U131.58",
+    "U196.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD0)": {
+   "pins": [
+    "S6.2",
+    "U131.17"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD1)": {
+   "pins": [
+    "S6.3",
+    "U131.18"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD2)": {
+   "pins": [
+    "S6.4",
+    "U131.19"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD3)": {
+   "pins": [
+    "S6.5",
+    "U131.20"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD4)": {
+   "pins": [
+    "S6.6",
+    "U131.21"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD5)": {
+   "pins": [
+    "S6.7",
+    "U131.22"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-ASD6)": {
+   "pins": [
+    "S6.8",
+    "U131.23"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD0)": {
+   "pins": [
+    "S5.2",
+    "U131.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD1)": {
+   "pins": [
+    "S5.3",
+    "U131.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD2)": {
+   "pins": [
+    "S5.4",
+    "U131.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD3)": {
+   "pins": [
+    "S5.5",
+    "U131.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD4)": {
+   "pins": [
+    "S5.6",
+    "U131.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD5)": {
+   "pins": [
+    "S5.7",
+    "U131.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-BSD6)": {
+   "pins": [
+    "S5.8",
+    "U131.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-CLK)": {
+   "pins": [
+    "U131.51",
+    "U196.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U131-SLEV)": {
+   "pins": [
+    "U131.53",
+    "U145.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U132-Cp)": {
+   "pins": [
+    "U132.11",
+    "U134.11",
+    "U188.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U132-~{OE})": {
+   "pins": [
+    "U132.1",
+    "U140.9",
+    "U216.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U133-~{CS})": {
+   "pins": [
+    "U80.11",
+    "U133.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U134-~{OE})": {
+   "pins": [
+    "U134.1",
+    "U216.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U135-BS_I)": {
+   "pins": [
+    "C24.1",
+    "U135.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U135-BS_M)": {
+   "pins": [
+    "C17.1",
+    "U135.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U135-BYPASS)": {
+   "pins": [
+    "C26.1",
+    "R29.2",
+    "U135.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U135-FEEDBACK)": {
+   "pins": [
+    "C23.1",
+    "U135.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U135-IN)": {
+   "pins": [
+    "C21.2",
+    "R29.1",
+    "U135.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U141-~{CE})": {
+   "pins": [
+    "U96.19",
+    "U141.19",
+    "U224.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U142-OEa)": {
+   "pins": [
+    "U142.1",
+    "U150.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Cp)": {
+   "pins": [
+    "U147.11",
+    "U196.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q0)": {
+   "pins": [
+    "U147.2",
+    "U158.26"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q1)": {
+   "pins": [
+    "U147.5",
+    "U158.23"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q2)": {
+   "pins": [
+    "U147.6",
+    "U158.25"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q3)": {
+   "pins": [
+    "U147.9",
+    "U158.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q4)": {
+   "pins": [
+    "U147.12",
+    "U158.28"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q5)": {
+   "pins": [
+    "U147.15",
+    "U158.29"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q6)": {
+   "pins": [
+    "U147.16",
+    "U158.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U147-Q7)": {
+   "pins": [
+    "U147.19",
+    "U158.24"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U150-O0)": {
+   "pins": [
+    "U97.9",
+    "U150.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U150-O6)": {
+   "pins": [
+    "U150.9",
+    "U152.15",
+    "U153.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U151-OUT)": {
+   "pins": [
+    "U151.3",
+    "U196.1",
+    "U196.3",
+    "U196.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U156-D3)": {
+   "pins": [
+    "U156.7",
+    "U156.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-D0)": {
+   "pins": [
+    "U5.18",
+    "U176.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-D1)": {
+   "pins": [
+    "U5.19",
+    "U176.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q0)": {
+   "pins": [
+    "U176.2",
+    "U178.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q1)": {
+   "pins": [
+    "U176.5",
+    "U178.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q2)": {
+   "pins": [
+    "U7.6",
+    "U176.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q3)": {
+   "pins": [
+    "U7.11",
+    "U176.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q4)": {
+   "pins": [
+    "U7.13",
+    "U176.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U176-Q5)": {
+   "pins": [
+    "U7.14",
+    "U176.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D0)": {
+   "pins": [
+    "U5.11",
+    "U177.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D1)": {
+   "pins": [
+    "U5.12",
+    "U177.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D2)": {
+   "pins": [
+    "U5.13",
+    "U177.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D3)": {
+   "pins": [
+    "U5.15",
+    "U177.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D4)": {
+   "pins": [
+    "U5.16",
+    "U177.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-D5)": {
+   "pins": [
+    "U5.17",
+    "U177.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q0)": {
+   "pins": [
+    "U177.2",
+    "U178.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q1)": {
+   "pins": [
+    "U177.5",
+    "U178.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q2)": {
+   "pins": [
+    "U177.7",
+    "U178.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q3)": {
+   "pins": [
+    "U177.10",
+    "U178.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q4)": {
+   "pins": [
+    "U177.12",
+    "U178.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U177-Q5)": {
+   "pins": [
+    "U177.15",
+    "U178.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U178-SW)": {
+   "pins": [
+    "U178.1",
+    "U193.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-A0)": {
+   "pins": [
+    "U180.5",
+    "U230.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-A1)": {
+   "pins": [
+    "U180.6",
+    "U201.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-A2)": {
+   "pins": [
+    "U180.7",
+    "U200.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-A3)": {
+   "pins": [
+    "U180.4",
+    "U200.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-A4)": {
+   "pins": [
+    "U180.3",
+    "U203.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-O0)": {
+   "pins": [
+    "U180.12",
+    "U202.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U180-O1)": {
+   "pins": [
+    "U180.11",
+    "U202.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U182-I1)": {
+   "pins": [
+    "U66.20",
+    "U182.2",
+    "U182.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U182-I5)": {
+   "pins": [
+    "U66.38",
+    "U182.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U183A--)": {
+   "pins": [
+    "R3.1",
+    "R9.1",
+    "R22.1",
+    "R43.2",
+    "R46.2",
+    "U183.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U183B--)": {
+   "pins": [
+    "R16.1",
+    "S4.1",
+    "S7.1",
+    "U183.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U183C--)": {
+   "pins": [
+    "R25.2",
+    "U183.8",
+    "U183.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U184A--)": {
+   "pins": [
+    "R44.1",
+    "U184.1",
+    "U184.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U184B--)": {
+   "pins": [
+    "R47.1",
+    "U184.6",
+    "U184.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U184C--)": {
+   "pins": [
+    "C8.1",
+    "U184.8",
+    "U184.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U184D--)": {
+   "pins": [
+    "C10.1",
+    "U184.13",
+    "U184.14"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U186-I0a)": {
+   "pins": [
+    "U66.47",
+    "U186.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U186-I0b)": {
+   "pins": [
+    "U66.49",
+    "U186.6",
+    "U186.8",
+    "U186.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U186-I1a)": {
+   "pins": [
+    "U66.10",
+    "U186.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U186-I1b)": {
+   "pins": [
+    "U66.22",
+    "U186.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U186-I2b)": {
+   "pins": [
+    "U186.7",
+    "U186.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U187A-+)": {
+   "pins": [
+    "R14.2",
+    "U187.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U187A--)": {
+   "pins": [
+    "C11.2",
+    "R34.1",
+    "R40.2",
+    "U187.1",
+    "U187.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U187B-+)": {
+   "pins": [
+    "C19.1",
+    "R32.2",
+    "U187.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U187B--)": {
+   "pins": [
+    "C5.2",
+    "C16.1",
+    "R39.2",
+    "U187.6",
+    "U187.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U188-Pad8)": {
+   "pins": [
+    "U188.8",
+    "U218.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U188-Pad11)": {
+   "pins": [
+    "U188.11",
+    "U211.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U189-Pad6)": {
+   "pins": [
+    "U189.6",
+    "U190.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U189-Pad8)": {
+   "pins": [
+    "U189.8",
+    "U218.10",
+    "U218.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U190-Pad3)": {
+   "pins": [
+    "U190.3",
+    "U204.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U190-Pad5)": {
+   "pins": [
+    "U190.5",
+    "U195.2",
+    "U195.10",
+    "U195.13",
+    "U201.5",
+    "U203.8",
+    "U219.2",
+    "U219.5",
+    "U219.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U190-Pad11)": {
+   "pins": [
+    "U190.11",
+    "U204.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U191-Pad8)": {
+   "pins": [
+    "U191.8",
+    "U230.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U191-Pad11)": {
+   "pins": [
+    "U191.11",
+    "U228.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U191-Pad13)": {
+   "pins": [
+    "U191.3",
+    "U191.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U192-Pad8)": {
+   "pins": [
+    "U192.8",
+    "U201.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U192-Pad11)": {
+   "pins": [
+    "U192.11",
+    "U230.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U198-Pad6)": {
+   "pins": [
+    "U198.6",
+    "U221.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U198-Pad8)": {
+   "pins": [
+    "U198.8",
+    "U221.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U198-Pad11)": {
+   "pins": [
+    "U198.11",
+    "U221.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U199-Pad3)": {
+   "pins": [
+    "U199.3",
+    "U200.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U199-Pad8)": {
+   "pins": [
+    "U199.8",
+    "U221.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U199-Pad11)": {
+   "pins": [
+    "U199.11",
+    "U221.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U200-Pad2)": {
+   "pins": [
+    "U200.2",
+    "U206.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U200-Pad4)": {
+   "pins": [
+    "U200.4",
+    "U212.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U200-Pad5)": {
+   "pins": [
+    "U200.5",
+    "U230.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U200-Pad12)": {
+   "pins": [
+    "U200.8",
+    "U200.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U201-Pad9)": {
+   "pins": [
+    "U201.9",
+    "U206.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U201-Pad12)": {
+   "pins": [
+    "U201.12",
+    "U212.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U202-Pad8)": {
+   "pins": [
+    "U202.8",
+    "U221.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U202-Pad11)": {
+   "pins": [
+    "U202.11",
+    "U221.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U204-Pad2)": {
+   "pins": [
+    "U204.2",
+    "U219.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U204-Pad3)": {
+   "pins": [
+    "U204.3",
+    "U217.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U204-Pad11)": {
+   "pins": [
+    "U204.11",
+    "U217.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U204-Pad12)": {
+   "pins": [
+    "U204.12",
+    "U217.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U205-Pad1)": {
+   "pins": [
+    "U205.1",
+    "U228.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U209A-D)": {
+   "pins": [
+    "U209.2",
+    "U211.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U209A-Q)": {
+   "pins": [
+    "U209.5",
+    "U209.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U209A-~{S})": {
+   "pins": [
+    "H28.4",
+    "U209.4",
+    "U209.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U211-Pad6)": {
+   "pins": [
+    "U211.6",
+    "U218.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U212-Pad6)": {
+   "pins": [
+    "U212.6",
+    "U220.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U212-Pad8)": {
+   "pins": [
+    "U212.8",
+    "U220.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U213-Pad12)": {
+   "pins": [
+    "U213.2",
+    "U213.8",
+    "U213.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U217-Pad3)": {
+   "pins": [
+    "U217.3",
+    "U221.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U222B-C)": {
+   "pins": [
+    "U206.10",
+    "U222.11",
+    "U227.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U222B-Q)": {
+   "pins": [
+    "U222.9",
+    "U228.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U222B-~{S})": {
+   "pins": [
+    "U204.4",
+    "U222.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U223A-E)": {
+   "pins": [
+    "U191.6",
+    "U223.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U223B-E)": {
+   "pins": [
+    "U189.3",
+    "U223.15"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U226-Pad11)": {
+   "pins": [
+    "U226.11",
+    "U228.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U227A-~{R})": {
+   "pins": [
+    "U225.8",
+    "U227.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U227B-Q)": {
+   "pins": [
+    "U227.9",
+    "U228.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(U227B-~{S})": {
+   "pins": [
+    "U220.10",
+    "U227.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "VCC": {
+   "pins": [
+    "C33.3",
+    "C58.1",
+    "P3.4",
+    "R12.1",
+    "R23.1",
+    "R33.1",
+    "R35.1",
+    "R39.1",
+    "R40.1",
+    "R41.1",
+    "R48.1",
+    "RA2.1",
+    "RA3.1",
+    "RA4.1",
+    "RA5.1",
+    "RA6.1",
+    "RA7.1",
+    "S1.1",
+    "S2.1",
+    "S3.1",
+    "U1.32",
+    "U1.64",
+    "U2.32",
+    "U3.6",
+    "U3.16",
+    "U5.1",
+    "U5.27",
+    "U5.28",
+    "U7.1",
+    "U8.32",
+    "U12.1",
+    "U14.1",
+    "U15.20",
+    "U17.1",
+    "U18.16",
+    "U19.20",
+    "U23.16",
+    "U28.20",
+    "U30.16",
+    "U32.16",
+    "U34.32",
+    "U34.64",
+    "U36.26",
+    "U37.20",
+    "U38.26",
+    "U42.32",
+    "U43.21",
+    "U43.63",
+    "U43.78",
+    "U43.80",
+    "U43.81",
+    "U43.82",
+    "U43.83",
+    "U45.32",
+    "U45.64",
+    "U46.4",
+    "U53.20",
+    "U55.20",
+    "U59.16",
+    "U61.10",
+    "U63.32",
+    "U63.64",
+    "U65.28",
+    "U65.32",
+    "U65.64",
+    "U66.32",
+    "U66.64",
+    "U69.26",
+    "U70.20",
+    "U71.26",
+    "U72.20",
+    "U75.1",
+    "U75.23",
+    "U75.43",
+    "U75.65",
+    "U84.24",
+    "U85.24",
+    "U86.24",
+    "U88.1",
+    "U88.31",
+    "U88.32",
+    "U94.1",
+    "U95.24",
+    "U99.11",
+    "U103.1",
+    "U105.26",
+    "U106.1",
+    "U107.1",
+    "U109.40",
+    "U111.14",
+    "U115.1",
+    "U117.24",
+    "U118.21",
+    "U118.31",
+    "U120.21",
+    "U120.31",
+    "U121.1",
+    "U122.14",
+    "U122.24",
+    "U122.49",
+    "U124.3",
+    "U124.13",
+    "U124.16",
+    "U126.3",
+    "U126.6",
+    "U126.13",
+    "U126.16",
+    "U127.1",
+    "U127.20",
+    "U127.28",
+    "U128.6",
+    "U130.3",
+    "U130.4",
+    "U130.5",
+    "U130.6",
+    "U130.13",
+    "U130.16",
+    "U131.32",
+    "U131.56",
+    "U131.57",
+    "U131.64",
+    "U133.22",
+    "U136.21",
+    "U136.31",
+    "U137.1",
+    "U137.31",
+    "U137.32",
+    "U138.21",
+    "U138.31",
+    "U139.26",
+    "U145.1",
+    "U147.1",
+    "U149.14",
+    "U150.6",
+    "U151.4",
+    "U154.3",
+    "U154.10",
+    "U154.13",
+    "U154.16",
+    "U156.1",
+    "U158.1",
+    "U158.31",
+    "U158.32",
+    "U159.1",
+    "U159.31",
+    "U159.32",
+    "U160.9",
+    "U161.9",
+    "U162.9",
+    "U163.9",
+    "U164.9",
+    "U165.9",
+    "U166.9",
+    "U167.9",
+    "U168.9",
+    "U169.9",
+    "U170.9",
+    "U171.9",
+    "U172.9",
+    "U173.9",
+    "U174.9",
+    "U175.9",
+    "U176.1",
+    "U177.1",
+    "U178.16",
+    "U180.16",
+    "U181.20",
+    "U186.20",
+    "U187.8",
+    "U207.4",
+    "U207.10",
+    "U209.1",
+    "U209.13",
+    "U210.10",
+    "U210.13",
+    "U222.1",
+    "U222.13",
+    "U224.12",
+    "U227.2",
+    "U227.4",
+    "U227.13",
+    "U999.3",
+    "U999.4",
+    "U999.C",
+    "U999.D"
+   ],
+   "named": "sheet",
+   "aliases": []
+  }
+ }
+}

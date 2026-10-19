@@ -1,0 +1,177 @@
+{
+ "slug": "mia-pwb351392a",
+ "name": "M.I.A. PCB (PWB351392A)",
+ "mfr": "Konami",
+ "year": "1989",
+ "machine": "mia",
+ "drawing": "jtcores cores/tmnt/sch/mia at e7b11263",
+ "revision": "",
+ "coverage": "25 parts, 15 of them ICs, and 88 nets over 281 pins, on sheets for one sheet. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The ICs sit at the board positions their designators name, on a nominal grid spacing.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/tmnt/sch/mia",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/tmnt/sch/mia",
+  "authors": [
+   "Jose Tejada",
+   "etriana85"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/mia-pwb351392a/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/mia-pwb351392a",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "mia.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 369.4,
+  "h": 184.1
+ },
+ "partial": true,
+ "grid": {
+  "rows": "ABCDFU",
+  "cols": 29,
+  "transposed": false
+ },
+ "ics": {
+  "A26": "74LS257",
+  "B22": "74LS174",
+  "B26": "74LS257",
+  "C24": "74LS253",
+  "C25": "74LS253",
+  "D24": "74LS253",
+  "D25": "74LS253",
+  "D29": "74LS244",
+  "F15": "74LS04",
+  "RN1": "KONAMI_005273",
+  "RN2": "KONAMI_005273",
+  "RN3": "KONAMI_005273",
+  "RN4": "KONAMI_005273",
+  "RN5": "KONAMI_005273",
+  "U1": "051550"
+ },
+ "place": {
+  "A26": [
+   312.5,
+   10.0,
+   0
+  ],
+  "B22": [
+   264.1,
+   32.3,
+   0
+  ],
+  "B26": [
+   312.5,
+   32.3,
+   0
+  ],
+  "C24": [
+   288.3,
+   54.6,
+   0
+  ],
+  "C25": [
+   300.4,
+   54.6,
+   0
+  ],
+  "D24": [
+   288.3,
+   76.9,
+   0
+  ],
+  "D25": [
+   300.4,
+   76.9,
+   0
+  ],
+  "D29": [
+   348.8,
+   76.9,
+   0
+  ],
+  "F15": [
+   179.4,
+   99.2,
+   0
+  ],
+  "RN1": [
+   10.0,
+   166.44,
+   0
+  ],
+  "RN2": [
+   24.62,
+   166.44,
+   0
+  ],
+  "RN3": [
+   39.24,
+   166.44,
+   0
+  ],
+  "RN4": [
+   53.86,
+   166.44,
+   0
+  ],
+  "RN5": [
+   68.48,
+   166.44,
+   0
+  ],
+  "U1": [
+   10.0,
+   121.5,
+   0
+  ]
+ },
+ "footprints": {
+  "A26": "Package_DIP:DIP-16_W7.62mm",
+  "B22": "Package_DIP:DIP-16_W7.62mm",
+  "B26": "Package_DIP:DIP-16_W7.62mm",
+  "C24": "Package_DIP:DIP-16_W7.62mm",
+  "C25": "Package_DIP:DIP-16_W7.62mm",
+  "D24": "Package_DIP:DIP-16_W7.62mm",
+  "D25": "Package_DIP:DIP-16_W7.62mm",
+  "D29": "Package_DIP:DIP-20_W7.62mm",
+  "F15": "Package_DIP:DIP-14_W7.62mm",
+  "RN1": "Package_DIP:DIP-8_W7.62mm",
+  "RN2": "Package_DIP:DIP-8_W7.62mm",
+  "RN3": "Package_DIP:DIP-8_W7.62mm",
+  "RN4": "Package_DIP:DIP-8_W7.62mm",
+  "RN5": "Package_DIP:DIP-8_W7.62mm",
+  "U1": "Package_DIP:DIP-24_W15.24mm"
+ },
+ "parts": {
+  "A26": "74LS257",
+  "B22": "74LS174",
+  "B26": "74LS257",
+  "C1": "0.1UC",
+  "C24": "74LS253",
+  "C25": "74LS253",
+  "D24": "74LS253",
+  "D25": "74LS253",
+  "D29": "74LS244",
+  "F15": "74LS04",
+  "FL1": "EMI_Filter_CLC",
+  "JM1": "JAMMA_CONN",
+  "JP1": "JP",
+  "R1": "470Ω",
+  "R2": "100Ω",
+  "R23": "470Ω",
+  "R25": "100Ω",
+  "RN1": "KONAMI_005273",
+  "RN2": "KONAMI_005273",
+  "RN3": "KONAMI_005273",
+  "RN4": "KONAMI_005273",
+  "RN5": "KONAMI_005273",
+  "SW1": "SW_DIP_x08",
+  "SW2": "SW_DIP_x08",
+  "U1": "051550"
+ }
+}

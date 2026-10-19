@@ -3,6 +3,9 @@
 const app = document.getElementById("app");
 const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
   ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+/** "A", "A and B", "A, B and C". */
+const listOf = (xs) => (xs || []).length > 1
+  ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs || [])[0] || "";
 
 const api = async (path) => {
   const r = await fetch("/api/" + path);
@@ -397,7 +400,7 @@ async function home() {
   // (asteroids-03 … asteroids-06 all belong to `asteroid`), so the badge is
   // keyed on that field. Matching board slug to machine slug found 13 of 50.
   const boardList = await api("boards").catch(() => []);
-  const boardMachines = new Set(boardList.map((b) => b.machine || b.slug));
+  const boardMachines = new Set(boardList.flatMap((b) => [b.machine || b.slug, ...(b.machines || [])]));
 
   const st = await api("stats");
   const put = (id, v) => (document.getElementById(id).textContent = v.toLocaleString());
@@ -472,7 +475,10 @@ async function machine(slug) {
   // A board names the machine it belongs to; its own slug is the board's
   // (asteroids-03 … asteroids-06 all belong to `asteroid`). Matching board
   // slug to machine slug found 13 of the 50 and told Asteroids it had none.
-  const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug);
+  // A system board (CP System III, Sega System 18) lists the other machines
+  // that run on it in `machines`.
+  const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug
+    || (b.machines || []).includes(slug));
   loadRomMap(slug);
 
   loadDiagnostics(slug);
@@ -501,9 +507,10 @@ async function machine(slug) {
       If you have a manual, a schematic or a wiring diagram for it, <a href="/submit">send it in</a>.</div>` : ""}
 
     ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
-      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a hand-built KiCad
+      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a KiCad
       project with a schematic and bill of materials —
-      ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>`).join(" · ")}.</div>` : ""}
+      ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>${b.origin
+        ? ` (drawn for ${esc(b.origin.project)}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}
     <div id="rommap"></div>
 
     <h2>Hardware</h2>
@@ -1119,7 +1126,8 @@ async function boards() {
   app.innerHTML = `
     <h1>KiCad conversions</h1>
     <p class="sub">Boards rebuilt from the original drawings as real KiCad projects,
-       with browsable schematics and bills of materials.</p>
+       with browsable schematics and bills of materials — and boards redrawn in KiCad for
+       jtcores' FPGA recreations, published here under the GPL-3.0 with their source.</p>
     <div id="list" class="listbox"></div>`;
   if (!list.length) {
     document.getElementById("list").innerHTML = '<div class="empty">No conversions published yet.</div>';
@@ -1134,7 +1142,9 @@ async function boards() {
         <span class="grow"></span>
         <span class="badge">${b.devices} devices</span>
         ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
-        <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? "nets traced" : "components only"}</span>
+        ${b.origin ? `<span class="badge" title="drawn for ${esc(b.origin.project)}, free software">${esc(b.license)}</span>` : ""}
+        ${b.partial ? `<span class="badge" title="the drawing covers only part of the board">partial</span>` : ""}
+        <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? (b.origin ? "full netlist" : "nets traced") : "components only"}</span>
       </a>`,
   });
 }
@@ -1188,7 +1198,7 @@ async function rommap(machine) {
   // The "board map" badge on the list promised something; this is where it
   // is. Boards name the machine they belong to, so match on that.
   const kbs = (await api("boards").catch(() => []))
-    .filter((b) => b.machine === machine || b.slug === machine);
+    .filter((b) => b.machine === machine || b.slug === machine || (b.machines || []).includes(machine));
   const kinds = [...new Set(rows.map(([, d]) => d.kind))];
   app.innerHTML = `
     <h1>${esc(r.name)} — ROM map</h1>
@@ -1250,6 +1260,15 @@ async function board(slug) {
        that test does real work — it is what catches an OCR of a part number that looks
        perfectly plausible on its own. Nothing here has had that test. Treat it as a
        lead, and check the chip against the board before you act on it.</div>` : ""}
+    ${b.origin ? `<div class="note"><b>${esc(b.license)} · drawn by ${esc(listOf(b.origin.authors))}
+       for <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">${esc(b.origin.project)}</a>.</b>
+       ${esc(b.origin.what || "The schematic is theirs, copied here unchanged; the board view, netlist "
+         + "and bill of materials are made from it.")} All of it is free software under the
+       <a href="/licenses/GPL-3.0.txt" target="_blank" rel="noopener">GNU General Public License v3</a> —
+       you may copy, change and share it on the same terms. The source is
+       <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${b.redrawn
+         ? "the KiCad project" : `${esc(b.origin.project)}'s, as copied here`}</a>, whose
+       NOTICE says what was added here.</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
     ${(b.conflicts || []).length ? `<h2>Open questions</h2>
     <p class="sub">Where the sources disagree, or a reading could not be settled. Each is
@@ -1260,11 +1279,40 @@ async function board(slug) {
        (${b.notes.length} note${b.notes.length > 1 ? "s" : ""})</summary>
     <div class="questions">${b.notes.map((n) => `<div class="note">${esc(n)}</div>`).join("")}</div></details>` : ""}
     ${b.ibom ? `<h2>Board</h2>
-    <p class="sub">Every device at its position on the board, cross-linked to the bill of
-       materials — click a row to find the part, or a part to find the row.</p>
+    <p class="sub">${b.origin
+      ? `Every IC in the ${b.redrawn ? "schematic" : "netlist"}, with its nets on their pins —
+         pick a net to light up every pin on it. The layout is not a scan of the board: see
+         the status above.`
+      : `Every device at its position on the board, cross-linked to the bill of
+         materials — click a row to find the part, or a part to find the row.`}</p>
     <div class="zoombar"><a href="${esc(b.ibom)}" target="_blank" rel="noopener">Open full board view ↗</a></div>
     <iframe class="ibom" src="${esc(b.ibom)}" title="Interactive board view" loading="lazy"></iframe>` : ""}
-    ${b.redrawn ? `<h2>Redrawn schematic</h2>
+    ${b.redrawn && b.origin ? `<h2>Schematic</h2>
+    <p class="sub">The drawing as ${esc(b.origin.project)} publishes it: ${b.redrawn.sheets.length}
+       sheet${b.redrawn.sheets.length === 1 ? "" : "s"} in one PDF, each opening at its own page.
+       Nothing in it has been checked against a manual or a board here.</p>
+    <div class="rows">${b.redrawn.sheets.map((s) => `
+      <a class="row" href="${esc(b.redrawn.pdf)}#page=${s.page}" target="_blank" rel="noopener">
+        <span class="nm">${esc(s.title)}</span>
+        <span class="grow"></span>
+        <span class="meta">page ${s.page} ↗</span>
+      </a>`).join("")}</div>
+    <div class="zoombar">
+      <a href="${esc(b.redrawn.pdf)}" target="_blank" rel="noopener">All sheets as PDF ↗</a>
+      <a href="${esc(b.redrawn.netlist)}" target="_blank" rel="noopener">The netlist ↗</a>
+      <a href="${esc(b.redrawn.project)}" target="_blank" rel="noopener">KiCad project (source) ↗</a>
+      <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream in ${esc(b.origin.project)} ↗</a>
+    </div>` : ""}
+    ${b.origin && !b.redrawn && b.netlist ? `<h2>Netlist</h2>
+    <p class="sub">Every connection ${esc(b.origin.project)} makes between these chips, as JSON:
+       each net with the pins on it, named by ${esc(b.origin.project)}'s own signal names where
+       it gives one. There is no schematic drawing of this board here.</p>
+    <div class="zoombar">
+      <a href="${esc(b.netlist)}" target="_blank" rel="noopener">The netlist ↗</a>
+      <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${esc(b.origin.project)}'s source, as copied here ↗</a>
+      <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream ↗</a>
+    </div>` : ""}
+    ${b.redrawn && !b.origin ? `<h2>Redrawn schematic</h2>
     <p class="sub">Every connection on the drawing, redrawn in KiCad from a netlist read by hand
        off the scan and checked against it pin for pin. Each pin carries the name of its net, so
        a signal is followed by its label rather than by a wire. Signals the drawing leaves unnamed

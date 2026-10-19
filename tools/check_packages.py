@@ -163,7 +163,14 @@ def main():
         b = os.path.basename(f)
         if b.endswith(".read.json") or b.endswith(".notes.json"):
             continue
-        for cell, part in json.load(open(f)).get("ics", {}).items():
+        spec = json.load(open(f))
+        # A board imported from a KiCad drawing (tools/import_jtcores.py)
+        # sizes each part from its own symbol and says so in `footprints`;
+        # only the parts that fall back on this table are this table's to size.
+        given = spec.get("footprints", {}) if spec.get("kicadRoot") else {}
+        for cell, part in spec.get("ics", {}).items():
+            if cell in given:
+                continue
             used[part] = used.get(part, 0) + 1
     for part, n in used.items():
         pins, src = pins_for(part)

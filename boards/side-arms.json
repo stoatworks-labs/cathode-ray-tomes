@@ -1,0 +1,336 @@
+{
+ "slug": "side-arms",
+ "name": "Side Arms PCB (section)",
+ "mfr": "Capcom",
+ "year": "1986",
+ "machine": "sidearms",
+ "drawing": "jtcores cores/sarms/sch at e7b11263",
+ "revision": "",
+ "coverage": "42 parts, 36 of them ICs, and 150 nets over 412 pins, on sheets for sarms. The redraw covers only that part of the board. Nothing in it has been checked against a manual or a board here. The board view carries the ICs and the nets between them; passives and connectors are in the schematic only. The drawing numbers its ICs rather than naming board positions, so the board view lays them out in designator order -- the positions are not the board's.",
+ "singleSource": false,
+ "netsTraced": true,
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/sarms/sch",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/sarms/sch",
+  "authors": [
+   "Jose Tejada",
+   "etriana85"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/side-arms/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/side-arms",
+  "imported": "2026-10-19"
+ },
+ "kicadRoot": "sarms.kicad_sch",
+ "refPrefix": "",
+ "size": {
+  "w": 145.7,
+  "h": 154.7
+ },
+ "partial": true,
+ "ics": {
+  "2H1": "74LS283",
+  "2J1": "74LS283",
+  "2K": "74LS283",
+  "2K1": "74LS283",
+  "2L": "74LS283",
+  "2M": "74LS283",
+  "3L": "74LS191",
+  "3M": "74LS191",
+  "4K1": "74LS191",
+  "4M": "74LS191",
+  "5G1": "74LS08",
+  "5J": "74LS08",
+  "5J1": "74LS191",
+  "5K1": "74LS283",
+  "5L": "74LS191",
+  "5M": "74LS283",
+  "6H1": "74LS30",
+  "6M": "74LS30",
+  "7J1": "74LS74",
+  "7K1": "74LS86",
+  "7L": "74LS74",
+  "7M": "74LS86",
+  "8J1": "74LS191",
+  "8J2": "74LS30",
+  "8K1": "74LS191",
+  "8L": "74LS30",
+  "8M": "74LS374",
+  "8UK1": "74LS374",
+  "9J1": "74LS00",
+  "9L": "74LS00",
+  "10G1": "74LS86",
+  "10G?": "74LS86",
+  "10J": "74LS86",
+  "10L": "74LS00",
+  "11J1": "27128",
+  "U9J1": "74LS00"
+ },
+ "place": {
+  "2H1": [
+   10.0,
+   10.0,
+   0
+  ],
+  "2J1": [
+   24.62,
+   10.0,
+   0
+  ],
+  "2K": [
+   39.24,
+   10.0,
+   0
+  ],
+  "2K1": [
+   53.86,
+   10.0,
+   0
+  ],
+  "2L": [
+   68.48,
+   10.0,
+   0
+  ],
+  "2M": [
+   83.1,
+   10.0,
+   0
+  ],
+  "3L": [
+   97.72,
+   10.0,
+   0
+  ],
+  "3M": [
+   112.34,
+   10.0,
+   0
+  ],
+  "4K1": [
+   126.96,
+   10.0,
+   0
+  ],
+  "4M": [
+   10.0,
+   34.78,
+   0
+  ],
+  "5G1": [
+   24.62,
+   34.78,
+   0
+  ],
+  "5J": [
+   39.24,
+   34.78,
+   0
+  ],
+  "5J1": [
+   53.86,
+   34.78,
+   0
+  ],
+  "5K1": [
+   68.48,
+   34.78,
+   0
+  ],
+  "5L": [
+   83.1,
+   34.78,
+   0
+  ],
+  "5M": [
+   97.72,
+   34.78,
+   0
+  ],
+  "6H1": [
+   112.34,
+   34.78,
+   0
+  ],
+  "6M": [
+   126.96,
+   34.78,
+   0
+  ],
+  "7J1": [
+   10.0,
+   59.56,
+   0
+  ],
+  "7K1": [
+   24.62,
+   59.56,
+   0
+  ],
+  "7L": [
+   39.24,
+   59.56,
+   0
+  ],
+  "7M": [
+   53.86,
+   59.56,
+   0
+  ],
+  "8J1": [
+   68.48,
+   59.56,
+   0
+  ],
+  "8J2": [
+   83.1,
+   59.56,
+   0
+  ],
+  "8K1": [
+   97.72,
+   59.56,
+   0
+  ],
+  "8L": [
+   112.34,
+   59.56,
+   0
+  ],
+  "8M": [
+   126.96,
+   59.56,
+   0
+  ],
+  "8UK1": [
+   10.0,
+   89.42,
+   0
+  ],
+  "9J1": [
+   24.62,
+   89.42,
+   0
+  ],
+  "9L": [
+   39.24,
+   89.42,
+   0
+  ],
+  "10G1": [
+   53.86,
+   89.42,
+   0
+  ],
+  "10G?": [
+   68.48,
+   89.42,
+   0
+  ],
+  "10J": [
+   83.1,
+   89.42,
+   0
+  ],
+  "10L": [
+   97.72,
+   89.42,
+   0
+  ],
+  "11J1": [
+   119.96,
+   89.42,
+   0
+  ],
+  "U9J1": [
+   10.0,
+   129.44,
+   0
+  ]
+ },
+ "footprints": {
+  "2H1": "Package_DIP:DIP-16_W7.62mm",
+  "2J1": "Package_DIP:DIP-16_W7.62mm",
+  "2K": "Package_DIP:DIP-16_W7.62mm",
+  "2K1": "Package_DIP:DIP-16_W7.62mm",
+  "2L": "Package_DIP:DIP-16_W7.62mm",
+  "2M": "Package_DIP:DIP-16_W7.62mm",
+  "3L": "Package_DIP:DIP-16_W7.62mm",
+  "3M": "Package_DIP:DIP-16_W7.62mm",
+  "4K1": "Package_DIP:DIP-16_W7.62mm",
+  "4M": "Package_DIP:DIP-16_W7.62mm",
+  "5G1": "Package_DIP:DIP-14_W7.62mm",
+  "5J": "Package_DIP:DIP-14_W7.62mm",
+  "5J1": "Package_DIP:DIP-16_W7.62mm",
+  "5K1": "Package_DIP:DIP-16_W7.62mm",
+  "5L": "Package_DIP:DIP-16_W7.62mm",
+  "5M": "Package_DIP:DIP-16_W7.62mm",
+  "6H1": "Package_DIP:DIP-14_W7.62mm",
+  "6M": "Package_DIP:DIP-14_W7.62mm",
+  "7J1": "Package_DIP:DIP-14_W7.62mm",
+  "7K1": "Package_DIP:DIP-14_W7.62mm",
+  "7L": "Package_DIP:DIP-14_W7.62mm",
+  "7M": "Package_DIP:DIP-14_W7.62mm",
+  "8J1": "Package_DIP:DIP-16_W7.62mm",
+  "8J2": "Package_DIP:DIP-14_W7.62mm",
+  "8K1": "Package_DIP:DIP-16_W7.62mm",
+  "8L": "Package_DIP:DIP-14_W7.62mm",
+  "8M": "Package_DIP:DIP-20_W7.62mm",
+  "8UK1": "Package_DIP:DIP-20_W7.62mm",
+  "9J1": "Package_DIP:DIP-14_W7.62mm",
+  "9L": "Package_DIP:DIP-14_W7.62mm",
+  "10G1": "Package_DIP:DIP-14_W7.62mm",
+  "10G?": "Package_DIP:DIP-14_W7.62mm",
+  "10J": "Package_DIP:DIP-14_W7.62mm",
+  "10L": "Package_DIP:DIP-28_W15.24mm",
+  "11J1": "Package_DIP:DIP-28_W15.24mm",
+  "U9J1": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "parts": {
+  "2H1": "74LS283",
+  "2J1": "74LS283",
+  "2K": "74LS283",
+  "2K1": "74LS283",
+  "2L": "74LS283",
+  "2M": "74LS283",
+  "3L": "74LS191",
+  "3M": "74LS191",
+  "4K1": "74LS191",
+  "4M": "74LS191",
+  "5G1": "74LS08",
+  "5J": "74LS08",
+  "5J1": "74LS191",
+  "5K1": "74LS283",
+  "5L": "74LS191",
+  "5M": "74LS283",
+  "6H1": "74LS30",
+  "6M": "74LS30",
+  "7J1": "74LS74",
+  "7K1": "74LS86",
+  "7L": "74LS74",
+  "7M": "74LS86",
+  "8J1": "74LS191",
+  "8J2": "74LS30",
+  "8K1": "74LS191",
+  "8L": "74LS30",
+  "8M": "74LS374",
+  "8UK1": "74LS374",
+  "9J1": "74LS00",
+  "9L": "74LS00",
+  "10G1": "74LS86",
+  "10G?": "74LS86",
+  "10J": "74LS86",
+  "10L": "74LS00",
+  "11J1": "27128",
+  "C1": "220pF",
+  "C2": "220pF",
+  "C3": "220pF",
+  "C7M": "331pF",
+  "C8": "221pF",
+  "C10K": "331pF",
+  "U9J1": "74LS00"
+ }
+}
