@@ -1,0 +1,10 @@
+{
+ "notes": [
+  "Converted from DICE's games/pong.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+  "Checked against the Pong (Rev E) board map: of the 66 positions it names, DICE agrees on 65 and disagrees on 1; DICE names 0 the map does not.",
+  "Checked against the 8 nets traced by hand in tools/pong_signal_nets.py: of the 3 that join pins, DICE agrees on 3; DICE gives 2 of the 8 the same signal name."
+ ],
+ "conflicts": [
+  "F1: DICE has a 7493, the Pong (Rev E) board map (read off the drawings) a 7433."
+ ]
+}

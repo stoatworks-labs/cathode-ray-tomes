@@ -2527,6 +2527,45 @@
   "schematicDocs": []
  },
  {
+  "slug": "pong-dice",
+  "name": "Pong (DICE netlist)",
+  "mfr": "Atari",
+  "year": "1972",
+  "machine": "pong",
+  "drawing": "DICE games/pong.cpp at 4b4596b8",
+  "devices": 66,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "66 ICs and 202 nets over 775 pins, from DICE's netlist of the game. DICE is an emulator: its netlist is the circuit as it simulates it, at the board positions the drawings use, and is not a drawing of the board. Where it stands an RC delay or a speed hack in a wire, the wire is restored; what it models that is not a chip on the board (CLOCK_14_318_MHZ, COIN_INPUT, DIPSWITCH, LATCH, PADDLE1_VERTICAL_INPUT, PADDLE2_VERTICAL_INPUT) is left off the board view, and the resistors and capacitors are not named at all. Supply pins are joined to +5V and GND from each part's pinout. The ICs sit at their board positions, on the grid spacing of Atari's boards.",
+  "ibom": "/boards/pong-dice/pong-dice-ibom.html",
+  "bom": "/boards/pong-dice/bom.csv",
+  "conflicts": [
+   "F1: DICE has a 7493, the Pong (Rev E) board map (read off the drawings) a 7433."
+  ],
+  "notes": [
+   "Converted from DICE's games/pong.cpp by tools/import_dice.py; every CONNECTION statement was read.",
+   "Checked against the Pong (Rev E) board map: of the 66 positions it names, DICE agrees on 65 and disagrees on 1; DICE names 0 the map does not.",
+   "Checked against the 8 nets traced by hand in tools/pong_signal_nets.py: of the 3 that join pins, DICE agrees on 3; DICE gives 2 of the 8 the same signal name."
+  ],
+  "license": "GPL-3.0",
+  "origin": {
+   "project": "DICE",
+   "url": "https://github.com/mittonk/dice-libretro/blob/4b4596b8dd2252b9d08bd6aaa02afda4be834db3/games/pong.cpp",
+   "commit": "4b4596b8dd2252b9d08bd6aaa02afda4be834db3",
+   "path": "games/pong.cpp",
+   "authors": [
+    "the DICE Team",
+    "Ken Mitton"
+   ],
+   "license": "GPL-3.0",
+   "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/pong-dice/LICENSE.txt",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/pong-dice",
+   "what": "The netlist is DICE's -- its emulation of this board, chip by chip -- and the board view, chip lookup and bill of materials here are made from it.",
+   "imported": "2026-10-19"
+  },
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/pong-dice.netlist.json"
+ },
+ {
   "slug": "pong",
   "name": "Pong (Rev E)",
   "mfr": "Atari",
@@ -2540,8 +2579,8 @@
   "ibom": "/boards/pong/pong-ibom.html",
   "bom": "/boards/pong/bom.csv",
   "conflicts": [
-   "F1 is the one disagreement. This map has a 7433, a quad 2-input NOR buffer; MAME's netlist models a 7493, a 4-bit binary counter. Those are not a misread of one another \u2014 different function, different pin count of used pins \u2014 so one of the two is wrong about F1 and the drawing is the place to settle it.",
-   "The full netlist could not be recovered and is not attempted here. MAME's connectivity is mostly implicit in the order of a device's arguments, and resolving which of a 7400's two inputs an argument feeds needs the argument-order semantics of MAME's netlist device library, which this repo does not have. Taking only the connections that are unambiguous without it \u2014 NET_C groups and single-input devices \u2014 yields 7 nets, fewer than the 8 already traced by hand. Guessing the rest would produce a netlist that looks complete and is wrong in places, and validate_nets.py would not catch an input swapped between two equivalent pins."
+   "F1 is the one disagreement. This map has a 7433, a quad 2-input NOR buffer; MAME's netlist models a 7493, a 4-bit binary counter. Those are not a misread of one another \u2014 different function, different pin count of used pins \u2014 so one of the two is wrong about F1 and the drawing is the place to settle it. DICE's netlist of Pong, imported separately as the Pong (DICE netlist) board, has a 7493 at F1 as well, wired as the ball-speed counter MAME describes: two independent netlists against this map's reading, which makes the map's 7433 the likelier error. Not changed here until the drawing is re-read.",
+   "The full netlist could not be recovered and is not attempted here. MAME's connectivity is mostly implicit in the order of a device's arguments, and resolving which of a 7400's two inputs an argument feeds needs the argument-order semantics of MAME's netlist device library, which this repo does not have. Taking only the connections that are unambiguous without it \u2014 NET_C groups and single-input devices \u2014 yields 7 nets, fewer than the 8 already traced by hand. Guessing the rest would produce a netlist that looks complete and is wrong in places, and validate_nets.py would not catch an input swapped between two equivalent pins. A full pin-level netlist does now exist on the site from DICE, as its own board (Pong (DICE netlist), GPL-3.0): it agrees with this map at 65 of 66 positions and with all three hand-traced nets that join pins."
   ],
   "notes": [
    "MAME models this exact board component by component in src/mame/atari/nl_pong.cpp (BSD-3-Clause, copyright Couriersud), and names its devices by the board's own grid positions \u2014 'c9f' is gate f of the chip at C9. It names 63 of the 66 chips on this map and agrees with 62 of them. That is an independent confirmation of a hand read done from assembly drawing A001433, by a source that shares nothing with it."

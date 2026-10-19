@@ -32,7 +32,7 @@ All 43 of its documents, 2,772 pages, are on the site: console and handheld serv
 
 <https://github.com/openscopeproject/InteractiveHtmlBom>
 
-The 108 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions and the jtcores and DICE imports, and each page carries its viewer code together with Split.js, lz-string and PEP.
+The 109 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions and the jtcores and DICE imports, and each page carries its viewer code together with Split.js, lz-string and PEP.
 
 ### jtcores — Jose Tejada (jotego) and contributors
 
@@ -55,7 +55,7 @@ The schematic symbol library the jtcores drawings are made with; its symbols are
 Licence: GPL-3.0  
 Copyright: 2008-2025 DICE Team
 
-15 board pages -- Breakout, Space Race, Stunt Cycle, Jet Fighter, Rebound and the other CPU-less games of the Pong era -- take their connectivity from DICE's netlists, converted by tools/import_dice.py: its stand-ins for a wire undone, its analogue models left off the board, and Crash 'n Score's checked against the hand-read map. Each game's source is in kicad/<slug>/ unchanged with DICE's LICENSE.txt and a NOTICE.md, and everything made from it is GPL-3.0.
+16 board pages -- Pong, Breakout, Space Race, Stunt Cycle, Jet Fighter, Rebound and the other CPU-less games of the Pong era -- take their connectivity from DICE's netlists, converted by tools/import_dice.py: its stand-ins for a wire undone, its analogue models left off the board, and Crash 'n Score's checked against the hand-read map. Each game's source is in kicad/<slug>/ unchanged with DICE's LICENSE.txt and a NOTICE.md, and everything made from it is GPL-3.0.
 
 ### Split.js v1.3.5
 

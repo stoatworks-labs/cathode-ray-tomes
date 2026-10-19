@@ -267,8 +267,8 @@ and a notice saying who drew it and what was added here, and everything made fro
 board view, the netlist, the chip lookup and the bill of materials — is under the same
 licence. The board page says whose drawing it is.
 
-Fifteen of the CPU-less games of the Pong era — Breakout, Space Race, Stunt Cycle, Jet Fighter,
-Rebound and the rest — get their connectivity from [DICE](https://github.com/mittonk/dice-libretro),
+Sixteen of the CPU-less games of the Pong era — Pong itself, Breakout, Space Race, Stunt Cycle,
+Jet Fighter, Rebound and the rest — get their connectivity from [DICE](https://github.com/mittonk/dice-libretro),
 the emulator that runs them by simulating every chip. Its netlists are GPL-3.0 as well. They are
 an emulator's model of the board rather than a drawing of it, so the conversion undoes DICE's
 shortcuts (an RC delay standing in a wire is a wire again), leaves its analogue models off the
