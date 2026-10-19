@@ -588,10 +588,11 @@ the colour one), redrawn as eleven KiCad sheets and checked back with KiCad's ne
 reached the stock TTL, and the sheet carries the whole Math Box, the ER2055 high-score EAROM
 and its -28V charge pump, both POKEYs and the audio stage. Its Math Box agrees with
 Battlezone's net for net (79) and signature for signature (65). Six conflicts are logged in
-`boards/tempest-auxiliary.read.json`; the real one, B1 pin 1 lettered BEGIN but drawn wired to
-/BEGIN, is also in the board's status line, because **the site renders no board's `notes` or
-`conflicts`** -- they reach `/api/boards` and stop. That gap predates this board and hides
-Battlezone's too. ERC on the redraw has five errors, each the drawing's own design and each
+`boards/tempest-auxiliary.read.json` and show on the board page as Open questions; the real
+one, B1 pin 1 lettered BEGIN but drawn wired to /BEGIN, is in the board's status line as well.
+(When this board was traced the page showed no board's notes or conflicts at all: the feature
+had been reverted by accident. It is back -- see "Every logged conflict is on its board's page
+now" below.) ERC on the redraw has five errors, each the drawing's own design and each
 confirmed on two printings: K3's paralleled LM324 outputs (3) and the two POKEYs'
 open-collector SOD looped to SID with no pull-up (2). They are left visible, not hidden by
 changing pin types. **Red
@@ -760,6 +761,13 @@ above the board and notes as a collapsed "How this board was read"; and the
 lookup shows a device's note under its row, styled as a warning when it reads
 like one. 35 boards carry 77 open questions between them. Nothing here has been
 checked against a physical board, and now the page says so where it matters.
+
+*Lost and restored.* a61d2ab8, committed six minutes after this landed, carried an
+`app.js` and `app.css` from before it and silently took all three pieces out again; the
+data kept being served and no page read it from 2026-09-02 until 2026-10-19, when the
+code was restored as it was. 37 boards now carry 85 open questions, and 46 carry 191
+notes.
+`npm test` checks that the script still reads `b.conflicts`, `b.notes` and `v.note`.
 
 **A cell nothing could settle is in the lookup now, marked contested.** It used
 to vanish — not on the map, not in the lookup — so "what is at 12B" answered

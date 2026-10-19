@@ -524,9 +524,9 @@ same pipeline ran end to end. What it added:
 - **A sheet can contradict itself.** B1 pin 1 is lettered BEGIN but drawn wired into /BEGIN,
   in all three printings. The read takes the pin's label (the circuit cannot work the other
   way), the read file logs the conflict and the board's status line states it. Record it; do
-  not quietly pick one. Note that the site does not render a board's `notes` or `conflicts`
-  yet -- they reach `/api/boards` and stop there -- so anything a repairer must see goes in
-  the status (`coverage`) too.
+  not quietly pick one. The board page shows a read file's `conflicts` as **Open questions**
+  above the board and its `notes` collapsed beneath them, so a logged conflict does reach the
+  repairer; the status line is for the one they must not miss, and this is one.
 - **`parallel PIN ...`** declares outputs the sheet ties together on purpose -- K3 is four
   LM324 sections driving one charge pump. The checker then counts them as one driver, and
   still reports them if the read did not put them on one net.
@@ -649,6 +649,14 @@ convention and legitimately uses G.
   ran `" ".join(t.split())` over it first, so every table in the corpus rendered as a
   single-column strip. Kinds that carry structure in their spacing need `_tidy_row`,
   not the paragraph normaliser.
+- **A commit from a shared checkout can revert someone else's feature without a conflict.**
+  26bdc549 put every board's conflicts and notes on its page and every device note in the
+  chip lookup; a61d2ab8, six minutes later, committed an `app.js` and `app.css` that
+  predated it and took all three out. Git saw an ordinary edit, the data was still served,
+  and the pages went without them for seven weeks -- long enough for the Tempest trace to
+  document the gap as if it had always been there. `test_worker.mjs` now checks that the
+  script still reads `b.conflicts`, `b.notes` and `v.note`. Work in a worktree, and read
+  `git diff --cached` before committing a file another session may have touched.
 - **A warning in a build that prints a hundred lines is not a control.** `ingest_vector`
   measured the SCPH-70000's undecoded text, wrote `undecoded: 0.0364` into the document
   and printed `⚠ text does not decode`, and the document shipped anyway and stayed

@@ -139,6 +139,17 @@ CONTENT.push([
   "finds the Japanese manuals by a Japanese word",
 ]);
 
+// A board's logged conflicts are what a repairer must weigh before trusting a
+// pin. publish_board copies them from the read file; this is where they leave.
+const boardList = JSON.parse(readFileSync(join(WEB, "data", "boards.json"), "utf8"));
+const withConflicts = boardList.find((b) => (b.conflicts || []).length);
+if (withConflicts) CONTENT.push([
+  "/api/boards",
+  (body) => body.find((b) => b.slug === withConflicts.slug)?.conflicts?.length
+    === withConflicts.conflicts.length,
+  `serves ${withConflicts.slug}'s ${withConflicts.conflicts.length} conflicts`,
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {
@@ -156,6 +167,23 @@ for (const [path, ok, why] of CONTENT) {
   if (note) console.log(`     ${note}`);
 }
 
-const total = CASES.length + CONTENT.length;
+// Serving a field is not showing it. The board page's open questions, its read
+// notes and the lookup's device notes went out in 26bdc549 and were reverted
+// six minutes later by a61d2ab8, whose app.js predated them — a commit from a
+// shared checkout carrying an old copy of a file. Nothing failed: the data was
+// still served, and for seven weeks no page read it. There is no browser here, so
+// this only asserts that the script still reads the fields; it cannot see
+// whether they render well.
+const APP_READS = ["b.conflicts", "b.notes", "v.note"];
+const appJs = await (await worker.fetch(
+  new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
+for (const field of APP_READS) {
+  const pass = appJs.includes(field);
+  if (!pass) failures++;
+  console.log(`${pass ? "ok  " : "FAIL"} ${"".padEnd(14)} script   `
+    + `${"/js/app.js".padEnd(34)} reads ${field}`);
+}
+
+const total = CASES.length + CONTENT.length + APP_READS.length;
 console.log(failures ? `\n${failures} failing` : `\nall ${total} pass`);
 process.exit(failures ? 1 : 0);
