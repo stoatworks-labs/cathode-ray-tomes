@@ -204,9 +204,10 @@ a `tr` block looks like for every future ingest, raster path included.
 **`tools/check_pages.py` is the control that was missing.** It reported two one-cell
 table rows (the PS3 BD-drive and PSP-2000 unit legends) until 2026-10-20, when those two
 pages were re-extracted and republished (`tools/republish_pages.py`); both now draw as a
-real three-cell row and the check exits 0. Still open from the same work: PS3 BD-drive
-page 29 would band into a 62-row table on a re-ingest and has not been published, and
-`band_rows` has not been run over the other 21 vector manuals.
+real three-cell row and the check exits 0. PS3 BD-drive page 29 is published too (2026-10-20):
+its scan above a 62-row table, with its search postings patched (see AGENTS.md). Still
+open from the same work: what `band_rows` would change in the other 22 vector manuals'
+published output has not been looked at here yet.
 
 **The shared checkout's cache is not the published corpus.** `cache/text/` in
 `~/Projects/publishing/cathode-ray-tomes` holds 4,119 documents, of which 1,684 are an

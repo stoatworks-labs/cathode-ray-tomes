@@ -1425,10 +1425,23 @@ convention and legitimately uses G.
   re-fetched with a plain GET of the survey URL and `survey_gamingdoc.py`'s User-Agent), and `tools/republish_pages.py <id> <pages>`
   merges just those pages of a fresh `ingest_vector.py --doc <id> --no-svg --no-images`
   into the published document. Prefer it to a full re-ingest when a rule added since has
-  also changed other pages: PS3 BD-drive page 29 now bands into a 62-row table from the
-  same `band_rows` that a re-ingest would apply, and wants its scan published with it.
+  also changed other pages: PS3 BD-drive page 29 banded into a 62-row table from the
+  same `band_rows` that a re-ingest applies, and was published on 2026-10-20 with its scan
+  (ingest with images on, then the tool copies `dw`/`dh` and checks the webp is there).
   The tool refuses a page whose word count changed, because the postings were built from
-  the old text.
+  the old text -- and `words` is the extraction's count of *lines*, which is not the
+  count of the words the old *blocks* kept. Page 29's old paragraphs had dropped 22 bare
+  numbers (`82`, `33`, ...) and two `Remark` headers that its rows keep, with `words`
+  520 both times, so the tool also compares token counts the way `build_search` reads
+  them and patches this document's entries in the postings shards (count, then document
+  id, inside the 400-entry cap). Seven terms moved; two (`22`, `150`) fell below the cap
+  and were left out, which is what a rebuild gives. A count that would fall stops it.
+  Page 29's table reads left to right and is right row by row, but its header has five
+  cells a group and its rows six: Part No. is blank on every row and Description spans
+  type, value and tolerance, so `RES-CHIP` sits under "Part No." and an empty cell cannot
+  be written (see "A table row arrives on one line"). A right-group-only row such as
+  `U | RB303 | RES, NETWORK 33X4 (1005)` also lands in the left group's cells. The
+  scan above the table is what says which; that is why it ships.
 - **Reference-designator collisions.** Atari labels ICs by board grid position (`A2`, `C1`,
   `H7`). Used directly as KiCad refdes, `C1`–`C9` and `D1`–`D9` collide with capacitors and
   diodes, and `batch_delete_schematic_components` then deletes *both*. ICs are therefore
