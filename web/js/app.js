@@ -7,6 +7,33 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
 const listOf = (xs) => (xs || []).length > 1
   ? `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}` : (xs || [])[0] || "";
 
+/* Whose a board is that this repository did not draw, and on what terms. The
+   jtcores and DICE boards are GPL-3.0; the netlists converted from MAME are
+   CC0-1.0 or BSD-3-Clause, and the BSD licence asks that its copyright notice
+   travel with the work -- so the note follows the board's own `license`. */
+const LICENCE_TEXT = {
+  "GPL-3.0": ["/licenses/GPL-3.0.txt", "GNU General Public License v3"],
+  "BSD-3-Clause": ["/licenses/BSD-3-Clause.txt", "BSD 3-Clause licence"],
+  "CC0-1.0": ["/licenses/CC0-1.0.txt", "CC0 1.0 public domain dedication"],
+};
+const licenceLink = (id) => {
+  const [url, name] = LICENCE_TEXT[id] || [];
+  return url ? `<a href="${url}" target="_blank" rel="noopener">${esc(name)}</a>` : esc(id);
+};
+/** "drawn for jtcores", "netlist from MAME" -- how a board's origin is credited. */
+const originCredit = (b) => (b.origin.credit ? "netlist from " : "drawn for ") + b.origin.project;
+function licenceTerms(b) {
+  const o = b.origin;
+  if (b.license === "BSD-3-Clause")
+    return `Copyright © ${esc(o.copyright || listOf(o.authors))}. You may copy, change and share
+      it under the ${licenceLink(b.license)}, which asks that this notice go with it.`;
+  if (b.license === "CC0-1.0")
+    return `Dedicated to the public domain by ${esc(o.copyright || listOf(o.authors))} under the
+      ${licenceLink(b.license)}: you may copy, change and share it without asking.`;
+  return `All of it is free software under the ${licenceLink(b.license)} — you may copy, change
+      and share it on the same terms.`;
+}
+
 const api = async (path) => {
   const r = await fetch("/api/" + path);
   if (!r.ok) throw new Error(`${r.status} ${path}`);
@@ -518,9 +545,10 @@ async function machine(slug) {
 
     ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
       ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a KiCad
-      project with a schematic and bill of materials —
+      project with a bill of materials and ${kbs.some((b) => b.redrawn || b.sheet)
+        ? "a schematic" : "its netlist"} —
       ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>${b.origin
-        ? ` (drawn for ${esc(b.origin.project)}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}
+        ? ` (${esc(originCredit(b))}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}
     ${customs.length ? `<div class="note"><b>${customs.length > 1 ? `${customs.length} custom chips`
       : "A custom chip"} drawn from the inside.</b> ${customs.length > 1 ? "Customs" : "A custom"} on
       this machine's board${customs.length > 1 ? " have" : " has"} been redrawn from the inside
@@ -1421,8 +1449,10 @@ async function boards() {
   app.innerHTML = `
     <h1>KiCad conversions</h1>
     <p class="sub">Boards rebuilt from the original drawings as real KiCad projects,
-       with browsable schematics and bills of materials — and boards redrawn in KiCad for
-       jtcores' FPGA recreations, published here under the GPL-3.0 with their source.
+       with browsable schematics and bills of materials — boards redrawn in KiCad for
+       jtcores' FPGA recreations and netlisted by the DICE emulator, published here under the
+       GPL-3.0 with their source — and boards converted from MAME's netlists, under MAME's
+       CC0 and BSD terms, checked against the schematics where this site holds them.
        The <a href="/chips">custom chips</a> jtcores draws from the inside are listed
        separately.</p>
     <div id="list" class="listbox"></div>`;
@@ -1439,7 +1469,7 @@ async function boards() {
         <span class="grow"></span>
         <span class="badge">${b.devices} devices</span>
         ${b.singleSource ? `<span class="badge warn" title="every device from a single printing of one manual, with no cross-check">single source</span>` : ""}
-        ${b.origin ? `<span class="badge" title="drawn for ${esc(b.origin.project)}, free software">${esc(b.license)}</span>` : ""}
+        ${b.origin ? `<span class="badge" title="${esc(originCredit(b))}">${esc(b.license)}</span>` : ""}
         ${b.partial ? `<span class="badge" title="the drawing covers only part of the board">partial</span>` : ""}
         <span class="badge ${b.netsTraced ? "kicad" : ""}">${b.netsTraced ? (b.origin ? "full netlist" : "nets traced") : "components only"}</span>
       </a>`,
@@ -1995,15 +2025,17 @@ async function board(slug) {
        that test does real work — it is what catches an OCR of a part number that looks
        perfectly plausible on its own. Nothing here has had that test. Treat it as a
        lead, and check the chip against the board before you act on it.</div>` : ""}
-    ${b.origin ? `<div class="note"><b>${esc(b.license)} · drawn by ${esc(listOf(b.origin.authors))}
+    ${b.origin ? `<div class="note"><b>${esc(b.license)} · ${esc(b.origin.credit || "drawn by")}
+       ${esc(listOf(b.origin.authors))}
        for <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">${esc(b.origin.project)}</a>.</b>
        ${esc(b.origin.what || "The schematic is theirs, copied here unchanged; the board view, netlist "
-         + "and bill of materials are made from it.")} All of it is free software under the
-       <a href="/licenses/GPL-3.0.txt" target="_blank" rel="noopener">GNU General Public License v3</a> —
-       you may copy, change and share it on the same terms. The source is
+         + "and bill of materials are made from it.")} ${licenceTerms(b)}
+       ${b.origin.sourceLabel ? `${esc(b.origin.sourceLabel)}:
+       <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${esc(b.origin.source.split("/").pop())}</a>.`
+       : `The source is
        <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${b.redrawn
          ? "the KiCad project" : `${esc(b.origin.project)}'s, as copied here`}</a>, whose
-       NOTICE says what was added here.</div>` : ""}
+       NOTICE says what was added here.`}</div>` : ""}
     ${b.status ? `<div class="note"><b>Conversion status.</b> ${esc(b.status)}</div>` : ""}
     ${(b.conflicts || []).length ? `<h2>Open questions</h2>
     <p class="sub">Where the sources disagree, or a reading could not be settled. Each is
@@ -2040,12 +2072,18 @@ async function board(slug) {
       <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream in ${esc(b.origin.project)} ↗</a>
     </div>` : ""}
     ${b.origin && !b.redrawn && b.netlist ? `<h2>Netlist</h2>
-    <p class="sub">Every connection ${esc(b.origin.project)} makes between these chips, as JSON:
-       each net with the pins on it, named by ${esc(b.origin.project)}'s own signal names where
-       it gives one. There is no schematic drawing of this board here.</p>
+    <p class="sub">${b.origin.sourceLabel
+      ? `Every connection on the board as converted from ${esc(b.origin.project)}, as JSON: each
+         net with the pins on it, passives included, named by ${esc(b.origin.project)}'s own
+         signal names where it gives one. The <code>.nets</code> file it is checked from says
+         what was changed from ${esc(b.origin.project)}'s file, and why, line by line.`
+      : `Every connection ${esc(b.origin.project)} makes between these chips, as JSON: each net
+         with the pins on it, named by ${esc(b.origin.project)}'s own signal names where it
+         gives one.`} There is no schematic drawing of this board here.</p>
     <div class="zoombar">
       <a href="${esc(b.netlist)}" target="_blank" rel="noopener">The netlist ↗</a>
-      <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${esc(b.origin.project)}'s source, as copied here ↗</a>
+      <a href="${esc(b.origin.source)}" target="_blank" rel="noopener">${b.origin.sourceLabel
+        ? "The conversion (.nets)" : `${esc(b.origin.project)}'s source, as copied here`} ↗</a>
       <a href="${esc(b.origin.url)}" target="_blank" rel="noopener">Upstream ↗</a>
     </div>` : ""}
     ${b.redrawn && !b.origin ? `<h2>Redrawn schematic</h2>

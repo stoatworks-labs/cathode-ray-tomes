@@ -1750,6 +1750,49 @@
   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/crash-n-score-dice.netlist.json"
  },
  {
+  "slug": "destroyr-sound",
+  "name": "Destroyer sound circuits",
+  "mfr": "Atari",
+  "year": "1977",
+  "machine": "destroyr",
+  "drawing": "Sound section of the Destroyer game board schematic, sheet 4 of 5, technical manual TM-106 (doc 50fd79545404, p. 37) -- via MAME's netlist, compared with it",
+  "devices": 12,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Destroyer game board, sound section: noise (two 74LS164s), explosion, sonar, launch and motor sounds, mixed into the volume pot. 12 ICs, 63 other parts and 97 nets over 260 pins. Converted from MAME's netlist and compared with sheet 4, up to the volume pot's wiper; the TDA1004 amplifier after it is not in MAME. The spare gates MAME ties off are other circuits' on the board, and are ports here. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/destroyr-sound/destroyr-sound-ibom.html",
+  "bom": "/boards/destroyr-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/atari/nl_destroyr.cpp (NETLIST_START(destroyr), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/destroyr-sound.nets.",
+   "Compared with the schematic, sheet 4 of 5 (TM-106 p. 37, a clean 300 ppi scan), with the other four sheets and the parts list (pp. 64-65), on 2026-10-20: all 64 of MAME's nets in the sound circuit agree with the sheet, pin for pin and value for value, and so do the supplies (the LM324s at C9 and H9 on +12V and -5V, from a 7812 and a 7905; the MC3340 at D10 on +5V and -5V). The ports are the sheet's: F8 (a 9334) drives SONGATE, LAUNCH, EXPLO, SONLAT, HE and LE (addresses 1002-1007, HE 'high explosion', LE 'low explosion'); F7 (a 74174) drives MOTOR_SPEED and ATTRACT, and NOISE -- the shift registers' clear -- is F7 pin 5, which sheet 1's address map calls 'KICKER'.",
+   "What MAME's 'Tie off unused gates and pins' block gets wrong is the board, not the sound: every K9 inverter, M8's gates on 4-6, 8-10 and 11-13, and L7's on 1-6 are used by the video and strobe logic on sheets 3-5, so they are ports here, not nc. The 556's RESETs (H8 4 and 10) and its outputs 5 and 9 are bare stubs on the sheet, as nc says; MAME ties the RESETs to +5V. A9's spare gates and L7 8-10 appear on no sheet (a visual sweep, not certain).",
+   "On the sheet and not in this file: the decoupling capacitors C50, C60 (+12V), C54, C65 and C73 (-5V); a second, open jumper from the D10 pin 6 / Q4 node to the TDA1004's pin 5 and C83, beside the closed one this file has; and the TDA1004 amplifier itself (C81 from the volume pot's wiper, C82-C90, the speaker on edge pin 7). On all six electrolytics MAME's pin 1 is the + end. R78 has a pen scribble through its value; it reads 5.6K, and the parts list agrees."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_destroyr.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/atari/nl_destroyr.cpp",
+   "netlist": "destroyr",
+   "authors": [
+    "Ryan Holtz"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Ryan Holtz",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/destroyr-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/destroyr-sound.netlist.json"
+ },
+ {
   "slug": "fast-freddie",
   "name": "Fast Freddie",
   "mfr": "Atari",
@@ -1787,6 +1830,48 @@
    "doc": "5f20383a1a4b",
    "page": 26
   }
+ },
+ {
+  "slug": "flyball-sound",
+  "name": "Flyball sound circuits",
+  "mfr": "Atari",
+  "year": "1976",
+  "machine": "flyball",
+  "drawing": "Sound section of the Flyball game board schematic, technical manual TM-075 (doc 99d8167a63a1) -- via MAME's netlist",
+  "devices": 8,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Flyball game board, sound section: a 74164 noise generator, bat (556), footstep and crowd sounds through two MC3340 attenuators, and the mixer. 8 ICs, 34 other parts and 42 nets over 136 pins. Converted from MAME's netlist, compared with sheet 7 and corrected from it, up to the mixer's output capacitor; the TDA1004 amplifier after it is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/flyball-sound/flyball-sound-ibom.html",
+  "bom": "/boards/flyball-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/atari/nl_flyball.cpp (NETLIST_START(flyball), CC0-1.0, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/flyball-sound.nets.",
+   "Compared with the schematic, sheet 7 of 9 'Sound Generator' (005629 rev A, TM-075 pp. 56-57, the sheet scanned in two halves), with parts list A005629-01 (pp. 62-65), on 2026-10-20: 39 of MAME's 41 nets agree pin for pin -- the noise generator (all ten of its connections), the band-pass filter, the bat sound's 556, the footstep envelope, the crowd and whistle control and the mixer -- and the supplies are as MAME has them (+18V, an unregulated rail, on A8, C8 and D8). Corrected above from the sheet: D7.1, E7.2 and E7.13 go to +5V through the 1K pull-up R25, which MAME leaves out, and B7 and C7 pins 2 and 9 (B gate and CLR) are drawn as bare stubs, which MAME ties to +5V -- an open TTL input floats high, the level the circuit needs, so the board may tie them, but the drawing does not. D7.13 is drawn 'P', an unnamed pull-up, and is left on +5V here.",
+   "Kept as MAME has them, each against the sheet: R79 is 820K on the sheet and the parts list and 1K in MAME, whose comment says 'Verified as 1K on a real board'; R97B (24.4K, in parallel with R97) is on neither, and MAME's comment says it was 'verified to exist on a real board'; C46/C47 are .01 on the sheet and .015 on the parts list, which MAME follows; R80 is 330K on the sheet and 330 ohms on the parts list, and MAME follows the sheet. A8 and C8 are printed 'MFC3340P' with the MFC6040's pin numbers in brackets beside each pin, and the parts list fits MFC6040s, with the MFC3340 as the substitute 'when stock of MFC6040 is depleted'; this file is the MFC3340 wiring, so a board carrying MFC6040s has the bracketed pins instead (as Tank's do). E7's fourth gate (4, 5, 6), which MAME grounds, is not on sheet 7, and the output amplifier (the TDA1004 at B9) is on it and not in MAME."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_flyball.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/atari/nl_flyball.cpp",
+   "netlist": "flyball",
+   "authors": [
+    "Ryan Holtz"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Ryan Holtz",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/flyball-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/flyball-sound.netlist.json"
  },
  {
   "slug": "food-fight",
@@ -4553,6 +4638,366 @@
   "partial": true
  },
  {
+  "slug": "armora-sound",
+  "name": "Armor Attack sound board",
+  "mfr": "Cinematronics",
+  "year": "1980",
+  "machine": "armora",
+  "drawing": "Sound board schematic in the Armor Attack manual (doc 94be099bc6ca) -- via MAME's netlist, compared with the sheets (72-11141-02 rev A, pp84-86)",
+  "devices": 22,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Armor Attack: tank treads (566 VCO), shells, explosions, a CA3080 mixer. 22 ICs, 147 other parts and 135 nets over 502 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/armora-sound/armora-sound-ibom.html",
+  "bom": "/boards/armora-sound/bom.csv",
+  "conflicts": [
+   "The parts list gives 111 resistors where both drawings place 109: it carries an 82K and a second 910K that neither the sheets nor the assembly drawing have (R82 is 8.2K on both; at 82K IC23 would not oscillate). Its 2.7K and 4.7K counts (13 and 8) are also swapped against both drawings (8 and 13). This file follows the drawings."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_armora.cpp (NETLIST_START(armora), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/armora-sound.nets.",
+   "MAME's file says 'Entire schematic needs a verification pass'. With HLE_TANK_VCO off the tread VCO is MAME's own description of the board's circuit; it uses Q1, which MAME declares only in a comment ('not used' -- by the stand-in), so the declaration is restored.",
+   "Compared with the audio board sheets 1-3, 72-11141-02 rev A (doc 94be099bc6ca pp84-86, native 300 dpi), the assembly drawing 72-11141-01 (p87) and the parts list 38-11141-01 (pp57-59), 2026-10-20: the input buffers IC1 and IC27, the shift register IC2 and latch IC3 (OUT 0+ to OUT 7+ on J2-11 to J2-16, MAME's port names), the tank motor (IC6 with R2, R3, C11, C12; IC8 loaded from TS0+-TS3+; IC9, IC10, IC11; R6, R7, C13, C14), the tread squeak (IC13, the 7406 IC7, the low-leakage switches Q14-Q19 and R95-R109 on sheet 2, R14-R23, C18, C19) with the 566 VCO IC15 (R11, C15-C17) and the converter Q1, R4, R12, R13, D5, D8 exactly as MAME's HLE_TANK_VCO-off branch has them, the noise source (IC17, C20, C21, R26, IC18), all five envelope switches and CA3080 channels (Q2-Q11, R27-R83, R94, C22-C34, IC19-IC22), the beep 555 IC23 (R81-R83, C35-C37) and the summing follower IC25 with C43, R91 and the SJ amplifier IC26 (R90, R92) all agree with MAME pin for pin and value for value, transistor and diode orientation included. The parts list agrees with every IC, transistor (Q1 is a 2N3904), diode and capacitor; C28, which MAME's file could not place, is one of six 0.1uF bypass capacitors on -15V. Nothing needed correcting.",
+   "Not in this file: the final amplifier (IC24, Q12, Q13, R24, R25, R84-R89, C38-C42, the volume pot R93) and the regulators IC4/IC5, which are on sheets 1 and 3 with the values MAME's comments give."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_armora.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_armora.cpp",
+   "netlist": "armora",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/armora-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/armora-sound.netlist.json"
+ },
+ {
+  "slug": "boxingb-sound",
+  "name": "Boxing Bugs sound board",
+  "mfr": "Cinematronics",
+  "year": "1981",
+  "machine": "boxingb",
+  "drawing": "Sound board schematic in the Boxing Bugs manual (doc 4cc749f9b585) -- via MAME's netlist, compared with the sheets (72-11516-00 rev X14, pp94-99)",
+  "devices": 54,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Boxing Bugs: music, chirps, cannon and bounce VCOs, a CA3080 mixer. 54 ICs, 279 other parts and 294 nets over 1127 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/boxingb-sound/boxingb-sound-ibom.html",
+  "bom": "/boards/boxingb-sound/bom.csv",
+  "conflicts": [
+   "The sheet labels U36's LOAD (pin 9) \"MLOAD+\", where U46 and U37 beside it read \"MLOAD-\". MAME uses MLOAD- on purpose (\"schems say MLOAD_P, but solarq says MLOAD_M\"), the theory text (p35) says all three counters load on M Load-, and on MLOAD+ the middle four bits of the divider could never count. This file follows MAME.",
+   "The theory text (p33) takes the beetle oscillator's output from U20-4; the sheet and MAME take it from pin 2, and sheet 5 gives U20 3/4 to the shaft encoder."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_boxingb.cpp (NETLIST_START(boxingb), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/boxingb-sound.nets.",
+   "MAME's file calls this netlist 'WIP'.",
+   "Compared with the audio board schematic 72-11516-00 \"Audio Board 'BB'\" rev X14, sheets 1-6 (doc 4cc749f9b585 pp94-99, native 300 dpi), 2026-10-20: all 55 ICs' types; the input conditioning from J2 (OUTPUT 0-4 and 7 on J2-11 to J2-16, through D25-D30, U50, U40, U30, R177/R180/R181 and C67/C69/C70) and the serial latches U49/U39 into U48, U38 and U47; the crystal oscillator, U23, U13/U9/U29 and the divide-by-eleven music clock U43/U24/U33/U44; the noise register U1, U11, U12, U32, U35; every sound channel -- bell, chirping birds, dying bug, egg cracking, beetle on screen, bounce, cannon, loud and soft explosions, bug pushing -- with its 566s, 555s and CA3080s; the music generator U46/U36/U37, U25, U34, U15, U35, U45 and its CA3080 U67 with Q31-Q34; and the summing amplifier U54 with the CS follower U55 all agree with MAME pin for pin and value for value (R9-R209, C11-C75), transistor and diode orientation included. The manual has no audio board parts list. Corrected from the sheet, none of it in a sound path: U25 pin 5 is unconnected and U2's spare inputs 5, 9 and 11 are grounded (MAME's line 786 ties \"U25.5\" to ground, a typo for U2.5); U58's discharge pin 7 is unconnected, not grounded; Y1 is a 20 MHz crystal, not an ideal clock; and U20 pins 3-6 are the shaft encoder's (sheet 5), not bare pins.",
+   "Drafting slips where MAME follows the part, not the label: U1's second half is labelled clock 12, CLR 13 (the 74LS393 is the other way round); U9's second half K 10, CLR 11; the dying bug's 39K is labelled R31 (it is R37 by position, as MAME has it); R196 is labelled R96. Not in this file: the shaft encoder (sheet 5, which also carries U6, a 74LS74 MAME's list of omitted parts leaves out), the regulators (U69 7815 and U68 7915 on the sheet, the other way round in MAME's comments) and +2.2V reference, and the final amplifier."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_boxingb.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_boxingb.cpp",
+   "netlist": "boxingb",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/boxingb-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/boxingb-sound.netlist.json"
+ },
+ {
+  "slug": "ripoff-sound",
+  "name": "Rip Off sound board",
+  "mfr": "Cinematronics",
+  "year": "1980",
+  "machine": "ripoff",
+  "drawing": "Sound board schematic in the Rip Off manual (doc 3a2cac26e2cb) -- via MAME's netlist, compared with the sheet (SD207201 Rev A, p80)",
+  "devices": 23,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Rip Off: laser, torpedo, motor and beep, two background VCOs, a CA3080 mixer. 23 ICs, 131 other parts and 124 nets over 442 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/ripoff-sound/ripoff-sound-ibom.html",
+  "bom": "/boards/ripoff-sound/bom.csv",
+  "conflicts": [
+   "The parts list gives one 1N5240 where both drawings have three (D1, D12, D13, and note 3 names all three), and three 470-ohm and eight 1K resistors where both drawings have two and nine; the totals agree and the list names no positions. This file follows the drawings.",
+   "IC4's reset (pin 4) is not drawn; MAME ties it to +5V (\"not documented in schematics\"), the only way the one-shot works."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_ripoff.cpp (NETLIST_START(ripoff), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/ripoff-sound.nets.",
+   "MAME's two hacks here are value changes and both are undone by their switches: the motor-1 and beep voltage triggers use the sheet's 4.7K (MAME's hack is 100 ohms), and the resistances into the CA3080s IC12 and IC6 are the sheet's, not five times them.",
+   "Compared with the sheet, Schematic Audio Board - Rip Off SD207201 Rev A (doc 3a2cac26e2cb p80, native 300 dpi), with the assembly drawing AE207201 Rev A (p79) and the parts list PL207201 (pp58-60), 2026-10-20: the input buffers IC25 (J4-11/12/13), the shift register IC8 and latch IC9 with R24; the background DAC (IC10, R23, D1, R25-R30, IC19, R76), both background VCOs (IC20, IC21, C30, C31, R77-R82, D6-D11), the level translator Q10 (R83-R85) and the counter IC22 with R86-R91 and C32; the laser and torpedo channels (R56, R66, C26-C29, D2-D5, IC16, IC17, R57-R61, R67-R71, Q8, Q9, and IC18 with R62-R65 and R72-R75 into R47, R48 and C21); the explosion (IC1 S2688, R1-R10, C1-C8, IC2, the one-shot IC4, Q1, IC3), beep (IC5, R11-R18, R20-R22, C9-C11, Q2, Q3, IC6) and motor 1 (IC11, IC13, R31-R44, C14-C19, Q4, Q5, IC12) channels; and the summing node (R19, D12/D13, the follower IC7, C12, R45, R49) all agree with MAME pin for pin and value for value, diode and transistor orientation included. The values MAME's hacks change are the sheet's: R11 and R40 are 4.7K, R18 is 820K and R36 is 1M on the schematic, the assembly drawing and in the parts list's counts. IC18's taps are not binary-ordered (QC takes the smallest resistor); the sheet draws both halves that way and MAME follows it. MAME differs only at the final-amplifier boundary: R45 and R49 go into IC14 pin 2 and only IC14 pin 3 is grounded (MAME line 679 grounds both inputs of IC14 and IC15); corrected above.",
+   "The jumpers W1-W8 are taken as fitted, as MAME takes them; R50 is drawn dashed and noted optional, and C13 and C20 are not used (note 6). Not in this file: the final amplifier and regulators (R46, IC15, Q6, Q7, IC23, IC24), which are on the sheet. MAME's comment calls Q6 (2N6292) a PNP; it is an NPN, and the sheet draws it as one."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_ripoff.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_ripoff.cpp",
+   "netlist": "ripoff",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/ripoff-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/ripoff-sound.netlist.json"
+ },
+ {
+  "slug": "solarq-sound",
+  "name": "Solar Quest sound board",
+  "mfr": "Cinematronics",
+  "year": "1981",
+  "machine": "solarq",
+  "drawing": "Sound board schematic in the Solar Quest manual (doc 289dbfe65fee) -- via MAME's netlist, compared with the sheets (72-11366 rev B, pp97-99, and rev A, pp90-92)",
+  "devices": 50,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Solar Quest: music, capture and photon VCOs, a fire network of TL081s and CA3080s. 50 ICs, 208 other parts and 232 nets over 914 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/solarq-sound/solarq-sound-ibom.html",
+  "bom": "/boards/solarq-sound/bom.csv",
+  "conflicts": [
+   "The theory text's sound check table (p33) puts Capture on U7 pin 9 and Fire on pin 12; both printings of the sheet, and MAME, have FIRE- on 9 and CAPTURE- on 12. This file follows the sheet.",
+   "R155 in the final amplifier is printed 150K; the parts list has no 150K and two 150-ohm resistors. Not in this file."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_solarq.cpp (NETLIST_START(solarq), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/solarq-sound.nets.",
+   "Compared with the audio board schematic 72-11366 \"Solar Quest Audio\" rev B, sheets 1-3 (doc 289dbfe65fee pp97-99, native 300 dpi), with the rev A printing (pp90-92) for faint values, and the audio parts list (pp65-67), 2026-10-20: all 50 ICs' types; the inputs from J2 (OUTPUT 0, 1, 4 and 7 on J2-11, -12, -15 and -16, as the CPU board's J4 table on p80 gives them) through the 7414s U1/U2 into the shift registers U3/U4 and the latches U5, U6 and U7; the music divider U8-U10 with its latch gating U19-U23; the clock chain (U24, U25, the divide-by-eleven U26/U15, U27); the nuke generator (U13, U14, the divide-by-191 U11/U12, U15-U18); the noise register U28-U31 with U18, U24 and U32; every channel -- loud and soft explosion, thrust, capture (Q11-Q13, U42 566, U21), photon (U35, Q7-Q10, U36-U41), fire (Q14/Q15, U43-U47) and the three music envelopes (Q16-Q21) into U48 -- and the CS follower U49 and summing amplifier U50 all agree with MAME pin for pin and value for value (R1-R164, C1-C31), transistor and diode orientation included. The parts list agrees with every IC, resistor, capacitor, diode and transistor quantity, except R155 in the final amplifier. Corrected from the sheet, none of it in a sound path: Y1 is a 20 MHz crystal, not an ideal clock, and U44 and U46 are CA3080As (the parts list's 'special' grade, same pinout), not plain CA3080s. The two printings differ only in labels.",
+   "Drafting slips where MAME follows the part, not the label: U10's pins 9 and 7 are labelled ENP and LOAD inside the box (the signals on them, MLOAD- and MEN+, are right); rev B's sheet 2 prints U18 as \"-S86\" (LS86 on rev A, on sheet 1 and in the parts list). MAME grounds U2 pins 8 and 10, which are 7414 outputs, and leaves the inputs 9 and 11 open -- the sheet's note 6 says all four are unused, and this file has all four nc. Not in this file: the final amplifier (U51, Q22, Q23, R152-R160, C32-C36, D9, D10), the regulators U52/U53 with D1-D4 and C37-C43, and the unnumbered decoupling capacitors."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_solarq.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_solarq.cpp",
+   "netlist": "solarq",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/solarq-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/solarq-sound.netlist.json"
+ },
+ {
+  "slug": "starcas-sound",
+  "name": "Star Castle sound board",
+  "mfr": "Cinematronics",
+  "year": "1980",
+  "machine": "starcas",
+  "drawing": "Sound board schematic in the Star Castle manual (doc 7f01a2f3c820) -- via MAME's netlist, compared with sheet 2 of 2 (72-10861-02, p87)",
+  "devices": 25,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Star Castle: background and laser VCOs (566), shield, explosion and fireball, a CA3080 mixer. War of the Worlds uses the same board with its inputs in a different order; this is the Star Castle wiring. 25 ICs, 177 other parts and 146 nets over 574 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/starcas-sound/starcas-sound-ibom.html",
+  "bom": "/boards/starcas-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_starcas.cpp (NETLIST_START(starcas), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/starcas-sound.nets.",
+   "MAME's file says it is derived from the schematics and parts list in the Star Castle manual. Compared with sheet 2 of the audio board, 72-10861-02 (doc 7f01a2f3c820 p87), 2026-10-19: the noise generator (IC14 S2688, IC15 follower, C16-C18, R28), the +2.2V reference (Q2, R29-R31, C19), the 60 Hz 555 IC16 (R32, R33, C20, C21), the laser VCO (IC17 566, C22-C25, R41-R43, Q5, R44-R46, D10) with the 74LS393 IC12 and its taps R47-R49, the CA3080 IC18's input network (R57-R62), the summing follower IC26 (R127, C48) and the output amplifier IC27 (R125, R126, the SJ junction, the 10K volume pot R128) all agree with MAME pin for pin and value for value. Sheet 1 (p86: latches, shift register, the background VCO) was not compared, nor the other four CA3080 channels or the star sound 555s beyond their values (R112-R119, which agree)."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_starcas.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_starcas.cpp",
+   "netlist": "starcas",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/starcas-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/starcas-sound.netlist.json"
+ },
+ {
+  "slug": "starhawk-sound",
+  "name": "Starhawk sound board",
+  "mfr": "Cinematronics",
+  "year": "1979",
+  "machine": "starhawk",
+  "drawing": "Sound board schematic in the Star Hawk manual (doc 87193443ac92) -- via MAME's netlist, compared with the sheet (2-30008 Rev X3, p43)",
+  "devices": 25,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Starhawk: ship and two laser VCOs (556), PROM-driven sequencing, a CA3080. 25 ICs, 87 other parts and 119 nets over 412 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/starhawk-sound/starhawk-sound-ibom.html",
+  "bom": "/boards/starhawk-sound/bom.csv",
+  "conflicts": [
+   "C21 (5D's timing capacitor, the ship-wobble rate) is printed \"22 TANT 35V\", 22uF. MAME uses 0.22uF, marked \"PCB verified\", and keeps the sheet's 22uF behind its SLOW_SHIP_WOBBLE debug switch (about 0.6 Hz against 60 Hz). This file follows MAME's board.",
+   "R6 (the explosion one-shot's timing resistor) is lettered \"190K\" against MAME's 150K; 190K is not a stock value and the print may be a slip. This file follows MAME."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_starhawk.cpp (NETLIST_START(starhawk), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/starhawk-sound.nets.",
+   "This board's designators are column-and-row grid positions (IC5D, IC4A ...), written U5D, U4A here. MAME's file credits Jay Gallagher with verifying the PCB components.",
+   "Compared with the sheet, Schematic, Audio Board (Star Hawk) 2-30008 Rev X3, 1-9-79 (doc 87193443ac92 p43; a 300 dpi 1-bit scan read from the native image at 2-6x; the manual has no parts list), 2026-10-20: every IC's type and position; the J2 inputs (J2-11 explosion, J2-12 and J2-13 lazers, J2-14 K on/off, J2-15 master on/off, J2-16 K exit -- MAME's OUT_0-4 and OUT_7 in that order) with the 74LS04 6C and 7406 7C; the noise generator (6D, the 74LS164s 8C/8D/9C/9D, 9E, 10C/10D/10E, R1-R15, C7-C15, CR1, CR2, 6B and the CA3080 6A's inputs); the explosion one-shot and Q1 (R5, R7, R16, R17, C5, C6, C17); the killer-ship ramp, the 5D wobble oscillator and the ship VCO (R26-R38, CR3-CR6, C9, C20, C27, 4B, 5A, 5B); both lazer VCOs with their 74LS393 counters, 74S287 PROMs (the counter-to-PROM wiring read on 4E; 7E's tap numbers are illegible but wired the same) and DACs (R39-R60, C22-C26, CR7-CR10, Q4, Q5); and the TL182 3A with the summing node (6A pin 6, R19, C26, 3A pin 14, 3A pin 1 into 4A) all agree with MAME pin for pin and value for value, diode and transistor orientation included. 5D pin 5 is not drawn, so RDUMMY stands in for an open output. MAME differs only at the final amplifier: R22 goes into 4C pin 2, its inverting input, where MAME grounds it (line 436); corrected above.",
+   "Labels that read wrongly on this scan but are MAME's designators by position: CR6 (reads like CR8), C26 (C28), R46 (R48). Not in this file: the final amplifier (4C, Q2, Q3, R20, R21, R23-R25, C16, C18, C19) and the regulators 2C and 2D, which are on the sheet with the values MAME's comments give."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_starhawk.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_starhawk.cpp",
+   "netlist": "starhawk",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/starhawk-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/starhawk-sound.netlist.json"
+ },
+ {
+  "slug": "sundance-sound",
+  "name": "Sundance sound board",
+  "mfr": "Cinematronics",
+  "year": "1979",
+  "machine": "sundance",
+  "drawing": "Sound board schematic in the Sundance manual (doc 7130101e6e69) -- via MAME's netlist, compared with the sheet (SD203200, p20)",
+  "devices": 18,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Sundance: pings and bongs (555s), a whoosh, a wideband noise generator, CA3080 mixing. 18 ICs, 115 other parts and 102 nets over 365 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/sundance-sound/sundance-sound-ibom.html",
+  "bom": "/boards/sundance-sound/bom.csv",
+  "conflicts": [
+   "The sheet labels J2-11 \"O5\"; MAME calls it OUT_0. The CPU board's latch F2 (p13) has no O5 to give -- its Q5 is R_COIN -- and it brings out O0-O4 and O7, as do the troubleshooting text (\"F-2 pins 4, 5, 6, 7, 9 & 12\") and MAME's input mask. This file keeps OUT_0; the harness between the boards is not drawn in the manual.",
+   "R66 in the final amplifier is 2.2K on the sheet and the assembly drawing; MAME's commented-out line has 22K. It is not in this file."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_sundance.cpp (NETLIST_START(sundance), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sundance-sound.nets.",
+   "The wideband noise generator here is MAME's description of the real circuit (the HLE_NOISE_GEN branch off). MAME has never run that branch -- it simulates the noise with a random source -- but it agrees with the sheet part for part (below).",
+   "Compared with the sheet, Audio Board Schematic (Sundance) SD203200 (doc 7130101e6e69 p20, 600 dpi), and the values printed on the assembly drawing (p21; the manual has no audio parts list), 2026-10-20: the noise generator (D1 1N5240, R1, R3-R10, C1-C5, IC1-IC3 and the D2/D3 limiter), the whoosh (IC11, the four LM3900 sections of IC4, Q1-Q3, R11-R23, R34-R42, R47, R48, C6, C13-C15, C21, IC12), the explosion (IC7, Q4, R24-R33, C7-C12, IC8, IC10), the hatch, the two pings and the bong (IC13's four tri-state enables with R49, Q5/Q6/Q8/Q10, R50-R63, R68-R74, R77, R78, C22-C31, C35-C39, IC9 and IC14-IC19) and all six CA3080 outputs on the SN line all agree with MAME pin for pin and value for value, every IC type and every transistor and diode orientation included. MAME differs only where the sheet goes on into the final amplifier, which it does not simulate: IC20 pin 3 is grounded rather than unconnected, and R64 goes into IC20 pin 2 rather than to ground (MAME lines 479 and 472); both are corrected above.",
+   "Not in this file: the final amplifier (IC20's feedback and output stage) and the regulators IC5/IC6, which are on the sheet."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_sundance.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_sundance.cpp",
+   "netlist": "sundance",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sundance-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sundance-sound.netlist.json"
+ },
+ {
+  "slug": "tailg-sound",
+  "name": "Tailgunner sound board",
+  "mfr": "Cinematronics",
+  "year": "1979",
+  "machine": "tailg",
+  "drawing": "Sound board schematic in the Tail Gunner manual (doc 22a6fb78dd5a) -- via MAME's netlist, compared with the sheet (SD205202 sheet 1, p55)",
+  "devices": 21,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cinematronics audio board for Tailgunner: hyperspace and laser VCOs, explosion, a wideband noise generator. 21 ICs, 131 other parts and 126 nets over 436 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/tailg-sound/tailg-sound-ibom.html",
+  "bom": "/boards/tailg-sound/bom.csv",
+  "conflicts": [
+   "The sheet draws the noise amplifier IC1 with C3/R2 on pin 2 (-) and R4/C4 on pin 3 (+), and MAME copies it (its lines 325 and 328, in the branch it never runs). As drawn R4 is positive feedback and the op-amp would latch; the manual's own text (p24) gives IC1 a gain of 1000, which is 1 + R4/R3 only with R4 on the inverting input; and Sundance's sheet SD203200, the same circuit by the same drafter, draws C3 into pin 3 and the feedback into pin 2. This file follows the sheet. Not checked against a board."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_tailg.cpp (NETLIST_START(tailg), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tailg-sound.nets.",
+   "Two MAME changes are undone by their switches: the diodes D8/D9 on the 74LS123's Rext/Cext pins are back (MAME snips them for speed), and the pull-ups MAME adds to the 74LS125 outputs are gone. The hyperspace VCO's real circuit uses Q1, which MAME declares only in a comment ('not used' -- by the stand-in); the declaration is restored.",
+   "Compared with sheet 1 of the audio board, Schematic Audio Board - Tailgunner SD205202 (doc 22a6fb78dd5a p55, 600 dpi), and the parts list PL205202 (pp41-43), 2026-10-20: the trigger port IC23 with its J4 inputs (O0-O4 on J4-11 to J4-15) and its six used outputs; the noise generator (D1, IC1-IC3, but see below); the explosion (IC9, IC10, IC12, Q3), rumble (IC6, Q4) and shield (IC4, Q5, IC13, the 555s IC16 and IC17 with their RC ladders); the shield bounce (IC14, IC15, IC18, IC12, Q8, IC22); the hyperspace and laser VCOs (IC7/Q1, IC11/Q2) with the 74LS393 IC8 and its taps R17-R20 and R35-R38; and the summing line into R70 all agree with MAME pin for pin and value for value, diode and transistor orientation included, and every value MAME has (R1-R70, R76-R84, C1-C33, C41-C44) agrees with the parts list. The three MAME changes this file undoes are what the sheet draws: D8 and D9 on the 74LS123's pins 15 and 7, no pull-ups on the 74LS125 outputs (pins 3 and 6), and the hyperspace VCO built from IC7 and Q1 into IC5 pin 1. Corrected from the sheet: IC23 pin 11 (Q6), which MAME leaves unconnected, goes to J3-9 \"TO START BUTTON LIGHT\"; and R70 goes into IC19 pin 2, the final amplifier's inverting input, rather than to ground, with IC19 pin 3 grounded (MAME lines 670 and 676).",
+   "Slips in the parts list that change nothing here: item 32 gives R22 as 22K (R22 is 1K on the sheet and in item 24; the 22K is the final amplifier's R72), and items 14 and 18 garble C45-C49. The theory text says Q5 for the rumble transistor (the sheet: Q4) and Q1 for the laser squarer (Q2). IC1's printed type is unreadable on this scan; the parts list gives TL081. Not in this file: sheet 2 (p65, the joystick circuitry on the same board, IC24-IC28), and the final amplifier and regulators (R71-R75, C34-C40, Q6, Q7, IC20, IC21), whose values agree with MAME's commented-out lines."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_tailg.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_tailg.cpp",
+   "netlist": "tailg",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tailg-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tailg-sound.netlist.json"
+ },
+ {
   "slug": "sly-spy",
   "name": "Sly Spy PCB",
   "mfr": "Data East Corporation",
@@ -4647,6 +5092,224 @@
   }
  },
  {
+  "slug": "280zzzap-sound",
+  "name": "280-ZZZAP sound circuits",
+  "mfr": "Dave Nutting Associates / Midway",
+  "year": "1976",
+  "machine": "280zzzap",
+  "drawing": "280 ZZZAP Game Logic P.C. 0610-00907A, which this site does not hold -- via MAME's netlist, compared with its near copy, Laguna Racer A622 (doc 2e04e6b435f0)",
+  "devices": 8,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "280-ZZZAP game logic board, sound section: engine (two LM3900 oscillators into an MC3340 attenuator), skid and crash noise, and the mix. 8 ICs, 107 other parts and 92 nets over 308 pins. Converted from MAME's netlist: the engine, skid and crash sounds and the final mix, up to the audio power amplifier. The CPU's sound latches (F4, F5) are ports; the rest of the game logic board is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/280zzzap-sound/280zzzap-sound-ibom.html",
+  "bom": "/boards/280zzzap-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/midw8080/nl_280zzzap.cpp (NETLIST_START(280zzzap), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/280zzzap-sound.nets.",
+   "Compared with both Laguna Racer game logic sheets, A084-90700-B622 (doc 1461b5f1ef33) and -A622 (doc 2e04e6b435f0), on 2026-10-20 -- every wire and port line of this file, not a sample. The two sheets have one circuit and one set of pin numbers; 86 of the 89 lines agree on both, and all sixteen LM3900 amplifiers are on the pins the data sheet numbers them by, as this file puts them. The noise generator agrees part for part (the zener is printed IN5239). Two pins are not numbered on either sheet and are MAME's: G4 switch A's input (pin 1 by elimination) and the MC3340's ground and output (3 and 7).",
+   "The three that differ are one switch. Both sheets print the bottom (76 Hz) oscillator's J4 switch as pins 4, 3 and 5 -- switch B, which the middle oscillator also uses -- and MAME puts it on 10, 11 and 12 (switch D). Its comment: 'mislabeled pin numbers on the schematics for 280-ZZZAP and both Laguna Racer versions ... The Super Speed Race schematic correctly shows this oscillator using pins 10, 11, 12'. Two oscillators cannot share one switch, so this file follows MAME; it is a correction of the sheet, logged, not read.",
+   "Neither sheet draws the LM3900s' or CD4016s' supply pins, so +5V on 14 and ground on 7 are MAME's ('these aren't shown on the schematics'); nor the unused switches G5_D, J4_C and G4_D, so whether the board ties their pins or leaves them open is not on the sheet. The sheet's +12V here is '+12V DECOUPLED' -- connector A pin 3 through 100 ohms with 500uF to ground, neither of which MAME has -- and the LM377 bridge amplifier at J1 that OUTPUT and J5 pin 9 feed is on the sheet and not in MAME.",
+   "This is the 280-ZZZAP variant, compared with the A622 sheet, which MAME's file says is a near copy of the 280-ZZZAP schematic (the site does not hold that one; A622 even keeps its change-note letters E-H, the notes blanked). C18 47uF and R30 110K are A622's. R46, R48, R51 and R11 are not: A622 prints 2M, 480K, 480K and 100K, and MAME takes B622's 2.2M, 470K, 470K and 120K for both games -- 'these seem to be errors in that schematic. 480 Kohm is not even a standard resistor value', agreeing with the Laguna Racer PCB drawings and Andrew Welburn's photo of a 280-ZZZAP board. MAME also notes 280-ZZZAP's own change notes E and F: on the first 325 machines R18 was 6.8K and R65 4.3K."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/midw8080/nl_280zzzap.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/midw8080/nl_280zzzap.cpp",
+   "netlist": "280zzzap",
+   "authors": [
+    "Colin Douglas Howell"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Colin Douglas Howell",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/280zzzap-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/280zzzap-sound.netlist.json"
+ },
+ {
+  "slug": "gunfight-sound",
+  "name": "Gun Fight sound generator",
+  "mfr": "Dave Nutting Associates / Midway",
+  "year": "1975",
+  "machine": "gunfight",
+  "drawing": "Gun Fight Sound Generator Detail P.C. 597-907E -- via MAME's netlist",
+  "devices": 0,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Gun Fight sound generator, P.C. 597-907E: a zener noise source filtered into four transistor 'bang' generators, mixed to left and right. 0 ICs, 119 other parts and 73 nets over 259 pins. Converted from MAME's netlist, which stops at the two master volume pots: the power amplifier ICs after them are not in it. It has no ICs, so there is no board view: the netlist and the bill of materials carry it.",
+  "ibom": "",
+  "bom": "/boards/gunfight-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/midw8080/nl_gunfight.cpp (NETLIST_START(gunfight), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/gunfight-sound.nets.",
+   "Not compared with the sheet. MAME's sheet, 'Gun Fight Sound Generator Detail P.C. 597-907E', is in none of the Gun Fight documents the site holds (read 2026-10-20): the 'Gunfight Schematics' PDF (doc d66a80e04858) has the mother board, the game logic board -- on which the sound generator is a dashed block -- and the cabinet wiring; the manual and parts catalog list no board parts. The catalogue's 'Game Logic and Sound (597-907E)' PDF (doc 8eaf458a433e) was never fetched, and an archive.org copy exists. What the site's sheets do show agrees where they reach: the four triggers enter the sound block from the 7404 at H6 (L.SHOT on pin 2, R.SHOT on 12), as MAME's comment says. The supply is printed '+16V' on the wiring diagram and '+15V' on the mother board schematic for the same pin; MAME uses 16V. The manual names six pots (A-B hit, C-D shot, E-F master, left and right), which by this circuit are R110, R210, R123, R223, R103 and R203 -- an inference, not a reading.",
+   "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/midw8080/nl_gunfight.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/midw8080/nl_gunfight.cpp",
+   "netlist": "gunfight",
+   "authors": [
+    "Colin Douglas Howell"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Colin Douglas Howell",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/gunfight-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/gunfight-sound.netlist.json"
+ },
+ {
+  "slug": "lagunar-sound",
+  "name": "Laguna Racer sound circuits",
+  "mfr": "Dave Nutting Associates / Midway",
+  "year": "1977",
+  "machine": "lagunar",
+  "drawing": "Laguna Racer Game Logic A084-90700-B622 (doc 1461b5f1ef33) and -A622 (doc 2e04e6b435f0) -- via MAME's netlist, compared with both",
+  "devices": 8,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Laguna Racer game logic board, sound section: as 280-ZZZAP's with C18 22uF and R30 100K. 8 ICs, 107 other parts and 92 nets over 308 pins. Converted from MAME's netlist: the engine, skid and crash sounds and the final mix, up to the audio power amplifier. The CPU's sound latches (F4, F5) are ports; the rest of the game logic board is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/lagunar-sound/lagunar-sound-ibom.html",
+  "bom": "/boards/lagunar-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/midw8080/nl_280zzzap.cpp (NETLIST_START(lagunar), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/lagunar-sound.nets.",
+   "Compared with both Laguna Racer game logic sheets, A084-90700-B622 (doc 1461b5f1ef33) and -A622 (doc 2e04e6b435f0), on 2026-10-20 -- every wire and port line of this file, not a sample. The two sheets have one circuit and one set of pin numbers; 86 of the 89 lines agree on both, and all sixteen LM3900 amplifiers are on the pins the data sheet numbers them by, as this file puts them. The noise generator agrees part for part (the zener is printed IN5239). Two pins are not numbered on either sheet and are MAME's: G4 switch A's input (pin 1 by elimination) and the MC3340's ground and output (3 and 7).",
+   "The three that differ are one switch. Both sheets print the bottom (76 Hz) oscillator's J4 switch as pins 4, 3 and 5 -- switch B, which the middle oscillator also uses -- and MAME puts it on 10, 11 and 12 (switch D). Its comment: 'mislabeled pin numbers on the schematics for 280-ZZZAP and both Laguna Racer versions ... The Super Speed Race schematic correctly shows this oscillator using pins 10, 11, 12'. Two oscillators cannot share one switch, so this file follows MAME; it is a correction of the sheet, logged, not read.",
+   "Neither sheet draws the LM3900s' or CD4016s' supply pins, so +5V on 14 and ground on 7 are MAME's ('these aren't shown on the schematics'); nor the unused switches G5_D, J4_C and G4_D, so whether the board ties their pins or leaves them open is not on the sheet. The sheet's +12V here is '+12V DECOUPLED' -- connector A pin 3 through 100 ohms with 500uF to ground, neither of which MAME has -- and the LM377 bridge amplifier at J1 that OUTPUT and J5 pin 9 feed is on the sheet and not in MAME.",
+   "This is the Laguna Racer variant, and every value in it agrees with the B622 sheet, including the six where B622 and A622 differ (R46 2.2M, R48 470K, R51 470K, R11 120K, C18 22uF tantalum, R30 100K -- the last read with moderate confidence, its middle digit faint)."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/midw8080/nl_280zzzap.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/midw8080/nl_280zzzap.cpp",
+   "netlist": "lagunar",
+   "authors": [
+    "Colin Douglas Howell"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Colin Douglas Howell",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/lagunar-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/lagunar-sound.netlist.json"
+ },
+ {
+  "slug": "elim-sound",
+  "name": "Eliminator sound board",
+  "mfr": "Gremlin",
+  "year": "1981",
+  "machine": "elim2",
+  "drawing": "Sound board schematic in the Eliminator manual (doc cff008c00810) -- via MAME's netlist, compared with the sheets (800-3174 rev B sheets 7-8, pp65-68)",
+  "devices": 30,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Sega G-80 Eliminator sound board: background, skitter, two torpedo and explosion sounds, CA3080 VCAs. Zektor uses the same board; this is the Eliminator wiring. 30 ICs, 212 other parts and 187 nets over 677 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/elim-sound/elim-sound-ibom.html",
+  "bom": "/boards/elim-sound/bom.csv",
+  "conflicts": [
+   "this scan drops two short line segments -- Q3's base lead (sheet 7, zone C3) and U19 pin 4 into its second gate (sheet 8, zone D6) -- where MAME's reading is the only one the drawing allows; the identical one-shots elsewhere on sheet 8 draw the line. MAME's is kept."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_elim.cpp (NETLIST_START(elim), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/elim-sound.nets.",
+   "Compared with the Sound Board drawing 800-3174 rev B, sheets 7 and 8 of 8 (doc cff008c00810 pp65-68, each sheet printed in two halves), and its parts list (pp30-35), 2026-10-20. Every passive value in this file agrees with the parts list -- 188 parts, none different -- and the list shows that R24 and C42, which MAME's file queries, do not exist. All values are the Eliminator ones in MAME's variant table (R79 2M is fitted), and no Zektor part or jumper is drawn. The latch bit assignment (U34 74LS374 for the HI port, U35 for the LO port, D0 unused on the LO side), the 7406/7407 buffers, the noise source (U4, U3) and sum buffer U12, the thrust, skitter, enemy ship and background channels (U10, U11, U5, U1, U13, U15, U16, U25), the PSG input U29, explosions 1-3, fireball and bounce (U6-U9, U14, the CD4011 one-shots U17-U19), the torpedo VCOs and counters (U20-U23) and the summing resistors R6-R10 all agree with MAME pin for pin and value for value, transistor and diode orientation included; R36 does feed torpedo 2's D6, as with DISABLE_TORPEDO2_NOISE off.",
+   "The 200 Hz A/B, 10 Hz, 50 Hz and 100 Hz clocks, which MAME runs as ideal clocks, are CD4069 RC oscillators on the sheet (U32 and U31 with R139-R143 and C65-C69), on exactly the pins MAME parks, with the values MAME's comment gives; they are put back here. U5 and U13 are printed NE555 (MAME: LM555, the same part). The PSG's three outputs (U30 pins 1, 4, 5) are tied straight onto R133 680 ohm; R_PSG_1-3 are only MAME's model of the chip, so that node stays a port.",
+   "Not in this file: the CPU interface (U30 AY-3-8912, U33-U41), the final amplifier and mute (U2, Q1, R1-R5, R11-R13, C1, C4) and the bypass capacitors, which are on the sheets with the values MAME's comments give. R3 is not part of the final amplifier's gain network, as MAME's comment says: it brings contact 3 onto the summing node."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_elim.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_elim.cpp",
+   "netlist": "elim",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/elim-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/elim-sound.netlist.json"
+ },
+ {
+  "slug": "frogs-sound",
+  "name": "Frogs sound board",
+  "mfr": "Gremlin",
+  "year": "1978",
+  "machine": "frogs",
+  "drawing": "Sound board schematic in the Frogs manual (doc a2ffd17fee9b) -- via MAME's netlist, compared with the sheet (821-0002 Rev A sheet 5, p50)",
+  "devices": 19,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Gremlin Frogs sound board: hop, jump, zip, splash, buzz, boing and croak from 555s and 741 filters. 19 ICs, 193 other parts and 120 nets over 536 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/frogs-sound/frogs-sound-ibom.html",
+  "bom": "/boards/frogs-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_frogs.cpp (NETLIST_START(frogs), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/frogs-sound.nets.",
+   "Compared with the sheet, Schematic Frogs Sound Board 821-0002 Rev A sheet 5 of 6 (doc a2ffd17fee9b p50, 600 dpi), and with the board's parts list, 821-0002 sheets 1-4 (pp44-47), 2026-10-20: every IC type (U1 MM5837, the ten NE555s, the eight LM741s), every transistor type and all 163 resistor and capacitor values agree with the parts list, and the six channels -- the input inverters Q1-Q6 (FLY driving Q1's emitter), the trigger 555s U2-U7, HOP (D2, R31, R32, Q9, Q10, U10), JUMP (the U11 band-pass, Q21 and the Q19/Q20 pair, U19, U20, U16), TONGUE/ZIP (U4, Q11-Q13, U15), CAPTURE (U3 holding U9's reset, D4, Q17, Q18, U8), SPLASH (Q14, U1's noise through D5/D1, U14) and FLY (U7 resetting U12, Q7, D6, U17, D8/D9, U18) -- agree with MAME pin for pin and value for value, diode and transistor orientation included. The sheet calls HOP's 33K a second R22; the parts list calls it R32, as MAME does. U4 and U15 pin 3 are drawn unconnected, so RU4 and RU15 are MAME's loads, not parts. Three differences, all corrected above:",
+   "* Q15's base is on R47's wiper (zone A6). MAME connects neither, so in its netlist both float. * The six mixer pots R91-R96 have their wipers tied to the summing bus: they are rheostats. MAME leaves the wipers open. * R90 56K is the feedback resistor of U13, the 741 summing amplifier that drives C58 to the AUDIO OUT contacts (26/17). MAME leaves U13 out as the final amp and grounds R90; here R90 goes on to U13 pin 6, a port, and OUTPUT is U13's inverting input.",
+   "Weakly read: the top strip of JUMP (R33, Q8, C44, Q16, R57, R58, R70, R71) is faint on the scan; it agrees with MAME where legible, and its values are the parts list's. Not in this file: U13 with R60, C34, C35 and C58, and the supply bypasses C1/C2, which are on the sheet."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_frogs.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_frogs.cpp",
+   "netlist": "frogs",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/frogs-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/frogs-sound.netlist.json"
+ },
+ {
   "slug": "capcom-bowling",
   "name": "Capcom Bowling PCB",
   "mfr": "Incredible Technologies / Capcom",
@@ -4713,6 +5376,149 @@
    "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/capcom-bowling",
    "imported": "2026-10-19"
   }
+ },
+ {
+  "slug": "kidniki-sound",
+  "name": "Kid Niki sound board",
+  "mfr": "Irem",
+  "year": "1986",
+  "machine": "kidniki",
+  "drawing": "Nanao M62-A-B sheet 4/4 (E-C0066-4), in the Kid Niki conversion kit manual (doc 2e7a6f4d8772, p. 22) -- via MAME's netlist, which was made from a KiCad redraw of it; compared with the sheet",
+  "devices": 3,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Irem M62 sound board, analogue section: the drum and cymbal generators, the MSM5205 and AY-3-8910 mixing, the output stage. 3 ICs, 137 other parts and 89 nets over 318 pins. Converted from MAME's netlist: the analogue sound circuits. The two AY-3-8910s and the MSM5205s are MAME devices; their outputs are ports. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/kidniki-sound/kidniki-sound-ibom.html",
+  "bom": "/boards/kidniki-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/irem/nl_kidniki.cpp (NETLIST_START(kidniki), BSD-3-Clause, Andrew Gardner, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/kidniki-sound.nets.",
+   "Compared with sheet 4/4 of the M62-A-B schematic (E-C0066-4, the conversion kit manual's p. 22), with sheets 2/4 and 3/4 for J4 and D6, on 2026-10-20: 80 of the file's 84 nets agree with the sheet, and every value printed. Three values are not fully legible: R98 reads '6?0K' (680K is the only standard value it fits), C36's last digit is under a line, and R76 has none printed. The sheet prints LM324 at XU1 (written so above) and MC14584 at XU3.",
+   "The disagreements are MAME's FIX_SCHEMATIC_ERRORS, kept as MAME has them: the sheet draws XU1 section B with no feedback (pin 7 drives only R45), and joins D4's and D5's cathodes, TR4's collector, C42 and the C43/R46/C35 node in one net -- MAME's uncorrected line -- where MAME follows the Kung-Fu Master schematic's manual corrections, which the site does not hold. The MSM5205s reach the OKI node on sheet 3/4 through two resistors (one legibly R64) and a capacitor (apparently C46); MAME's R200, R201 and C200 are its own names for them, and on sheet 4/4 the line comes straight to R76, with no C200. D6 is drawn on sheet 2/4, between 1H pin 2 (a 74LS175) and the S-INH line, cathode at the latch; MAME's reason for leaving it out is board photos, which the sheet cannot settle. J4 is a three-terminal jumper on sheet 3/4 with no link drawn; J4 = 1 is MAME's choice."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/irem/nl_kidniki.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/irem/nl_kidniki.cpp",
+   "netlist": "kidniki",
+   "authors": [
+    "Andrew Gardner",
+    "Couriersud"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Andrew Gardner, Couriersud",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/kidniki-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/kidniki-sound.netlist.json"
+ },
+ {
+  "slug": "tank-board-1",
+  "name": "Tank Board I",
+  "mfr": "Kee Games / Atari",
+  "year": "1974",
+  "machine": "tank",
+  "drawing": "Schematic, Tank Board I, 003110 rev J sheets 1-2 (doc 7387abff18bd) -- MAME's netlist, split by board and corrected from the sheets",
+  "devices": 69,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Tank Board I 003110 rev J: tank and shell motion (sheet 1); coin logic, play timer, antenna, noise, shot and boom sounds and the audio mixers (sheet 2). 69 ICs, 72 other parts and 264 nets over 1099 pins. Converted from MAME's netlist and corrected against both sheets. Not in this file: the power supplies and the two LM380 amplifiers, which MAME does not have. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/tank-board-1/tank-board-1-ibom.html",
+  "bom": "/boards/tank-board-1/bom.csv",
+  "conflicts": [
+   "The cable. This sheet prints VLD1 on J1-9 and /FIRE1 on J1-24; Board II's prints FIRE1-bar on J4-9 and VLD1 on J4-24. Every other contact agrees pin for pin, and the only Board I load (M2, a 3-input NAND of both) cannot tell them apart. Each board is given its own sheet's contact.",
+   "J6's second 7474 half is printed \"J4\" on rev H and rev J (pins 1-6, the coin latch). J4 is a 9316 on sheet 1; MAME calls this half J6, and so does this file.",
+   "BOOM COM reaches Q6 through two series 1N914s, both labelled CR22. MAME has one CR22; this file follows MAME.",
+   "M1's first gate prints input \"3\" (MAME, and tank 2's M5, use 5); L3 prints an input \"10\" that is its own output (MAME uses 8); N1 and N5 print their /CLR numbers swapped (both go to /HRST, so it is harmless). MAME's pins are kept.",
+   "SW1 and SW2 are the 25c/50c switch as drawn in two places; whether they are two poles of one switch is not on the sheet. The 50c contact of SW2 is drawn unconnected."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/atari/nl_tank.cpp (NETLIST_START(tank), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tank-board-1.nets.",
+   "Compared with both Board I sheets in full (003110 rev J; rev H and rev G for faint spots), 2026-10-19. MAME agrees with the sheet on the tank motion counters and their presets (B1/B5 3-5 to P and 6 grounded; C2/C4/J1/J5 4 grounded), the clock inverters on A6, F3 and the WINDO outputs, the shell counters and the 2^7 latches cleared by /EXPL, shell 2's latch routing, the shell and blast output gating, the coin flip-flops apart from B6, and the play timer, noise, shot and boom values apart from R53. Its errors here, all corrected above: B6 is a 7404, not a 7400; K6 and L6 are MFC6040s, whose pins are not the MC3340's; C31 feeds K6's input, not its control pin; R53 is 330K; shell 1's 2^2 and 2^3 latches are crossed between the F2 and C1 gates; M2's inputs are swapped (electrically the same NAND); and Board I makes its own HMCE, /EXPL1 and /EXPL2 from what the cable brings, where MAME takes Board II's. MAME's antenna tie, 25c hard-wiring, unused-input ties on N4 and A6 (the antenna latch and the coin counter use them) and grounded mixer outputs are undone.",
+   "Ours, not printed: UX1 (the noise amplifier's 741, which has no grid position), VR1-VR3 (the PLAY TIME pot and the shot and boom noise pots), SW1, SW2. Not in this file: the +5V, +12V and -12V supplies and the two LM380 amplifiers with their volume pots, which are on sheet 2 and not in MAME; OUT1 and OUT2 are where the mixers hand over to them."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_tank.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/atari/nl_tank.cpp",
+   "netlist": "tank",
+   "authors": [
+    "Ryan Holtz"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Ryan Holtz",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-1.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-1.netlist.json"
+ },
+ {
+  "slug": "tank-board-2",
+  "name": "Tank Board II",
+  "mfr": "Kee Games / Atari",
+  "year": "1974",
+  "machine": "tank",
+  "drawing": "Tank Board II 003112 rev H sheet 1 (doc 6872a0725db0) and sheet 2 (rev F print, doc 5169eb199193) -- MAME's netlist, split by board and corrected from the sheets",
+  "devices": 102,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Tank Board II 003112: ROM multiplexing, playfield, minefield, motion latches, motor sounds and video (sheet 1); sync, timing and control (sheet 2). 102 ICs, 145 other parts and 428 nets over 1667 pins. Converted from MAME's netlist and corrected against both sheets; the motor sounds, which MAME comments out, are restored. Not in this file: the +5V regulator. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/tank-board-2/tank-board-2-ibom.html",
+  "bom": "/boards/tank-board-2/bom.csv",
+  "conflicts": [
+   "The cable's VLD1 and /FIRE1 contacts disagree with Board I's sheet (see Board I's notes).",
+   "J5-22/23 is labelled -12V beside the ROM and +12V in the regulator.",
+   "R13 (PLAYFIELD SELECT, 4.7K to +5V) has a jumper to ground drawn beside it -- the alternate maze. MAME leaves it open, as this file does.",
+   "R74 reads 120K on rev H and 180K on rev F; MAME and this file have 180K.",
+   "A8's first half has its S and R pins marked \"R\" rather than \"P\".",
+   "Player 1's lower stick pair is printed \"#2 LEFT STICK\" -- it feeds ACC1/STOP1/RR1/RL1.",
+   "1\u00d82-1\u00d84 and 2\u00d82-2\u00d84 reach this board in contact boxes with no number printed."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/atari/nl_tank.cpp (NETLIST_START(tank), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tank-board-2.nets.",
+   "Compared with both Board II sheets in full (003112 sheet 1 rev H, sheet 2 rev F), 2026-10-19. MAME agrees with the sheet on the ROM's address and data wiring and the 74153 and 9322 multiplexers, the playfield shift register, the minefield and mine control (the 8277 included), video summing, the boom and shot one-shots, the motion latches apart from HD1/HD2, the joystick and fire inputs (designators and values once MAME's suffixes are dropped), the shell one-shots, the 556 blow-up timer, the speed and rotation counters, and the 7492 at A12 -- which matters because MAME's own 7492 model swaps QB and QD against TI's data sheet (the MiSTer Tank core's finding); the netlist's pin numbers are the sheet's.",
+   "MAME's errors here, all corrected above: the score counters (D11 QA and QD go to E11's CPA and CPB the other way round, and SCR1E is D11 pin 12, not 11 -- MAME has SCR1E and SCR2C on one pin); HD1 and HD2 are the Q-bar outputs of N8 and N12 (pin 6), not Q; the ROM's pin 9 and its output pull-downs R19-R26 go to -12V, not ground; and C50/C51 are .22uF, not 22uF. MAME's ideal clock is replaced by the crystal oscillator the sheet draws on A7 (a 74H04); its \"unused\" A7 pins 11 and 13 are the oscillator. The motor sounds, which MAME comments out, are restored: its block agrees with the sheet apart from the MFC6040's output and supply pins, C50/C51 and Q34's emitter (missing from MAME's +12V list), all corrected; the 555s' pin 3 is not drawn.",
+   "The ROM. The sheet prints \"24-PIN EA ROM\" at K10 -- an Electronic Arrays MOS ROM, with +5V on pin 1 and -12V on pin 9. MAME models it as an MK28000 bipolar PROM, and a handwritten note on the rev F print points to the MK28000P; an MK28000's pin 9 is GND, so the board as drawn is not wired for one. The pin names here are MAME's MK28000 names, which are what MAME's ROM dump is ordered by. R19-R26 have no value printed; MAME's 1K is its own guess.",
+   "Designators that are not MAME's: J11 (MAME's \"D11V\" -- another gate of J11), K10 (MAME's \"R10\"), R18 (MAME's \"RUNK1\", 47K). Ours, not printed: Y1 (the crystal), VR1 (the 50K shell range pot, circled 'Shell Range' by hand on the sheet), VR2-VR5 (the motor volume pots and rheostats). Not in this file: the +5V regulator (Q35-Q39 and its parts), not in MAME."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_tank.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/atari/nl_tank.cpp",
+   "netlist": "tank",
+   "authors": [
+    "Ryan Holtz"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Ryan Holtz",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-2.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-2.netlist.json"
  },
  {
   "slug": "asterix-konami",
@@ -6644,6 +7450,132 @@
   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tv-basketball-dice.netlist.json"
  },
  {
+  "slug": "rallyx-bang",
+  "name": "Rally-X explosion sound",
+  "mfr": "Namco",
+  "year": "1980",
+  "machine": "rallyx",
+  "drawing": "Logic Bd I schematic A082-91385-C000, Rally-X Parts and Operating Manual (doc 1cc6c9614736, PDF p. 39) -- via MAME's netlist, compared with it and corrected",
+  "devices": 5,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Rally-X Logic Board I, explosion ('BANG') circuit: CD4006/CD4070 noise gated by a CD4066, a uA741 stage at 12E and an MB3730 bridge amplifier at 12A. 5 ICs, 29 other parts and 30 nets over 109 pins. Converted from MAME's netlist and corrected from the sheet: the explosion circuit and the power amplifier, with the Namco WSG's audio arriving as a port. The rest of the board's sound is a MAME device, not a netlist. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/rallyx-bang/rallyx-bang-ibom.html",
+  "bom": "/boards/rallyx-bang/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/namco/nl_rallyx.cpp (NETLIST_START(rallyx), CC0-1.0, Ricardo Bittencourt) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/rallyx-bang.nets.",
+   "Compared with the Logic Bd I schematic, A082-91385-C000 dated 1/9/81 (PDF p. 39 of the manual, doc 1cc6c9614736, with p. 40's overlap; the 'fold-out', doc 47826bd174c7, is the assembly drawings), on 2026-10-20 -- every net in the file. The noise generator agrees pin for pin, including the spare 4070 and 4066 sections, which the sheet does ground as MAME does, and C35's grounded end; so do the uA741 stage, the WSG mix and every value. Corrected above from the sheet: the MB3730's capacitors and Zobel networks were on each other's pins in MAME (pin 2 has C27 22uF and pin 3 C26 220uF; pin 6 has R69/C32 and pin 5 R70/C31), VR1 is a pot with C4 on its wiper, and C25 and C3 decouple the amplifier's +12V.",
+   "The MB3730's pin names (FB on 2, BYPASS on 3) are MAME's model of the part; with the capacitors where the sheet puts them, either those names or MAME's placement was wrong, and no Fujitsu data sheet has been read to say which. MAME's comment calls C6 'across R41'; on the sheet, and in MAME's own connections, it runs from the input node to the 741's output. D1 is printed '1S15..' with the last digits filled in, and the assembly notes say D1-D5 are 1N914B; MAME's 1S1588 is kept. The CD4xxx supply pins are not drawn; +5V and ground on 14 and 7 are assumed."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/namco/nl_rallyx.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/namco/nl_rallyx.cpp",
+   "netlist": "rallyx",
+   "authors": [
+    "Ricardo Bittencourt"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Ricardo Bittencourt",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rallyx-bang.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rallyx-bang.netlist.json"
+ },
+ {
+  "slug": "tankbatt-sound",
+  "name": "Tank Battalion sound circuits",
+  "mfr": "Namco",
+  "year": "1980",
+  "machine": "tankbatt",
+  "drawing": "Sound section of the Tank Battalion schematic, service manual (doc 73495cc3ecf0) -- via MAME's netlist",
+  "devices": 5,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Tank Battalion, sound section: CD4006 noise, hit and shoot through CD4066 switches and LM324 filters, engine rumble from a 7492, mixed. 5 ICs, 40 other parts and 45 nets over 143 pins. Converted from MAME's netlist, up to the summing node; the amplifier after it is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/tankbatt-sound/tankbatt-sound-ibom.html",
+  "bom": "/boards/tankbatt-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/namco/nl_tankbatt.cpp (NETLIST_START(tankbatt), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tankbatt-sound.nets.",
+   "MAME's netlist ends at the summing node of R35, R36, R56_1, R56_2 and R59, so this file has no output port of its own; the node is a plain net here. R56 appears twice in MAME (R56_1, R56_2), one on each of the hit and shoot channels.",
+   "Not compared with the sheet: the site's Tank Battalion manual (doc 73495cc3ecf0, the upright service manual) has no PCB schematic -- operation, test, cabinet parts lists, the harness (p29) and a block diagram (p30) only (read 2026-10-20); MAME worked from a printing that has one. What the manual does show is where the sound goes after this file: a volume pot on the PCB (Fig. 5-7), the audio output on J1 pin 18 (the speaker check is #18 to Z), a second volume pot behind the coin door on J4 pins 12-14 and the speaker on J6, and a 12V AC centre-tapped winding for 'audio power', so a power amplifier on the board that MAME does not have. So the 7486 supply fix rests on the part's pinout alone, and R46/R49 are MAME's 4.7K against what its own comment says the schematic prints (47K).",
+   "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/namco/nl_tankbatt.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/namco/nl_tankbatt.cpp",
+   "netlist": "tankbatt",
+   "authors": [
+    "Ryan Holtz"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Ryan Holtz",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tankbatt-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tankbatt-sound.netlist.json"
+ },
+ {
+  "slug": "popeye-sound",
+  "name": "Popeye audio output stage",
+  "mfr": "Nintendo",
+  "year": "1982",
+  "machine": "popeye",
+  "drawing": "TPP2-CPU schematic, sheet 2 of 3, in the Popeye operation manual (doc a4dc252b9a5e, p. 35) -- via MAME's netlist, compared with it and corrected",
+  "devices": 0,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Popeye CPU board TPP2-CPU, audio: the AY-3-8910's three channels filtered and mixed, and the two-transistor output stage to the TV's audio. 0 ICs, 23 other parts and 14 nets over 48 pins. Converted from MAME's netlist: the AY-3-8910's filters, mixer and output stage. The AY is a MAME device; its outputs are ports. It has no ICs, so there is no board view: the netlist and the bill of materials carry it.",
+  "ibom": "",
+  "bom": "/boards/popeye-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/nintendo/nl_popeye.cpp (NETLIST_START(popeye), BSD-3-Clause, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/popeye-sound.nets.",
+   "Compared with the TPP2-CPU schematic, sheet 2 of 3 (manual doc a4dc252b9a5e p. 35, clearly legible), and the typeset parts list (p. 27), on 2026-10-20: all 14 nets agree, and every value but one -- R65 is 5.1K on both the sheet and the parts list, where MAME has 2.1K, corrected above. Q8 is a 2SC1815 and Q9 a 2SA1015 as MAME has them. One designator is in doubt: the schematic letters the mixer's 20K 'R51', as MAME does, but also prints an R51 on sheet 3, a 100 ohm in the sync buffer, and the parts list has R51 at 100 ohms and R54 as its only 20K -- so on the board this is most likely R54. Where R52's lead crosses channel B the drawing is broken; only this file's reading (R52 from the AY's pin 4 to ground) works. D2 (1S1595), a clamp on the AY's supply, is on the sheet and not in MAME."
+  ],
+  "license": "BSD-3-Clause",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/nintendo/nl_popeye.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/nintendo/nl_popeye.cpp",
+   "netlist": "popeye",
+   "authors": [
+    "Couriersud"
+   ],
+   "license": "BSD-3-Clause",
+   "copyright": "Couriersud",
+   "licenseUrl": "/licenses/BSD-3-Clause.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/popeye-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/popeye-sound.netlist.json"
+ },
+ {
   "slug": "gunbird-2",
   "name": "Gunbird 2 PCB",
   "mfr": "Psikyo",
@@ -6791,6 +7723,170 @@
    "imported": "2026-10-19"
   },
   "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/wipe-out-dice.netlist.json"
+ },
+ {
+  "slug": "astrob-sound",
+  "name": "Astro Blaster sound board",
+  "mfr": "Sega",
+  "year": "1981",
+  "machine": "astrob",
+  "drawing": "Sound board schematic in the Astro Blaster manual (doc 7c9390526e01) -- via MAME's netlist, compared with the sheets (800-3122 rev B sheets 7-8, pp57-58)",
+  "devices": 33,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Sega G-80 Astro Blaster sound board: sonar, two lasers, invaders, warp and bonus sounds from CD4000-series timing, 555s and TL084 filters. 33 ICs, 280 other parts and 256 nets over 924 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/astrob-sound/astrob-sound-ibom.html",
+  "bom": "/boards/astrob-sound/bom.csv",
+  "conflicts": [
+   "The sonar trigger's 1K (MAME's R117) is printed \"R119 1K\". The same sheet prints R119 470K in the mixer and an R117 1K in the mute circuit, and the parts list's 1K entry carries an R19 that neither sheet prints, so it is probably R19. This file keeps MAME's R117, which names a different resistor on the board.",
+   "Q5 and Q6 (2N4093): the sheet labels S on the signal node and D on ground. MAME swaps them on purpose (\"D and S swapped on schematics???\"). This file follows MAME.",
+   "The attack capacitor is printed \"C69 .05uf\", a second C69 beside the explosion's 4.7uF C69. MAME's C67 is what the parts list's counts allow."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_astrob.cpp (NETLIST_START(astrob), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/astrob-sound.nets.",
+   "Undone beyond the switches: twenty resistors in the sonar circuit that MAME multiplies by 1.001-1.049 (its comment: the circuit 'relies on subtle part differences') are written at their nominal value; and ENABLE_SONAR_ALT, which adds four 1M resistors to a 0.1V source to start the oscillators, is off.",
+   "Compared with the sound board sheets, Astro Blaster Sound 800-3122 rev B sheets 7 and 8 of 8 (doc 7c9390526e01 pp57-58, the 300 dpi scan read at up to 5x), and with its parts list (pp33, 35-36), 2026-10-20. Every resistor and capacitor value in MAME's file (R1-R186, C1-C82) and every IC, diode and transistor type agrees with the parts list, quantities included; the sonar resistors MAME scales are the list's nominal values. The sheets agree with MAME net for net and pin for pin, diode and transistor orientation included, in the latch outputs and their 7406/7407 buffers (U26, U29-U31); the four sonar oscillators (U1, U2) and their trigger (U11, D2, Q1-Q3, U7A); both lasers (U25, U24/U19, U20/U14, the real VCO branch); refill (U3, U4, U5, Q7) and attack, rate reset and warp (U21, U15, D14-D23, U16B); explosions (U27, U21, U8, Q6, U16A/C) and astroids (U16D, Q5, U7C); the four invaders (U22, U23/U18/Q8, U13/U12, U17, U37/U28/U38) and bonus (U10, U6); and the summing bus (R98-R103, R118-R122, C55).",
+   "Corrected from the sheets: the four oscillators MAME runs as ideal clocks are CD4011 RC oscillators (U9 with R18/C3 and R46/C20, U11 with R22/C5, U10 with R80/C35), on exactly the gates MAME parks, and they are put back. MAME's \"unconnected\" U7 pins are the output stage: pin 12 is grounded, pin 13 is the summing node (now joined to it), and pins 5-7 are the mute comparator, which with Q4 is what MAME's mute function stands in for.",
+   "Sheet misprints, MAME right: U2's first output is printed \"4\", and U38's supply pin \"5\". Not in this file: the rest of the output stage (U7D's feedback, C58, Q4, D13, R115-R117, R123, R124, R135, R141-R144, C48, P1), the port decoder and latches U32-U36, and the power decoupling."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_astrob.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_astrob.cpp",
+   "netlist": "astrob",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/astrob-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/astrob-sound.netlist.json"
+ },
+ {
+  "slug": "brdrline-sound",
+  "name": "Borderline sound board",
+  "mfr": "Sega",
+  "year": "1981",
+  "machine": "brdrline",
+  "drawing": "Sound Board Assembly 834-0055 Rev. A, sheets 6 and 7 of 7, in the Borderline manual (doc 7756fbdad1fb, pp. 26-27) -- via MAME's netlist",
+  "devices": 36,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Borderline sound board 834-0055 Rev. A: gun, jeep, point, hit, animal, 'emar', walk and cry sounds from 555s, 74123s, LM324s and MB4391 VCAs, mixed through eight volume pots. 36 ICs, 276 other parts and 241 nets over 928 pins. Converted from MAME's netlist and compared with both sheets, up to the mixer's output capacitor C76 and edge pin 4. The sound latch on the logic board is ports. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/brdrline-sound/brdrline-sound-ibom.html",
+  "bom": "/boards/brdrline-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_brdrline.cpp (NETLIST_START(brdrline), CC0-1.0, beta-tester (https://github.com/beta-tester)) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/brdrline-sound.nets.",
+   "Compared with both sound board sheets, 834-0055 Rev. A sheets 6 and 7 of 7 (the Borderline manual, doc 7756fbdad1fb, PDF pp. 27-28 -- MAME's 'page 26' and '27' -- with the parts list on pp. 17-20), on 2026-10-20: 42 groups of nets, about 230 pin connections, touching every IC from IC1 to IC38, and about 150 values. All agree but one, IC29 gate 2's two inputs, which MAME has the other way round (the same AND, so the same circuit; corrected above). The sheet letters the MB4391s' IN, CON and OUT pins (1, 2, 15 and 5, 6, 11) as MAME has them, and draws pins 14 and 10 to the 680pF capacitors; the name RO for those, and the supplies on 3, 7, 12 and 16, are MAME's -- no MB4391 supply pin is drawn. MAME's base-and- collector correction holds on all sixteen 2SC458s: as drawn, the 555's DIS could not switch the transistor and nothing would oscillate (a likely cause is the 2SC458's E-C-B leads traced as E-B-C). IC28's RESET is not drawn at all, so nc is the sheet's; a 555 needs it high to run, so the board presumably ties it to +5V with a trace the drawing omits, as it omits every supply pin. All thirteen 555 outputs MAME loads are undrawn, and the spare gates of IC29, IC36 and IC27 are not drawn either.",
+   "On the sheet and not in this file: +6V is not a supply but a divider -- R135 and R136, 1K each from +12V, with a 100uF capacitor on each side -- and the supplies come in on edge pins 20 (+12V), 17 (+5V) and 16 (ground), with decoupling MAME leaves out. The triggers enter on edge pins 5-12 (GUN, JEEP, POINT, HIT, ANIMAL, EMAR, WALK, CRY), active low with 1K pull-ups; which latch bit drives which is not on the sheet. The sheet prints LS08, LS74 and LS123 where MAME has plain TTL, no designator on the ANIMAL 555 (MAME's IC1, which sheet 6's reset list supports) or on the 1uF at IC14 pin 5 (MAME's C2), and '555' beside two of IC9's op-amp sections -- a slip; the parts list makes IC9 an LM324. The top of sheet 7 is cut off by the scan (IC34's B/CLR tie, R109's label). The site's 'Star Raker' schematics filed under Borderline (doc 6b1a0aeb2bbe) are Star Raker's logic board, not this one."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_brdrline.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_brdrline.cpp",
+   "netlist": "brdrline",
+   "authors": [
+    "beta-tester (https://github.com/beta-tester)"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "beta-tester (https://github.com/beta-tester)",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/brdrline-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/brdrline-sound.netlist.json"
+ },
+ {
+  "slug": "segas16b-audio",
+  "name": "Sega System 16B audio section",
+  "mfr": "Sega",
+  "year": "1987",
+  "machine": "altbeast",
+  "drawing": "Audio section of the System 16B CPU board schematic, which this site does not hold -- via MAME's netlist",
+  "devices": 2,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Sega System 16B CPU board, audio: the YM3012 DAC's two channels and the uPD7759 speech through TL084 and LM324 filters to the mixer and preamplifier. 2 ICs, 29 other parts and 25 nets over 77 pins. Converted from MAME's netlist, up to the power amplifier's input. The YM2151/YM3012 and uPD7759 are MAME devices; their outputs are ports. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/segas16b-audio/segas16b-audio-ibom.html",
+  "bom": "/boards/segas16b-audio/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_segas16b.cpp (NETLIST_START(segas16b_audio), CC0-1.0, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/segas16b-audio.nets.",
+   "MAME's file marks its own doubts, and they are kept as it has them. It puts the mixer stage on XC20 pins 9, 8 and 10 where, its comments say, the schematic reads 9, 7 and 8 -- 7 is already the speech filter's output, so MAME moved the stage onto the third section and asks 'other AMP?' of each. C19 and C22 'need verification', and the op-amps' supply is assumed: 'no information on schematics, assume 12V'. The site holds no System 16B schematic to settle any of it.",
+   "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+  ],
+  "machines": [
+   "aceattac",
+   "aliensyn",
+   "aurail",
+   "bayroute",
+   "bullet",
+   "cotton",
+   "dddoor",
+   "ddux",
+   "dunkshot",
+   "eswat",
+   "exctleag",
+   "fantzn2x",
+   "fpoint",
+   "goldnaxe",
+   "hwchamp",
+   "mvp",
+   "passsht",
+   "riotcity",
+   "ryukyu",
+   "sjryuko",
+   "sonicbom",
+   "suprleag",
+   "timescan",
+   "toryumon",
+   "tturf",
+   "ultracin",
+   "wb3",
+   "wfishing",
+   "wrestwar",
+   "wwthomas"
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_segas16b.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_segas16b.cpp",
+   "netlist": "segas16b_audio",
+   "authors": [
+    "Couriersud"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Couriersud",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/segas16b-audio.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/segas16b-audio.netlist.json"
  },
  {
   "slug": "sega-system-18",
@@ -6977,6 +8073,48 @@
    "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/sega-system-18",
    "imported": "2026-10-19"
   }
+ },
+ {
+  "slug": "spacfury-sound",
+  "name": "Space Fury sound board",
+  "mfr": "Sega",
+  "year": "1981",
+  "machine": "spacfury",
+  "drawing": "Sound board schematic in the Space Fury manual, which this site does not hold (its Space Fury documents are memos and a monitor note) -- via MAME's netlist, not read here",
+  "devices": 24,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Sega G-80 Space Fury sound board: star spin, shoot, explosions, craft and docking sounds, CA3080 VCAs. 24 ICs, 211 other parts and 166 nets over 630 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/spacfury-sound/spacfury-sound-ibom.html",
+  "bom": "/boards/spacfury-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/sega/nl_spacfury.cpp (NETLIST_START(spacfury), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/spacfury-sound.nets.",
+   "The oscillators MAME runs as ideal clocks (CLOCK) are ports, and the timing parts it parks on a rail in their place are listed above; SPLIT_SHARED_OSCILLATORS is off, so each oscillator drives everything the board has it drive. The site holds no Space Fury manual, so there is no sheet here to compare this with.",
+   "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_spacfury.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/sega/nl_spacfury.cpp",
+   "netlist": "spacfury",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/spacfury-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/spacfury-sound.netlist.json"
  },
  {
   "slug": "caliber-50-p0-044b",
@@ -7209,6 +8347,89 @@
    "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/fairyland-story",
    "imported": "2026-10-19"
   }
+ },
+ {
+  "slug": "sspeedr-sound",
+  "name": "Super Speed Race audio board",
+  "mfr": "Taito (Midway license)",
+  "year": "1979",
+  "machine": "sspeedr",
+  "drawing": "Audio board schematic in the Super Speed Race Parts and Operating Manual (doc 8c0560561bb9) -- via MAME's netlist",
+  "devices": 8,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Super Speed Race audio board: engine, skid and crash sounds as 280-ZZZAP's, rearranged, with a SILENCE input. 8 ICs, 106 other parts and 93 nets over 306 pins. Converted from MAME's netlist, up to the audio output. The noise comes from the motherboard (sspeedr-noise); the sound latches are ports. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+  "ibom": "/boards/sspeedr-sound/sspeedr-sound-ibom.html",
+  "bom": "/boards/sspeedr-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/taito/nl_sspeedr.cpp (NETLIST_START(sspeedr), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sspeedr-sound.nets.",
+   "Compared with the audio board schematic, M051-00762-A003 (manual doc 8c0560561bb9, p. 31 of the print, PDF p. 34), on 2026-10-20: 21 groups of nets covering every IC, and every value in the file -- all agree, the oscillator resistors included once MAME's frontier values are undone, and so do the SILENCE input (D6, D7, R71, R72), C30 across R50, and C25. Thirteen of the fifteen LM3900 amplifiers drawn print exactly the data sheet's pins; the other two are misprints on the sheet, where MAME's pin is the only one possible: C1 amplifier 3's minus input is printed 6 (amplifier 1's) and H2 amplifier 3's is printed 9 (its own output; the read is about 75% sure). The CD4016 sections drawn and the MC3340's pins agree. Added from the sheet: J1 pin 10 is the bridge's second output, AUDIO_0, which MAME leaves as an internal net.",
+   "Not in this file, and on the sheet: the board's '+5V DEC' rail -- +5V through R24 (10 ohms) with C12 (500uF) to ground -- which is what the analogue parts MAME puts on +5V actually sit on, MC3340 pin 8 included; and the supply parts C26-C29. Neither the unused switch sections (A2 10-12, B1 6, 8, 9), J1's third amplifier nor the MC3340's pins 4-6 are drawn."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/taito/nl_sspeedr.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/taito/nl_sspeedr.cpp",
+   "netlist": "sspeedr",
+   "authors": [
+    "Colin Douglas Howell"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Colin Douglas Howell",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sspeedr-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sspeedr-sound.netlist.json"
+ },
+ {
+  "slug": "sspeedr-noise",
+  "name": "Super Speed Race noise generator",
+  "mfr": "Taito (Midway license)",
+  "year": "1979",
+  "machine": "sspeedr",
+  "drawing": "Motherboard schematic in the Super Speed Race Parts and Operating Manual (doc 8c0560561bb9) -- via MAME's netlist",
+  "devices": 2,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Super Speed Race motherboard, noise generator section: a CD4006 shift register with CD4070 feedback. 2 ICs, 8 other parts and 14 nets over 40 pins. Converted from MAME's netlist: the noise generator only, a section of the motherboard. Its output goes to the audio board (sspeedr-sound). The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/sspeedr-noise/sspeedr-noise-ibom.html",
+  "bom": "/boards/sspeedr-noise/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/taito/nl_sspeedr.cpp (NETLIST_START(sspeedr), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sspeedr-noise.nets.",
+   "Compared with the Z-80 compact motherboard schematic, M051-00078-0000 (manual doc 8c0560561bb9, p. 25 of the print, PDF p. 26), on 2026-10-20: every net and value agrees. C9 goes straight to +12V, so MAME's 1 ohm 'dummy' is rightly a wire here. J5 is printed 4030, the older quad XOR with the 4070's pins, and is written so. The designators do collide with the audio board's, as MAME says: R22-R25, R62, C8 and C9 are on both boards with different values (C8 and C9 have theirs swapped). NOISE_OUT leaves on the 72-pin connector's 'NOISE GENERATOR' contacts (J-A and K-50), crosses the game logic board on Molex C pin 14 and enters the audio board on pin 14 of its 17-pin connector, NOISE."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/taito/nl_sspeedr.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/taito/nl_sspeedr.cpp",
+   "netlist": "sspeedr",
+   "authors": [
+    "Colin Douglas Howell"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Colin Douglas Howell",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sspeedr-noise.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sspeedr-noise.netlist.json"
  },
  {
   "slug": "rainbow-islands-extra",
@@ -8291,5 +9512,139 @@
    "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/rally-bike",
    "imported": "2026-10-19"
   }
+ },
+ {
+  "slug": "cheekyms-sound",
+  "name": "Cheeky Mouse sound circuits",
+  "mfr": "Universal",
+  "year": "1980",
+  "machine": "cheekyms",
+  "drawing": "Sound section of the Cheeky Mouse schematic (doc 8bf94944bfe5) -- via MAME's netlist",
+  "devices": 6,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Cheeky Mouse, sound: mute, cheese (a transistor noise source), mouse, hammer and pest (556 timers gated by an LM324), mouse and pest dies, coin, mixed. 6 ICs, 72 other parts and 63 nets over 215 pins. Converted from MAME's netlist, up to the volume pot. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/cheekyms-sound/cheekyms-sound-ibom.html",
+  "bom": "/boards/cheekyms-sound/bom.csv",
+  "conflicts": [],
+  "notes": [
+   "Converted from MAME's src/mame/universal/nl_cheekyms.cpp (NETLIST_START(cheekyms), CC0-1.0, Vas Crabb) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/cheekyms-sound.nets.",
+   "Not compared with the sheet: the site's one Cheeky Mouse schematic (doc 8bf94944bfe5, 'Main Block Diagram', drawing 8004) is the CPU and video board, and shows the sound board only as the connector pins it is wired to -- E1 (LS273) pins 2, 5, 6, 9, 12, 15, 16 and 19 and two of E2's go to it, and A7's coin pulse (read 2026-10-20). So two things here are assumptions, not readings: which timer of each 556 a sound uses (MAME's IC4_1 is taken as timer 1, pins 1-6, and IC4_2 as timer 2, pins 8-13; the sheet's own 556 at A7 is numbered that way, which says nothing about the sound board's), and Q2's collector, which Couriersud's note says the schematic shows unconnected and this file leaves out.",
+   "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/universal/nl_cheekyms.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/universal/nl_cheekyms.cpp",
+   "netlist": "cheekyms",
+   "authors": [
+    "Vas Crabb"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Vas Crabb",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/cheekyms-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/cheekyms-sound.netlist.json"
+ },
+ {
+  "slug": "barrier-sound",
+  "name": "Barrier audio board",
+  "mfr": "Vectorbeam",
+  "year": "1979",
+  "machine": "barrier",
+  "drawing": "Audio Board Schematic (Barrier) 18-10781 Rev A, in the Barrier manual (doc 458c844b4ab1 p23) -- via MAME's netlist, compared with the sheet",
+  "devices": 6,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Vectorbeam audio board 18-10781 Rev A: triangle, diamond and explosion sounds from three latch bits, mixed into a TL081 power amplifier. 6 ICs, 56 other parts and 43 nets over 149 pins. Converted from MAME's netlist, which stops at the summing node: the final amplifier (U6, Q4, Q5, R20-R23, R28-R30, C12-C14) and the regulators U4/U7 are on the sheet but not in the netlist. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/barrier-sound/barrier-sound-ibom.html",
+  "bom": "/boards/barrier-sound/bom.csv",
+  "conflicts": [
+   "The sheet draws U8 pin 6 straight onto the summing line (R13, R15, R37 and the jumper to C11): a T-junction on the U8.6/R38 line below R38, no dot. MAME leaves it out (its line 239, commented) because the op-amp output would then hold the summing node and swamp every other sound; the file's header calls it a suspected typo. This file follows MAME. Not checked against a board."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_barrier.cpp (NETLIST_START(barrier), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/barrier-sound.nets.",
+   "Compared with the sheet (doc 458c844b4ab1 p23, 600 dpi), 2026-10-19: the noise source (CR1, CR2, Q1, Q2 -- Q2's base is left open on the sheet too), U1 and U3, the triangle and diamond envelopes (U2, Q3, Q6, R6-R13, R25-R27, CR3-CR6), U8 and the TL182 switch U5, and U9 with R31-R37 all agree with the sheet part for part, pin for pin and value for value, diode and transistor orientation included. Two differences, both MAME's deliberate:",
+   "* The sheet's JUMPER between the summing line and C11 is not in MAME, which treats it as closed (R17 sits on the jumper's C11 side on the sheet, on the summing line in MAME -- the same net while the jumper is in). R19 goes to C12 and the volume pot R29 on the sheet, which are part of the final amplifier; MAME grounds it (line 272)."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_barrier.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_barrier.cpp",
+   "netlist": "barrier",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/barrier-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/barrier-sound.netlist.json"
+ },
+ {
+  "slug": "speedfrk-sound",
+  "name": "Speed Freak sound board",
+  "mfr": "Vectorbeam",
+  "year": "1979",
+  "machine": "speedfrk",
+  "drawing": "Sound board schematic in the Speed Freak manual (doc a9a0d255b9db) -- via MAME's netlist, compared with the sheet (Figure A-14 Audio PCB Logic, p73)",
+  "devices": 21,
+  "netsTraced": true,
+  "singleSource": false,
+  "status": "Vectorbeam audio board for Speed Freak: the engine sound, all TTL counters and shift registers into one TL081. 21 ICs, 40 other parts and 102 nets over 331 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+  "ibom": "/boards/speedfrk-sound/speedfrk-sound-ibom.html",
+  "bom": "/boards/speedfrk-sound/bom.csv",
+  "conflicts": [
+   "The sheet puts R21 and C20 on the crash DAC's branch (U11, through an unvalued resistor) and takes the motor counter U7's resistors straight to the output; MAME has it the other way round, U7 through C20 and R21 and the DAC through R20 (all marked 'PCB verified'). This file follows MAME.",
+   "The sheet draws U3 pin 4 to an unlabelled supply arrow, not ground, and the clamp diode on U3's output suggests the board's -15V; MAME grounds it.",
+   "The sheet shorts U2 pin 6 onto O1 at the AND gate's input; MAME's reading (U12 enabled by the gated O1, U6 pin 5 from U2 pin 6) is the one the theory and troubleshooting text support. U6 pin 4 comes from raw O0 on the sheet, from U2 pin 2 in MAME -- the same level.",
+   "The troubleshooting text calls the lamp transistor Q4 and the board photo (p41) points to Q1-Q4; MAME calls it Q3, the name the amplifier sheet gives its bias transistor. This file keeps MAME's Q3."
+  ],
+  "notes": [
+   "Converted from MAME's src/mame/cinematronics/nl_speedfrk.cpp (NETLIST_START(speedfrk), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/speedfrk-sound.nets.",
+   "MAME's file calls the manual's schematics 'utterly terrible' and credits corrected schematics from Brian Tarachi and connections verified by Frank Palazzolo, so this reading has had more checking than most -- and may differ from the manual's sheet where the manual is wrong. With HLE_CLOCK_GENERATOR off the 2 MHz clock is MAME's U10 pin 6 (an alias in the real-circuit branch).",
+   "Compared with the sheet, Figure A-14 Audio PCB Logic (doc a9a0d255b9db p73, 600 dpi; no title block or revision), the parts list 30-10554-01 Rev. 4 (pp53-54) and the theory and troubleshooting text (pp25, 37), 2026-10-20: the J4 inputs (O0-O4 and O7 on J4-11, 12, 6, 14, 15, 16, the logic PCB's clock on J4-2), the TL081 clock receiver U3 (R27, R28, CR3), the 2 MHz oscillator U10 (R30, R31, C12, C13), the U5/U4 tripler (preset 9), the shift register U13/U14 into the modulo-N counters U15/U9/U8 and the latch U12, the crash gates U11 with R16-R19 bit for bit, the noise generator U20/U24/U19, the horn flip-flops U17 with U23, the tire-squeal 555 U22 (R44-R46, C17, C23) and its gate, and the motor counter U7 (R22-R24) all agree with MAME pin for pin and value for value, and every value in this file is in the parts list except 3.3K (R21) and 3.9K (R19), which the sheet prints and the list lacks. Where the sheet and MAME differ, MAME is the one the rest of the manual supports: U23 is printed 74LS136 (it is a 74LS163); U24's pins 1 and 12 are swapped on the sheet; two of U19's XORs are drawn as ANDs; U4's and U18's clocks and U5B's Q-bar are misnumbered; R29 is printed 22K and R25/R26 4.7K where the parts list has 2.2K and 18K and no 22K; and the sheet's U18 outputs disagree with the troubleshooting timings (2.2 ms and 3.0 ms at U17 pins 3 and 5), which fit MAME's pins 8, 10 and 11 exactly. Corrected from the sheet: MAME grounds R13 as a stand-in, and on the sheet it goes to the START LIGHT LED in the start switch (+5V on its other side), so LAMP is now a port.",
+   "The manual's own designators collide elsewhere (its R16-R18 at the TL081, regulators labelled U8/U9 beside counters U8/U9); MAME's look like the board's. Not compared: U23's preset and U4/U23's ENT, which the sheet does not draw (MAME's \"need to verify\" ties are what the text needs); R20's value, which it does not print; and the amplifier and regulators (Figure A-14, p74), which MAME leaves out and whose values agree with MAME's commented-out lines."
+  ],
+  "license": "CC0-1.0",
+  "origin": {
+   "project": "MAME",
+   "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_speedfrk.cpp",
+   "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+   "tag": "mame0289",
+   "path": "src/mame/cinematronics/nl_speedfrk.cpp",
+   "netlist": "speedfrk",
+   "authors": [
+    "Aaron Giles"
+   ],
+   "license": "CC0-1.0",
+   "copyright": "Aaron Giles",
+   "licenseUrl": "/licenses/CC0-1.0.txt",
+   "credit": "netlist written by",
+   "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/speedfrk-sound.nets",
+   "sourceLabel": "The conversion, every change from MAME's file logged",
+   "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+   "imported": "2026-10-20"
+  },
+  "partial": true,
+  "netlist": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/speedfrk-sound.netlist.json"
  }
 ]

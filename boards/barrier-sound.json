@@ -5,9 +5,9 @@
  "machine": "barrier",
  "drawing": "Audio Board Schematic (Barrier) 18-10781 Rev A, in the Barrier manual (doc 458c844b4ab1 p23) -- via MAME's netlist, compared with the sheet",
  "revision": "Vectorbeam audio board 18-10781 Rev A: triangle, diamond and explosion sounds from three latch bits, mixed into a TL081 power amplifier.",
- "coverage": "Converted from MAME's netlist, which stops at the summing node: the final amplifier (U6, Q4, Q5, R20-R23, R28-R30, C12-C14) and the regulators U4/U7 are on the sheet but not in the netlist.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "6 ICs, 56 other parts and 43 nets over 149 pins. Converted from MAME's netlist, which stops at the summing node: the final amplifier (U6, Q4, Q5, R20-R23, R28-R30, C12-C14) and the regulators U4/U7 are on the sheet but not in the netlist. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "barrier-sound",
  "ics": {
@@ -25,5 +25,135 @@
   "netlist": "barrier",
   "licence": "CC0-1.0",
   "copyright": "Aaron Giles"
+ },
+ "footprints": {
+  "1": "Package_DIP:DIP-8_W7.62mm",
+  "2": "Package_DIP:DIP-14_W7.62mm",
+  "3": "Package_DIP:DIP-8_W7.62mm",
+  "5": "Package_DIP:DIP-14_W7.62mm",
+  "8": "Package_DIP:DIP-8_W7.62mm",
+  "9": "Package_DIP:DIP-8_W7.62mm"
+ },
+ "place": {
+  "1": [
+   10.0,
+   10.0,
+   0
+  ],
+  "2": [
+   24.62,
+   10.0,
+   0
+  ],
+  "3": [
+   39.24,
+   10.0,
+   0
+  ],
+  "5": [
+   53.86,
+   10.0,
+   0
+  ],
+  "8": [
+   68.48,
+   10.0,
+   0
+  ],
+  "9": [
+   83.1,
+   10.0,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 35.2
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_barrier.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/cinematronics/nl_barrier.cpp",
+  "netlist": "barrier",
+  "authors": [
+   "Aaron Giles"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Aaron Giles",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/barrier-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C1": "1uF",
+  "C2": "1uF",
+  "C3": "0.01uF",
+  "C4": "0.01uF",
+  "C5": "0.1uF",
+  "C7": "0.01uF",
+  "C8": "1uF",
+  "C9": "0.1uF",
+  "C10": "220pF",
+  "C11": "0.1uF",
+  "C17": "0.01uF",
+  "C18": "15uF",
+  "C21": "0.02uF",
+  "C22": "0.1uF",
+  "CR1": "1N914",
+  "CR2": "1N914",
+  "CR3": "1N914",
+  "CR4": "1N914",
+  "CR5": "1N914",
+  "CR6": "1N914",
+  "Q1": "2N3906",
+  "Q2": "2N3904",
+  "Q3": "2N6426",
+  "Q6": "2N6426",
+  "Q7": "2N3904",
+  "R1": "18K",
+  "R2": "470",
+  "R3": "47K",
+  "R4": "220K",
+  "R5": "470",
+  "R6": "150",
+  "R7": "180K",
+  "R8": "10M",
+  "R9": "39K",
+  "R10": "2.2K",
+  "R11": "470",
+  "R12": "30K",
+  "R13": "8.2K",
+  "R14": "33K",
+  "R15": "15K",
+  "R16": "10M",
+  "R17": "10K",
+  "R18": "47K",
+  "R19": "820",
+  "R24": "47K",
+  "R25": "150",
+  "R26": "160K",
+  "R27": "750",
+  "R31": "470",
+  "R32": "1K",
+  "R33": "39K",
+  "R34": "6.8K",
+  "R35": "560K",
+  "R36": "1M",
+  "R37": "10K",
+  "R38": "10K",
+  "U1": "TL081",
+  "U2": "7406",
+  "U3": "TL081",
+  "U5": "TL182",
+  "U8": "TL081",
+  "U9": "TL081"
  }
 }

@@ -5,9 +5,9 @@
  "machine": "tankbatt",
  "drawing": "Sound section of the Tank Battalion schematic, service manual (doc 73495cc3ecf0) -- via MAME's netlist",
  "revision": "Tank Battalion, sound section: CD4006 noise, hit and shoot through CD4066 switches and LM324 filters, engine rumble from a 7492, mixed.",
- "coverage": "Converted from MAME's netlist, up to the summing node; the amplifier after it is not in MAME.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "5 ICs, 40 other parts and 45 nets over 143 pins. Converted from MAME's netlist, up to the summing node; the amplifier after it is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "tankbatt-sound",
  "ics": {
@@ -24,5 +24,117 @@
   "netlist": "tankbatt",
   "licence": "BSD-3-Clause",
   "copyright": "Ryan Holtz"
+ },
+ "footprints": {
+  "5K": "Package_DIP:DIP-14_W7.62mm",
+  "6F": "Package_DIP:DIP-14_W7.62mm",
+  "6J": "Package_DIP:DIP-14_W7.62mm",
+  "6K": "Package_DIP:DIP-14_W7.62mm",
+  "6L": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "5K": [
+   10.0,
+   49.4,
+   0
+  ],
+  "6F": [
+   22.1,
+   10.0,
+   0
+  ],
+  "6J": [
+   22.1,
+   29.7,
+   0
+  ],
+  "6K": [
+   22.1,
+   49.4,
+   0
+  ],
+  "6L": [
+   22.1,
+   69.1,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 97.3
+ },
+ "grid": {
+  "rows": "FJKL",
+  "cols": 6,
+  "transposed": true
+ },
+ "refPrefix": "U",
+ "license": "BSD-3-Clause",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/namco/nl_tankbatt.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/namco/nl_tankbatt.cpp",
+  "netlist": "tankbatt",
+  "authors": [
+   "Ryan Holtz"
+  ],
+  "license": "BSD-3-Clause",
+  "copyright": "Ryan Holtz",
+  "licenseUrl": "/licenses/BSD-3-Clause.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tankbatt-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C10": "2.2uF",
+  "C11": "2.2uF",
+  "C12": "2.2uF",
+  "C13": "2.2uF",
+  "C14": "0.1uF",
+  "C15": "0.01uF",
+  "C16": "0.01uF",
+  "C17": "0.01uF",
+  "C18": "0.01uF",
+  "C42": "0.1uF",
+  "D8": "D",
+  "D9": "D",
+  "D10": "D",
+  "D11": "D",
+  "R31": "470",
+  "R32": "470",
+  "R35": "4.7K",
+  "R36": "4.7K",
+  "R37": "6.8K",
+  "R38": "10K",
+  "R42": "22K",
+  "R43": "22K",
+  "R44": "33K",
+  "R45": "47K",
+  "R46": "4.7K",
+  "R47": "4.7K",
+  "R48": "4.7K",
+  "R49": "4.7K",
+  "R50": "150K",
+  "R51": "150K",
+  "R52": "220K",
+  "R53": "470K",
+  "R54": "470K",
+  "R56_1": "1K",
+  "R56_2": "1K",
+  "R57": "10K",
+  "R58": "1K",
+  "R59": "1K",
+  "R60": "1K",
+  "R61": "1K",
+  "U5K": "7492",
+  "U6F": "CD4006",
+  "U6J": "LM324",
+  "U6K": "7486",
+  "U6L": "CD4066"
  }
 }

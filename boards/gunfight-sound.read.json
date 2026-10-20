@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/midw8080/nl_gunfight.cpp (NETLIST_START(gunfight), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/gunfight-sound.nets.",
+  "Not compared with the sheet. MAME's sheet, 'Gun Fight Sound Generator Detail P.C. 597-907E', is in none of the Gun Fight documents the site holds (read 2026-10-20): the 'Gunfight Schematics' PDF (doc d66a80e04858) has the mother board, the game logic board -- on which the sound generator is a dashed block -- and the cabinet wiring; the manual and parts catalog list no board parts. The catalogue's 'Game Logic and Sound (597-907E)' PDF (doc 8eaf458a433e) was never fetched, and an archive.org copy exists. What the site's sheets do show agrees where they reach: the four triggers enter the sound block from the 7404 at H6 (L.SHOT on pin 2, R.SHOT on 12), as MAME's comment says. The supply is printed '+16V' on the wiring diagram and '+15V' on the mother board schematic for the same pin; MAME uses 16V. The manual names six pots (A-B hit, C-D shot, E-F master, left and right), which by this circuit are R110, R210, R123, R223, R103 and R203 -- an inference, not a reading.",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

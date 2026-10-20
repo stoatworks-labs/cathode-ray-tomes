@@ -5,9 +5,9 @@
  "machine": "flyball",
  "drawing": "Sound section of the Flyball game board schematic, technical manual TM-075 (doc 99d8167a63a1) -- via MAME's netlist",
  "revision": "Flyball game board, sound section: a 74164 noise generator, bat (556), footstep and crowd sounds through two MC3340 attenuators, and the mixer.",
- "coverage": "Converted from MAME's netlist, compared with sheet 7 and corrected from it, up to the mixer's output capacitor; the TDA1004 amplifier after it is not in MAME.",
+ "coverage": "8 ICs, 34 other parts and 42 nets over 136 pins. Converted from MAME's netlist, compared with sheet 7 and corrected from it, up to the mixer's output capacitor; the TDA1004 amplifier after it is not in MAME. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
  "singleSource": false,
- "netsTraced": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "flyball-sound",
  "ics": {
@@ -27,5 +27,132 @@
   "netlist": "flyball",
   "licence": "CC0-1.0",
   "copyright": "Ryan Holtz"
+ },
+ "footprints": {
+  "A8": "Package_DIP:DIP-8_W7.62mm",
+  "B7": "Package_DIP:DIP-14_W7.62mm",
+  "C7": "Package_DIP:DIP-14_W7.62mm",
+  "C8": "Package_DIP:DIP-8_W7.62mm",
+  "D7": "Package_DIP:DIP-14_W7.62mm",
+  "D8": "Package_DIP:DIP-8_W7.62mm",
+  "E7": "Package_DIP:DIP-14_W7.62mm",
+  "E8": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "A8": [
+   22.1,
+   10.0,
+   0
+  ],
+  "B7": [
+   10.0,
+   29.7,
+   0
+  ],
+  "C7": [
+   10.0,
+   49.4,
+   0
+  ],
+  "C8": [
+   22.1,
+   49.4,
+   0
+  ],
+  "D7": [
+   10.0,
+   69.1,
+   0
+  ],
+  "D8": [
+   22.1,
+   69.1,
+   0
+  ],
+  "E7": [
+   10.0,
+   88.8,
+   0
+  ],
+  "E8": [
+   22.1,
+   88.8,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 117.0
+ },
+ "grid": {
+  "rows": "ABCDE",
+  "cols": 8,
+  "transposed": false
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_flyball.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/atari/nl_flyball.cpp",
+  "netlist": "flyball",
+  "authors": [
+   "Ryan Holtz"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Ryan Holtz",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/flyball-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C34": "0.0047uF",
+  "C44": "0.0047uF",
+  "C45": "0.1uF",
+  "C46": "0.015uF",
+  "C47": "0.015uF",
+  "C48": "10uF",
+  "C49": "100uF",
+  "C51": "0.1uF",
+  "C52": "0.1uF",
+  "C53": "0.1uF",
+  "C79": "0.1uF",
+  "C80": "0.1uF",
+  "R25": "1K",
+  "R43": "68K",
+  "R73": "1K",
+  "R74": "1K",
+  "R75": "50K",
+  "R76": "100K",
+  "R77": "820",
+  "R78": "100K",
+  "R79": "1K",
+  "R80": "330K",
+  "R87": "1K",
+  "R88": "3.3K",
+  "R89": "10K",
+  "R90": "10K",
+  "R91": "10K",
+  "R92": "10K",
+  "R95": "10K",
+  "R96": "47K",
+  "R97A": "10K",
+  "R97B": "24.4K",
+  "R98": "10K",
+  "R99": "33K",
+  "UA8": "MC3340",
+  "UB7": "74164",
+  "UC7": "74164",
+  "UC8": "MC3340",
+  "UD7": "7474",
+  "UD8": "UA741",
+  "UE7": "7486",
+  "UE8": "NE556"
  }
 }

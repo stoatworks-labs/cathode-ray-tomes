@@ -5,9 +5,9 @@
  "machine": "destroyr",
  "drawing": "Sound section of the Destroyer game board schematic, sheet 4 of 5, technical manual TM-106 (doc 50fd79545404, p. 37) -- via MAME's netlist, compared with it",
  "revision": "Destroyer game board, sound section: noise (two 74LS164s), explosion, sonar, launch and motor sounds, mixed into the volume pot.",
- "coverage": "Converted from MAME's netlist and compared with sheet 4, up to the volume pot's wiper; the TDA1004 amplifier after it is not in MAME. The spare gates MAME ties off are other circuits' on the board, and are ports here.",
+ "coverage": "12 ICs, 63 other parts and 97 nets over 260 pins. Converted from MAME's netlist and compared with sheet 4, up to the volume pot's wiper; the TDA1004 amplifier after it is not in MAME. The spare gates MAME ties off are other circuits' on the board, and are ports here. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
  "singleSource": false,
- "netsTraced": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "destroyr-sound",
  "ics": {
@@ -31,5 +31,189 @@
   "netlist": "destroyr",
   "licence": "BSD-3-Clause",
   "copyright": "Ryan Holtz"
+ },
+ "footprints": {
+  "A9": "Package_DIP:DIP-14_W7.62mm",
+  "C9": "Package_DIP:DIP-14_W7.62mm",
+  "D10": "Package_DIP:DIP-8_W7.62mm",
+  "E9": "Package_DIP:DIP-14_W7.62mm",
+  "H8": "Package_DIP:DIP-14_W7.62mm",
+  "H9": "Package_DIP:DIP-14_W7.62mm",
+  "K8": "Package_DIP:DIP-14_W7.62mm",
+  "K9": "Package_DIP:DIP-14_W7.62mm",
+  "L7": "Package_DIP:DIP-14_W7.62mm",
+  "L9": "Package_DIP:DIP-14_W7.62mm",
+  "M8": "Package_DIP:DIP-14_W7.62mm",
+  "M9": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "A9": [
+   34.2,
+   10.0,
+   0
+  ],
+  "C9": [
+   34.2,
+   29.7,
+   0
+  ],
+  "D10": [
+   46.3,
+   49.4,
+   0
+  ],
+  "E9": [
+   34.2,
+   69.1,
+   0
+  ],
+  "H8": [
+   22.1,
+   88.8,
+   0
+  ],
+  "H9": [
+   34.2,
+   88.8,
+   0
+  ],
+  "K8": [
+   22.1,
+   108.5,
+   0
+  ],
+  "K9": [
+   34.2,
+   108.5,
+   0
+  ],
+  "L7": [
+   10.0,
+   128.2,
+   0
+  ],
+  "L9": [
+   34.2,
+   128.2,
+   0
+  ],
+  "M8": [
+   22.1,
+   147.9,
+   0
+  ],
+  "M9": [
+   34.2,
+   147.9,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 176.1
+ },
+ "grid": {
+  "rows": "ACDEHKLM",
+  "cols": 10,
+  "transposed": false
+ },
+ "refPrefix": "U",
+ "license": "BSD-3-Clause",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_destroyr.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/atari/nl_destroyr.cpp",
+  "netlist": "destroyr",
+  "authors": [
+   "Ryan Holtz"
+  ],
+  "license": "BSD-3-Clause",
+  "copyright": "Ryan Holtz",
+  "licenseUrl": "/licenses/BSD-3-Clause.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/destroyr-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C38": "10uF",
+  "C39": "0.1uF",
+  "C40": "0.1uF",
+  "C48": "10uF",
+  "C49": "330pF",
+  "C51": "330pF",
+  "C52": "0.1uF",
+  "C53": "10uF",
+  "C56": "0.22uF",
+  "C57": "0.22uF",
+  "C58": "0.22uF",
+  "C59": "0.1uF",
+  "C61": "0.22uF",
+  "C62": "0.022uF",
+  "C63": "22uF",
+  "C64": "0.022uF",
+  "C66": "10uF",
+  "C71": "0.1uF",
+  "C72": "0.1uF",
+  "C74": "0.22uF",
+  "C85": "22uF",
+  "CR2": "1N914",
+  "Q4": "2N3643",
+  "Q6": "2N3643",
+  "R39": "220",
+  "R40": "220",
+  "R41": "2.2K",
+  "R42": "39K",
+  "R43": "150K",
+  "R44": "820",
+  "R54": "10K",
+  "R59": "470K",
+  "R60": "470K",
+  "R61": "10K",
+  "R62": "10K",
+  "R63": "10M",
+  "R64": "100K",
+  "R65": "100K",
+  "R66": "100K",
+  "R67": "10K",
+  "R68": "10K",
+  "R69": "10K",
+  "R70": "3.3K",
+  "R71": "15K",
+  "R72": "33K",
+  "R73": "10K",
+  "R74": "100K",
+  "R75": "33K",
+  "R76": "22K",
+  "R77": "47K",
+  "R78": "5.6K",
+  "R79": "33K",
+  "R80": "3.9K",
+  "R81": "3.9K",
+  "R82": "2.2K",
+  "R83": "330K",
+  "R86": "680",
+  "R88": "2.7K",
+  "R89": "10K",
+  "R92": "2.2K",
+  "R93": "2.2K",
+  "R94": "68K",
+  "R95": "50K",
+  "UA9": "7400",
+  "UC9": "LM324",
+  "UD10": "MC3340",
+  "UE9": "CD4066",
+  "UH8": "NE556",
+  "UH9": "LM324",
+  "UK8": "7428",
+  "UK9": "7404",
+  "UL7": "7486",
+  "UL9": "74LS164",
+  "UM8": "7432",
+  "UM9": "74LS164"
  }
 }

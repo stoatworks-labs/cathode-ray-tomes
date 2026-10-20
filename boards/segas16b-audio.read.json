@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/sega/nl_segas16b.cpp (NETLIST_START(segas16b_audio), CC0-1.0, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/segas16b-audio.nets.",
+  "MAME's file marks its own doubts, and they are kept as it has them. It puts the mixer stage on XC20 pins 9, 8 and 10 where, its comments say, the schematic reads 9, 7 and 8 -- 7 is already the speech filter's output, so MAME moved the stage onto the third section and asks 'other AMP?' of each. C19 and C22 'need verification', and the op-amps' supply is assumed: 'no information on schematics, assume 12V'. The site holds no System 16B schematic to settle any of it.",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

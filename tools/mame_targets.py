@@ -277,6 +277,11 @@ def sheet(why, *terms, name=None, section=""):
     return dict(terms=list(terms), why=why, name=name, section=section)
 
 
+def within(section, *adds):
+    """Sheet corrections that belong to one section of MAME's file."""
+    return [dict(a, section=section) for a in adds]
+
+
 def part(name, kind, value, why, section=""):
     d = dict(name=name, kind=kind, why=why, section=section)
     d["part" if kind == "IC" else "value"] = value
@@ -452,57 +457,66 @@ TANK = dict(
     ],
     add=[
         # Board I: coin latches as a 7404 pair each.
-        sheet("Board I sheet 2: coin 1 NC (J3-13) on B6.13, cross-coupled with B6.10",
-              "IC_B6.13", "IC_B6.10", "IC_D6.9", name="COIN1_NC"),
-        sheet("Board I sheet 2: coin 1 NO (J3-14) on B6.11, cross-coupled with B6.12",
-              "IC_B6.11", "IC_B6.12", "IC_N6.5", name="COIN1_NO"),
-        sheet("Board I sheet 2: coin 2 NO (J3-12) on B6.5, cross-coupled with B6.2",
-              "IC_B6.5", "IC_B6.2", "IC_N6.6", name="COIN2_NO"),
-        sheet("Board I sheet 2: coin 2 NC (J3-11) on B6.1, cross-coupled with B6.6",
-              "IC_B6.1", "IC_B6.6", "IC_D6.8", name="COIN2_NC"),
+        *within('Coin Handling',
+            sheet("Board I sheet 2: coin 1 NC (J3-13) on B6.13, cross-coupled with B6.10",
+                  "IC_B6.13", "IC_B6.10", "IC_D6.9", name="COIN1_NC"),
+            sheet("Board I sheet 2: coin 1 NO (J3-14) on B6.11, cross-coupled with B6.12",
+                  "IC_B6.11", "IC_B6.12", "IC_N6.5", name="COIN1_NO"),
+            sheet("Board I sheet 2: coin 2 NO (J3-12) on B6.5, cross-coupled with B6.2",
+                  "IC_B6.5", "IC_B6.2", "IC_N6.6", name="COIN2_NO"),
+            sheet("Board I sheet 2: coin 2 NC (J3-11) on B6.1, cross-coupled with B6.6",
+                  "IC_B6.1", "IC_B6.6", "IC_D6.8", name="COIN2_NC")),
         # Board I: the 25c/50c switch.
-        sheet(SW, "IC_D6.3", "SW1.1", "R48A.1"), sheet(SW, "GND", "R48A.2", "SW1.2"),
-        sheet(SW, "IC_N6.1", "SW1.3"),
-        sheet(SW, "R53A.1", "SW2.1"), sheet(SW, "PLAYTIME.1", "SW2.2"),
+        *within('Coin Handling',
+            sheet(SW, "IC_D6.3", "SW1.1", "R48A.1"), sheet(SW, "GND", "R48A.2", "SW1.2"),
+            sheet(SW, "IC_N6.1", "SW1.3"),
+            sheet(SW, "R53A.1", "SW2.1"), sheet(SW, "PLAYTIME.1", "SW2.2")),
         # Board I: the antenna latch.
-        sheet(ANT, "C17A.1", name="ANT"),
-        sheet(ANT, "C17A.2", "CR12A.K", "R42A.1", "C16A.2", "Q1.B"),
-        sheet(ANT, "GND", "CR12A.A", "R42A.2", "CR9A.K", "C15A.2"),
-        sheet(ANT, "V5", "R49A.1"), sheet(ANT, "R49A.2", "C15A.1", "C16A.1"),
-        sheet(ANT, "Q1.E", "CR9A.A"), sheet(ANT, "Q1.C", "IC_N4.1", "R41A.1"),
-        sheet(ANT, "IC_N4.2", "IC_N4.3", "IC_N6.8"), sheet(ANT, "IC_N4.4", "R41A.2", "IC_E6.10"),
+        *within('Antenna',
+            sheet(ANT, "C17A.1", name="ANT"),
+            sheet(ANT, "C17A.2", "CR12A.K", "R42A.1", "C16A.2", "Q1.B"),
+            sheet(ANT, "GND", "CR12A.A", "R42A.2", "CR9A.K", "C15A.2"),
+            sheet(ANT, "V5", "R49A.1"), sheet(ANT, "R49A.2", "C15A.1", "C16A.1"),
+            sheet(ANT, "Q1.E", "CR9A.A"), sheet(ANT, "Q1.C", "IC_N4.1", "R41A.1"),
+            sheet(ANT, "IC_N4.2", "IC_N4.3", "IC_N6.8"), sheet(ANT, "IC_N4.4", "R41A.2", "IC_E6.10")),
         # Board I: the coin counter driver.
-        sheet(CNT, "IC_D6.10", "IC_A6.13"), sheet(CNT, "IC_A6.12", "R101.1"),
-        sheet(CNT, "R101.2", "Q40.B"), sheet(CNT, "V5", "R100.1"), sheet(CNT, "R100.2", "Q40.C"),
-        sheet(CNT, "Q40.E", "Q41.B"), sheet(CNT, "Q41.C", name="COIN_COUNTER"),
-        sheet(CNT, "Q41.E", name="TV_GROUND"),
+        *within('Coin Counter',
+            sheet(CNT, "IC_D6.10", "IC_A6.13"), sheet(CNT, "IC_A6.12", "R101.1"),
+            sheet(CNT, "R101.2", "Q40.B"), sheet(CNT, "V5", "R100.1"), sheet(CNT, "R100.2", "Q40.C"),
+            sheet(CNT, "Q40.E", "Q41.B"), sheet(CNT, "Q41.C", name="COIN_COUNTER"),
+            sheet(CNT, "Q41.E", name="TV_GROUND")),
         # Board I: the noise transistor.
-        sheet("Board I sheet 2: Q5's emitter is the noise source; base and collector grounded",
-              "R71A.2", "C40A.1", "Q5.E"),
-        sheet("as above", "GND", "Q5.B", "Q5.C"),
+        *within('Noise Generation',
+            sheet("Board I sheet 2: Q5's emitter is the noise source; base and collector grounded",
+                  "R71A.2", "C40A.1", "Q5.E"),
+            sheet("as above", "GND", "Q5.B", "Q5.C")),
         # Board I: shot attenuator input.
-        sheet("Board I sheet 2: C31 into K6 pin 3", "C31A.2", "IC_K6.3"),
+        *within('Shot Sound',
+            sheet("Board I sheet 2: C31 into K6 pin 3", "C31A.2", "IC_K6.3")),
         # Board I: shell 1 latch routing, M2 inputs, local HMCE and /EXPL.
-        sheet("Board I sheet 1", "IC_D2.5", "IC_F2.12"), sheet("Board I sheet 1", "IC_E2.5", "IC_F2.5"),
-        sheet("Board I sheet 1", "IC_E2.9", "IC_F2.9"), sheet("Board I sheet 1", "IC_D2.9", "IC_C1.1"),
-        sheet("Board I sheet 1: HMCE, inverted on the board from /HMCE (J1-25)", "IC_J3.8",
-              "IC_F2.13", "IC_F2.4", "IC_F2.10", "IC_C1.2", "IC_F4.1", "IC_F4.4", "IC_F4.10",
-              "IC_C5.4", name="HMCE_B1"),
-        sheet("Board I sheet 1: /HMCE in from J1-25", "HMCEQ", "IC_J3.9"),
-        sheet("Board I sheet 1", "VLD1", "IC_M2.13"),
-        sheet("Board I sheet 1", "FIRE1Q", "IC_M2.1", "IC_M2.2"),
-        sheet("Board I sheet 1: /EXPL1 from J3.12", "IC_J3.12", "IC_C1.5"),
-        sheet("Board I sheet 1: /EXPL2 from H3.10", "IC_H3.10", "IC_C5.2"),
+        *within('Shell 1 Motion',
+            sheet("Board I sheet 1", "IC_D2.5", "IC_F2.12"), sheet("Board I sheet 1", "IC_E2.5", "IC_F2.5"),
+            sheet("Board I sheet 1", "IC_E2.9", "IC_F2.9"), sheet("Board I sheet 1", "IC_D2.9", "IC_C1.1"),
+            sheet("Board I sheet 1: HMCE, inverted on the board from /HMCE (J1-25)", "IC_J3.8",
+                  "IC_F2.13", "IC_F2.4", "IC_F2.10", "IC_C1.2", "IC_F4.1", "IC_F4.4", "IC_F4.10",
+                  "IC_C5.4", name="HMCE_B1"),
+            sheet("Board I sheet 1: /HMCE in from J1-25", "HMCEQ", "IC_J3.9"),
+            sheet("Board I sheet 1", "VLD1", "IC_M2.13"),
+            sheet("Board I sheet 1", "FIRE1Q", "IC_M2.1", "IC_M2.2"),
+            sheet("Board I sheet 1: /EXPL1 from J3.12", "IC_J3.12", "IC_C1.5"),
+            sheet("Board I sheet 1: /EXPL2 from H3.10", "IC_H3.10", "IC_C5.2")),
         # Board II: its own /START and ATTRACT.
-        sheet("Board II sheet 2: START in from J5-15 to M13 pin 3", "START", "IC_M13.3"),
-        sheet("Board II sheet 2: /START is M13 pin 4", "IC_M13.4", name="STARTQ"),
-        sheet("Board II sheet 1: the motor sounds' ATTRACT is M13 pin 2", "IC_M13.2",
-              "IC_N13.1", "IC_N13.13"),
+        *within('Game Timer / Attract',
+            sheet("Board II sheet 2: START in from J5-15 to M13 pin 3", "START", "IC_M13.3"),
+            sheet("Board II sheet 2: /START is M13 pin 4", "IC_M13.4", name="STARTQ"),
+            sheet("Board II sheet 1: the motor sounds' ATTRACT is M13 pin 2", "IC_M13.2",
+                  "IC_N13.1", "IC_N13.13")),
         # Board II: the oscillator.
-        sheet(OSC, "IC_A7.13", "R2.1", "R12.1", "Y1.1"),
-        sheet(OSC, "IC_A7.12", "R2.2", "C1.1", "IC_A7.1", "IC_A7.3"),
-        sheet(OSC, "C1.2", "IC_A7.11", "R1.1"), sheet(OSC, "IC_A7.10", "R1.2", "Y1.2"),
-        sheet(OSC, "GND", "R12.2"),
+        *within('Main Timing & Sync',
+            sheet(OSC, "IC_A7.13", "R2.1", "R12.1", "Y1.1"),
+            sheet(OSC, "IC_A7.12", "R2.2", "C1.1", "IC_A7.1", "IC_A7.3"),
+            sheet(OSC, "C1.2", "IC_A7.11", "R1.1"), sheet(OSC, "IC_A7.10", "R1.2", "Y1.2"),
+            sheet(OSC, "GND", "R12.2")),
         # Board II: score counters, HD1/HD2, ROM supply, video out, motor 2's Q34.
         sheet("Board II sheet 2: D11 QA clocks E11 CPA", "IC_D11.12", "IC_E11.14", name="SCR1E"),
         sheet("Board II sheet 2: D11 QD clocks E11 CPB", "IC_D11.11", "IC_E11.1"),

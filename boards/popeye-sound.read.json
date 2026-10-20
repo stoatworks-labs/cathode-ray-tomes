@@ -1,0 +1,7 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/nintendo/nl_popeye.cpp (NETLIST_START(popeye), BSD-3-Clause, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/popeye-sound.nets.",
+  "Compared with the TPP2-CPU schematic, sheet 2 of 3 (manual doc a4dc252b9a5e p. 35, clearly legible), and the typeset parts list (p. 27), on 2026-10-20: all 14 nets agree, and every value but one -- R65 is 5.1K on both the sheet and the parts list, where MAME has 2.1K, corrected above. Q8 is a 2SC1815 and Q9 a 2SA1015 as MAME has them. One designator is in doubt: the schematic letters the mixer's 20K 'R51', as MAME does, but also prints an R51 on sheet 3, a 100 ohm in the sync buffer, and the parts list has R51 at 100 ohms and R54 as its only 20K -- so on the board this is most likely R54. Where R52's lead crosses channel B the drawing is broken; only this file's reading (R52 from the AY's pin 4 to ground) works. D2 (1S1595), a clamp on the AY's supply, is on the sheet and not in MAME."
+ ],
+ "conflicts": []
+}

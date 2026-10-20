@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/irem/nl_kidniki.cpp (NETLIST_START(kidniki), BSD-3-Clause, Andrew Gardner, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/kidniki-sound.nets.",
+  "Compared with sheet 4/4 of the M62-A-B schematic (E-C0066-4, the conversion kit manual's p. 22), with sheets 2/4 and 3/4 for J4 and D6, on 2026-10-20: 80 of the file's 84 nets agree with the sheet, and every value printed. Three values are not fully legible: R98 reads '6?0K' (680K is the only standard value it fits), C36's last digit is under a line, and R76 has none printed. The sheet prints LM324 at XU1 (written so above) and MC14584 at XU3.",
+  "The disagreements are MAME's FIX_SCHEMATIC_ERRORS, kept as MAME has them: the sheet draws XU1 section B with no feedback (pin 7 drives only R45), and joins D4's and D5's cathodes, TR4's collector, C42 and the C43/R46/C35 node in one net -- MAME's uncorrected line -- where MAME follows the Kung-Fu Master schematic's manual corrections, which the site does not hold. The MSM5205s reach the OKI node on sheet 3/4 through two resistors (one legibly R64) and a capacitor (apparently C46); MAME's R200, R201 and C200 are its own names for them, and on sheet 4/4 the line comes straight to R76, with no C200. D6 is drawn on sheet 2/4, between 1H pin 2 (a 74LS175) and the S-INH line, cathode at the latch; MAME's reason for leaving it out is board photos, which the sheet cannot settle. J4 is a three-terminal jumper on sheet 3/4 with no link drawn; J4 = 1 is MAME's choice."
+ ],
+ "conflicts": []
+}

@@ -1058,6 +1058,35 @@ Traps:
   The site's Tank Battalion manual has no PCB schematic at all, and its only Cheeky Mouse
   sheet is the main board; both conversions are unchecked for that reason, and say so.
 
+**On the site (2026-10-20), all 30.** `tools/publish_mame.py` takes a converted board the rest
+of the way, and the usual three steps follow it:
+
+    tools/publish_mame.py [slug ...]     footprints, layout, licence, origin, parts, the lookups
+    tools/build_board.py <slug>          KiCad's Python; skip the two with no ICs (Gun Fight, Popeye)
+    tools/publish_board.py <slug>        then build_assets.py --boards-only once
+
+What it writes: a DIP sized from each part's pinout and a nominal layout (Tank's own grid; in
+designator order where a board numbers its ICs, which the status line says); `license` and
+`origin` from the `.nets` header -- the file at its commit, its copyright holders,
+`licenseUrl`; `parts` for the bill of materials; `boards/<slug>.read.json`, the target's notes
+with each "Open question(s) ...:" paragraph and "Open question." bullet as the page's
+conflicts; and the chip and signal lookups. Rerun it after `mame_netlist.py`: `write()`
+carries the published fields forward, but the coverage line, read file and lookups are this
+script's.
+
+- **The licence note follows `b.license`.** BSD-3-Clause prints `origin.copyright` and the
+  condition that the notice travel with the work; CC0 says it is dedicated to the public
+  domain; GPL-3.0 is unchanged. Each links its text in `web/licenses/` (MAME's own
+  `docs/legal` copies for the two new ones). `test_worker.mjs` checks every MAME board has
+  both fields and that the script still reads them.
+- **`singleSource` is false on these.** The site's warning means a parts list OCR'd once; a
+  conversion's notes say what it was compared with, and the chip lookup says "checked
+  against the sheet" where it was.
+- **A chip's section is the MAME section whose statements name it most often**, not the
+  first net that touches it -- that is usually a shared clock or bus, and put Tank's K10
+  under Horizontal Timing. Sheet corrections have no section of their own, so Tank's `add`
+  groups are wrapped in `within('<section>', ...)`.
+
 ## Boards from jtcores, and the GPL-3.0
 
 jtcores (jotego's FPGA recreations, github.com/jotego/jtcores) redraws the boards it studies

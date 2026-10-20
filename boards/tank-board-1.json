@@ -5,9 +5,9 @@
  "machine": "tank",
  "drawing": "Schematic, Tank Board I, 003110 rev J sheets 1-2 (doc 7387abff18bd) -- MAME's netlist, split by board and corrected from the sheets",
  "revision": "Tank Board I 003110 rev J: tank and shell motion (sheet 1); coin logic, play timer, antenna, noise, shot and boom sounds and the audio mixers (sheet 2).",
- "coverage": "Converted from MAME's netlist and corrected against both sheets. Not in this file: the power supplies and the two LM380 amplifiers, which MAME does not have.",
+ "coverage": "69 ICs, 72 other parts and 264 nets over 1099 pins. Converted from MAME's netlist and corrected against both sheets. Not in this file: the power supplies and the two LM380 amplifiers, which MAME does not have. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
  "singleSource": false,
- "netsTraced": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "tank-board-1",
  "ics": {
@@ -88,5 +88,597 @@
   "netlist": "tank",
   "licence": "BSD-3-Clause",
   "copyright": "Ryan Holtz"
+ },
+ "grid": {
+  "rows": "ABCDEFHJKLMNX",
+  "cols": 6,
+  "transposed": false
+ },
+ "size": {
+  "w": 128.0,
+  "h": 298.2
+ },
+ "footprints": {
+  "A1": "Package_DIP:DIP-16_W7.62mm",
+  "A2": "Package_DIP:DIP-16_W7.62mm",
+  "A3": "Package_DIP:DIP-16_W7.62mm",
+  "A4": "Package_DIP:DIP-16_W7.62mm",
+  "A5": "Package_DIP:DIP-16_W7.62mm",
+  "A6": "Package_DIP:DIP-14_W7.62mm",
+  "B1": "Package_DIP:DIP-16_W7.62mm",
+  "B2": "Package_DIP:DIP-16_W7.62mm",
+  "B3": "Package_DIP:DIP-16_W7.62mm",
+  "B4": "Package_DIP:DIP-16_W7.62mm",
+  "B5": "Package_DIP:DIP-16_W7.62mm",
+  "B6": "Package_DIP:DIP-14_W7.62mm",
+  "C1": "Package_DIP:DIP-14_W7.62mm",
+  "C2": "Package_DIP:DIP-16_W7.62mm",
+  "C3": "Package_DIP:DIP-16_W7.62mm",
+  "C4": "Package_DIP:DIP-16_W7.62mm",
+  "C5": "Package_DIP:DIP-14_W7.62mm",
+  "C6": "Package_DIP:DIP-14_W7.62mm",
+  "D1": "Package_DIP:DIP-14_W7.62mm",
+  "D2": "Package_DIP:DIP-14_W7.62mm",
+  "D3": "Package_DIP:DIP-16_W7.62mm",
+  "D4": "Package_DIP:DIP-14_W7.62mm",
+  "D5": "Package_DIP:DIP-14_W7.62mm",
+  "D6": "Package_DIP:DIP-14_W7.62mm",
+  "E1": "Package_DIP:DIP-14_W7.62mm",
+  "E2": "Package_DIP:DIP-14_W7.62mm",
+  "E4": "Package_DIP:DIP-14_W7.62mm",
+  "E5": "Package_DIP:DIP-14_W7.62mm",
+  "E6": "Package_DIP:DIP-14_W7.62mm",
+  "F1": "Package_DIP:DIP-16_W7.62mm",
+  "F2": "Package_DIP:DIP-14_W7.62mm",
+  "F3": "Package_DIP:DIP-14_W7.62mm",
+  "F4": "Package_DIP:DIP-14_W7.62mm",
+  "F5": "Package_DIP:DIP-16_W7.62mm",
+  "H1": "Package_DIP:DIP-16_W7.62mm",
+  "H2": "Package_DIP:DIP-16_W7.62mm",
+  "H3": "Package_DIP:DIP-14_W7.62mm",
+  "H4": "Package_DIP:DIP-16_W7.62mm",
+  "H5": "Package_DIP:DIP-16_W7.62mm",
+  "H6": "Package_DIP:DIP-8_W7.62mm",
+  "J1": "Package_DIP:DIP-16_W7.62mm",
+  "J2": "Package_DIP:DIP-16_W7.62mm",
+  "J3": "Package_DIP:DIP-14_W7.62mm",
+  "J4": "Package_DIP:DIP-16_W7.62mm",
+  "J5": "Package_DIP:DIP-16_W7.62mm",
+  "J6": "Package_DIP:DIP-14_W7.62mm",
+  "K1": "Package_DIP:DIP-14_W7.62mm",
+  "K2": "Package_DIP:DIP-14_W7.62mm",
+  "K3": "Package_DIP:DIP-14_W7.62mm",
+  "K4": "Package_DIP:DIP-14_W7.62mm",
+  "K5": "Package_DIP:DIP-14_W7.62mm",
+  "K6": "Package_DIP:DIP-6_W7.62mm",
+  "L1": "Package_DIP:DIP-14_W7.62mm",
+  "L2": "Package_DIP:DIP-14_W7.62mm",
+  "L3": "Package_DIP:DIP-14_W7.62mm",
+  "L4": "Package_DIP:DIP-14_W7.62mm",
+  "L5": "Package_DIP:DIP-14_W7.62mm",
+  "L6": "Package_DIP:DIP-6_W7.62mm",
+  "M1": "Package_DIP:DIP-14_W7.62mm",
+  "M2": "Package_DIP:DIP-14_W7.62mm",
+  "M3": "Package_DIP:DIP-14_W7.62mm",
+  "M4": "Package_DIP:DIP-14_W7.62mm",
+  "M5": "Package_DIP:DIP-14_W7.62mm",
+  "N1": "Package_DIP:DIP-14_W7.62mm",
+  "N3": "Package_DIP:DIP-14_W7.62mm",
+  "N4": "Package_DIP:DIP-14_W7.62mm",
+  "N5": "Package_DIP:DIP-14_W7.62mm",
+  "N6": "Package_DIP:DIP-14_W7.62mm",
+  "X1": "Package_DIP:DIP-8_W7.62mm"
+ },
+ "place": {
+  "A1": [
+   10.0,
+   10.0,
+   0
+  ],
+  "A2": [
+   22.1,
+   10.0,
+   0
+  ],
+  "A3": [
+   34.2,
+   10.0,
+   0
+  ],
+  "A4": [
+   46.3,
+   10.0,
+   0
+  ],
+  "A5": [
+   58.4,
+   10.0,
+   0
+  ],
+  "A6": [
+   70.5,
+   10.0,
+   0
+  ],
+  "B1": [
+   10.0,
+   32.3,
+   0
+  ],
+  "B2": [
+   22.1,
+   32.3,
+   0
+  ],
+  "B3": [
+   34.2,
+   32.3,
+   0
+  ],
+  "B4": [
+   46.3,
+   32.3,
+   0
+  ],
+  "B5": [
+   58.4,
+   32.3,
+   0
+  ],
+  "B6": [
+   70.5,
+   32.3,
+   0
+  ],
+  "C1": [
+   10.0,
+   54.6,
+   0
+  ],
+  "C2": [
+   22.1,
+   54.6,
+   0
+  ],
+  "C3": [
+   34.2,
+   54.6,
+   0
+  ],
+  "C4": [
+   46.3,
+   54.6,
+   0
+  ],
+  "C5": [
+   58.4,
+   54.6,
+   0
+  ],
+  "C6": [
+   70.5,
+   54.6,
+   0
+  ],
+  "D1": [
+   10.0,
+   76.9,
+   0
+  ],
+  "D2": [
+   22.1,
+   76.9,
+   0
+  ],
+  "D3": [
+   34.2,
+   76.9,
+   0
+  ],
+  "D4": [
+   46.3,
+   76.9,
+   0
+  ],
+  "D5": [
+   58.4,
+   76.9,
+   0
+  ],
+  "D6": [
+   70.5,
+   76.9,
+   0
+  ],
+  "E1": [
+   10.0,
+   99.2,
+   0
+  ],
+  "E2": [
+   22.1,
+   99.2,
+   0
+  ],
+  "E4": [
+   46.3,
+   99.2,
+   0
+  ],
+  "E5": [
+   58.4,
+   99.2,
+   0
+  ],
+  "E6": [
+   70.5,
+   99.2,
+   0
+  ],
+  "F1": [
+   10.0,
+   121.5,
+   0
+  ],
+  "F2": [
+   22.1,
+   121.5,
+   0
+  ],
+  "F3": [
+   34.2,
+   121.5,
+   0
+  ],
+  "F4": [
+   46.3,
+   121.5,
+   0
+  ],
+  "F5": [
+   58.4,
+   121.5,
+   0
+  ],
+  "H1": [
+   10.0,
+   143.8,
+   0
+  ],
+  "H2": [
+   22.1,
+   143.8,
+   0
+  ],
+  "H3": [
+   34.2,
+   143.8,
+   0
+  ],
+  "H4": [
+   46.3,
+   143.8,
+   0
+  ],
+  "H5": [
+   58.4,
+   143.8,
+   0
+  ],
+  "H6": [
+   70.5,
+   143.8,
+   0
+  ],
+  "J1": [
+   10.0,
+   166.1,
+   0
+  ],
+  "J2": [
+   22.1,
+   166.1,
+   0
+  ],
+  "J3": [
+   34.2,
+   166.1,
+   0
+  ],
+  "J4": [
+   46.3,
+   166.1,
+   0
+  ],
+  "J5": [
+   58.4,
+   166.1,
+   0
+  ],
+  "J6": [
+   70.5,
+   166.1,
+   0
+  ],
+  "K1": [
+   10.0,
+   188.4,
+   0
+  ],
+  "K2": [
+   22.1,
+   188.4,
+   0
+  ],
+  "K3": [
+   34.2,
+   188.4,
+   0
+  ],
+  "K4": [
+   46.3,
+   188.4,
+   0
+  ],
+  "K5": [
+   58.4,
+   188.4,
+   0
+  ],
+  "K6": [
+   70.5,
+   188.4,
+   0
+  ],
+  "L1": [
+   10.0,
+   210.7,
+   0
+  ],
+  "L2": [
+   22.1,
+   210.7,
+   0
+  ],
+  "L3": [
+   34.2,
+   210.7,
+   0
+  ],
+  "L4": [
+   46.3,
+   210.7,
+   0
+  ],
+  "L5": [
+   58.4,
+   210.7,
+   0
+  ],
+  "L6": [
+   70.5,
+   210.7,
+   0
+  ],
+  "M1": [
+   10.0,
+   233.0,
+   0
+  ],
+  "M2": [
+   22.1,
+   233.0,
+   0
+  ],
+  "M3": [
+   34.2,
+   233.0,
+   0
+  ],
+  "M4": [
+   46.3,
+   233.0,
+   0
+  ],
+  "M5": [
+   58.4,
+   233.0,
+   0
+  ],
+  "N1": [
+   10.0,
+   255.3,
+   0
+  ],
+  "N3": [
+   34.2,
+   255.3,
+   0
+  ],
+  "N4": [
+   46.3,
+   255.3,
+   0
+  ],
+  "N5": [
+   58.4,
+   255.3,
+   0
+  ],
+  "N6": [
+   70.5,
+   255.3,
+   0
+  ],
+  "X1": [
+   10.0,
+   277.6,
+   0
+  ]
+ },
+ "refPrefix": "U",
+ "license": "BSD-3-Clause",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_tank.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/atari/nl_tank.cpp",
+  "netlist": "tank",
+  "authors": [
+   "Ryan Holtz"
+  ],
+  "license": "BSD-3-Clause",
+  "copyright": "Ryan Holtz",
+  "licenseUrl": "/licenses/BSD-3-Clause.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-1.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C15": "0.1uF",
+  "C16": "0.1uF",
+  "C17": "0.1uF",
+  "C24": "0.1uF",
+  "C25": "100uF",
+  "C27": "0.001uF",
+  "C28": "1uF",
+  "C30": "0.001uF",
+  "C31": "1uF",
+  "C32": "0.1uF",
+  "C35": "5uF",
+  "C36": "0.1uF",
+  "C38": "5uF",
+  "C39": "0.001uF",
+  "C40": "0.1uF",
+  "C41": "5uF",
+  "C43": "220pF",
+  "C101": "1uF",
+  "C106": "1uF",
+  "C110": "0.001uF",
+  "C111": "0.001uF",
+  "CR9": "1N914",
+  "CR12": "1N914",
+  "CR19": "1N914",
+  "CR22": "1N914",
+  "Q1": "2N3643",
+  "Q2": "2N3644",
+  "Q3": "2N3643",
+  "Q4": "2N3643",
+  "Q5": "2N3643 (selected noise transistor)",
+  "Q6": "2N3644",
+  "Q7": "2N3644",
+  "Q40": "2N3643",
+  "Q41": "2N5190",
+  "R4": "3.3K",
+  "R5": "3.3K",
+  "R6": "3.3K",
+  "R7": "3.3K",
+  "R8": "3.3K",
+  "R9": "3.3K",
+  "R10": "3.3K",
+  "R11": "3.3K",
+  "R41": "4.7K",
+  "R42": "100K",
+  "R48": "560",
+  "R49": "1K",
+  "R53": "330K",
+  "R54": "680K",
+  "R55": "10K",
+  "R56": "100K",
+  "R59": "180K",
+  "R60": "1M",
+  "R63": "2.2M",
+  "R64": "180K",
+  "R69": "470K",
+  "R70": "1M",
+  "R71": "680K",
+  "R72": "180K",
+  "R73": "1M",
+  "R100": "100",
+  "R101": "1K",
+  "R102": "33K",
+  "R103": "33K",
+  "R104": "33K",
+  "R106": "33K",
+  "R107": "33K",
+  "R108": "33K",
+  "SW1": "25c/50c (coin logic)",
+  "SW2": "25c/50c (play time)",
+  "UA1": "9316",
+  "UA2": "9316",
+  "UA3": "74165",
+  "UA4": "9316",
+  "UA5": "9316",
+  "UA6": "74H04",
+  "UB1": "9316",
+  "UB2": "9316",
+  "UB3": "74165",
+  "UB4": "9316",
+  "UB5": "9316",
+  "UB6": "7404",
+  "UC1": "7400",
+  "UC2": "9316",
+  "UC3": "74165",
+  "UC4": "9316",
+  "UC5": "7400",
+  "UC6": "7402",
+  "UD1": "7474",
+  "UD2": "7474",
+  "UD3": "74165",
+  "UD4": "7474",
+  "UD5": "7474",
+  "UD6": "7402",
+  "UE1": "7474",
+  "UE2": "7474",
+  "UE4": "7474",
+  "UE5": "7474",
+  "UE6": "74107",
+  "UF1": "9316",
+  "UF2": "7408",
+  "UF3": "7474",
+  "UF4": "7408",
+  "UF5": "9316",
+  "UH1": "9316",
+  "UH2": "9316",
+  "UH3": "7404",
+  "UH4": "9316",
+  "UH5": "9316",
+  "UH6": "NE555",
+  "UJ1": "9316",
+  "UJ2": "9316",
+  "UJ3": "7404",
+  "UJ4": "9316",
+  "UJ5": "9316",
+  "UJ6": "7474",
+  "UK1": "7402",
+  "UK2": "7486",
+  "UK3": "7486",
+  "UK4": "7486",
+  "UK5": "7402",
+  "UK6": "MFC6040",
+  "UL1": "74107",
+  "UL2": "7420",
+  "UL3": "7402",
+  "UL4": "7420",
+  "UL5": "74107",
+  "UL6": "MFC6040",
+  "UM1": "74S20",
+  "UM2": "7410",
+  "UM3": "74H08",
+  "UM4": "7410",
+  "UM5": "74S20",
+  "UN1": "74107",
+  "UN3": "7474",
+  "UN4": "7404",
+  "UN5": "74107",
+  "UN6": "7402",
+  "UX1": "UA741",
+  "VR1": "1M",
+  "VR2": "50K",
+  "VR3": "50K"
  }
 }

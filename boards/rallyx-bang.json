@@ -5,9 +5,9 @@
  "machine": "rallyx",
  "drawing": "Logic Bd I schematic A082-91385-C000, Rally-X Parts and Operating Manual (doc 1cc6c9614736, PDF p. 39) -- via MAME's netlist, compared with it and corrected",
  "revision": "Rally-X Logic Board I, explosion ('BANG') circuit: CD4006/CD4070 noise gated by a CD4066, a uA741 stage at 12E and an MB3730 bridge amplifier at 12A.",
- "coverage": "Converted from MAME's netlist and corrected from the sheet: the explosion circuit and the power amplifier, with the Namco WSG's audio arriving as a port. The rest of the board's sound is a MAME device, not a netlist.",
+ "coverage": "5 ICs, 29 other parts and 30 nets over 109 pins. Converted from MAME's netlist and corrected from the sheet: the explosion circuit and the power amplifier, with the Namco WSG's audio arriving as a port. The rest of the board's sound is a MAME device, not a netlist. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
  "singleSource": false,
- "netsTraced": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "rallyx-bang",
  "ics": {
@@ -24,5 +24,106 @@
   "netlist": "rallyx",
   "licence": "CC0-1.0",
   "copyright": "Ricardo Bittencourt"
+ },
+ "footprints": {
+  "11A": "Package_DIP:DIP-14_W7.62mm",
+  "11C": "Package_DIP:DIP-14_W7.62mm",
+  "11D": "Package_DIP:DIP-14_W7.62mm",
+  "12A": "Package_DIP:DIP-8_W7.62mm",
+  "12E": "Package_DIP:DIP-8_W7.62mm"
+ },
+ "place": {
+  "11A": [
+   10.0,
+   10.0,
+   0
+  ],
+  "11C": [
+   10.0,
+   29.7,
+   0
+  ],
+  "11D": [
+   10.0,
+   49.4,
+   0
+  ],
+  "12A": [
+   22.1,
+   10.0,
+   0
+  ],
+  "12E": [
+   22.1,
+   69.1,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 89.7
+ },
+ "grid": {
+  "rows": "ACDE",
+  "cols": 12,
+  "transposed": true
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/namco/nl_rallyx.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/namco/nl_rallyx.cpp",
+  "netlist": "rallyx",
+  "authors": [
+   "Ricardo Bittencourt"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Ricardo Bittencourt",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/rallyx-bang.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C3": "0.1uF",
+  "C4": "0.1uF",
+  "C5": "10nF",
+  "C6": "10nF",
+  "C7": "0.1uF",
+  "C25": "100uF",
+  "C26": "220uF",
+  "C27": "22uF",
+  "C28": "47nF",
+  "C29": "22uF",
+  "C31": "0.1uF",
+  "C32": "0.1uF",
+  "C35": "1uF",
+  "C36": "0.1uF",
+  "D1": "1S1588",
+  "D2": "1N914",
+  "D3": "1N914",
+  "R24": "470K",
+  "R26": "10K",
+  "R27": "150K",
+  "R28": "10K",
+  "R30": "4.7K",
+  "R31": "22K",
+  "R39": "68K",
+  "R40": "47K",
+  "R41": "470K",
+  "R69": "1.0",
+  "R70": "1.0",
+  "U11A": "CD4006",
+  "U11C": "CD4070",
+  "U11D": "CD4066",
+  "U12A": "MB3730",
+  "U12E": "UA741",
+  "VR1": "1K"
  }
 }

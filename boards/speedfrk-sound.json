@@ -5,9 +5,9 @@
  "machine": "speedfrk",
  "drawing": "Sound board schematic in the Speed Freak manual (doc a9a0d255b9db) -- via MAME's netlist, compared with the sheet (Figure A-14 Audio PCB Logic, p73)",
  "revision": "Vectorbeam audio board for Speed Freak: the engine sound, all TTL counters and shift registers into one TL081.",
- "coverage": "Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. See the .nets file for what was undone and what MAME leaves out.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "21 ICs, 40 other parts and 102 nets over 331 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "speedfrk-sound",
  "ics": {
@@ -40,5 +40,224 @@
   "netlist": "speedfrk",
   "licence": "CC0-1.0",
   "copyright": "Aaron Giles"
+ },
+ "footprints": {
+  "2": "Package_DIP:DIP-14_W7.62mm",
+  "3": "Package_DIP:DIP-8_W7.62mm",
+  "4": "Package_DIP:DIP-16_W7.62mm",
+  "5": "Package_DIP:DIP-14_W7.62mm",
+  "6": "Package_DIP:DIP-14_W7.62mm",
+  "7": "Package_DIP:DIP-16_W7.62mm",
+  "8": "Package_DIP:DIP-16_W7.62mm",
+  "9": "Package_DIP:DIP-16_W7.62mm",
+  "10": "Package_DIP:DIP-14_W7.62mm",
+  "11": "Package_DIP:DIP-14_W7.62mm",
+  "12": "Package_DIP:DIP-16_W7.62mm",
+  "13": "Package_DIP:DIP-14_W7.62mm",
+  "14": "Package_DIP:DIP-14_W7.62mm",
+  "15": "Package_DIP:DIP-16_W7.62mm",
+  "17": "Package_DIP:DIP-14_W7.62mm",
+  "18": "Package_DIP:DIP-14_W7.62mm",
+  "19": "Package_DIP:DIP-14_W7.62mm",
+  "20": "Package_DIP:DIP-14_W7.62mm",
+  "22": "Package_DIP:DIP-8_W7.62mm",
+  "23": "Package_DIP:DIP-16_W7.62mm",
+  "24": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "2": [
+   10.0,
+   10.0,
+   0
+  ],
+  "3": [
+   24.62,
+   10.0,
+   0
+  ],
+  "4": [
+   39.24,
+   10.0,
+   0
+  ],
+  "5": [
+   53.86,
+   10.0,
+   0
+  ],
+  "6": [
+   68.48,
+   10.0,
+   0
+  ],
+  "7": [
+   83.1,
+   10.0,
+   0
+  ],
+  "8": [
+   97.72,
+   10.0,
+   0
+  ],
+  "9": [
+   10.0,
+   34.78,
+   0
+  ],
+  "10": [
+   24.62,
+   34.78,
+   0
+  ],
+  "11": [
+   39.24,
+   34.78,
+   0
+  ],
+  "12": [
+   53.86,
+   34.78,
+   0
+  ],
+  "13": [
+   68.48,
+   34.78,
+   0
+  ],
+  "14": [
+   83.1,
+   34.78,
+   0
+  ],
+  "15": [
+   97.72,
+   34.78,
+   0
+  ],
+  "17": [
+   10.0,
+   59.56,
+   0
+  ],
+  "18": [
+   24.62,
+   59.56,
+   0
+  ],
+  "19": [
+   39.24,
+   59.56,
+   0
+  ],
+  "20": [
+   53.86,
+   59.56,
+   0
+  ],
+  "22": [
+   68.48,
+   59.56,
+   0
+  ],
+  "23": [
+   83.1,
+   59.56,
+   0
+  ],
+  "24": [
+   97.72,
+   59.56,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 87.3
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_speedfrk.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/cinematronics/nl_speedfrk.cpp",
+  "netlist": "speedfrk",
+  "authors": [
+   "Aaron Giles"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Aaron Giles",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/speedfrk-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C12": "0.001uF",
+  "C13": "0.001uF",
+  "C17": "0.02uF",
+  "C20": "0.1uF",
+  "C23": "0.1uF",
+  "CR3": "1N914B",
+  "Q3": "2N3904",
+  "R13": "150",
+  "R14": "2.2K",
+  "R15": "10K",
+  "R16": "2.2K",
+  "R17": "1K",
+  "R18": "8.2K",
+  "R19": "3.9K",
+  "R20": "4.7K",
+  "R21": "3.3K",
+  "R22": "10K",
+  "R23": "4.7K",
+  "R24": "10K",
+  "R25": "18K",
+  "R26": "18K",
+  "R27": "6.8K",
+  "R28": "10K",
+  "R29": "2.2K",
+  "R30": "330",
+  "R31": "330",
+  "R32": "1K",
+  "R33": "1K",
+  "R34": "1K",
+  "R36": "1K",
+  "R37": "1K",
+  "R38": "1K",
+  "R39": "1K",
+  "R40": "1K",
+  "R41": "1K",
+  "R42": "1K",
+  "R43": "1K",
+  "R44": "30K",
+  "R45": "4.7K",
+  "R46": "10K",
+  "U2": "74LS04",
+  "U3": "TL081",
+  "U4": "74LS163",
+  "U5": "74LS107",
+  "U6": "74LS08",
+  "U7": "74LS163",
+  "U8": "74LS163",
+  "U9": "74LS163",
+  "U10": "74LS04",
+  "U11": "74LS08",
+  "U12": "74LS75",
+  "U13": "74LS164",
+  "U14": "74LS164",
+  "U15": "74LS163",
+  "U17": "74LS107",
+  "U18": "74LS393",
+  "U19": "74LS86",
+  "U20": "74LS164",
+  "U22": "LM555",
+  "U23": "74LS163",
+  "U24": "74LS164"
  }
 }
