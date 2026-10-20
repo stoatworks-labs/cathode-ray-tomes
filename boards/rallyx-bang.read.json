@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/namco/nl_rallyx.cpp (NETLIST_START(rallyx), CC0-1.0, Ricardo Bittencourt) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/rallyx-bang.nets.",
+  "Compared with the Logic Bd I schematic, A082-91385-C000 dated 1/9/81 (PDF p. 39 of the manual, doc 1cc6c9614736, with p. 40's overlap; the 'fold-out', doc 47826bd174c7, is the assembly drawings), on 2026-10-20 -- every net in the file. The noise generator agrees pin for pin, including the spare 4070 and 4066 sections, which the sheet does ground as MAME does, and C35's grounded end; so do the uA741 stage, the WSG mix and every value. Corrected above from the sheet: the MB3730's capacitors and Zobel networks were on each other's pins in MAME (pin 2 has C27 22uF and pin 3 C26 220uF; pin 6 has R69/C32 and pin 5 R70/C31), VR1 is a pot with C4 on its wiper, and C25 and C3 decouple the amplifier's +12V.",
+  "The MB3730's pin names (FB on 2, BYPASS on 3) are MAME's model of the part; with the capacitors where the sheet puts them, either those names or MAME's placement was wrong, and no Fujitsu data sheet has been read to say which. MAME's comment calls C6 'across R41'; on the sheet, and in MAME's own connections, it runs from the input node to the 741's output. D1 is printed '1S15..' with the last digits filled in, and the assembly notes say D1-D5 are 1N914B; MAME's 1S1588 is kept. The CD4xxx supply pins are not drawn; +5V and ground on 14 and 7 are assumed."
+ ],
+ "conflicts": []
+}

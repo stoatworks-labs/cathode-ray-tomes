@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/universal/nl_cheekyms.cpp (NETLIST_START(cheekyms), CC0-1.0, Vas Crabb) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/cheekyms-sound.nets.",
+  "Not compared with the sheet: the site's one Cheeky Mouse schematic (doc 8bf94944bfe5, 'Main Block Diagram', drawing 8004) is the CPU and video board, and shows the sound board only as the connector pins it is wired to -- E1 (LS273) pins 2, 5, 6, 9, 12, 15, 16 and 19 and two of E2's go to it, and A7's coin pulse (read 2026-10-20). So two things here are assumptions, not readings: which timer of each 556 a sound uses (MAME's IC4_1 is taken as timer 1, pins 1-6, and IC4_2 as timer 2, pins 8-13; the sheet's own 556 at A7 is numbered that way, which says nothing about the sound board's), and Q2's collector, which Couriersud's note says the schematic shows unconnected and this file leaves out.",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

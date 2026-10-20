@@ -1,0 +1,9 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/atari/nl_destroyr.cpp (NETLIST_START(destroyr), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/destroyr-sound.nets.",
+  "Compared with the schematic, sheet 4 of 5 (TM-106 p. 37, a clean 300 ppi scan), with the other four sheets and the parts list (pp. 64-65), on 2026-10-20: all 64 of MAME's nets in the sound circuit agree with the sheet, pin for pin and value for value, and so do the supplies (the LM324s at C9 and H9 on +12V and -5V, from a 7812 and a 7905; the MC3340 at D10 on +5V and -5V). The ports are the sheet's: F8 (a 9334) drives SONGATE, LAUNCH, EXPLO, SONLAT, HE and LE (addresses 1002-1007, HE 'high explosion', LE 'low explosion'); F7 (a 74174) drives MOTOR_SPEED and ATTRACT, and NOISE -- the shift registers' clear -- is F7 pin 5, which sheet 1's address map calls 'KICKER'.",
+  "What MAME's 'Tie off unused gates and pins' block gets wrong is the board, not the sound: every K9 inverter, M8's gates on 4-6, 8-10 and 11-13, and L7's on 1-6 are used by the video and strobe logic on sheets 3-5, so they are ports here, not nc. The 556's RESETs (H8 4 and 10) and its outputs 5 and 9 are bare stubs on the sheet, as nc says; MAME ties the RESETs to +5V. A9's spare gates and L7 8-10 appear on no sheet (a visual sweep, not certain).",
+  "On the sheet and not in this file: the decoupling capacitors C50, C60 (+12V), C54, C65 and C73 (-5V); a second, open jumper from the D10 pin 6 / Q4 node to the TDA1004's pin 5 and C83, beside the closed one this file has; and the TDA1004 amplifier itself (C81 from the volume pot's wiper, C82-C90, the speaker on edge pin 7). On all six electrolytics MAME's pin 1 is the + end. R78 has a pen scribble through its value; it reads 5.6K, and the parts list agrees."
+ ],
+ "conflicts": []
+}

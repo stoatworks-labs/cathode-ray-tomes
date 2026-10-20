@@ -1,0 +1,18 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/atari/nl_tank.cpp (NETLIST_START(tank), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tank-board-2.nets.",
+  "Compared with both Board II sheets in full (003112 sheet 1 rev H, sheet 2 rev F), 2026-10-19. MAME agrees with the sheet on the ROM's address and data wiring and the 74153 and 9322 multiplexers, the playfield shift register, the minefield and mine control (the 8277 included), video summing, the boom and shot one-shots, the motion latches apart from HD1/HD2, the joystick and fire inputs (designators and values once MAME's suffixes are dropped), the shell one-shots, the 556 blow-up timer, the speed and rotation counters, and the 7492 at A12 -- which matters because MAME's own 7492 model swaps QB and QD against TI's data sheet (the MiSTer Tank core's finding); the netlist's pin numbers are the sheet's.",
+  "MAME's errors here, all corrected above: the score counters (D11 QA and QD go to E11's CPA and CPB the other way round, and SCR1E is D11 pin 12, not 11 -- MAME has SCR1E and SCR2C on one pin); HD1 and HD2 are the Q-bar outputs of N8 and N12 (pin 6), not Q; the ROM's pin 9 and its output pull-downs R19-R26 go to -12V, not ground; and C50/C51 are .22uF, not 22uF. MAME's ideal clock is replaced by the crystal oscillator the sheet draws on A7 (a 74H04); its \"unused\" A7 pins 11 and 13 are the oscillator. The motor sounds, which MAME comments out, are restored: its block agrees with the sheet apart from the MFC6040's output and supply pins, C50/C51 and Q34's emitter (missing from MAME's +12V list), all corrected; the 555s' pin 3 is not drawn.",
+  "The ROM. The sheet prints \"24-PIN EA ROM\" at K10 -- an Electronic Arrays MOS ROM, with +5V on pin 1 and -12V on pin 9. MAME models it as an MK28000 bipolar PROM, and a handwritten note on the rev F print points to the MK28000P; an MK28000's pin 9 is GND, so the board as drawn is not wired for one. The pin names here are MAME's MK28000 names, which are what MAME's ROM dump is ordered by. R19-R26 have no value printed; MAME's 1K is its own guess.",
+  "Designators that are not MAME's: J11 (MAME's \"D11V\" -- another gate of J11), K10 (MAME's \"R10\"), R18 (MAME's \"RUNK1\", 47K). Ours, not printed: Y1 (the crystal), VR1 (the 50K shell range pot, circled 'Shell Range' by hand on the sheet), VR2-VR5 (the motor volume pots and rheostats). Not in this file: the +5V regulator (Q35-Q39 and its parts), not in MAME."
+ ],
+ "conflicts": [
+  "The cable's VLD1 and /FIRE1 contacts disagree with Board I's sheet (see Board I's notes).",
+  "J5-22/23 is labelled -12V beside the ROM and +12V in the regulator.",
+  "R13 (PLAYFIELD SELECT, 4.7K to +5V) has a jumper to ground drawn beside it -- the alternate maze. MAME leaves it open, as this file does.",
+  "R74 reads 120K on rev H and 180K on rev F; MAME and this file have 180K.",
+  "A8's first half has its S and R pins marked \"R\" rather than \"P\".",
+  "Player 1's lower stick pair is printed \"#2 LEFT STICK\" -- it feeds ACC1/STOP1/RR1/RL1.",
+  "1Ø2-1Ø4 and 2Ø2-2Ø4 reach this board in contact boxes with no number printed."
+ ]
+}

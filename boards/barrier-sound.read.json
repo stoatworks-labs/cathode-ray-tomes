@@ -1,0 +1,10 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/cinematronics/nl_barrier.cpp (NETLIST_START(barrier), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/barrier-sound.nets.",
+  "Compared with the sheet (doc 458c844b4ab1 p23, 600 dpi), 2026-10-19: the noise source (CR1, CR2, Q1, Q2 -- Q2's base is left open on the sheet too), U1 and U3, the triangle and diamond envelopes (U2, Q3, Q6, R6-R13, R25-R27, CR3-CR6), U8 and the TL182 switch U5, and U9 with R31-R37 all agree with the sheet part for part, pin for pin and value for value, diode and transistor orientation included. Two differences, both MAME's deliberate:",
+  "* The sheet's JUMPER between the summing line and C11 is not in MAME, which treats it as closed (R17 sits on the jumper's C11 side on the sheet, on the summing line in MAME -- the same net while the jumper is in). R19 goes to C12 and the volume pot R29 on the sheet, which are part of the final amplifier; MAME grounds it (line 272)."
+ ],
+ "conflicts": [
+  "The sheet draws U8 pin 6 straight onto the summing line (R13, R15, R37 and the jumper to C11): a T-junction on the U8.6/R38 line below R38, no dot. MAME leaves it out (its line 239, commented) because the op-amp output would then hold the summing node and swamp every other sound; the file's header calls it a suspected typo. This file follows MAME. Not checked against a board."
+ ]
+}

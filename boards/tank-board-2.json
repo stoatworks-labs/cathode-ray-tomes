@@ -5,9 +5,9 @@
  "machine": "tank",
  "drawing": "Tank Board II 003112 rev H sheet 1 (doc 6872a0725db0) and sheet 2 (rev F print, doc 5169eb199193) -- MAME's netlist, split by board and corrected from the sheets",
  "revision": "Tank Board II 003112: ROM multiplexing, playfield, minefield, motion latches, motor sounds and video (sheet 1); sync, timing and control (sheet 2).",
- "coverage": "Converted from MAME's netlist and corrected against both sheets; the motor sounds, which MAME comments out, are restored. Not in this file: the +5V regulator.",
+ "coverage": "102 ICs, 145 other parts and 428 nets over 1667 pins. Converted from MAME's netlist and corrected against both sheets; the motor sounds, which MAME comments out, are restored. Not in this file: the +5V regulator. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
  "singleSource": false,
- "netsTraced": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "tank-board-2",
  "ics": {
@@ -121,5 +121,901 @@
   "netlist": "tank",
   "licence": "BSD-3-Clause",
   "copyright": "Ryan Holtz"
+ },
+ "grid": {
+  "rows": "ABCDEFHJKLMN",
+  "cols": 15,
+  "transposed": false
+ },
+ "size": {
+  "w": 128.0,
+  "h": 286.1
+ },
+ "footprints": {
+  "A7": "Package_DIP:DIP-14_W7.62mm",
+  "A8": "Package_DIP:DIP-14_W7.62mm",
+  "A9": "Package_DIP:DIP-14_W7.62mm",
+  "A10": "Package_DIP:DIP-14_W7.62mm",
+  "A11": "Package_DIP:DIP-14_W7.62mm",
+  "A12": "Package_DIP:DIP-14_W7.62mm",
+  "A13": "Package_DIP:DIP-14_W7.62mm",
+  "A14": "Package_DIP:DIP-14_W7.62mm",
+  "A15": "Package_DIP:DIP-14_W7.62mm",
+  "B7": "Package_DIP:DIP-14_W7.62mm",
+  "B8": "Package_DIP:DIP-14_W7.62mm",
+  "B9": "Package_DIP:DIP-14_W7.62mm",
+  "B10": "Package_DIP:DIP-14_W7.62mm",
+  "B11": "Package_DIP:DIP-14_W7.62mm",
+  "B12": "Package_DIP:DIP-14_W7.62mm",
+  "B13": "Package_DIP:DIP-14_W7.62mm",
+  "B14": "Package_DIP:DIP-14_W7.62mm",
+  "B15": "Package_DIP:DIP-14_W7.62mm",
+  "C8": "Package_DIP:DIP-16_W7.62mm",
+  "C9": "Package_DIP:DIP-16_W7.62mm",
+  "C10": "Package_DIP:DIP-14_W7.62mm",
+  "C11": "Package_DIP:DIP-14_W7.62mm",
+  "C12": "Package_DIP:DIP-14_W7.62mm",
+  "C13": "Package_DIP:DIP-14_W7.62mm",
+  "C14": "Package_DIP:DIP-14_W7.62mm",
+  "D7": "Package_DIP:DIP-14_W7.62mm",
+  "D8": "Package_DIP:DIP-14_W7.62mm",
+  "D9": "Package_DIP:DIP-16_W7.62mm",
+  "D10": "Package_DIP:DIP-16_W7.62mm",
+  "D11": "Package_DIP:DIP-14_W7.62mm",
+  "D12": "Package_DIP:DIP-16_W7.62mm",
+  "D13": "Package_DIP:DIP-14_W7.62mm",
+  "D14": "Package_DIP:DIP-14_W7.62mm",
+  "D15": "Package_DIP:DIP-14_W7.62mm",
+  "E7": "Package_DIP:DIP-14_W7.62mm",
+  "E8": "Package_DIP:DIP-14_W7.62mm",
+  "E9": "Package_DIP:DIP-16_W7.62mm",
+  "E10": "Package_DIP:DIP-16_W7.62mm",
+  "E11": "Package_DIP:DIP-14_W7.62mm",
+  "E12": "Package_DIP:DIP-16_W7.62mm",
+  "E13": "Package_DIP:DIP-14_W7.62mm",
+  "E14": "Package_DIP:DIP-14_W7.62mm",
+  "E15": "Package_DIP:DIP-14_W7.62mm",
+  "F7": "Package_DIP:DIP-16_W7.62mm",
+  "F8": "Package_DIP:DIP-16_W7.62mm",
+  "F9": "Package_DIP:DIP-16_W7.62mm",
+  "F10": "Package_DIP:DIP-16_W7.62mm",
+  "F11": "Package_DIP:DIP-16_W7.62mm",
+  "F12": "Package_DIP:DIP-14_W7.62mm",
+  "F13": "Package_DIP:DIP-14_W7.62mm",
+  "F14": "Package_DIP:DIP-14_W7.62mm",
+  "F15": "Package_DIP:DIP-6_W7.62mm",
+  "H7": "Package_DIP:DIP-14_W7.62mm",
+  "H8": "Package_DIP:DIP-14_W7.62mm",
+  "H9": "Package_DIP:DIP-16_W7.62mm",
+  "H10": "Package_DIP:DIP-16_W7.62mm",
+  "H11": "Package_DIP:DIP-14_W7.62mm",
+  "H12": "Package_DIP:DIP-14_W7.62mm",
+  "H13": "Package_DIP:DIP-14_W7.62mm",
+  "H14": "Package_DIP:DIP-16_W7.62mm",
+  "H15": "Package_DIP:DIP-8_W7.62mm",
+  "J7": "Package_DIP:DIP-14_W7.62mm",
+  "J8": "Package_DIP:DIP-14_W7.62mm",
+  "J9": "Package_DIP:DIP-16_W7.62mm",
+  "J11": "Package_DIP:DIP-14_W7.62mm",
+  "J12": "Package_DIP:DIP-14_W7.62mm",
+  "J13": "Package_DIP:DIP-14_W7.62mm",
+  "J14": "Package_DIP:DIP-14_W7.62mm",
+  "J15": "Package_DIP:DIP-8_W7.62mm",
+  "K7": "Package_DIP:DIP-14_W7.62mm",
+  "K8": "Package_DIP:DIP-14_W7.62mm",
+  "K9": "Package_DIP:DIP-14_W7.62mm",
+  "K10": "Package_DIP:DIP-24_W15.24mm",
+  "K11": "Package_DIP:DIP-14_W7.62mm",
+  "K12": "Package_DIP:DIP-14_W7.62mm",
+  "K13": "Package_DIP:DIP-14_W7.62mm",
+  "K14": "Package_DIP:DIP-16_W7.62mm",
+  "K15": "Package_DIP:DIP-14_W7.62mm",
+  "L7": "Package_DIP:DIP-14_W7.62mm",
+  "L8": "Package_DIP:DIP-14_W7.62mm",
+  "L9": "Package_DIP:DIP-14_W7.62mm",
+  "L11": "Package_DIP:DIP-16_W7.62mm",
+  "L12": "Package_DIP:DIP-14_W7.62mm",
+  "L13": "Package_DIP:DIP-14_W7.62mm",
+  "L14": "Package_DIP:DIP-14_W7.62mm",
+  "L15": "Package_DIP:DIP-8_W7.62mm",
+  "M8": "Package_DIP:DIP-14_W7.62mm",
+  "M9": "Package_DIP:DIP-14_W7.62mm",
+  "M10": "Package_DIP:DIP-14_W7.62mm",
+  "M11": "Package_DIP:DIP-14_W7.62mm",
+  "M12": "Package_DIP:DIP-14_W7.62mm",
+  "M13": "Package_DIP:DIP-14_W7.62mm",
+  "M15": "Package_DIP:DIP-8_W7.62mm",
+  "N7": "Package_DIP:DIP-14_W7.62mm",
+  "N8": "Package_DIP:DIP-14_W7.62mm",
+  "N9": "Package_DIP:DIP-14_W7.62mm",
+  "N10": "Package_DIP:DIP-16_W7.62mm",
+  "N11": "Package_DIP:DIP-14_W7.62mm",
+  "N12": "Package_DIP:DIP-14_W7.62mm",
+  "N13": "Package_DIP:DIP-14_W7.62mm",
+  "N14": "Package_DIP:DIP-16_W7.62mm",
+  "N15": "Package_DIP:DIP-6_W7.62mm"
+ },
+ "place": {
+  "A7": [
+   10.0,
+   10.0,
+   0
+  ],
+  "A8": [
+   22.1,
+   10.0,
+   0
+  ],
+  "A9": [
+   34.2,
+   10.0,
+   0
+  ],
+  "A10": [
+   46.3,
+   10.0,
+   0
+  ],
+  "A11": [
+   58.4,
+   10.0,
+   0
+  ],
+  "A12": [
+   70.5,
+   10.0,
+   0
+  ],
+  "A13": [
+   82.6,
+   10.0,
+   0
+  ],
+  "A14": [
+   94.7,
+   10.0,
+   0
+  ],
+  "A15": [
+   106.8,
+   10.0,
+   0
+  ],
+  "B7": [
+   10.0,
+   32.3,
+   0
+  ],
+  "B8": [
+   22.1,
+   32.3,
+   0
+  ],
+  "B9": [
+   34.2,
+   32.3,
+   0
+  ],
+  "B10": [
+   46.3,
+   32.3,
+   0
+  ],
+  "B11": [
+   58.4,
+   32.3,
+   0
+  ],
+  "B12": [
+   70.5,
+   32.3,
+   0
+  ],
+  "B13": [
+   82.6,
+   32.3,
+   0
+  ],
+  "B14": [
+   94.7,
+   32.3,
+   0
+  ],
+  "B15": [
+   106.8,
+   32.3,
+   0
+  ],
+  "C8": [
+   22.1,
+   54.6,
+   0
+  ],
+  "C9": [
+   34.2,
+   54.6,
+   0
+  ],
+  "C10": [
+   46.3,
+   54.6,
+   0
+  ],
+  "C11": [
+   58.4,
+   54.6,
+   0
+  ],
+  "C12": [
+   70.5,
+   54.6,
+   0
+  ],
+  "C13": [
+   82.6,
+   54.6,
+   0
+  ],
+  "C14": [
+   94.7,
+   54.6,
+   0
+  ],
+  "D7": [
+   10.0,
+   76.9,
+   0
+  ],
+  "D8": [
+   22.1,
+   76.9,
+   0
+  ],
+  "D9": [
+   34.2,
+   76.9,
+   0
+  ],
+  "D10": [
+   46.3,
+   76.9,
+   0
+  ],
+  "D11": [
+   58.4,
+   76.9,
+   0
+  ],
+  "D12": [
+   70.5,
+   76.9,
+   0
+  ],
+  "D13": [
+   82.6,
+   76.9,
+   0
+  ],
+  "D14": [
+   94.7,
+   76.9,
+   0
+  ],
+  "D15": [
+   106.8,
+   76.9,
+   0
+  ],
+  "E7": [
+   10.0,
+   99.2,
+   0
+  ],
+  "E8": [
+   22.1,
+   99.2,
+   0
+  ],
+  "E9": [
+   34.2,
+   99.2,
+   0
+  ],
+  "E10": [
+   46.3,
+   99.2,
+   0
+  ],
+  "E11": [
+   58.4,
+   99.2,
+   0
+  ],
+  "E12": [
+   70.5,
+   99.2,
+   0
+  ],
+  "E13": [
+   82.6,
+   99.2,
+   0
+  ],
+  "E14": [
+   94.7,
+   99.2,
+   0
+  ],
+  "E15": [
+   106.8,
+   99.2,
+   0
+  ],
+  "F7": [
+   10.0,
+   121.5,
+   0
+  ],
+  "F8": [
+   22.1,
+   121.5,
+   0
+  ],
+  "F9": [
+   34.2,
+   121.5,
+   0
+  ],
+  "F10": [
+   46.3,
+   121.5,
+   0
+  ],
+  "F11": [
+   58.4,
+   121.5,
+   0
+  ],
+  "F12": [
+   70.5,
+   121.5,
+   0
+  ],
+  "F13": [
+   82.6,
+   121.5,
+   0
+  ],
+  "F14": [
+   94.7,
+   121.5,
+   0
+  ],
+  "F15": [
+   106.8,
+   121.5,
+   0
+  ],
+  "H7": [
+   10.0,
+   143.8,
+   0
+  ],
+  "H8": [
+   22.1,
+   143.8,
+   0
+  ],
+  "H9": [
+   34.2,
+   143.8,
+   0
+  ],
+  "H10": [
+   46.3,
+   143.8,
+   0
+  ],
+  "H11": [
+   58.4,
+   143.8,
+   0
+  ],
+  "H12": [
+   70.5,
+   143.8,
+   0
+  ],
+  "H13": [
+   82.6,
+   143.8,
+   0
+  ],
+  "H14": [
+   94.7,
+   143.8,
+   0
+  ],
+  "H15": [
+   106.8,
+   143.8,
+   0
+  ],
+  "J7": [
+   10.0,
+   166.1,
+   0
+  ],
+  "J8": [
+   22.1,
+   166.1,
+   0
+  ],
+  "J9": [
+   34.2,
+   166.1,
+   0
+  ],
+  "J11": [
+   58.4,
+   166.1,
+   0
+  ],
+  "J12": [
+   70.5,
+   166.1,
+   0
+  ],
+  "J13": [
+   82.6,
+   166.1,
+   0
+  ],
+  "J14": [
+   94.7,
+   166.1,
+   0
+  ],
+  "J15": [
+   106.8,
+   166.1,
+   0
+  ],
+  "K7": [
+   10.0,
+   188.4,
+   0
+  ],
+  "K8": [
+   22.1,
+   188.4,
+   0
+  ],
+  "K9": [
+   34.2,
+   188.4,
+   0
+  ],
+  "K10": [
+   46.3,
+   188.4,
+   0
+  ],
+  "K11": [
+   58.4,
+   196.02,
+   90
+  ],
+  "K12": [
+   70.5,
+   188.4,
+   0
+  ],
+  "K13": [
+   82.6,
+   188.4,
+   0
+  ],
+  "K14": [
+   94.7,
+   188.4,
+   0
+  ],
+  "K15": [
+   106.8,
+   188.4,
+   0
+  ],
+  "L7": [
+   10.0,
+   210.7,
+   0
+  ],
+  "L8": [
+   22.1,
+   210.7,
+   0
+  ],
+  "L9": [
+   34.2,
+   210.7,
+   0
+  ],
+  "L11": [
+   58.4,
+   210.7,
+   0
+  ],
+  "L12": [
+   70.5,
+   210.7,
+   0
+  ],
+  "L13": [
+   82.6,
+   210.7,
+   0
+  ],
+  "L14": [
+   94.7,
+   210.7,
+   0
+  ],
+  "L15": [
+   106.8,
+   210.7,
+   0
+  ],
+  "M8": [
+   22.1,
+   233.0,
+   0
+  ],
+  "M9": [
+   34.2,
+   233.0,
+   0
+  ],
+  "M10": [
+   46.3,
+   233.0,
+   0
+  ],
+  "M11": [
+   58.4,
+   233.0,
+   0
+  ],
+  "M12": [
+   70.5,
+   233.0,
+   0
+  ],
+  "M13": [
+   82.6,
+   233.0,
+   0
+  ],
+  "M15": [
+   106.8,
+   233.0,
+   0
+  ],
+  "N7": [
+   10.0,
+   255.3,
+   0
+  ],
+  "N8": [
+   22.1,
+   255.3,
+   0
+  ],
+  "N9": [
+   34.2,
+   255.3,
+   0
+  ],
+  "N10": [
+   46.3,
+   255.3,
+   0
+  ],
+  "N11": [
+   58.4,
+   255.3,
+   0
+  ],
+  "N12": [
+   70.5,
+   255.3,
+   0
+  ],
+  "N13": [
+   82.6,
+   255.3,
+   0
+  ],
+  "N14": [
+   94.7,
+   255.3,
+   0
+  ],
+  "N15": [
+   106.8,
+   255.3,
+   0
+  ]
+ },
+ "refPrefix": "U",
+ "license": "BSD-3-Clause",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/atari/nl_tank.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/atari/nl_tank.cpp",
+  "netlist": "tank",
+  "authors": [
+   "Ryan Holtz"
+  ],
+  "license": "BSD-3-Clause",
+  "copyright": "Ryan Holtz",
+  "licenseUrl": "/licenses/BSD-3-Clause.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/tank-board-2.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C1": "0.1uF",
+  "C2": "0.1uF",
+  "C4": "0.001uF",
+  "C5": "0.001uF",
+  "C6": "0.001uF",
+  "C7": "0.001uF",
+  "C8": "100uF",
+  "C9": "22uF",
+  "C11": "47uF",
+  "C12": "22uF",
+  "C15": "0.01uF",
+  "C16": "0.01uF",
+  "C17": "100pF",
+  "C18": "1uF",
+  "C19": "1uF",
+  "C21": "100pF",
+  "C23": "100pF",
+  "C26": "0.1uF",
+  "C27": "0.1uF",
+  "C29": "10uF",
+  "C30": "0.1uF",
+  "C31": "0.1uF",
+  "C33": "0.1uF",
+  "C34": "0.1uF",
+  "C35": "0.1uF",
+  "C36": "0.1uF",
+  "C39": "0.1uF",
+  "C40": "0.1uF",
+  "C41": "0.1uF",
+  "C42": "0.1uF",
+  "C43": "0.001uF",
+  "C44": "5uF",
+  "C47": "0.001uF",
+  "C48": "0.1uF",
+  "C49": "10uF",
+  "C50": "0.22uF",
+  "C51": "0.22uF",
+  "C52": "0.001uF",
+  "C53": "0.1uF",
+  "C54": "10uF",
+  "C55": "0.001uF",
+  "C56": "5uF",
+  "C100": "0.001uF",
+  "CR1": "1N914",
+  "CR2": "1N914",
+  "CR3": "1N914",
+  "CR5": "1N914",
+  "CR6": "1N914",
+  "CR7": "1N914",
+  "CR8": "1N914",
+  "CR9": "1N914",
+  "CR10": "1N914",
+  "CR11": "1N914",
+  "CR12": "1N914",
+  "CR13": "1N914",
+  "CR14": "1N914",
+  "Q27": "2N3643",
+  "Q28": "2N3644",
+  "Q29": "2N3643",
+  "Q30": "2N3644",
+  "Q31": "2N3643",
+  "Q32": "2N3644",
+  "Q33": "2N3643",
+  "Q34": "2N3644",
+  "R1": "330",
+  "R2": "330",
+  "R3": "560",
+  "R4": "1K",
+  "R5": "1K",
+  "R6": "1K",
+  "R7": "680",
+  "R8": "470",
+  "R9": "470",
+  "R10": "470",
+  "R11": "470",
+  "R12": "680",
+  "R13": "4.7K",
+  "R15": "47K",
+  "R16": "33K",
+  "R18": "47K",
+  "R19": "1K",
+  "R20": "1K",
+  "R21": "1K",
+  "R22": "1K",
+  "R23": "1K",
+  "R24": "1K",
+  "R25": "1K",
+  "R26": "1K",
+  "R27": "470",
+  "R28": "1.8M",
+  "R29": "1.8M",
+  "R32": "470",
+  "R34": "560",
+  "R35": "100K",
+  "R36": "100K",
+  "R37": "100K",
+  "R38": "100K",
+  "R40": "4.7K",
+  "R41": "4.7K",
+  "R42": "100",
+  "R43": "100",
+  "R48": "4.7K",
+  "R49": "4.7K",
+  "R50": "4.7K",
+  "R51": "4.7K",
+  "R52": "100",
+  "R53": "100",
+  "R54": "100",
+  "R55": "100",
+  "R56": "4.7K",
+  "R57": "4.7K",
+  "R58": "4.7K",
+  "R59": "4.7K",
+  "R60": "100",
+  "R61": "100",
+  "R62": "100",
+  "R63": "100",
+  "R64": "4.7K",
+  "R65": "3.9K",
+  "R66": "1K",
+  "R67": "10K",
+  "R68": "33K",
+  "R69": "180K",
+  "R70": "330K",
+  "R71": "680K",
+  "R72": "22K",
+  "R73": "22K",
+  "R74": "180K",
+  "R75": "330K",
+  "R76": "680K",
+  "R77": "10K",
+  "R78": "33K",
+  "R79": "3.9K",
+  "R80": "1K",
+  "R81": "4.7K",
+  "R100": "1K",
+  "R101": "680",
+  "R102": "1K",
+  "R103": "680",
+  "UA7": "74H04",
+  "UA8": "7474",
+  "UA9": "7400",
+  "UA10": "7400",
+  "UA11": "7408",
+  "UA12": "7492",
+  "UA13": "7402",
+  "UA14": "7410",
+  "UA15": "7474",
+  "UB7": "7408",
+  "UB8": "7402",
+  "UB9": "7402",
+  "UB10": "7404",
+  "UB11": "7402",
+  "UB12": "7410",
+  "UB13": "7400",
+  "UB14": "7400",
+  "UB15": "7400",
+  "UC8": "9602",
+  "UC9": "9602",
+  "UC10": "7493",
+  "UC11": "NE556",
+  "UC12": "74107",
+  "UC13": "7410",
+  "UC14": "7410",
+  "UD7": "7402",
+  "UD8": "74107",
+  "UD9": "74153",
+  "UD10": "9322",
+  "UD11": "7493",
+  "UD12": "9316",
+  "UD13": "7420",
+  "UD14": "7400",
+  "UD15": "7402",
+  "UE7": "7420",
+  "UE8": "7486",
+  "UE9": "74153",
+  "UE10": "9322",
+  "UE11": "7493",
+  "UE12": "9316",
+  "UE13": "7404",
+  "UE14": "7400",
+  "UE15": "7402",
+  "UF7": "8277",
+  "UF8": "9322",
+  "UF9": "74153",
+  "UF10": "9322",
+  "UF11": "74193",
+  "UF12": "7493",
+  "UF13": "7486",
+  "UF14": "7410",
+  "UF15": "MFC6040",
+  "UH7": "7474",
+  "UH8": "7400",
+  "UH9": "74153",
+  "UH10": "74193",
+  "UH11": "7408",
+  "UH12": "7493",
+  "UH13": "7410",
+  "UH14": "9316",
+  "UH15": "NE566",
+  "UJ7": "7402",
+  "UJ8": "7474",
+  "UJ9": "74153",
+  "UJ11": "7404",
+  "UJ12": "74107",
+  "UJ13": "7400",
+  "UJ14": "7493",
+  "UJ15": "NE555",
+  "UK7": "7400",
+  "UK8": "7400",
+  "UK9": "7474",
+  "UK10": "EA-ROM",
+  "UK11": "7402",
+  "UK12": "7474",
+  "UK13": "7427",
+  "UK14": "9316",
+  "UK15": "7406",
+  "UL7": "7402",
+  "UL8": "7408",
+  "UL9": "7474",
+  "UL11": "9321",
+  "UL12": "7474",
+  "UL13": "7400",
+  "UL14": "7493",
+  "UL15": "NE555",
+  "UM8": "7474",
+  "UM9": "7474",
+  "UM10": "7406",
+  "UM11": "7474",
+  "UM12": "7474",
+  "UM13": "7404",
+  "UM15": "NE566",
+  "UN7": "7402",
+  "UN8": "7474",
+  "UN9": "7474",
+  "UN10": "74165",
+  "UN11": "7474",
+  "UN12": "7474",
+  "UN13": "7406",
+  "UN14": "9602",
+  "UN15": "MFC6040",
+  "VR1": "50K",
+  "VR2": "10K",
+  "VR3": "100K",
+  "VR4": "10K",
+  "VR5": "100K",
+  "Y1": "14.318MHz"
  }
 }

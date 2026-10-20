@@ -5,9 +5,9 @@
  "machine": "starhawk",
  "drawing": "Sound board schematic in the Star Hawk manual (doc 87193443ac92) -- via MAME's netlist, compared with the sheet (2-30008 Rev X3, p43)",
  "revision": "Cinematronics audio board for Starhawk: ship and two laser VCOs (556), PROM-driven sequencing, a CA3080.",
- "coverage": "Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. See the .nets file for what was undone and what MAME leaves out.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "25 ICs, 87 other parts and 119 nets over 412 pins. Converted from MAME's netlist, which covers the sound circuits up to the final amplifier. The board view carries the ICs and the nets between them, with the board's grid positions on a nominal spacing.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "starhawk-sound",
  "ics": {
@@ -44,5 +44,304 @@
   "netlist": "starhawk",
   "licence": "CC0-1.0",
   "copyright": "Aaron Giles"
+ },
+ "footprints": {
+  "3A": "Package_DIP:DIP-14_W7.62mm",
+  "4A": "Package_DIP:DIP-8_W7.62mm",
+  "4B": "Package_DIP:DIP-8_W7.62mm",
+  "4E": "Package_DIP:DIP-14_W7.62mm",
+  "5A": "Package_DIP:DIP-8_W7.62mm",
+  "5B": "Package_DIP:DIP-8_W7.62mm",
+  "5D": "Package_DIP:DIP-14_W7.62mm",
+  "5E": "Package_DIP:DIP-16_W7.62mm",
+  "6A": "Package_DIP:DIP-8_W7.62mm",
+  "6B": "Package_DIP:DIP-8_W7.62mm",
+  "6C": "Package_DIP:DIP-14_W7.62mm",
+  "6D": "Package_DIP:DIP-14_W7.62mm",
+  "6E": "Package_DIP:DIP-8_W7.62mm",
+  "6F": "Package_DIP:DIP-8_W7.62mm",
+  "7C": "Package_DIP:DIP-14_W7.62mm",
+  "7E": "Package_DIP:DIP-14_W7.62mm",
+  "8C": "Package_DIP:DIP-14_W7.62mm",
+  "8D": "Package_DIP:DIP-14_W7.62mm",
+  "8E": "Package_DIP:DIP-16_W7.62mm",
+  "9C": "Package_DIP:DIP-14_W7.62mm",
+  "9D": "Package_DIP:DIP-14_W7.62mm",
+  "9E": "Package_DIP:DIP-16_W7.62mm",
+  "10C": "Package_DIP:DIP-14_W7.62mm",
+  "10D": "Package_DIP:DIP-14_W7.62mm",
+  "10E": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "3A": [
+   10.0,
+   10.0,
+   0
+  ],
+  "4A": [
+   22.1,
+   10.0,
+   0
+  ],
+  "4B": [
+   22.1,
+   29.7,
+   0
+  ],
+  "4E": [
+   22.1,
+   88.8,
+   0
+  ],
+  "5A": [
+   34.2,
+   10.0,
+   0
+  ],
+  "5B": [
+   34.2,
+   29.7,
+   0
+  ],
+  "5D": [
+   34.2,
+   69.1,
+   0
+  ],
+  "5E": [
+   34.2,
+   88.8,
+   0
+  ],
+  "6A": [
+   46.3,
+   10.0,
+   0
+  ],
+  "6B": [
+   46.3,
+   29.7,
+   0
+  ],
+  "6C": [
+   46.3,
+   49.4,
+   0
+  ],
+  "6D": [
+   46.3,
+   69.1,
+   0
+  ],
+  "6E": [
+   46.3,
+   88.8,
+   0
+  ],
+  "6F": [
+   46.3,
+   108.5,
+   0
+  ],
+  "7C": [
+   58.4,
+   49.4,
+   0
+  ],
+  "7E": [
+   58.4,
+   88.8,
+   0
+  ],
+  "8C": [
+   70.5,
+   49.4,
+   0
+  ],
+  "8D": [
+   70.5,
+   69.1,
+   0
+  ],
+  "8E": [
+   70.5,
+   88.8,
+   0
+  ],
+  "9C": [
+   82.6,
+   49.4,
+   0
+  ],
+  "9D": [
+   82.6,
+   69.1,
+   0
+  ],
+  "9E": [
+   82.6,
+   88.8,
+   0
+  ],
+  "10C": [
+   94.7,
+   49.4,
+   0
+  ],
+  "10D": [
+   94.7,
+   69.1,
+   0
+  ],
+  "10E": [
+   94.7,
+   88.8,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 129.1
+ },
+ "grid": {
+  "rows": "ABCDEF",
+  "cols": 10,
+  "transposed": true
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/cinematronics/nl_starhawk.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/cinematronics/nl_starhawk.cpp",
+  "netlist": "starhawk",
+  "authors": [
+   "Aaron Giles"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Aaron Giles",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/starhawk-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C5": "100pF",
+  "C6": "3.3uF",
+  "C7": "0.01uF",
+  "C8": "1uF",
+  "C9": "0.022uF",
+  "C10": "0.15uF",
+  "C11": "0.15uF",
+  "C12": "15uF",
+  "C13": "0.0033uF",
+  "C14": "0.0047uF",
+  "C15": "1uF",
+  "C17": "22uF",
+  "C20": "1uF",
+  "C21": "0.22uF",
+  "C22": "0.1uF",
+  "C23": "0.0027uF",
+  "C24": "0.1uF",
+  "C25": "0.0027uF",
+  "C26": "1uF",
+  "C27": "0.1uF",
+  "CR1": "1N914",
+  "CR2": "1N914",
+  "CR3": "1N914",
+  "CR4": "1N914",
+  "CR5": "1N914",
+  "CR6": "1N914",
+  "CR7": "1N914",
+  "CR8": "1N914",
+  "CR9": "1N914",
+  "CR10": "1N914",
+  "Q1": "2N3906",
+  "Q4": "2N3904",
+  "Q5": "2N3904",
+  "R1": "10K",
+  "R2": "10K",
+  "R3": "20K",
+  "R4": "10K",
+  "R5": "1K",
+  "R6": "150K",
+  "R7": "330",
+  "R8": "10K",
+  "R9": "47K",
+  "R10": "150K",
+  "R11": "100K",
+  "R12": "47K",
+  "R13": "10K",
+  "R14": "2.7K",
+  "R15": "2.7K",
+  "R16": "30K",
+  "R17": "510K",
+  "R18": "10K",
+  "R19": "33K",
+  "R22": "1K",
+  "R26": "1K",
+  "R27": "1K",
+  "R28": "510K",
+  "R29": "10K",
+  "R31": "47K",
+  "R32": "3.3M",
+  "R33": "1M",
+  "R34": "47K",
+  "R35": "1M",
+  "R36": "1M",
+  "R37": "1M",
+  "R38": "1M",
+  "R39": "150",
+  "R40": "10K",
+  "R41": "20K",
+  "R42": "1K",
+  "R43": "1M",
+  "R44": "10K",
+  "R45": "10K",
+  "R46": "150",
+  "R47": "20K",
+  "R48": "1M",
+  "R49": "10K",
+  "R50": "1K",
+  "R51": "10K",
+  "R52": "20K",
+  "R53": "39K",
+  "R54": "82K",
+  "R55": "2.2K",
+  "R56": "1K",
+  "R57": "10K",
+  "R58": "20K",
+  "R59": "39K",
+  "R60": "82K",
+  "U3A": "TL182",
+  "U4A": "TL081",
+  "U4B": "TL081",
+  "U4E": "74LS393",
+  "U5A": "TL081",
+  "U5B": "TL081",
+  "U5D": "LM556",
+  "U5E": "74S287",
+  "U6A": "CA3080",
+  "U6B": "TL081",
+  "U6C": "74LS04",
+  "U6D": "LM556",
+  "U6E": "TL081",
+  "U6F": "TL081",
+  "U7C": "7406",
+  "U7E": "74LS393",
+  "U8C": "74LS164",
+  "U8D": "74LS164",
+  "U8E": "74S287",
+  "U9C": "74LS164",
+  "U9D": "74LS164",
+  "U9E": "74LS163",
+  "U10C": "74LS86",
+  "U10D": "74LS21",
+  "U10E": "74LS393"
  }
 }

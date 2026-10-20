@@ -1,0 +1,7 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/taito/nl_sspeedr.cpp (NETLIST_START(sspeedr), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sspeedr-noise.nets.",
+  "Compared with the Z-80 compact motherboard schematic, M051-00078-0000 (manual doc 8c0560561bb9, p. 25 of the print, PDF p. 26), on 2026-10-20: every net and value agrees. C9 goes straight to +12V, so MAME's 1 ohm 'dummy' is rightly a wire here. J5 is printed 4030, the older quad XOR with the 4070's pins, and is written so. The designators do collide with the audio board's, as MAME says: R22-R25, R62, C8 and C9 are on both boards with different values (C8 and C9 have theirs swapped). NOISE_OUT leaves on the 72-pin connector's 'NOISE GENERATOR' contacts (J-A and K-50), crosses the game logic board on Molex C pin 14 and enters the audio board on pin 14 of its 17-pin connector, NOISE."
+ ],
+ "conflicts": []
+}

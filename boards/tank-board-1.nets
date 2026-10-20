@@ -291,59 +291,9 @@ net +12V: UK6.4 UL6.4 UX1.7 R70.1 R71.1
 net +5V: UA1.10 UA1.16 UA1.7 UA2.10 UA2.16 UA2.7 UA3.10 UA3.16 UA4.10 UA4.16 UA4.7 UA5.10 UA5.16 UA5.7 UA6.14 UB1.10 UB1.16 UB1.3 UB1.4 UB1.5 UB2.10 UB2.16 UB2.3 UB2.4 UB2.5 UB2.6 UB3.16 UB4.10 UB4.16 UB4.3 UB4.4 UB4.5 UB4.6 UB5.10 UB5.16 UB5.3 UB5.4 UB5.5 UB6.14 UC1.14 UC2.16 UC2.3 UC2.5 UC2.6 UC3.10 UC3.16 UC4.16 UC4.3 UC4.5 UC4.6 UC5.14 UC6.14 UD1.1 UD1.13 UD1.14 UD2.10 UD2.14 UD2.4 UD3.16 UD4.10 UD4.14 UD4.4 UD5.1 UD5.13 UD5.14 UD6.14 UE1.1 UE1.10 UE1.14 UE2.10 UE2.14 UE2.4 UE4.10 UE4.14 UE4.4 UE5.1 UE5.10 UE5.14 UE6.1 UE6.14 UE6.4 UF1.1 UF1.10 UF1.16 UF1.7 UF2.14 UF3.1 UF3.13 UF3.14 UF4.14 UF5.1 UF5.10 UF5.16 UF5.7 UH1.1 UH1.10 UH1.16 UH1.3 UH1.4 UH1.5 UH1.6 UH2.1 UH2.10 UH2.16 UH2.7 UH3.14 UH4.1 UH4.10 UH4.16 UH4.7 UH5.1 UH5.10 UH5.16 UH5.3 UH5.4 UH5.5 UH5.6 UH6.8 UJ1.1 UJ1.16 UJ1.3 UJ1.5 UJ1.6 UJ2.1 UJ2.10 UJ2.16 UJ2.3 UJ2.4 UJ2.5 UJ3.14 UJ4.1 UJ4.10 UJ4.16 UJ4.3 UJ4.4 UJ4.5 UJ5.1 UJ5.16 UJ5.3 UJ5.5 UJ5.6 UJ6.10 UJ6.14 UJ6.4 UK1.14 UK2.14 UK3.14 UK4.14 UK5.14 UL1.1 UL1.11 UL1.14 UL1.4 UL1.8 UL2.14 UL3.14 UL4.14 UL5.1 UL5.11 UL5.14 UL5.4 UL5.8 UM1.14 UM2.14 UM3.14 UM4.14 UM5.14 UN1.1 UN1.11 UN1.14 UN1.4 UN1.8 UN3.1 UN3.13 UN3.14 UN4.14 UN5.1 UN5.11 UN5.14 UN5.4 UN5.8 UN6.14 VR1.2 VR1.3 R10.1 R100.1 R11.1 R4.1 R49.1 R5.1 R55.1 R56.1 R6.1 R64.1 R7.1 R72.1 R8.1 R9.1
 
 # ---------------------------------------------------------------------------
-# Parts
-# ---------------------------------------------------------------------------
-label START: UD6.1 UE6.8 UH3.3 J2.15  # to Tank Board II (003112)
-wire UC5.2 UD4.1 UD4.13 UD5.10 UD5.4 UE4.1 UE4.13 UE5.13 UE5.4 UH3.10
-wire UC1.5 UD1.10 UD1.4 UD2.1 UD2.13 UE1.13 UE1.4 UE2.1 UE2.13 UJ3.12
-label FIRE1Q: C110.1 UC1.4 UJ3.5 UM2.1 UM2.2 J1.24  # to Tank Board II (003112)
-label VLD1: UM2.13 J1.9  # to Tank Board II (003112)
-label HMCEQ: UJ3.9 J1.25  # to Tank Board II (003112)
-label HMCE_B1: UC1.2 UC5.4 UF2.10 UF2.13 UF2.4 UF4.1 UF4.10 UF4.4 UJ3.8
-wire UC1.1 UD2.9
-wire UE2.9 UF2.9
-wire UE2.5 UF2.5
-wire UD2.5 UF2.12
-wire C31.2 UK6.3
-wire C40.1 Q5.E R71.2
-label TV_GROUND: Q41.E J3.21
-label COIN_COUNTER: Q41.C J3.20
-wire Q40.E Q41.B
-wire Q40.C R100.2
-wire Q40.B R101.2
-wire UA6.12 R101.1
-wire UA6.13 UD6.10 UD6.11
-wire UE6.10 UN4.4 R41.2
-wire UN4.2 UN4.3 UN6.8
-wire UN4.1 Q1.C R41.1
-wire CR9.2 Q1.E
-wire C15.1 C16.1 R49.2
-wire C16.2 C17.2 CR12.1 Q1.B R42.1
-label ANT: C17.1 J3.9
-wire VR1.1 R54.1 SW2.2
-wire R53.1 SW2.1
-wire UN6.1 SW1.3
-wire UD6.3 R48.1 SW1.1
-label COIN2_NC: UB6.1 UB6.6 UD6.8 J3.11  # in MAME: SWITCH2(COIN2)
-label COIN2_NO: UB6.2 UB6.5 UN6.6 J3.12  # in MAME: SWITCH2(COIN2)
-label COIN1_NO: UB6.11 UB6.12 UN6.5 J3.14  # in MAME: SWITCH2(COIN1)
-label COIN1_NC: UB6.10 UB6.13 UD6.9 J3.13  # in MAME: SWITCH2(COIN1)
-
-# ---------------------------------------------------------------------------
-# Coin Handling
-# ---------------------------------------------------------------------------
-label ATTRACTQ: UD6.12 UE6.5 UH6.4 UN6.9 J2.24  # to Tank Board II (003112)
-wire UD6.13 UJ6.1 UJ6.12 UJ6.13
-wire UJ6.2 UJ6.9
-label V128: UE6.9 UJ6.11 UJ6.3 J2.26  # to Tank Board II (003112)
-label COIN: UE6.12 UJ6.5
-wire UE6.3 UN6.3
-wire UN6.2 UN6.4
-label COINQ: UD6.2 UJ6.6
-
-# ---------------------------------------------------------------------------
 # Game Timer / Attract
 # ---------------------------------------------------------------------------
+label START: UD6.1 UE6.8 UH3.3 J2.15  # to Tank Board II (003112)
 wire C25.1 UH6.6 UH6.7 R53.2 R54.2 R60.1
 wire Q2.B R60.2
 wire C24.1 UH6.5 R59.1
@@ -355,6 +305,127 @@ wire UD6.4 UE6.11
 label ATTRACT: UD6.6 UE6.6
 wire UE6.13 UN6.10
 wire UH3.4 UH6.2
+
+# ---------------------------------------------------------------------------
+# Shell 1 Motion
+# ---------------------------------------------------------------------------
+wire UC5.2 UD4.1 UD4.13 UD5.10 UD5.4 UE4.1 UE4.13 UE5.13 UE5.4 UH3.10
+wire UC1.5 UD1.10 UD1.4 UD2.1 UD2.13 UE1.13 UE1.4 UE2.1 UE2.13 UJ3.12
+label FIRE1Q: C110.1 UC1.4 UJ3.5 UM2.1 UM2.2 J1.24  # to Tank Board II (003112)
+label VLD1: UM2.13 J1.9  # to Tank Board II (003112)
+label HMCEQ: UJ3.9 J1.25  # to Tank Board II (003112)
+label HMCE_B1: UC1.2 UC5.4 UF2.10 UF2.13 UF2.4 UF4.1 UF4.10 UF4.4 UJ3.8
+wire UC1.1 UD2.9
+wire UE2.9 UF2.9
+wire UE2.5 UF2.5
+wire UD2.5 UF2.12
+wire UD1.11 UD1.3 UD2.11 UD2.3 UE1.11 UE1.3 UE2.11 UE2.3 UM2.12
+label EXPL1: UJ3.13 UL2.10 J1.23  # to Tank Board II (003112)
+label FPE1: UC1.6 UK1.9 UL3.2
+wire UJ3.1 UL3.1
+wire UJ3.2 UM3.4 UN3.4
+wire UH2.9 UJ2.9 UM3.6
+wire UM1.8 UM3.5
+wire UF2.11 UH2.3
+wire UF2.6 UH2.4
+wire UF2.8 UH2.5
+wire UC1.3 UH2.6
+wire UH2.15 UJ2.7 UM1.13 UN3.3
+wire UJ2.15 UL1.12 UM1.12 UM2.9
+wire UL1.3 UL1.9 UM1.10 UM2.10
+wire UL1.5 UM1.9 UM2.11
+wire UL1.10 UL1.13 UN3.6
+wire UD1.5 UF1.3
+wire UD1.9 UF1.4
+wire UE1.5 UF1.5
+wire UE1.9 UF1.6
+wire UF1.15 UF2.2 UH1.7 UJ1.7
+wire UH1.15 UJ1.10
+wire UF2.1 UJ1.15 UJ3.11
+wire UF2.3 UK1.12
+wire UF1.9 UH1.9 UJ1.9 UK1.13
+wire UJ3.10 UL3.5
+wire UL3.6 UM2.8
+wire UL2.1 UL2.9 UL3.4
+wire UJ3.6 UL2.2
+label S4V1: UF1.12 UK2.5 UL3.9
+label S8H1: UH2.11 UK2.9 UL3.8
+wire UL2.4 UL3.10
+label S4H1: UH2.12 UK2.10 UM3.9
+label S8V1: UF1.11 UK2.4 UM3.10
+wire UL2.5 UM3.8
+wire UL2.6 UN4.5
+label S2V1: UF1.13 UK2.12
+label S2H1: UH2.13 UK2.13
+wire UK1.2 UK2.2 UK2.6
+wire UK1.3 UK2.1 UK2.8
+label FLASHQ: UJ3.4 UK3.12 UK3.4
+wire UK3.6 UL2.12
+wire UK1.1 UK1.6
+wire UK1.5 UK2.11
+wire UK1.4 UL2.13
+wire UL2.8 UN4.9
+
+# ---------------------------------------------------------------------------
+# Shot Sound
+# ---------------------------------------------------------------------------
+wire C31.2 UK6.3
+label NOISE: VR3.3 UX1.6 VR2.3
+wire C31.1 C32.1 VR2.2
+wire C27.1 UK6.6
+label SHOT_COM: CR19.1 J2.29  # to Tank Board II (003112)
+wire C28.1 CR19.2 Q7.B R64.2
+wire UK6.2 Q7.E
+
+# ---------------------------------------------------------------------------
+# Noise Generation
+# ---------------------------------------------------------------------------
+wire C40.1 Q5.E R71.2
+wire C40.2 C43.1 UX1.4 R70.2 R73.1
+wire C38.2 C39.1 UX1.2 R69.1
+wire C39.2 UX1.3 R69.2
+
+# ---------------------------------------------------------------------------
+# Coin Counter
+# ---------------------------------------------------------------------------
+label TV_GROUND: Q41.E J3.21
+label COIN_COUNTER: Q41.C J3.20
+wire Q40.E Q41.B
+wire Q40.C R100.2
+wire Q40.B R101.2
+wire UA6.12 R101.1
+wire UA6.13 UD6.10 UD6.11
+
+# ---------------------------------------------------------------------------
+# Antenna
+# ---------------------------------------------------------------------------
+wire UE6.10 UN4.4 R41.2
+wire UN4.2 UN4.3 UN6.8
+wire UN4.1 Q1.C R41.1
+wire CR9.2 Q1.E
+wire C15.1 C16.1 R49.2
+wire C16.2 C17.2 CR12.1 Q1.B R42.1
+label ANT: C17.1 J3.9
+
+# ---------------------------------------------------------------------------
+# Coin Handling
+# ---------------------------------------------------------------------------
+wire VR1.1 R54.1 SW2.2
+wire R53.1 SW2.1
+wire UN6.1 SW1.3
+wire UD6.3 R48.1 SW1.1
+label COIN2_NC: UB6.1 UB6.6 UD6.8 J3.11  # in MAME: SWITCH2(COIN2)
+label COIN2_NO: UB6.2 UB6.5 UN6.6 J3.12  # in MAME: SWITCH2(COIN2)
+label COIN1_NO: UB6.11 UB6.12 UN6.5 J3.14  # in MAME: SWITCH2(COIN1)
+label COIN1_NC: UB6.10 UB6.13 UD6.9 J3.13  # in MAME: SWITCH2(COIN1)
+label ATTRACTQ: UD6.12 UE6.5 UH6.4 UN6.9 J2.24  # to Tank Board II (003112)
+wire UD6.13 UJ6.1 UJ6.12 UJ6.13
+wire UJ6.2 UJ6.9
+label V128: UE6.9 UJ6.11 UJ6.3 J2.26  # to Tank Board II (003112)
+label COIN: UE6.12 UJ6.5
+wire UE6.3 UN6.3
+wire UN6.2 UN6.4
+label COINQ: UD6.2 UJ6.6
 
 # ---------------------------------------------------------------------------
 # Tank Resets
@@ -485,56 +556,6 @@ wire UA4.15 UB4.7 UC4.7 UC5.10
 label TVR2Q: UA4.9 UB4.9 UC4.9 UC5.8 UC6.9
 
 # ---------------------------------------------------------------------------
-# Shell 1 Motion
-# ---------------------------------------------------------------------------
-wire UD1.11 UD1.3 UD2.11 UD2.3 UE1.11 UE1.3 UE2.11 UE2.3 UM2.12
-label EXPL1: UJ3.13 UL2.10 J1.23  # to Tank Board II (003112)
-label FPE1: UC1.6 UK1.9 UL3.2
-wire UJ3.1 UL3.1
-wire UJ3.2 UM3.4 UN3.4
-wire UH2.9 UJ2.9 UM3.6
-wire UM1.8 UM3.5
-wire UF2.11 UH2.3
-wire UF2.6 UH2.4
-wire UF2.8 UH2.5
-wire UC1.3 UH2.6
-wire UH2.15 UJ2.7 UM1.13 UN3.3
-wire UJ2.15 UL1.12 UM1.12 UM2.9
-wire UL1.3 UL1.9 UM1.10 UM2.10
-wire UL1.5 UM1.9 UM2.11
-wire UL1.10 UL1.13 UN3.6
-wire UD1.5 UF1.3
-wire UD1.9 UF1.4
-wire UE1.5 UF1.5
-wire UE1.9 UF1.6
-wire UF1.15 UF2.2 UH1.7 UJ1.7
-wire UH1.15 UJ1.10
-wire UF2.1 UJ1.15 UJ3.11
-wire UF2.3 UK1.12
-wire UF1.9 UH1.9 UJ1.9 UK1.13
-wire UJ3.10 UL3.5
-wire UL3.6 UM2.8
-wire UL2.1 UL2.9 UL3.4
-wire UJ3.6 UL2.2
-label S4V1: UF1.12 UK2.5 UL3.9
-label S8H1: UH2.11 UK2.9 UL3.8
-wire UL2.4 UL3.10
-label S4H1: UH2.12 UK2.10 UM3.9
-label S8V1: UF1.11 UK2.4 UM3.10
-wire UL2.5 UM3.8
-wire UL2.6 UN4.5
-label S2V1: UF1.13 UK2.12
-label S2H1: UH2.13 UK2.13
-wire UK1.2 UK2.2 UK2.6
-wire UK1.3 UK2.1 UK2.8
-label FLASHQ: UJ3.4 UK3.12 UK3.4
-wire UK3.6 UL2.12
-wire UK1.1 UK1.6
-wire UK1.5 UK2.11
-wire UK1.4 UL2.13
-wire UL2.8 UN4.9
-
-# ---------------------------------------------------------------------------
 # Shell 2 Motion
 # ---------------------------------------------------------------------------
 label FIRE2Q: C111.1 UC5.1 UH3.9 UM4.1 UM4.2 J2.1  # to Tank Board II (003112)
@@ -587,23 +608,6 @@ wire UK5.4 UK5.9
 wire UK3.11 UL4.12
 wire UK5.10 UL4.10
 wire UL4.8 UN4.13
-
-# ---------------------------------------------------------------------------
-# Noise Generation
-# ---------------------------------------------------------------------------
-wire C40.2 C43.1 UX1.4 R70.2 R73.1
-wire C38.2 C39.1 UX1.2 R69.1
-wire C39.2 UX1.3 R69.2
-
-# ---------------------------------------------------------------------------
-# Shot Sound
-# ---------------------------------------------------------------------------
-label NOISE: VR3.3 UX1.6 VR2.3
-wire C31.1 C32.1 VR2.2
-wire C27.1 UK6.6
-label SHOT_COM: CR19.1 J2.29  # to Tank Board II (003112)
-wire C28.1 CR19.2 Q7.B R64.2
-wire UK6.2 Q7.E
 
 # ---------------------------------------------------------------------------
 # Boom Sound

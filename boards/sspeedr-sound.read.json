@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/taito/nl_sspeedr.cpp (NETLIST_START(sspeedr), CC0-1.0, Colin Douglas Howell) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sspeedr-sound.nets.",
+  "Compared with the audio board schematic, M051-00762-A003 (manual doc 8c0560561bb9, p. 31 of the print, PDF p. 34), on 2026-10-20: 21 groups of nets covering every IC, and every value in the file -- all agree, the oscillator resistors included once MAME's frontier values are undone, and so do the SILENCE input (D6, D7, R71, R72), C30 across R50, and C25. Thirteen of the fifteen LM3900 amplifiers drawn print exactly the data sheet's pins; the other two are misprints on the sheet, where MAME's pin is the only one possible: C1 amplifier 3's minus input is printed 6 (amplifier 1's) and H2 amplifier 3's is printed 9 (its own output; the read is about 75% sure). The CD4016 sections drawn and the MC3340's pins agree. Added from the sheet: J1 pin 10 is the bridge's second output, AUDIO_0, which MAME leaves as an internal net.",
+  "Not in this file, and on the sheet: the board's '+5V DEC' rail -- +5V through R24 (10 ohms) with C12 (500uF) to ground -- which is what the analogue parts MAME puts on +5V actually sit on, MC3340 pin 8 included; and the supply parts C26-C29. Neither the unused switch sections (A2 10-12, B1 6, 8, 9), J1's third amplifier nor the MC3340's pins 4-6 are drawn."
+ ],
+ "conflicts": []
+}

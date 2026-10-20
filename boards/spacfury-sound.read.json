@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/sega/nl_spacfury.cpp (NETLIST_START(spacfury), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/spacfury-sound.nets.",
+  "The oscillators MAME runs as ideal clocks (CLOCK) are ports, and the timing parts it parks on a rail in their place are listed above; SPLIT_SHARED_OSCILLATORS is off, so each oscillator drives everything the board has it drive. The site holds no Space Fury manual, so there is no sheet here to compare this with.",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

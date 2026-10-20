@@ -5,9 +5,9 @@
  "machine": "sspeedr",
  "drawing": "Motherboard schematic in the Super Speed Race Parts and Operating Manual (doc 8c0560561bb9) -- via MAME's netlist",
  "revision": "Super Speed Race motherboard, noise generator section: a CD4006 shift register with CD4070 feedback.",
- "coverage": "Converted from MAME's netlist: the noise generator only, a section of the motherboard. Its output goes to the audio board (sspeedr-sound).",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "2 ICs, 8 other parts and 14 nets over 40 pins. Converted from MAME's netlist: the noise generator only, a section of the motherboard. Its output goes to the audio board (sspeedr-sound). The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "sspeedr-noise",
  "ics": {
@@ -21,5 +21,59 @@
   "netlist": "sspeedr",
   "licence": "CC0-1.0",
   "copyright": "Colin Douglas Howell"
+ },
+ "footprints": {
+  "H5": "Package_DIP:DIP-14_W7.62mm",
+  "J5": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "H5": [
+   10.0,
+   10.0,
+   0
+  ],
+  "J5": [
+   24.62,
+   10.0,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 35.2
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/taito/nl_sspeedr.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/taito/nl_sspeedr.cpp",
+  "netlist": "sspeedr",
+  "authors": [
+   "Colin Douglas Howell"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Colin Douglas Howell",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/sspeedr-noise.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C8": "0.001uF",
+  "C9": "0.1uF",
+  "CR3": "1N4148",
+  "R22": "680K",
+  "R23": "56K",
+  "R24": "27K",
+  "R25": "220K",
+  "R62": "1M",
+  "UH5": "CD4006",
+  "UJ5": "CD4030"
  }
 }

@@ -777,6 +777,7 @@ def convert(slug, cfg):
 
     u = checker.Union()
     first_line = {}
+    mentions = collections.defaultdict(collections.Counter)
     dropped, made_nc, ports_from_undo, parked, kept = [], [], {}, set(), []
     unused = re.compile(cfg.get("unused_sections", r".*\b(unused|unconnected|not connected)\b.*"),
                         re.I)
@@ -849,6 +850,15 @@ def convert(slug, cfg):
             continue
         for t in terms:
             first_line.setdefault(t, c)
+            # Which section of the file wires each part, counting statements that
+            # name it outright: a supply statement says nothing about where a
+            # part belongs, and an alias puts an output wherever it is used.
+            dev = t.partition(".")[0]
+            if "." in t and not t.startswith("~") and c.section and \
+                    not any("." not in x for x in terms) and \
+                    any(rename.get(a.strip().partition(".")[0], a.strip().partition(".")[0])
+                        == dev for a in c.args):
+                mentions[dev][c.section] += 1
         for a, b in zip(terms, terms[1:]):
             u.join(a, b)
     for name, (term, c) in aliases.items():
@@ -925,6 +935,7 @@ def convert(slug, cfg):
     return dict(slug=slug, cfg=cfg, path=path, licence=lic, holders=holders, log=log,
                 devices=devices, nets=out_nets, dropped=dropped, made_nc=made_nc, revived=revived,
                 parked=parked, fixes=fixes, used_ties=used_ties, series=series,
+                mentions=mentions,
                 modelled=modelled, section_of=section_of, renamed=renamed, kept=kept,
                 scaled=scaled, port_names=port_names, defines=defines,
                 commented=commented_calls(lines, (min(c.line for c in cs), max(c.line for c in cs))),
@@ -1352,8 +1363,12 @@ def write(res, out_path, board_path):
                        "netlist": cfg["netlist"], "licence": r["licence"],
                        "copyright": r["holders"]}
     if os.path.isfile(board_path):
+        # What tools/publish_mame.py adds for the site -- layout, licence, origin,
+        # the bill of materials -- survives a re-conversion; rerun it afterwards
+        # to bring those up to date with the new netlist.
         old = json.load(open(board_path))
-        for k in ("grid", "size", "spans"):
+        for k in ("grid", "size", "spans", "footprints", "place", "refPrefix", "license",
+                  "origin", "machines", "partial", "parts", "netsTraced", "coverage"):
             if k in old:
                 board[k] = old[k]
     json.dump(board, open(board_path, "w"), indent=1)

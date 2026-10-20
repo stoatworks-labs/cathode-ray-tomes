@@ -1,0 +1,9 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/namco/nl_tankbatt.cpp (NETLIST_START(tankbatt), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tankbatt-sound.nets.",
+  "MAME's netlist ends at the summing node of R35, R36, R56_1, R56_2 and R59, so this file has no output port of its own; the node is a plain net here. R56 appears twice in MAME (R56_1, R56_2), one on each of the hit and shoot channels.",
+  "Not compared with the sheet: the site's Tank Battalion manual (doc 73495cc3ecf0, the upright service manual) has no PCB schematic -- operation, test, cabinet parts lists, the harness (p29) and a block diagram (p30) only (read 2026-10-20); MAME worked from a printing that has one. What the manual does show is where the sound goes after this file: a volume pot on the PCB (Fig. 5-7), the audio output on J1 pin 18 (the speaker check is #18 to Z), a second volume pot behind the coin door on J4 pins 12-14 and the speaker on J6, and a 12V AC centre-tapped winding for 'audio power', so a power amplifier on the board that MAME does not have. So the 7486 supply fix rests on the part's pinout alone, and R46/R49 are MAME's 4.7K against what its own comment says the schematic prints (47K).",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

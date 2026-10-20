@@ -5,9 +5,9 @@
  "machine": "altbeast",
  "drawing": "Audio section of the System 16B CPU board schematic, which this site does not hold -- via MAME's netlist",
  "revision": "Sega System 16B CPU board, audio: the YM3012 DAC's two channels and the uPD7759 speech through TL084 and LM324 filters to the mixer and preamplifier.",
- "coverage": "Converted from MAME's netlist, up to the power amplifier's input. The YM2151/YM3012 and uPD7759 are MAME devices; their outputs are ports.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "2 ICs, 29 other parts and 25 nets over 77 pins. Converted from MAME's netlist, up to the power amplifier's input. The YM2151/YM3012 and uPD7759 are MAME devices; their outputs are ports. The board view carries the ICs and the nets between them; the board numbers its ICs rather than naming positions, so they are laid out in designator order, not where they sit.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "machines": [
   "aceattac",
@@ -53,5 +53,80 @@
   "netlist": "segas16b_audio",
   "licence": "CC0-1.0",
   "copyright": "Couriersud"
+ },
+ "footprints": {
+  "C20": "Package_DIP:DIP-14_W7.62mm",
+  "D20": "Package_DIP:DIP-14_W7.62mm"
+ },
+ "place": {
+  "C20": [
+   10.0,
+   10.0,
+   0
+  ],
+  "D20": [
+   24.62,
+   10.0,
+   0
+  ]
+ },
+ "size": {
+  "w": 128.0,
+  "h": 35.2
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/sega/nl_segas16b.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/sega/nl_segas16b.cpp",
+  "netlist": "segas16b_audio",
+  "authors": [
+   "Couriersud"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Couriersud",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/segas16b-audio.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C12": "10uF",
+  "C19": "47uF",
+  "C20": "1000pF",
+  "C21": "2.2uF",
+  "C22": "2.2uF",
+  "C23": "0.022uF",
+  "C24": "0.01uF",
+  "C25": "0.0022uF",
+  "C26": "0.022uF",
+  "C28": "1500pF",
+  "C29": "1500pF",
+  "C62": "2.2uF",
+  "C63": "2.2uF",
+  "R3": "10K",
+  "R4": "10K",
+  "R5": "10K",
+  "R6": "10K",
+  "R7": "47K",
+  "R9": "47K",
+  "R10": "47K",
+  "R11": "1K",
+  "R12": "1.3K",
+  "R13": "6.2K",
+  "R14": "5.6K",
+  "R15": "12K",
+  "R16": "6.8K",
+  "RCOM1": "390",
+  "RCOM2": "390",
+  "UC20": "LM324",
+  "UD20": "TL084",
+  "VR1": "2K"
  }
 }

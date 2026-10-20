@@ -1,0 +1,14 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/atari/nl_tank.cpp (NETLIST_START(tank), BSD-3-Clause, Ryan Holtz) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/tank-board-1.nets.",
+  "Compared with both Board I sheets in full (003110 rev J; rev H and rev G for faint spots), 2026-10-19. MAME agrees with the sheet on the tank motion counters and their presets (B1/B5 3-5 to P and 6 grounded; C2/C4/J1/J5 4 grounded), the clock inverters on A6, F3 and the WINDO outputs, the shell counters and the 2^7 latches cleared by /EXPL, shell 2's latch routing, the shell and blast output gating, the coin flip-flops apart from B6, and the play timer, noise, shot and boom values apart from R53. Its errors here, all corrected above: B6 is a 7404, not a 7400; K6 and L6 are MFC6040s, whose pins are not the MC3340's; C31 feeds K6's input, not its control pin; R53 is 330K; shell 1's 2^2 and 2^3 latches are crossed between the F2 and C1 gates; M2's inputs are swapped (electrically the same NAND); and Board I makes its own HMCE, /EXPL1 and /EXPL2 from what the cable brings, where MAME takes Board II's. MAME's antenna tie, 25c hard-wiring, unused-input ties on N4 and A6 (the antenna latch and the coin counter use them) and grounded mixer outputs are undone.",
+  "Ours, not printed: UX1 (the noise amplifier's 741, which has no grid position), VR1-VR3 (the PLAY TIME pot and the shot and boom noise pots), SW1, SW2. Not in this file: the +5V, +12V and -12V supplies and the two LM380 amplifiers with their volume pots, which are on sheet 2 and not in MAME; OUT1 and OUT2 are where the mixers hand over to them."
+ ],
+ "conflicts": [
+  "The cable. This sheet prints VLD1 on J1-9 and /FIRE1 on J1-24; Board II's prints FIRE1-bar on J4-9 and VLD1 on J4-24. Every other contact agrees pin for pin, and the only Board I load (M2, a 3-input NAND of both) cannot tell them apart. Each board is given its own sheet's contact.",
+  "J6's second 7474 half is printed \"J4\" on rev H and rev J (pins 1-6, the coin latch). J4 is a 9316 on sheet 1; MAME calls this half J6, and so does this file.",
+  "BOOM COM reaches Q6 through two series 1N914s, both labelled CR22. MAME has one CR22; this file follows MAME.",
+  "M1's first gate prints input \"3\" (MAME, and tank 2's M5, use 5); L3 prints an input \"10\" that is its own output (MAME uses 8); N1 and N5 print their /CLR numbers swapped (both go to /HRST, so it is harmless). MAME's pins are kept.",
+  "SW1 and SW2 are the 25c/50c switch as drawn in two places; whether they are two poles of one switch is not on the sheet. The 50c contact of SW2 is drawn unconnected."
+ ]
+}

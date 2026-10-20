@@ -118,6 +118,12 @@ const CASES = [
   ["/css/app.css",                    200, "stylesheet"],
   ["/js/app.js",                      200, "script"],
   ["/vendor/kicanvas/kicanvas.js",    200, "the schematic viewer ships with the site"],
+  // The licence texts the board pages link: GPL for jtcores and DICE, CC0 and
+  // BSD-3-Clause for the boards converted from MAME's netlists.
+  ["/licenses/GPL-3.0.txt",           200, "licence text a board page links"],
+  ["/licenses/BSD-3-Clause.txt",      200, "licence text a board page links"],
+  ["/licenses/CC0-1.0.txt",           200, "licence text a board page links"],
+  ["/board/tank-board-1",             200, "a board converted from MAME's netlist"],
 ];
 
 let failures = 0;
@@ -210,6 +216,21 @@ if (imported) {
     `/api/chips/${imported.slug}`,
     (body) => Object.keys(body).length > 0,
     `serves the chip lookup for ${imported.slug}`,
+  ]);
+}
+
+// The boards converted from MAME's netlists are CC0-1.0 or BSD-3-Clause, not
+// the GPL, and the BSD licence asks that its copyright notice travel with the
+// work: each must carry its licence, its copyright holders and a licence text
+// the site actually serves, or the page credits it on the wrong terms.
+const fromMame = boardList.filter((b) => b.origin?.project === "MAME");
+if (fromMame.length) {
+  CONTENT.push([
+    "/api/boards",
+    (body) => body.filter((b) => b.origin?.project === "MAME").every((b) =>
+      ["CC0-1.0", "BSD-3-Clause"].includes(b.license) && b.origin.copyright
+      && b.origin.licenseUrl === `/licenses/${b.license}.txt` && b.netlist),
+    `serves the licence, copyright and netlist of all ${fromMame.length} boards from MAME`,
   ]);
 }
 
@@ -333,7 +354,10 @@ const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.li
   // A chip page's credit and licence, its logged conflicts, and the links that
   // bring a reader to it from a board, a machine and a layout.
   "listOf(o.authors)", "c.license", "c.conflicts", "customsOn(list, slug)",
-  "(c.machines || []).includes(slug)", "customs.has(d.label)"];
+  "(c.machines || []).includes(slug)", "customs.has(d.label)",
+  // A board's licence note follows its own licence -- the MAME boards are CC0
+  // and BSD-3-Clause, and BSD's notice is the copyright holders' names.
+  "licenceTerms(b)", "o.copyright", "b.origin.sourceLabel"];
 const appJs = await (await worker.fetch(
   new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
 for (const field of APP_READS) {

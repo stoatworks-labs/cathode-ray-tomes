@@ -1,0 +1,7 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/cinematronics/nl_starcas.cpp (NETLIST_START(starcas), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/starcas-sound.nets.",
+  "MAME's file says it is derived from the schematics and parts list in the Star Castle manual. Compared with sheet 2 of the audio board, 72-10861-02 (doc 7f01a2f3c820 p87), 2026-10-19: the noise generator (IC14 S2688, IC15 follower, C16-C18, R28), the +2.2V reference (Q2, R29-R31, C19), the 60 Hz 555 IC16 (R32, R33, C20, C21), the laser VCO (IC17 566, C22-C25, R41-R43, Q5, R44-R46, D10) with the 74LS393 IC12 and its taps R47-R49, the CA3080 IC18's input network (R57-R62), the summing follower IC26 (R127, C48) and the output amplifier IC27 (R125, R126, the SJ junction, the 10K volume pot R128) all agree with MAME pin for pin and value for value. Sheet 1 (p86: latches, shift register, the background VCO) was not compared, nor the other four CA3080 channels or the star sound 555s beyond their values (R112-R119, which agree)."
+ ],
+ "conflicts": []
+}

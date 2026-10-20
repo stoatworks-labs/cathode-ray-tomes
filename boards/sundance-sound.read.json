@@ -1,0 +1,12 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/cinematronics/nl_sundance.cpp (NETLIST_START(sundance), CC0-1.0, Aaron Giles) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/sundance-sound.nets.",
+  "The wideband noise generator here is MAME's description of the real circuit (the HLE_NOISE_GEN branch off). MAME has never run that branch -- it simulates the noise with a random source -- but it agrees with the sheet part for part (below).",
+  "Compared with the sheet, Audio Board Schematic (Sundance) SD203200 (doc 7130101e6e69 p20, 600 dpi), and the values printed on the assembly drawing (p21; the manual has no audio parts list), 2026-10-20: the noise generator (D1 1N5240, R1, R3-R10, C1-C5, IC1-IC3 and the D2/D3 limiter), the whoosh (IC11, the four LM3900 sections of IC4, Q1-Q3, R11-R23, R34-R42, R47, R48, C6, C13-C15, C21, IC12), the explosion (IC7, Q4, R24-R33, C7-C12, IC8, IC10), the hatch, the two pings and the bong (IC13's four tri-state enables with R49, Q5/Q6/Q8/Q10, R50-R63, R68-R74, R77, R78, C22-C31, C35-C39, IC9 and IC14-IC19) and all six CA3080 outputs on the SN line all agree with MAME pin for pin and value for value, every IC type and every transistor and diode orientation included. MAME differs only where the sheet goes on into the final amplifier, which it does not simulate: IC20 pin 3 is grounded rather than unconnected, and R64 goes into IC20 pin 2 rather than to ground (MAME lines 479 and 472); both are corrected above.",
+  "Not in this file: the final amplifier (IC20's feedback and output stage) and the regulators IC5/IC6, which are on the sheet."
+ ],
+ "conflicts": [
+  "The sheet labels J2-11 \"O5\"; MAME calls it OUT_0. The CPU board's latch F2 (p13) has no O5 to give -- its Q5 is R_COIN -- and it brings out O0-O4 and O7, as do the troubleshooting text (\"F-2 pins 4, 5, 6, 7, 9 & 12\") and MAME's input mask. This file keeps OUT_0; the harness between the boards is not drawn in the manual.",
+  "R66 in the final amplifier is 2.2K on the sheet and the assembly drawing; MAME's commented-out line has 22K. It is not in this file."
+ ]
+}
