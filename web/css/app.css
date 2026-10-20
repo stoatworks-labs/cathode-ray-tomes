@@ -320,6 +320,22 @@ iframe.ibom {
   background: var(--surface); display: block;
 }
 
+/* ---- interactive schematic (KiCanvas) ---- */
+.kvbox {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px;
+  margin: 10px 0 14px;
+}
+.kvbox .meta { font-size: 13px; color: var(--ink-3); }
+.kvopen {
+  font: inherit; font-weight: 600; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink);
+  border: 0; border-radius: var(--radius); padding: 8px 14px;
+}
+.kvbox kicanvas-embed {
+  display: block; width: 100%; height: 78vh; min-height: 460px;
+  border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+}
+
 /* ---- submission form ---- */
 .form { max-width: 720px; display: flex; flex-direction: column; gap: 18px; }
 .form label { display: flex; flex-direction: column; gap: 6px; }

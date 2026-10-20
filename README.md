@@ -268,6 +268,10 @@ and a notice saying who drew it and what was added here, and everything made fro
 board view, the netlist, the chip lookup and the bill of materials — is under the same
 licence. The board page says whose drawing it is.
 
+Every board with a KiCad schematic can be opened in the page itself, through
+[KiCanvas](https://kicanvas.org): pan, zoom, step between sheets, click a chip or a net. The
+sheets come straight from this repository on GitHub, so nothing extra ships with the site.
+
 jtcores also redraws thirteen custom chips from the inside: nine Konami gate arrays from the
 Twin 16 boards, three Capcom DL-series chips from Pang, and Konami's 052535 video DAC, most of
 them cell by cell off a photograph of the die. A dead custom is a common fault and the part

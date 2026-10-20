@@ -57,6 +57,14 @@ Copyright: 2008-2025 DICE Team
 
 16 board pages -- Pong, Breakout, Space Race, Stunt Cycle, Jet Fighter, Rebound and the other CPU-less games of the Pong era -- take their connectivity from DICE's netlists, converted by tools/import_dice.py: its stand-ins for a wire undone, its analogue models left off the board, and Crash 'n Score's checked against the hand-read map. Each game's source is in kicad/<slug>/ unchanged with DICE's LICENSE.txt and a NOTICE.md, and everything made from it is GPL-3.0.
 
+### KiCanvas — Alethea Katherine Flowers
+
+<https://kicanvas.org/>  
+Licence: MIT  
+Copyright: 2022 Alethea Katherine Flowers
+
+The interactive schematic viewer on every board page with a KiCad schematic: vendored as one file at web/vendor/kicanvas/kicanvas.js with its LICENSE.md, it reads the KiCad sheets in the browser so a reader can pan, zoom, move between sheets and click a part or a net.
+
 ### Split.js v1.3.5
 
 <https://github.com/nathancahill/Split.js>  

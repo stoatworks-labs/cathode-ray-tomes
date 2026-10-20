@@ -117,6 +117,7 @@ const CASES = [
   // Static assets go through the same handler now, so check they still do.
   ["/css/app.css",                    200, "stylesheet"],
   ["/js/app.js",                      200, "script"],
+  ["/vendor/kicanvas/kicanvas.js",    200, "the schematic viewer ships with the site"],
 ];
 
 let failures = 0;
@@ -184,6 +185,16 @@ CONTENT.push([
 // licence, and the page has to say so: whose drawing, on what terms, and where
 // the source is. If publish_board stops carrying `license`/`origin`, the board
 // still renders -- as though this repository had drawn it.
+// Every board with a schematic gets the interactive viewer, which loads the
+// sheets from GitHub by the list publish_board writes. A board whose list went
+// missing still shows its PDF, so nothing fails -- the viewer just never appears.
+CONTENT.push([
+  "/api/boards",
+  (body) => body.filter((b) => b.redrawn).every((b) => b.redrawn.kicanvas?.files?.length > 0
+    && /^https:\/\/raw\.githubusercontent\.com\//.test(b.redrawn.kicanvas.base)),
+  "every board with a schematic lists its sheets for the interactive viewer",
+]);
+
 const imported = boardList.find((b) => b.origin);
 if (imported) {
   CONTENT.push([
@@ -316,7 +327,7 @@ for (const [path, ok, why] of CONTENT) {
 // whether they render well.
 // The wiring view's warning and its not-placed list are what stop a generated
 // diagram being taken for a traced one; they get the same guard.
-const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines", "l.licence", "l.copyright", "PARTIAL_NOTE", "w.miss", "Generated, not read.",
+const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines", "kicanvas-embed", "l.licence", "l.copyright", "PARTIAL_NOTE", "w.miss", "Generated, not read.",
   // A chip page's credit and licence, its logged conflicts, and the links that
   // bring a reader to it from a board, a machine and a layout.
   "listOf(o.authors)", "c.license", "c.conflicts", "customsOn(list, slug)",
