@@ -1,0 +1,466 @@
+# Dribbling sound circuits -- netlist converted from MAME
+#
+# Enzo Lombardi's netlist of Dribbling's sound, which his file says is derived from the
+# schematics in the Dribbling manual. It is a top level and seven sub-netlists: TOS (the
+# tone generator) is at the top, and calcio (a kick), stop_palla, parata (the keeper's
+# save), fischio (the whistle), folla (the crowd) and inverter are sub-circuits, spliced in
+# here once per instance. calcio is instanced twice, CALCIO_A and CALCIO_B, so every part
+# in a sub-circuit is written under its instance (CALCIO_A_R45 is MAME's CALCIO_A.R45).
+# LM339 is MAME's model of one comparator; the two it declares are sections 1 and 4 of the
+# LM339 at B9, as the sheet numbers them. The 8255 port bits that trigger each sound arrive
+# as ports (MAME's TTL_INPUT names: PB0-PB7 for the tone's divisor, FOLLA_A/M/B, CONTRASTO,
+# FISCHIO, CALCIO_A/B, STOP_PALLA, PARATA, and ENABLE_SOUND, the sheet's 'ABIL.
+# AMPLIFICATORE').
+#
+# The save is the real circuit, not MAME's speed-up: REPLACE_PARATA_JFET_WITH_DIODES off,
+# so the second 2N3819 is a source follower, as drawn, instead of two diodes. MAME's branch
+# for it has never been compiled -- it opens with an #elif that has no condition and uses a
+# Q3 it never declares -- so Q3 is declared here, from the sheet. MAME's file says the
+# schematic labels both JFETs 2N3812 and they are actually 2N3819s; that is kept.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/modelracing/nl_dribling.cpp,
+# NETLIST_START(dribling). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Enzo Lombardi (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/modelracing/nl_dribling.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+# The sheet prints no designators for resistors, capacitors, diodes or transistors -- only
+# values and types -- so those are MAME's names, under the sub-circuit instance MAME puts
+# them in, and C7_1, C_TOS, R_FISCHIO, Q_OUT and the like are MAME's own. VR-A, VR-B and
+# VR-C are the manual's names for the three trimmers (p. 7). ICs are written by the board
+# position the sheet prints, letter first as it prints nearly all of them; the crowd block
+# alone prints 7A, 8A, 8B and 7B, written A7, A8, B8 and B7 here. For B7 that is more than
+# a convention: the sheet labels the crowd's oscillator gate B7 and its other gate 7B, and
+# with the reset gate and the three TOS gates labelled B7 that is all six gates of one 7414,
+# each once. MAME's ROM names are number first (5p.bin for the sheet's P5), so which way
+# round the silkscreen prints them is not settled here.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 14: #define USE_SIMPLIFIED_LM339 1 -> 0 (a circuit simplified for speed)
+# line 18: #define REPLACE_PARATA_JFET_WITH_DIODES 1 -> 0 (a part replaced by a simpler stand-in for speed)
+# line 238: an #elif with no condition, read as the #else it was meant to be -- MAME's compiler never reads it, because MAME takes the branch above
+# line 541: PARAM(CALCIO_A.CAP1, 47) sets it again after line 540 set 22; MAME keeps the last, and so does this file unless a correction says otherwise
+# line 545: PARAM(CALCIO_B.CAP1, 68) sets it again after line 544 set 33; MAME keeps the last, and so does this file unless a correction says otherwise
+# line 369: FOLLA.R33 written as 220K, without the ATTENUATE_FOLLA (200) MAME adds to it
+# line 370: FOLLA.R34 written as 100K, without the ATTENUATE_FOLLA (200) MAME adds to it
+# line 372: FOLLA.R36 written as 56K, without the ATTENUATE_FOLLA (200) MAME adds to it
+# line 140: dropped NET_C(CALCIO_A.R52.2, CALCIO_A.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 145: dropped NET_C(CALCIO_A.R48.2, CALCIO_A.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 148: dropped NET_C(CALCIO_A.R55.2, CALCIO_A.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 140: dropped NET_C(CALCIO_B.R52.2, CALCIO_B.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 145: dropped NET_C(CALCIO_B.R48.2, CALCIO_B.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 148: dropped NET_C(CALCIO_B.R55.2, CALCIO_B.I_V5) -- the sheet prints +12 at the top of this resistor, where MAME's sub-netlist has only +5V
+# line 506: NET_C(IC_C7.1, IC_C7.13, IC_C7.4, IC_C7.12, GND.Q) -> nc -- C7's first flip-flop, which the sheet does not draw
+# line 357: NET_C(FOLLA.GND, FOLLA.IC_E8.5, FOLLA.IC_C8.9, FOLLA.IC_C8.6, FOLLA.IC_C8.2, FOLLA.IC_C8.3, FOLLA.IC_8B.12, FOLLA.IC_8B.5, FOLLA.IC_8B.9, FOLLA.IC_7B.12, FOLLA.IC_7B.10, FOLLA.IC_7B.2, FOLLA.IC_7B.8) -> nc -- MAME grounds the crowd circuit's spare gates and op-amps, outputs and all (7B's 2, 8, 10 and 12 are outputs); the sheet draws none of these pins
+# line 358: NET_C(FOLLA.GND, FOLLA.IC_8B.4, FOLLA.IC_C8.5, FOLLA.IC_7B.8, FOLLA.IC_8B.10, FOLLA.IC_8B.13, FOLLA.IC_C8.10, FOLLA.IC_E8.4) -> nc -- as line 357
+# line 357: MAME ties UB7.12, UB7.10, UB7.2, UB7.8 off as unused, but the circuit uses them -- the tie is dropped
+# line 358: MAME ties UB7.8 off as unused, but the circuit uses them -- the tie is dropped
+#
+# Corrected from the MEF00284 board schematic, sound section (manual PDF p. 11):
+#   UD7: the sheet's part is 74LS161, MAME's 74161 -- printed LS161; MAME's 74161 has its pins
+#   UE7: the sheet's part is 74LS161, MAME's 74161 -- printed LS161; MAME's 74161 has its pins
+#   UL9: the sheet's part is 7404, MAME's 7414 -- printed '04 beside L9's gate on the AD4 line; MAME's generic inverter sub-netlist is a 7414
+#   CALCIO_A_C30: the sheet's value is 47nF, MAME's 68nF -- printed '47K' (nF), and MAME's line 541 says 47 -- meant for CAP2, it sets CAP1 again
+#   CALCIO_A_C33: the sheet's value is 22nF, MAME's 47nF -- printed '22K' (nF), as MAME's line 540 sets it before line 541 overrides it
+#   CALCIO_A_C34: the sheet's value is 22nF, MAME's 47nF -- as C33
+#   CALCIO_B_C33: the sheet's value is 33nF, MAME's 68nF -- printed '33K' (nF), as MAME's line 544 sets it before line 545 overrides it with the 68 meant for CAP2
+#   CALCIO_B_C34: the sheet's value is 33nF, MAME's 68nF -- as C33
+#   R_FISCHIO: the sheet's value is 100K, MAME's 220K -- printed 100K where the whistle enters the mix
+#   R_PARATA: the sheet's value is 47K, MAME's 100K -- printed 47K where the save sound enters the mix (the drafter crosses a 7, and it reads like a 2: '42K')
+#   parts the sheet draws that MAME does not have: VRA 2.2K, VRB 2.2K, VRC 47K, PARATA_Q3 2N3819, PARATA_RS 1K
+#   kick A's 68K, 220K and 10K to +12, as printed: CALCIO_A_R52.2 CALCIO_A_R48.2 CALCIO_A_R55.2
+#   kick B's to +12 -- its arrows carry no label, and B is A's circuit drawn the same way: CALCIO_B_R52.2 CALCIO_B_R48.2 CALCIO_B_R55.2
+#   VR-A from kick A's first transistor's emitter to ground, its wiper to ground: CALCIO_A_Q8.E VRA.1; VRA.2 VRA.3
+#   VR-B from kick B's first transistor's emitter to ground, its wiper to ground: CALCIO_B_Q8.E VRB.1; VRB.2 VRB.3
+#   the second JFET's source, the save's output, to ground through 1K: PARATA_Q3.S PARATA_RS.1; PARATA_RS.2
+#   the mix to VR-C's top, its bottom to ground: Q_OUT.C VRC.1 (MIX); VRC.3
+#   VR-C's wiper, through 10uF/16V to the TDA2003's pin 1: VRC.2 (AMP_IN)
+#   B7 pin 9 is driven by 32H, where MAME runs an ideal 40 kHz clock: UB7.9 (32H)
+#   B7's first gate inverts /RESET into RES, the 8255s' reset: UB7.1 (RESETQ); UB7.2 (RES)
+#   L9 gates AD3 (in on 3, out on 4) and AD4 (5 to 6) into the 8255s' chip selects: UL9.3 (AD3); UL9.4 (AD3Q); UL9.5 (AD4); UL9.6 (AD4Q)
+# line 153: CALCIO_A.R0 is not a part, and its two ends are one node here -- a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can split the netlist there (OPTIMIZE_FRONTIER)
+# line 153: CALCIO_B.R0 is not a part, and its two ends are one node here -- a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can split the netlist there (OPTIMIZE_FRONTIER)
+# line 188: STOP_PALLA.R0 is not a part, and its two ends are one node here -- a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can split the netlist there (OPTIMIZE_FRONTIER)
+# line 209: PARATA.D2 is not a part -- a diode across the first 2N3819's gate and source, which the sheet ties together -- MAME's model of the JFET's gate junction (it models a JFET as a MOSFET, which has none); not on the sheet
+# line 210: PARATA.D3 is not a part -- a diode from the second 2N3819's gate to its source -- MAME's model of the JFET's gate junction; not on the sheet
+# line 344: FISCHIO.R0 is not a part, and its two ends are one node here -- a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can split the netlist there (OPTIMIZE_FRONTIER)
+# line 427: FOLLA.R0 is not a part, and its two ends are one node here -- a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can split the netlist there (OPTIMIZE_FRONTIER)
+# line 618: OUTPUT_FILTER is not a part -- MAME's own third-order Sallen-Key low-pass (an op-amp on +-12V, three resistors, three capacitors), added 'to avoid aliasing when outputing at 48KHz', its file says; on the board the mix goes to the volume pot VR-C and the TDA2003 amplifier
+# MAME declares one section of these packages at a time; each is written on its package's
+# pins by the data sheet's numbering of the sections (SECTION_PINS in the converter): UB7 7414 (INV1.IC_L9, INV2.IC_L9, INV3.IC_L9); UB9 LM339 (PARATA.IC_B9, STOP_PALLA.IC_B9); UL9 7404 (FISCHIO.INV.IC_L9)
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_PB0), TTL_INPUT(I_PB1), TTL_INPUT(I_PB2), TTL_INPUT(I_PB3), TTL_INPUT(I_PB4), TTL_INPUT(I_PB5), TTL_INPUT(I_PB6), TTL_INPUT(I_PB7), CLOCK(clk), TTL_INPUT(I_FISCHIO), TTL_INPUT(I_STOP_PALLA), TTL_INPUT(I_PARATA), TTL_INPUT(I_CALCIO_A), TTL_INPUT(I_CALCIO_B), TTL_INPUT(I_FOLLA_A), TTL_INPUT(I_FOLLA_M), TTL_INPUT(I_FOLLA_B), TTL_INPUT(I_CONTRASTO), TTL_INPUT(ENABLE_SOUND)
+# Lines 121, 141 and 142 (in calcio, so in both kicks) are taken out whole: R54, 'WAS POT',
+# is the trimmer VR-A or VR-B, put back from the sheet below. Lines 292-296 (in the inverter
+# sub-netlist, so in all four instances) tie the 7414's outputs 4, 6, 8, 10 and 12 to ground;
+# here each instance is one gate of a package the sheet names, so the lines go.
+#
+# Compared with the sound section of the MEF00284 schematic (the Dribbling service manual,
+# doc 64210d7094ce, PDF p. 11, a 1-bit scan at about 370 dpi), on 2026-10-20 -- every
+# sub-circuit, net by net, and every value printed. MAME's topology agrees with the sheet
+# everywhere: the TOS divider (E7 and D7 loaded from PB4-PB7 and PB0-PB3, E7's carry to
+# both loads through B7 and to C7's J and K, C7 pin 5 the output), the crowd's noise
+# generator (A8 and A7 with B8's XOR feedback, clocked by B7's RC oscillator) and its three
+# gated levels into the LM324 band-pass at C8, the 556 'contrasto' at Q9, the whistle's 556
+# at N9 counted by M9 (MAME's 100K and 47K both end on N9's 12/8 node, as drawn), the two
+# comparators of B9, and the mix (ENABLE_SOUND through 2.2K to a BC239 that shorts the mix to
+# ground). The ICs agree in type and pin number wherever the sheet prints them: B9 pins 5,
+# 4, 2 for the stop and 11, 10, 13 for the save; N9 and Q9 pin for pin; M9's 2 and 12, 1,
+# 6 and 13.
+#
+# Corrected above from the sheet: kick A's supply resistors go to +12 (B's arrows are
+# unlabelled, and taken as A's); the trimmers VR-A and VR-B are pots wired as rheostats,
+# not MAME's 1.9K; the kicks' twin-T capacitors are the sheet's (MAME's file says what it
+# meant -- 22, 47 for A and 33, 68 for B -- but its PARAM lines set CAP1 twice, so it runs
+# A with 47nF, 47nF, 68nF and B with 68nF all round); the whistle enters the mix through
+# 100K, not 220K, and the save through 47K, not 100K; the save's output has a 1K source
+# resistor; and the mix goes to the volume pot VR-C, where MAME has a filter of its own.
+# D7 and E7 are printed LS161 and L9 '04. MAME's four inverters are gates of the sheet's
+# packages, by its pin numbers: TOS's load gate is B7 11 to 10 (the sheet prints 11 at the
+# output), its clock gate 13 to 12, the 32H gate 9 to 8, and the whistle's reset gate L9
+# 13 to 12 (printed 13 and 9).
+#
+# Open, and kept as MAME has them: the drafter's crossed 7 reads like a 2, and five
+# capacitors print as '4,2uF' -- each kick's from collector to twin-T (MAME 4.2uF) and its
+# emitter capacitor (MAME 4.7uF), and the whistle's timing capacitor (MAME 4.2uF). 4.2uF is
+# not a standard value and MAME itself reads two of them as 4.7uF, so all five are probably
+# 4.7uF; the print does not show it. The stop's series resistor prints 1?0K, the middle
+# digit unclear (MAME 160K; the save's is 150K). The dashed, so optional, pull-up on ABIL.
+# AMPLIFICATORE reads 1?K; MAME's is 10K. The unlabelled supply arrows (the 556s' timing
+# resistors, the BC309 emitters, the comparators' 2.2K pull-ups, the second JFET's drain,
+# the crowd filter's bias) are taken as +5V, as MAME has them; only the kicks are marked
+# +12. Which terminal of each JFET is source and which drain the drawing does not say;
+# MAME's choice fits the topology. The diodes are printed BAX (a Philips switching diode),
+# for which MAME's 1N914 is a like part. E7's and D7's clears, D7's enables and the
+# counters' supply pins are not drawn; MAME's ties are kept.
+#
+# On the sheet and not in this file: the TDA2003 at the output (10uF in, 220 ohm and 2.2
+# ohm feedback with 470uF, 1000uF out to the 8 ohm speaker on edge pins 16 and 17, a 0.1uF
+# and 1 ohm Zobel) and its '+12Vcc M.S.' decoupling; the supplies -- a 26MB bridge into
+# 22,000uF, a 323 for +5V with 6.8 ohms 10W across it, an LM320 for -5V, and a 7812
+# (printed 2812) beside an unregulated +12V through two 1N4004s, so which +12V the kicks'
+# '+12' is the sheet does not say; and the two 8255s, at K8 and below it, whose port bits
+# the ports here are.
+
+# part UA7 74LS164  (MAME: FOLLA.IC_7A)
+# part UA8 74LS164  (MAME: FOLLA.IC_8A)
+# part UB7 7414  (MAME: FOLLA.IC_7B)
+# part UB8 74LS86  (MAME: FOLLA.IC_8B)
+# part UB9 LM339
+# part UC7 74LS107
+# part UC8 LM324  (MAME: FOLLA.IC_C8)
+# part UD7 74LS161
+# part UE7 74LS161
+# part UE8 7408  (MAME: FOLLA.IC_E8)
+# part UL9 7404
+# part UM9 74393  (MAME: FISCHIO.IC_M9)
+# part UN9 NE556  (MAME: FISCHIO.IC_N9)
+# part UQ9 NE556  (MAME: FOLLA.IC_Q9)
+
+value CALCIO_A_R45 420  # MAME: CALCIO_A.R45
+value CALCIO_A_R46 8.2K  # MAME: CALCIO_A.R46
+value CALCIO_A_R48 220K  # MAME: CALCIO_A.R48
+value CALCIO_A_R49 56K  # MAME: CALCIO_A.R49
+value CALCIO_A_R50 56K  # MAME: CALCIO_A.R50
+value CALCIO_A_R51 1M  # MAME: CALCIO_A.R51
+value CALCIO_A_R52 68K  # MAME: CALCIO_A.R52
+value CALCIO_A_R53 82K  # MAME: CALCIO_A.R53
+value CALCIO_A_R55 10K  # MAME: CALCIO_A.R55
+value CALCIO_A_R56 100K  # MAME: CALCIO_A.R56
+value CALCIO_A_R57 10K  # MAME: CALCIO_A.R57
+value CALCIO_A_R58 3.9K  # MAME: CALCIO_A.R58
+value CALCIO_B_R45 420  # MAME: CALCIO_B.R45
+value CALCIO_B_R46 8.2K  # MAME: CALCIO_B.R46
+value CALCIO_B_R48 220K  # MAME: CALCIO_B.R48
+value CALCIO_B_R49 56K  # MAME: CALCIO_B.R49
+value CALCIO_B_R50 56K  # MAME: CALCIO_B.R50
+value CALCIO_B_R51 1M  # MAME: CALCIO_B.R51
+value CALCIO_B_R52 68K  # MAME: CALCIO_B.R52
+value CALCIO_B_R53 82K  # MAME: CALCIO_B.R53
+value CALCIO_B_R55 10K  # MAME: CALCIO_B.R55
+value CALCIO_B_R56 100K  # MAME: CALCIO_B.R56
+value CALCIO_B_R57 10K  # MAME: CALCIO_B.R57
+value CALCIO_B_R58 3.9K  # MAME: CALCIO_B.R58
+value FISCHIO_R1 6.8K  # MAME: FISCHIO.R1
+value FISCHIO_R2 39K  # MAME: FISCHIO.R2
+value FISCHIO_R3 100K  # MAME: FISCHIO.R3
+value FISCHIO_R4 47K  # MAME: FISCHIO.R4
+value FOLLA_R32 1K  # MAME: FOLLA.R32
+value FOLLA_R33 220K  # MAME: FOLLA.R33
+value FOLLA_R34 100K  # MAME: FOLLA.R34
+value FOLLA_R35 1K  # MAME: FOLLA.R35
+value FOLLA_R36 56K  # MAME: FOLLA.R36
+value FOLLA_R37 10K  # MAME: FOLLA.R37
+value FOLLA_R38 1M  # MAME: FOLLA.R38
+value FOLLA_R39 100K  # MAME: FOLLA.R39
+value FOLLA_R47 330K  # MAME: FOLLA.R47
+value PARATA_R5 1K  # MAME: PARATA.R5
+value PARATA_R6 150K  # MAME: PARATA.R6
+value PARATA_R7 220K  # MAME: PARATA.R7
+value PARATA_R9 2.2K  # MAME: PARATA.R9
+value PARATA_RS 1K
+value R_CALCIO_A 10K
+value R_CALCIO_B 10K
+value R_FISCHIO 100K
+value R_FOLLA 100K
+value R_OUT 2.2K
+value R_PARATA 47K
+value R_PU_OUT 10K
+value R_STOP_PALLA 100K
+value R_TOS 220K
+value STOP_PALLA_R5 1K  # MAME: STOP_PALLA.R5
+value STOP_PALLA_R6 160K  # MAME: STOP_PALLA.R6
+value STOP_PALLA_R7 150K  # MAME: STOP_PALLA.R7
+value STOP_PALLA_R8 10K  # MAME: STOP_PALLA.R8
+value STOP_PALLA_R9 2.2K  # MAME: STOP_PALLA.R9
+value VRA 2.2K
+value VRB 2.2K
+value VRC 47K
+value C7_1 330pF
+value C7_2 330pF
+value CALCIO_A_C29 4.2uF  # MAME: CALCIO_A.C29
+value CALCIO_A_C30 47nF  # MAME: CALCIO_A.C30
+value CALCIO_A_C31 150nF  # MAME: CALCIO_A.C31
+value CALCIO_A_C32 4.7uF  # MAME: CALCIO_A.C32
+value CALCIO_A_C33 22nF  # MAME: CALCIO_A.C33
+value CALCIO_A_C34 22nF  # MAME: CALCIO_A.C34
+value CALCIO_B_C29 4.2uF  # MAME: CALCIO_B.C29
+value CALCIO_B_C30 68nF  # MAME: CALCIO_B.C30
+value CALCIO_B_C31 150nF  # MAME: CALCIO_B.C31
+value CALCIO_B_C32 4.7uF  # MAME: CALCIO_B.C32
+value CALCIO_B_C33 33nF  # MAME: CALCIO_B.C33
+value CALCIO_B_C34 33nF  # MAME: CALCIO_B.C34
+value C_CALCIO_A 1uF
+value C_CALCIO_B 1uF
+value C_FISCHIO 1000nF
+value C_FOLLA 10nF
+value C_PARATA 1uF
+value C_STOP_PALLA 1uF
+value C_TOS 100nF
+value FISCHIO_C2 2.2nF  # MAME: FISCHIO.C2
+value FISCHIO_C42 4.2uF  # MAME: FISCHIO.C42
+value FOLLA_C20 100nF  # MAME: FOLLA.C20
+value FOLLA_C21 10nF  # MAME: FOLLA.C21
+value FOLLA_C22 22nF  # MAME: FOLLA.C22
+value FOLLA_C23 0.1uF  # MAME: FOLLA.C23
+value FOLLA_C24 10uF  # MAME: FOLLA.C24
+value FOLLA_C25 0.1uF  # MAME: FOLLA.C25
+value FOLLA_C26 0.47uF  # MAME: FOLLA.C26
+value PARATA_C5 2.2uF  # MAME: PARATA.C5
+value PARATA_C6 1uF  # MAME: PARATA.C6
+value STOP_PALLA_C5 1uF  # MAME: STOP_PALLA.C5
+value STOP_PALLA_C6 1uF  # MAME: STOP_PALLA.C6
+value PARATA_D1 1N914  # MAME: PARATA.D1
+value STOP_PALLA_D1 1N914  # MAME: STOP_PALLA.D1
+value CALCIO_A_Q8 BC239C  # MAME: CALCIO_A.Q8
+value CALCIO_A_Q9 BC239C  # MAME: CALCIO_A.Q9
+value CALCIO_B_Q8 BC239C  # MAME: CALCIO_B.Q8
+value CALCIO_B_Q9 BC239C  # MAME: CALCIO_B.Q9
+value PARATA_Q1 BC309  # MAME: PARATA.Q1
+value PARATA_Q2 2N3819  # MAME: PARATA.Q2
+value PARATA_Q3 2N3819  # MAME: Q3
+value Q_OUT BC239C
+value STOP_PALLA_Q1 BC309  # MAME: STOP_PALLA.Q1
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C7_1.2 C7_2.2 CALCIO_A_C30.1 CALCIO_A_R45.1 CALCIO_A_R56.1 CALCIO_A_R57.1 CALCIO_A_R58.1 CALCIO_B_C30.1 CALCIO_B_R45.1 CALCIO_B_R56.1 CALCIO_B_R57.1 CALCIO_B_R58.1 FISCHIO_C2.2 FISCHIO_C42.2 UM9.7 UN9.7 FOLLA_C20.1 FOLLA_C24.1 FOLLA_C25.2 FOLLA_C26.2 UA7.7 UB7.7 UA8.7 UB8.7 UC8.11 UE8.7 UQ9.7 FOLLA_R35.1 UB9.12 UC7.7 UD7.8 UE7.8 UL9.7 PARATA_C5.1 PARATA_C6.1 PARATA_R7.1 PARATA_RS.2 Q_OUT.E STOP_PALLA_C5.1 STOP_PALLA_C6.1 STOP_PALLA_R7.1 VRA.2 VRA.3 VRB.2 VRB.3 VRC.3
+net +12V: CALCIO_A_R48.2 CALCIO_A_R52.2 CALCIO_A_R55.2 CALCIO_B_R48.2 CALCIO_B_R52.2 CALCIO_B_R55.2 UC8.4
+net +5V: UM9.14 UN9.14 FISCHIO_R1.1 FISCHIO_R2.1 UA7.14 UA7.9 UB7.14 UA8.14 UA8.9 UB8.14 UE8.14 UQ9.14 UQ9.4 FOLLA_R37.2 FOLLA_R38.1 FOLLA_R39.1 UB9.3 UC7.10 UC7.14 UD7.1 UD7.10 UD7.16 UD7.7 UE7.1 UE7.16 UL9.14 PARATA_Q1.E PARATA_R9.2 PARATA_Q3.D R_PU_OUT.1 STOP_PALLA_Q1.E STOP_PALLA_R9.2
+
+# ---------------------------------------------------------------------------
+# Gates of the sound's packages that other circuits use
+# ---------------------------------------------------------------------------
+port AD4Q: UL9.6  # a spare gate of the sound's L9, used by the 8255s' chip-select decoding on the same sheet, not by the sound
+port AD4: UL9.5  # a spare gate of the sound's L9, used by the 8255s' chip-select decoding on the same sheet, not by the sound
+port AD3Q: UL9.4  # a spare gate of the sound's L9, used by the 8255s' chip-select decoding on the same sheet, not by the sound
+port AD3: UL9.3  # a spare gate of the sound's L9, used by the 8255s' chip-select decoding on the same sheet, not by the sound
+port RES: UB7.2  # a spare gate of the sound's B7, used by the 8255s' reset (RES out, to pin 35 of each) on the same sheet, not by the sound
+port RESETQ: UB7.1  # a spare gate of the sound's B7, used by the 8255s' reset (/RESET in) on the same sheet, not by the sound
+
+# ---------------------------------------------------------------------------
+# FINAL MIX, DISABLE CIRCUITRY AND OUTPUT FILTER
+# ---------------------------------------------------------------------------
+port AMP_IN: VRC.2  # VR-C's wiper, on through 10uF/16V to pin 1 of the TDA2003 power amplifier, which MAME does not simulate
+label MIX: Q_OUT.C R_CALCIO_A.2 R_CALCIO_B.2 R_FISCHIO.2 R_FOLLA.2 R_PARATA.2 R_STOP_PALLA.2 R_TOS.2 VRC.1
+port ENABLE_SOUND: R_OUT.1 R_PU_OUT.2  # in MAME: TTL_INPUT(ENABLE_SOUND)
+wire Q_OUT.B R_OUT.2
+
+# ---------------------------------------------------------------------------
+# PARATA
+# ---------------------------------------------------------------------------
+label PARATA.OUTPUT: C_PARATA.1 PARATA_RS.1 PARATA_Q3.S
+wire PARATA_Q1.B PARATA_R5.2
+wire PARATA_C5.2 PARATA_Q1.C PARATA_R6.1 PARATA_R7.2
+wire UB9.11 PARATA_D1.2 PARATA_R6.2
+wire UB9.13 PARATA_D1.1 PARATA_Q2.G PARATA_Q2.S PARATA_R9.1
+wire UB9.10 PARATA_C6.2 PARATA_Q2.D PARATA_Q3.G
+port PARATA: PARATA_R5.1  # in MAME: TTL_INPUT(I_PARATA)
+wire C_PARATA.2 R_PARATA.1
+
+# ---------------------------------------------------------------------------
+# CALCIO_B
+# ---------------------------------------------------------------------------
+wire CALCIO_B_Q8.E VRB.1
+port CALCIO_B: CALCIO_B_R45.2 CALCIO_B_R46.1  # in MAME: TTL_INPUT(I_CALCIO_B)
+wire CALCIO_B_C33.2 CALCIO_B_C34.1 CALCIO_B_R46.2
+wire CALCIO_B_C29.1 CALCIO_B_C33.1 CALCIO_B_R49.1
+wire CALCIO_B_C34.2 CALCIO_B_Q8.B CALCIO_B_R50.2 CALCIO_B_R51.1
+wire CALCIO_B_C30.2 CALCIO_B_R49.2 CALCIO_B_R50.1
+wire CALCIO_B_C29.2 CALCIO_B_Q8.C CALCIO_B_R51.2 CALCIO_B_R52.1 CALCIO_B_R53.1
+wire CALCIO_B_C31.1 CALCIO_B_R53.2
+wire CALCIO_B_C31.2 CALCIO_B_Q9.B CALCIO_B_R48.1 CALCIO_B_R56.2
+label CALCIO_B.OUTPUT: CALCIO_B_Q9.C CALCIO_B_R55.1 C_CALCIO_B.1
+wire CALCIO_B_C32.2 CALCIO_B_Q9.E CALCIO_B_R57.2
+wire CALCIO_B_C32.1 CALCIO_B_R58.2
+wire C_CALCIO_B.2 R_CALCIO_B.1
+
+# ---------------------------------------------------------------------------
+# CALCIO_A
+# ---------------------------------------------------------------------------
+wire CALCIO_A_Q8.E VRA.1
+port CALCIO_A: CALCIO_A_R45.2 CALCIO_A_R46.1  # in MAME: TTL_INPUT(I_CALCIO_A)
+wire CALCIO_A_C33.2 CALCIO_A_C34.1 CALCIO_A_R46.2
+wire CALCIO_A_C29.1 CALCIO_A_C33.1 CALCIO_A_R49.1
+wire CALCIO_A_C34.2 CALCIO_A_Q8.B CALCIO_A_R50.2 CALCIO_A_R51.1
+wire CALCIO_A_C30.2 CALCIO_A_R49.2 CALCIO_A_R50.1
+wire CALCIO_A_C29.2 CALCIO_A_Q8.C CALCIO_A_R51.2 CALCIO_A_R52.1 CALCIO_A_R53.1
+wire CALCIO_A_C31.1 CALCIO_A_R53.2
+wire CALCIO_A_C31.2 CALCIO_A_Q9.B CALCIO_A_R48.1 CALCIO_A_R56.2
+label CALCIO_A.OUTPUT: CALCIO_A_Q9.C CALCIO_A_R55.1 C_CALCIO_A.1
+wire CALCIO_A_C32.2 CALCIO_A_Q9.E CALCIO_A_R57.2
+wire CALCIO_A_C32.1 CALCIO_A_R58.2
+wire C_CALCIO_A.2 R_CALCIO_A.1
+
+# ---------------------------------------------------------------------------
+# STOP_PALLA
+# ---------------------------------------------------------------------------
+wire STOP_PALLA_Q1.B STOP_PALLA_R5.2
+wire STOP_PALLA_C5.2 STOP_PALLA_Q1.C STOP_PALLA_R6.1 STOP_PALLA_R7.2
+wire UB9.5 STOP_PALLA_D1.2 STOP_PALLA_R6.2
+label STOP_PALLA.OUTPUT: C_STOP_PALLA.1 UB9.2 STOP_PALLA_D1.1 STOP_PALLA_R8.2 STOP_PALLA_R9.1
+wire UB9.4 STOP_PALLA_C6.2 STOP_PALLA_R8.1
+port STOP_PALLA: STOP_PALLA_R5.1  # in MAME: TTL_INPUT(I_STOP_PALLA)
+wire C_STOP_PALLA.2 R_STOP_PALLA.1
+
+# ---------------------------------------------------------------------------
+# FISCHIO
+# ---------------------------------------------------------------------------
+label FISCHIO.INV.INPUT: UM9.13 UM9.6 UL9.13
+label FISCHIO.INV.OUTPUT: UN9.10 UN9.4 UL9.12
+wire FISCHIO_C42.1 UN9.1 UN9.2 UN9.6 FISCHIO_R1.2 FISCHIO_R3.1
+wire FISCHIO_C2.1 UN9.12 UN9.8 FISCHIO_R3.2 FISCHIO_R4.2
+wire UN9.13 FISCHIO_R2.2 FISCHIO_R4.1
+wire UM9.1 UN9.5
+port FISCHIO: UM9.12 UM9.2  # in MAME: TTL_INPUT(I_FISCHIO)
+label FISCHIO.OUTPUT: C_FISCHIO.1 UN9.9
+wire C_FISCHIO.2 R_FISCHIO.1
+
+# ---------------------------------------------------------------------------
+# FOLLA
+# ---------------------------------------------------------------------------
+wire UB7.4 UB8.1
+wire UA8.3 UB8.2
+wire UA8.1 UA8.2 UB8.3
+label FOLLA.C_IN: UA7.8 UB7.6 UA8.8 FOLLA_R32.1
+wire UA7.1 UA7.2 UA8.13
+wire UA7.12 UB7.3
+wire FOLLA_C20.2 UB7.5 FOLLA_R32.2
+label FOLLA.NOISE: UA7.13 UE8.13 UE8.2 UE8.9
+wire UE8.8 FOLLA_R33.1
+wire UE8.11 FOLLA_R34.1
+wire UE8.3 FOLLA_R36.1
+label FOLLA.CONT_OUT: FOLLA_C21.1 FOLLA_C22.1 FOLLA_C23.2 FOLLA_R33.2 FOLLA_R34.2 FOLLA_R35.2 FOLLA_R36.2
+label FOLLA.OUTPUT: C_FOLLA.1 FOLLA_C21.2 UC8.14 FOLLA_R47.2
+wire FOLLA_C22.2 UC8.13 FOLLA_R47.1
+wire FOLLA_C24.2 UC8.12 FOLLA_R37.1
+wire C_FOLLA.2 R_FOLLA.1
+
+# ---------------------------------------------------------------------------
+# FOLLA: CONTRASTO
+# ---------------------------------------------------------------------------
+wire FOLLA_C25.1 UQ9.1 UQ9.2 FOLLA_R38.2
+wire FOLLA_C26.1 UQ9.12 UQ9.13 UQ9.8 FOLLA_R39.2
+wire UQ9.10 UQ9.5
+wire FOLLA_C23.1 UQ9.9
+
+# ---------------------------------------------------------------------------
+# TOS Section
+# ---------------------------------------------------------------------------
+port PB0: UD7.3  # in MAME: TTL_INPUT(I_PB0)
+port PB1: UD7.4  # in MAME: TTL_INPUT(I_PB1)
+port PB2: UD7.5  # in MAME: TTL_INPUT(I_PB2)
+port PB3: UD7.6  # in MAME: TTL_INPUT(I_PB3)
+port PB4: UE7.3  # in MAME: TTL_INPUT(I_PB4)
+port PB5: UE7.4  # in MAME: TTL_INPUT(I_PB5)
+port PB6: UE7.5  # in MAME: TTL_INPUT(I_PB6)
+port PB7: UE7.6  # in MAME: TTL_INPUT(I_PB7)
+label INV1.OUTPUT: C7_1.1 UB7.10 UD7.9 UE7.9
+wire UD7.15 UE7.10 UE7.7
+label INV1.INPUT: UB7.11 UC7.11 UC7.8 UE7.15
+label INV2.OUTPUT: UB7.12 UD7.2 UE7.2
+label INV2.INPUT: C7_2.1 UB7.13 UB7.8 UC7.9  # also INV3.OUTPUT
+port 32H: UB7.9  # in MAME: CLOCK(clk)
+
+# ---------------------------------------------------------------------------
+# FOLLA A, M, B
+# ---------------------------------------------------------------------------
+port FOLLA_A: UE8.1  # in MAME: TTL_INPUT(I_FOLLA_A)
+port FOLLA_M: UE8.12  # in MAME: TTL_INPUT(I_FOLLA_M)
+port FOLLA_B: UE8.10  # in MAME: TTL_INPUT(I_FOLLA_B)
+port CONTRASTO: UQ9.6  # in MAME: TTL_INPUT(I_CONTRASTO)
+
+# ---------------------------------------------------------------------------
+# TOS
+# ---------------------------------------------------------------------------
+label TOS_OUTPUT: C_TOS.1 UC7.5
+wire C_TOS.2 R_TOS.1
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UC7.1 UC7.13 UC7.4 UC7.12  # line 506: C7's first flip-flop, which the sheet does not draw
+nc UE8.5 UC8.9 UC8.6 UC8.2 UC8.3 UB8.12 UB8.5 UB8.9  # line 357: MAME grounds the crowd circuit's spare gates and op-amps, outputs and all (7B's 2, 8, 10 and 12 are outputs); the sheet draws none of these pins
+nc UB8.4 UC8.5 UB8.10 UB8.13 UC8.10 UE8.4  # line 358: as line 357
+nc UM9.3  # line 335: MAME's own HINT(NC)
+nc UM9.4  # line 336: MAME's own HINT(NC)
+nc UM9.5  # line 337: MAME's own HINT(NC)
+nc UM9.8  # line 338: MAME's own HINT(NC)
+nc UM9.9  # line 339: MAME's own HINT(NC)
+nc UM9.10  # line 340: MAME's own HINT(NC)
+nc UM9.11  # line 341: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UA7.3 UA7.4 UA7.5 UA7.6 UA7.10 UA7.11  # Q0 Q1 Q2 Q3 Q4 Q5
+nc UA8.4 UA8.5 UA8.6 UA8.10 UA8.11 UA8.12  # Q1 Q2 Q3 Q4 Q5 Q6
+nc UB8.6 UB8.8 UB8.11  # output output output
+nc UB9.1 UB9.6 UB9.7 UB9.8 UB9.9 UB9.14  # open collector - + - + open collector
+nc UC7.2 UC7.3 UC7.6  # ~{Q} Q ~{Q}
+nc UC8.1 UC8.7 UC8.8  # output output output
+nc UD7.11 UD7.12 UD7.13 UD7.14  # Q3 Q2 Q1 Q0
+nc UE7.11 UE7.12 UE7.13 UE7.14  # Q3 Q2 Q1 Q0
+nc UE8.6  # output
+nc UL9.1 UL9.2 UL9.8 UL9.9 UL9.10 UL9.11  # input output output input output input
+nc UN9.3 UN9.11  # CONT CONT
+nc UQ9.3 UQ9.11  # CONT CONT

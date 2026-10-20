@@ -1,0 +1,37 @@
+{
+ "name": "Dribbling sound circuits",
+ "mfr": "Model Racing",
+ "year": "1983",
+ "machine": "dribling",
+ "drawing": "Sound section of the MEF00284 board schematic in the Dribbling service manual (doc 64210d7094ce, PDF p. 11) -- via MAME's netlist, compared with it and corrected",
+ "revision": "Dribbling board MEF00284, sound: the TOS tone (two 74LS161s and a 74LS107 loaded from an 8255's port B), crowd noise (74LS164s, a band-pass on an LM324) with the 556 'contrasto', the whistle (556 and 74393), ball stop and save (LM339 comparators, the save through two 2N3819 JFETs), two kick oscillators (twin-T, BC239), mixed into the volume pot.",
+ "coverage": "Converted from MAME's netlist and compared with the sheet, up to the volume pot VR-C's wiper; the TDA2003 amplifier after it is not in MAME, and the filter MAME puts there instead is not on the board.",
+ "singleSource": false,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "dribling-sound",
+ "ics": {
+  "A7": "74LS164",
+  "A8": "74LS164",
+  "B7": "7414",
+  "B8": "74LS86",
+  "B9": "LM339",
+  "C7": "74LS107",
+  "C8": "LM324",
+  "D7": "74LS161",
+  "E7": "74LS161",
+  "E8": "7408",
+  "L9": "7404",
+  "M9": "74393",
+  "N9": "NE556",
+  "Q9": "NE556"
+ },
+ "source": {
+  "mame": "src/mame/modelracing/nl_dribling.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "dribling",
+  "licence": "CC0-1.0",
+  "copyright": "Enzo Lombardi"
+ }
+}

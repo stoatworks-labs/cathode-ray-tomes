@@ -29,11 +29,16 @@ How MAME writes a netlist is read the way MAME reads it: a sub-netlist pulled
 in with INCLUDE is spliced in where it is included, function-like #defines are
 expanded, and a part's named pins (a 7486's A.Q, a CD4006's D1P4) are numbered
 by the DIPPINS table of MAME's own DIP model for it, read from MAME's library
-at the same tag. One op-amp or timer of a multi-section package, declared on
-its own (LM3900(H5_3)), is put on its package's pins by the data sheet's
-section numbering (SECTION_PINS); the target says which declarations are
-sections. Every IC supply pin is checked against the rail it lands on, so a
-part MAME powers backwards fails rather than converting.
+at the same tag. A sub-netlist instanced with SUBMODEL(circuit, NAME) -- one
+copy of the circuit per instance, Dribbling's two kick generators -- is spliced
+in with its names put under NAME, its $(@.PARAM)s filled in from its DEFPARAMs
+and the PARAMs the parent sets; the target says which sub-netlists are
+circuits (`expand`), since others are models of a part. One op-amp or timer
+of a multi-section package, declared on its own (LM3900(H5_3)), is put on its
+package's pins by the data sheet's section numbering (SECTION_PINS); the
+target says which declarations are sections. Every IC supply pin is checked
+against the rail it lands on, so a part MAME powers backwards fails rather
+than converting.
 
 Only files whose header says CC0-1.0 or BSD-3-Clause are converted. The source
 is fetched from MAME's GitHub at a fixed tag into cache/mame/<tag>/, never the
@@ -78,6 +83,7 @@ SWITCHES = [
     (r"DISABLE_\w+", 0, "a connection disabled for speed"),
     (r"SIMPLIFY_\w+|USE_SIMPLIFIED_\w+", 0, "a circuit simplified for speed"),
     (r"SPLIT_SHARED_OSCILLATORS", 0, "one oscillator split in two for speed"),
+    (r"REPLACE_\w+", 0, "a part replaced by a simpler stand-in for speed"),
     (r"USE_AFUNC_MIXING", 0, "behavioural mixer"),
     (r"FAST_\w+", 0, "a speed option"),
     (r"SLOW_BUT_ACCURATE", 1, "the accurate option"),
@@ -110,6 +116,16 @@ SECTION_PINS = {
     # 8-13, GND 7 and VCC 14 shared.
     "NE556": {"1": dict(zip(_555, ("7", "6", "5", "4", "3", "2", "1", "14"))),
               "2": dict(zip(_555, ("7", "8", "9", "10", "11", "12", "13", "14")))},
+    # LM339 (KiCad Comparator:LM339, TI's sheet), from the pins of the one
+    # comparator Dribbling's own LM339 model has: 1 IN+, 2 IN-, 3 V+, 4 V-, 5 OUT.
+    "LM339": {s: dict(zip("12345", (p, m, "3", "12", o))) for s, (p, m, o) in {
+        "1": ("5", "4", "2"), "2": ("7", "6", "1"), "3": ("9", "8", "14"),
+        "4": ("11", "10", "13")}.items()},
+    # A hex inverter's gate n, from a whole package declared to use its first
+    # gate (Dribbling's inverter sub-netlist: in on 1, out on 2).
+    **{inv: {str(s): {"1": a, "2": y, "7": "7", "14": "14"} for s, (a, y) in enumerate(
+        (("1", "2"), ("3", "4"), ("5", "6"), ("9", "8"), ("11", "10"), ("13", "12")), 1)}
+       for inv in ("7404", "7414")},
 }
 # MAME's library, whose DIP models number each part's named pins (DIPPINS).
 LIBRARY = ["src/lib/netlist/macro/nlm_cd4xxx_lib.cpp", "src/lib/netlist/macro/nlm_opamp_lib.cpp",
@@ -131,6 +147,13 @@ VIRTUAL = {"ANALOG_INPUT", "TTL_INPUT", "LOGIC_INPUT", "CLOCK", "VARCLOCK",
 IGNORED = {"SOLVER", "PARAM", "DEFPARAM", "OPTIMIZE_FRONTIER", "NET_MODEL",
            "LOCAL_SOURCE", "LOCAL_LIB_ENTRY", "INCLUDE", "NET_REGISTER_DEV",
            "NETLIST_START", "NETLIST_END", "DIPPINS"}
+CONNECTS = {"NET_C", "ALIAS", "HINT"}          # with IGNORED: the calls that declare nothing
+
+
+def mame(name):
+    """A name as MAME spells it. A part inside a SUBMODEL instance is kept as
+    INSTANCE/PART here, since its pins are PART.PIN; MAME writes INSTANCE.PART."""
+    return name.replace("/", ".")
 
 # ---------------------------------------------------------------------------
 # Fetch
@@ -266,6 +289,7 @@ def preprocess(lines, preset, log):
     defines are forced to their real-circuit value as SWITCHES says."""
     defines = dict(preset)
     funcs = {}
+    off = set()                               # switches forced off: #ifdef finds them undefined
     stack = []                                # [(active, taken_already, parent_active)]
     out = []
     active = True
@@ -280,9 +304,9 @@ def preprocess(lines, preset, log):
             rest = rest.strip()
             if word in ("if", "ifdef", "ifndef"):
                 if word == "ifdef":
-                    cond = rest in defines
+                    cond = rest in defines and rest not in off
                 elif word == "ifndef":
-                    cond = rest not in defines
+                    cond = rest not in defines or rest in off
                 else:
                     cond = bool(c_eval(rest, defines)) if active else False
                 stack.append((active, cond, active))
@@ -291,11 +315,16 @@ def preprocess(lines, preset, log):
                 active = active and cond
             elif word == "elif":
                 parent, taken, _ = stack[-1]
-                cond = (not taken) and parent and bool(c_eval(rest, defines))
+                # An #elif with no condition is a slip for #else (Dribbling's
+                # parata): a compiler never reads it while the branch above is
+                # taken, and MAME always takes it.
+                cond = (not taken) and parent and (not rest or bool(c_eval(rest, defines)))
                 stack[-1] = (parent, taken or cond, parent)
                 active = parent and cond
                 if parent:
                     log.append(("if", n, f"#elif {rest}", cond))
+                    if not rest:
+                        log.append(("bare-elif", n, "", cond))
             elif word == "else":
                 parent, taken, _ = stack[-1]
                 active = parent and not taken
@@ -318,6 +347,10 @@ def preprocess(lines, preset, log):
                 except Exception:
                     v = val
                 forced, why = switch_value(name, v)
+                if why and not forced:
+                    off.add(name)
+                else:
+                    off.discard(name)
                 if why and forced != v:
                     log.append(("switch", n, name, (v, forced, why)))
                 elif why is None and isinstance(v, int) and re.search(
@@ -337,8 +370,10 @@ def preprocess(lines, preset, log):
 # Statements
 # ---------------------------------------------------------------------------
 
-Call = collections.namedtuple("Call", "name args line comment section via", defaults=(None,))
-# `via`: the function-like macro a call was expanded from, if any.
+Call = collections.namedtuple("Call", "name args line comment section via scope",
+                              defaults=(None, ""))
+# `via`: the function-like macro a call was expanded from, if any. `scope`: the
+# SUBMODEL instance it was spliced in from ("CALCIO_A/"), if any.
 
 
 def split_args(s):
@@ -398,14 +433,21 @@ def scan(text, i, where, comments, sections, funcs, line=None, via=None):
     return out
 
 
-def calls(active, netlist, funcs=None):
+def calls(active, netlist, funcs=None, expand=(), params=None):
     """The macro calls in NETLIST_START(<netlist>) { ... }, in order, each with
     its line, the comment on that line, and the section heading above it. A
     netlist of the same file that this one INCLUDEs is spliced in where it is
-    included, as MAME's parser does."""
+    included, as MAME's parser does. One it instances, SUBMODEL(<circuit>,
+    NAME) with <circuit> in `expand`, is spliced in once per instance, the
+    names it declares put under NAME/ -- its parts, aliases and parameters are
+    the instance's own -- and its $(@.PARAM)s filled in: a DEFPARAM is the
+    default, a PARAM the parent sets overrides it, and a second PARAM of one
+    name overrides the first, as MAME's setup does. Those are reported in
+    `params` as (line, name, (line, value) it replaces, value)."""
     # Flatten, remembering where each character came from.
     text, where, comments = "", [], {}
-    section, sections = "", {}
+    section, sections, since = "", {}, {}
+    head_line = 0
     for n, code, comment in active:
         # A comment on a line of its own is a heading if it reads like one
         # (and is not commented-out code). Inside a /* ... */ block the line's
@@ -413,9 +455,10 @@ def calls(active, netlist, funcs=None):
         head = comment.lstrip("* ").rstrip(" *")
         if not code.strip() and re.fullmatch(r"[A-Z0-9][\w &/'(),.:+-]{1,60}", head) \
                 and not re.match(r"[A-Z_0-9]+\(", head):
-            section = head.rstrip(":")
+            section, head_line = head.rstrip(":"), n
         comments[n] = comment
         sections[n] = section
+        since[n] = head_line
         text += code + "\n"
         where += [n] * (len(code) + 1)
 
@@ -436,7 +479,70 @@ def calls(active, netlist, funcs=None):
                 out.append(c)
         return out
 
-    return block(netlist, {netlist})
+    def instance(name, prefix, seen):
+        body = block(name, seen)
+        start = where[re.search(r"NETLIST_START\(\s*%s\s*\)" % re.escape(name), text).start()]
+        own, inst = set(), set()
+        for c in body:
+            if c.name == "SUBMODEL" and len(c.args) > 1:
+                own.add(c.args[1])
+                if c.args[0] in expand:
+                    inst.add(c.args[1])
+            elif c.args and (c.name in ("ALIAS", "DEFPARAM") or
+                             c.name not in IGNORED | CONNECTS):
+                own.add(c.args[0])
+
+        def term(t):
+            t = t.strip()
+            head, dot, rest = t.partition(".")
+            if head in inst and dot:
+                return f"{prefix}{head}/{rest}"     # an instance's alias, or its parameter
+            return prefix + t if head in own else t
+
+        out = []
+        for c in body:
+            a = list(c.args)
+            if c.name == "SUBMODEL" and len(a) > 1 and a[1] in inst:
+                if a[0] in seen:
+                    raise SystemExit(f"SUBMODEL({a[0]}) instances itself")
+                out += instance(a[0], f"{prefix}{a[1]}/", seen | {a[0]})
+                continue
+            if c.name == "NET_C":
+                a = [term(x) for x in a]
+            elif c.name == "ALIAS":
+                a = [term(x) for x in a]
+            elif c.name in ("HINT", "PARAM", "DEFPARAM"):
+                a = [term(a[0])] + a[1:]
+            elif c.name == "SUBMODEL" and len(a) > 1:
+                a = [a[0], prefix + a[1]]
+            elif a and c.name not in IGNORED | CONNECTS:
+                a = [prefix + a[0]] + a[1:]
+            if prefix:
+                # An instance's nets go under its name, with a heading of the
+                # sub-netlist's own (FOLLA: CONTRASTO), not one above it in the file.
+                own_head = c.section if since.get(c.line, 0) > start else ""
+                c = c._replace(section=mame(prefix[:-1]) + (": " + own_head if own_head else ""))
+            out.append(c._replace(args=a, scope=prefix))
+        return out
+
+    out = instance(netlist, "", {netlist})
+    if not any(c.scope for c in out):
+        return out
+    vals, set_by = {}, {}
+    for c in out:
+        if c.name == "DEFPARAM":
+            vals.setdefault(c.args[0], c.args[1])
+    for c in out:
+        if c.name == "PARAM" and "/" in c.args[0]:
+            if c.args[0] in set_by and params is not None:
+                params.append((c.line, c.args[0], set_by[c.args[0]], c.args[1]))
+            vals[c.args[0]] = c.args[1]
+            set_by[c.args[0]] = (c.line, c.args[1])
+
+    def fill(c, s):
+        return re.sub(r"\$\(@\.(\w+)\)", lambda m: vals[c.scope + m.group(1)], s)
+    return [c._replace(args=[fill(c, a) for a in c.args]) if "$(" in "".join(c.args) else c
+            for c in out]
 
 
 def commented_calls(lines, netlist_range):
@@ -463,12 +569,15 @@ def value(expr, defines):
     """(printed value, [constants it was scaled by]). Printed in the unit
     MAME's own macro used, which is the unit the schematic printed."""
     expr = expr.strip()
-    m = re.fullmatch(r"(RES_K|RES_M|RES_R|CAP_U|CAP_N|CAP_P)\(\s*([\d.eE+-]+)\s*\)(.*)", expr)
+    m = re.fullmatch(r"(RES_K|RES_M|RES_R|CAP_U|CAP_N|CAP_P)\(\s*([\d.eE+-]+)\s*"
+                     r"(?:\+\s*([A-Za-z_]\w*)\s*)?\)(.*)", expr)
     scaled = []
     if m:
-        unit, num, rest = m.group(1), m.group(2), m.group(3).strip()
+        unit, num, added, rest = m.group(1), m.group(2), m.group(3), m.group(4).strip()
+        if added:
+            scaled = ["+ " + added]                 # RES_K(220 + ATTENUATE_FOLLA)
         if rest:
-            scaled = re.findall(r"[A-Za-z_]\w*", rest) or [rest]
+            scaled += re.findall(r"[A-Za-z_]\w*", rest) or [rest]
         num = num.rstrip("0").rstrip(".") if "." in num else num
         suffix = UNIT[unit][1]
         return (num + suffix) if suffix else num, scaled
@@ -580,12 +689,16 @@ def convert(slug, cfg):
         if not any("/*" in l or "*/" in l or l.strip().startswith("//") for l in raw[a - 1:b]):
             raise SystemExit(f"{slug}: restore {a}-{b} is not commented out")
 
-    cs = calls(active, cfg["netlist"], funcs)
+    params = []
+    cs = calls(active, cfg["netlist"], funcs, cfg.get("expand", ()), params)
+    log += [("param", n, name, (was, now)) for n, name, was, now in params]
     devices, aliases, nets, hints, scaled, used_undo = {}, {}, [], [], [], set()
     rename = cfg.get("rename", {})
     section_of = {}                             # MAME name -> (package, section)
     modelled = []                               # (device, stock part, why)
-    sections = [(macro, re.compile(rx), part) for macro, rx, part in cfg.get("sections", ())]
+    # (macro, name pattern, part, and the package and section when the name
+    # does not say them -- Dribbling's LM339 is SUBMODEL(LM339, STOP_PALLA/IC_B9))
+    sections = [(e[0], re.compile(e[1]), e[2], tuple(e[3:])) for e in cfg.get("sections", ())]
     for c in cs:
         if c.line in undo and undo[c.line].get("action") == "drop-line":
             used_undo.add(c.line)
@@ -602,15 +715,18 @@ def convert(slug, cfg):
             if c.args[1] == "NC":
                 hints.append((c.args[0], c))
             continue
-        sec = next(((m, part) for macro, rx, part in sections
-                    for m in [rx.fullmatch(c.args[0])] if macro == c.name and m), None)
+        macro, name = ((c.args[0], c.args[1]) if c.name == "SUBMODEL" and len(c.args) > 1
+                       else (c.name, c.args[0] if c.args else ""))
+        sec = next(((m, part, fixed) for mac, rx, part, fixed in sections
+                    for m in [rx.fullmatch(name)] if mac == macro and m), None)
         if sec:
             # One section of a package, declared alone: the package is the part.
             # IC_ keeps the package's name apart from a passive's (Super Speed
-            # Race has an LM3900 at C1 and a capacitor C1).
-            m, part = sec
-            pkg = "IC_" + m.group(1)
-            section_of[c.args[0]] = (pkg, m.group(2))
+            # Race has an LM3900 at C1 and a capacitor C1); a package the target
+            # names outright is that device, which may be declared whole as well.
+            m, part, fixed = sec
+            pkg, num = fixed if fixed else ("IC_" + m.group(1), m.group(2))
+            section_of[name] = (pkg, num)
             if pkg not in devices:
                 devices[pkg] = Device(pkg, "IC", part, part, c.line, c.comment, c.section,
                                       "sections of " + part)
@@ -662,6 +778,7 @@ def convert(slug, cfg):
     # no device, whatever its spelling.)
     used = {t.strip().partition(".")[0] for c in nets for t in c.args if t.strip() not in aliases}
     used |= {t.partition(".")[0] for t, _ in aliases.values()}
+    used = {rename.get(n, n) for n in used}         # a part the target renames is declared
     for name in sorted(used - set(devices) - set(aliases) - {"GND"}):
         for n, code, comment in lines:
             m = re.match(r"\s*(\w+)\(\s*%s\s*[,)](.*)" % re.escape(name), comment)
@@ -699,7 +816,7 @@ def convert(slug, cfg):
             except ValueError:
                 continue
             if volts == 0:
-                if GROUND_NAME.fullmatch(d.name):
+                if GROUND_NAME.fullmatch(d.name.rpartition("/")[2]):
                     rails[d.name] = "GND"
             elif volts in RAIL_VOLTS:
                 rails[d.name] = ("+" if volts > 0 else "-") + f"{abs(volts):g}V"
@@ -889,7 +1006,9 @@ def convert(slug, cfg):
         pins = sorted(m for m in members if "." in m and not m.startswith("~"))
         rail = sorted({m for m in members if "." not in m})
         virt = sorted(m for m in members if m.startswith("~") and m not in wires)
-        names = [a for a in alias_of[root] if a not in rails]
+        # In MAME's spelling, and a name the circuit gives a net (OUTPUT) before
+        # the one a sub-circuit gives its own end of it (CALCIO_A.INPUT).
+        names = sorted((mame(a) for a in alias_of[root] if a not in rails), key=lambda a: "." in a)
         if len(rail) > 1:
             raise SystemExit(f"rails shorted together: {rail} via {pins[:6]}")
         if not pins:
@@ -947,7 +1066,8 @@ def designator(cfg, dev):
         return m[dev.name]
     if dev.kind == "IC":
         # IC_A7, IC6, U8, and Namco's _6F (a name cannot start with a digit).
-        r = re.fullmatch(r"(?:IC_|IC|U|_)([A-Z]?\d+[A-Z]?)", dev.name) or \
+        # An IC inside a SUBMODEL instance is named by its board position alone.
+        r = re.fullmatch(r"(?:IC_|IC|U|_)([A-Z]?\d+[A-Z]?)", dev.name.rpartition("/")[2]) or \
             re.fullmatch(cfg.get("ic_names", r"(?!)"), dev.name)
         if r:
             return "U" + r.group(1)
@@ -957,7 +1077,9 @@ def designator(cfg, dev):
         r = re.fullmatch(strip, dev.name)
         if r:
             return r.group(1)
-    return dev.name
+    # A part inside a SUBMODEL instance: the instance names it, since every
+    # instance of a sub-circuit has the same part names (CALCIO_A_R45).
+    return dev.name.replace("/", "_")
 
 
 TARGET_TITLES = {}                      # board slug -> title, for cross-board comments
@@ -1025,8 +1147,9 @@ def split(res, cfg):
 
 
 def port_name(net, devices):
-    if net["names"]:
-        return net["names"][0]
+    named = [x for x in net["names"] if "." not in x]
+    if named or not net["virt"]:
+        return (named or net["names"])[0]
     v = net["virt"][0][1:]
     dev = v.partition(".")[0]
     return re.sub(r"^I_", "", dev)
@@ -1117,17 +1240,31 @@ def write(res, out_path, board_path):
     for kind, n, name, v in r["log"]:
         if kind == "unknown-switch":
             w(f"# line {n}: #define {name} {v} -- kept as MAME has it (not a known kind of hack)")
+        elif kind == "bare-elif":
+            w(f"# line {n}: an #elif with no condition, read as the #else it was meant to be -- "
+              "MAME's compiler never reads it, because MAME takes the branch above")
+        elif kind == "param":
+            (was_line, was), now = v
+            w(f"# line {n}: PARAM({mame(name)}, {now}) sets it again after line {was_line} set "
+              f"{was}; MAME keeps the last, and so does this file unless a correction says otherwise")
     for dev, sc in r["scaled"]:
-        w(f"# line {dev.line}: {dev.name} written as {dev.value}, without the {' '.join(sc)} "
-          "MAME multiplies it by")
+        adds = [s[2:] for s in sc if s.startswith("+ ")]
+        sc = [s for s in sc if not s.startswith("+ ")]
+        if adds:
+            consts = " ".join(f"{a} ({r['defines'].get(a)})" for a in adds)
+            w(f"# line {dev.line}: {mame(dev.name)} written as {dev.value}, without the {consts} "
+              "MAME adds to it")
+        if sc:
+            w(f"# line {dev.line}: {mame(dev.name)} written as {dev.value}, without the {' '.join(sc)} "
+              "MAME multiplies it by")
     for c, why, _ in r["dropped"]:
-        w(f"# line {c.line}: dropped NET_C({', '.join(c.args)}) -- {why}")
+        w(f"# line {c.line}: dropped NET_C({', '.join(map(mame, c.args))}) -- {why}")
     for c, pins, why in r["made_nc"]:
         if why == "MAME's own HINT(NC)":
             continue
-        w(f"# line {c.line}: NET_C({', '.join(c.args)}) -> nc -- {why}")
+        w(f"# line {c.line}: NET_C({', '.join(map(mame, c.args))}) -> nc -- {why}")
     for c, why in r.get("kept", []):
-        w(f"# line {c.line}: NET_C({', '.join(c.args)}) kept, though MAME files it as a tie-off -- "
+        w(f"# line {c.line}: NET_C({', '.join(map(mame, c.args))}) kept, though MAME files it as a tie-off -- "
           f"{why}")
     for c, pins in r.get("used_ties", []):
         if c.name == "HINT":
@@ -1145,9 +1282,12 @@ def write(res, out_path, board_path):
         w("# Declarations MAME comments out but the restored circuit uses, restored: " +
           ", ".join(f"{des[name]} (line {n})" for (n, _), (_, _, name) in zip(revived, r["revived"])))
     if r.get("fixes") or cfg.get("add"):
+        # Names given to the pins where MAME's netlist stops are not corrections.
+        names_only = not r.get("fixes") and not cfg.get("add_parts") and all(
+            len(a["terms"]) == 1 and a.get("name") for a in cfg["add"])
         w("#")
-        w("# Corrected from " + cfg.get("corrected_from",
-                                       "the sheet (the notes below say what was read where)") + ":")
+        w(("# Port names from " if names_only else "# Corrected from ") +
+          cfg.get("corrected_from", "the sheet (the notes below say what was read where)") + ":")
         for text, names in r.get("fixes", []):
             w(f"#   {text.replace(names[0], des.get(names[0], names[0]), 1)}")
         added = [p for p in cfg.get("add_parts", []) if p["name"] in devices]
@@ -1169,13 +1309,13 @@ def write(res, out_path, board_path):
             f"{des[p]} {devices[p].value}" for p in sorted(r["parked"], key=nat)))
     for d in sorted(devices.values(), key=lambda d: d.line):
         if d.macro.startswith(("not a part: ", "load: ")):
-            w(f"# line {d.line}: {d.name} is not a part -- {d.macro.partition(': ')[2]}")
+            w(f"# line {d.line}: {mame(d.name)} is not a part -- {d.macro.partition(': ')[2]}")
         elif d.macro.startswith("short: "):
-            w(f"# line {d.line}: {d.name} is not a part, and its two ends are one node here -- "
+            w(f"# line {d.line}: {mame(d.name)} is not a part, and its two ends are one node here -- "
               f"{d.macro.partition(': ')[2]}")
     for name in sorted(r.get("series", ()), key=nat):
         if name in devices:
-            w(f"# line {devices[name].line}: {devices[name].macro}({name}) is MAME's noise source in "
+            w(f"# line {devices[name].line}: {devices[name].macro}({mame(name)}) is MAME's noise source in "
               "series with the zener it models the noise of; its two ends are one node here")
     by_value = collections.OrderedDict()
     for dev, val, why in r.get("renamed", ()):
@@ -1195,14 +1335,14 @@ def write(res, out_path, board_path):
     if packages:
         w("# MAME declares one section of these packages at a time; each is written on its package's")
         w("# pins by the data sheet's numbering of the sections (SECTION_PINS in the converter): " +
-          "; ".join(f"{des[p]} {devices[p].part} ({', '.join(sorted(s, key=nat))})"
+          "; ".join(f"{des[p]} {devices[p].part} ({', '.join(mame(x) for x in sorted(s, key=nat))})"
                     for p, s in sorted(packages.items(), key=lambda kv: nat(kv[0]))))
     virt = [d for d in devices.values() if d.kind == "V" and d.macro != "ANALOG_INPUT"
             and not d.macro.startswith(("not a part: ", "load: ", "short: "))
             and d.name not in r.get("series", ())]
     if virt:
         w("# Stand-ins that are not parts (the nets they drive are ports): " +
-          ", ".join(f"{d.macro}({d.name})" for d in sorted(virt, key=lambda d: d.line)))
+          ", ".join(f"{d.macro}({mame(d.name)})" for d in sorted(virt, key=lambda d: d.line)))
     for note in cfg.get("undo_notes", []):
         for i, line in enumerate(note.strip().split("\n")):
             w(("# " + line).rstrip())
@@ -1232,13 +1372,13 @@ def write(res, out_path, board_path):
     by_des = sorted(devices.items(), key=lambda kv: nat(des.get(kv[0], "")))
     for name, d in by_des:
         if d.kind == "IC":
-            extra = f"  (MAME: {d.name})" if des[name][1:] != re.sub(r"^(IC_|IC|U)", "", name) else ""
+            extra = f"  (MAME: {mame(d.name)})" if des[name][1:] != re.sub(r"^(IC_|IC|U)", "", name) else ""
             w(f"# part {des[name]} {d.part}{extra}")
     w("")
     for kind in ("R", "POT", "C", "D", "Q", "Y", "SW"):
         for name, d in by_des:
             if d.kind == kind and name not in r["parked"]:
-                extra = [f"MAME: {name}"] if des[name] != name else []
+                extra = [f"MAME: {mame(name)}"] if des[name] != name else []
                 if d.macro != "sheet" and VALUE_NOTE.search(d.comment or ""):
                     # What MAME says about a value travels with it (Tank Battalion's R46:
                     # "Possible schematic or scan-quality error: Schematic says 47K").
@@ -1268,7 +1408,7 @@ def write(res, out_path, board_path):
             if loads and len(loads) == len(n["virt"]):
                 n = dict(n, virt=[])
                 if len(n["pins"]) == 1 and not leaves:
-                    w(f"nc {pins}  # MAME hangs {loads[0].name} on it: {loads[0].macro[6:]}")
+                    w(f"nc {pins}  # MAME hangs {mame(loads[0].name)} on it: {loads[0].macro[6:]}")
                     continue
             if n["rail"]:
                 w(f"net {n['rail']}: {pins}")
@@ -1292,9 +1432,9 @@ def write(res, out_path, board_path):
                 for d in virt_devs:
                     if devices[d].macro.startswith("not a part: "):
                         why_not.setdefault(devices[d].macro[12:], []).append(d)
-                srcs = ", ".join(sorted({f"{devices[d].macro}({d})" for d in virt_devs
+                srcs = ", ".join(sorted({f"{devices[d].macro}({mame(d)})" for d in virt_devs
                                          if not devices[d].macro.startswith("not a part: ")}) +
-                                 [f"{', '.join(ds)}, not part{'s' if len(ds) > 1 else ''}: {w_}"
+                                 [f"{', '.join(map(mame, ds))}, not part{'s' if len(ds) > 1 else ''}: {w_}"
                                   for w_, ds in why_not.items()])
                 why = f"  # in MAME: {srcs}" if srcs else f"  # {r['port_names'][leaves[0]]}"
                 w(f"{port} {port_name(n, devices)}: {pins}{why}")

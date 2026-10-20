@@ -1,0 +1,22 @@
+{
+ "name": "1942 PSG filters and mix",
+ "mfr": "Capcom",
+ "year": "1984",
+ "machine": "1942",
+ "drawing": "MAIN AMP., sheet 84100-01A-2 4/8 of the 1942 schematics (doc 27d4fd762a04, PDF p. 4) -- via MAME's netlist, compared with it",
+ "revision": "1942 A board (84100-01A), main amp sheet: each of the two AY-3-8910s' six channels through a 10K load, a 10uF capacitor and a 220K mixing resistor into the 2K volume pot, then to the MB3731 power amplifier's input.",
+ "coverage": "Converted from MAME's netlist and compared with the sheet, up to the MB3731 amplifier's pins 1 and 5; the amplifier, its supply and the edge connector are not in MAME.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "1942-sound",
+ "ics": {},
+ "source": {
+  "mame": "src/mame/capcom/nl_1942.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "1942",
+  "licence": "BSD-3-Clause",
+  "copyright": "Couriersud"
+ }
+}

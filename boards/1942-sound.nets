@@ -1,0 +1,117 @@
+# 1942 PSG filters and mix -- netlist converted from MAME
+#
+# Couriersud's netlist of 1942's audio mix: the two AY-3-8910s on sheet 3/8, 1PSG at A11
+# and 2PSG at A10, each with three channels into the main amp sheet. MAME feeds each
+# channel in through a 1K resistor from +5V that stands for the AY's own output (R_AY1_1
+# ... R_AY2_3, AY 1 channel 1 being the sheet's 1PSGA); those are ports here, named as the
+# sheet names the lines. Each channel has its own 10K load to ground (R11-R16), coupling
+# capacitor (CC7-CC12) and 220K mixing resistor (R2-R7); the mix goes to the volume pot VR
+# and through CC6 to the MB3731 bridge amplifier at A1, where MAME's netlist ends.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/capcom/nl_1942.cpp,
+# NETLIST_START(1942). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Couriersud (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/capcom/nl_1942.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+#
+# Port names from the main amp sheet (84100-01A-2 4/8), for the amplifier pins MAME's netlist ends on:
+#   CC6 and R1 meet at the MB3731's input, A1 pin 1: CC6.2 (A1_1)
+#   R1's other end and CC3 (220uF) are on A1 pin 5: CC3.1 (A1_5)
+# line 19: 1PSGA is not a part -- the AY-3-8910's own output resistance on 1PSGA, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+# line 20: 1PSGB is not a part -- the AY-3-8910's own output resistance on 1PSGB, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+# line 21: 1PSGC is not a part -- the AY-3-8910's own output resistance on 1PSGC, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+# line 22: 2PSGA is not a part -- the AY-3-8910's own output resistance on 2PSGA, which MAME draws as a 1K resistor from +5V (R_AY2_1)
+# line 23: 2PSGB is not a part -- the AY-3-8910's own output resistance on 2PSGB, which MAME draws as a 1K resistor from +5V (R_AY2_2)
+# line 24: 2PSGC is not a part -- the AY-3-8910's own output resistance on 2PSGC, which MAME draws as a 1K resistor from +5V (R_AY2_3)
+#
+# Compared with the MAIN AMP. sheet, 84100-01A-2 4/8 (doc 27d4fd762a04, PDF p. 4; the scan
+# is legible throughout), and sheet 3/8 for where the PSG lines come from, on 2026-10-20:
+# every net and value in this file agrees. The channels are 2PSGC through R13, CC7 and R2;
+# 2PSGB R15, CC8, R3; 2PSGA R11, CC9, R4; 1PSGC R12, CC10, R5; 1PSGB R14, CC11, R6; 1PSGA
+# R16, CC12, R7 -- '10K x 6', '10uF/16V x 6', '220K x 6' -- into VR (2K, pin 1 the mix, 2
+# the wiper, 3 ground), CC6 10uF to A1 pin 1, R1 100K from there to pin 5, and CC3 220uF
+# from pin 5 to ground. On sheet 3/8 the PSG lines leave the AY-3-8910s' analogue outputs
+# (C on pin 38, B on 3, A on 4) with nothing between them and this sheet. On every
+# electrolytic here the + end is MAME's pin 1 except CC6, whose + end faces the amplifier
+# (pin 2).
+#
+# On the sheet and not in MAME: the MB3731 at A1 -- CC5 10uF on pin 4, pins 3, 7 and the
+# tab to ground, CC1 and CC2 (100uF) bootstrapping pins 12-10 and 9-8, the bridged outputs
+# 10 and 8 to edge pins 6/F and 5/E with C1-C3 (0.15uF Mylar, '154 x 3') -- and its +12V on
+# pin 11, with C4 0.1uF and CC4 470uF, from edge pins 3/C and 4/D.
+
+
+value R1 100000
+value R2 220000
+value R3 220000
+value R4 220000
+value R5 220000
+value R6 220000
+value R7 220000
+value R11 10000
+value R12 10000
+value R13 10000
+value R14 10000
+value R15 10000
+value R16 10000
+value VR 2000
+value CC3 220e-6
+value CC6 10e-6
+value CC7 10e-6
+value CC8 10e-6
+value CC9 10e-6
+value CC10 10e-6
+value CC11 10e-6
+value CC12 10e-6
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: CC3.2 R11.2 R12.2 R13.2 R14.2 R15.2 R16.2 VR.3
+
+# ---------------------------------------------------------------------------
+# AY 8910 internal resistors
+# ---------------------------------------------------------------------------
+port 2PSGC: CC7.1 R13.1  # in MAME: 2PSGC, not part: the AY-3-8910's own output resistance on 2PSGC, which MAME draws as a 1K resistor from +5V (R_AY2_3)
+wire CC7.2 R2.1
+port 2PSGB: CC8.1 R15.1  # in MAME: 2PSGB, not part: the AY-3-8910's own output resistance on 2PSGB, which MAME draws as a 1K resistor from +5V (R_AY2_2)
+wire CC8.2 R3.1
+port 2PSGA: CC9.1 R11.1  # in MAME: 2PSGA, not part: the AY-3-8910's own output resistance on 2PSGA, which MAME draws as a 1K resistor from +5V (R_AY2_1)
+wire CC9.2 R4.1
+port 1PSGC: CC10.1 R12.1  # in MAME: 1PSGC, not part: the AY-3-8910's own output resistance on 1PSGC, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+wire CC10.2 R5.1
+port 1PSGB: CC11.1 R14.1  # in MAME: 1PSGB, not part: the AY-3-8910's own output resistance on 1PSGB, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+wire CC11.2 R6.1
+port 1PSGA: CC12.1 R16.1  # in MAME: 1PSGA, not part: the AY-3-8910's own output resistance on 1PSGA, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+wire CC12.2 R7.1
+wire R2.2 R3.2 R4.2 R5.2 R6.2 R7.2 VR.1
+wire CC6.1 VR.2
+port A1_1: CC6.2 R1.1  # the MB3731 power amplifier's input (A1 pin 1), which MAME does not simulate
+port A1_5: CC3.1 R1.2  # MB3731 pin 5, held by R1 and CC3; the amplifier is not in MAME
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------

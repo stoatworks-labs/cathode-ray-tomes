@@ -1,0 +1,22 @@
+{
+ "name": "Coco Loco sound mixer",
+ "mfr": "Petaco S.A.",
+ "year": "1981",
+ "machine": "cocoloco",
+ "drawing": "Coco Loco schematic, which this site does not hold -- via MAME's netlist",
+ "revision": "Coco Loco, sound: the AY-3-8910's three channels through 4.7K resistors into a 5K volume pot, and through 10uF to the LM383 amplifier.",
+ "coverage": "Converted from MAME's netlist, up to the LM383 power amplifier's input; the amplifier is not in MAME.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "cocoloco-sound",
+ "ics": {},
+ "source": {
+  "mame": "src/mame/misc/nl_cocoloco.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "cocoloco",
+  "licence": "CC0-1.0",
+  "copyright": "Couriersud"
+ }
+}

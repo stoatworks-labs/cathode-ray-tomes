@@ -81,6 +81,8 @@ KICAD = {
     "CD4070": "4xxx:4070", "LM2902": "Amplifier_Operational:LM2902",
     "LM358": "Amplifier_Operational:LM358", "MC14584B": "4xxx:40106",
     "CD4030": "4xxx:4070",          # the older quad XOR, the 4070's pinout
+    # Dribbling's: plain-TTL names MAME's models use, and the quad comparator.
+    "74161": "74xx:74LS161", "74393": "74xx:74LS393", "LM339": "Comparator:LM339",
 }
 # Electrical types that may share a net with another driver.
 LETS_GO = {"open_collector", "open_emitter", "tri_state", "bidirectional", "passive"}

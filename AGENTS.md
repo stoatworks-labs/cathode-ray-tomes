@@ -970,6 +970,53 @@ circuit.
   board, so which timer of each 556 a sound uses is assumed), System 16B (no schematic on
   the site).
 
+**The third batch (2026-10-20), all passing with 0 problems:** the last three small,
+licence-clean, DIP-level files whose machines are on the site. 1942's PSG filters and mix
+(`1942-sound`, Couriersud, BSD-3) and Coco Loco's mixer (`cocoloco-sound`, Couriersud, CC0)
+are passive circuits behind AY-3-8910s, ending where MAME's netlist ends, on the power
+amplifier's input. Dribbling (`dribling-sound`, Enzo Lombardi, CC0) is a whole discrete
+sound section, and needed the converter to read more of how MAME writes netlists:
+
+- **`SUBMODEL(circuit, NAME)` of a sub-netlist in the same file is a copy of a circuit,
+  or a model of a part, and only the target can say which** (`expand` lists the circuits).
+  Dribbling's kick is one sub-netlist instanced twice; each instance is spliced in with its
+  names under NAME/ -- written CALCIO_A_R45, MAME's CALCIO_A.R45 -- so two instances never
+  share a part, and two sub-netlists may reuse a name (stop_palla's and parata's Q1, R5-R9).
+  Its `$(@.PARAM)`s are filled from its DEFPARAMs and the parent's PARAMs, the last PARAM of
+  a name winning, as in MAME -- which is how MAME's slip shows: Dribbling sets each kick's
+  CAP1 twice where it meant CAP1 and CAP2, and the header says so. The sub-netlist not
+  listed, LM339, is MAME's model of one comparator.
+- **`sections` can name the package outright** -- (macro, regex, part, package, section) --
+  where the declaration's name does not say it: the two LM339 comparators (B9 sections 1
+  and 4), and MAME's generic inverter sub-netlist, a whole 7414 per gate, put on the gates
+  of B7 and L9 the sheet draws.
+- `#ifdef` of a switch the converter forces off is false (REPLACE_PARATA_JFET_WITH_DIODES),
+  and an `#elif` with no condition is read as `#else`. Dribbling's real-circuit branch for
+  the save has never been compiled -- it opens with a bare `#elif` and uses a second JFET it
+  never declares, which the target declares from the sheet.
+- A constant added inside a value (`RES_K(220 + ATTENUATE_FOLLA)`) is undone like a
+  multiplied one. A net named only by a sub-circuit's own end (CALCIO_A.INPUT) is a port
+  named after what drives it (CALCIO_A, the TTL_INPUT), and an instance's nets are grouped
+  under its name. An `add` that only names a pin where MAME's netlist stops is headed "Port
+  names from", not "Corrected from" -- one comment line in `sspeedr-sound.nets` changed with
+  it, and no statement in any earlier board.
+
+Compared with the sheet:
+
+- **1942**, against MAIN AMP. 84100-01A-2 4/8 (doc 27d4fd762a04, PDF p. 4): every net and
+  value agrees, all six channels, the volume pot and the amplifier's input network.
+- **Dribbling**, against the sound section of the MEF00284 sheet (doc 64210d7094ce, PDF
+  p. 11): MAME's topology agrees everywhere, and its IC pins wherever the sheet prints them.
+  Corrected: kick A's supply resistors are on +12 (B's arrows are unlabelled and taken as
+  A's), the trimmers VR-A and VR-B are pots, not 1.9K, the twin-T capacitors are the sheet's
+  (MAME's PARAM slip), the whistle and save enter the mix through 100K and 47K, not 220K and
+  100K, the save's output has a 1K source resistor, D7/E7 are LS161s and L9 a '04. MAME's
+  output filter is its own anti-aliasing low-pass, not a part; the volume pot VR-C is put
+  back where it stood. The drafter's crossed 7 reads like a 2, and MAME read the mark both
+  ways, so five '4,2uF' capacitors are left open. The crowd block prints 7A, 8A, 8B and 7B
+  where the rest prints letter first; 7B is B7, which makes six B7 gates used once each.
+- **Coco Loco**: unchecked -- the site holds no Coco Loco document.
+
 **What does not convert, and why** (survey in the shared notes, `mame-netlist-survey.md`):
 
 - **Gate-level netlists.** `TTL_7400_NAND(ic_e4a, ...)` names a gate, not a package or a
@@ -988,9 +1035,9 @@ circuit.
 - Milton Bradley's Electronic Battleship (`nl_bship`) and VTech's Game Machine
   (`nl_gamemachine`): CC0 and DIP-level, and they would convert, but they are handhelds
   with no machine page on the site, and a board here has to name one.
-- Not attempted in either batch, and small: Capcom 1942's output filter (`nl_1942`), Coco
-  Loco and Dribbling, whose machines are on the site; JPM's SRU, Moog's Source and the
-  SFX Phasor, whose are not.
+- Not attempted, and small: JPM's SRU, Moog's Source and the SFX Phasor, whose machines
+  are not on the site. Every licence-clean, DIP-level netlist with a machine here is now
+  converted.
 
 Traps:
 
@@ -1496,6 +1543,13 @@ convention and legitimately uses G.
   against any sheet; anything the sheets do not draw (IC supply pins almost everywhere,
   spare gates, the MB4391's supplies, which MB3730 pin is FB); and the readers' work itself,
   which was not re-read by a second pair of eyes.
+- **The third batch** (2026-10-20): 1942, Coco Loco and Dribbling pass `build_board_nets.py`
+  with no problems. 1942 was compared with its sheet in full, and Dribbling sub-circuit by
+  sub-circuit with every value it prints, each correction checked against a crop of the
+  scan. Not verified: Coco Loco against anything (the site has no document); Dribbling's
+  five '4,2uF' capacitors, kick B's +12 (inferred from A's), which of the board's two +12V
+  rails the kicks use, the A7/A8/B8 designators (the grid convention, not a reading), and
+  anything beyond the sound section of the sheet. The reading was one pass by one reader.
 - None of the MAME conversions is redrawn in KiCad or published; they are netlists only.
 - **The MAME PCB layouts are a parser's reading of hand-drawn ASCII.** About fifteen were
   read against their source by eye while the parser was built, and `check_pages.py` proves

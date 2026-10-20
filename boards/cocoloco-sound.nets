@@ -1,0 +1,83 @@
+# Coco Loco sound mixer -- netlist converted from MAME
+#
+# Couriersud's netlist of Coco Loco's sound: the AY-3-8910's three channels, each through
+# 4.7K (R1-R3), summed on the 5K volume pot P1, whose wiper goes through C1 (10uF) to the
+# 7W LM383T amplifier that MAME's file says it does not include. The AY's outputs and the
+# amplifier's input are ports here; MAME's 1K resistors standing for the AY's output
+# resistance and its 150K standing for the amplifier's input are not parts.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/misc/nl_cocoloco.cpp,
+# NETLIST_START(cocoloco). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Couriersud (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/misc/nl_cocoloco.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+#
+# Port names from MAME's own comment ('7W LM383T Amplifier not included below'):
+#   C1 goes to the LM383's input: C1.2 (AMP_IN)
+# line 23: AY_A is not a part -- the AY-3-8910's own output resistance on channel A, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+# line 24: AY_B is not a part -- the AY-3-8910's own output resistance on channel B, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+# line 25: AY_C is not a part -- the AY-3-8910's own output resistance on channel C, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+# line 30: RAMP is not a part -- the LM383 amplifier's input resistance, which MAME draws as a 150K resistor to ground (a 150 ohm one is commented out beside it) -- the amplifier itself is 'not included', its file says
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#
+# MAME's file also has a C2 (0.1uF from the amplifier's input to ground) inside '#if 0', so
+# neither MAME nor this file has it; whether the board does is not on anything the site
+# holds. P1 is set to half way in MAME (PARAM(P1.DIAL, 0.5)), which says nothing about the
+# board.
+#
+# Not compared with the sheet: the site holds no Coco Loco document at all (read
+# 2026-10-20).
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+
+value R1 4700
+value R2 4700
+value R3 4700
+value P1 5000
+value C1 10e-6
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: P1.3
+
+# ---------------------------------------------------------------------------
+# AY 8910 internal resistors
+# ---------------------------------------------------------------------------
+port AY_A: R1.1  # in MAME: AY_A, not part: the AY-3-8910's own output resistance on channel A, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+port AY_B: R2.1  # in MAME: AY_B, not part: the AY-3-8910's own output resistance on channel B, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+port AY_C: R3.1  # in MAME: AY_C, not part: the AY-3-8910's own output resistance on channel C, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+wire P1.1 R1.2 R2.2 R3.2
+wire C1.1 P1.2
+port AMP_IN: C1.2  # in MAME: RAMP, not part: the LM383 amplifier's input resistance, which MAME draws as a 150K resistor to ground (a 150 ohm one is commented out beside it) -- the amplifier itself is 'not included', its file says
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------

@@ -47,7 +47,7 @@
 # line 45: #define REMOVE_POST_CRASH_NOISE_GLITCHES 1 -> 0 (a voltage limiter MAME adds on an op-amp output)
 # line 616: NET_C(GND, A2.10, A2.11, A2.12, B1.6, B1.8, B1.9) -> nc -- tied to GND in MAME's "Switches A2_D and B1_C are unused." block
 #
-# Corrected from the audio board schematic (M051-00762-A003, manual p. 31):
+# Port names from the audio board schematic (M051-00762-A003, manual p. 31):
 #   the audio board schematic: J1 pin 10 is 'AUDIO 0 deg', pin 4 of the 4-pin connector -- the second output of the bridge: UJ1.10 (AUDIO_0)
 # MAME declares one section of these packages at a time; each is written on its package's
 # pins by the data sheet's numbering of the sections (SECTION_PINS in the converter): UA1 LM3900 (A1_1, A1_2, A1_3, A1_4); UC1 LM3900 (C1_1, C1_2, C1_3, C1_4); UH2 LM3900 (H2_1, H2_2, H2_3, H2_4); UJ1 LM3900 (J1_1, J1_2, J1_4)

@@ -18,7 +18,13 @@ in the file is simulation rather than circuit:
   not_parts   {MAME name: why}: a part MAME adds that stands in for something
               the board has (a sound chip's output); its nets become ports
   loads       {MAME name: why}: a dummy load MAME hangs on a pin the board
-              leaves open; the pin becomes nc
+              leaves open; the pin becomes nc. Also anything else MAME hangs
+              on a net that is not on the board and does not make it a port
+              (a model of a junction, a filter of MAME's own); a SUBMODEL
+              instance named here is not expanded
+  expand      [sub-netlist]: the sub-netlists of the file that are circuits,
+              spliced in once per SUBMODEL instance under its name (CALCIO_A/
+              R45); one not listed is a part (Dribbling's LM339)
   ports       {alias: why}: named nets that leave the board (the audio output)
   designators {MAME name: designator} where the rule (IC_A7 -> UA7, U8 -> U8,
               IC6 -> U6, _6F -> U6F, passives as written) is not enough
@@ -26,7 +32,10 @@ in the file is simulation rather than circuit:
               that names ICs some other way (MC3340_H2 -> UH2)
   sections    [(macro, regex, part)]: declarations of one section of a
               package (LM3900(H5_3) is amplifier 3 of the LM3900 at H5); the
-              regex's groups are the package and the section
+              regex's groups are the package and the section. Or (macro,
+              regex, part, package, section) where the name does not say them:
+              the package is then that device's name. For SUBMODEL(model, X)
+              the macro is the model
   models      {MAME model: (stock part, why)}: a model MAME builds of a stock
               part under its own name (LM324_VM5V12 is an LM324)
   shorts      {MAME name: why}: a part MAME puts in series where the board has
@@ -1945,4 +1954,313 @@ stage on XC20 pins 9, 8 and 10 where, its comments say, the schematic reads 9, 7
 and asks 'other AMP?' of each. C19 and C22 'need verification', and the op-amps' supply
 is assumed: 'no information on schematics, assume 12V'. The site holds no System 16B
 schematic to settle any of it.""", UNCHECKED]),
+})
+
+
+# ---------------------------------------------------------------------------
+# The third batch (2026-10-20): the last small, licence-clean, DIP-level
+# netlists whose machines are on the site. 1942 and Coco Loco are passive
+# mixers behind AY-3-8910s; Dribbling is a whole discrete sound section built
+# from sub-netlists, one of them instanced twice (`expand`).
+# ---------------------------------------------------------------------------
+
+AY_OUT = "the AY-3-8910's own output resistance on {ch}, which MAME draws as a 1K resistor from +5V ({r})"
+
+TARGETS.update({
+    # -----------------------------------------------------------------------
+    # Capcom 1942 (Couriersud, BSD-3-Clause)
+    # -----------------------------------------------------------------------
+    "1942-sound": dict(
+        source="src/mame/capcom/nl_1942.cpp", netlist="1942",
+        title="1942 PSG filters and mix",
+        board=circuit(
+            "1942 PSG filters and mix", "Capcom", "1984", "1942",
+            "MAIN AMP., sheet 84100-01A-2 4/8 of the 1942 schematics (doc 27d4fd762a04, PDF p. 4) "
+            "-- via MAME's netlist, compared with it",
+            "1942 A board (84100-01A), main amp sheet: each of the two AY-3-8910s' six channels "
+            "through a 10K load, a 10uF capacitor and a 220K mixing resistor into the 2K volume "
+            "pot, then to the MB3731 power amplifier's input.",
+            "Converted from MAME's netlist and compared with the sheet, up to the MB3731 "
+            "amplifier's pins 1 and 5; the amplifier, its supply and the edge connector are not "
+            "in MAME."),
+        rename={f"R_AY{n}_{i}": f"{n}PSG{ch}" for n in (1, 2) for i, ch in ((1, "A"), (2, "B"), (3, "C"))},
+        not_parts={f"{n}PSG{ch}": AY_OUT.format(ch=f"{n}PSG{ch}", r=f"R_AY{n}_{i}")
+                   for n in (1, 2) for i, ch in ((1, "A"), (2, "B"), (3, "C"))},
+        corrected_from="the main amp sheet (84100-01A-2 4/8), for the amplifier pins MAME's "
+                       "netlist ends on",
+        add=[sheet("CC6 and R1 meet at the MB3731's input, A1 pin 1", "CC6.2", name="A1_1"),
+             sheet("R1's other end and CC3 (220uF) are on A1 pin 5", "CC3.1", name="A1_5")],
+        ports={"A1_1": "the MB3731 power amplifier's input (A1 pin 1), which MAME does not simulate",
+               "A1_5": "MB3731 pin 5, held by R1 and CC3; the amplifier is not in MAME"},
+        about="""\
+Couriersud's netlist of 1942's audio mix: the two AY-3-8910s on sheet 3/8, 1PSG at A11
+and 2PSG at A10, each with three channels into the main amp sheet. MAME feeds each
+channel in through a 1K resistor from +5V that stands for the AY's own output (R_AY1_1
+... R_AY2_3, AY 1 channel 1 being the sheet's 1PSGA); those are ports here, named as the
+sheet names the lines. Each channel has its own 10K load to ground (R11-R16), coupling
+capacitor (CC7-CC12) and 220K mixing resistor (R2-R7); the mix goes to the volume pot VR
+and through CC6 to the MB3731 bridge amplifier at A1, where MAME's netlist ends.""",
+        notes=["""\
+Compared with the MAIN AMP. sheet, 84100-01A-2 4/8 (doc 27d4fd762a04, PDF p. 4; the scan
+is legible throughout), and sheet 3/8 for where the PSG lines come from, on 2026-10-20:
+every net and value in this file agrees. The channels are 2PSGC through R13, CC7 and R2;
+2PSGB R15, CC8, R3; 2PSGA R11, CC9, R4; 1PSGC R12, CC10, R5; 1PSGB R14, CC11, R6; 1PSGA
+R16, CC12, R7 -- '10K x 6', '10uF/16V x 6', '220K x 6' -- into VR (2K, pin 1 the mix, 2
+the wiper, 3 ground), CC6 10uF to A1 pin 1, R1 100K from there to pin 5, and CC3 220uF
+from pin 5 to ground. On sheet 3/8 the PSG lines leave the AY-3-8910s' analogue outputs
+(C on pin 38, B on 3, A on 4) with nothing between them and this sheet. On every
+electrolytic here the + end is MAME's pin 1 except CC6, whose + end faces the amplifier
+(pin 2).
+
+On the sheet and not in MAME: the MB3731 at A1 -- CC5 10uF on pin 4, pins 3, 7 and the
+tab to ground, CC1 and CC2 (100uF) bootstrapping pins 12-10 and 9-8, the bridged outputs
+10 and 8 to edge pins 6/F and 5/E with C1-C3 (0.15uF Mylar, '154 x 3') -- and its +12V on
+pin 11, with C4 0.1uF and CC4 470uF, from edge pins 3/C and 4/D."""]),
+
+    # -----------------------------------------------------------------------
+    # Petaco Coco Loco (Couriersud, CC0-1.0)
+    # -----------------------------------------------------------------------
+    "cocoloco-sound": dict(
+        source="src/mame/misc/nl_cocoloco.cpp", netlist="cocoloco",
+        title="Coco Loco sound mixer",
+        board=circuit(
+            "Coco Loco sound mixer", "Petaco S.A.", "1981", "cocoloco",
+            "Coco Loco schematic, which this site does not hold -- via MAME's netlist",
+            "Coco Loco, sound: the AY-3-8910's three channels through 4.7K resistors into a 5K "
+            "volume pot, and through 10uF to the LM383 amplifier.",
+            "Converted from MAME's netlist, up to the LM383 power amplifier's input; the "
+            "amplifier is not in MAME."),
+        rename={f"R_AY1_{i}": f"AY_{ch}" for i, ch in ((1, "A"), (2, "B"), (3, "C"))},
+        not_parts={**{f"AY_{ch}": AY_OUT.format(ch="channel " + ch, r=f"R_AY1_{i}")
+                      for i, ch in ((1, "A"), (2, "B"), (3, "C"))},
+                   "RAMP": "the LM383 amplifier's input resistance, which MAME draws as a 150K "
+                           "resistor to ground (a 150 ohm one is commented out beside it) -- the "
+                           "amplifier itself is 'not included', its file says"},
+        corrected_from="MAME's own comment ('7W LM383T Amplifier not included below')",
+        add=[sheet("C1 goes to the LM383's input", "C1.2", name="AMP_IN")],
+        ports={"AMP_IN": "the LM383 power amplifier's input, which MAME does not include"},
+        about="""\
+Couriersud's netlist of Coco Loco's sound: the AY-3-8910's three channels, each through
+4.7K (R1-R3), summed on the 5K volume pot P1, whose wiper goes through C1 (10uF) to the
+7W LM383T amplifier that MAME's file says it does not include. The AY's outputs and the
+amplifier's input are ports here; MAME's 1K resistors standing for the AY's output
+resistance and its 150K standing for the amplifier's input are not parts.""",
+        notes=["""\
+MAME's file also has a C2 (0.1uF from the amplifier's input to ground) inside '#if 0', so
+neither MAME nor this file has it; whether the board does is not on anything the site
+holds. P1 is set to half way in MAME (PARAM(P1.DIAL, 0.5)), which says nothing about the
+board.
+
+Not compared with the sheet: the site holds no Coco Loco document at all (read
+2026-10-20).""", UNCHECKED]),
+})
+
+
+# ---------------------------------------------------------------------------
+# Model Racing Dribbling (Enzo Lombardi, CC0-1.0). The netlist is a top level
+# and seven sub-netlists; six are circuits, and calcio is instanced twice
+# (the two kicks), so each instance's parts are named under it. The seventh,
+# LM339, is a model of one comparator, which the sections put on the package.
+# ---------------------------------------------------------------------------
+
+DRIB_SHEET = "the MEF00284 board schematic, sound section (manual PDF p. 11)"
+DRIB_R0 = ("a 1 ohm resistor MAME adds at the sub-circuit's output so that its solver can "
+           "split the netlist there (OPTIMIZE_FRONTIER)")
+DRIB_SPARE = "a spare gate of the sound's {ic}, used by {what} on the same sheet, not by the sound"
+DRIB_MIX = "FINAL MIX, DISABLE CIRCUITRY AND OUTPUT FILTER"     # MAME's heading for it
+DRIB_SPARES = "Gates of the sound's packages that other circuits use"
+
+TARGETS.update({
+    "dribling-sound": dict(
+        source="src/mame/modelracing/nl_dribling.cpp", netlist="dribling",
+        title="Dribbling sound circuits",
+        board=circuit(
+            "Dribbling sound circuits", "Model Racing", "1983", "dribling",
+            "Sound section of the MEF00284 board schematic in the Dribbling service manual (doc "
+            "64210d7094ce, PDF p. 11) -- via MAME's netlist, compared with it and corrected",
+            "Dribbling board MEF00284, sound: the TOS tone (two 74LS161s and a 74LS107 loaded "
+            "from an 8255's port B), crowd noise (74LS164s, a band-pass on an LM324) with the 556 "
+            "'contrasto', the whistle (556 and 74393), ball stop and save (LM339 comparators, the "
+            "save through two 2N3819 JFETs), two kick oscillators (twin-T, BC239), mixed into the "
+            "volume pot.",
+            "Converted from MAME's netlist and compared with the sheet, up to the volume pot "
+            "VR-C's wiper; the TDA2003 amplifier after it is not in MAME, and the filter MAME "
+            "puts there instead is not on the board.",
+            corrected=True),
+        expand=["calcio", "stop_palla", "parata", "fischio", "folla", "inverter"],
+        defines={},
+        sections=[("LM339", r"STOP_PALLA/IC_B9", "LM339", "IC_B9", "1"),
+                  ("LM339", r"PARATA/IC_B9", "LM339", "IC_B9", "4"),
+                  ("TTL_7414_DIP", r"INV1/IC_L9", "7414", "FOLLA/IC_7B", "5"),
+                  ("TTL_7414_DIP", r"INV2/IC_L9", "7414", "FOLLA/IC_7B", "6"),
+                  ("TTL_7414_DIP", r"INV3/IC_L9", "7414", "FOLLA/IC_7B", "4"),
+                  ("TTL_7414_DIP", r"FISCHIO/INV/IC_L9", "7414", "IC_L9", "6")],
+        designators={"FOLLA/IC_7A": "UA7", "FOLLA/IC_8A": "UA8", "FOLLA/IC_8B": "UB8",
+                     "FOLLA/IC_7B": "UB7", "Q3": "PARATA_Q3"},
+        loads={"OUTPUT_FILTER": "MAME's own third-order Sallen-Key low-pass (an op-amp on +-12V, three "
+                                "resistors, three capacitors), added 'to avoid aliasing when outputing "
+                                "at 48KHz', its file says; on the board the mix goes to the volume pot "
+                                "VR-C and the TDA2003 amplifier",
+               "PARATA/D2": "a diode across the first 2N3819's gate and source, which the sheet ties "
+                            "together -- MAME's model of the JFET's gate junction (it models a JFET "
+                            "as a MOSFET, which has none); not on the sheet",
+               "PARATA/D3": "a diode from the second 2N3819's gate to its source -- MAME's model of "
+                            "the JFET's gate junction; not on the sheet"},
+        shorts={f"{s}/R0": DRIB_R0 for s in ("CALCIO_A", "CALCIO_B", "STOP_PALLA", "FISCHIO", "FOLLA")},
+        corrected_from=DRIB_SHEET,
+        fix_parts={"IC_D7": ("74LS161", "printed LS161; MAME's 74161 has its pins"),
+                   "IC_E7": ("74LS161", "printed LS161; MAME's 74161 has its pins"),
+                   "IC_L9": ("7404", "printed '04 beside L9's gate on the AD4 line; MAME's generic "
+                                     "inverter sub-netlist is a 7414")},
+        fix_values={
+            "CALCIO_A/C30": ("47nF", "printed '47K' (nF), and MAME's line 541 says 47 -- meant for "
+                                     "CAP2, it sets CAP1 again"),
+            "CALCIO_A/C33": ("22nF", "printed '22K' (nF), as MAME's line 540 sets it before line 541 "
+                                     "overrides it"),
+            "CALCIO_A/C34": ("22nF", "as C33"),
+            "CALCIO_B/C33": ("33nF", "printed '33K' (nF), as MAME's line 544 sets it before line 545 "
+                                     "overrides it with the 68 meant for CAP2"),
+            "CALCIO_B/C34": ("33nF", "as C33"),
+            "R_FISCHIO": ("100K", "printed 100K where the whistle enters the mix"),
+            "R_PARATA": ("47K", "printed 47K where the save sound enters the mix (the drafter "
+                                "crosses a 7, and it reads like a 2: '42K')")},
+        undo=[*[dict(line=n, text=t, action="drop", why="the sheet prints +12 at the top of this "
+                     "resistor, where MAME's sub-netlist has only +5V")
+                for n, t in ((140, "NET_C(R52.2, I_V5)"), (145, "NET_C(R48.2, I_V5)"),
+                             (148, "NET_C(R55.2, I_V5)"))],
+              *[dict(line=n, text=t, action="drop-line", why="R54 is the pot VR-A/VR-B")
+                for n, t in ((121, "RES(R54, RES_K(1.9))  // WAS POT"), (141, "NET_C(Q8.E, R54.2)"),
+                             (142, "NET_C(R54.1, GND)"))],
+              *[dict(line=n, text=f"NET_C(IC_L9.{p}, GND)", action="drop-line",
+                     why="the inverter sub-netlist grounds its 7414's five other outputs")
+                for n, p in ((292, 4), (293, 6), (294, 8), (295, 10), (296, 12))],
+              dict(line=357, text="NET_C(GND, IC_E8.5, IC_C8.9, IC_C8.6, IC_C8.2", action="nc",
+                   why="MAME grounds the crowd circuit's spare gates and op-amps, outputs and all "
+                       "(7B's 2, 8, 10 and 12 are outputs); the sheet draws none of these pins"),
+              dict(line=358, text="NET_C(GND, IC_8B.4, IC_C8.5, IC_7B.8, IC_8B.10", action="nc",
+                   why="as line 357"),
+              dict(line=506, text="NET_C(IC_C7.1, IC_C7.13, IC_C7.4, IC_C7.12, GND.Q)", action="nc",
+                   why="C7's first flip-flop, which the sheet does not draw")],
+        undo_notes=["""\
+Lines 121, 141 and 142 (in calcio, so in both kicks) are taken out whole: R54, 'WAS POT',
+is the trimmer VR-A or VR-B, put back from the sheet below. Lines 292-296 (in the inverter
+sub-netlist, so in all four instances) tie the 7414's outputs 4, 6, 8, 10 and 12 to ground;
+here each instance is one gate of a package the sheet names, so the lines go."""],
+        add_parts=[
+            part("VRA", "POT", "2.2K", "the sheet's 'VR 2K2' in kick A's emitter, the manual's VR-A "
+                                       "'TONO CALCIO A' (p. 7); MAME's R54, a 1.9K resistor"),
+            part("VRB", "POT", "2.2K", "the sheet's 'VR 2K2' in kick B's emitter, the manual's VR-B "
+                                       "'TONO CALCIO B'; MAME's R54, a 1.9K resistor"),
+            part("VRC", "POT", "47K", "the sheet's 'VR 47K' on the mix, the manual's VR-C 'VOLUME "
+                                      "GENERALE'; MAME has its output filter there"),
+            part("Q3", "Q", "2N3819", "the save's second JFET, which MAME's real-circuit branch uses "
+                                      "and never declares (the sheet prints both 2N3812)"),
+            part("PARATA_RS", "R", "1K", "the second JFET's source resistor, which MAME's real-circuit "
+                                         "branch leaves out")],
+        add=[sheet("kick A's 68K, 220K and 10K to +12, as printed", "+12V", "CALCIO_A/R52.2",
+                   "CALCIO_A/R48.2", "CALCIO_A/R55.2"),
+             sheet("kick B's to +12 -- its arrows carry no label, and B is A's circuit drawn the same "
+                   "way", "+12V", "CALCIO_B/R52.2", "CALCIO_B/R48.2", "CALCIO_B/R55.2"),
+             *[sheet(f"VR-{k} from kick {k}'s first transistor's emitter to ground, its wiper to "
+                     "ground", *terms, section=f"CALCIO_{k}")
+               for k in "AB" for terms in ((f"CALCIO_{k}/Q8.E", f"VR{k}.1"),
+                                           ("GND", f"VR{k}.2", f"VR{k}.3"))],
+             *[sheet("the second JFET's source, the save's output, to ground through 1K", *terms,
+                     section="PARATA") for terms in (("Q3.S", "PARATA_RS.1"), ("GND", "PARATA_RS.2"))],
+             sheet("the mix to VR-C's top, its bottom to ground", "Q_OUT.C", "VRC.1", name="MIX",
+                   section=DRIB_MIX),
+             sheet("the mix to VR-C's top, its bottom to ground", "GND", "VRC.3", section=DRIB_MIX),
+             sheet("VR-C's wiper, through 10uF/16V to the TDA2003's pin 1", "VRC.2", name="AMP_IN",
+                   section=DRIB_MIX),
+             sheet("B7 pin 9 is driven by 32H, where MAME runs an ideal 40 kHz clock",
+                   "FOLLA/IC_7B.9", name="32H", section="TOS Section"),
+             *[sheet("B7's first gate inverts /RESET into RES, the 8255s' reset", t, name=n,
+                     section=DRIB_SPARES) for t, n in (("FOLLA/IC_7B.1", "RESETQ"),
+                                                       ("FOLLA/IC_7B.2", "RES"))],
+             *[sheet("L9 gates AD3 (in on 3, out on 4) and AD4 (5 to 6) into the 8255s' chip "
+                     "selects", t, name=n, section=DRIB_SPARES)
+               for t, n in (("IC_L9.3", "AD3"), ("IC_L9.4", "AD3Q"), ("IC_L9.5", "AD4"),
+                            ("IC_L9.6", "AD4Q"))]],
+        ports={"AMP_IN": "VR-C's wiper, on through 10uF/16V to pin 1 of the TDA2003 power amplifier, "
+                         "which MAME does not simulate",
+               "RESETQ": DRIB_SPARE.format(ic="B7", what="the 8255s' reset (/RESET in)"),
+               "RES": DRIB_SPARE.format(ic="B7", what="the 8255s' reset (RES out, to pin 35 of each)"),
+               **{n: DRIB_SPARE.format(ic="L9", what="the 8255s' chip-select decoding")
+                  for n in ("AD3", "AD3Q", "AD4", "AD4Q")}},
+        about="""\
+Enzo Lombardi's netlist of Dribbling's sound, which his file says is derived from the
+schematics in the Dribbling manual. It is a top level and seven sub-netlists: TOS (the
+tone generator) is at the top, and calcio (a kick), stop_palla, parata (the keeper's
+save), fischio (the whistle), folla (the crowd) and inverter are sub-circuits, spliced in
+here once per instance. calcio is instanced twice, CALCIO_A and CALCIO_B, so every part
+in a sub-circuit is written under its instance (CALCIO_A_R45 is MAME's CALCIO_A.R45).
+LM339 is MAME's model of one comparator; the two it declares are sections 1 and 4 of the
+LM339 at B9, as the sheet numbers them. The 8255 port bits that trigger each sound arrive
+as ports (MAME's TTL_INPUT names: PB0-PB7 for the tone's divisor, FOLLA_A/M/B, CONTRASTO,
+FISCHIO, CALCIO_A/B, STOP_PALLA, PARATA, and ENABLE_SOUND, the sheet's 'ABIL.
+AMPLIFICATORE').
+
+The save is the real circuit, not MAME's speed-up: REPLACE_PARATA_JFET_WITH_DIODES off,
+so the second 2N3819 is a source follower, as drawn, instead of two diodes. MAME's branch
+for it has never been compiled -- it opens with an #elif that has no condition and uses a
+Q3 it never declares -- so Q3 is declared here, from the sheet. MAME's file says the
+schematic labels both JFETs 2N3812 and they are actually 2N3819s; that is kept.""",
+        designator_note="""\
+The sheet prints no designators for resistors, capacitors, diodes or transistors -- only
+values and types -- so those are MAME's names, under the sub-circuit instance MAME puts
+them in, and C7_1, C_TOS, R_FISCHIO, Q_OUT and the like are MAME's own. VR-A, VR-B and
+VR-C are the manual's names for the three trimmers (p. 7). ICs are written by the board
+position the sheet prints, letter first as it prints nearly all of them; the crowd block
+alone prints 7A, 8A, 8B and 7B, written A7, A8, B8 and B7 here. For B7 that is more than
+a convention: the sheet labels the crowd's oscillator gate B7 and its other gate 7B, and
+with the reset gate and the three TOS gates labelled B7 that is all six gates of one 7414,
+each once. MAME's ROM names are number first (5p.bin for the sheet's P5), so which way
+round the silkscreen prints them is not settled here.""",
+        notes=["""\
+Compared with the sound section of the MEF00284 schematic (the Dribbling service manual,
+doc 64210d7094ce, PDF p. 11, a 1-bit scan at about 370 dpi), on 2026-10-20 -- every
+sub-circuit, net by net, and every value printed. MAME's topology agrees with the sheet
+everywhere: the TOS divider (E7 and D7 loaded from PB4-PB7 and PB0-PB3, E7's carry to
+both loads through B7 and to C7's J and K, C7 pin 5 the output), the crowd's noise
+generator (A8 and A7 with B8's XOR feedback, clocked by B7's RC oscillator) and its three
+gated levels into the LM324 band-pass at C8, the 556 'contrasto' at Q9, the whistle's 556
+at N9 counted by M9 (MAME's 100K and 47K both end on N9's 12/8 node, as drawn), the two
+comparators of B9, and the mix (ENABLE_SOUND through 2.2K to a BC239 that shorts the mix to
+ground). The ICs agree in type and pin number wherever the sheet prints them: B9 pins 5,
+4, 2 for the stop and 11, 10, 13 for the save; N9 and Q9 pin for pin; M9's 2 and 12, 1,
+6 and 13.
+
+Corrected above from the sheet: kick A's supply resistors go to +12 (B's arrows are
+unlabelled, and taken as A's); the trimmers VR-A and VR-B are pots wired as rheostats,
+not MAME's 1.9K; the kicks' twin-T capacitors are the sheet's (MAME's file says what it
+meant -- 22, 47 for A and 33, 68 for B -- but its PARAM lines set CAP1 twice, so it runs
+A with 47nF, 47nF, 68nF and B with 68nF all round); the whistle enters the mix through
+100K, not 220K, and the save through 47K, not 100K; the save's output has a 1K source
+resistor; and the mix goes to the volume pot VR-C, where MAME has a filter of its own.
+D7 and E7 are printed LS161 and L9 '04. MAME's four inverters are gates of the sheet's
+packages, by its pin numbers: TOS's load gate is B7 11 to 10 (the sheet prints 11 at the
+output), its clock gate 13 to 12, the 32H gate 9 to 8, and the whistle's reset gate L9
+13 to 12 (printed 13 and 9).
+
+Open, and kept as MAME has them: the drafter's crossed 7 reads like a 2, and five
+capacitors print as '4,2uF' -- each kick's from collector to twin-T (MAME 4.2uF) and its
+emitter capacitor (MAME 4.7uF), and the whistle's timing capacitor (MAME 4.2uF). 4.2uF is
+not a standard value and MAME itself reads two of them as 4.7uF, so all five are probably
+4.7uF; the print does not show it. The stop's series resistor prints 1?0K, the middle
+digit unclear (MAME 160K; the save's is 150K). The dashed, so optional, pull-up on ABIL.
+AMPLIFICATORE reads 1?K; MAME's is 10K. The unlabelled supply arrows (the 556s' timing
+resistors, the BC309 emitters, the comparators' 2.2K pull-ups, the second JFET's drain,
+the crowd filter's bias) are taken as +5V, as MAME has them; only the kicks are marked
++12. Which terminal of each JFET is source and which drain the drawing does not say;
+MAME's choice fits the topology. The diodes are printed BAX (a Philips switching diode),
+for which MAME's 1N914 is a like part. E7's and D7's clears, D7's enables and the
+counters' supply pins are not drawn; MAME's ties are kept.
+
+On the sheet and not in this file: the TDA2003 at the output (10uF in, 220 ohm and 2.2
+ohm feedback with 470uF, 1000uF out to the 8 ohm speaker on edge pins 16 and 17, a 0.1uF
+and 1 ohm Zobel) and its '+12Vcc M.S.' decoupling; the supplies -- a 26MB bridge into
+22,000uF, a 323 for +5V with 6.8 ohms 10W across it, an LM320 for -5V, and a 7812
+(printed 2812) beside an unregulated +12V through two 1N4004s, so which +12V the kicks'
+'+12' is the sheet does not say; and the two 8255s, at K8 and below it, whose port bits
+the ports here are."""]),
 })
