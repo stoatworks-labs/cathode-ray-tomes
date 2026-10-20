@@ -1,0 +1,238 @@
+{
+ "slug": "popeye-sound",
+ "source": "boards/popeye-sound.nets",
+ "components": {
+  "C4": {
+   "part": "",
+   "value": "0.047e-6"
+  },
+  "C40": {
+   "part": "",
+   "value": "680e-12"
+  },
+  "C5": {
+   "part": "",
+   "value": "330e-12"
+  },
+  "C6": {
+   "part": "",
+   "value": "330e-12"
+  },
+  "C7": {
+   "part": "",
+   "value": "3.3e-6"
+  },
+  "Q8": {
+   "part": "",
+   "value": "2SC1815"
+  },
+  "Q9": {
+   "part": "",
+   "value": "2SA1015"
+  },
+  "R51": {
+   "part": "",
+   "value": "20000"
+  },
+  "R52": {
+   "part": "",
+   "value": "2000"
+  },
+  "R53": {
+   "part": "",
+   "value": "2000"
+  },
+  "R55": {
+   "part": "",
+   "value": "2000"
+  },
+  "R56": {
+   "part": "",
+   "value": "2000"
+  },
+  "R57": {
+   "part": "",
+   "value": "30000"
+  },
+  "R58": {
+   "part": "",
+   "value": "2000"
+  },
+  "R59": {
+   "part": "",
+   "value": "2000"
+  },
+  "R60": {
+   "part": "",
+   "value": "30000"
+  },
+  "R61": {
+   "part": "",
+   "value": "120000"
+  },
+  "R62": {
+   "part": "",
+   "value": "510000"
+  },
+  "R63": {
+   "part": "",
+   "value": "100"
+  },
+  "R64": {
+   "part": "",
+   "value": "510000"
+  },
+  "R65": {
+   "part": "",
+   "value": "5.1K"
+  },
+  "R66": {
+   "part": "",
+   "value": "330"
+  },
+  "R67": {
+   "part": "",
+   "value": "51"
+  }
+ },
+ "nets": {
+  "+5V": {
+   "pins": [
+    "Q8.C",
+    "R62.1",
+    "R66.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "AY_A": {
+   "pins": [
+    "R52.1",
+    "R53.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "AY_B": {
+   "pins": [
+    "R55.1",
+    "R56.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "AY_C": {
+   "pins": [
+    "R58.1",
+    "R59.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "GND": {
+   "pins": [
+    "C4.2",
+    "C40.2",
+    "C5.2",
+    "C6.2",
+    "Q9.C",
+    "R52.2",
+    "R55.2",
+    "R58.2",
+    "R61.2",
+    "R64.2",
+    "R65.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "Net-(C4-Pad1)": {
+   "pins": [
+    "C4.1",
+    "R51.1",
+    "R53.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C40-Pad1)": {
+   "pins": [
+    "C40.1",
+    "C7.1",
+    "R51.2",
+    "R57.2",
+    "R60.2",
+    "R61.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C5-Pad1)": {
+   "pins": [
+    "C5.1",
+    "R56.2",
+    "R57.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C6-Pad1)": {
+   "pins": [
+    "C6.1",
+    "R59.2",
+    "R60.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C7-Pad2)": {
+   "pins": [
+    "C7.2",
+    "R62.2",
+    "R63.1",
+    "R64.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(Q8-PadB)": {
+   "pins": [
+    "Q8.B",
+    "R63.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(Q8-PadE)": {
+   "pins": [
+    "Q8.E",
+    "Q9.B",
+    "R65.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(Q9-PadE)": {
+   "pins": [
+    "Q9.E",
+    "R66.2",
+    "R67.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "TV_AUDIO": {
+   "pins": [
+    "R67.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  }
+ },
+ "signatures": {},
+ "nc": []
+}

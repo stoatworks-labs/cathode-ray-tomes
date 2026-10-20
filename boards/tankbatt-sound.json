@@ -1,0 +1,28 @@
+{
+ "name": "Tank Battalion sound circuits",
+ "mfr": "Namco",
+ "year": "1980",
+ "machine": "tankbatt",
+ "drawing": "Sound section of the Tank Battalion schematic, service manual (doc 73495cc3ecf0) -- via MAME's netlist",
+ "revision": "Tank Battalion, sound section: CD4006 noise, hit and shoot through CD4066 switches and LM324 filters, engine rumble from a 7492, mixed.",
+ "coverage": "Converted from MAME's netlist, up to the summing node; the amplifier after it is not in MAME.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "tankbatt-sound",
+ "ics": {
+  "5K": "7492",
+  "6F": "CD4006",
+  "6J": "LM324",
+  "6K": "7486",
+  "6L": "CD4066"
+ },
+ "source": {
+  "mame": "src/mame/namco/nl_tankbatt.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "tankbatt",
+  "licence": "BSD-3-Clause",
+  "copyright": "Ryan Holtz"
+ }
+}

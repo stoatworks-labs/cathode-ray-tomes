@@ -1,0 +1,22 @@
+{
+ "name": "Popeye audio output stage",
+ "mfr": "Nintendo",
+ "year": "1982",
+ "machine": "popeye",
+ "drawing": "TPP2-CPU schematic, sheet 2 of 3, in the Popeye operation manual (doc a4dc252b9a5e, p. 35) -- via MAME's netlist, compared with it and corrected",
+ "revision": "Popeye CPU board TPP2-CPU, audio: the AY-3-8910's three channels filtered and mixed, and the two-transistor output stage to the TV's audio.",
+ "coverage": "Converted from MAME's netlist: the AY-3-8910's filters, mixer and output stage. The AY is a MAME device; its outputs are ports.",
+ "singleSource": false,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "popeye-sound",
+ "ics": {},
+ "source": {
+  "mame": "src/mame/nintendo/nl_popeye.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "popeye",
+  "licence": "BSD-3-Clause",
+  "copyright": "Couriersud"
+ }
+}

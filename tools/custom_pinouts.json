@@ -237,5 +237,42 @@
    "21": {"name": "O3", "type": "output"}, "22": {"name": "O2", "type": "output"},
    "23": {"name": "O1", "type": "output"}, "24": {"name": "CS3", "type": "input"}
   }
+ },
+ "CD4006": {
+  "desc": "CD4006B 18-stage static shift register, DIP-14: four sections of 4, 4+1, 4 and 4+1 stages; pin 2 not connected",
+  "source": "MAME src/lib/netlist/macro/nlm_cd4xxx_lib.cpp CD4006_DIP, whose DIPPINS follow National's CD4006BM/CD4006BC data sheet connection diagram: D1 1, NC 2, CLOCK 3, D2 4, D3 5, D4 6, VSS 7, D4+4 8, D4+5 9, D3+4 10, D2+4 11, D2+5 12, D1+4 13, VDD 14",
+  "pins": {
+   "1": {"name": "D1", "type": "input"}, "2": {"name": "NC", "type": "no_connect"},
+   "3": {"name": "CLOCK", "type": "input"}, "4": {"name": "D2", "type": "input"},
+   "5": {"name": "D3", "type": "input"}, "6": {"name": "D4", "type": "input"},
+   "7": {"name": "VSS", "type": "power_in", "rail": "GND"}, "8": {"name": "D4+4", "type": "output"},
+   "9": {"name": "D4+5", "type": "output"}, "10": {"name": "D3+4", "type": "output"},
+   "11": {"name": "D2+4", "type": "output"}, "12": {"name": "D2+5", "type": "output"},
+   "13": {"name": "D1+4", "type": "output"}, "14": {"name": "VDD", "type": "power_in"}
+  }
+ },
+ "MB3730": {
+  "desc": "Fujitsu MB3730 bridge-tied-load audio power amplifier, 7-pin SIL",
+  "source": "MAME src/lib/netlist/macro/nlm_opamp_lib.cpp MB3730_SIL, 'datasheet, front view': 1 IN, 2 FB, 3 BYPASS, 4 GND, 5 OUT-I, 6 OUT M, 7 Vcc. Rally-X's Logic Bd I schematic (A082-91385-C000) agrees on 1, 4, 5, 6 and 7 as input, ground, the two speaker outputs and +12V, but puts 22uF on pin 2 and 220uF on pin 3, so which of 2 and 3 is FB is unconfirmed. Not checked against a Fujitsu data sheet",
+  "pins": {
+   "1": {"name": "IN", "type": "input"}, "2": {"name": "FB", "type": "passive"},
+   "3": {"name": "BYPASS", "type": "passive"}, "4": {"name": "GND", "type": "power_in", "rail": "GND"},
+   "5": {"name": "OUT-I", "type": "output"}, "6": {"name": "OUT-M", "type": "output"},
+   "7": {"name": "VCC", "type": "power_in"}
+  }
+ },
+ "MB4391": {
+  "desc": "Fujitsu MB4391 dual voltage-controlled attenuator, DIP-16: two halves, each with signal in, control, its own ground and supply, output and an RO pin; 4, 8, 9 and 13 not used",
+  "source": "MAME src/mame/sega/nl_brdrline.cpp _MB4391_DIP (beta-tester, CC0), whose DIPPINS are the pins the Borderline sound board sheets (834-0055 sheets 6-7) use; its file calls the part's behaviour a guess. No Fujitsu data sheet has been found",
+  "pins": {
+   "1": {"name": "IN1", "type": "input"}, "2": {"name": "CON1", "type": "input"},
+   "3": {"name": "GND1", "type": "power_in", "rail": "GND"}, "4": {"name": "NC", "type": "no_connect"},
+   "5": {"name": "IN2", "type": "input"}, "6": {"name": "CON2", "type": "input"},
+   "7": {"name": "GND2", "type": "power_in", "rail": "GND"}, "8": {"name": "NC", "type": "no_connect"},
+   "9": {"name": "NC", "type": "no_connect"}, "10": {"name": "RO2", "type": "passive"},
+   "11": {"name": "OUT2", "type": "output"}, "12": {"name": "VCC2", "type": "power_in"},
+   "13": {"name": "NC", "type": "no_connect"}, "14": {"name": "RO1", "type": "passive"},
+   "15": {"name": "OUT1", "type": "output"}, "16": {"name": "VCC1", "type": "power_in"}
+  }
  }
 }

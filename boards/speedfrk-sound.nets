@@ -35,9 +35,9 @@
 # ---------------------------------------------------------------------------
 # line 28: #define HLE_CLOCK_GENERATOR 1 -> 0 (high-level stand-in for a real circuit)
 # line 29: #define HLE_CLOCK_INPUT 1 -> 0 (high-level stand-in for a real circuit)
-# line 418: MAME ties U10.2 off as unused, but the circuit uses them -- the tie is dropped
-# line 419: MAME ties U10.4 off as unused, but the circuit uses them -- the tie is dropped
-# line 420: MAME ties U10.6 off as unused, but the circuit uses them -- the tie is dropped
+# line 418: MAME hints U10.2 as unconnected, but its own netlist connects it -- the hint is dropped
+# line 419: MAME hints U10.4 as unconnected, but its own netlist connects it -- the hint is dropped
+# line 420: MAME hints U10.6 as unconnected, but its own netlist connects it -- the hint is dropped
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7), CLOCK(J4_2)
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
@@ -106,38 +106,38 @@
 # part U24 74LS164
 
 value R13 150
-value R14 2.2K
-value R15 10K
-value R16 2.2K
-value R17 1K
-value R18 8.2K
-value R19 3.9K
-value R20 4.7K
-value R21 3.3K
-value R22 10K
-value R23 4.7K
+value R14 2.2K  # MAME's comment: 'PCB verified'
+value R15 10K  # MAME's comment: 'PCB verified'
+value R16 2.2K  # MAME's comment: 'PCB verified'
+value R17 1K  # MAME's comment: 'PCB verified'
+value R18 8.2K  # MAME's comment: 'PCB verified'
+value R19 3.9K  # MAME's comment: 'PCB verified'
+value R20 4.7K  # MAME's comment: 'PCB verified'
+value R21 3.3K  # MAME's comment: 'PCB verified'
+value R22 10K  # MAME's comment: 'PCB verified'
+value R23 4.7K  # MAME's comment: 'PCB verified'
 value R24 10K
-value R25 18K
-value R26 18K
-value R27 6.8K
-value R28 10K
-value R29 2.2K
-value R30 330
-value R31 330
-value R32 1K
-value R33 1K
-value R34 1K
-value R36 1K
-value R37 1K
-value R38 1K
-value R39 1K
-value R40 1K
-value R41 1K
-value R42 1K
-value R43 1K
-value R44 30K
-value R45 4.7K
-value R46 10K
+value R25 18K  # MAME's comment: 'PCB verified'
+value R26 18K  # MAME's comment: 'PCB verified'
+value R27 6.8K  # MAME's comment: 'PCB verified'
+value R28 10K  # MAME's comment: 'PCB verified'
+value R29 2.2K  # MAME's comment: 'PCB verified'
+value R30 330  # MAME's comment: 'PCB verified'
+value R31 330  # MAME's comment: 'PCB verified'
+value R32 1K  # MAME's comment: 'PCB verified'
+value R33 1K  # MAME's comment: 'PCB verified'
+value R34 1K  # MAME's comment: 'PCB verified'
+value R36 1K  # MAME's comment: 'PCB verified'
+value R37 1K  # MAME's comment: 'PCB verified'
+value R38 1K  # MAME's comment: 'PCB verified'
+value R39 1K  # MAME's comment: 'PCB verified'
+value R40 1K  # MAME's comment: 'PCB verified'
+value R41 1K  # MAME's comment: 'PCB verified'
+value R42 1K  # MAME's comment: 'PCB verified'
+value R43 1K  # MAME's comment: 'PCB verified'
+value R44 30K  # MAME's comment: 'PCB verified'
+value R45 4.7K  # MAME's comment: 'PCB verified'
+value R46 10K  # MAME's comment: 'PCB verified'
 value C12 0.001uF
 value C13 0.001uF
 value C17 0.02uF

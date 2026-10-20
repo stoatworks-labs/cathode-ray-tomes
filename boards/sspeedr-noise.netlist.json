@@ -1,0 +1,180 @@
+{
+ "slug": "sspeedr-noise",
+ "source": "boards/sspeedr-noise.nets",
+ "components": {
+  "C8": {
+   "part": "",
+   "value": "0.001uF"
+  },
+  "C9": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "CR3": {
+   "part": "",
+   "value": "1N4148"
+  },
+  "R22": {
+   "part": "",
+   "value": "680K"
+  },
+  "R23": {
+   "part": "",
+   "value": "56K"
+  },
+  "R24": {
+   "part": "",
+   "value": "27K"
+  },
+  "R25": {
+   "part": "",
+   "value": "220K"
+  },
+  "R62": {
+   "part": "",
+   "value": "1M"
+  },
+  "UH5": {
+   "part": "CD4006",
+   "value": "CD4006"
+  },
+  "UJ5": {
+   "part": "CD4030",
+   "value": "CD4030"
+  }
+ },
+ "nets": {
+  "+12V": {
+   "pins": [
+    "C9.1",
+    "UH5.14",
+    "UJ5.13",
+    "UJ5.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "GND": {
+   "pins": [
+    "R62.2",
+    "UH5.7",
+    "UJ5.6",
+    "UJ5.7",
+    "UJ5.8",
+    "UJ5.9"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "NOISE_OUT": {
+   "pins": [
+    "UH5.10",
+    "UH5.6"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "Net-(C8-Pad1)": {
+   "pins": [
+    "C8.1",
+    "UJ5.12",
+    "UJ5.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C8-Pad2)": {
+   "pins": [
+    "C8.2",
+    "R22.1",
+    "R23.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C9-Pad2)": {
+   "pins": [
+    "C9.2",
+    "CR3.2",
+    "R62.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(CR3-Pad1)": {
+   "pins": [
+    "CR3.1",
+    "R24.1",
+    "R25.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R22-Pad2)": {
+   "pins": [
+    "R22.2",
+    "UJ5.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R23-Pad1)": {
+   "pins": [
+    "R23.1",
+    "UH5.3",
+    "UJ5.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R24-Pad2)": {
+   "pins": [
+    "R24.2",
+    "UH5.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R25-Pad1)": {
+   "pins": [
+    "R25.1",
+    "UJ5.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UH5-Pad1)": {
+   "pins": [
+    "UH5.1",
+    "UH5.12",
+    "UJ5.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UH5-Pad13)": {
+   "pins": [
+    "UH5.13",
+    "UH5.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UH5-Pad8)": {
+   "pins": [
+    "UH5.8",
+    "UJ5.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  }
+ },
+ "signatures": {},
+ "nc": [
+  "UH5.11",
+  "UH5.2",
+  "UH5.9",
+  "UJ5.10"
+ ]
+}

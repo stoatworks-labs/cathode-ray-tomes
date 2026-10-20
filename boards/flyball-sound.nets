@@ -1,0 +1,214 @@
+# Flyball sound circuits -- netlist converted from MAME
+#
+# Ryan Holtz's netlist of the sound circuits on the game board, which his file says is
+# derived from the schematics in the manual. The game logic's sound-enable and sound-data
+# lines arrive as ports (MAME's TTL_INPUT names), and so do the video timing signals the
+# sounds are clocked from, which MAME runs as ideal clocks.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/atari/nl_flyball.cpp,
+# NETLIST_START(flyball). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Ryan Holtz (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/atari/nl_flyball.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 73: dropped NET_C(VCC, IC_E7.14, IC_B7.14, IC_C7.14, IC_D7.14, IC_E7.13, IC_B7.9, IC_B7.2, IC_C7.9, IC_C7.2) -- took IC_E7.13, IC_B7.9, IC_B7.2, IC_C7.9, IC_C7.2 out of it: sheet 7 pulls E7.13 up through R25, and draws B7 and C7 pins 2 and 9 as bare stubs
+# line 91: dropped NET_C(VCC, IC_D7.13, IC_D7.1) -- took IC_D7.1 out of it: sheet 7 pulls D7.1 up through R25
+# line 111: dropped NET_C(V5, IC_E7.2, R73.1, R74.1) -- took IC_E7.2 out of it: sheet 7 pulls E7.2 up through R25
+#
+# Corrected from sheet 7 of the schematic (005629 rev A, TM-075 pp. 56-57):
+#   parts the sheet draws that MAME does not have: R25 1K
+#   sheet 7: the pull-up R25 ('P,R25') on D7.1, E7.2 and E7.13: V5 R25.1
+#   as above: R25.2 UD7.1 UE7.2 UE7.13
+# Stand-ins that are not parts (the nets they drive are ports): CLOCK(H256), CLOCK(V128), TTL_INPUT(BAT_SOUND), TTL_INPUT(FOOTSTEP), TTL_INPUT(CROWD_SL), TTL_INPUT(CROWD_ON), TTL_INPUT(CROWD_VL)
+#
+# Compared with the schematic, sheet 7 of 9 'Sound Generator' (005629 rev A, TM-075 pp.
+# 56-57, the sheet scanned in two halves), with parts list A005629-01 (pp. 62-65), on
+# 2026-10-20: 39 of MAME's 41 nets agree pin for pin -- the noise generator (all ten of its
+# connections), the band-pass filter, the bat sound's 556, the footstep envelope, the crowd
+# and whistle control and the mixer -- and the supplies are as MAME has them (+18V, an
+# unregulated rail, on A8, C8 and D8). Corrected above from the sheet: D7.1, E7.2 and E7.13
+# go to +5V through the 1K pull-up R25, which MAME leaves out, and B7 and C7 pins 2 and 9
+# (B gate and CLR) are drawn as bare stubs, which MAME ties to +5V -- an open TTL input
+# floats high, the level the circuit needs, so the board may tie them, but the drawing does
+# not. D7.13 is drawn 'P', an unnamed pull-up, and is left on +5V here.
+#
+# Kept as MAME has them, each against the sheet: R79 is 820K on the sheet and the parts list
+# and 1K in MAME, whose comment says 'Verified as 1K on a real board'; R97B (24.4K, in
+# parallel with R97) is on neither, and MAME's comment says it was 'verified to exist on a
+# real board'; C46/C47 are .01 on the sheet and .015 on the parts list, which MAME follows;
+# R80 is 330K on the sheet and 330 ohms on the parts list, and MAME follows the sheet. A8 and
+# C8 are printed 'MFC3340P' with the MFC6040's pin numbers in brackets beside each pin, and
+# the parts list fits MFC6040s, with the MFC3340 as the substitute 'when stock of MFC6040 is
+# depleted'; this file is the MFC3340 wiring, so a board carrying MFC6040s has the bracketed
+# pins instead (as Tank's do). E7's fourth gate (4, 5, 6), which MAME grounds, is not on
+# sheet 7, and the output amplifier (the TDA1004 at B9) is on it and not in MAME.
+
+# part UA8 MC3340
+# part UB7 74164
+# part UC7 74164
+# part UC8 MC3340
+# part UD7 7474
+# part UD8 UA741
+# part UE7 7486
+# part UE8 NE556
+
+value R25 1K
+value R43 68K
+value R73 1K
+value R74 1K
+value R76 100K
+value R77 820
+value R78 100K
+value R79 1K  # MAME's comment: 'RES., CARBON, 5%, 1/4W, 820K // Verified as 1K on a real board'
+value R80 330K  # MAME's comment: 'RES., CARBON, 5%, 1/4W, 330 // (330 on parts list, but 330K on schematic, 330 does not work in the netlist)'
+value R87 1K
+value R88 3.3K
+value R89 10K
+value R90 10K
+value R91 10K
+value R92 10K
+value R96 47K
+value R97A 10K
+value R97B 24.4K  # MAME's comment: 'RES., CARBON, 5%, 1/4W, 10K // Verified to exist on a real board'
+value R98 10K
+value R99 33K
+value R75 50K
+value R95 10K
+value C34 0.0047uF
+value C44 0.0047uF
+value C45 0.1uF
+value C46 0.015uF
+value C47 0.015uF
+value C48 10uF
+value C49 100uF
+value C51 0.1uF
+value C52 0.1uF
+value C53 0.1uF
+value C79 0.1uF
+value C80 0.1uF
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C34.2 C44.2 C45.2 C48.2 C49.2 C51.2 C52.2 UA8.3 UB7.7 UC7.7 UC8.3 UD7.2 UD7.7 UD8.4 UE7.4 UE7.5 UE7.7 UE8.7 R77.2 R95.1
+net +18V: UA8.8 UC8.8 UD8.7
+net +5V: UB7.14 UC7.14 UD7.13 UD7.14 UD8.3 UE7.14 UE8.14 R25.1 R73.1 R74.1
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+wire UD7.1 UE7.13 UE7.2 R25.2
+
+# ---------------------------------------------------------------------------
+# Random Noise Generator
+# ---------------------------------------------------------------------------
+port H256: UB7.8 UC7.8 UD7.11 UD7.4  # in MAME: CLOCK(H256)
+wire UB7.13 UC7.1
+wire UC7.13 UD7.12
+wire UD7.9 UE7.9
+wire UB7.5 UE7.10
+wire UE7.12 UE7.8
+wire UB7.1 UE7.11
+wire UD7.10 UD7.5
+port V128: UD7.3  # in MAME: CLOCK(V128)
+
+# ---------------------------------------------------------------------------
+# Band Pass Filter
+# ---------------------------------------------------------------------------
+wire UD7.8 R78.1 R79.1
+wire C46.1 C47.1 R77.1 R78.2
+wire C46.2 UD8.6 R80.1 R87.1
+wire C47.2 UD8.2 R80.2
+
+# ---------------------------------------------------------------------------
+# Bat Sound
+# ---------------------------------------------------------------------------
+port BAT_SOUND: UE7.1 UE8.10 UE8.4  # in MAME: TTL_INPUT(BAT_SOUND)
+wire UE8.1 R74.2 R75.2 R75.3
+wire R43.1 R75.1
+wire C34.1 UE8.2 UE8.6 R43.2
+wire UE8.13 R73.2 R76.1
+wire C44.1 UE8.12 UE8.8 R76.2
+wire C45.1 UE8.11 UE8.3
+wire UE8.5 R91.1
+wire UE8.9 R90.1
+wire UE7.3 R89.1
+
+# ---------------------------------------------------------------------------
+# Footstep Envelope Generator
+# ---------------------------------------------------------------------------
+port FOOTSTEP: R88.1  # in MAME: TTL_INPUT(FOOTSTEP)
+wire C79.1 R79.2
+wire C79.2 UC8.1
+wire C48.1 UC8.2 R88.2
+wire UC8.7 R92.1
+
+# ---------------------------------------------------------------------------
+# Crowd & Whistle Volume Control
+# ---------------------------------------------------------------------------
+wire C80.1 R87.2
+wire C80.2 UA8.1
+port CROWD_VL: R97A.2 R97B.2  # in MAME: TTL_INPUT(CROWD_VL)
+port CROWD_ON: R98.2  # in MAME: TTL_INPUT(CROWD_ON)
+port CROWD_SL: R99.2  # in MAME: TTL_INPUT(CROWD_SL)
+wire C49.1 UA8.2 R97A.1 R97B.1 R98.1 R99.1
+wire UA8.7 R96.1
+
+# ---------------------------------------------------------------------------
+# Mixer
+# ---------------------------------------------------------------------------
+wire C51.1 R89.2 R90.2 R91.2 R92.2 R95.3 R96.2
+wire C53.1 R95.2
+port OUTPUT: C52.1 C53.2  # on to the audio amplifier, which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UA8.6  # line 152: MAME's own HINT(NC)
+nc UC8.6  # line 153: MAME's own HINT(NC)
+nc UB7.2  # line 154: MAME's own HINT(NC)
+nc UB7.9  # line 155: MAME's own HINT(NC)
+nc UB7.3  # line 156: MAME's own HINT(NC)
+nc UB7.4  # line 157: MAME's own HINT(NC)
+nc UB7.6  # line 158: MAME's own HINT(NC)
+nc UB7.10  # line 159: MAME's own HINT(NC)
+nc UB7.11  # line 160: MAME's own HINT(NC)
+nc UB7.12  # line 161: MAME's own HINT(NC)
+nc UC7.3  # line 162: MAME's own HINT(NC)
+nc UC7.4  # line 163: MAME's own HINT(NC)
+nc UC7.5  # line 164: MAME's own HINT(NC)
+nc UC7.6  # line 165: MAME's own HINT(NC)
+nc UC7.10  # line 166: MAME's own HINT(NC)
+nc UC7.11  # line 167: MAME's own HINT(NC)
+nc UC7.12  # line 168: MAME's own HINT(NC)
+nc UD7.6  # line 169: MAME's own HINT(NC)
+nc UE7.6  # line 170: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UA8.4 UA8.5  # NC NC
+nc UC7.2 UC7.9  # DSB ~{MR}
+nc UC8.4 UC8.5  # NC NC
+nc UD8.1 UD8.5 UD8.8  # NULL NULL NC

@@ -72,6 +72,14 @@ KICAD = {
     "LM555": "Timer:NE555P", "NE555": "Timer:NE555P", "NE556": "Timer:NE556",
     "LM556": "Timer:NE556", "CD4011": "4xxx:4011", "CD4017": "4xxx:4017",
     "CD4024": "4xxx_IEEE:4024", "CD4053": "4xxx:4053", "CD4069": "4xxx:4069",
+    # The second batch of MAME conversions. The 7428 is pinned as the 7402
+    # (KiCad's 74LS28); the 7416 is the 7406's open-collector pinout at 15V;
+    # the LM2902 is the LM324's; the MC14584B is the 4584.
+    "74164": "74xx:74HC164", "7428": "74xx:74LS28", "7432": "74xx:74LS32",
+    "7416": "74xx:74LS06", "74123": "74xx:74LS123", "CD4016": "4xxx:4016",
+    "CD4070": "4xxx:4070", "LM2902": "Amplifier_Operational:LM2902",
+    "LM358": "Amplifier_Operational:LM358", "MC14584B": "4xxx:40106",
+    "CD4030": "4xxx:4070",          # the older quad XOR, the 4070's pinout
 }
 # Electrical types that may share a net with another driver.
 LETS_GO = {"open_collector", "open_emitter", "tri_state", "bidirectional", "passive"}

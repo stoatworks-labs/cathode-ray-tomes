@@ -19,9 +19,21 @@ produces, so the result can be argued with like any other read:
   * a value multiplied by a named constant is written unscaled
   * MAME's "unused" ties become `nc` -- unless the circuit uses the pin -- and
     parts parked with both ends on a rail are listed as on the board, not here
+  * a noise source MAME puts in series with a zener (its model of the zener's
+    own noise) is a wire: on the board the zener and its load are one node
   * per-target entries in tools/mame_targets.py drop or rewrite specific lines,
     restore circuitry MAME commented out, correct what a sheet shows MAME got
     wrong, and split a netlist that spans two boards (Tank)
+
+How MAME writes a netlist is read the way MAME reads it: a sub-netlist pulled
+in with INCLUDE is spliced in where it is included, function-like #defines are
+expanded, and a part's named pins (a 7486's A.Q, a CD4006's D1P4) are numbered
+by the DIPPINS table of MAME's own DIP model for it, read from MAME's library
+at the same tag. One op-amp or timer of a multi-section package, declared on
+its own (LM3900(H5_3)), is put on its package's pins by the data sheet's
+section numbering (SECTION_PINS); the target says which declarations are
+sections. Every IC supply pin is checked against the rail it lands on, so a
+part MAME powers backwards fails rather than converting.
 
 Only files whose header says CC0-1.0 or BSD-3-Clause are converted. The source
 is fetched from MAME's GitHub at a fixed tag into cache/mame/<tag>/, never the
@@ -53,6 +65,8 @@ LICENCES = {"CC0-1.0", "BSD-3-Clause"}
 # reported, so a new kind of hack cannot pass silently.
 # ---------------------------------------------------------------------------
 SWITCHES = [
+    (r"REMOVE_POST_CRASH_NOISE_GLITCHES", 0, "a voltage limiter MAME adds on an op-amp output"),
+    (r"CONVERGENCE_FRONTIERS", 0, "solver partitioning, with resistor values adjusted to suit"),
     (r"HLE_\w+|\w+_HLE_\w+", 0, "high-level stand-in for a real circuit"),
     (r"\w*FRONTIERS?\w*", 0, "solver partitioning only"),
     (r"HACK_\w+|\w+_HACK", 0, "simulation hack"),
@@ -70,8 +84,11 @@ SWITCHES = [
 ]
 
 # Supplies MAME feeds from ANALOG_INPUT. Anything else an ANALOG_INPUT carries
-# (a 2.2V reference, a DAC level) is a stand-in, and becomes a port.
-RAIL_VOLTS = {5, 12, 15, -5, -12, -15, 6, 9, 18, 24}
+# (a 2.2V reference, a DAC level) is a stand-in, and becomes a port. A 0V input
+# is ground only when its name says so (XGND, I_V0): MAME also feeds a sound
+# chip's output in at 0V and drives it at run time (Rally-X's I_AUDIO).
+RAIL_VOLTS = {5, 12, 15, 16, -5, -12, -15, 6, 9, 18, 24}
+GROUND_NAME = re.compile(r"\w*(GND|VSS|V0)\w*")
 
 # Named pins of non-DIP devices, as the DIP-8 package numbers them.
 NAMED_PINS = {
@@ -79,6 +96,29 @@ NAMED_PINS = {
     "NE555": {"GND": "1", "TRIG": "2", "OUT": "3", "RESET": "4", "CONT": "5",
               "THRESH": "6", "DISCH": "7", "VCC": "8"},
 }
+# One section of a multi-section package, declared as a device of its own:
+# its pins on the package, by the data sheet's numbering of the sections. A
+# target names which declarations are sections (`sections`).
+_555 = ("GND", "TRIG", "OUT", "RESET", "CONT", "THRESH", "DISCH", "VCC")
+SECTION_PINS = {
+    # National LM3900 connection diagram (tools/custom_pinouts.json): amplifier
+    # n is nIN+, nIN-, nOUT; all four share V+ (14) and GND (7).
+    "LM3900": {s: dict(zip(("PLUS", "MINUS", "OUT", "VCC", "GND"), p)) for s, p in {
+        "1": ("1", "6", "5", "14", "7"), "2": ("2", "3", "4", "14", "7"),
+        "3": ("13", "8", "9", "14", "7"), "4": ("12", "11", "10", "14", "7")}.items()},
+    # NE556 (KiCad Timer:NE556, TI's sheet): timer 1 on pins 1-6, timer 2 on
+    # 8-13, GND 7 and VCC 14 shared.
+    "NE556": {"1": dict(zip(_555, ("7", "6", "5", "4", "3", "2", "1", "14"))),
+              "2": dict(zip(_555, ("7", "8", "9", "10", "11", "12", "13", "14")))},
+}
+# MAME's library, whose DIP models number each part's named pins (DIPPINS).
+LIBRARY = ["src/lib/netlist/macro/nlm_cd4xxx_lib.cpp", "src/lib/netlist/macro/nlm_opamp_lib.cpp",
+           "src/lib/netlist/macro/nlm_ttl74xx_lib.cpp", "src/lib/netlist/macro/nlm_otheric_lib.cpp",
+           "src/lib/netlist/macro/modules/nlmod_ne556_dip.cpp"]
+NOISE_SOURCES = {"SYS_NOISE_MT_N", "SYS_NOISE_MT_U"}
+# A comment on a part's declaration that says what the schematic, parts list or a
+# real board has, or doubts it ("PCB verified", "Guess", "Schematic says 47K").
+VALUE_NOTE = re.compile(r"schem|parts? list|verif|FIXME|guess|assum|error|actually", re.I)
 DIODE_PINS = {"K": "1", "A": "2"}       # the DSL: diode pin 1 is the cathode
 # Outputs that are currents, not voltages: an OTA's output is summed with
 # others on one node by design, which the checker must be told (`parallel`).
@@ -111,6 +151,53 @@ def licence(text):
     m = re.search(r"//\s*license:\s*(\S+)", text[:400])
     c = re.search(r"//\s*copyright-holders:\s*(.+)", text[:400])
     return (m.group(1) if m else "?"), (c.group(1).strip() if c else "?")
+
+
+_library = None
+
+
+def dippins(text):
+    """{model: {pin name: number}} for every NETLIST_START(model) in a file
+    that has a DIPPINS table. DIPPINS lists pins 1, N, 2, N-1, ... -- the
+    two sides of the package as drawn -- so a model also says which number
+    each name is on the package (ALIAS(1, ...) does the same for SIL parts)."""
+    code = "\n".join(c for _, c, _ in split_comments(text))
+    out = {}
+    for m in re.finditer(r"NETLIST_START\(\s*(\w+)\s*\)\s*\{(.*?)\n\}", code, re.S):
+        body, table = m.group(2), {}
+        d = re.search(r"DIPPINS\((.*?)\)", body, re.S)
+        if d:
+            pins = [p.strip() for p in d.group(1).split(",") if p.strip()]
+            n = len(pins)
+            for i in range(n // 2):
+                table.setdefault(pins[2 * i], str(i + 1))
+                table.setdefault(pins[2 * i + 1], str(n - i))
+        for num, name in re.findall(r"ALIAS\(\s*(\d+)\s*,\s*([\w.]+)\s*\)", body):
+            table.setdefault(name, num)
+        if table:
+            out[m.group(1)] = table
+    return out
+
+
+def library():
+    """MAME's DIP models: {model: {pin name: number}}."""
+    global _library
+    if _library is None:
+        _library = {}
+        for path in LIBRARY:
+            _library.update(dippins(fetch(path)))
+    return _library
+
+
+def library_pin(macro, pin):
+    """The package pin MAME's own DIP model gives a named pin of `macro`:
+    TTL_7486_DIP's A.Q is 3, and CD4006's D1P4 is CD4006_DIP's A.D1P4, 13."""
+    model = macro if re.search(r"_(DIP\d*|SIL)$", macro) else macro + "_DIP"
+    table = library().get(model, {})
+    for name in (pin, "A." + pin):
+        if name in table:
+            return table[name]
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -182,8 +269,11 @@ def preprocess(lines, preset, log):
     stack = []                                # [(active, taken_already, parent_active)]
     out = []
     active = True
+    lines = iter(lines)
     for n, code, comment in lines:
         s = code.strip()
+        while s.startswith("#") and s.endswith("\\"):    # a directive continued
+            s = s[:-1] + " " + next(lines)[1].strip()
         if s.startswith("#"):
             d = s[1:].strip()
             word, _, rest = d.partition(" ")
@@ -247,7 +337,8 @@ def preprocess(lines, preset, log):
 # Statements
 # ---------------------------------------------------------------------------
 
-Call = collections.namedtuple("Call", "name args line comment section")
+Call = collections.namedtuple("Call", "name args line comment section via", defaults=(None,))
+# `via`: the function-like macro a call was expanded from, if any.
 
 
 def split_args(s):
@@ -267,28 +358,15 @@ def split_args(s):
     return args
 
 
-def calls(active, netlist):
-    """The macro calls in NETLIST_START(<netlist>) { ... }, in order, each with
-    its line, the comment on that line, and the section heading above it."""
-    # Flatten, remembering where each character came from.
-    text, where, comments = "", [], {}
-    section, sections = "", {}
-    for n, code, comment in active:
-        # A comment on a line of its own is a heading if it reads like one
-        # (and is not commented-out code).
-        if not code.strip() and re.fullmatch(r"[A-Z0-9][\w &/'(),.:+-]{1,60}", comment) \
-                and not re.match(r"[A-Z_0-9]+\(", comment):
-            section = comment.rstrip(":")
-        comments[n] = comment
-        sections[n] = section
-        text += code + "\n"
-        where += [n] * (len(code) + 1)
-    m = re.search(r"NETLIST_START\(\s*%s\s*\)\s*\{?" % re.escape(netlist), text)
-    if not m:
-        raise SystemExit(f"no NETLIST_START({netlist})")
-    i = m.end()
-    out = []
-    depth = 1 if text[m.end() - 1] == "{" else 0
+CALL = re.compile(r"\b([A-Z_][A-Z0-9_]*)\s*\(")
+DECLARES = re.compile(r"D_\w+|Q_\w+|\w+_DIP8?|\w+_SIL")
+
+
+def scan(text, i, where, comments, sections, funcs, line=None, via=None):
+    """Calls in text[i:] up to the brace that closes the block, expanding
+    function-like macros as the C preprocessor would. `line` pins every call
+    to one source line (a macro's expansion is on the line that used it)."""
+    out, depth = [], 1
     while i < len(text):
         if text[i] == "{":
             depth += 1
@@ -296,19 +374,69 @@ def calls(active, netlist):
             depth -= 1
             if depth == 0:
                 break
-        mm = re.compile(r"\b([A-Z_][A-Z0-9_]*)\s*\(").match(text, i)
+        mm = CALL.match(text, i)
         if mm and (i == 0 or not (text[i - 1].isalnum() or text[i - 1] == "_")):
             j, d = mm.end(), 1
             while d and j < len(text):
                 d += {"(": 1, ")": -1}.get(text[j], 0)
                 j += 1
-            n = where[i]
-            out.append(Call(mm.group(1), split_args(text[mm.end():j - 1]), n,
-                            comments.get(n, ""), sections.get(n, "")))
+            n = line if line is not None else where[i]
+            name, args = mm.group(1), split_args(text[mm.end():j - 1])
+            # A macro whose own name already says what the part is (Q_2N4093,
+            # D_1N914, MB4391_DIP) is kept: its expansion can say less.
+            if name in funcs and not DECLARES.fullmatch(name):
+                params, body = funcs[name]
+                for p, a in zip(params, args):
+                    body = re.sub(r"\b%s\b" % re.escape(p), lambda _, a=a: a, body)
+                out += scan(body + "}", 0, None, comments, sections, funcs, line=n,
+                            via=via or name)
+            else:
+                out.append(Call(name, args, n, comments.get(n, ""), sections.get(n, ""), via))
             i = j
             continue
         i += 1
     return out
+
+
+def calls(active, netlist, funcs=None):
+    """The macro calls in NETLIST_START(<netlist>) { ... }, in order, each with
+    its line, the comment on that line, and the section heading above it. A
+    netlist of the same file that this one INCLUDEs is spliced in where it is
+    included, as MAME's parser does."""
+    # Flatten, remembering where each character came from.
+    text, where, comments = "", [], {}
+    section, sections = "", {}
+    for n, code, comment in active:
+        # A comment on a line of its own is a heading if it reads like one
+        # (and is not commented-out code). Inside a /* ... */ block the line's
+        # leading * is the block's, not the heading's (Borderline's " *  RST").
+        head = comment.lstrip("* ").rstrip(" *")
+        if not code.strip() and re.fullmatch(r"[A-Z0-9][\w &/'(),.:+-]{1,60}", head) \
+                and not re.match(r"[A-Z_0-9]+\(", head):
+            section = head.rstrip(":")
+        comments[n] = comment
+        sections[n] = section
+        text += code + "\n"
+        where += [n] * (len(code) + 1)
+
+    def block(name, seen):
+        m = re.search(r"NETLIST_START\(\s*%s\s*\)\s*\{?" % re.escape(name), text)
+        if not m:
+            raise SystemExit(f"no NETLIST_START({name})")
+        if text[m.end() - 1] != "{":
+            raise SystemExit(f"NETLIST_START({name}) has no opening brace on its line")
+        out = []
+        for c in scan(text, m.end(), where, comments, sections, funcs or {}):
+            if c.name == "INCLUDE" and re.search(r"NETLIST_START\(\s*%s\s*\)" % re.escape(c.args[0]),
+                                                 text):
+                if c.args[0] in seen:
+                    raise SystemExit(f"INCLUDE({c.args[0]}) includes itself")
+                out += block(c.args[0], seen | {c.args[0]})
+            else:
+                out.append(c)
+        return out
+
+    return block(netlist, {netlist})
 
 
 def commented_calls(lines, netlist_range):
@@ -362,7 +490,7 @@ Device = collections.namedtuple("Device", "name kind part value line comment sec
 
 def ic_part(macro):
     p = re.sub(r"^(TTL_|PROM_|EPROM_|AMI_)", "", macro)
-    p = re.sub(r"_(FAST_|SLOW_)?DIP8?$", "", p)
+    p = re.sub(r"_(FAST_|SLOW_)?DIP8?$|_SIL$", "", p)
     return p
 
 
@@ -387,7 +515,7 @@ def classify(c, defines):
         return Device(args[0], "IC", part, part, c.line, c.comment, c.section, name), []
     if name == "NE555":
         return Device(args[0], "IC", "NE555", "NE555", c.line, c.comment, c.section, name), []
-    if re.fullmatch(r"\w+_DIP8?", name) or name == "AMI_S2688":
+    if re.fullmatch(r"\w+_DIP8?|\w+_SIL", name) or name == "AMI_S2688":
         part = ic_part(name)
         return Device(args[0], "IC", part, part, c.line, c.comment, c.section, name), []
     if name in VIRTUAL:
@@ -396,6 +524,10 @@ def classify(c, defines):
         raise SystemExit(f"line {c.line}: {name} is a gate-level device -- which package "
                          "and pins it is on is not in the netlist; this converter only "
                          "handles DIP-level netlists")
+    if args and library().get(name + "_DIP"):
+        # A whole part declared without its package (Tank Battalion's CD4006):
+        # MAME's DIP model of it numbers its named pins.
+        return Device(args[0], "IC", name, name, c.line, c.comment, c.section, name), []
     return None, []
 
 
@@ -448,9 +580,12 @@ def convert(slug, cfg):
         if not any("/*" in l or "*/" in l or l.strip().startswith("//") for l in raw[a - 1:b]):
             raise SystemExit(f"{slug}: restore {a}-{b} is not commented out")
 
-    cs = calls(active, cfg["netlist"])
+    cs = calls(active, cfg["netlist"], funcs)
     devices, aliases, nets, hints, scaled, used_undo = {}, {}, [], [], [], set()
     rename = cfg.get("rename", {})
+    section_of = {}                             # MAME name -> (package, section)
+    modelled = []                               # (device, stock part, why)
+    sections = [(macro, re.compile(rx), part) for macro, rx, part in cfg.get("sections", ())]
     for c in cs:
         if c.line in undo and undo[c.line].get("action") == "drop-line":
             used_undo.add(c.line)
@@ -467,9 +602,28 @@ def convert(slug, cfg):
             if c.args[1] == "NC":
                 hints.append((c.args[0], c))
             continue
+        sec = next(((m, part) for macro, rx, part in sections
+                    for m in [rx.fullmatch(c.args[0])] if macro == c.name and m), None)
+        if sec:
+            # One section of a package, declared alone: the package is the part.
+            # IC_ keeps the package's name apart from a passive's (Super Speed
+            # Race has an LM3900 at C1 and a capacitor C1).
+            m, part = sec
+            pkg = "IC_" + m.group(1)
+            section_of[c.args[0]] = (pkg, m.group(2))
+            if pkg not in devices:
+                devices[pkg] = Device(pkg, "IC", part, part, c.line, c.comment, c.section,
+                                      "sections of " + part)
+            continue
         dev, sc = classify(c, defines)
         if dev is None:
             continue
+        if dev.kind == "IC" and dev.part in cfg.get("models", {}):
+            # A model of a stock part under its own name (an LM324 for a -5V/+12V
+            # supply): the part on the board is the stock one.
+            part, why = cfg["models"][dev.part]
+            modelled.append((dev, part, why))
+            dev = dev._replace(part=part, value=part)
         if dev.name in rename:
             dev = dev._replace(name=rename[dev.name])
         if dev.name in cfg.get("not_parts", {}):
@@ -480,6 +634,9 @@ def convert(slug, cfg):
             # A dummy load MAME hangs on a pin the board leaves open, because
             # the simulator will not have an output drive nothing.
             dev = dev._replace(kind="V", macro="load: " + cfg["loads"][dev.name])
+        if dev.name in cfg.get("shorts", {}):
+            # A part MAME puts in series where the board has a wire.
+            dev = dev._replace(kind="V", macro="short: " + cfg["shorts"][dev.name])
         devices[dev.name] = dev
         if sc:
             scaled.append((dev, sc))
@@ -501,7 +658,9 @@ def convert(slug, cfg):
     # A part the real-circuit branch uses but whose declaration MAME commented
     # out ("not used" -- by the stand-in): bring the declaration back.
     revived = []
-    used = {t.strip().partition(".")[0] for c in nets for t in c.args}
+    # (A term that is itself an alias -- Kid Niki's ALIAS(I_V0.Q, GND) -- names
+    # no device, whatever its spelling.)
+    used = {t.strip().partition(".")[0] for c in nets for t in c.args if t.strip() not in aliases}
     used |= {t.partition(".")[0] for t, _ in aliases.values()}
     for name in sorted(used - set(devices) - set(aliases) - {"GND"}):
         for n, code, comment in lines:
@@ -524,6 +683,12 @@ def convert(slug, cfg):
         was = devices[name].value
         devices[name] = devices[name]._replace(value=val)
         fixes.append((f"{name}: the sheet's value is {val}, MAME's {was} -- {why}", [name]))
+    # A part MAME declares by its simulation model (a zener as "D(BV=9.1 ...)")
+    # written by its part number: not a correction, so not logged as one.
+    renamed = []
+    for name, (val, why) in cfg.get("values", {}).items():
+        renamed.append((devices[name], val, why))
+        devices[name] = devices[name]._replace(value=val)
 
     # Resolve a term to a pin "DEV.PIN", a rail "+5V", or a virtual "~DEV.PIN".
     rails = {"GND": "GND"}
@@ -534,9 +699,26 @@ def convert(slug, cfg):
             except ValueError:
                 continue
             if volts == 0:
-                rails[d.name] = "GND"
+                if GROUND_NAME.fullmatch(d.name):
+                    rails[d.name] = "GND"
             elif volts in RAIL_VOLTS:
                 rails[d.name] = ("+" if volts > 0 else "-") + f"{abs(volts):g}V"
+
+    # A noise source in series -- neither terminal on a rail -- is MAME's model
+    # of the noise in the zener it sits beside; on the board the two are one
+    # node. (One with a terminal on a rail is a source standing in for a
+    # circuit, and its other terminal becomes a port as any stand-in's does.)
+    held = collections.defaultdict(set)
+    for c in nets:
+        for t in c.args:
+            dev, _, pin = t.strip().partition(".")
+            if dev in devices and devices[dev].macro in NOISE_SOURCES and pin in ("1", "2"):
+                held[dev] |= {a.strip() for a in c.args} - {t.strip()}
+    series = {d for d, others in held.items()
+              if not any(o in rails or o.partition(".")[0] in rails for o in others)
+              and {p for c in nets for t in c.args if t.strip().startswith(d + ".")
+                   for p in [t.strip().partition(".")[2]]} >= {"1", "2"}}
+    wires = set()                               # virtual tokens that are wires, not ports
 
     repin = cfg.get("repin", {})
 
@@ -557,9 +739,21 @@ def convert(slug, cfg):
             return rails[dev]                      # an ANALOG_INPUT's output is its rail
         if dev not in devices and dev in aliases and pin == "Q":
             return resolve(dev, seen)              # a clock's output, aliased to a pin
+        if dev in section_of:
+            pkg, sec = section_of[dev]
+            table = SECTION_PINS[devices[pkg].part][sec]
+            if pin not in table:
+                raise SystemExit(f"{term}: section {sec} of {devices[pkg].part} has no pin {pin}")
+            return f"{pkg}.{table[pin]}"
         if dev in devices:
             d = devices[dev]
             if d.kind == "V":
+                if dev in series and pin in ("1", "2"):
+                    wires.add(f"~{dev}.series")
+                    return f"~{dev}.series"
+                if d.macro.startswith("short: "):
+                    wires.add(f"~{dev}.short")
+                    return f"~{dev}.short"
                 return f"~{dev}.{pin or 'Q'}"
             if not pin:
                 raise SystemExit(f"{term}: a device used without a pin")
@@ -569,6 +763,11 @@ def convert(slug, cfg):
                 pin = NAMED_PINS[d.macro][pin]
             elif d.kind == "IC" and d.macro == "OPAMP":
                 pin = NAMED_PINS["OPAMP"][pin]
+            elif d.kind == "IC" and not pin.isdigit():
+                num = library_pin(d.macro, pin)
+                if num is None:
+                    raise SystemExit(f"{term}: MAME's {d.macro} has no DIP pin named {pin}")
+                pin = num
             if dev in repin and not sheet:
                 if pin not in repin[dev]:
                     raise SystemExit(f"{term}: repin for {dev} has no pin {pin}")
@@ -578,16 +777,30 @@ def convert(slug, cfg):
 
     u = checker.Union()
     first_line = {}
-    dropped, made_nc, ports_from_undo, parked = [], [], {}, set()
-    unused = re.compile(cfg.get("unused_sections", r".*\b(unused|unconnected)\b.*"), re.I)
+    dropped, made_nc, ports_from_undo, parked, kept = [], [], {}, set(), []
+    unused = re.compile(cfg.get("unused_sections", r".*\b(unused|unconnected|not connected)\b.*"),
+                        re.I)
     for c in nets:
         terms = [resolve(t, sheet=c.line < 0) for t in c.args]
+        if c.via in cfg.get("hack_macros", {}) and c.line not in undo:
+            # A tie made by a macro the file itself calls a hack (Borderline's
+            # UNUSED_OP_PLUS): what the board does with the pin is not here.
+            made_nc.append((c, [t for t in terms if "." in t and not t.startswith("~")],
+                            f"MAME's {c.via}(), {cfg['hack_macros'][c.via]}"))
+            continue
         if c.line in undo:
             used_undo.add(c.line)
             act = undo[c.line]
             pins = [t for t in terms if "." in t and not t.startswith("~")]
             if act["action"] == "nc":
                 made_nc.append((c, pins, act["why"]))
+                continue
+            if act["action"] == "keep":            # a tie in an "unused" block the sheet draws
+                kept.append((c, act["why"]))
+                for t in terms:
+                    first_line.setdefault(t, c)
+                for a, b in zip(terms, terms[1:]):
+                    u.join(a, b)
                 continue
             if act["action"] == "drop":
                 dropped.append((c, act["why"], terms))
@@ -614,14 +827,25 @@ def convert(slug, cfg):
                             "parked on a rail with " + ", ".join(sorted(two, key=nat)) +
                             " -- MAME replaces this circuit with a stand-in"))
             continue
-        elif unused.fullmatch(c.section or "") and len([t for t in terms if "." not in t]) <= 1:
+        elif unused.fullmatch(c.section or "") and len([t for t in terms if "." not in t]) <= 1 \
+                and any(t in devices and devices[t].kind == "IC"
+                        for t in (x.partition(".")[0] for x in terms if "." in x)):
             # MAME's block of unused pins tied to a rail, or to each other: a
             # simulator needs a defined level on every input, and nothing says
-            # the board ties them.
+            # the board ties them. A passive in the same statement is circuit,
+            # not a tie-off (Rally-X grounds C35 in its unused-gate line), and
+            # keeps its rail.
             rail = next((t for t in terms if "." not in t), None)
-            made_nc.append((c, [t for t in terms if "." in t],
-                            (f"tied to {rail}" if rail else "tied to one another") +
+            ics = [t for t in terms if "." in t and not t.startswith("~")
+                   and devices[t.partition(".")[0]].kind == "IC"]
+            made_nc.append((c, ics, (f"tied to {rail}" if rail else "tied to one another") +
                             f" in MAME's \"{c.section}\" block"))
+            rest = [t for t in terms if t not in ics]
+            if rail and len(rest) > 1:
+                for t in rest:
+                    first_line.setdefault(t, c)
+                for a, b in zip(rest, rest[1:]):
+                    u.join(a, b)
             continue
         for t in terms:
             first_line.setdefault(t, c)
@@ -662,12 +886,32 @@ def convert(slug, cfg):
     for root, members in groups.items():
         pins = sorted(m for m in members if "." in m and not m.startswith("~"))
         rail = sorted({m for m in members if "." not in m})
-        virt = sorted(m for m in members if m.startswith("~"))
+        virt = sorted(m for m in members if m.startswith("~") and m not in wires)
         names = [a for a in alias_of[root] if a not in rails]
         if len(rail) > 1:
             raise SystemExit(f"rails shorted together: {rail} via {pins[:6]}")
         if not pins:
             continue
+        for p in pins if rail else ():
+            # A supply pin on the wrong rail is a MAME slip the checker cannot
+            # see (it joins whatever it is told to): Tank Battalion's netlist
+            # puts its 7486's pin 14 on ground and pin 7 on +5V.
+            dev, _, num = p.partition(".")
+            d = devices[dev]
+            if d.kind != "IC":
+                continue
+            try:
+                pname, ptype = checker.pinout(d.part).get(num, ("", ""))
+            except KeyError:
+                continue                            # no pinout: write() says so
+            if ptype != "power_in":
+                continue
+            if d.part not in checker.KICAD and "rail" not in checker.custom_entry(d.part)["pins"][num]:
+                continue        # a custom pinout says which rail only with `rail` (PMOS VSS is +)
+            low = lambda r: r == "GND" or r.startswith("-")             # noqa: E731
+            if low(checker.supply_rail(d.part, num, pname)) != low(rail[0]):
+                raise SystemExit(f"{p} is {d.part} pin {num} ({pname}) but MAME puts it on "
+                                 f"{rail[0]} -- correct it in the target")
         sec = min((first_line[m] for m in members if m in first_line), key=lambda c: c.line)
         undone = [ports_from_undo[p] for p in pins if p in ports_from_undo]
         if undone:
@@ -678,7 +922,8 @@ def convert(slug, cfg):
 
     return dict(slug=slug, cfg=cfg, path=path, licence=lic, holders=holders, log=log,
                 devices=devices, nets=out_nets, dropped=dropped, made_nc=made_nc, revived=revived,
-                parked=parked, fixes=fixes, used_ties=used_ties,
+                parked=parked, fixes=fixes, used_ties=used_ties, series=series,
+                modelled=modelled, section_of=section_of, renamed=renamed, kept=kept,
                 scaled=scaled, port_names=port_names, defines=defines,
                 commented=commented_calls(lines, (min(c.line for c in cs), max(c.line for c in cs))),
                 text=text)
@@ -699,7 +944,9 @@ def designator(cfg, dev):
     if dev.name in m:
         return m[dev.name]
     if dev.kind == "IC":
-        r = re.fullmatch(r"(?:IC_|IC|U)([A-Z]?\d+[A-Z]?)", dev.name)
+        # IC_A7, IC6, U8, and Namco's _6F (a name cannot start with a digit).
+        r = re.fullmatch(r"(?:IC_|IC|U|_)([A-Z]?\d+[A-Z]?)", dev.name) or \
+            re.fullmatch(cfg.get("ic_names", r"(?!)"), dev.name)
         if r:
             return "U" + r.group(1)
         raise SystemExit(f"{dev.name}: no designator rule for this IC -- add it to the target")
@@ -877,7 +1124,14 @@ def write(res, out_path, board_path):
         if why == "MAME's own HINT(NC)":
             continue
         w(f"# line {c.line}: NET_C({', '.join(c.args)}) -> nc -- {why}")
+    for c, why in r.get("kept", []):
+        w(f"# line {c.line}: NET_C({', '.join(c.args)}) kept, though MAME files it as a tie-off -- "
+          f"{why}")
     for c, pins in r.get("used_ties", []):
+        if c.name == "HINT":
+            w(f"# line {c.line}: MAME hints {', '.join(P(p) for p in pins)} as unconnected, but its "
+              "own netlist connects it -- the hint is dropped")
+            continue
         w(f"# line {c.line}: MAME ties {', '.join(P(p) for p in pins)} off as unused, but the "
           "circuit uses them -- the tie is dropped")
     for a, b in cfg.get("restore", ()):
@@ -890,7 +1144,8 @@ def write(res, out_path, board_path):
           ", ".join(f"{des[name]} (line {n})" for (n, _), (_, _, name) in zip(revived, r["revived"])))
     if r.get("fixes") or cfg.get("add"):
         w("#")
-        w("# Corrected from the sheet (the notes below say what was read where):")
+        w("# Corrected from " + cfg.get("corrected_from",
+                                       "the sheet (the notes below say what was read where)") + ":")
         for text, names in r.get("fixes", []):
             w(f"#   {text.replace(names[0], des.get(names[0], names[0]), 1)}")
         added = [p for p in cfg.get("add_parts", []) if p["name"] in devices]
@@ -913,8 +1168,36 @@ def write(res, out_path, board_path):
     for d in sorted(devices.values(), key=lambda d: d.line):
         if d.macro.startswith(("not a part: ", "load: ")):
             w(f"# line {d.line}: {d.name} is not a part -- {d.macro.partition(': ')[2]}")
+        elif d.macro.startswith("short: "):
+            w(f"# line {d.line}: {d.name} is not a part, and its two ends are one node here -- "
+              f"{d.macro.partition(': ')[2]}")
+    for name in sorted(r.get("series", ()), key=nat):
+        if name in devices:
+            w(f"# line {devices[name].line}: {devices[name].macro}({name}) is MAME's noise source in "
+              "series with the zener it models the noise of; its two ends are one node here")
+    by_value = collections.OrderedDict()
+    for dev, val, why in r.get("renamed", ()):
+        if dev.name in des:
+            by_value.setdefault((val, why, dev.value), []).append(des[dev.name])
+    for (val, why, model), refs in by_value.items():
+        w(f"# {', '.join(sorted(refs, key=nat))} written {val}, where MAME gives its model "
+          f"({model}) -- {why}")
+    for dev, part, why in r.get("modelled", ()):
+        if dev.name in des:
+            w(f"# line {dev.line}: {des[dev.name]} is MAME's {dev.part} model, {why}; the part is "
+              f"the {part}")
+    packages = collections.defaultdict(list)
+    for name, (pkg, sec) in r.get("section_of", {}).items():
+        if pkg in des:
+            packages[pkg].append(name)
+    if packages:
+        w("# MAME declares one section of these packages at a time; each is written on its package's")
+        w("# pins by the data sheet's numbering of the sections (SECTION_PINS in the converter): " +
+          "; ".join(f"{des[p]} {devices[p].part} ({', '.join(sorted(s, key=nat))})"
+                    for p, s in sorted(packages.items(), key=lambda kv: nat(kv[0]))))
     virt = [d for d in devices.values() if d.kind == "V" and d.macro != "ANALOG_INPUT"
-            and not d.macro.startswith(("not a part: ", "load: "))]
+            and not d.macro.startswith(("not a part: ", "load: ", "short: "))
+            and d.name not in r.get("series", ())]
     if virt:
         w("# Stand-ins that are not parts (the nets they drive are ports): " +
           ", ".join(f"{d.macro}({d.name})" for d in sorted(virt, key=lambda d: d.line)))
@@ -953,8 +1236,12 @@ def write(res, out_path, board_path):
     for kind in ("R", "POT", "C", "D", "Q", "Y", "SW"):
         for name, d in by_des:
             if d.kind == kind and name not in r["parked"]:
-                extra = f"  # MAME: {name}" if des[name] != name else ""
-                w(f"value {des[name]} {d.value}{extra}".rstrip())
+                extra = [f"MAME: {name}"] if des[name] != name else []
+                if VALUE_NOTE.search(d.comment or ""):
+                    # What MAME says about a value travels with it (Tank Battalion's R46:
+                    # "Possible schematic or scan-quality error: Schematic says 47K").
+                    extra.append(f"MAME's comment: {d.comment.strip()!r}")
+                w(f"value {des[name]} {d.value}" + (f"  # {'; '.join(extra)}" if extra else ""))
 
     # Nets: the rails, then the rest by MAME's section.
     by_sec = collections.OrderedDict()
@@ -978,7 +1265,7 @@ def write(res, out_path, board_path):
                      if devices[v[1:].partition(".")[0]].macro.startswith("load: ")]
             if loads and len(loads) == len(n["virt"]):
                 n = dict(n, virt=[])
-                if len(n["pins"]) == 1:
+                if len(n["pins"]) == 1 and not leaves:
                     w(f"nc {pins}  # MAME hangs {loads[0].name} on it: {loads[0].macro[6:]}")
                     continue
             if n["rail"]:
@@ -996,9 +1283,17 @@ def write(res, out_path, board_path):
                     w(f"port {n['cross_name']}: {pins}  # to {other}, where MAME joins it by "
                       f"name; the contact it crosses on is not in MAME{also}")
             elif n["virt"] or leaves:
-                srcs = ", ".join(sorted({
-                    f"{devices[v[1:].partition('.')[0]].macro}({v[1:].partition('.')[0]})"
-                    for v in n["virt"]}))
+                # A stand-in by its macro; parts that are not parts by name, with the
+                # reason once (Kid Niki's AY drives one node through six of them).
+                virt_devs = sorted({v[1:].partition(".")[0] for v in n["virt"]}, key=nat)
+                why_not = collections.OrderedDict()
+                for d in virt_devs:
+                    if devices[d].macro.startswith("not a part: "):
+                        why_not.setdefault(devices[d].macro[12:], []).append(d)
+                srcs = ", ".join(sorted({f"{devices[d].macro}({d})" for d in virt_devs
+                                         if not devices[d].macro.startswith("not a part: ")}) +
+                                 [f"{', '.join(ds)}, not part{'s' if len(ds) > 1 else ''}: {w_}"
+                                  for w_, ds in why_not.items()])
                 why = f"  # in MAME: {srcs}" if srcs else f"  # {r['port_names'][leaves[0]]}"
                 w(f"{port} {port_name(n, devices)}: {pins}{why}")
             elif len(n["pins"]) == 1 and n["names"]:

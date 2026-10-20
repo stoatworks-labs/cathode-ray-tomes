@@ -1,0 +1,304 @@
+# Gun Fight sound generator -- netlist converted from MAME
+#
+# Colin Douglas Howell's netlist of Gun Fight's sound generator, every part labelled as on
+# the schematic. The four effect switches are the real transistor switches (FAST_SWITCHES
+# off), driven from the CPU's sound latch, whose bits arrive here as ports. MAME models
+# the zener D304's noise as a source in series with it; here D304's anode and Q302's base
+# are one node, as on the board.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/midw8080/nl_gunfight.cpp,
+# NETLIST_START(gunfight). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Colin Douglas Howell (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/midw8080/nl_gunfight.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 7: #define USE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 8: #define FAST_SWITCHES 1 -> 0 (a speed option)
+# line 439: SYS_NOISE_MT_N(NOISE) is MAME's noise source in series with the zener it models the noise of; its two ends are one node here
+# D304 written 1N5239, where MAME gives its model (D(BV=9.1 IBV=0.020 NBV=1)) -- MAME's file: 'a 9.1-volt zener diode (D304, a 1N5239)'
+# Stand-ins that are not parts (the nets they drive are ports): CLOCK(NCLK), LOGIC_INPUT(I_LEFT_SHOT), LOGIC_INPUT(I_RIGHT_SHOT), LOGIC_INPUT(I_LEFT_HIT), LOGIC_INPUT(I_RIGHT_HIT)
+#
+# Not compared with the sheet. MAME's sheet, 'Gun Fight Sound Generator Detail P.C.
+# 597-907E', is in none of the Gun Fight documents the site holds (read 2026-10-20): the
+# 'Gunfight Schematics' PDF (doc d66a80e04858) has the mother board, the game logic board
+# -- on which the sound generator is a dashed block -- and the cabinet wiring; the manual
+# and parts catalog list no board parts. The catalogue's 'Game Logic and Sound (597-907E)'
+# PDF (doc 8eaf458a433e) was never fetched, and an archive.org copy exists. What the site's
+# sheets do show agrees where they reach: the four triggers enter the sound block from the
+# 7404 at H6 (L.SHOT on pin 2, R.SHOT on 12), as MAME's comment says. The supply is printed
+# '+16V' on the wiring diagram and '+15V' on the mother board schematic for the same pin;
+# MAME uses 16V. The manual names six pots (A-B hit, C-D shot, E-F master, left and right),
+# which by this circuit are R110, R210, R123, R223, R103 and R203 -- an inference, not a
+# reading.
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+
+value R104 30K
+value R105 30K
+value R106 1K
+value R107 150K
+value R108 5.1K
+value R109 30K
+value R111 5.1K
+value R112 1K
+value R113 330K
+value R114 30K
+value R115 30K
+value R116 20K
+value R117 15
+value R118 1K
+value R119 5.1K
+value R120 5.1K
+value R121 470
+value R122 30K
+value R124 5.1K
+value R125 100
+value R126 330K
+value R127 30K
+value R128 30K
+value R129 20K
+value R130 15
+value R131 1K
+value R132 5.1K
+value R133 5.1K
+value R134 470
+value R204 30K
+value R205 30K
+value R206 1K
+value R207 150K
+value R208 5.1K
+value R209 30K
+value R211 5.1K
+value R212 1K
+value R213 330K
+value R214 30K
+value R215 30K
+value R216 20K
+value R217 15
+value R218 1K
+value R219 5.1K
+value R220 5.1K
+value R221 470
+value R222 30K
+value R224 5.1K
+value R225 100
+value R226 330K
+value R227 30K
+value R228 30K
+value R229 20K
+value R230 15
+value R231 1K
+value R232 5.1K
+value R233 5.1K
+value R234 470
+value R302 6.8K
+value R303 6.8K
+value R103 47K
+value R110 50K
+value R123 50K
+value R203 47K
+value R210 50K
+value R223 50K
+value C107 0.001uF
+value C108 0.047uF
+value C109 50uF
+value C110 0.1uF
+value C111 0.033uF
+value C112 0.1uF
+value C113 50uF
+value C114 0.1uF
+value C115 0.033uF
+value C116 20uF
+value C117 0.047uF
+value C118 0.022uF
+value C119 0.047uF
+value C120 0.01uF
+value C121 0.015uF
+value C122 10uF
+value C207 0.001uF
+value C208 0.047uF
+value C209 50uF
+value C210 0.1uF
+value C211 0.033uF
+value C212 0.1uF
+value C213 50uF
+value C214 0.047uF
+value C215 0.033uF
+value C216 20uF
+value C217 0.047uF
+value C218 0.022uF
+value C219 0.047uF
+value C220 0.015uF
+value C221 0.015uF
+value C222 10uF
+value C303 0.1uF
+value C304 0.1uF
+value C305 0.1uF
+value C306 0.1uF
+value C307 10uF
+value D304 1N5239
+value Q102 BC548C
+value Q103 BC548C
+value Q104 PNP
+value Q105 BC548C
+value Q106 BC548C
+value Q107 PNP
+value Q108 BC548C
+value Q202 BC548C
+value Q203 BC548C
+value Q204 PNP
+value Q205 BC548C
+value Q206 BC548C
+value Q207 PNP
+value Q208 BC548C
+value Q302 BC548C
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C107.2 C109.2 C111.2 C113.2 C114.2 C115.2 C116.2 C118.2 C120.2 C121.2 C122.2 C207.2 C209.2 C211.2 C213.2 C214.2 C215.2 C216.2 C218.2 C220.2 C221.2 C222.2 C307.2 Q105.E Q108.E Q205.E Q208.E Q302.E R103.3 R105.2 R106.2 R110.3 R112.2 R114.2 R120.2 R123.3 R125.2 R127.2 R133.2 R203.3 R205.2 R206.2 R210.3 R212.2 R214.2 R220.2 R223.3 R225.2 R227.2 R233.2
+net +16V: Q104.E Q107.E Q204.E Q207.E R107.1 R108.1 R119.1 R132.1 R207.1 R208.1 R219.1 R232.1 R302.1
+
+# ---------------------------------------------------------------------------
+# Detailed circuit model of the dual-transistor switches.
+# ---------------------------------------------------------------------------
+port IN_LS: R134.1  # in MAME: LOGIC_INPUT(I_LEFT_SHOT)
+port IN_RS: R234.1  # in MAME: LOGIC_INPUT(I_RIGHT_SHOT)
+port IN_LH: R121.1  # in MAME: LOGIC_INPUT(I_LEFT_HIT)
+port IN_RH: R221.1  # in MAME: LOGIC_INPUT(I_RIGHT_HIT)
+wire Q108.B R133.1 R134.2
+wire Q208.B R233.1 R234.2
+wire Q105.B R120.1 R121.2
+wire Q205.B R220.1 R221.2
+wire Q108.C R131.1
+wire Q208.C R231.1
+wire Q105.C R118.1
+wire Q205.C R218.1
+
+# ---------------------------------------------------------------------------
+# All connected to 16-volt power.
+# ---------------------------------------------------------------------------
+wire Q107.B R131.2 R132.2
+wire Q207.B R231.2 R232.2
+wire Q104.B R118.2 R119.2
+wire Q204.B R218.2 R219.2
+wire Q107.C R130.1
+wire Q207.C R230.1
+wire Q104.C R117.1
+wire Q204.C R217.1
+
+# ---------------------------------------------------------------------------
+# Current supply and storage capacitors for sound-effect
+# ---------------------------------------------------------------------------
+wire C122.1 R124.1 R126.1 R130.2
+wire C222.1 R224.1 R226.1 R230.2
+wire C116.1 R111.1 R113.1 R117.2
+wire C216.1 R211.1 R213.1 R217.2
+
+# ---------------------------------------------------------------------------
+# Normally-distributed noise of 2 millivolts RMS voltage.
+# ---------------------------------------------------------------------------
+wire D304.2 Q302.B
+wire C307.1 D304.1 R303.2
+wire C303.1 C304.1 C305.1 C306.1 Q302.C R302.2 R303.1
+
+# ---------------------------------------------------------------------------
+# Sound effect frequency filters.
+# ---------------------------------------------------------------------------
+wire C303.2 R129.1
+wire C306.2 R229.1
+wire C304.2 R116.1
+wire C305.2 R216.1
+wire C121.1 R128.1 R129.2
+wire C221.1 R228.1 R229.2
+wire C115.1 R115.1 R116.2
+wire C215.1 R215.1 R216.2
+
+# ---------------------------------------------------------------------------
+# Sound effect amplifier circuits.
+# ---------------------------------------------------------------------------
+wire C120.1 Q106.B R126.2 R127.1 R128.2
+wire C220.1 Q206.B R226.2 R227.1 R228.2
+wire C114.1 Q103.B R113.2 R114.1 R115.2
+wire C214.1 Q203.B R213.2 R214.1 R215.2
+wire Q106.E R125.1
+wire Q206.E R225.1
+wire C113.1 Q103.E R112.1
+wire C213.1 Q203.E R212.1
+
+# ---------------------------------------------------------------------------
+# These circuits act as high-pass filters on the sound effect
+# ---------------------------------------------------------------------------
+wire C119.1 Q106.C R124.2
+wire C219.1 Q206.C R224.2
+wire C112.1 Q103.C R111.2
+wire C212.1 Q203.C R211.2
+wire C118.1 C119.2 R123.1
+wire C218.1 C219.2 R223.1
+wire C111.1 C112.2 R110.1
+wire C211.1 C212.2 R210.1
+
+# ---------------------------------------------------------------------------
+# Mixing of shot and hit sounds for each side.
+# ---------------------------------------------------------------------------
+wire R122.2 R123.2
+wire R222.2 R223.2
+wire R109.2 R110.2
+wire R209.2 R210.2
+wire C117.2 R122.1
+wire C217.2 R222.1
+wire C110.2 R109.1
+wire C210.2 R209.1
+
+# ---------------------------------------------------------------------------
+# Second-stage amplifier circuits, which amplify each side's
+# ---------------------------------------------------------------------------
+wire C110.1 C117.1 Q102.B R105.1 R107.2
+wire C210.1 C217.1 Q202.B R205.1 R207.2
+wire C109.1 Q102.E R106.1
+wire C209.1 Q202.E R206.1
+
+# ---------------------------------------------------------------------------
+# Coupling capacitors, bandpass filters, and volume
+# ---------------------------------------------------------------------------
+wire C108.1 Q102.C R108.2
+wire C208.1 Q202.C R208.2
+wire C108.2 R104.1
+wire C208.2 R204.1
+
+# ---------------------------------------------------------------------------
+# There are two master volume pots, for left and right.
+# ---------------------------------------------------------------------------
+wire C107.1 R103.1 R104.2
+wire C207.1 R203.1 R204.2
+port OUT_L: R103.2  # to the left power amplifier, which MAME does not simulate
+port OUT_R: R203.2  # to the right power amplifier, which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------

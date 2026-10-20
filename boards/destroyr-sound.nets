@@ -1,0 +1,346 @@
+# Destroyer sound circuits -- netlist converted from MAME
+#
+# Ryan Holtz's netlist of the sound circuits on the game board, which his file says is
+# derived from the schematics in the manual. The game logic's sound-enable and sound-data
+# lines arrive as ports (MAME's TTL_INPUT names), and so do the video timing signals the
+# sounds are clocked from, which MAME runs as ideal clocks.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/atari/nl_destroyr.cpp,
+# NETLIST_START(destroyr). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Ryan Holtz (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/atari/nl_destroyr.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 162: dropped NET_C(GND, IC_L7.1, IC_L7.2) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 163: dropped NET_C(GND, IC_L7.4, IC_L7.5) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 165: dropped NET_C(GND, IC_M8.4, IC_M8.5) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 166: dropped NET_C(GND, IC_M8.9, IC_M8.10) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 167: dropped NET_C(GND, IC_M8.12, IC_M8.13) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 171: dropped NET_C(GND, IC_K9.1, IC_K9.5, IC_K9.9, IC_K9.11, IC_K9.13) -- these gates are used elsewhere on the board (sheets 3-5), not tied off
+# line 164: NET_C(GND, IC_L7.9, IC_L7.10) -> nc -- tied to GND in MAME's "Tie off unused gates and pins" block
+# line 168: NET_C(GND, IC_A9.1, IC_A9.2) -> nc -- tied to GND in MAME's "Tie off unused gates and pins" block
+# line 169: NET_C(GND, IC_A9.9, IC_A9.10) -> nc -- tied to GND in MAME's "Tie off unused gates and pins" block
+# line 170: NET_C(GND, IC_A9.12, IC_A9.13) -> nc -- tied to GND in MAME's "Tie off unused gates and pins" block
+# line 172: NET_C(GND, IC_H8.5, IC_H8.9) -> nc -- tied to GND in MAME's "Tie off unused gates and pins" block
+# line 173: NET_C(VCC, IC_H8.4, IC_H8.10) -> nc -- tied to +5V in MAME's "Tie off unused gates and pins" block
+#
+# Corrected from sheet 4 of the schematic (TM-106 p. 37) and sheets 3 and 5:
+#   UK8: the sheet's part is 7428, MAME's 7402 -- sheet 4 prints '28' in all four gates, and the parts list has a 7428 at K8; MAME's comment agrees ('Should be a 7428'), and its 7402 has the same pins
+#   UL9: the sheet's part is 74LS164, MAME's 74164 -- sheet 4 and the parts list
+#   UM9: the sheet's part is 74LS164, MAME's 74164 -- sheet 4 and the parts list
+#   sheet 5: K9 pin 1 is used there, not by the sound: UK9.1 (K9_1)
+#   sheet 5: K9 pin 2 is used there, not by the sound: UK9.2 (K9_2)
+#   sheet 5: K9 pin 5 is used there, not by the sound: UK9.5 (K9_5)
+#   sheet 5: K9 pin 6 is used there, not by the sound: UK9.6 (K9_6)
+#   sheet 4's output-strobe decode (ABUS3 in, out to E8 pin 5): K9 pin 9 is used there, not by the sound: UK9.9 (K9_9)
+#   sheet 4's output-strobe decode (ABUS3 in, out to E8 pin 5): K9 pin 8 is used there, not by the sound: UK9.8 (K9_8)
+#   sheet 3 (H7/J7 to the H4/J4 strobes): K9 pin 13 is used there, not by the sound: UK9.13 (K9_13)
+#   sheet 3 (H7/J7 to the H4/J4 strobes): K9 pin 12 is used there, not by the sound: UK9.12 (K9_12)
+#   sheet 3 (H7/J7 to the H4/J4 strobes): K9 pin 11 is used there, not by the sound: UK9.11 (K9_11)
+#   sheet 3 (H7/J7 to the H4/J4 strobes): K9 pin 10 is used there, not by the sound: UK9.10 (K9_10)
+#   sheet 5's video summing: M8 pin 4 is used there, not by the sound: UM8.4 (M8_4)
+#   sheet 5's video summing: M8 pin 5 is used there, not by the sound: UM8.5 (M8_5)
+#   sheet 5's video summing: M8 pin 6 is used there, not by the sound: UM8.6 (M8_6)
+#   sheet 5's video summing: M8 pin 9 is used there, not by the sound: UM8.9 (M8_9)
+#   sheet 5's video summing: M8 pin 10 is used there, not by the sound: UM8.10 (M8_10)
+#   sheet 5's video summing: M8 pin 8 is used there, not by the sound: UM8.8 (M8_8)
+#   sheet 5's video summing: M8 pin 12 is used there, not by the sound: UM8.12 (M8_12)
+#   sheet 5's video summing: M8 pin 13 is used there, not by the sound: UM8.13 (M8_13)
+#   sheet 5's video summing: M8 pin 11 is used there, not by the sound: UM8.11 (M8_11)
+#   sheet 5's object video: L7 pin 1 is used there, not by the sound: UL7.1 (L7_1)
+#   sheet 5's object video: L7 pin 2 is used there, not by the sound: UL7.2 (L7_2)
+#   sheet 5's object video: L7 pin 3 is used there, not by the sound: UL7.3 (L7_3)
+#   sheet 5's object video: L7 pin 4 is used there, not by the sound: UL7.4 (L7_4)
+#   sheet 5's object video: L7 pin 5 is used there, not by the sound: UL7.5 (L7_5)
+#   sheet 5's object video: L7 pin 6 is used there, not by the sound: UL7.6 (L7_6)
+# line 156: UC9 is MAME's LM324_VM5V12 model, MAME's LM324 with output limits for the -5V/+12V supply it runs on here; the part is the LM324
+# line 157: UH9 is MAME's LM324_VM5V12 model, MAME's LM324 with output limits for the -5V/+12V supply it runs on here; the part is the LM324
+# Stand-ins that are not parts (the nets they drive are ports): CLOCK(H256), CLOCK(V8), TTL_INPUT(MOTOR_SPEED), TTL_INPUT(NOISE), TTL_INPUT(ATTRACT), TTL_INPUT(SONGATE), TTL_INPUT(LAUNCH), TTL_INPUT(EXPLO), TTL_INPUT(SONLAT), TTL_INPUT(HE), TTL_INPUT(LE)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 126: CAP(C81, CAP_U(0.1))
+#
+# Compared with the schematic, sheet 4 of 5 (TM-106 p. 37, a clean 300 ppi scan), with the
+# other four sheets and the parts list (pp. 64-65), on 2026-10-20: all 64 of MAME's nets in
+# the sound circuit agree with the sheet, pin for pin and value for value, and so do the
+# supplies (the LM324s at C9 and H9 on +12V and -5V, from a 7812 and a 7905; the MC3340 at
+# D10 on +5V and -5V). The ports are the sheet's: F8 (a 9334) drives SONGATE, LAUNCH, EXPLO,
+# SONLAT, HE and LE (addresses 1002-1007, HE 'high explosion', LE 'low explosion'); F7 (a
+# 74174) drives MOTOR_SPEED and ATTRACT, and NOISE -- the shift registers' clear -- is F7 pin
+# 5, which sheet 1's address map calls 'KICKER'.
+#
+# What MAME's 'Tie off unused gates and pins' block gets wrong is the board, not the sound:
+# every K9 inverter, M8's gates on 4-6, 8-10 and 11-13, and L7's on 1-6 are used by the video
+# and strobe logic on sheets 3-5, so they are ports here, not nc. The 556's RESETs (H8 4 and
+# 10) and its outputs 5 and 9 are bare stubs on the sheet, as nc says; MAME ties the RESETs
+# to +5V. A9's spare gates and L7 8-10 appear on no sheet (a visual sweep, not certain).
+#
+# On the sheet and not in this file: the decoupling capacitors C50, C60 (+12V), C54, C65 and
+# C73 (-5V); a second, open jumper from the D10 pin 6 / Q4 node to the TDA1004's pin 5 and
+# C83, beside the closed one this file has; and the TDA1004 amplifier itself (C81 from the
+# volume pot's wiper, C82-C90, the speaker on edge pin 7). On all six electrolytics MAME's
+# pin 1 is the + end. R78 has a pen scribble through its value; it reads 5.6K, and the parts
+# list agrees.
+
+# part UA9 7400
+# part UC9 LM324
+# part UD10 MC3340
+# part UE9 CD4066
+# part UH8 NE556
+# part UH9 LM324
+# part UK8 7428
+# part UK9 7404
+# part UL7 7486
+# part UL9 74LS164
+# part UM8 7432
+# part UM9 74LS164
+
+value R39 220
+value R40 220
+value R41 2.2K
+value R42 39K
+value R43 150K
+value R44 820
+value R54 10K
+value R59 470K
+value R60 470K
+value R61 10K
+value R62 10K
+value R63 10M
+value R64 100K
+value R65 100K
+value R66 100K
+value R67 10K
+value R68 10K
+value R69 10K
+value R70 3.3K
+value R71 15K
+value R72 33K
+value R73 10K
+value R74 100K
+value R75 33K
+value R76 22K
+value R77 47K
+value R78 5.6K
+value R79 33K
+value R80 3.9K
+value R81 3.9K
+value R82 2.2K
+value R83 330K
+value R86 680
+value R88 2.7K
+value R89 10K
+value R92 2.2K
+value R93 2.2K
+value R94 68K
+value R95 50K
+value C38 10uF
+value C39 0.1uF
+value C40 0.1uF
+value C48 10uF
+value C49 330pF
+value C51 330pF
+value C52 0.1uF
+value C53 10uF
+value C56 0.22uF
+value C57 0.22uF
+value C58 0.22uF
+value C59 0.1uF
+value C61 0.22uF
+value C62 0.022uF
+value C63 22uF
+value C64 0.022uF
+value C66 10uF
+value C71 0.1uF
+value C72 0.1uF
+value C74 0.22uF
+value C85 22uF
+value CR2 1N914
+value Q4 2N3643
+value Q6 2N3643
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C38.2 C39.2 C40.2 C48.2 C53.2 C85.2 UA9.7 UC9.10 UE9.7 UH8.7 UK8.7 UK9.7 UL7.7 UL9.7 UM8.7 UM9.7 Q4.E Q6.E R61.2 R67.2 R70.2 R73.2 R86.2 R95.1
+net +12V: UC9.4 UH9.4 R62.1
+net +5V: UA9.14 UD10.8 UE9.14 UH8.14 UK8.14 UK9.14 UL7.14 UL9.14 UM8.14 UM9.14 R39.1 R40.1 R41.1 R54.1 R68.1 R89.1
+net -5V: UC9.11 UD10.3 UH9.11 R88.1
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port L7_6: UL7.6  # a spare gate of the sound's L7, used by another circuit on the board
+port L7_5: UL7.5  # a spare gate of the sound's L7, used by another circuit on the board
+port L7_4: UL7.4  # a spare gate of the sound's L7, used by another circuit on the board
+port L7_3: UL7.3  # a spare gate of the sound's L7, used by another circuit on the board
+port L7_2: UL7.2  # a spare gate of the sound's L7, used by another circuit on the board
+port L7_1: UL7.1  # a spare gate of the sound's L7, used by another circuit on the board
+port M8_11: UM8.11  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_13: UM8.13  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_12: UM8.12  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_8: UM8.8  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_10: UM8.10  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_9: UM8.9  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_6: UM8.6  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_5: UM8.5  # a spare gate of the sound's M8, used by another circuit on the board
+port M8_4: UM8.4  # a spare gate of the sound's M8, used by another circuit on the board
+port K9_10: UK9.10  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_11: UK9.11  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_12: UK9.12  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_13: UK9.13  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_8: UK9.8  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_9: UK9.9  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_6: UK9.6  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_5: UK9.5  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_2: UK9.2  # a spare gate of the sound's K9, used by another circuit on the board
+port K9_1: UK9.1  # a spare gate of the sound's K9, used by another circuit on the board
+
+# ---------------------------------------------------------------------------
+# Noise Clock
+# ---------------------------------------------------------------------------
+port H256: UK8.2  # in MAME: CLOCK(H256)
+port EXPLO: UK8.3 UK8.8  # in MAME: TTL_INPUT(EXPLO)
+port V8: UK8.5  # in MAME: CLOCK(V8)
+port SONLAT: UK8.6 UK8.9  # in MAME: TTL_INPUT(SONLAT)
+wire UK8.1 UM8.1
+wire UK8.4 UM8.2
+
+# ---------------------------------------------------------------------------
+# Noise
+# ---------------------------------------------------------------------------
+port NOISE: UL9.9 UM9.9  # in MAME: TTL_INPUT(NOISE)
+label NOISECLK: UL9.8 UM8.3 UM9.8
+wire UK9.3 UM9.12
+wire UK9.4 UL7.13
+label RNOISE: UA9.4 UK8.12 UL7.12 UM9.11
+wire UL7.11 UL9.1 UL9.2
+wire UL9.13 UM9.1 UM9.2
+
+# ---------------------------------------------------------------------------
+# Explosions
+# ---------------------------------------------------------------------------
+wire CR2.2 UK8.10 UK8.11 R39.2
+wire UE9.5 UK8.13
+wire C38.1 CR2.1 UE9.4
+wire UE9.11 UE9.3 R71.1 R74.1
+port LE: UE9.13  # in MAME: TTL_INPUT(LE)
+port HE: UE9.12  # in MAME: TTL_INPUT(HE)
+wire C52.1 R70.1 R71.2
+wire C52.2 R66.1
+wire UH9.10 R63.1 R66.2
+wire UH9.9 R64.1 R65.1
+wire UH9.8 R60.1 R64.2
+wire C49.1 UH9.6 R60.2
+wire C49.2 UH9.7 R59.1 R63.2 R72.1
+wire C48.1 UH9.3 UH9.5 R61.1 R62.2
+wire C51.1 UH9.2 R59.2
+wire C51.2 UH9.1 R65.2
+port SONGATE: UE9.6  # in MAME: TTL_INPUT(SONGATE)
+wire UE9.8 R72.2 R73.1 R82.1
+wire C71.1 C72.1 R74.2 R86.1
+wire C53.1 UC9.3 UH9.12 R67.1 R68.2
+wire C71.2 UH9.13 R83.1
+wire C72.2 UH9.14 R69.1 R83.2
+wire UE9.1 R69.2
+wire UC9.2 UE9.2 R79.1
+wire C61.1 UC9.1 R79.2
+wire C61.2 R78.1
+wire C57.1 UE9.10
+wire C57.2 R77.1
+wire C56.1 UE9.9
+wire C56.2 R76.1
+
+# ---------------------------------------------------------------------------
+# Launch
+# ---------------------------------------------------------------------------
+port LAUNCH: UA9.5  # in MAME: TTL_INPUT(LAUNCH)
+wire UA9.6 R81.1
+wire C64.1 R81.2
+wire C62.1 C64.2 UC9.9 R80.1
+wire C58.1 C62.2 UC9.8 R80.2
+wire C58.2 R75.1
+
+# ---------------------------------------------------------------------------
+# Motor
+# ---------------------------------------------------------------------------
+port MOTOR_SPEED: R44.1  # in MAME: TTL_INPUT(MOTOR_SPEED)
+wire C63.1 UH8.11 UH8.3 R40.2 R44.2
+wire UH8.1 R41.2 R42.1
+wire C39.1 UC9.5 UH8.2 UH8.6 R42.2
+wire UH8.13 R43.1 R54.2
+wire C40.1 UC9.12 UH8.12 UH8.8 R43.2
+wire C63.2 C66.2 UC9.13 UC9.14
+wire C59.2 UC9.6 UC9.7
+wire C59.1 UD10.1
+wire C66.1 UD10.2 R88.2 R89.2
+wire UD10.6 Q4.C
+wire C74.1 UD10.7
+wire C74.2 R94.1
+
+# ---------------------------------------------------------------------------
+# Attract Mute
+# ---------------------------------------------------------------------------
+port ATTRACT: R92.1 R93.1  # in MAME: TTL_INPUT(ATTRACT)
+wire C85.1 Q4.B R92.2
+wire Q6.B R93.2
+wire Q6.C R82.2
+
+# ---------------------------------------------------------------------------
+# Mixer
+# ---------------------------------------------------------------------------
+wire R75.2 R76.2 R77.2 R78.2 R94.2 R95.3
+port OUTPUT: R95.2  # the volume pot's wiper, on through C81 to the TDA1004 amplifier at B10, which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UL7.9 UL7.10  # line 164: tied to GND in MAME's "Tie off unused gates and pins" block
+nc UA9.1 UA9.2  # line 168: tied to GND in MAME's "Tie off unused gates and pins" block
+nc UA9.9 UA9.10  # line 169: tied to GND in MAME's "Tie off unused gates and pins" block
+nc UA9.12 UA9.13  # line 170: tied to GND in MAME's "Tie off unused gates and pins" block
+nc UH8.5 UH8.9  # line 172: tied to GND in MAME's "Tie off unused gates and pins" block
+nc UH8.4 UH8.10  # line 173: tied to +5V in MAME's "Tie off unused gates and pins" block
+nc UA9.3  # line 272: MAME's own HINT(NC)
+nc UA9.8  # line 273: MAME's own HINT(NC)
+nc UA9.11  # line 274: MAME's own HINT(NC)
+nc UL9.3  # line 280: MAME's own HINT(NC)
+nc UL9.4  # line 281: MAME's own HINT(NC)
+nc UL9.5  # line 282: MAME's own HINT(NC)
+nc UL9.6  # line 283: MAME's own HINT(NC)
+nc UL9.10  # line 284: MAME's own HINT(NC)
+nc UL9.11  # line 285: MAME's own HINT(NC)
+nc UL9.12  # line 286: MAME's own HINT(NC)
+nc UM9.3  # line 287: MAME's own HINT(NC)
+nc UM9.4  # line 288: MAME's own HINT(NC)
+nc UM9.5  # line 289: MAME's own HINT(NC)
+nc UM9.6  # line 290: MAME's own HINT(NC)
+nc UM9.10  # line 291: MAME's own HINT(NC)
+nc UM9.13  # line 292: MAME's own HINT(NC)
+nc UL7.8  # line 295: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UD10.4 UD10.5  # NC NC

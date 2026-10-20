@@ -1,0 +1,31 @@
+{
+ "name": "280-ZZZAP sound circuits",
+ "mfr": "Dave Nutting Associates / Midway",
+ "year": "1976",
+ "machine": "280zzzap",
+ "drawing": "280 ZZZAP Game Logic P.C. 0610-00907A, which this site does not hold -- via MAME's netlist, compared with its near copy, Laguna Racer A622 (doc 2e04e6b435f0)",
+ "revision": "280-ZZZAP game logic board, sound section: engine (two LM3900 oscillators into an MC3340 attenuator), skid and crash noise, and the mix.",
+ "coverage": "Converted from MAME's netlist: the engine, skid and crash sounds and the final mix, up to the audio power amplifier. The CPU's sound latches (F4, F5) are ports; the rest of the game logic board is not in MAME.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "280zzzap-sound",
+ "ics": {
+  "G4": "CD4016",
+  "G5": "CD4016",
+  "H2": "MC3340",
+  "H4": "LM3900",
+  "H5": "LM3900",
+  "J3": "LM3900",
+  "J4": "CD4016",
+  "J5": "LM3900"
+ },
+ "source": {
+  "mame": "src/mame/midw8080/nl_280zzzap.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "280zzzap",
+  "licence": "CC0-1.0",
+  "copyright": "Colin Douglas Howell"
+ }
+}

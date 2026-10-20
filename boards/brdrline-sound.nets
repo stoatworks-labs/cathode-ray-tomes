@@ -1,0 +1,758 @@
+# Borderline sound board (834-0055) -- netlist converted from MAME
+#
+# beta-tester's netlist of the Borderline sound board, from the schematics in the
+# Borderline Quest Owner's Manual (420-0613), sheets 6 and 7 of 7 -- the file's header
+# lists each sound's trigger and the sheet grid squares it runs through. ICs are IC1-IC38
+# on the sheet, written U1-U38 here. Two of MAME's notes about the sheet are carried: the
+# transistors of the sound generators are drawn with base and collector swapped on the
+# schematic, which MAME corrects (so this file is wired as MAME has it, not as drawn); and
+# the MB4391 is a part MAME has no model of -- its file's MB4391 is 'a fake substitution',
+# its behaviour guessed, though the pins it puts things on are the sheet's. The eight
+# sound triggers arrive as ports from the logic board's LS374 latch; MAME's file gives
+# the latch-to-trigger order as it wires the cabinet (D0 ANIMAL ... D7 GUN).
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/sega/nl_brdrline.cpp,
+# NETLIST_START(brdrline). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders beta-tester (https://github.com/beta-tester) (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/sega/nl_brdrline.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+# The sheet numbers its ICs IC1, IC2 ...; they are written U1, U2 ... here, because the
+# checker files every IC under a U designator.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 66: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 447: dropped NET_C(IC30.6, IC29.4) -- sheet 6 feeds IC29 pin 5 from IC30 pin 6, and pin 4 from pin 8
+# line 448: dropped NET_C(IC30.8, IC29.5, R123.1) -- as above
+# line 380: NET_C(IC27.7, IC27.6) -> nc -- MAME's UNUSED_OP_OUT_MINUS(), which ties an unused op-amp's output to its inverting input; the file calls it a hack
+# line 381: NET_C(UNUSED_OP_REF, IC27.5) -> nc -- MAME's UNUSED_OP_PLUS(), which ties an unused op-amp input to a reference MAME adds; the file calls it a hack
+# line 460: NET_C(IC29.1, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 461: NET_C(IC29.2, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 464: NET_C(IC29.9, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 465: NET_C(IC29.10, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 467: NET_C(IC29.12, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 468: NET_C(IC29.13, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 470: NET_C(IC36.1, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 472: NET_C(IC36.3, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 475: NET_C(IC36.9, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 477: NET_C(IC36.11, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 479: NET_C(IC36.13, GND) -> nc -- MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+# line 625: NET_C(IC8.OUT, NC_IC8_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 628: NET_C(IC18.OUT, NC_IC18_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 631: NET_C(IC19.OUT, NC_IC19_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 767: NET_C(IC17.OUT, NC_IC17_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 770: NET_C(IC16.OUT, NC_IC16_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 969: NET_C(IC1.OUT, NC_IC1_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 973: NET_C(IC13.OUT, NC_IC13_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 977: NET_C(IC7.OUT, NC_IC7_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 1140: NET_C(IC6.OUT, NC_IC6_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 1143: NET_C(IC14.OUT, NC_IC14_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 1192: NET_C(V5, IC28.RESET) -> nc -- tied to +5V in MAME's "UNUSED PINS" block
+# line 1349: NET_C(IC10.OUT, NC_IC10_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 1352: NET_C(IC11.OUT, NC_IC11_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+# line 1355: NET_C(IC12.OUT, NC_IC12_OUT.1) -> nc -- tied to one another in MAME's "UNUSED PINS" block
+#
+# Corrected from sheet 6 of the sound board (834-0055 Rev. A):
+#   sheet 6: IC29 gate 2's inputs the other way round from MAME's (the same AND, so the same circuit): U30.6 U29.5
+#   as above: U30.8 U29.4 R123.1
+# line 270: UNUSED_OP_RES is not a part -- a 20K divider MAME adds from +12V to bias the unused op-amp inputs it ties off
+# line 626: NC_IC8_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 629: NC_IC18_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 632: NC_IC19_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 768: NC_IC17_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 771: NC_IC16_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 970: NC_IC1_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 974: NC_IC13_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 978: NC_IC7_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1141: NC_IC6_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1144: NC_IC14_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1350: NC_IC10_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1353: NC_IC11_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1356: NC_IC12_OUT is not a part -- a 1M MAME hangs on a 555 output that is 'not connected in schematics'
+# line 1478: Rsound is not a part -- MAME's 'dummy load' on the output
+# TR1, TR2, TR3, TR4, TR5, TR6, TR7, TR8, TR9, TR10, TR11, TR12, TR13, TR14, TR15, TR16 written 2SC458, where MAME gives its model (NPN) -- MAME's C458() macro, 'npn transistor 2SC458', declares it as a generic NPN
+# D1, D2, D3, D4, D5, D6 written MA150, where MAME gives its model (D) -- MAME's MA150() macro declares it as a generic diode
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_SOUND_0), TTL_INPUT(I_SOUND_1), TTL_INPUT(I_SOUND_2), TTL_INPUT(I_SOUND_3), TTL_INPUT(I_SOUND_4), TTL_INPUT(I_SOUND_5), TTL_INPUT(I_SOUND_6), TTL_INPUT(I_SOUND_7)
+#
+# Compared with both sound board sheets, 834-0055 Rev. A sheets 6 and 7 of 7 (the Borderline
+# manual, doc 7756fbdad1fb, PDF pp. 27-28 -- MAME's 'page 26' and '27' -- with the parts list
+# on pp. 17-20), on 2026-10-20: 42 groups of nets, about 230 pin connections, touching every
+# IC from IC1 to IC38, and about 150 values. All agree but one, IC29 gate 2's two inputs,
+# which MAME has the other way round (the same AND, so the same circuit; corrected above).
+# The sheet letters the MB4391s' IN, CON and OUT pins (1, 2, 15 and 5, 6, 11) as MAME has
+# them, and draws pins 14 and 10 to the 680pF capacitors; the name RO for those, and the
+# supplies on 3, 7, 12 and 16, are MAME's -- no MB4391 supply pin is drawn. MAME's base-and-
+# collector correction holds on all sixteen 2SC458s: as drawn, the 555's DIS could not
+# switch the transistor and nothing would oscillate (a likely cause is the 2SC458's E-C-B
+# leads traced as E-B-C). IC28's RESET is not drawn at all, so nc is the sheet's; a 555 needs
+# it high to run, so the board presumably ties it to +5V with a trace the drawing omits, as
+# it omits every supply pin. All thirteen 555 outputs MAME loads are undrawn, and the spare
+# gates of IC29, IC36 and IC27 are not drawn either.
+#
+# On the sheet and not in this file: +6V is not a supply but a divider -- R135 and R136, 1K
+# each from +12V, with a 100uF capacitor on each side -- and the supplies come in on edge pins
+# 20 (+12V), 17 (+5V) and 16 (ground), with decoupling MAME leaves out. The triggers enter
+# on edge pins 5-12 (GUN, JEEP, POINT, HIT, ANIMAL, EMAR, WALK, CRY), active low with 1K
+# pull-ups; which latch bit drives which is not on the sheet. The sheet prints LS08, LS74 and
+# LS123 where MAME has plain TTL, no designator on the ANIMAL 555 (MAME's IC1, which sheet
+# 6's reset list supports) or on the 1uF at IC14 pin 5 (MAME's C2), and '555' beside two of
+# IC9's op-amp sections -- a slip; the parts list makes IC9 an LM324. The top of sheet 7 is
+# cut off by the scan (IC34's B/CLR tie, R109's label). The site's 'Star Raker' schematics
+# filed under Borderline (doc 6b1a0aeb2bbe) are Star Raker's logic board, not this one.
+
+# part U1 NE555
+# part U4 MB4391
+# part U5 MB4391
+# part U6 NE555
+# part U7 NE555
+# part U8 NE555
+# part U9 LM324
+# part U10 NE555
+# part U11 NE555
+# part U12 NE555
+# part U13 NE555
+# part U14 NE555
+# part U15 NE555
+# part U16 NE555
+# part U17 NE555
+# part U18 NE555
+# part U19 NE555
+# part U20 MB4391
+# part U21 LM324
+# part U22 LM324
+# part U23 LM324
+# part U24 LM324
+# part U25 LM324
+# part U26 MM5837
+# part U27 LM324
+# part U28 NE555
+# part U29 7408
+# part U30 7474
+# part U31 NE555
+# part U32 7474
+# part U33 74123
+# part U34 74123
+# part U35 74123
+# part U36 7416
+# part U37 74123
+# part U38 LM324
+
+value R1 22K
+value R2 22K
+value R3 22K
+value R4 22K
+value R5 22K
+value R6 22K
+value R7 22K
+value R8 22K
+value R9 10K
+value R10 1K
+value R11 30K
+value R12 51K
+value R13 51K
+value R14 5.1K
+value R15 51K
+value R16 10K
+value R17 5.1K
+value R18 3.3K
+value R19 10K
+value R20 1K
+value R21 10K
+value R22 10K
+value R23 10K
+value R24 10K
+value R25 10K
+value R26 33K
+value R27 10K
+value R28 10K
+value R29 10K
+value R30 10K
+value R31 10K
+value R32 30K
+value R33 10K
+value R34 10K
+value R35 30K
+value R36 10K
+value R37 2.2K
+value R38 22K
+value R39 51K
+value R40 1M
+value R41 22K
+value R42 36K
+value R43 10K
+value R44 220
+value R45 15K
+value R46 30K
+value R47 51K
+value R48 51K
+value R49 51K
+value R50 51K
+value R51 470K
+value R52 5.1K
+value R53 100K
+value R54 220K
+value R55 51K
+value R56 51K
+value R57 51K
+value R58 51K
+value R59 560K
+value R60 5.1K
+value R61 15K
+value R62 30K
+value R63 51K
+value R64 51K
+value R65 51K
+value R66 51K
+value R67 220K
+value R68 100K
+value R69 15K
+value R70 30K
+value R71 51K
+value R72 51K
+value R73 51K
+value R74 51K
+value R75 470K
+value R76 1K
+value R77 5.1K
+value R78 15K
+value R79 30K
+value R80 51K
+value R81 51K
+value R82 51K
+value R83 51K
+value R84 30K
+value R85 15K
+value R86 10K
+value R87 470K
+value R88 100K
+value R89 470
+value R90 470K
+value R91 470K
+value R92 150K
+value R93 15K
+value R94 470K
+value R95 100K
+value R96 22K
+value R97 470
+value R98 27K
+value R99 22K
+value R100 100K
+value R101 15K
+value R102 33K
+value R103 470
+value R104 470K
+value R105 470K
+value R106 470
+value R107 470K
+value R108 470K
+value R109 1K
+value R110 10K
+value R111 27K
+value R112 10K
+value R113 22K
+value R114 22K
+value R115 51K
+value R116 470K
+value R117 51K
+value R118 51K
+value R119 10K
+value R120 39K
+value R121 47K
+value R122 15K
+value R123 51K
+value R124 51K
+value R125 51K
+value R126 30K
+value R127 56K
+value R128 51K
+value R129 51K
+value R130 30K
+value R131 15K
+value R132 220K
+value R133 22K
+value R134 15K
+value R137 22K
+value R138 47K
+value R139 1K
+value R140 1K
+value R141 47K
+value R142 1K
+value R143 47K
+value R144 47K
+value R145 1K
+value R146 47K
+value R147 1K
+value R148 1K
+value R149 47K
+value R150 1K
+value R151 1K
+value R152 1K
+value R153 33K
+value R154 1K
+value R155 47K
+value R156 1K
+value R157 51K
+value R158 51K
+value R159 470
+value R160 470
+value R161 470K
+value R162 470K
+value R163 27K
+value R164 470K
+value R165 470K
+value R166 12K
+value R167 10K
+value R168 10K
+value R169 30K
+value R171 47K
+value VR1 200K
+value VR2 200K
+value VR3 200K
+value VR4 200K
+value VR5 500K
+value VR6 200K
+value VR7 200K
+value VR8 200K
+value C1 0.033uF
+value C2 1uF
+value C3 2.2uF
+value C4 0.01uF
+value C5 0.01uF
+value C6 2.2uF
+value C7 0.01uF
+value C8 2.2uF
+value C9 2.2uF
+value C10 680pF
+value C11 2.2uF
+value C12 680pF
+value C13 2.2uF
+value C14 2.2uF
+value C15 2.2uF
+value C16 680pF
+value C17 2.2uF
+value C18 680pF
+value C19 0.01uF
+value C20 0.01uF
+value C21 0.01uF
+value C22 0.01uF
+value C23 0.01uF
+value C24 100uF
+value C25 2.2uF
+value C26 680pF
+value C27 2.2uF
+value C28 680pF
+value C29 0.022uF
+value C30 2.2uF
+value C31 2.2uF
+value C32 0.22uF
+value C33 0.22uF
+value C34 1uF
+value C35 1uF
+value C36 0.022uF
+value C37 1uF
+value C38 1uF
+value C39 0.01uF
+value C40 0.0033uF
+value C41 2.2uF
+value C42 2.2uF
+value C43 0.022uF
+value C44 6800pF
+value C45 1uF
+value C46 2.2uF
+value C47 2.2uF
+value C48 0.01uF
+value C49 1uF
+value C50 0.1uF
+value C51 2.2uF
+value C52 1uF
+value C53 1uF
+value C54 3.3uF
+value C55 3.3uF
+value C56 1uF
+value C57 1uF
+value C58 0.047uF
+value C59 2.2uF
+value C60 0.022uF
+value C61 0.068uF
+value C62 2.2uF
+value C63 0.01uF
+value C64 1uF
+value C65 0.01uF
+value C66 47uF
+value C67 47uF
+value C68 1uF
+value C69 1uF
+value C70 1uF
+value C71 1uF
+value C72 0.1uF
+value C73 1uF
+value C74 1uF
+value C75 1uF
+value C76 10uF
+value C77 2.2uF
+value C78 47uF
+value D1 MA150
+value D2 MA150
+value D3 MA150
+value D4 MA150
+value D5 MA150
+value D6 MA150
+value TR1 2SC458
+value TR2 2SC458
+value TR3 2SC458
+value TR4 2SC458
+value TR5 2SC458
+value TR6 2SC458
+value TR7 2SC458
+value TR8 2SC458
+value TR9 2SC458
+value TR10 2SC458
+value TR11 2SC458
+value TR12 2SC458
+value TR13 2SC458
+value TR14 2SC458
+value TR15 2SC458
+value TR16 2SC458
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C10.2 C12.2 C16.2 C18.2 C19.2 C2.2 C20.2 C21.2 C22.2 C23.2 C26.2 C28.2 C4.2 C45.2 C48.2 C49.2 C5.2 C50.2 C52.2 C53.2 C58.2 C65.2 C7.2 C72.2 C74.2 C75.2 C77.2 U1.1 U10.1 U11.1 U12.1 U13.1 U14.1 U15.1 U16.1 U17.1 U18.1 U19.1 U20.3 U20.7 U21.11 U22.11 U23.11 U24.11 U25.11 U26.1 U26.2 U27.11 U28.1 U29.7 U30.7 U31.1 U32.7 U33.8 U34.8 U35.8 U36.7 U37.8 U37.9 U38.11 U4.3 U4.7 U5.3 U5.7 U6.1 U7.1 U8.1 U9.11 R101.2 R112.2 R118.2 R119.2 R124.2 R128.2 R13.2 R15.2 R168.2 R43.2 R48.2 R49.2 R56.2 R57.2 R64.2 R65.2 R72.2 R73.2 R81.2 R82.2 TR1.E TR10.E TR11.E TR12.E TR13.E TR14.E TR16.E TR2.E TR3.E TR4.E TR5.E TR6.E TR7.E TR8.E TR9.E
+net +12V: U21.4 U22.4 U23.4 U24.4 U25.4 U26.4 U27.4 U38.4 U9.4 R111.1 R120.1 R163.1 R39.1 R40.1 R42.1 R99.1
+net +5V: U1.8 U10.8 U11.8 U12.8 U13.8 U14.8 U15.8 U16.8 U17.8 U18.8 U19.8 U20.12 U20.16 U28.8 U29.14 U30.1 U30.10 U30.13 U30.14 U30.4 U31.8 U32.1 U32.10 U32.13 U32.14 U32.4 U33.10 U33.11 U33.16 U33.2 U33.3 U34.16 U34.2 U34.3 U35.10 U35.11 U35.16 U35.2 U35.3 U36.14 U37.10 U37.11 U37.16 U37.2 U37.3 U4.12 U4.16 U5.12 U5.16 U6.8 U7.8 U8.8 R104.1 R108.1 R109.1 R137.1 R138.1 R139.1 R140.1 R141.1 R142.1 R143.1 R144.1 R145.1 R146.1 R147.2 R148.1 R149.1 R150.1 R151.1 R152.1 R154.1 R155.1 R156.1 R162.1 R164.1 R171.1 R19.1 R21.1 R22.1 R23.1 R25.1 R27.1 R28.1 R29.1 R30.1 R31.1 R33.1 R34.1 R36.1 R87.1 R9.1 R91.1
+net +6V: U21.5 U27.3 U38.5 R116.1 R117.1 R125.1 R127.1 R50.1 R51.1 R54.1 R55.1 R58.1 R59.1 R66.1 R67.1 R74.1 R75.1 R88.2
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+wire U29.4 U30.8 R123.1
+wire U29.5 U30.6
+
+# ---------------------------------------------------------------------------
+# RST (RESET for sound)
+# ---------------------------------------------------------------------------
+wire C78.1 U37.6
+wire C78.2 U37.7 R171.2
+
+# ---------------------------------------------------------------------------
+# INPUT
+# ---------------------------------------------------------------------------
+port GUN_TRG: U37.1 R156.2  # in MAME: TTL_INPUT(I_SOUND_7)
+wire C73.1 U37.14
+wire C73.2 U37.15 R155.2
+wire D1.1 U37.4
+wire D1.2 R89.1
+wire C45.1 R89.2 R90.2
+wire U27.12 R90.1 R91.2
+wire U20.2 U27.13 U27.14
+port JEEP_ON: U36.5 R151.2  # in MAME: TTL_INPUT(I_SOUND_6)
+wire U31.4 U36.6 R152.2
+wire U31.7 R150.2 R153.1
+wire C72.1 U31.2 U31.6 R153.2
+wire U30.11 U30.3 U31.3 U32.3 R154.2
+wire U32.11 U32.2 U32.6 R157.1
+wire U32.12 U32.8 R158.1
+wire U29.6 U30.2
+wire U30.12 U30.5
+wire C58.1 C59.1 R123.2 R157.2 R158.2
+port POINT_TRG: U35.9 R148.2  # in MAME: TTL_INPUT(I_SOUND_5)
+wire C71.1 U35.6
+wire C71.2 U35.7 R149.2
+wire D5.1 U35.12
+wire D5.2 R159.1
+wire C74.1 R159.2 R165.2
+wire U38.12 R164.2 R165.1
+wire U38.13 U38.14 U5.2 R166.1
+wire U38.10 R163.2 R168.1
+wire U38.9 R166.2 R169.1
+wire U38.8 R129.1 R130.1 R169.2 R79.1 R80.1 R83.1 R84.1
+wire U25.12 R80.2 R81.1
+wire C43.1 U25.13 R78.1 R79.2
+label RST: U1.4 U10.4 U11.4 U12.4 U13.4 U14.4 U15.4 U16.4 U17.4 U18.4 U19.4 U37.12 U6.4 U7.4 U8.4
+wire U18.7 R33.2 TR13.B
+wire R78.2 TR13.C
+wire C43.2 U18.2 U18.6 U25.14 R32.1
+wire U25.10 R82.1 R83.2
+wire C44.1 U25.9 R84.2 R85.1
+wire U19.7 R36.2 TR14.B
+wire R85.2 TR14.C
+wire C44.2 U19.2 U19.6 U25.8 R35.2
+wire C13.1 R32.2 R35.1
+wire U18.5 U19.5 R37.1
+wire U25.5 R128.1 R129.2
+wire C60.1 C61.1 U25.6 R130.2 R131.1
+wire C23.1 U8.5
+wire U8.7 R34.2 TR4.B
+wire R131.2 TR4.C
+wire C60.2 C61.2 U25.7 U8.2 U8.6 R37.2
+wire C13.2 U5.1
+wire C15.1 U5.15
+wire C16.1 U5.14
+port HIT_TRG: U35.1 R147.1  # in MAME: TTL_INPUT(I_SOUND_4)
+wire C70.1 U35.14
+wire C70.2 U35.15 R146.2
+wire D6.1 U35.4
+wire D6.2 R160.1
+wire C75.1 R160.2 R161.2
+wire U38.3 R161.1 R162.2
+wire U38.1 U38.2 U5.6
+wire C18.1 U5.10
+wire C17.1 U5.11
+wire C14.2 U5.5
+wire C14.1 C39.2 C40.2 U16.2 U16.6 U24.14
+wire U24.7 R121.2 R70.1 R71.1
+wire U24.12 R71.2 R72.1
+wire C39.1 C40.1 U24.13 R69.1 R70.2
+wire U16.5 R76.2
+wire U16.7 R28.2 TR11.B
+wire R69.2 TR11.C
+wire C42.2 U17.2 U17.6 U24.8 R122.1 R76.1
+wire U24.5 R119.1 R120.2
+wire U24.6 R121.1 R122.2
+wire C41.1 C42.1
+wire C41.2 U24.9 R75.2 R77.1
+wire U24.10 R73.1 R74.2
+wire U17.7 R30.2 TR12.B
+wire C21.1 U17.5
+wire R77.2 TR12.C
+port ANIMAL_TRG: U34.1 U34.9 R145.2  # in MAME: TTL_INPUT(I_SOUND_0)
+wire C66.2 C67.2 U34.14
+wire C66.1 C67.1 U34.15 R143.2
+wire U34.10 U34.11 U34.13 R110.1
+wire C69.2 U34.6
+wire C69.1 U34.7 R144.2
+wire D4.1 U34.12
+wire D4.2 R106.1
+wire C53.1 R106.2 R107.2
+wire U23.3 R107.1 R108.2
+wire U23.1 U23.2 U4.6
+wire R110.2 TR16.B
+wire R109.2 TR15.B TR16.C
+wire C24.1 U9.6 R40.2 TR15.C
+wire R44.1 TR15.E
+wire C24.2 U9.7 R38.1 R44.2
+wire U9.5 R15.1 R39.2
+wire U9.3 R42.2 R43.1
+wire U9.2 R38.2 R41.1
+wire U9.1 R11.1 R12.1 R41.2
+wire U9.12 R12.2 R13.1
+wire C1.1 U9.13 R10.1 R11.2
+wire U1.7 R9.2 TR1.B
+wire R10.2 TR1.C
+wire C1.2 U1.2 U1.6 U9.14 R16.1
+wire U1.5 R14.1
+wire U9.8 U9.9 R14.2
+wire U9.10 R17.2 R18.2
+wire U22.10 R57.1 R58.2
+wire C34.2 U22.9 R59.2 R60.1
+wire C34.1 C35.1
+wire U13.7 R23.2 TR8.B
+wire C7.1 U13.5
+wire R60.2 TR8.C
+wire C35.2 U13.2 U13.6 U22.8 R18.1
+wire U25.3 R124.1 R125.2
+wire C57.2 U25.2 R126.1 R127.2
+wire C56.1 C57.1
+wire C22.1 U7.5
+wire U7.7 R31.2 TR3.B
+wire R126.2 TR3.C
+wire C56.2 U25.1 U7.2 U7.6 R17.1
+wire C12.1 U4.10
+wire C6.1 R16.2
+wire C6.2 U4.5
+wire C11.1 U4.11
+port EMAR_TRG: U33.9 R142.2  # in MAME: TTL_INPUT(I_SOUND_3)
+wire C68.1 U33.6
+wire C68.2 U33.7 R141.2
+wire D3.1 U33.12
+wire D3.2 R103.1
+wire C52.1 R103.2 R105.2
+wire U22.5 R104.2 R105.1
+wire U22.6 U22.7 U4.2
+wire C10.1 U4.14
+wire C9.1 U4.15
+wire C8.2 U4.1
+wire C8.1 R24.2
+wire U24.3 R117.2 R118.1
+wire C55.2 U24.2 R115.1 R116.2
+wire C54.1 C55.1
+wire C20.1 U6.5
+wire U6.7 R29.2 TR2.B
+wire R115.2 TR2.C
+wire C54.2 U24.1 U6.2 U6.6 R113.1
+wire U23.5 R111.2 R112.1
+wire U23.6 R113.2 R114.1
+wire U23.7 R114.2 R62.1 R63.1
+wire U23.10 R65.1 R66.2
+wire C37.2 U23.9 R67.2 R68.1
+wire C19.1 U15.5
+wire U15.7 R27.2 TR10.B
+wire R68.2 TR10.C
+wire C38.2 U15.2 U15.6 U23.8
+wire C37.1 C38.1
+wire U15.3 R26.2
+wire U23.12 R63.2 R64.1
+wire C36.1 U23.13 R61.1 R62.2
+wire U14.7 R25.2 TR9.B
+wire C2.1 U14.5 R26.1
+wire R61.2 TR9.C
+wire C36.2 U14.2 U14.6 U23.14 R24.1
+port WALK_TRG: U28.2 R140.2  # in MAME: TTL_INPUT(I_SOUND_2)
+wire C65.1 U28.5
+wire C77.1 U28.6 U28.7 R137.2
+wire U28.3 R98.1
+wire C50.1 C51.1 R98.2
+wire C51.2 R96.1
+wire U21.6 R95.1 R96.2
+wire C3.1 U21.7 R95.2
+port CRY_TRG: U33.1 R139.2  # in MAME: TTL_INPUT(I_SOUND_1)
+wire C64.1 U33.14
+wire C64.2 U33.15 R138.2
+wire D2.1 U33.4
+wire D2.2 R97.1
+wire C49.1 R94.2 R97.2
+wire U21.3 R87.2 R94.1
+wire U20.6 U21.1 U21.2
+wire C29.2 U10.2 U10.6 U21.14 R86.1
+wire C47.1 R86.2
+wire C47.2 U20.5
+wire C28.1 U20.10
+wire C27.1 U20.11
+wire U12.7 R22.2 TR7.B
+wire R53.2 TR7.C
+wire C32.2 U12.2 U12.6 U22.14 R100.1
+wire C32.1 C33.1
+wire C33.2 U22.13 R53.1 R54.2
+wire U22.12 R55.2 R56.1
+wire C5.1 U12.5
+wire U22.1 R102.2 R46.1 R47.1
+wire U22.2 R100.2 R102.1
+wire U22.3 R101.1 R99.2
+wire U11.7 R21.2 TR6.B
+wire R52.2 TR6.C
+wire C31.2 U11.2 U11.6 U21.8 R20.1
+wire C30.2 U21.9 R51.2 R52.1
+wire C30.1 C31.1
+wire U21.10 R49.1 R50.2
+wire C4.1 U11.5
+wire U10.5 R20.2
+wire U10.7 R19.2 TR5.B
+wire R45.2 TR5.C
+wire C29.1 U21.13 R45.1 R46.2
+wire U21.12 R47.2 R48.1
+
+# ---------------------------------------------------------------------------
+# NOISE
+# ---------------------------------------------------------------------------
+wire C62.1 U26.3
+wire C62.2 R132.1
+wire U27.2 R132.2 R133.1
+wire U27.1 R133.2 R134.1
+wire C63.1 R134.2 R93.1
+wire C48.1 U27.10 R93.2
+wire C46.1 C63.2 U27.8 R92.1
+wire U27.9 R88.1 R92.2
+wire C26.1 U20.14
+wire C46.2 U20.1
+wire C25.1 U20.15
+
+# ---------------------------------------------------------------------------
+# OUTPUT
+# ---------------------------------------------------------------------------
+label GUN_SOUND: C25.2 VR1.1 VR1.2
+label JEEP_SOUND: C59.2 VR8.1 VR8.2
+label POINT_SOUND: C15.2 VR6.1 VR6.2
+label HIT_SOUND: C17.2 VR7.1 VR7.2
+label ANIMAL_SOUND: C11.2 VR5.1 VR5.2
+label EMAR_SOUND: C9.2 VR4.1 VR4.2
+label WALK_SOUND: C3.2 VR3.1 VR3.2
+label CRY_SOUND: C27.2 VR2.1 VR2.2
+wire R8.1 VR8.3
+wire R1.1 VR1.3
+wire R6.1 VR6.3
+wire R7.1 VR7.3
+wire R5.1 VR5.3
+wire R4.1 VR4.3
+wire R3.1 VR3.3
+wire R2.1 VR2.3
+wire U38.6 R1.2 R167.1 R2.2 R3.2 R4.2 R5.2 R6.2 R7.2 R8.2
+wire C76.1 U38.7 R167.2
+port SOUND_OUT: C76.2  # edge pin 4, 'SOUND' (edge pin 3, 'OUT', is its ground return), to the amplifier
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc U27.7 U27.6  # line 380: MAME's UNUSED_OP_OUT_MINUS(), which ties an unused op-amp's output to its inverting input; the file calls it a hack
+nc U27.5  # line 381: MAME's UNUSED_OP_PLUS(), which ties an unused op-amp input to a reference MAME adds; the file calls it a hack
+nc U29.1  # line 460: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U29.2  # line 461: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U29.9  # line 464: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U29.10  # line 465: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U29.12  # line 467: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U29.13  # line 468: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U36.1  # line 470: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U36.3  # line 472: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U36.9  # line 475: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U36.11  # line 477: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U36.13  # line 479: MAME's UNUSED_TTL_I(), which grounds an unused TTL input; the file calls it a hack
+nc U8.3  # line 625: tied to one another in MAME's "UNUSED PINS" block
+nc U18.3  # line 628: tied to one another in MAME's "UNUSED PINS" block
+nc U19.3  # line 631: tied to one another in MAME's "UNUSED PINS" block
+nc U17.3  # line 767: tied to one another in MAME's "UNUSED PINS" block
+nc U16.3  # line 770: tied to one another in MAME's "UNUSED PINS" block
+nc U1.3  # line 969: tied to one another in MAME's "UNUSED PINS" block
+nc U13.3  # line 973: tied to one another in MAME's "UNUSED PINS" block
+nc U7.3  # line 977: tied to one another in MAME's "UNUSED PINS" block
+nc U6.3  # line 1140: tied to one another in MAME's "UNUSED PINS" block
+nc U14.3  # line 1143: tied to one another in MAME's "UNUSED PINS" block
+nc U28.4  # line 1192: tied to +5V in MAME's "UNUSED PINS" block
+nc U10.3  # line 1349: tied to one another in MAME's "UNUSED PINS" block
+nc U11.3  # line 1352: tied to one another in MAME's "UNUSED PINS" block
+nc U12.3  # line 1355: tied to one another in MAME's "UNUSED PINS" block
+nc U37.5  # line 295: MAME's own HINT(NC)
+nc U37.13  # line 378: MAME's own HINT(NC)
+nc U30.9  # line 453: MAME's own HINT(NC)
+nc U31.5  # line 455: MAME's own HINT(NC)
+nc U32.5  # line 457: MAME's own HINT(NC)
+nc U32.9  # line 458: MAME's own HINT(NC)
+nc U29.3  # line 462: MAME's own HINT(NC)
+nc U29.8  # line 463: MAME's own HINT(NC)
+nc U29.11  # line 466: MAME's own HINT(NC)
+nc U36.2  # line 471: MAME's own HINT(NC)
+nc U36.4  # line 473: MAME's own HINT(NC)
+nc U36.8  # line 474: MAME's own HINT(NC)
+nc U36.10  # line 476: MAME's own HINT(NC)
+nc U36.12  # line 478: MAME's own HINT(NC)
+nc U35.5  # line 623: MAME's own HINT(NC)
+nc U35.13  # line 765: MAME's own HINT(NC)
+nc U34.4  # line 966: MAME's own HINT(NC)
+nc U34.5  # line 967: MAME's own HINT(NC)
+nc U33.5  # line 1138: MAME's own HINT(NC)
+nc U33.13  # line 1227: MAME's own HINT(NC)
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U4.4 U4.8 U4.9 U4.13  # NC NC NC NC
+nc U5.4 U5.8 U5.9 U5.13  # NC NC NC NC
+nc U20.4 U20.8 U20.9 U20.13  # NC NC NC NC
+nc U26.5 U26.6 U26.7 U26.8  # NC NC NC NC

@@ -1,0 +1,31 @@
+{
+ "name": "Flyball sound circuits",
+ "mfr": "Atari",
+ "year": "1976",
+ "machine": "flyball",
+ "drawing": "Sound section of the Flyball game board schematic, technical manual TM-075 (doc 99d8167a63a1) -- via MAME's netlist",
+ "revision": "Flyball game board, sound section: a 74164 noise generator, bat (556), footstep and crowd sounds through two MC3340 attenuators, and the mixer.",
+ "coverage": "Converted from MAME's netlist, compared with sheet 7 and corrected from it, up to the mixer's output capacitor; the TDA1004 amplifier after it is not in MAME.",
+ "singleSource": false,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "flyball-sound",
+ "ics": {
+  "A8": "MC3340",
+  "B7": "74164",
+  "C7": "74164",
+  "C8": "MC3340",
+  "D7": "7474",
+  "D8": "UA741",
+  "E7": "7486",
+  "E8": "NE556"
+ },
+ "source": {
+  "mame": "src/mame/atari/nl_flyball.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "flyball",
+  "licence": "CC0-1.0",
+  "copyright": "Ryan Holtz"
+ }
+}

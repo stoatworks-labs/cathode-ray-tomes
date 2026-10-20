@@ -1,0 +1,31 @@
+{
+ "name": "Laguna Racer sound circuits",
+ "mfr": "Dave Nutting Associates / Midway",
+ "year": "1977",
+ "machine": "lagunar",
+ "drawing": "Laguna Racer Game Logic A084-90700-B622 (doc 1461b5f1ef33) and -A622 (doc 2e04e6b435f0) -- via MAME's netlist, compared with both",
+ "revision": "Laguna Racer game logic board, sound section: as 280-ZZZAP's with C18 22uF and R30 100K.",
+ "coverage": "Converted from MAME's netlist: the engine, skid and crash sounds and the final mix, up to the audio power amplifier. The CPU's sound latches (F4, F5) are ports; the rest of the game logic board is not in MAME.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "lagunar-sound",
+ "ics": {
+  "G4": "CD4016",
+  "G5": "CD4016",
+  "H2": "MC3340",
+  "H4": "LM3900",
+  "H5": "LM3900",
+  "J3": "LM3900",
+  "J4": "CD4016",
+  "J5": "LM3900"
+ },
+ "source": {
+  "mame": "src/mame/midw8080/nl_280zzzap.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "lagunar",
+  "licence": "CC0-1.0",
+  "copyright": "Colin Douglas Howell"
+ }
+}

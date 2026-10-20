@@ -1,0 +1,375 @@
+{
+ "slug": "segas16b-audio",
+ "source": "boards/segas16b-audio.nets",
+ "components": {
+  "C12": {
+   "part": "",
+   "value": "10uF"
+  },
+  "C19": {
+   "part": "",
+   "value": "47uF"
+  },
+  "C20": {
+   "part": "",
+   "value": "1000pF"
+  },
+  "C21": {
+   "part": "",
+   "value": "2.2uF"
+  },
+  "C22": {
+   "part": "",
+   "value": "2.2uF"
+  },
+  "C23": {
+   "part": "",
+   "value": "0.022uF"
+  },
+  "C24": {
+   "part": "",
+   "value": "0.01uF"
+  },
+  "C25": {
+   "part": "",
+   "value": "0.0022uF"
+  },
+  "C26": {
+   "part": "",
+   "value": "0.022uF"
+  },
+  "C28": {
+   "part": "",
+   "value": "1500pF"
+  },
+  "C29": {
+   "part": "",
+   "value": "1500pF"
+  },
+  "C62": {
+   "part": "",
+   "value": "2.2uF"
+  },
+  "C63": {
+   "part": "",
+   "value": "2.2uF"
+  },
+  "R10": {
+   "part": "",
+   "value": "47K"
+  },
+  "R11": {
+   "part": "",
+   "value": "1K"
+  },
+  "R12": {
+   "part": "",
+   "value": "1.3K"
+  },
+  "R13": {
+   "part": "",
+   "value": "6.2K"
+  },
+  "R14": {
+   "part": "",
+   "value": "5.6K"
+  },
+  "R15": {
+   "part": "",
+   "value": "12K"
+  },
+  "R16": {
+   "part": "",
+   "value": "6.8K"
+  },
+  "R3": {
+   "part": "",
+   "value": "10K"
+  },
+  "R4": {
+   "part": "",
+   "value": "10K"
+  },
+  "R5": {
+   "part": "",
+   "value": "10K"
+  },
+  "R6": {
+   "part": "",
+   "value": "10K"
+  },
+  "R7": {
+   "part": "",
+   "value": "47K"
+  },
+  "R9": {
+   "part": "",
+   "value": "47K"
+  },
+  "RCOM1": {
+   "part": "",
+   "value": "390"
+  },
+  "RCOM2": {
+   "part": "",
+   "value": "390"
+  },
+  "UC20": {
+   "part": "LM324",
+   "value": "LM324"
+  },
+  "UD20": {
+   "part": "TL084",
+   "value": "TL084"
+  },
+  "VR1": {
+   "part": "",
+   "value": "2K"
+  }
+ },
+ "nets": {
+  "+12V": {
+   "pins": [
+    "UC20.4",
+    "UD20.4"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "+5V": {
+   "pins": [
+    "R11.1",
+    "R4.1"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "CH1": {
+   "pins": [
+    "RCOM1.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "CH2": {
+   "pins": [
+    "RCOM2.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "GND": {
+   "pins": [
+    "C19.2",
+    "C24.2",
+    "C25.2",
+    "C28.2",
+    "C29.2",
+    "R16.2",
+    "R5.2",
+    "UC20.11",
+    "UD20.11",
+    "VR1.2"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "Net-(C12-Pad1)": {
+   "pins": [
+    "C12.1",
+    "R3.2",
+    "VR1.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C19-Pad1)": {
+   "pins": [
+    "C19.1",
+    "R4.2",
+    "R5.1",
+    "UC20.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C20-Pad1)": {
+   "pins": [
+    "C20.1",
+    "R10.2",
+    "R6.2",
+    "R7.1",
+    "R9.2",
+    "UC20.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C20-Pad2)": {
+   "pins": [
+    "C20.2",
+    "C63.1",
+    "R7.2",
+    "UC20.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C21-Pad1)": {
+   "pins": [
+    "C21.1",
+    "UD20.8",
+    "UD20.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C21-Pad2)": {
+   "pins": [
+    "C21.2",
+    "R10.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C22-Pad1)": {
+   "pins": [
+    "C22.1",
+    "UD20.6",
+    "UD20.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C22-Pad2)": {
+   "pins": [
+    "C22.2",
+    "R9.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C23-Pad1)": {
+   "pins": [
+    "C23.1",
+    "R12.2",
+    "R13.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C23-Pad2)": {
+   "pins": [
+    "C23.2",
+    "C62.1",
+    "UC20.1",
+    "UC20.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C24-Pad1)": {
+   "pins": [
+    "C24.1",
+    "R13.2",
+    "UC20.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C25-Pad1)": {
+   "pins": [
+    "C25.1",
+    "R15.2",
+    "UC20.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C26-Pad1)": {
+   "pins": [
+    "C26.1",
+    "R14.2",
+    "R15.1",
+    "R16.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C26-Pad2)": {
+   "pins": [
+    "C26.2",
+    "R12.1",
+    "UC20.6",
+    "UC20.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C28-Pad1)": {
+   "pins": [
+    "C28.1",
+    "RCOM2.2",
+    "UD20.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C29-Pad1)": {
+   "pins": [
+    "C29.1",
+    "RCOM1.2",
+    "UD20.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C62-Pad2)": {
+   "pins": [
+    "C62.2",
+    "R6.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C63-Pad2)": {
+   "pins": [
+    "C63.2",
+    "R3.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "OUT": {
+   "pins": [
+    "C12.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "SPEECH": {
+   "pins": [
+    "R11.2",
+    "R14.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  }
+ },
+ "signatures": {},
+ "nc": [
+  "UC20.12",
+  "UC20.13",
+  "UC20.14",
+  "UD20.1",
+  "UD20.12",
+  "UD20.13",
+  "UD20.14",
+  "UD20.2",
+  "UD20.3"
+ ]
+}

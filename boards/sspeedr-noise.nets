@@ -1,0 +1,93 @@
+# Super Speed Race motherboard noise generator -- netlist converted from MAME
+#
+# The digital noise generator on Super Speed Race's motherboard: an 18-stage CD4006 shift
+# register at H5 with XOR feedback at J5, started by NOISE_C9/NOISE_CR3. MAME prefixes
+# these parts NOISE_ because the audio board uses the same numbers; the prefix is dropped
+# here, since this file is the motherboard's alone.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/taito/nl_sspeedr.cpp,
+# NETLIST_START(sspeedr). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Colin Douglas Howell (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/taito/nl_sspeedr.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 38: #define CONVERGENCE_FRONTIERS 1 -> 0 (solver partitioning, with resistor values adjusted to suit)
+# line 45: #define REMOVE_POST_CRASH_NOISE_GLITCHES 1 -> 0 (a voltage limiter MAME adds on an op-amp output)
+#
+# Corrected from the motherboard schematic (M051-00078-0000, manual p. 25):
+#   UJ5: the sheet's part is CD4030, MAME's CD4070 -- the motherboard schematic prints 4030
+# Stand-ins that are not parts (the nets they drive are ports): LOGIC_INPUT(I_F4_2), LOGIC_INPUT(I_F4_5), LOGIC_INPUT(I_F4_7), LOGIC_INPUT(I_F4_10), LOGIC_INPUT(I_F4_12), LOGIC_INPUT(I_F5_2), LOGIC_INPUT(I_F5_5), LOGIC_INPUT(I_F5_7), LOGIC_INPUT(I_F5_10), LOGIC_INPUT(I_F5_12), LOGIC_INPUT(I_F5_15)
+#
+# Compared with the Z-80 compact motherboard schematic, M051-00078-0000 (manual doc
+# 8c0560561bb9, p. 25 of the print, PDF p. 26), on 2026-10-20: every net and value agrees.
+# C9 goes straight to +12V, so MAME's 1 ohm 'dummy' is rightly a wire here. J5 is printed
+# 4030, the older quad XOR with the 4070's pins, and is written so. The designators do
+# collide with the audio board's, as MAME says: R22-R25, R62, C8 and C9 are on both boards
+# with different values (C8 and C9 have theirs swapped). NOISE_OUT leaves on the 72-pin
+# connector's 'NOISE GENERATOR' contacts (J-A and K-50), crosses the game logic board on
+# Molex C pin 14 and enters the audio board on pin 14 of its 17-pin connector, NOISE.
+
+# part UH5 CD4006  (MAME: H5_SHFTREG)
+# part UJ5 CD4030  (MAME: J5_XORx4)
+
+value R22 680K  # MAME: NOISE_R22
+value R23 56K  # MAME: NOISE_R23
+value R24 27K  # MAME: NOISE_R24
+value R25 220K  # MAME: NOISE_R25
+value R62 1M  # MAME: NOISE_R62
+value C8 0.001uF  # MAME: NOISE_C8
+value C9 0.1uF  # MAME: NOISE_C9
+value CR3 1N4148  # MAME: NOISE_CR3
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: UH5.7 UJ5.6 UJ5.7 UJ5.8 UJ5.9 R62.2
+net +12V: UH5.14 UJ5.13 UJ5.14 C9.1
+
+# ---------------------------------------------------------------------------
+# See p. 25 of the Super Speed Race manual for the motherboard
+# ---------------------------------------------------------------------------
+wire UJ5.12 UJ5.4 C8.1
+wire UH5.3 UJ5.11 R23.1
+wire C8.2 R22.1 R23.2
+wire UJ5.5 R22.2
+wire UH5.13 UH5.5
+wire UH5.1 UH5.12 UJ5.1
+wire UH5.8 UJ5.2
+port NOISE_OUT: UH5.10 UH5.6  # to Super Speed Race audio board, where MAME joins it by name; the contact it crosses on is not in MAME
+wire UH5.4 R24.2
+wire UJ5.3 R25.1
+wire CR3.1 R24.1 R25.2
+wire C9.2 CR3.2 R62.1
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UH5.2 UH5.9 UH5.11  # NC D4+5 D2+4
+nc UJ5.10  # output

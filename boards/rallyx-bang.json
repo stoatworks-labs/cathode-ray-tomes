@@ -1,0 +1,28 @@
+{
+ "name": "Rally-X explosion sound",
+ "mfr": "Namco",
+ "year": "1980",
+ "machine": "rallyx",
+ "drawing": "Logic Bd I schematic A082-91385-C000, Rally-X Parts and Operating Manual (doc 1cc6c9614736, PDF p. 39) -- via MAME's netlist, compared with it and corrected",
+ "revision": "Rally-X Logic Board I, explosion ('BANG') circuit: CD4006/CD4070 noise gated by a CD4066, a uA741 stage at 12E and an MB3730 bridge amplifier at 12A.",
+ "coverage": "Converted from MAME's netlist and corrected from the sheet: the explosion circuit and the power amplifier, with the Namco WSG's audio arriving as a port. The rest of the board's sound is a MAME device, not a netlist.",
+ "singleSource": false,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "rallyx-bang",
+ "ics": {
+  "11A": "CD4006",
+  "11C": "CD4070",
+  "11D": "CD4066",
+  "12A": "MB3730",
+  "12E": "UA741"
+ },
+ "source": {
+  "mame": "src/mame/namco/nl_rallyx.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "rallyx",
+  "licence": "CC0-1.0",
+  "copyright": "Ricardo Bittencourt"
+ }
+}

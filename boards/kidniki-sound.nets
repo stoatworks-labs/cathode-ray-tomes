@@ -1,0 +1,319 @@
+# Kid Niki sound board (Irem M62) -- netlist converted from MAME
+#
+# Couriersud's netlist of the Irem M62 sound board, made from a KiCad redraw of the Kid
+# Niki schematic (the file keeps the EESCHEMA header), so the designators are the redraw's:
+# XU1 (LM2902), XU2 (LM358), XU3 (MC14584B), written U1-U3 here; R65_1 and R48_2 are the
+# redraw's names for parts the schematic numbers again. The AY-3-8910s and MSM5205s are
+# MAME devices; what they drive arrives as ports. Three of MAME's judgements about the
+# schematic are kept as MAME has them, all switches at the top of its file: FIX_SCHEMATIC_
+# ERRORS (XU1 section B given the feedback the schematic omits, and D4, D5 and Q4 wired as
+# the Kung-Fu Master schematic's manual corrections have them); D4_AND_D5_CONNECTED, which
+# MAME marks 'needs verification'; and J4 set to take channel C to the sound IC.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/irem/nl_kidniki.cpp,
+# NETLIST_START(kidniki). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Andrew Gardner, Couriersud (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/irem/nl_kidniki.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 9: #define USE_FRONTIERS 1 -> 0 (solver partitioning only)
+# line 15: #define USE_FIXED_STV 0 -- kept as MAME has it (not a known kind of hack)
+# line 42: #define FIX_SCHEMATIC_ERRORS 1 -- kept as MAME has it (not a known kind of hack)
+#
+# Corrected from sheet 4/4 of the M62 schematic (E-C0066-4):
+#   U1: the sheet's part is LM324, MAME's LM2902 -- sheet 4/4 prints LM324 (the LM2902 MAME names has its pins)
+# line 403: R_AY45L_A is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 404: R_AY45L_B is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 405: R_AY45L_C is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 407: R_AY45M_A is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 408: R_AY45M_B is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 409: R_AY45M_C is not a part -- the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+# line 430: SINH_DUMMY is not a part -- a 10M resistor where D6 would be: MAME's file says D6 is missing on the M62 boards in PCB pictures, though its pads exist
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(SINH), LOGIC_INPUT(I_SD0), LOGIC_INPUT(I_BD0), LOGIC_INPUT(I_CH0), LOGIC_INPUT(I_OH0)
+#
+# Compared with sheet 4/4 of the M62-A-B schematic (E-C0066-4, the conversion kit manual's
+# p. 22), with sheets 2/4 and 3/4 for J4 and D6, on 2026-10-20: 80 of the file's 84 nets
+# agree with the sheet, and every value printed. Three values are not fully legible: R98
+# reads '6?0K' (680K is the only standard value it fits), C36's last digit is under a line,
+# and R76 has none printed. The sheet prints LM324 at XU1 (written so above) and MC14584 at
+# XU3.
+#
+# The disagreements are MAME's FIX_SCHEMATIC_ERRORS, kept as MAME has them: the sheet draws
+# XU1 section B with no feedback (pin 7 drives only R45), and joins D4's and D5's cathodes,
+# TR4's collector, C42 and the C43/R46/C35 node in one net -- MAME's uncorrected line --
+# where MAME follows the Kung-Fu Master schematic's manual corrections, which the site does
+# not hold. The MSM5205s reach the OKI node on sheet 3/4 through two resistors (one legibly
+# R64) and a capacitor (apparently C46); MAME's R200, R201 and C200 are its own names for
+# them, and on sheet 4/4 the line comes straight to R76, with no C200. D6 is drawn on sheet
+# 2/4, between 1H pin 2 (a 74LS175) and the S-INH line, cathode at the latch; MAME's
+# reason for leaving it out is board photos, which the sheet cannot settle. J4 is a
+# three-terminal jumper on sheet 3/4 with no link drawn; J4 = 1 is MAME's choice.
+
+# part U1 LM324  (MAME: XU1)
+# part U2 LM358  (MAME: XU2)
+# part U3 MC14584B  (MAME: XU3)
+
+value R25 560
+value R26 47K
+value R27 6.8K
+value R28 150K
+value R29 2.7K
+value R30 10K
+value R31 5.1K
+value R32 4.7K
+value R34 100K
+value R35 100K
+value R36 100K
+value R37 47K
+value R38 820
+value R39 22K
+value R40 10K
+value R41 10K
+value R42 150K
+value R43 470
+value R44 100K
+value R45 1K
+value R46 12K
+value R48 470
+value R48_2 100K
+value R49 10K
+value R50 2.2K
+value R51 150K
+value R52 100K
+value R53 100K
+value R54 680
+value R55 510K
+value R57 560
+value R58 39K
+value R59 560
+value R60 39K
+value R61 100K
+value R62 100K
+value R63 1K
+value R65 1K
+value R65_1 27K
+value R66 1M
+value R67 100K
+value R68 100K
+value R69 1K
+value R70 10K
+value R71 100K
+value R72 100K
+value R73 10K
+value R74 10K
+value R75 10K
+value R76 47K
+value R77 2.2K
+value R78 3.3K
+value R81 220
+value R82 2.2M
+value R83 12K
+value R84 1K
+value R85 2.2M
+value R86 10K
+value R87 68K
+value R89 22K
+value R90 390K
+value R91 100K
+value R92 22K
+value R93 1K
+value R94 22K
+value R95 330K
+value R96 150K
+value R97 150K
+value R98 680K
+value R100 560K
+value R101 150K
+value R102 150K
+value R103 470K
+value R104 22K
+value R105 470K
+value R106 150K
+value R107 150K
+value R108 560K
+value R119 22K
+value R200 100K
+value R201 100K
+value RV1 50K
+value C26 1uF
+value C28 1uF
+value C29 0.01uF
+value C31 470nF
+value C32 3.3nF
+value C33 1uF
+value C34 1nF
+value C35 1nF
+value C36 6.8nF
+value C37 22nF
+value C38 1nF
+value C39 1nF
+value C40 12pF
+value C41 1uF
+value C42 1.2nF
+value C43 1.2nF
+value C44 1uF
+value C45 22nF
+value C47 1uF
+value C48 470nF
+value C49 3.3nF
+value C50 22nF
+value C51 22nF
+value C52 27nF
+value C53 27nF
+value C56 6.8nF
+value C57 6.8nF
+value C58 47uF
+value C59 6.8nF
+value C60 22nF
+value C61 22nF
+value C62 6.8nF
+value C63 1nF
+value C64 68nF
+value C65 68nF
+value C66 68nF
+value C67 15nF
+value C68 15nF
+value C69 10nF
+value C70 22nF
+value C72 12nF
+value C73 10nF
+value C76 68nF
+value C77 12nF
+value C200 100nF
+value D3 1S1588
+value D4 1S1588
+value D5 1S1588
+value Q3 2SC945
+value Q4 2SC945
+value Q5 2SC945
+value Q6 2SC945
+value Q7 2SC945
+value Q9 2SC945
+value Q10 2SC945
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C28.1 C29.2 C32.1 C33.1 C47.2 C48.2 C52.1 C56.1 C58.1 C67.2 C68.2 C69.2 C72.2 C73.2 C77.2 Q4.E R104.2 R119.2 R26.2 R34.2 R36.1 R37.2 R38.2 R43.2 R46.2 R48.2 R53.2 R54.2 R63.2 R65.2 R67.2 R68.2 R71.2 R72.2 R77.2 R81.2 R89.2 R91.1 R92.2 R93.2 R94.2 RV1.3 U1.11 U2.4 U3.7
+net +5V: Q3.C Q5.C Q6.C R66.1 R70.1 R78.1 R83.1 R86.1 U1.4 U2.8 U3.14
+
+# ---------------------------------------------------------------------------
+# IGNORED O_AUDIO0: O_AUDIO0  49 0
+# ---------------------------------------------------------------------------
+wire C39.1 C40.1 R44.1 R45.2 R48_2.2 U1.7
+wire R95.1 R96.2 U3.2
+wire C69.1 R95.2 U3.1
+wire C73.1 R103.2 U3.3
+wire R102.2 R103.1 U3.4
+wire C72.1 R105.2 U3.5
+wire R105.1 R106.2 U3.6
+wire R107.2 R108.1 U3.8
+wire C77.1 R108.2 U3.9
+wire R100.1 R101.2 U3.10
+wire C67.1 R100.2 U3.11
+wire R97.2 R98.1 U3.12
+wire C68.1 R98.2 U3.13
+wire C63.2 R101.1 R102.1 R106.1 R107.1 R65.1 R96.1 R97.1
+wire C63.1 R65_1.2
+wire C38.2 C40.2 R44.2 R65_1.1 U1.6
+wire C58.2 R30.1 R40.1 R41.1 R76.2 R77.1 R78.2
+wire R30.2 U1.5
+wire C38.1 C39.2 R38.1
+wire R32.2 R39.1 U1.1 U1.2
+wire C34.1 R41.2 U1.3
+wire C36.2 R31.2 U1.8 U1.9
+wire C32.2 R42.1 U1.10
+wire C31.1 C49.1 C60.1 C61.1 R40.2 U1.12
+wire R27.1 R28.2 U1.13
+label I_SINH0: R28.1 R29.2 U1.14
+wire C45.2 R48_2.1 R54.1
+wire C45.1 Q7.B R55.1
+wire C33.2 Q3.E R37.1 R55.2 R90.2
+wire C44.2 R45.1
+wire C44.1 Q4.B R66.2
+wire D4.1 D5.1 Q4.C
+wire C35.2 C42.1 C43.1 R46.1
+wire Q7.C R69.2 R70.2
+wire Q7.E R63.1
+wire C49.2 R69.1
+wire C42.2 D5.2 R58.1
+wire C47.1 R57.1 R58.2
+wire Q6.E R57.2
+wire Q6.B R61.1
+wire C50.1 R61.2 R67.1
+port OH0: C50.2 R72.1  # in MAME: LOGIC_INPUT(I_OH0)
+wire C51.1 R62.2 R68.1
+port CH0: C51.2 R71.1  # in MAME: LOGIC_INPUT(I_CH0)
+wire Q5.B R62.1
+wire Q5.E R59.2
+wire C43.2 D4.2 R60.1
+wire C48.1 R59.1 R60.2
+wire C34.2 C35.1 R39.2
+wire C31.2 R32.1
+wire C28.2 R27.2
+wire R29.1 R31.1 R49.1 R50.2 RV1.1
+wire C36.1 R42.2 R51.1
+wire C41.1 R51.2
+port I_SOUNDIC0: C41.2 R43.1  # in MAME: R_AY45L_C, not part: the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+wire R73.1 U2.1 U2.2
+wire C200.2 R76.1 U2.3
+wire C56.2 R75.1 U2.5
+wire C53.2 R50.1 U2.6 U2.7
+wire C53.1 R74.1 R75.2
+wire C52.2 R73.2 R74.2
+port I_SOUND0: R48.1 R49.2  # in MAME: R_AY45L_A, R_AY45L_B, R_AY45M_A, R_AY45M_B, R_AY45M_C, not parts: the AY-3-8910's own output resistance, which MAME draws as a 1K resistor
+wire Q9.E R81.1
+wire C59.1 Q9.C R82.1 R83.2 R84.2
+wire C62.1 Q9.B R82.2
+wire Q10.E R93.1
+wire C76.1 Q10.C R85.1 R86.2 R87.2
+wire C64.1 Q10.B R85.2
+wire C61.2 R84.1
+wire C60.2 R87.1
+wire C64.2 C65.1 D3.1 R94.1
+wire C65.2 C66.1 R119.1
+wire C66.2 C76.2 R104.1
+wire C37.1 R52.2 R53.1
+port BD0: C37.2 R34.1  # in MAME: LOGIC_INPUT(I_BD0)
+wire D3.2 R52.1
+wire C57.1 C62.2 R92.1
+wire C57.2 C59.2 R89.1 R90.1
+wire Q3.B R35.1
+wire C70.1 R35.2 R36.2
+port SD0: C70.2 R91.2  # in MAME: LOGIC_INPUT(I_SD0)
+port MSM3K0: R200.2  # in MAME: ANALOG_INPUT(I_MSM3K0)
+port MSM2K0: R201.2  # in MAME: ANALOG_INPUT(I_MSM2K0)
+wire C200.1 R200.1 R201.1
+
+# ---------------------------------------------------------------------------
+# Amplifier stage
+# ---------------------------------------------------------------------------
+wire C26.1 RV1.2
+wire C26.2 R25.1
+wire C29.1 R25.2 R26.1
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------

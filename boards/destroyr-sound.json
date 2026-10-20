@@ -1,0 +1,35 @@
+{
+ "name": "Destroyer sound circuits",
+ "mfr": "Atari",
+ "year": "1977",
+ "machine": "destroyr",
+ "drawing": "Sound section of the Destroyer game board schematic, sheet 4 of 5, technical manual TM-106 (doc 50fd79545404, p. 37) -- via MAME's netlist, compared with it",
+ "revision": "Destroyer game board, sound section: noise (two 74LS164s), explosion, sonar, launch and motor sounds, mixed into the volume pot.",
+ "coverage": "Converted from MAME's netlist and compared with sheet 4, up to the volume pot's wiper; the TDA1004 amplifier after it is not in MAME. The spare gates MAME ties off are other circuits' on the board, and are ports here.",
+ "singleSource": false,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "destroyr-sound",
+ "ics": {
+  "A9": "7400",
+  "C9": "LM324",
+  "E9": "CD4066",
+  "H8": "NE556",
+  "H9": "LM324",
+  "K8": "7428",
+  "K9": "7404",
+  "L7": "7486",
+  "L9": "74LS164",
+  "M8": "7432",
+  "M9": "74LS164",
+  "D10": "MC3340"
+ },
+ "source": {
+  "mame": "src/mame/atari/nl_destroyr.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "destroyr",
+  "licence": "BSD-3-Clause",
+  "copyright": "Ryan Holtz"
+ }
+}

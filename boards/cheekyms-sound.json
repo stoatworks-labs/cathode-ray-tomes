@@ -1,0 +1,29 @@
+{
+ "name": "Cheeky Mouse sound circuits",
+ "mfr": "Universal",
+ "year": "1980",
+ "machine": "cheekyms",
+ "drawing": "Sound section of the Cheeky Mouse schematic (doc 8bf94944bfe5) -- via MAME's netlist",
+ "revision": "Cheeky Mouse, sound: mute, cheese (a transistor noise source), mouse, hammer and pest (556 timers gated by an LM324), mouse and pest dies, coin, mixed.",
+ "coverage": "Converted from MAME's netlist, up to the volume pot.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "cheekyms-sound",
+ "ics": {
+  "1": "7404",
+  "2": "NE556",
+  "3": "NE555",
+  "4": "NE556",
+  "5": "LM324",
+  "6": "NE556"
+ },
+ "source": {
+  "mame": "src/mame/universal/nl_cheekyms.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "cheekyms",
+  "licence": "CC0-1.0",
+  "copyright": "Vas Crabb"
+ }
+}

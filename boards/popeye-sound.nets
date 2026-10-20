@@ -1,0 +1,107 @@
+# Popeye audio output stage -- netlist converted from MAME
+#
+# Couriersud's netlist of Popeye's audio: the three AY-3-8910 channels through R52-R60 and
+# C4-C6 to a mixing node (R51, R57, R60, R61, C40) and C7, then the impedance changer Q8/Q9
+# (R62-R67), which MAME's file calls 'solely an impedance changer', to the TV's audio on edge
+# pin W. The AY's outputs are ports.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/nintendo/nl_popeye.cpp,
+# NETLIST_START(popeye). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Couriersud (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/nintendo/nl_popeye.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+#
+# Corrected from the TPP2-CPU schematic, sheet 2 of 3 (manual p. 35):
+#   R65: the sheet's value is 5.1K, MAME's 2100 -- the schematic prints 5.1K, and the parts list has R65 among its 5.1K resistors
+# line 49: AY_A is not a part -- the AY-3-8910's own output resistance on channel A, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+# line 50: AY_B is not a part -- the AY-3-8910's own output resistance on channel B, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+# line 51: AY_C is not a part -- the AY-3-8910's own output resistance on channel C, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+# line 65: TV_AUDIO is not a part -- the load on the output, which MAME's file says is 'actually located in TV' (ROUT); R67 goes to edge pin W, 'TV AUDIO'
+#
+# Compared with the TPP2-CPU schematic, sheet 2 of 3 (manual doc a4dc252b9a5e p. 35, clearly
+# legible), and the typeset parts list (p. 27), on 2026-10-20: all 14 nets agree, and every
+# value but one -- R65 is 5.1K on both the sheet and the parts list, where MAME has 2.1K,
+# corrected above. Q8 is a 2SC1815 and Q9 a 2SA1015 as MAME has them. One designator is in
+# doubt: the schematic letters the mixer's 20K 'R51', as MAME does, but also prints an R51
+# on sheet 3, a 100 ohm in the sync buffer, and the parts list has R51 at 100 ohms and R54 as
+# its only 20K -- so on the board this is most likely R54. Where R52's lead crosses channel
+# B the drawing is broken; only this file's reading (R52 from the AY's pin 4 to ground)
+# works. D2 (1S1595), a clamp on the AY's supply, is on the sheet and not in MAME.
+
+
+value R51 20000
+value R52 2000
+value R53 2000
+value R55 2000
+value R56 2000
+value R57 30000
+value R58 2000
+value R59 2000
+value R60 30000
+value R61 120000
+value R62 510000
+value R63 100
+value R64 510000
+value R65 5.1K
+value R66 330
+value R67 51
+value C4 0.047e-6
+value C5 330e-12
+value C6 330e-12
+value C7 3.3e-6
+value C40 680e-12
+value Q8 2SC1815
+value Q9 2SA1015
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C4.2 C40.2 C5.2 C6.2 Q9.C R52.2 R55.2 R58.2 R61.2 R64.2 R65.2
+net +5V: Q8.C R62.1 R66.1
+
+# ---------------------------------------------------------------------------
+# It is solely an impedance changer and could be left away
+# ---------------------------------------------------------------------------
+wire C7.2 R62.2 R63.1 R64.1
+wire Q8.B R63.2
+wire Q8.E Q9.B R65.1
+wire Q9.E R66.2 R67.1
+
+# ---------------------------------------------------------------------------
+# AY 8910 internal resistors
+# ---------------------------------------------------------------------------
+port AY_A: R52.1 R53.1  # in MAME: AY_A, not part: the AY-3-8910's own output resistance on channel A, which MAME draws as a 1K resistor from +5V (R_AY1_1)
+port AY_B: R55.1 R56.1  # in MAME: AY_B, not part: the AY-3-8910's own output resistance on channel B, which MAME draws as a 1K resistor from +5V (R_AY1_2)
+port AY_C: R58.1 R59.1  # in MAME: AY_C, not part: the AY-3-8910's own output resistance on channel C, which MAME draws as a 1K resistor from +5V (R_AY1_3)
+wire C4.1 R51.1 R53.2
+wire C5.1 R56.2 R57.1
+wire C6.1 R59.2 R60.1
+wire C40.1 C7.1 R51.2 R57.2 R60.2 R61.1
+port TV_AUDIO: R67.2  # in MAME: TV_AUDIO, not part: the load on the output, which MAME's file says is 'actually located in TV' (ROUT); R67 goes to edge pin W, 'TV AUDIO'
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------

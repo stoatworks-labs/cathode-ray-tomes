@@ -1,0 +1,31 @@
+{
+ "name": "Super Speed Race audio board",
+ "mfr": "Taito (Midway license)",
+ "year": "1979",
+ "machine": "sspeedr",
+ "drawing": "Audio board schematic in the Super Speed Race Parts and Operating Manual (doc 8c0560561bb9) -- via MAME's netlist",
+ "revision": "Super Speed Race audio board: engine, skid and crash sounds as 280-ZZZAP's, rearranged, with a SILENCE input.",
+ "coverage": "Converted from MAME's netlist, up to the audio output. The noise comes from the motherboard (sspeedr-noise); the sound latches are ports.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "sspeedr-sound",
+ "ics": {
+  "A1": "LM3900",
+  "A2": "CD4016",
+  "B1": "CD4016",
+  "C1": "LM3900",
+  "E2": "CD4016",
+  "F1": "MC3340",
+  "H2": "LM3900",
+  "J1": "LM3900"
+ },
+ "source": {
+  "mame": "src/mame/taito/nl_sspeedr.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "sspeedr",
+  "licence": "CC0-1.0",
+  "copyright": "Colin Douglas Howell"
+ }
+}

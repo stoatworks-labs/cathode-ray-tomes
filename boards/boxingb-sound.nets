@@ -45,7 +45,7 @@
 # line 37: #define HLE_CANNON_VCO 1 -> 0 (high-level stand-in for a real circuit)
 # line 38: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
 # line 1704: NET_C(U2.9, U2.11, U9.1, U9.4, U9.12, U9.13, U15.1, U15.2, U20.4, U20.6, U20.8, U20.10, U20.12, U33.8, U33.9, U33.10, U33.11, U35.5, U35.6, U40.1, U40.3, U40.5) -> nc -- tied to one another in MAME's "Unconnected inputs" block
-# line 1602: MAME ties U25.5 off as unused, but the circuit uses them -- the tie is dropped
+# line 1602: MAME hints U25.5 as unconnected, but its own netlist connects it -- the hint is dropped
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7), CLOCK(Y1)
 #
 # Left out by MAME (commented out at TAG, so not in this file either):

@@ -1,0 +1,199 @@
+# Tank Battalion sound circuits -- netlist converted from MAME
+#
+# Ryan Holtz's netlist of Tank Battalion's discrete sound, which his file says is derived
+# from the schematics in the manual. The sound latch bits (S1, S2, OFF, ENGINE_HI, SHOOT,
+# HIT) and the video counter's 2V and 4V arrive as ports. MAME reaches into the 7486's
+# gates by name (6K.A.Q) and declares the CD4006 without its package; both are put on
+# their pins by MAME's own DIP models. The diodes are generic in MAME: 'types not listed
+# on schematic'.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/namco/nl_tankbatt.cpp,
+# NETLIST_START(tankbatt). Licence BSD-3-Clause by the file's own header (line 1),
+# copyright-holders Ryan Holtz (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/namco/nl_tankbatt.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 87: dropped NET_C(VCC, _5K.5, _6F.VDD, _6J.4, _6K.7, _6L.14, S1.VCC, S2.VCC, OFF.VCC, ENGINE_HI.VCC, SHOOT.VCC, HIT.VCC, 2V.VCC, 4V.VCC) -- took _6K.7 out of it: pin 7 of the 7486 at 6K is its ground
+# line 88: dropped NET_C(GND, _5K.10, _6F.VSS, _6J.11, _6K.14, _6L.7, S1.GND, S2.GND, OFF.GND, ENGINE_HI.GND, SHOOT.GND, HIT.GND, 2V.GND, 4V.GND) -- took _6K.14 out of it: pin 14 of the 7486 at 6K is its supply
+#
+# Corrected from the 7486's standard pinout -- the site holds no Tank Battalion PCB schematic:
+#   pin 14, the 7486's VCC, on +5V (MAME's lines 87-88 swap its supply pins; its TTL_7486_DIP model does not use them): V5 U6K.14
+#   pin 7, the 7486's GND, on ground: U6K.7
+# Stand-ins that are not parts (the nets they drive are ports): CLOCK(2V), CLOCK(4V), TTL_INPUT(S1), TTL_INPUT(S2), TTL_INPUT(OFF), TTL_INPUT(ENGINE_HI), TTL_INPUT(SHOOT), TTL_INPUT(HIT)
+#
+# Left out by MAME (commented out at TAG, so not in this file either):
+#   line 43: RES(R41, RES_K(22))
+#
+# MAME's netlist ends at the summing node of R35, R36, R56_1, R56_2 and R59, so this file
+# has no output port of its own; the node is a plain net here. R56 appears twice in MAME
+# (R56_1, R56_2), one on each of the hit and shoot channels.
+#
+# Not compared with the sheet: the site's Tank Battalion manual (doc 73495cc3ecf0, the
+# upright service manual) has no PCB schematic -- operation, test, cabinet parts lists,
+# the harness (p29) and a block diagram (p30) only (read 2026-10-20); MAME worked from a
+# printing that has one. What the manual does show is where the sound goes after this
+# file: a volume pot on the PCB (Fig. 5-7), the audio output on J1 pin 18 (the speaker
+# check is #18 to Z), a second volume pot behind the coin door on J4 pins 12-14 and the
+# speaker on J6, and a 12V AC centre-tapped winding for 'audio power', so a power
+# amplifier on the board that MAME does not have. So the 7486 supply fix rests on the
+# part's pinout alone, and R46/R49 are MAME's 4.7K against what its own comment says the
+# schematic prints (47K).
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part U5K 7492  (MAME: _5K)
+# part U6F CD4006  (MAME: _6F)
+# part U6J LM324  (MAME: _6J)
+# part U6K 7486  (MAME: _6K)
+# part U6L CD4066  (MAME: _6L)
+
+value R31 470
+value R32 470
+value R35 4.7K
+value R36 4.7K
+value R37 6.8K
+value R38 10K
+value R42 22K
+value R43 22K
+value R44 33K
+value R45 47K
+value R46 4.7K  # MAME's comment: 'Possible schematic or scan-quality error: Schematic says 47K'
+value R47 4.7K
+value R48 4.7K
+value R49 4.7K  # MAME's comment: 'Possible schematic or scan-quality error: Schematic says 47K'
+value R50 150K
+value R51 150K
+value R52 220K
+value R53 470K
+value R54 470K
+value R56_1 1K
+value R56_2 1K
+value R57 10K
+value R58 1K
+value R59 1K
+value R60 1K
+value R61 1K
+value C10 2.2uF
+value C11 2.2uF
+value C12 2.2uF
+value C13 2.2uF
+value C14 0.1uF
+value C15 0.01uF
+value C16 0.01uF
+value C17 0.01uF
+value C18 0.01uF
+value C42 0.1uF
+value D8 D  # MAME's comment: 'Generic diodes, types not listed on schematic'
+value D9 D
+value D10 D
+value D11 D
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C10.2 C11.2 C12.2 C13.2 C14.2 R37.2 R42.2 R43.2 R48.2 R57.2 U5K.10 U6F.7 U6J.11 U6K.7 U6L.7
+net +5V: R44.2 R47.2 U5K.5 U5K.7 U6F.14 U6J.4 U6K.10 U6K.14 U6L.14
+
+# ---------------------------------------------------------------------------
+# Noise generation (presumably)
+# ---------------------------------------------------------------------------
+port 2V: U6F.3 U6L.1  # in MAME: CLOCK(2V)
+wire U6F.13 U6F.5
+wire U6F.10 U6F.6 U6L.12 U6L.6
+wire U6F.1 U6F.12 U6K.1
+wire U6F.8 U6K.2
+wire R38.1 U6K.3
+wire D9.1 R38.2 U6F.4
+wire D8.2 R53.1 U6F.9
+wire C42.1 D8.1 R53.2 U6J.2
+wire C42.2 D9.2 U6J.1
+wire C12.1 R43.1 R44.1 U6J.10 U6J.12 U6J.3
+
+# ---------------------------------------------------------------------------
+# S1
+# ---------------------------------------------------------------------------
+port S1: U6L.5  # in MAME: TTL_INPUT(S1)
+port 4V: U6L.4  # in MAME: CLOCK(4V)
+wire R35.1 U6L.3
+
+# ---------------------------------------------------------------------------
+# S2
+# ---------------------------------------------------------------------------
+port S2: U6L.13  # in MAME: TTL_INPUT(S2)
+wire R36.1 U6L.2
+
+# ---------------------------------------------------------------------------
+# Hit
+# ---------------------------------------------------------------------------
+port HIT: R31.1  # in MAME: TTL_INPUT(HIT)
+wire D10.2 R31.2
+wire C10.1 D10.1 U6L.8
+wire R50.1 U6L.9
+wire C15.1 C16.1 R42.1 R50.2
+wire C16.2 R54.1 U6J.9
+wire C15.2 R54.2 R56_1.1 U6J.8
+
+# ---------------------------------------------------------------------------
+# Shoot
+# ---------------------------------------------------------------------------
+port SHOOT: R32.1  # in MAME: TTL_INPUT(SHOOT)
+wire D11.2 R32.2
+wire C11.1 D11.1 U6L.11
+wire R45.1 U6L.10
+wire C17.1 C18.1 R37.1 R45.2
+wire C18.2 R51.1 U6J.13
+wire C17.2 R51.2 R56_2.1 U6J.14
+
+# ---------------------------------------------------------------------------
+# Engine Rumble
+# ---------------------------------------------------------------------------
+port ENGINE_HI: U6K.4  # in MAME: TTL_INPUT(ENGINE_HI)
+wire U6K.5 U6K.8
+wire R52.1 U5K.1 U6K.6
+wire C14.1 R46.1 R52.2 U6J.6
+wire R47.1 R48.1 R49.1 U6J.5
+wire R46.2 R49.2 R57.1 U6J.7 U6K.9
+port OFF: U5K.6  # in MAME: TTL_INPUT(OFF)
+wire R60.1 U5K.11 U6K.12
+wire R58.1 U5K.8 U6K.13
+wire U5K.14 U6K.11
+wire R61.1 U5K.12
+wire C13.1 R58.2 R59.1 R60.2 R61.2
+
+# ---------------------------------------------------------------------------
+# Mixing
+# ---------------------------------------------------------------------------
+wire R35.2 R36.2 R56_1.2 R56_2.2 R59.2
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U5K.9  # Q2
+nc U6F.2 U6F.11  # NC D2+4

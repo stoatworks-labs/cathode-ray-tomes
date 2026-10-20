@@ -1,0 +1,333 @@
+# Super Speed Race audio board -- netlist converted from MAME
+#
+# Colin Douglas Howell's netlists for Midway's 8080 driving and shooting games are the most
+# carefully documented in MAME: every value is argued from the schematic, the PCB drawings
+# and board photos, and the file says where they disagree. ICs are named by their board
+# position. He declares each LM3900 amplifier on its own, numbered _1 to _4 as the LM3900
+# data sheet numbers them; they are written on their package's pins here. The CPU's sound
+# latches arrive as ports, named after the latch pin MAME's LOGIC_INPUT stands in for
+# (I_F4_2 is latch F4 pin 2).
+#
+# Super Speed Race's sound is 280-ZZZAP's circuit rearranged onto an audio board of its
+# own, with the noise generator moved to the motherboard. Its schematic numbers the
+# discrete parts, and MAME uses those numbers. The sound latches are on this board, 74174s
+# at D2 and C2 -- MAME keeps 280-ZZZAP's names for them, F4 and F5, so its I_F4_2 is D2 pin
+# 2 -- and the board's output is a bridge: OUTPUT is 'AUDIO 180 deg' and AUDIO_0 'AUDIO 0
+# deg', pins 1 and 4 of its 4-pin connector.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/taito/nl_sspeedr.cpp,
+# NETLIST_START(sspeedr). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Colin Douglas Howell (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/taito/nl_sspeedr.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 38: #define CONVERGENCE_FRONTIERS 1 -> 0 (solver partitioning, with resistor values adjusted to suit)
+# line 45: #define REMOVE_POST_CRASH_NOISE_GLITCHES 1 -> 0 (a voltage limiter MAME adds on an op-amp output)
+# line 616: NET_C(GND, A2.10, A2.11, A2.12, B1.6, B1.8, B1.9) -> nc -- tied to GND in MAME's "Switches A2_D and B1_C are unused." block
+#
+# Corrected from the audio board schematic (M051-00762-A003, manual p. 31):
+#   the audio board schematic: J1 pin 10 is 'AUDIO 0 deg', pin 4 of the 4-pin connector -- the second output of the bridge: UJ1.10 (AUDIO_0)
+# MAME declares one section of these packages at a time; each is written on its package's
+# pins by the data sheet's numbering of the sections (SECTION_PINS in the converter): UA1 LM3900 (A1_1, A1_2, A1_3, A1_4); UC1 LM3900 (C1_1, C1_2, C1_3, C1_4); UH2 LM3900 (H2_1, H2_2, H2_3, H2_4); UJ1 LM3900 (J1_1, J1_2, J1_4)
+# Stand-ins that are not parts (the nets they drive are ports): LOGIC_INPUT(I_F4_2), LOGIC_INPUT(I_F4_5), LOGIC_INPUT(I_F4_7), LOGIC_INPUT(I_F4_10), LOGIC_INPUT(I_F4_12), LOGIC_INPUT(I_F5_2), LOGIC_INPUT(I_F5_5), LOGIC_INPUT(I_F5_7), LOGIC_INPUT(I_F5_10), LOGIC_INPUT(I_F5_12), LOGIC_INPUT(I_F5_15)
+#
+# Compared with the audio board schematic, M051-00762-A003 (manual doc 8c0560561bb9, p. 31
+# of the print, PDF p. 34), on 2026-10-20: 21 groups of nets covering every IC, and every
+# value in the file -- all agree, the oscillator resistors included once MAME's frontier
+# values are undone, and so do the SILENCE input (D6, D7, R71, R72), C30 across R50, and C25.
+# Thirteen of the fifteen LM3900 amplifiers drawn print exactly the data sheet's pins; the
+# other two are misprints on the sheet, where MAME's pin is the only one possible: C1
+# amplifier 3's minus input is printed 6 (amplifier 1's) and H2 amplifier 3's is printed 9
+# (its own output; the read is about 75% sure). The CD4016 sections drawn and the MC3340's
+# pins agree. Added from the sheet: J1 pin 10 is the bridge's second output, AUDIO_0, which
+# MAME leaves as an internal net.
+#
+# Not in this file, and on the sheet: the board's '+5V DEC' rail -- +5V through R24 (10 ohms)
+# with C12 (500uF) to ground -- which is what the analogue parts MAME puts on +5V actually sit
+# on, MC3340 pin 8 included; and the supply parts C26-C29. Neither the unused switch sections
+# (A2 10-12, B1 6, 8, 9), J1's third amplifier nor the MC3340's pins 4-6 are drawn.
+
+# part UA1 LM3900
+# part UA2 CD4016
+# part UB1 CD4016
+# part UC1 LM3900
+# part UE2 CD4016
+# part UF1 MC3340  (MAME: MC3340_F1)
+# part UH2 LM3900
+# part UJ1 LM3900
+
+value R1 680K
+value R2 10K
+value R3 820K
+value R4 270K
+value R5 39K
+value R6 62
+value R7 82K
+value R8 39K
+value R9 39K
+value R10 240K
+value R11 120K
+value R12 62K
+value R13 150K
+value R14 2.7M
+value R15 15K
+value R16 1.5K
+value R17 10K
+value R18 20K
+value R19 1K
+value R20 3.3M
+value R21 1.5M
+value R22 470
+value R23 10K
+value R25 3.3K
+value R26 470K
+value R27 270K
+value R28 100K
+value R29 220K
+value R30 100K
+value R31 300K
+value R32 150K
+value R33 100K
+value R34 470K
+value R35 270K
+value R36 560K
+value R37 270K
+value R38 100K
+value R39 470K
+value R40 270K
+value R41 10K
+value R42 1K
+value R43 1K
+value R44 1K
+value R45 1K
+value R46 2.2M
+value R47 1M
+value R48 470K
+value R49 240K
+value R50 100K
+value R51 470K
+value R52 10K
+value R53 47K
+value R54 560K
+value R55 4.7M
+value R56 270
+value R57 2.7M
+value R58 560K
+value R59 560K
+value R60 10K
+value R61 1K
+value R62 1K
+value R63 3K
+value R64 150K
+value R65 12K
+value R66 33K
+value R67 2K
+value R68 220K
+value R69 100K
+value R71 10K
+value R72 10K
+value R73 100K
+value R74 220K
+value R75 100K
+value R70 50K
+value C1 10uF
+value C2 6800pF
+value C3 220pF
+value C4 0.022uF
+value C5 10uF
+value C6 0.01uF
+value C7 0.1uF
+value C8 0.1uF
+value C9 0.001uF
+value C10 0.1uF
+value C11 0.1uF
+value C13 10uF
+value C14 0.01uF
+value C15 0.01uF
+value C16 10uF
+value C17 0.022uF
+value C18 22uF
+value C19 2.2uF
+value C20 1uF
+value C21 10uF
+value C22 10uF
+value C23 10uF
+value C24 0.1uF
+value C25 0.1uF
+value C30 1uF
+value D1 1N914
+value D2 1N914
+value D3 1N914
+value D4 1N914
+value D5 1N914
+value D6 1N914
+value D7 1N914
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: UA2.1 UA2.7 UB1.7 C18.2 C2.2 C22.2 C6.2 UE2.7 UA1.7 UC1.7 UH2.7 UJ1.7 UF1.3 R19.2 R25.2 R41.2 R6.2
+net +12V: UJ1.14 R67.1
+net +5V: UA2.14 UB1.14 UE2.14 UA1.14 UC1.14 UH2.14 UF1.8 R10.1 R14.1 R20.1 R22.1 R23.1 R26.1 R3.1 R34.1 R39.1 R42.1 R43.1 R44.1 R45.1 R51.1 R55.1 R57.1 R61.1 R62.1 R7.1
+
+# ---------------------------------------------------------------------------
+# See p. 25 of the Super Speed Race manual for the motherboard
+# ---------------------------------------------------------------------------
+port NOISE_OUT: C1.1  # to Super Speed Race motherboard noise generator, where MAME joins it by name; the contact it crosses on is not in MAME
+
+# ---------------------------------------------------------------------------
+# Main netlist
+# ---------------------------------------------------------------------------
+port PEDAL_BIT0: R42.2 R46.1  # in MAME: LOGIC_INPUT(I_F5_2)
+port PEDAL_BIT1: R43.2 R47.1  # in MAME: LOGIC_INPUT(I_F5_5)
+port PEDAL_BIT2: R44.2 R48.1  # in MAME: LOGIC_INPUT(I_F5_7)
+port PEDAL_BIT3: R45.2 R49.1  # in MAME: LOGIC_INPUT(I_F5_10)
+wire UC1.13 R46.2 R47.2 R48.2 R49.2 R51.2
+wire C30.2 UC1.8 R50.2
+wire C30.1 D4.1 UC1.9 R50.1 R53.1
+wire C18.1 R52.1 R53.2 R54.1 R56.2
+wire D4.2 R52.2
+wire UC1.12 R54.2 R55.2
+wire UA2.4 UC1.11 R57.2 R58.2
+wire D5.2 UC1.10 R29.1 R30.1 R31.1 R32.1 R36.1 R37.1 R59.1
+wire D5.1 R58.1
+wire C19.1 R59.2 R60.2
+wire UA2.2 R56.1
+port ENGINE_SOUND_OFF: UA2.13 D1.2 R22.2  # in MAME: LOGIC_INPUT(I_F4_5)
+port HI_SHIFT: UA2.5 R62.2  # in MAME: LOGIC_INPUT(I_F5_12)
+wire UA2.3 UA2.8 C19.2
+wire UA2.9 R60.1
+port LO_SHIFT: UA2.6 R61.2  # in MAME: LOGIC_INPUT(I_F5_15)
+
+# ---------------------------------------------------------------------------
+# First oscillator (bottommost in schematics).
+# ---------------------------------------------------------------------------
+wire UB1.10 R37.2
+wire UB1.11 UC1.2
+wire C17.1 UC1.3 R36.2
+wire C17.2 D3.2 UC1.4 R38.1
+wire UC1.6 R38.2
+wire UB1.12 UC1.5 R40.1
+wire UC1.1 R39.2 R40.2
+wire C16.1 D2.1 D3.1 R41.1
+
+# ---------------------------------------------------------------------------
+# Second oscillator (middle in schematics).
+# ---------------------------------------------------------------------------
+wire UB1.4 R32.2
+wire UB1.3 UA1.13
+wire C15.1 UA1.8 R31.2
+wire C15.2 D2.2 UA1.9 R33.1
+wire UA1.11 R33.2
+wire UB1.5 UA1.10 R35.1
+wire UA1.12 R34.2 R35.2
+wire C16.2 UF1.1
+
+# ---------------------------------------------------------------------------
+# Third oscillator (topmost in schematics).
+# ---------------------------------------------------------------------------
+wire UB1.1 R30.2
+wire UB1.2 UA1.2
+wire C14.1 UA1.3 R29.2
+wire C13.1 C14.2 UA1.4 R28.1
+wire UA1.6 R28.2
+wire UB1.13 UA1.5 R27.1
+wire UA1.1 R26.2 R27.2
+wire C13.2 D1.1 UF1.2 R23.2 R25.1
+
+# ---------------------------------------------------------------------------
+# The noise generator circuit for Super Speed Race is a
+# ---------------------------------------------------------------------------
+wire C1.2 R1.1
+
+# ---------------------------------------------------------------------------
+# The noise generator is followed by a single-amplifier active
+# ---------------------------------------------------------------------------
+wire C2.1 R1.2 R2.1 R4.1
+wire C3.1 UH2.6 R2.2
+wire UH2.1 R3.2
+wire C3.2 C4.1 C5.1 UH2.5 R17.1 R4.2 R5.1
+wire C7.1 C8.1 R12.1 R5.2 R6.1
+wire C7.2 UH2.8 R8.1
+wire UH2.13 R7.2
+wire C8.2 UE2.10 UH2.9 R8.2
+wire C25.1 UE2.11
+wire C25.2 R9.1
+
+# ---------------------------------------------------------------------------
+# Unlike the other LM3900s, those on chip J1 get 12-volt power.
+# ---------------------------------------------------------------------------
+wire UJ1.3 R11.1 R9.2
+wire UJ1.2 R10.2
+wire UE2.4 UJ1.4 R11.2 R12.2
+wire UE2.3 R63.1
+port NOISE_CR_1: UE2.12 UE2.5  # in MAME: LOGIC_INPUT(I_F4_7)
+
+# ---------------------------------------------------------------------------
+# Second noise circuit: secondary crash noise (NOISE_CR_2), a
+# ---------------------------------------------------------------------------
+wire C4.2 R16.1
+wire C6.1 R13.1 R15.1 R16.2
+wire C9.1 UH2.3 R15.2
+wire UH2.2 R14.2
+wire C9.2 UE2.8 UH2.4 R13.2
+wire UE2.9 R64.1
+port NOISE_CR_2: UE2.6  # in MAME: LOGIC_INPUT(I_F4_10)
+wire C5.2 UE2.1 R17.2
+wire UE2.2 R18.1
+port BOOM: UE2.13  # in MAME: LOGIC_INPUT(I_F4_2)
+wire C10.1 C11.1 R18.2 R19.1
+wire C10.2 UH2.11 R21.1
+wire UH2.12 R20.2
+wire C11.2 UH2.10 R21.2 R65.1
+
+# ---------------------------------------------------------------------------
+# Final mix of sound effects and sound preamplification.
+# ---------------------------------------------------------------------------
+wire C20.1 R63.2 R64.2 R65.2
+wire UF1.7 R66.1
+wire C21.1 R66.2
+wire C22.1 R67.2 R68.1 R74.1
+wire UJ1.12 R68.2
+wire UJ1.1 R74.2
+port SILENCE: D6.2 D7.2  # in MAME: LOGIC_INPUT(I_F4_12)
+wire D6.1 R71.1
+wire D7.1 R72.1
+wire C23.2 R70.2
+wire C20.2 C21.2 UJ1.11 R69.1 R70.1 R71.2
+port AUDIO_0: C23.1 C24.1 UJ1.10 R69.2  # 'AUDIO 0 deg', pin 4 of the 4-pin connector, to the speaker in bridge with OUTPUT
+wire C24.2 R73.1
+wire UJ1.6 R72.2 R73.2 R75.1
+port OUTPUT: UJ1.5 R75.2  # 'AUDIO 180 deg', pin 1 of the audio board's 4-pin connector, to the speaker in bridge with AUDIO_0
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UA2.10 UA2.11 UA2.12 UB1.6 UB1.8 UB1.9  # line 616: tied to GND in MAME's "Switches A2_D and B1_C are unused." block
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc UF1.4 UF1.5 UF1.6  # NC NC ROLLOFF
+nc UJ1.8 UJ1.9 UJ1.13  # 3IN- 3OUT 3IN+

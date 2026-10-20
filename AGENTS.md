@@ -754,6 +754,9 @@ about each file live in `tools/mame_targets.py`, so the converter holds only rul
     tools/mame_netlist.py tank barrier-sound   -> boards/<slug>.nets and boards/<slug>.json
     tools/build_board_nets.py <slug>           as for a hand read
 
+After touching the converter, regenerate every target and diff `boards/*.nets`: a rule
+written for one file changes others, and the diff is the only place that shows it.
+
 **Converted (2026-10-19, MAME 0.289, commit f34f02505e32), all passing with 0 problems:**
 Tank, split into `tank-board-1` and `tank-board-2` (Ryan Holtz, BSD-3-Clause), and fourteen
 sound boards by Aaron Giles (CC0-1.0): Barrier, Armor Attack, Boxing Bugs, Rip Off, Solar
@@ -796,6 +799,65 @@ loads on open 555 outputs, a sound chip's outputs as 1K resistors), `fix_parts`,
 (the connector contact a named net lands on), and `split` for a netlist that spans boards.
 CA3080 outputs on one node are declared `parallel`: they are currents, summed by design.
 
+**The second batch (2026-10-20), all passing with 0 problems:** 280-ZZZAP and Laguna Racer
+(one file, two variants), Gun Fight, and Super Speed Race -- split into the audio board and
+the motherboard's noise generator, `sspeedr-sound` and `sspeedr-noise`, because their
+designators collide (R22-R25, R62, C8 and C9 are on both) -- by Colin Douglas Howell (CC0);
+Destroyer and
+Flyball (Ryan Holtz, BSD-3 and CC0); Tank Battalion (Holtz, BSD-3) and Rally-X's explosion
+circuit (Ricardo Bittencourt, CC0); the Irem M62 sound board, from Kid Niki, and Popeye's
+audio output (Couriersud, BSD-3); Cheeky Mouse (Vas Crabb, CC0); Borderline's sound board
+(beta-tester, CC0); and the audio section of the System 16B CPU board (Couriersud, CC0),
+whose board record carries `machines` for the 31 System 16B sets on the site that use it
+(the four Philko boards MAME gives other sound do not). Each file needed something about
+how MAME writes netlists that the first batch never met, and each is a rule now, not a
+target:
+
+- **A netlist that INCLUDEs another netlist of the same file has it spliced in where it is
+  included.** Howell, Couriersud and beta-tester put the circuit in a `*_schematics`
+  netlist and the supplies and inputs in the one MAME loads.
+- **Function-like `#define`s are expanded**, continued lines joined -- except a macro whose
+  own name says what the part is (`Q_2N4093`, `D_1N914`), since its expansion can say less:
+  Astro Blaster's `Q_2N4093` expands to a bare `MOSFET`.
+- **A part's named pins are numbered by MAME's own DIP model**, read from the DIPPINS tables
+  in `src/lib/netlist/macro/` at the same tag. Tank Battalion reaches into its 7486 as
+  `_6K.A.Q` and declares its CD4006 with no package at all; a bare device MAME has a `_DIP`
+  model of is an IC. DIPPINS lists pins 1, N, 2, N-1 ... -- the package's two sides as drawn.
+- **One section declared at a time** -- `LM3900(H5_3)`, a 556 as two `NE555`s -- goes on its
+  package's pins by the data sheet's numbering of the sections (`SECTION_PINS`). The target
+  says which declarations are sections. The package is keyed `IC_<pos>`, because Super Speed
+  Race has an LM3900 at C1 and a capacitor called C1.
+- **Every IC supply pin is checked against the rail it lands on.** MAME's Tank Battalion
+  powers its 7486 on pin 7 and grounds pin 14, and nothing downstream could have seen it: the
+  checker joins what it is told, and MAME's model of the part ignores its supply pins. A
+  custom pinout is checked only where a pin declares `rail`, because a PMOS part's VSS is
+  the positive one (Armor Attack's MM5837 would otherwise fail).
+- **A 0V ANALOG_INPUT is ground only when its name says so** (XGND, I_V0). Rally-X, Kid Niki
+  and System 16B feed sound-chip outputs in at 0V and drive them at run time; taken as ground
+  they would have shorted the Namco WSG and the YM3012 to it.
+- **A noise source in series -- neither end on a rail -- is a wire.** It is MAME's model of
+  the noise of the zener it sits beside (Gun Fight's D304, 280-ZZZAP's 1N5239); on the board
+  the zener's anode is on the amplifier's input.
+- **A heading inside a `/* ... */` block counts** once its leading `*` is stripped (Borderline's
+  ` *  RST (RESET for sound)`); without it the reset circuit sat under the heading before.
+- **A tie in an "unused" block keeps its passives on the rail** -- Rally-X grounds C35 in its
+  unused-gate line -- and "Not connected" is such a heading too (System 16B grounds two op-amp
+  outputs under it).
+- **What MAME says about a value goes on its `value` line**: "PCB verified" (Speed Freak),
+  "Guess; VGLTank.pdf doesn't say" (Tank Board II R19-R26), "Possible schematic or
+  scan-quality error: Schematic says 47K" (Tank Battalion R46/R49), "Verified as 1K on a real
+  board" (Flyball R79). In the first batch this changed comments, and only comments, in six
+  files; their statements are byte-identical.
+
+New per-target options: `sections`, `ic_names`, `models` (Destroyer's LM324_VM5V12 is an
+LM324), `shorts` (Super Speed Race's 1 ohm "dummy" between +12V and C9), `values` (a part
+MAME declares by its model -- "NPN", "D(BV=9.1 ...)" -- written by part number and not logged
+as a correction), `hack_macros` (Borderline's UNUSED_OP_PLUS and kin, which its own file
+calls hacks: every tie they make is `nc`), `corrected_from` (for a correction that comes from
+a pinout, not a sheet) and the undo action `keep`. New pinouts: CD4006, MB3730 and MB4391 in
+`custom_pinouts.json`; 74164, 7428, 7432, 7416, 74123, CD4016, CD4070, LM2902, LM358 and
+MC14584B mapped to KiCad in `build_board_nets.py`.
+
 **Tank is two boards on one grid of designators**, so Board I's D11 is not Board II's. MAME's
 single netlist is split by what each sheet draws, and every net that crosses lands on the
 cable contact (Board I J1/J2 to Board II J4/J5) or stays a port where the sheet prints no
@@ -825,8 +887,56 @@ are worth keeping in mind for any further work on Tank:
 **Compared with the sheet beyond Tank:** Barrier (the whole board -- every net and value
 MAME has agrees, with one open question: the sheet draws U8's output onto the summing line,
 which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2).
-The other twelve sound boards are MAME's reading, internally consistent and unchecked, and
-their files say so.
+The other twelve sound boards of the first batch are MAME's reading, internally consistent
+and unchecked, and their files say so.
+
+**Compared with the sheet in the second batch** (2026-10-20, one reader per board, each
+writing to `compare-<slug>.md` in the shared notes; what each found is in its target's
+notes and so in its `.nets`). MAME is right nearly everywhere a sheet could be read, and
+where it is not the errors are of three kinds: parts on each other's pins, values a later
+board or parts list changed, and a simulator's tie-offs where the board has another
+circuit.
+
+- **Laguna Racer and 280-ZZZAP**, against Laguna Racer B622 and A622 (A622 is a near copy
+  of 280-ZZZAP's sheet): every line of the file read, 86 of 89 agree; all sixteen LM3900
+  sections on the data sheet's pins. The three are one J4 switch both sheets print on the
+  same pins as another oscillator's -- MAME's documented correction from the Super Speed
+  Race sheet, logged. 280-ZZZAP's R46/R48/R51/R11 are B622's values, MAME's choice, logged.
+- **Super Speed Race**, against the manual's audio board and motherboard sheets: every value
+  and every pin agrees but two misprints on the sheet (an LM3900 input numbered as another
+  section's, or as its own output). Added: the bridge's second output, J1 pin 10. J5 is
+  printed 4030. The two boards' designators do collide, as MAME says.
+- **Destroyer**, against TM-106 sheet 4: all 64 nets agree pin for pin. K8 is a 7428 and
+  L9/M9 74LS164s, as printed. MAME's tie-off block was wrong about the board, not the sound:
+  every K9 inverter and most of M8 and L7 are video and strobe logic on sheets 3-5, so they
+  are ports, not nc; the 556's RESETs are bare stubs on the sheet, as nc says.
+- **Flyball**, against TM-075 sheet 7 and its parts list: 39 of 41 agree. Corrected: a 1K
+  pull-up (R25) MAME leaves out, and B7/C7 pins 2 and 9 drawn unconnected. R79 (820K on the
+  sheet, 1K "verified on a real board") and R97B (on neither sheet nor list, "verified to
+  exist on a real board") stay MAME's and are logged. The parts list fits MFC6040s, whose
+  pins are not the MC3340's -- the Tank trap again.
+- **Rally-X**, against Logic Bd I in the manual (the "fold-out" is the assembly drawings):
+  22 of 27 agree. Corrected: the MB3730's two capacitors and its two Zobel networks were on
+  each other's pins in MAME, VR1 is a pot with C4 on its wiper, C25/C3 were missing, and the
+  op-amps are at 12E and 12A. So which MB3730 pin is FB is now unconfirmed: the pinout is
+  MAME's model, and the sheet contradicts MAME's placement on it.
+- **Kid Niki**, against M62-A-B sheet 4/4 in the conversion kit manual: 80 of 84 agree. The
+  rest are MAME's FIX_SCHEMATIC_ERRORS, kept: the sheet has what MAME's uncorrected lines
+  have, and MAME follows the Kung-Fu Master schematic's corrections, which the site does
+  not hold.
+- **Popeye**, against TPP2-CPU sheet 2 and the parts list: all 14 nets agree; R65 is 5.1K,
+  not 2.1K, corrected. MAME's R51 is probably R54 on the board (the parts list's R51 is a
+  100 ohm in the sync buffer).
+- **Borderline**, against sound board sheets 6 and 7 and the parts list: about 230 pin
+  connections over all 38 ICs, and all agree but two AND inputs MAME swaps (corrected). The
+  sheet letters the MB4391s' IN, CON and OUT on MAME's pins; their supplies and "RO" are
+  MAME's. MAME's base/collector swap on all sixteen 2SC458s is right -- as drawn nothing
+  could oscillate. +6V is a 1K/1K divider on the board, not a supply.
+- **Not checked, and why:** Gun Fight (the 597-907E sound sheet is in none of the site's
+  Gun Fight PDFs; the catalogue's copy was never fetched, and archive.org has one), Tank
+  Battalion (the site's manual has no PCB schematic), Cheeky Mouse (its one sheet is the main
+  board, so which timer of each 556 a sound uses is assumed), System 16B (no schematic on
+  the site).
 
 **What does not convert, and why** (survey in the shared notes, `mame-netlist-survey.md`):
 
@@ -839,19 +949,35 @@ their files say so.
   designators name nothing on a Space Wars board.
 - Warrior (the bit-rotted branch above); Sega's Universal Sound Board and speech board
   (mostly MAME devices, the netlist is a fragment).
-- Not yet attempted, and mostly small resolver or pinout gaps: 280-ZZZAP, Gun Fight and
-  Speed Race (Colin Howell, CC0, carefully documented), Destroyer, Flyball, Tank Battalion,
-  Rally-X, Kid Niki and others.
+- Konami's sound for the Galaxian-hardware games (`nl_konami`, Couriersud, CC0): its filter
+  is one generic block (RI, RO, C1, C2) instanced six times, switched by `CD4066_GATE`s, with
+  the AYs' outputs as resistors. Nothing in it names a part on a board, and the switches are
+  gate-level besides.
+- Milton Bradley's Electronic Battleship (`nl_bship`) and VTech's Game Machine
+  (`nl_gamemachine`): CC0 and DIP-level, and they would convert, but they are handhelds
+  with no machine page on the site, and a board here has to name one.
+- Not attempted in either batch, and small: Capcom 1942's output filter (`nl_1942`), Coco
+  Loco and Dribbling, whose machines are on the site; JPM's SRU, Moog's Source and the
+  SFX Phasor, whose are not.
 
 Traps:
 
 - **`CAP` has no polarity in MAME**, so an electrolytic's pins are MAME's 1/2, not + and -.
-- **Pin-name maps for MAME's non-DIP devices** (`OPAMP`, `NE555`) are in the converter; a
-  new one fails loudly rather than guessing.
+- **Pin-name maps for MAME's non-DIP devices** (`OPAMP`, `NE555`) are in the converter;
+  every other named pin comes from MAME's own DIP model, and one that model does not name
+  fails loudly rather than guessing.
 - **A custom pinout can be `same_as` another** (NE566 = LM566, S2688 = MM5837, 74S287 =
   82S129); `build_board_nets.py` follows it.
 - **Undo line numbers are of the file at the tag.** Moving `TAG` means re-checking every
   guard, which the guards make impossible to skip.
+- **MAME's "unused" means unused by the sound.** Destroyer's "Tie off unused gates and pins"
+  grounds K9, M8 and L7 gates that the board uses for its video and strobe logic; the sheet
+  makes them ports, not nc. Borderline ties a 555's RESET high under UNUSED PINS with the
+  comment "not connected on schematic", and there nc is right. Read the block against the
+  sheet: a real tie is undone with `keep`, another circuit's pin becomes a port.
+- **"Derived from the schematics in the manual" names a printing the site may not hold.**
+  The site's Tank Battalion manual has no PCB schematic at all, and its only Cheeky Mouse
+  sheet is the main board; both conversions are unchecked for that reason, and say so.
 
 ## Boards from jtcores, and the GPL-3.0
 
@@ -1211,6 +1337,15 @@ convention and legitimately uses G.
   done by four parallel readers and spot-checked by eye at the points that changed the
   netlist (B6, the antenna, the oscillator, the score counters, HD1/HD2, the ROM's -12V,
   C51), not at every point.
+- **The second batch of MAME conversions** (2026-10-20): all fourteen boards pass
+  `build_board_nets.py` with no problems, and ten were compared with a sheet the site holds by
+  one reader each -- every line of the file for Laguna Racer/280-ZZZAP, Flyball, Rally-X,
+  Destroyer, Popeye and Kid Niki, large samples elsewhere -- with every disagreement corrected
+  from the sheet or logged where MAME's choice rests on better evidence (a real board, a
+  later printing). Not verified: Gun Fight, Tank Battalion, Cheeky Mouse and System 16B
+  against any sheet; anything the sheets do not draw (IC supply pins almost everywhere,
+  spare gates, the MB4391's supplies, which MB3730 pin is FB); and the readers' work itself,
+  which was not re-read by a second pair of eyes.
 - None of the MAME conversions is redrawn in KiCad or published; they are netlists only.
 - **The MAME PCB layouts are a parser's reading of hand-drawn ASCII.** About fifteen were
   read against their source by eye while the parser was built, and `check_pages.py` proves

@@ -1,0 +1,163 @@
+# Rally-X explosion sound -- netlist converted from MAME
+#
+# Ricardo Bittencourt's netlist of Rally-X's explosion sound, which his file says is
+# reconstructed from the hand-drawn schematic. It names the noise ICs by position (11A
+# CD4006, 11C CD4070, 11D CD4066); the uA741 and the MB3730 it calls U741 and U3730, which
+# are at 12E and 12A on the sheet and the assembly drawing. The Namco WSG's audio is fed
+# in by MAME at R28 (I_AUDIO), so it is a port here, and the 'BANG' latch bit (12M 74LS259
+# Q0 on the sheet) is a port.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/namco/nl_rallyx.cpp,
+# NETLIST_START(rallyx). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Ricardo Bittencourt (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/namco/nl_rallyx.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 138: dropped NET_C(VR1.2, GND) -- VR1 is a pot on the sheet, not a resistor: its bottom is grounded and C4 is on its wiper
+# line 165: dropped NET_C(R30.2, C4.1) -- the sheet takes C4 from VR1's wiper, not from VR1's top
+# line 168: dropped NET_C(U3730.2, C26.1) -- the sheet puts C27 (22uF) on MB3730 pin 2, not C26
+# line 171: dropped NET_C(U3730.3, C27.1) -- the sheet puts C26 (220uF) on MB3730 pin 3, not C27
+# line 174: dropped NET_C(U3730.6, R70.1, SPK.1) -- took R70.1 out of it: the sheet's Zobel on pin 6 is R69/C32
+# line 177: dropped NET_C(U3730.5, R69.1, SPK.2) -- took R69.1 out of it: the sheet's Zobel on pin 5 is R70/C31
+#
+# Corrected from the Logic Bd I schematic (A082-91385-C000, manual PDF p. 39):
+#   parts the sheet draws that MAME does not have: VR1 1K, C25 100uF, C3 0.1uF
+#   the sheet: VR1's bottom to ground, its wiper to C4: VR1.3
+#   as above: VR1.2 C4.1; U12A.3 C26.1; U12A.5 R70.1; C25.2 C3.2; U12A.5 (SPEAKER_I)
+#   the sheet: MB3730 pin 2 to C27 (22uF), pin 3 to C26 (220uF): U12A.2 C27.1
+#   the sheet: the Zobel on pin 6 is R69/C32, on pin 5 R70/C31: U12A.6 R69.1
+#   the sheet: C25 and C3 decouple the MB3730's +12V: I_V12 C25.1 C3.1
+#   the speaker's leads: MB3730 pin 6 to edge pin 19, pin 5 to edge pin W, both 'SPKR': U12A.6 (SPEAKER_M)
+# line 160: SPK is not a part -- the speaker, bridged across the amplifier's outputs, which MAME models as an 8 ohm resistor ('assumed 8 ohm')
+# Stand-ins that are not parts (the nets they drive are ports): CLOCK(CLK4V), LOGIC_INPUT(I_BANG), VCVS(VDIFF)
+#
+# Compared with the Logic Bd I schematic, A082-91385-C000 dated 1/9/81 (PDF p. 39 of the
+# manual, doc 1cc6c9614736, with p. 40's overlap; the 'fold-out', doc 47826bd174c7, is the
+# assembly drawings), on 2026-10-20 -- every net in the file. The noise generator agrees pin
+# for pin, including the spare 4070 and 4066 sections, which the sheet does ground as MAME
+# does, and C35's grounded end; so do the uA741 stage, the WSG mix and every value. Corrected
+# above from the sheet: the MB3730's capacitors and Zobel networks were on each other's pins
+# in MAME (pin 2 has C27 22uF and pin 3 C26 220uF; pin 6 has R69/C32 and pin 5 R70/C31), VR1
+# is a pot with C4 on its wiper, and C25 and C3 decouple the amplifier's +12V.
+#
+# The MB3730's pin names (FB on 2, BYPASS on 3) are MAME's model of the part; with the
+# capacitors where the sheet puts them, either those names or MAME's placement was wrong,
+# and no Fujitsu data sheet has been read to say which. MAME's comment calls C6 'across
+# R41'; on the sheet, and in MAME's own connections, it runs from the input node to the
+# 741's output. D1 is printed '1S15..' with the last digits filled in, and the assembly
+# notes say D1-D5 are 1N914B; MAME's 1S1588 is kept. The CD4xxx supply pins are not drawn;
+# +5V and ground on 14 and 7 are assumed.
+
+# part U11A CD4006  (MAME: SR)
+# part U11C CD4070  (MAME: XOR)
+# part U11D CD4066  (MAME: SW)
+# part U12A MB3730  (MAME: U3730)
+# part U12E UA741  (MAME: U741)
+
+value R24 470K
+value R26 10K
+value R27 150K
+value R28 10K
+value R30 4.7K
+value R31 22K
+value R39 68K
+value R40 47K
+value R41 470K
+value R69 1.0
+value R70 1.0
+value VR1 1K
+value C3 0.1uF
+value C4 0.1uF
+value C5 10nF
+value C6 10nF
+value C7 0.1uF
+value C25 100uF
+value C26 220uF
+value C27 22uF
+value C28 47nF
+value C29 22uF
+value C31 0.1uF
+value C32 0.1uF
+value C35 1uF
+value C36 0.1uF
+value D1 1S1588
+value D2 1N914
+value D3 1N914
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C25.2 C26.2 C27.2 C28.2 C29.2 C3.2 C31.2 C32.2 C35.2 C36.2 C7.2 R31.2 R40.2 U11A.7 U11D.3 U11D.4 U11D.5 U11D.6 U11D.7 U11D.8 U11D.9 U12A.4 U12E.4 VR1.3 U11C.5 U11C.6 U11C.7 U11C.8 U11C.9
+net +12V: C25.1 C3.1 C7.1 D3.1 R39.1 U12A.7 U12E.7
+net +5V: U11A.14 U11D.11 U11D.14 U11C.13 U11C.14
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port SPEAKER_I: R70.1 U12A.5  # in MAME: VCVS(VDIFF), SPK, not part: the speaker, bridged across the amplifier's outputs, which MAME models as an 8 ohm resistor ('assumed 8 ohm')
+port SPEAKER_M: R69.1 U12A.6  # in MAME: VCVS(VDIFF), SPK, not part: the speaker, bridged across the amplifier's outputs, which MAME models as an 8 ohm resistor ('assumed 8 ohm')
+wire C26.1 U12A.3
+wire C27.1 U12A.2
+wire C4.1 VR1.2
+
+# ---------------------------------------------------------------------------
+# 4V clock into the shift register
+# ---------------------------------------------------------------------------
+port CLK4V: U11A.3  # in MAME: CLOCK(CLK4V)
+wire U11A.1 U11A.12 U11D.13 U11C.2
+wire U11A.8 U11C.1
+wire D2.2 U11C.11
+wire D2.1 R26.1 U11A.4
+wire R26.2 U11C.3
+wire U11A.13 U11A.5
+wire U11A.10 U11A.6
+wire D1.2 R24.1 U11A.9
+wire C36.1 D1.1 R24.2 U11C.12
+wire C35.1 U11D.1 U11D.10
+wire R27.1 U11D.2
+wire C5.1 C6.1 R27.2 R31.1
+port BANG: U11D.12  # in MAME: LOGIC_INPUT(I_BANG)
+wire C5.2 R41.1 U12E.2
+wire C6.2 R30.1 R41.2 U12E.6
+wire C29.1 D3.2 R39.2 R40.1 U12E.3
+wire C28.1 R28.2 R30.2 VR1.1
+port AUDIO: R28.1  # in MAME: ANALOG_INPUT(I_AUDIO)
+
+# ---------------------------------------------------------------------------
+# MB3730 BTL power amp (opamp_lib) + bridged speaker
+# ---------------------------------------------------------------------------
+wire C4.2 U12A.1
+wire C31.1 R70.2
+wire C32.1 R69.2
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+# Pins the MAME netlist never mentions. On a real board these are unused outputs, or
+# inputs left open or tied in a way MAME did not draw; they are written here so that
+# the checker's coverage test still means something for every other pin.
+nc U11A.2 U11A.11  # NC D2+4
+nc U11C.4 U11C.10  # output output
+nc U12E.1 U12E.5 U12E.8  # NULL NULL NC

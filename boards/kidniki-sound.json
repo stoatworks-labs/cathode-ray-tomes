@@ -1,0 +1,26 @@
+{
+ "name": "Kid Niki sound board",
+ "mfr": "Irem",
+ "year": "1986",
+ "machine": "kidniki",
+ "drawing": "Nanao M62-A-B sheet 4/4 (E-C0066-4), in the Kid Niki conversion kit manual (doc 2e7a6f4d8772, p. 22) -- via MAME's netlist, which was made from a KiCad redraw of it; compared with the sheet",
+ "revision": "Irem M62 sound board, analogue section: the drum and cymbal generators, the MSM5205 and AY-3-8910 mixing, the output stage.",
+ "coverage": "Converted from MAME's netlist: the analogue sound circuits. The two AY-3-8910s and the MSM5205s are MAME devices; their outputs are ports.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "kidniki-sound",
+ "ics": {
+  "1": "LM324",
+  "2": "LM358",
+  "3": "MC14584B"
+ },
+ "source": {
+  "mame": "src/mame/irem/nl_kidniki.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "kidniki",
+  "licence": "BSD-3-Clause",
+  "copyright": "Andrew Gardner, Couriersud"
+ }
+}

@@ -1,0 +1,133 @@
+# Sega System 16B audio section -- netlist converted from MAME
+#
+# Couriersud's netlist of the audio section of the System 16B CPU board, used for every
+# System 16B game in MAME. The two YM3012 channels arrive as ports (CH1, CH2: MAME feeds
+# the YM2151's output in directly and replaces the YM3012's sample-and-hold with the
+# two RCOM resistors, as its file explains), and the uPD7759's speech as a current sink
+# (SPEECH). The two op-amps are D20 (TL084) and XC20 (LM324): MAME's X keeps the IC at
+# C20 apart from the capacitor C20, and both are written by position here, UD20 and UC20.
+# VR1 is a resistor in MAME that is 'actually a potentiometer'.
+#
+# Source: MAME mame0289 (commit f34f02505e32), src/mame/sega/nl_segas16b.cpp,
+# NETLIST_START(segas16b_audio). Licence CC0-1.0 by the file's own header (line 1),
+# copyright-holders Couriersud (line 2).
+# https://raw.githubusercontent.com/mamedev/mame/mame0289/src/mame/sega/nl_segas16b.cpp
+# Converted by tools/mame_netlist.py; checked by tools/build_board_nets.py.
+#
+# What the conversion means. MAME's netlists are written to be simulated, so this is a
+# second reading of the sheet by someone else, not a read of it: designators and pin
+# numbers are MAME's unless the notes say the sheet was read to correct them. Names on
+# `label` lines are MAME's, which mostly follow the sheet's with Q for an overbar; `net`
+# is used only for the supply rails. A `port` is a net that leaves what this file
+# describes -- a signal from the CPU or the other board, a cabinet control, or a source
+# MAME simulates with a stand-in rather than the circuit.
+#
+#   net NAME: PIN ...     a supply rail
+#   label NAME: PIN ...   a net MAME names
+#   wire PIN PIN ...      an unnamed connection
+#   port NAME: PIN ...    a net that leaves this file (see above)
+#   nc PIN ...            a pin with nothing attached
+#   parallel PIN ...      outputs the board sums on one node by design
+#   value REF VALUE       a passive's value, in the unit MAME's own macro uses
+#
+# PIN is DESIGNATOR.NUMBER. Diode pin 1 is the cathode; transistors keep B, C and E;
+# MAME does not record which way round an electrolytic goes, so C pins are MAME's 1/2.
+#
+# ---------------------------------------------------------------------------
+# Undone: what MAME does to simulate the board that the board does not do
+# ---------------------------------------------------------------------------
+# line 168: NET_C(GND, XC20.13, XC20.12, D20.13, D20.12, D20.2, D20.3) -> nc -- tied to GND in MAME's "Not connected" block
+# line 169: NET_C(GND, XC20.14, D20.14, D20.1) -> nc -- tied to GND in MAME's "Not connected" block
+# line 145: AMP_IN is not a part -- a 100K MAME assumes for the M51516L amplifier's input
+# Stand-ins that are not parts (the nets they drive are ports): CS(SPEECH)
+#
+# MAME's file marks its own doubts, and they are kept as it has them. It puts the mixer
+# stage on XC20 pins 9, 8 and 10 where, its comments say, the schematic reads 9, 7 and 8 --
+# 7 is already the speech filter's output, so MAME moved the stage onto the third section
+# and asks 'other AMP?' of each. C19 and C22 'need verification', and the op-amps' supply
+# is assumed: 'no information on schematics, assume 12V'. The site holds no System 16B
+# schematic to settle any of it.
+#
+# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
+# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
+# no two outputs fight, nothing floats), which is not the same as matching the board.
+
+# part UC20 LM324  (MAME: XC20)
+# part UD20 TL084
+
+value R3 10K
+value R4 10K
+value R5 10K
+value R6 10K
+value R7 47K
+value R9 47K
+value R10 47K
+value R11 1K
+value R12 1.3K
+value R13 6.2K
+value R14 5.6K
+value R15 12K
+value R16 6.8K
+value RCOM1 390
+value RCOM2 390
+value VR1 2K  # MAME's comment: 'FIXME: Actually a potentiometer'
+value C12 10uF
+value C19 47uF  # MAME's comment: 'FIXME: Needs verification'
+value C20 1000pF
+value C21 2.2uF
+value C22 2.2uF  # MAME's comment: 'Needs verification'
+value C23 0.022uF
+value C24 0.01uF
+value C25 0.0022uF
+value C26 0.022uF
+value C28 1500pF
+value C29 1500pF
+value C62 2.2uF
+value C63 2.2uF
+
+# ---------------------------------------------------------------------------
+# Supplies
+# ---------------------------------------------------------------------------
+net GND: C19.2 C24.2 C25.2 C28.2 C29.2 UD20.11 R16.2 R5.2 VR1.2 UC20.11
+net +12V: UD20.4 UC20.4
+net +5V: R11.1 R4.1
+
+# ---------------------------------------------------------------------------
+# YM2151/YM3012 inputs
+# ---------------------------------------------------------------------------
+port CH1: RCOM1.1  # in MAME: ANALOG_INPUT(CH1)
+wire C29.1 UD20.5 RCOM1.2
+wire C22.1 UD20.6 UD20.7
+port CH2: RCOM2.1  # in MAME: ANALOG_INPUT(CH2)
+wire C28.1 UD20.10 RCOM2.2
+wire C21.1 UD20.8 UD20.9
+
+# ---------------------------------------------------------------------------
+# Speech inputs
+# ---------------------------------------------------------------------------
+port SPEECH: R11.2 R14.1  # in MAME: CS(SPEECH)
+wire C26.1 R14.2 R15.1 R16.1
+wire C25.1 R15.2 UC20.5
+wire C26.2 R12.1 UC20.6 UC20.7
+wire C23.1 R12.2 R13.1
+wire C24.1 R13.2 UC20.3
+wire C23.2 C62.1 UC20.1 UC20.2
+
+# ---------------------------------------------------------------------------
+# Mixing and pre amplifier
+# ---------------------------------------------------------------------------
+wire C62.2 R6.1
+wire C22.2 R9.1
+wire C21.2 R10.1
+wire C20.1 R10.2 R6.2 R7.1 R9.2 UC20.9
+wire C20.2 C63.1 R7.2 UC20.8
+wire C19.1 R4.2 R5.1 UC20.10
+wire C63.2 R3.1
+wire C12.1 R3.2 VR1.1
+port OUT: C12.2  # to the power amplifier (an M51516L, MAME's file says), which MAME does not simulate
+
+# ---------------------------------------------------------------------------
+# Pins with nothing attached
+# ---------------------------------------------------------------------------
+nc UC20.13 UC20.12 UD20.13 UD20.12 UD20.2 UD20.3  # line 168: tied to GND in MAME's "Not connected" block
+nc UC20.14 UD20.14 UD20.1  # line 169: tied to GND in MAME's "Not connected" block

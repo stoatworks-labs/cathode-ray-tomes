@@ -1,0 +1,22 @@
+{
+ "name": "Gun Fight sound generator",
+ "mfr": "Dave Nutting Associates / Midway",
+ "year": "1975",
+ "machine": "gunfight",
+ "drawing": "Gun Fight Sound Generator Detail P.C. 597-907E -- via MAME's netlist",
+ "revision": "Gun Fight sound generator, P.C. 597-907E: a zener noise source filtered into four transistor 'bang' generators, mixed to left and right.",
+ "coverage": "Converted from MAME's netlist, which stops at the two master volume pots: the power amplifier ICs after them are not in it.",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "gunfight-sound",
+ "ics": {},
+ "source": {
+  "mame": "src/mame/midw8080/nl_gunfight.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "gunfight",
+  "licence": "CC0-1.0",
+  "copyright": "Colin Douglas Howell"
+ }
+}

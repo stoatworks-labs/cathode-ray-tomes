@@ -1,0 +1,603 @@
+{
+ "slug": "flyball-sound",
+ "source": "boards/flyball-sound.nets",
+ "components": {
+  "C34": {
+   "part": "",
+   "value": "0.0047uF"
+  },
+  "C44": {
+   "part": "",
+   "value": "0.0047uF"
+  },
+  "C45": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "C46": {
+   "part": "",
+   "value": "0.015uF"
+  },
+  "C47": {
+   "part": "",
+   "value": "0.015uF"
+  },
+  "C48": {
+   "part": "",
+   "value": "10uF"
+  },
+  "C49": {
+   "part": "",
+   "value": "100uF"
+  },
+  "C51": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "C52": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "C53": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "C79": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "C80": {
+   "part": "",
+   "value": "0.1uF"
+  },
+  "R25": {
+   "part": "",
+   "value": "1K"
+  },
+  "R43": {
+   "part": "",
+   "value": "68K"
+  },
+  "R73": {
+   "part": "",
+   "value": "1K"
+  },
+  "R74": {
+   "part": "",
+   "value": "1K"
+  },
+  "R75": {
+   "part": "",
+   "value": "50K"
+  },
+  "R76": {
+   "part": "",
+   "value": "100K"
+  },
+  "R77": {
+   "part": "",
+   "value": "820"
+  },
+  "R78": {
+   "part": "",
+   "value": "100K"
+  },
+  "R79": {
+   "part": "",
+   "value": "1K"
+  },
+  "R80": {
+   "part": "",
+   "value": "330K"
+  },
+  "R87": {
+   "part": "",
+   "value": "1K"
+  },
+  "R88": {
+   "part": "",
+   "value": "3.3K"
+  },
+  "R89": {
+   "part": "",
+   "value": "10K"
+  },
+  "R90": {
+   "part": "",
+   "value": "10K"
+  },
+  "R91": {
+   "part": "",
+   "value": "10K"
+  },
+  "R92": {
+   "part": "",
+   "value": "10K"
+  },
+  "R95": {
+   "part": "",
+   "value": "10K"
+  },
+  "R96": {
+   "part": "",
+   "value": "47K"
+  },
+  "R97A": {
+   "part": "",
+   "value": "10K"
+  },
+  "R97B": {
+   "part": "",
+   "value": "24.4K"
+  },
+  "R98": {
+   "part": "",
+   "value": "10K"
+  },
+  "R99": {
+   "part": "",
+   "value": "33K"
+  },
+  "UA8": {
+   "part": "MC3340",
+   "value": "MC3340"
+  },
+  "UB7": {
+   "part": "74164",
+   "value": "74164"
+  },
+  "UC7": {
+   "part": "74164",
+   "value": "74164"
+  },
+  "UC8": {
+   "part": "MC3340",
+   "value": "MC3340"
+  },
+  "UD7": {
+   "part": "7474",
+   "value": "7474"
+  },
+  "UD8": {
+   "part": "UA741",
+   "value": "UA741"
+  },
+  "UE7": {
+   "part": "7486",
+   "value": "7486"
+  },
+  "UE8": {
+   "part": "NE556",
+   "value": "NE556"
+  }
+ },
+ "nets": {
+  "+18V": {
+   "pins": [
+    "UA8.8",
+    "UC8.8",
+    "UD8.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "+5V": {
+   "pins": [
+    "R25.1",
+    "R73.1",
+    "R74.1",
+    "UB7.14",
+    "UC7.14",
+    "UD7.13",
+    "UD7.14",
+    "UD8.3",
+    "UE7.14",
+    "UE8.14"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "BAT_SOUND": {
+   "pins": [
+    "UE7.1",
+    "UE8.10",
+    "UE8.4"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "CROWD_ON": {
+   "pins": [
+    "R98.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "CROWD_SL": {
+   "pins": [
+    "R99.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "CROWD_VL": {
+   "pins": [
+    "R97A.2",
+    "R97B.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "FOOTSTEP": {
+   "pins": [
+    "R88.1"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "GND": {
+   "pins": [
+    "C34.2",
+    "C44.2",
+    "C45.2",
+    "C48.2",
+    "C49.2",
+    "C51.2",
+    "C52.2",
+    "R77.2",
+    "R95.1",
+    "UA8.3",
+    "UB7.7",
+    "UC7.7",
+    "UC8.3",
+    "UD7.2",
+    "UD7.7",
+    "UD8.4",
+    "UE7.4",
+    "UE7.5",
+    "UE7.7",
+    "UE8.7"
+   ],
+   "named": "sheet",
+   "aliases": []
+  },
+  "H256": {
+   "pins": [
+    "UB7.8",
+    "UC7.8",
+    "UD7.11",
+    "UD7.4"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "Net-(C34-Pad1)": {
+   "pins": [
+    "C34.1",
+    "R43.2",
+    "UE8.2",
+    "UE8.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C44-Pad1)": {
+   "pins": [
+    "C44.1",
+    "R76.2",
+    "UE8.12",
+    "UE8.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C45-Pad1)": {
+   "pins": [
+    "C45.1",
+    "UE8.11",
+    "UE8.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C46-Pad1)": {
+   "pins": [
+    "C46.1",
+    "C47.1",
+    "R77.1",
+    "R78.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C46-Pad2)": {
+   "pins": [
+    "C46.2",
+    "R80.1",
+    "R87.1",
+    "UD8.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C47-Pad2)": {
+   "pins": [
+    "C47.2",
+    "R80.2",
+    "UD8.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C48-Pad1)": {
+   "pins": [
+    "C48.1",
+    "R88.2",
+    "UC8.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C49-Pad1)": {
+   "pins": [
+    "C49.1",
+    "R97A.1",
+    "R97B.1",
+    "R98.1",
+    "R99.1",
+    "UA8.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C51-Pad1)": {
+   "pins": [
+    "C51.1",
+    "R89.2",
+    "R90.2",
+    "R91.2",
+    "R92.2",
+    "R95.3",
+    "R96.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C53-Pad1)": {
+   "pins": [
+    "C53.1",
+    "R95.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C79-Pad1)": {
+   "pins": [
+    "C79.1",
+    "R79.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C79-Pad2)": {
+   "pins": [
+    "C79.2",
+    "UC8.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C80-Pad1)": {
+   "pins": [
+    "C80.1",
+    "R87.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C80-Pad2)": {
+   "pins": [
+    "C80.2",
+    "UA8.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R25-Pad2)": {
+   "pins": [
+    "R25.2",
+    "UD7.1",
+    "UE7.13",
+    "UE7.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R43-Pad1)": {
+   "pins": [
+    "R43.1",
+    "R75.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R73-Pad2)": {
+   "pins": [
+    "R73.2",
+    "R76.1",
+    "UE8.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R74-Pad2)": {
+   "pins": [
+    "R74.2",
+    "R75.2",
+    "R75.3",
+    "UE8.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R78-Pad1)": {
+   "pins": [
+    "R78.1",
+    "R79.1",
+    "UD7.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R89-Pad1)": {
+   "pins": [
+    "R89.1",
+    "UE7.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R90-Pad1)": {
+   "pins": [
+    "R90.1",
+    "UE8.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R91-Pad1)": {
+   "pins": [
+    "R91.1",
+    "UE8.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R92-Pad1)": {
+   "pins": [
+    "R92.1",
+    "UC8.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R96-Pad1)": {
+   "pins": [
+    "R96.1",
+    "UA8.7"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UB7-Pad1)": {
+   "pins": [
+    "UB7.1",
+    "UE7.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UB7-Pad13)": {
+   "pins": [
+    "UB7.13",
+    "UC7.1"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UB7-Pad5)": {
+   "pins": [
+    "UB7.5",
+    "UE7.10"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UC7-Pad13)": {
+   "pins": [
+    "UC7.13",
+    "UD7.12"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UD7-Pad10)": {
+   "pins": [
+    "UD7.10",
+    "UD7.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UD7-Pad9)": {
+   "pins": [
+    "UD7.9",
+    "UE7.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(UE7-Pad12)": {
+   "pins": [
+    "UE7.12",
+    "UE7.8"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "OUTPUT": {
+   "pins": [
+    "C52.1",
+    "C53.2"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "V128": {
+   "pins": [
+    "UD7.3"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  }
+ },
+ "signatures": {},
+ "nc": [
+  "UA8.4",
+  "UA8.5",
+  "UA8.6",
+  "UB7.10",
+  "UB7.11",
+  "UB7.12",
+  "UB7.2",
+  "UB7.3",
+  "UB7.4",
+  "UB7.6",
+  "UB7.9",
+  "UC7.10",
+  "UC7.11",
+  "UC7.12",
+  "UC7.2",
+  "UC7.3",
+  "UC7.4",
+  "UC7.5",
+  "UC7.6",
+  "UC7.9",
+  "UC8.4",
+  "UC8.5",
+  "UC8.6",
+  "UD7.6",
+  "UD8.1",
+  "UD8.5",
+  "UD8.8",
+  "UE7.6"
+ ]
+}

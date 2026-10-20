@@ -440,7 +440,7 @@ wire C57.2 R106.1
 # ---------------------------------------------------------------------------
 # Sheet 7, PSG input
 # ---------------------------------------------------------------------------
-port R_PSG_1: C64.1 R133.2  # in MAME: not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_1), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_2), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_3)
+port R_PSG_1: C64.1 R133.2  # in MAME: R_PSG_1, R_PSG_2, R_PSG_3, not parts: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately
 wire C64.2 R132.1
 wire C63.1 R122.1 R132.2 U29.2
 label PSG: C63.2 R10.1 R122.2 U29.6

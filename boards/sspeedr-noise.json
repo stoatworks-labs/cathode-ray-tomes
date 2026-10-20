@@ -1,0 +1,25 @@
+{
+ "name": "Super Speed Race noise generator",
+ "mfr": "Taito (Midway license)",
+ "year": "1979",
+ "machine": "sspeedr",
+ "drawing": "Motherboard schematic in the Super Speed Race Parts and Operating Manual (doc 8c0560561bb9) -- via MAME's netlist",
+ "revision": "Super Speed Race motherboard, noise generator section: a CD4006 shift register with CD4070 feedback.",
+ "coverage": "Converted from MAME's netlist: the noise generator only, a section of the motherboard. Its output goes to the audio board (sspeedr-sound).",
+ "singleSource": true,
+ "netsTraced": false,
+ "netsConverted": "mame",
+ "slug": "sspeedr-noise",
+ "ics": {
+  "H5": "CD4006",
+  "J5": "CD4030"
+ },
+ "source": {
+  "mame": "src/mame/taito/nl_sspeedr.cpp",
+  "tag": "mame0289",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "netlist": "sspeedr",
+  "licence": "CC0-1.0",
+  "copyright": "Colin Douglas Howell"
+ }
+}
