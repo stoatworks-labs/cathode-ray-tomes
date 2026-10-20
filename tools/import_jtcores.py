@@ -504,8 +504,13 @@ def verify(entry, jt):
     KiCad rewrites a project's files when it opens one for editing, so a copy
     that someone opened and saved is no longer the file the notice describes.
     """
-    src = os.path.join(jt, entry["dir"])
-    dest = os.path.join(ROOT, "kicad", entry["slug"])
+    return verify_copy(os.path.join(jt, entry["dir"]), os.path.join(ROOT, "kicad", entry["slug"]),
+                       entry["slug"])
+
+
+def verify_copy(src, dest, label):
+    """How many of the files a copy of upstream project `src` should hold at
+    `dest` are missing or differ from upstream's; each is reported."""
     root_file = next(f for f in os.listdir(src) if f.endswith(".kicad_pro"))[:-len(".kicad_pro")] + ".kicad_sch"
     want = hierarchy(src, root_file) + [f for f in os.listdir(src) if os.path.isfile(os.path.join(src, f))
                                         and (f in KEEP_NAME or (f.endswith(KEEP_EXT) and not f.endswith(".kicad_sch")))]
@@ -513,7 +518,7 @@ def verify(entry, jt):
     for f in sorted(set(want)):
         p = os.path.join(dest, f)
         if not os.path.exists(p) or open(p, "rb").read() != open(os.path.join(src, f), "rb").read():
-            print(f"{entry['slug']}: {f} is not upstream's")
+            print(f"{label}: {f} is not upstream's")
             bad += 1
     return bad
 

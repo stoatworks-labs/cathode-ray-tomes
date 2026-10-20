@@ -1,0 +1,700 @@
+{
+ "slug": "007783",
+ "role": "Konami Custom Sprite Addressing IC",
+ "package": {
+  "pins": 84,
+  "symbol": "ga_konami:007783_internal"
+ },
+ "pins": [
+  {
+   "n": "1",
+   "name": "VSS",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "2",
+   "name": "DMAON",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "3",
+   "name": "TIM",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "4",
+   "name": "AB13",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "5",
+   "name": "AB12",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "6",
+   "name": "AB11",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "7",
+   "name": "AB10",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "8",
+   "name": "AB9",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "9",
+   "name": "AB8",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "10",
+   "name": "AB7",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "11",
+   "name": "AB6",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "12",
+   "name": "AB5",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "13",
+   "name": "AB4",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "14",
+   "name": "AB3",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "15",
+   "name": "AB2",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "16",
+   "name": "AB1",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "17",
+   "name": "SAB13",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "18",
+   "name": "SAB12",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "19",
+   "name": "SAB11",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "20",
+   "name": "SAB10",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "21",
+   "name": "VDD",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "22",
+   "name": "VSS",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "23",
+   "name": "SAB9",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "24",
+   "name": "SAB8",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "25",
+   "name": "SAB7",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "26",
+   "name": "SAB6",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "27",
+   "name": "SAB5",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "28",
+   "name": "SAB4",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "29",
+   "name": "SAB3",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "30",
+   "name": "SAB2",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "31",
+   "name": "SAB1",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "32",
+   "name": "CRW0",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "33",
+   "name": "CRW1",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "34",
+   "name": "CRW2",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "35",
+   "name": "CRW3",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "36",
+   "name": "DMA",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "37",
+   "name": "OD0",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "38",
+   "name": "OD1",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "39",
+   "name": "OD2",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "40",
+   "name": "OD3",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "41",
+   "name": "OD4",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "42",
+   "name": "OD5",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "43",
+   "name": "VSS",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "44",
+   "name": "OD6",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "45",
+   "name": "OD7",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "46",
+   "name": "~{ORLWR}",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "47",
+   "name": "~{ORUWR}",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "48",
+   "name": "~{OOE}",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "49",
+   "name": "BFLG",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "50",
+   "name": "CLK2",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "51",
+   "name": "~{CLR}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "52",
+   "name": "~{OCEN}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "53",
+   "name": "FBRF",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "54",
+   "name": "~{OFC}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "55",
+   "name": "OBFI",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "56",
+   "name": "~{OSC}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "57",
+   "name": "~{DMC}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "58",
+   "name": "TES1",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "59",
+   "name": "TES2",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "60",
+   "name": "ORA0",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "61",
+   "name": "ORA1",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "62",
+   "name": "ORA2",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "63",
+   "name": "VDD",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "64",
+   "name": "VSS",
+   "dir": "power",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "65",
+   "name": "ORA3",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "66",
+   "name": "ORA4",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "67",
+   "name": "ORA5",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "68",
+   "name": "ORA6",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "69",
+   "name": "ORA7",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "70",
+   "name": "ORA8",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "71",
+   "name": "ORA9",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "72",
+   "name": "ORA10",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "73",
+   "name": "ORA11",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "74",
+   "name": "ORA12",
+   "dir": "out",
+   "from": "board",
+   "drive": "out"
+  },
+  {
+   "n": "75",
+   "name": "~{MUWR}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "76",
+   "name": "~{MLWR}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "77",
+   "name": "~{MOCS}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "78",
+   "name": "~{SOCS}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "79",
+   "name": "~{MREAD}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "80",
+   "name": "~{SREAD}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "81",
+   "name": "~{OCRA}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "82",
+   "name": "~{SUWR}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "83",
+   "name": "~{SLWR}",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  },
+  {
+   "n": "84",
+   "name": "TIM3",
+   "dir": "in",
+   "from": "board",
+   "drive": "in"
+  }
+ ],
+ "pinCheck": [
+  {
+   "board": "final-round-gx870",
+   "refs": [
+    "U43"
+   ],
+   "same": 81,
+   "overbar": [
+    [
+     "46",
+     "~{ORLWR}",
+     "ORLWR"
+    ],
+    [
+     "47",
+     "~{ORUWR}",
+     "ORUWR"
+    ],
+    [
+     "52",
+     "~{OCEN}",
+     "OCEN"
+    ]
+   ],
+   "unnamed": 0,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "twin-16-gx687",
+   "refs": [
+    "B_K1"
+   ],
+   "same": 84,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "twin-16-rev-b",
+   "refs": [
+    "B_B12"
+   ],
+   "same": 84,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  }
+ ],
+ "inside": {
+  "parts": 220,
+  "libraries": {
+   "ga_fujitsu_av": 220
+  },
+  "nets": 334,
+  "named": 180,
+  "sheets": [
+   {
+    "title": "Top sheet",
+    "page": 1
+   },
+   {
+    "title": "Object data addressing",
+    "page": 2
+   },
+   {
+    "title": "Obejct read addressing",
+    "page": 3
+   },
+   {
+    "title": "Misc",
+    "page": 4
+   },
+   {
+    "title": "Address output",
+    "page": 5
+   }
+  ]
+ },
+ "notes": [],
+ "readFrom": null,
+ "pdf": "/chips/007783.pdf",
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/twin16/sch/007783",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/twin16/sch/007783",
+  "authors": [
+   "Jose Tejada",
+   "Ulf Skutnabba"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/chips/007783/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/chips/007783",
+  "imported": "2026-10-20"
+ }
+}

@@ -327,6 +327,8 @@ const routes = [
   [/^\/layouts\/?$/, layoutList],
   [/^\/layout\/([a-z0-9_]+\/[a-z0-9_-]+\/\d+)$/, layoutPage],
   [/^\/board\/(.+)$/, board],
+  [/^\/chips\/?$/, chipList],
+  [/^\/chip\/([a-z0-9-]+)$/, chipPage],
   [/^\/about\/?$/, about],
   [/^\/submit\/?$/, submit],
 ];
@@ -481,6 +483,10 @@ async function machine(slug) {
   // that run on it in `machines`.
   const kbs = boardList.filter((b) => b.machine === slug || b.slug === slug
     || (b.machines || []).includes(slug));
+  // Custom chips drawn from the inside, on a board of this machine's or named
+  // on a sketch of its board in MAME's notes (custom_chips.py decides which).
+  const customs = (await api("customchips").catch(() => []))
+    .filter((c) => (c.machines || []).includes(slug));
   loadRomMap(slug);
   loadLayouts(m);
 
@@ -515,6 +521,11 @@ async function machine(slug) {
       project with a schematic and bill of materials —
       ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>${b.origin
         ? ` (drawn for ${esc(b.origin.project)}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}
+    ${customs.length ? `<div class="note"><b>${customs.length > 1 ? `${customs.length} custom chips`
+      : "A custom chip"} drawn from the inside.</b> ${customs.length > 1 ? "Customs" : "A custom"} on
+      this machine's board${customs.length > 1 ? " have" : " has"} been redrawn from the inside
+      for jtcores, with ${customs.length > 1 ? "their" : "its"} pinout —
+      ${customs.map((c) => `<a href="/chip/${esc(c.slug)}">${esc(c.name)}</a>`).join(" · ")}.</div>` : ""}
     <div id="rommap"></div>
     <div id="layouts"></div>
 
@@ -1411,7 +1422,9 @@ async function boards() {
     <h1>KiCad conversions</h1>
     <p class="sub">Boards rebuilt from the original drawings as real KiCad projects,
        with browsable schematics and bills of materials — and boards redrawn in KiCad for
-       jtcores' FPGA recreations, published here under the GPL-3.0 with their source.</p>
+       jtcores' FPGA recreations, published here under the GPL-3.0 with their source.
+       The <a href="/chips">custom chips</a> jtcores draws from the inside are listed
+       separately.</p>
     <div id="list" class="listbox"></div>`;
   if (!list.length) {
     document.getElementById("list").innerHTML = '<div class="empty">No conversions published yet.</div>';
@@ -1595,6 +1608,12 @@ function layoutArt(l) {
 
 async function layoutPage(id) {
   const l = await api("layout/" + id);
+  // Labels on this sketch that name a custom chip whose inside is drawn.
+  const customs = new Map();
+  for (const c of await api("customchips").catch(() => [])) {
+    const on = (c.layouts || []).find((x) => x.id === id);
+    if (on) on.labels.forEach((lab) => customs.set(lab, c));
+  }
   const gh = `https://github.com/mamedev/mame/blob/${esc(l.commit)}/src/mame/${esc(l.src)}`;
   const lineLink = (n, text) => `<a href="${gh}#L${n}" target="_blank" rel="noopener">${text || "L" + n} ↗</a>`;
   const machines = l.machines || [];
@@ -1654,7 +1673,8 @@ async function layoutPage(id) {
         <td class="refs">${esc(d.label)}</td>
         <td class="refs">${esc(d.ref || "—")}</td>
         <td>${esc(LAYOUT_KINDS[d.kind] || d.kind)}${d.guess ? ' <span class="meta">(from its label)</span>' : ""}</td>
-        <td>${esc(d.part || "")}${d.dump ? ` <span class="badge" title="A file in MAME's romset is named after this position">romset: ${esc(d.dump.join(", "))}</span>` : ""}</td>
+        <td>${esc(d.part || "")}${d.dump ? ` <span class="badge" title="A file in MAME's romset is named after this position">romset: ${esc(d.dump.join(", "))}</span>` : ""}${customs.has(d.label)
+          ? ` <a class="badge doc" href="/chip/${esc(customs.get(d.label).slug)}" title="this custom chip's inside is drawn">inside drawn</a>` : ""}</td>
         <td class="refs">${lineLink(d.line)}</td></tr>`).join("")}</tbody></table>
     </div>
     <p class="sub" style="margin-top:10px">A kind comes from the words the notes use for the
@@ -1707,7 +1727,242 @@ async function layoutPage(id) {
   });
 }
 
+/* ---------- custom chips, drawn from the inside ----------
+   jtcores' redraws of thirteen custom chips, cell by cell off a die photo. Not
+   boards, and kept apart from them: a chip page is about one part, wherever it
+   is fitted. GPL-3.0, like the jtcores boards, and every page says whose. */
+
+/** A signal name as KiCad writes it: ~{CLR} is CLR with a bar over it. */
+const sig = (s) => esc(s).replace(/~\{([^}]*)\}/g, '<span class="ov">$1</span>')
+  .replace(/_\{([^}]*)\}/g, "<sub>$1</sub>");
+
+/** The custom chips on one board, keyed by designator. */
+function customsOn(list, slug) {
+  const out = new Map();
+  for (const c of list) {
+    const b = (c.boards || []).find((x) => x.slug === slug);
+    if (b) b.refs.forEach((r) => out.set(r, c));
+  }
+  return out;
+}
+
+async function chipList() {
+  const list = await api("customchips");
+  app.innerHTML = `
+    <h1>Custom chips</h1>
+    <p class="sub">${list.length} custom chips redrawn from the inside for jtcores' FPGA
+       recreations — the gate arrays cell by cell off a photograph of the die, the 052535
+       part by part — and published here under the GPL-3.0 with their source. A dead custom
+       cannot be bought; each page says what the chip does, what every pin carries, and
+       which boards and machines on this site have one.</p>
+    <div class="note warn"><b>A reading of the silicon, not the maker's design.</b> Nothing
+       here has been checked against a working chip. Use it to know what a pin should be
+       doing before condemning the part, not as proof that it is dead.</div>
+    <div class="rows">${list.map((c) => `
+      <a class="row wrap" href="/chip/${esc(c.slug)}">
+        <span class="nm mono">${esc(c.name)}</span>
+        <span class="meta">${esc(c.role)}</span>
+        <span class="grow"></span>
+        ${c.boards.length ? `<span class="badge kicad">${c.boards.length} board${c.boards.length > 1 ? "s" : ""}</span>` : ""}
+        ${c.machines.length ? `<span class="badge">${c.machines.length} machine${c.machines.length > 1 ? "s" : ""}</span>` : ""}
+        <span class="badge">${c.pins} pins</span>
+        <span class="badge" title="drawn for jtcores, free software">${esc(c.license)}</span>
+      </a>`).join("")}</div>`;
+}
+
+async function chipPage(slug) {
+  const c = await api("customchip/" + slug);
+  const o = c.origin;
+  const sheets = c.inside.sheets || [];
+  const libs = Object.entries(c.inside.libraries || {});
+  // Designators grouped by the section of the board drawing they sit in.
+  const refsOf = (b) => {
+    const by = new Map();
+    b.refs.forEach((r) => {
+      const k = r.section || "";
+      if (!by.has(k)) by.set(k, []);
+      by.get(k).push(r.ref);
+    });
+    return [...by].map(([s, rs]) => `<span class="mono">${esc(rs.join(", "))}</span>${s
+      ? ` <span class="meta">(${esc(s)})</span>` : ""}`).join(" · ");
+  };
+  const half = Math.ceil(c.pins.length / 2);
+  // A direction is checked against the circuit behind the pad: a pad some
+  // cell inside drives is an output. Where they disagree, the page says so.
+  const io = (d) => d === "in" || d === "out";
+  const clash = (p) => io(p.dir) && io(p.drive) && p.dir !== p.drive;
+  const tested = c.pins.filter((p) => io(p.dir) && io(p.drive));
+  const pinTable = (pins) => `<table class="bom pins"><thead><tr><th>Pin</th><th>Signal</th>
+      <th>Direction</th></tr></thead><tbody>${pins.map((p) => `<tr>
+      <td class="q">${esc(p.n)}</td><td class="mono">${sig(p.name)}</td>
+      <td>${esc(p.dir || "—")}${p.from === "inside" ? '<span class="meta" title="turned round from the chip drawing\'s own symbol">*</span>' : ""}${clash(p)
+        ? ` <span class="badge warn" title="the circuit inside the drawing drives this pad the other way">inside: ${esc(p.drive)}</span>` : ""}</td>
+    </tr>`).join("")}</tbody></table>`;
+  const fromInside = c.pins.some((p) => p.from === "inside");
+  const checks = c.pinCheck || [];
+  const diffs = (ck) => [
+    ck.overbar.length ? `written without or with an extra bar — ${ck.overbar.map(([n, a, b]) =>
+      `pin ${esc(n)} <span class="mono">${sig(b)}</span> for <span class="mono">${sig(a)}</span>`).join(", ")}` : "",
+    ck.differ.length ? `named differently — ${ck.differ.map(([n, a, b]) =>
+      `pin ${esc(n)} <span class="mono">${sig(b)}</span> for <span class="mono">${sig(a)}</span>`).join(", ")}` : "",
+    ck.unnamed ? `${ck.unnamed} pin${ck.unnamed > 1 ? "s" : ""} left unnamed` : "",
+    ck.missing.length ? `no pin ${esc(ck.missing.join(", "))}` : "",
+    ck.extra.length ? `pin${ck.extra.length > 1 ? "s" : ""} ${esc(ck.extra.join(", "))} that this drawing does not have` : "",
+  ].filter(Boolean);
+  const boardName = new Map((c.boards || []).map((b) => [b.slug, b.name]));
+  // The board page's interactive viewer, given the chip's own sheets.
+  const viewed = { redrawn: { kicanvas: c.kicanvas } };
+
+  app.innerHTML = `
+    <h1>${esc(c.name)} — custom chip</h1>
+    <p class="sub">${esc(c.role)} · ${c.package.pins} pins${c.markings.length > 1
+      ? ` · also written <span class="mono">${esc(c.markings.slice(1).join(", "))}</span>` : ""}</p>
+    <div class="note"><b>${esc(c.license)} · drawn by ${esc(listOf(o.authors))} for
+       <a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.project)}</a>${c.readFrom
+       ? `, from ${esc(c.readFrom)}` : ""}.</b>
+       The schematic is theirs, copied here unchanged; the pinout and the links to boards are
+       made from it. All of it is free software under the
+       <a href="/licenses/GPL-3.0.txt" target="_blank" rel="noopener">GNU General Public License v3</a> —
+       you may copy, change and share it on the same terms. The source is
+       <a href="${esc(o.source)}" target="_blank" rel="noopener">the KiCad project</a>, whose
+       NOTICE says what was added here.</div>
+    <div class="note warn"><b>A reading of the silicon, not ${esc(c.maker)}'s design.</b>
+       ${c.readFrom ? "Drawn from a photograph" : "Drawn from the inside"}, and nothing here has been
+       checked against a working chip. Use it to know what a pin should be doing before
+       condemning the part, not as proof that it is dead.</div>
+
+    <h2>What it does</h2>
+    <div class="panel"><p style="margin:0">${esc(c.summary)}</p></div>
+    ${(c.conflicts || []).length ? `<h2>Open questions</h2>
+    <p class="sub">Where the drawing disagrees with itself. Logged rather than corrected.</p>
+    <div class="questions">${c.conflicts.map((q) => `<div class="note warn">${esc(q)}</div>`).join("")}</div>` : ""}
+
+    <h2>Where it is fitted</h2>
+    ${(c.boards || []).length ? `<div class="rows">${c.boards.map((b) => `
+      <a class="row wrap" href="/board/${esc(b.slug)}">
+        <span class="nm">${esc(b.name)}</span>
+        <span class="meta">${refsOf(b)}</span>
+        <span class="grow"></span>
+        ${b.license ? `<span class="badge">${esc(b.license)}</span>` : ""}
+      </a>`).join("")}</div>`
+      : `<p class="sub">No board on this site has it on its drawing yet.</p>`}
+    ${(c.layouts || []).length ? `<p class="sub" style="margin-top:14px">Named on
+       ${c.layouts.length === 1 ? "a board sketch" : `${c.layouts.length} board sketches`}
+       in MAME's driver notes:</p>
+    <div class="rows">${c.layouts.map((l) => `
+      <a class="row wrap" href="/layout/${esc(l.id)}">
+        <span class="nm">${esc(l.name || l.caption || l.src)}</span>
+        <span class="meta">${esc([l.mfr, l.year].filter(Boolean).join(" · "))} ·
+          marked <span class="mono">${esc([...new Set(l.labels)].join(", "))}</span></span>
+        <span class="grow"></span>
+        <span class="badge src">${esc(l.src)}</span>
+        ${l.scope === "driver" || l.scope === "file" ? '<span class="badge none" title="tied to no set">driver-wide</span>' : ""}
+      </a>`).join("")}</div>` : ""}
+    ${(c.machines || []).length ? `<p class="sub" style="margin-top:14px">Machines:
+       ${c.machines.map(([s, n]) => `<a href="/machine/${esc(s)}">${esc(n)}</a>`).join(" · ")}.</p>` : ""}
+
+    <h2>Pinout</h2>
+    <p class="sub">Pins as the drawing numbers them, with the direction a signal takes at the
+       package${checks.length ? ", as the board drawings here give it" : ""}.
+       ${fromInside ? `<span class="meta">*</span> Turned round from the chip drawing's own
+       symbol, which is drawn from inside the die, so a pin the chip drives is an input on
+       it.${checks.length ? " No board drawing here gives these pins a direction." : ""}` : ""}
+       ${tested.length ? `Every direction is checked against the circuit behind the pad — a pad
+       some cell inside drives is an output, one that only feeds cells is an input — and
+       ${tested.filter((p) => !clash(p)).length} of the ${tested.length} pins that can be tested
+       this way agree.` : ""}</p>
+    <div class="pingrid">${pinTable(c.pins.slice(0, half))}${pinTable(c.pins.slice(half))}</div>
+    ${checks.length ? `<h2>Pinout against the board drawings</h2>
+    <p class="sub">Every board drawing on this site that carries the part draws its own symbol
+       for it. Each is compared with this one, pin by pin; a bar is the active-low mark, so a
+       name that differs only by one is the same signal with its polarity in question.</p>
+    <div class="rows">${checks.map((ck) => {
+      const d = diffs(ck);
+      return `<div class="row chk">
+        <a class="nm" href="/board/${esc(ck.board)}">${esc(boardName.get(ck.board) || ck.board)}</a>
+        <span class="meta mono">${esc(ck.refs.join(", "))}</span>
+        <span class="grow"></span>
+        <span class="badge${d.length ? "" : " kicad"}">${ck.same} of ${c.pins.length} names agree</span>
+      </div>${d.length ? `<div class="chipnote">${d.join("; ")}.</div>` : ""}`;
+    }).join("")}</div>` : ""}
+
+    <h2>Inside</h2>
+    <p class="sub">${c.inside.parts} ${c.readFrom && /die/.test(c.readFrom) ? "cells" : "parts"} and
+       ${c.inside.nets} nets on ${sheets.length} sheet${sheets.length === 1 ? "" : "s"}, in one PDF,
+       each sheet opening at its own page. Drawn with ${libs.map(([l, n]) =>
+       `${n} from <code>${esc(l)}</code>`).join(", ")}.</p>
+    ${viewerBlock(viewed)}
+    <div class="rows">${sheets.map((s) => `
+      <a class="row" href="${esc(c.pdf)}#page=${s.page}" target="_blank" rel="noopener">
+        <span class="nm">${esc(s.title === "Top sheet" ? "Top sheet — the package" : s.title)}</span>
+        <span class="grow"></span>
+        <span class="meta">page ${s.page} ↗</span>
+      </a>`).join("")}</div>
+    <div class="zoombar">
+      <a href="${esc(c.pdf)}" target="_blank" rel="noopener">All sheets as PDF ↗</a>
+      <a href="${esc(o.source)}" target="_blank" rel="noopener">KiCad project (source) ↗</a>
+      <a href="${esc(o.url)}" target="_blank" rel="noopener">Upstream in ${esc(o.project)} ↗</a>
+    </div>
+
+    ${(c.notes || []).length ? `<h2>From the drawing's own notes</h2>
+    <p class="sub">Verbatim, as the sheets print them.</p>
+    ${c.notes.map((n) => `<div class="panel drawnote"><pre>${sig(n.text)}</pre></div>`).join("")}` : ""}`;
+  const kvopen = document.getElementById("kvopen");
+  if (kvopen) kvopen.onclick = () => openViewer(viewed);
+}
+
 /* ---------- board: schematic + BOM ---------- */
+
+/* The interactive schematic. KiCanvas (MIT, vendored under /vendor/kicanvas/)
+   reads the KiCad sheets themselves, so a board can be panned, zoomed and
+   clicked instead of paged through as a PDF. The sheets come from GitHub's raw
+   host, not this deploy -- shipping them as assets would cost ~470 files the
+   Workers Assets cap does not have -- and nothing is fetched until the reader
+   asks: CP System III is 5 MB of sheets, which is not a page-load cost. */
+function viewerBlock(b) {
+  const k = b.redrawn && b.redrawn.kicanvas;
+  if (!k || !(k.files || []).length) return "";
+  const mb = k.bytes ? ` · ${(k.bytes / 1e6).toFixed(1)} MB` : "";
+  return `<div class="kvbox" id="kvbox">
+      <button id="kvopen" class="kvopen">Open the interactive schematic</button>
+      <span class="meta">${k.files.length} sheet${k.files.length === 1 ? "" : "s"}${mb}, loaded
+        from GitHub — pan, zoom, and click a part or a net</span>
+    </div>`;
+}
+let viewerScript = null;
+function loadViewer() {
+  if (!viewerScript) viewerScript = new Promise((ok, fail) => {
+    const s = document.createElement("script");
+    s.type = "module";
+    s.src = "/vendor/kicanvas/kicanvas.js";
+    s.onload = ok;
+    s.onerror = () => { viewerScript = null; fail(new Error("viewer did not load")); };
+    document.head.appendChild(s);
+  });
+  return viewerScript;
+}
+async function openViewer(b) {
+  const box = document.getElementById("kvbox");
+  const k = b.redrawn.kicanvas;
+  box.innerHTML = '<div class="empty">Loading the viewer…</div>';
+  try {
+    await loadViewer();
+  } catch (e) {
+    box.innerHTML = `<div class="note warn">The interactive viewer could not be loaded.
+      The sheets are still here as a PDF below.</div>`;
+    return;
+  }
+  const embed = document.createElement("kicanvas-embed");
+  embed.setAttribute("controls", "full");
+  embed.setAttribute("controlslist", "nodownload");
+  for (const f of k.files) {
+    const src = document.createElement("kicanvas-source");
+    src.setAttribute("src", k.base + f.split("/").map(encodeURIComponent).join("/"));
+    embed.appendChild(src);
+  }
+  box.innerHTML = "";
+  box.appendChild(embed);
+}
 
 /* Say which sheet this is, and say plainly what the reader is looking at. A
    traced sheet stays sharp at any zoom; a scan does not, and pretending
@@ -1725,6 +1980,10 @@ async function board(slug) {
   const list = await api("boards");
   const b = list.find((x) => x.slug === slug);
   if (!b) { app.innerHTML = '<div class="empty">Unknown board.</div>'; return; }
+  // Custom chips whose insides are drawn, by designator on this board.
+  const customs = customsOn(await api("customchips").catch(() => []), slug);
+  const customParts = new Map([...customs.values()].flatMap((c) =>
+    c.markings.map((m) => [m.toUpperCase(), c])));
 
   app.innerHTML = `
     <h1>${esc(b.name)} — board</h1>
@@ -1767,6 +2026,7 @@ async function board(slug) {
     <p class="sub">The drawing as ${esc(b.origin.project)} publishes it: ${b.redrawn.sheets.length}
        sheet${b.redrawn.sheets.length === 1 ? "" : "s"} in one PDF, each opening at its own page.
        Nothing in it has been checked against a manual or a board here.</p>
+    ${viewerBlock(b)}
     <div class="rows">${b.redrawn.sheets.map((s) => `
       <a class="row" href="${esc(b.redrawn.pdf)}#page=${s.page}" target="_blank" rel="noopener">
         <span class="nm">${esc(s.title)}</span>
@@ -1794,6 +2054,7 @@ async function board(slug) {
        a signal is followed by its label rather than by a wire. Signals the drawing leaves unnamed
        are named after the pin that drives them: <code>E4-6</code> is pin 6 of the chip at E4.
        It is a reading, not the original — when the two disagree, the scan below wins.</p>
+    ${viewerBlock(b)}
     <div class="rows">${b.redrawn.sheets.map((s) => `
       <a class="row" href="${esc(s.svg)}" target="_blank" rel="noopener">
         <span class="nm">${esc(s.title)}</span>
@@ -1805,6 +2066,22 @@ async function board(slug) {
       <a href="${esc(b.redrawn.netlist)}" target="_blank" rel="noopener">The netlist as read ↗</a>
       <a href="${esc(b.redrawn.project)}" target="_blank" rel="noopener">KiCad project ↗</a>
     </div>` : ""}
+
+    ${customs.size ? (() => {
+      const byChip = new Map();
+      customs.forEach((c, ref) => byChip.set(c, [...(byChip.get(c) || []), ref]));
+      return `<h2>Custom chips, drawn from the inside</h2>
+    <p class="sub">${byChip.size === 1 ? "A custom chip" : `${byChip.size} custom chips`} on this
+       board ${byChip.size === 1 ? "has" : "have"} been redrawn from the inside for jtcores. Each page
+       says what the chip does and what every pin carries — worth reading before condemning one.</p>
+    <div class="rows">${[...byChip].map(([c, refs]) => `
+      <a class="row wrap" href="/chip/${esc(c.slug)}">
+        <span class="nm mono">${esc(c.name)}</span>
+        <span class="meta">${esc(c.role)}</span>
+        <span class="grow"></span>
+        <span class="meta mono">${esc(refs.join(", "))}</span>
+      </a>`).join("")}</div>`;
+    })() : ""}
 
     <div id="related"></div>
 
@@ -1854,6 +2131,9 @@ async function board(slug) {
   }).catch(() => {});
 
   /* chip lookup — "what is at C4, and what does it do?" */
+  const kvopen = document.getElementById("kvopen");
+  if (kvopen) kvopen.onclick = () => openViewer(b);
+
   const chipq = document.getElementById("chipq");
   if (chipq) {
     let idx = null, sig = null;
@@ -1884,6 +2164,8 @@ async function board(slug) {
             <span class="grow"></span>
             ${v.otherRev ? `<span class="badge" title="same chip on the other revision">${esc(v.otherRev)} on other rev</span>` : ""}
             ${v.source ? `<span class="badge src" title="where this reading comes from">${esc(v.source)}</span>` : ""}
+            ${customs.has(d) ? `<a class="badge doc" href="/chip/${esc(customs.get(d).slug)}"
+               title="this custom chip's inside is drawn">inside drawn</a>` : ""}
           </div>
           ${v.note ? `<div class="chipnote${/contest|disput|unresolved|contradict|withdrawn|disagree|MAME puts|not applied/i.test(v.note) ? " warn" : ""}">${esc(v.note)}</div>` : ""}`).join("")}</div>` : "") + sigHtml
         || `<div class="empty">Nothing matches “${esc(chipq.value)}” on this board.</div>`;
@@ -1928,7 +2210,10 @@ async function board(slug) {
     });
     const total = out.reduce((s, r) => s + r.qty, 0);
     tbody.innerHTML = out.map((r) => `<tr>
-        <td><strong>${esc(r.value)}</strong></td>
+        <td><strong>${customParts.has(r.value.toUpperCase())
+          ? `<a href="/chip/${esc(customParts.get(r.value.toUpperCase()).slug)}"
+               title="custom chip, drawn from the inside">${esc(r.value)}</a>`
+          : esc(r.value)}</strong></td>
         <td class="q">${r.qty}</td>
         <td class="refs">${esc(r.refs)}</td></tr>`).join("")
       + `<tr><td colspan="3" style="color:var(--ink-3)">${out.length} line items · ${total} devices</td></tr>`;

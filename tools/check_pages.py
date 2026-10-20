@@ -51,6 +51,15 @@ And for the PCB layouts read from MAME's driver notes (web/data/layout/):
                     wrong word, and say so confidently.
   layout-index      The index and the shards disagree, so a list row leads to a
                     404 or a layout is published that nothing lists.
+
+And for the custom chips drawn from the inside (web/data/customchip/):
+
+  chip-licence      A chip without its GPL-3.0, authors, commit and source: the
+                    page could not say whose drawing it is.
+  chip-pdf          A chip whose sheets are not shipped, so every sheet link 404s.
+  chip-index        The index and the records disagree.
+  chip-board        A chip placed at a designator its board's own chip lookup
+                    does not give it: the board page would link the wrong part.
 """
 import argparse, glob, json, os, re, sys
 from collections import Counter, defaultdict
@@ -200,7 +209,38 @@ def check():
                      files=orphans[:4]))
 
     check_layouts(stats, found)
+    check_chips(stats, found)
     return stats, found
+
+
+def check_chips(stats, found):
+    cdir = os.path.join(ROOT, "web", "data", "customchip")
+    ipath = os.path.join(ROOT, "web", "data", "customchips.json")
+    if not os.path.isdir(cdir):
+        return
+    listed = {c["slug"] for c in json.load(open(ipath))} if os.path.exists(ipath) else set()
+    shipped = set()
+    for path in sorted(glob.glob(os.path.join(cdir, "*.json"))):
+        c = json.load(open(path))
+        stats["chips"] += 1
+        shipped.add(c["slug"])
+        where = dict(doc=c["slug"], machine=None, title=c.get("name"))
+        o = c.get("origin") or {}
+        if not (c.get("license") == "GPL-3.0" and o.get("authors") and o.get("source")
+                and re.match(r"^[0-9a-f]{40}$", o.get("commit") or "")):
+            found["chip-licence"].append(where)
+        if not os.path.isfile(os.path.join(ROOT, "web", c.get("pdf", "").lstrip("/"))):
+            found["chip-pdf"].append(dict(where, file=c.get("pdf")))
+        for b in c.get("boards", []):
+            lp = os.path.join(ROOT, "web", "data", "chips", b["slug"] + ".json")
+            lookup = json.load(open(lp)) if os.path.exists(lp) else {}
+            for r in b["refs"]:
+                part = (lookup.get(r["ref"]) or {}).get("part", "")
+                if part.upper() not in {m.upper() for m in c["markings"]}:
+                    found["chip-board"].append(dict(where, board=b["slug"], ref=r["ref"], part=part))
+    for s in sorted(listed ^ shipped):
+        found["chip-index"].append(dict(doc=s, machine=None,
+                                        title="listed, not shipped" if s in listed else "shipped, not listed"))
 
 
 def check_layouts(stats, found):
@@ -256,6 +296,8 @@ def main():
             print(f"  {stats['mode:' + mode]:>7,}  {mode}")
     if stats.get("layouts"):
         print(f"{stats['layouts']:,} PCB layouts · {stats['layout-devices']:,} devices")
+    if stats.get("chips"):
+        print(f"{stats['chips']:,} custom chips")
     print()
     if not found:
         print("no pages a reader would find unusable")

@@ -39,7 +39,7 @@ The 109 board viewers under web/boards/ (*-ibom.html) are its generated output f
 <https://github.com/jotego/jtcores>  
 Licence: GPL-3.0
 
-43 of the board pages are KiCad redraws of arcade boards made for jtcores' FPGA recreations, by Jose Tejada, etriana85, Ulf Skutnabba, cartman135, Fran.R, RafaP, Rafael Paiva, Leo Tejada, rp-jt and Andrea Bogazzi -- Gradius III, the CP System III, Sega System 18, Twin 16 and the rest. Each drawing is in kicad/<slug>/ unchanged, with jtcores' LICENSE and a NOTICE.md naming who drew it and what was added; the board view, netlist, chip and signal lookups and bill of materials made from it (boards/, data/chips/, data/signals/, web/boards/) are GPL-3.0 as well. Pinned to commit e7b11263 and imported by tools/import_jtcores.py; the board page states the licence and the authors.
+43 of the board pages are KiCad redraws of arcade boards made for jtcores' FPGA recreations, by Jose Tejada, etriana85, Ulf Skutnabba, cartman135, Fran.R, RafaP, Rafael Paiva, Leo Tejada, rp-jt and Andrea Bogazzi -- Gradius III, the CP System III, Sega System 18, Twin 16 and the rest. Each drawing is in kicad/<slug>/ unchanged, with jtcores' LICENSE and a NOTICE.md naming who drew it and what was added; the board view, netlist, chip and signal lookups and bill of materials made from it (boards/, data/chips/, data/signals/, web/boards/) are GPL-3.0 as well. Pinned to commit e7b11263 and imported by tools/import_jtcores.py; the board page states the licence and the authors. 13 more pages (/chip/<part>) are jtcores' redraws of the insides of custom chips -- Konami's Twin 16 gate arrays 007779 to 007787 and its 052535, and Capcom's DL-010D-103, DL-020F-108U and DL-050-115V -- by Ulf Skutnabba and Jose Tejada, several drawn from die photos by InfosecDJ, John McMaster and Furrtek and one from an image by Caius. They are in kicad/chips/<part>/ with the same LICENSE and NOTICE.md, on the same terms.
 
 ### jtkicad — Jose Tejada
 
@@ -56,6 +56,14 @@ Licence: GPL-3.0
 Copyright: 2008-2025 DICE Team
 
 16 board pages -- Pong, Breakout, Space Race, Stunt Cycle, Jet Fighter, Rebound and the other CPU-less games of the Pong era -- take their connectivity from DICE's netlists, converted by tools/import_dice.py: its stand-ins for a wire undone, its analogue models left off the board, and Crash 'n Score's checked against the hand-read map. Each game's source is in kicad/<slug>/ unchanged with DICE's LICENSE.txt and a NOTICE.md, and everything made from it is GPL-3.0.
+
+### KiCanvas — Alethea Katherine Flowers
+
+<https://kicanvas.org/>  
+Licence: MIT  
+Copyright: 2022 Alethea Katherine Flowers
+
+The interactive schematic viewer on every board page with a KiCad schematic: vendored as one file at web/vendor/kicanvas/kicanvas.js with its LICENSE.md, it reads the KiCad sheets in the browser so a reader can pan, zoom, move between sheets and click a part or a net.
 
 ### Split.js v1.3.5
 
