@@ -644,8 +644,10 @@ def convert(slug, cfg):
 
     # A pin MAME ties off as unused while its own netlist (or a correction)
     # connects it: the tie is the mistake, so drop it rather than call the
-    # pin unconnected.
+    # pin unconnected. A correction naming a lone pin (a port to circuitry
+    # MAME leaves out) counts as connecting it.
     joined = {t for m in groups.values() if len(m) > 1 for t in m}
+    joined |= {resolve(t, sheet=True) for a in cfg.get("add", []) for t in a["terms"]}
     used_ties = []
     for i, (c, pins, why) in enumerate(made_nc):
         keep = [p for p in pins if p not in joined]

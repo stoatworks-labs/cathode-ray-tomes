@@ -983,16 +983,16 @@
    "value": "TL081"
   },
   "U44": {
-   "part": "CA3080",
-   "value": "CA3080"
+   "part": "CA3080A",
+   "value": "CA3080A"
   },
   "U45": {
    "part": "TL081",
    "value": "TL081"
   },
   "U46": {
-   "part": "CA3080",
-   "value": "CA3080"
+   "part": "CA3080A",
+   "value": "CA3080A"
   },
   "U47": {
    "part": "TL081",
@@ -1029,6 +1029,10 @@
   "U9": {
    "part": "74LS163",
    "value": "74LS163"
+  },
+  "Y1": {
+   "part": "",
+   "value": "20MHz"
   }
  },
  "nets": {
@@ -2381,6 +2385,15 @@
    "named": "auto",
    "aliases": []
   },
+  "Net-(R10-Pad1)": {
+   "pins": [
+    "R10.1",
+    "U24.1",
+    "Y1.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
   "Net-(R100-Pad1)": {
    "pins": [
     "R100.1",
@@ -2720,6 +2733,15 @@
    "pins": [
     "R81.2",
     "U41.5"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R9-Pad2)": {
+   "pins": [
+    "R9.2",
+    "U24.6",
+    "Y1.1"
    ],
    "named": "auto",
    "aliases": []
@@ -3292,17 +3314,6 @@
    ],
    "named": "ours",
    "aliases": []
-  },
-  "Y1": {
-   "pins": [
-    "R10.1",
-    "R9.2",
-    "U24.1",
-    "U24.6"
-   ],
-   "named": "port",
-   "aliases": [],
-   "port": true
   },
   "_227KC_M": {
    "pins": [

@@ -84,9 +84,30 @@
 # declares only in a comment ('not used' -- by the stand-in), so the declaration is
 # restored.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the audio board sheets 1-3, 72-11141-02 rev A (doc 94be099bc6ca pp84-86,
+# native 300 dpi), the assembly drawing 72-11141-01 (p87) and the parts list 38-11141-01
+# (pp57-59), 2026-10-20: the input buffers IC1 and IC27, the shift register IC2 and latch
+# IC3 (OUT 0+ to OUT 7+ on J2-11 to J2-16, MAME's port names), the tank motor (IC6 with
+# R2, R3, C11, C12; IC8 loaded from TS0+-TS3+; IC9, IC10, IC11; R6, R7, C13, C14), the tread
+# squeak (IC13, the 7406 IC7, the low-leakage switches Q14-Q19 and R95-R109 on sheet 2,
+# R14-R23, C18, C19) with the 566 VCO IC15 (R11, C15-C17) and the converter Q1, R4, R12, R13,
+# D5, D8 exactly as MAME's HLE_TANK_VCO-off branch has them, the noise source (IC17, C20,
+# C21, R26, IC18), all five envelope switches and CA3080 channels (Q2-Q11, R27-R83, R94,
+# C22-C34, IC19-IC22), the beep 555 IC23 (R81-R83, C35-C37) and the summing follower IC25
+# with C43, R91 and the SJ amplifier IC26 (R90, R92) all agree with MAME pin for pin and
+# value for value, transistor and diode orientation included. The parts list agrees with
+# every IC, transistor (Q1 is a 2N3904), diode and capacitor; C28, which MAME's file could
+# not place, is one of six 0.1uF bypass capacitors on -15V. Nothing needed correcting.
+#
+# Open question, as printed and not settled:
+# * The parts list gives 111 resistors where both drawings place 109: it carries an 82K and
+#   a second 910K that neither the sheets nor the assembly drawing have (R82 is 8.2K on
+#   both; at 82K IC23 would not oscillate). Its 2.7K and 4.7K counts (13 and 8) are also
+#   swapped against both drawings (8 and 13). This file follows the drawings.
+#
+# Not in this file: the final amplifier (IC24, Q12, Q13, R24, R25, R84-R89, C38-C42, the
+# volume pot R93) and the regulators IC4/IC5, which are on sheets 1 and 3 with the values
+# MAME's comments give.
 
 # part U1 7414
 # part U2 74LS164
@@ -441,7 +462,7 @@ wire C36.1 R83.2
 # ---------------------------------------------------------------------------
 wire C43.1 U25.2 U25.6
 wire C43.2 R91.1
-port OUTPUT: U26.6 R92.2  # to the final amplifier, which MAME does not simulate
+port OUTPUT: U26.6 R92.2  # IC26's output, to J1-8 and the coin-door volume pot, whose wiper returns to the final amplifier IC24, which MAME does not simulate
 
 # ---------------------------------------------------------------------------
 # Pins with nothing attached

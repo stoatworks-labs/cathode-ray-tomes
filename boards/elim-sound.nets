@@ -40,21 +40,24 @@
 # line 35: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
 # line 43: #define ADD_CLIPPING_DIODES 1 -> 0 (diodes standing in for the chip's own input clamps)
 # line 44: #define DISABLE_TORPEDO2_NOISE 1 -> 0 (a connection disabled for speed)
-# line 868: NET_C(R142.1, R142.2, C68.1, C68.2, U32.5, U32.9, GND) -> nc -- parked on a rail with C68, R142 -- MAME replaces this circuit with a stand-in
-# line 876: NET_C(R139.1, R139.2, C65.1, C65.2, U32.13, U32.11, GND) -> nc -- parked on a rail with C65, R139 -- MAME replaces this circuit with a stand-in
-# line 884: NET_C(R143.1, R143.2, C69.1, C69.2, U32.1, U32.3, GND) -> nc -- parked on a rail with C69, R143 -- MAME replaces this circuit with a stand-in
-# line 892: NET_C(R141.1, R141.2, C67.1, C67.2, U31.1, U31.3, GND) -> nc -- parked on a rail with C67, R141 -- MAME replaces this circuit with a stand-in
-# line 901: NET_C(R140.1, R140.2, C66.1, C66.2, U31.5, U31.9, GND) -> nc -- parked on a rail with C66, R140 -- MAME replaces this circuit with a stand-in
 # line 1207: NET_C(GND, U17.1, U17.2, U17.5, U17.6) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 1208: NET_C(GND, U26.1, U26.2, U26.4, U26.5, U26.12, U26.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 1209: NET_C(GND, U27.13, U28.1) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 1210: NET_C(GND, U31.11, U31.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
-# Parked by MAME, both ends on a rail, because a stand-in replaces their circuit; on
-# the board, not in this file: C65 0.01uF, C66 0.022uF, C67 0.047uF, C68 0.01uF, C69 0.1uF, R139 330K, R140 270K, R141 220K, R142 330K, R143 680K
-# line 175: R_PSG_1 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately
-# line 176: R_PSG_2 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately
-# line 177: R_PSG_3 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately
-# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_LO_D1), TTL_INPUT(I_LO_D2), TTL_INPUT(I_LO_D3), TTL_INPUT(I_LO_D4), TTL_INPUT(I_LO_D5), TTL_INPUT(I_LO_D6), TTL_INPUT(I_LO_D7), TTL_INPUT(I_HI_D0), TTL_INPUT(I_HI_D1), TTL_INPUT(I_HI_D2), TTL_INPUT(I_HI_D3), TTL_INPUT(I_HI_D4), TTL_INPUT(I_HI_D5), TTL_INPUT(I_HI_D6), TTL_INPUT(I_HI_D7), CLOCK(_200HZACLK), CLOCK(_200HZBCLK), CLOCK(_10HZCLK), CLOCK(_50HZCLK), CLOCK(_100HZCLK)
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   U5: the sheet's part is NE555, MAME's LM555 -- the sheet (800-3174 sheet 7) and parts list item 25 print NE555; MAME's LM555 is the same timer
+#   U13: the sheet's part is NE555, MAME's LM555 -- the sheet (800-3174 sheet 7) and parts list item 25 print NE555; MAME's LM555 is the same timer
+#   sheet 8: a CD4069 RC oscillator, which MAME replaces with an ideal clock: U32.6 U32.9 R142.1; U32.5 R142.2 C68.1; U32.8 C68.2 R137.1; U32.12 U32.11 R139.1; U32.13 R139.2 C65.1; U32.10 C65.2 R138.1; U32.2 U32.3 R143.1; U32.1 R143.2 C69.1; U32.4 C69.2 R144.2; U31.2 U31.3 R141.1; U31.1 R141.2 C67.1; U31.4 C67.2 R134.1
+#   sheet 7: a CD4069 RC oscillator, which MAME replaces with an ideal clock: U31.6 U31.9 R140.1; U31.5 R140.2 C66.1; U31.8 C66.2 R135.1
+# line 175: R_PSG_1 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133
+# line 176: R_PSG_2 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133
+# line 177: R_PSG_3 is not a part -- a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_LO_D1), TTL_INPUT(I_LO_D2), TTL_INPUT(I_LO_D3), TTL_INPUT(I_LO_D4), TTL_INPUT(I_LO_D5), TTL_INPUT(I_LO_D6), TTL_INPUT(I_LO_D7), TTL_INPUT(I_HI_D0), TTL_INPUT(I_HI_D1), TTL_INPUT(I_HI_D2), TTL_INPUT(I_HI_D3), TTL_INPUT(I_HI_D4), TTL_INPUT(I_HI_D5), TTL_INPUT(I_HI_D6), TTL_INPUT(I_HI_D7)
+# lines 864-903: MAME's five ideal clocks (_200HZA, _200HZB, _10HZ, _50HZ, _100HZ), the
+# oscillator parts it parks on GND in their place, and its HINT(NC)s on the inverter
+# outputs, are dropped; the oscillators are put back from the sheet ("Corrected from the
+# sheet", above).
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
 #   line 198: RES(R1, RES_K(100))     -- part of final amp (not emulated)
@@ -98,19 +101,40 @@
 #   line 626: TTL_74LS30_DIP(U40)     // 8-Input NAND Gate
 #   line 630: TTL_74LS14_DIP(U41)
 #
-# The 200 Hz, 100 Hz, 50 Hz and 10 Hz clocks are ideal clocks in MAME (CLOCK), whatever
-# generates them on the board; their nets are ports, and the timing parts MAME parks on a
-# rail in their place are listed above. The PSG's three outputs arrive through resistors
-# MAME invents (R_PSG_1-3), so that summing node is a port.
+# Compared with the Sound Board drawing 800-3174 rev B, sheets 7 and 8 of 8 (doc
+# cff008c00810 pp65-68, each sheet printed in two halves), and its parts list (pp30-35),
+# 2026-10-20. Every passive value in this file agrees with the parts list -- 188 parts, none
+# different -- and the list shows that R24 and C42, which MAME's file queries, do not exist.
+# All values are the Eliminator ones in MAME's variant table (R79 2M is fitted), and no
+# Zektor part or jumper is drawn. The latch bit assignment (U34 74LS374 for the HI port, U35
+# for the LO port, D0 unused on the LO side), the 7406/7407 buffers, the noise source (U4,
+# U3) and sum buffer U12, the thrust, skitter, enemy ship and background channels (U10, U11,
+# U5, U1, U13, U15, U16, U25), the PSG input U29, explosions 1-3, fireball and bounce (U6-U9,
+# U14, the CD4011 one-shots U17-U19), the torpedo VCOs and counters (U20-U23) and the summing
+# resistors R6-R10 all agree with MAME pin for pin and value for value, transistor and diode
+# orientation included; R36 does feed torpedo 2's D6, as with DISABLE_TORPEDO2_NOISE off.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# The 200 Hz A/B, 10 Hz, 50 Hz and 100 Hz clocks, which MAME runs as ideal clocks, are
+# CD4069 RC oscillators on the sheet (U32 and U31 with R139-R143 and C65-C69), on exactly the
+# pins MAME parks, with the values MAME's comment gives; they are put back here. U5 and U13
+# are printed NE555 (MAME: LM555, the same part). The PSG's three outputs (U30 pins 1, 4, 5)
+# are tied straight onto R133 680 ohm; R_PSG_1-3 are only MAME's model of the chip, so that
+# node stays a port.
+#
+# Open questions, as printed and not settled: this scan drops two short line segments --
+# Q3's base lead (sheet 7, zone C3) and U19 pin 4 into its second gate (sheet 8, zone D6) --
+# where MAME's reading is the only one the drawing allows; the identical one-shots elsewhere
+# on sheet 8 draw the line. MAME's is kept.
+#
+# Not in this file: the CPU interface (U30 AY-3-8912, U33-U41), the final amplifier and mute
+# (U2, Q1, R1-R5, R11-R13, C1, C4) and the bypass capacitors, which are on the sheets with
+# the values MAME's comments give. R3 is not part of the final amplifier's gain network, as
+# MAME's comment says: it brings contact 3 onto the summing node.
 
 # part U1 TL081
 # part U3 TL081
 # part U4 MM5837
-# part U5 LM555
+# part U5 NE555
 # part U6 CA3080
 # part U7 CA3080
 # part U8 CA3080
@@ -118,7 +142,7 @@
 # part U10 CA3080
 # part U11 CA3080
 # part U12 TL081
-# part U13 LM555
+# part U13 NE555
 # part U14 CA3080
 # part U15 CA3080
 # part U16 TL082
@@ -267,6 +291,11 @@ value R135 10K
 value R136 680K
 value R137 10K
 value R138 10K
+value R139 330K
+value R140 270K
+value R141 220K
+value R142 330K
+value R143 680K
 value R144 100K
 value R145 68K
 value R146 22K
@@ -319,6 +348,11 @@ value C60 0.001uF
 value C61 0.068uF
 value C63 100pF
 value C64 0.1uF
+value C65 0.01uF
+value C66 0.022uF
+value C67 0.047uF
+value C68 0.01uF
+value C69 0.1uF
 value C75 0.1uF
 value C76 0.1uF
 value C77 0.1uF
@@ -348,6 +382,25 @@ net GND: C10.1 C11.1 C13.1 C14.1 C15.1 C16.1 C17.1 C18.1 C19.1 C20.1 C21.2 C29.1
 net +12V: C29.2 C75.2 C8.1 D8.2 R100.2 R103.2 R107.2 R110.2 R111.2 R112.2 R113.2 R114.2 R115.2 R116.2 R117.2 R118.2 R119.2 R120.2 R121.2 R123.2 R124.2 R125.2 R17.2 R18.2 R59.2 R60.2 R77.2 R78.2 R99.2 U1.7 U10.7 U11.7 U12.7 U13.8 U14.7 U15.7 U16.8 U17.14 U18.14 U19.14 U20.8 U21.14 U22.14 U23.14 U29.7 U3.7 U31.14 U32.14 U4.4 U5.8 U6.7 U7.7 U8.7 U9.7
 net +5V: U24.14 U26.14 U27.14 U28.14
 net -12V: C33.2 C34.2 C35.2 C36.2 C37.2 C38.2 C76.2 U1.4 U10.4 U11.4 U12.4 U14.4 U15.4 U16.4 U20.4 U29.4 U3.4 U4.2 U6.4 U7.4 U8.4 U9.4
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+label _100HZ: C66.2 R135.1 R145.2 U31.8
+wire C66.1 R140.2 U31.5
+wire R140.1 U31.6 U31.9
+label _50HZ: C12.1 C45.1 C67.2 R134.1 U31.4
+wire C67.1 R141.2 U31.1
+wire R141.1 U31.2 U31.3
+label _10HZ: C69.2 R144.2 U32.4
+wire C69.1 R143.2 U32.1
+wire R143.1 U32.2 U32.3
+label _200HZB: C65.2 R138.1 U32.10
+wire C65.1 R139.2 U32.13
+wire R139.1 U32.11 U32.12
+label _200HZA: C68.2 R137.1 U32.8
+wire C68.1 R142.2 U32.5
+wire R142.1 U32.6 U32.9
 
 # ---------------------------------------------------------------------------
 # Sheet 7, top-left/middle (Thrust)
@@ -410,7 +463,6 @@ wire R59.1 R61.2 U13.7
 wire C30.2 R61.1 U13.2 U13.6
 wire R144.1 R145.1 U13.5
 wire C28.1 U13.3
-port _100HZ: R135.1 R145.2  # in MAME: CLOCK(_100HZCLK)
 wire C61.2 R134.2 R135.2 R136.1 R137.2 R138.2
 wire Q11.E R136.2 U27.6
 wire U26.8 U27.5
@@ -440,18 +492,10 @@ wire C57.2 R106.1
 # ---------------------------------------------------------------------------
 # Sheet 7, PSG input
 # ---------------------------------------------------------------------------
-port R_PSG_1: C64.1 R133.2  # in MAME: not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_1), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_2), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately(R_PSG_3)
+port R_PSG_1: C64.1 R133.2  # in MAME: not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133(R_PSG_1), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133(R_PSG_2), not a part: a 1K from +5V standing in for one output of the sound chip (PSG) MAME emulates separately; on the sheet U30's three outputs (pins 1, 4, 5) are tied straight onto R133(R_PSG_3)
 wire C64.2 R132.1
 wire C63.1 R122.1 R132.2 U29.2
 label PSG: C63.2 R10.1 R122.2 U29.6
-
-# ---------------------------------------------------------------------------
-# Sheet 8, oscillators
-# ---------------------------------------------------------------------------
-port _200HZA: R137.1  # in MAME: CLOCK(_200HZACLK)
-port _200HZB: R138.1  # in MAME: CLOCK(_200HZBCLK)
-port _10HZ: R144.2  # in MAME: CLOCK(_10HZCLK)
-port _50HZ: C12.1 C45.1 R134.1  # in MAME: CLOCK(_50HZCLK)
 
 # ---------------------------------------------------------------------------
 # Sheet 8, top middle (Explosion 1)
@@ -577,30 +621,15 @@ wire R96.1 U21.6
 label ENEMY_SHIP: C28.2 R7.1
 label SKITTER: C6.2 R6.1
 wire C44.2 R9.1
-port OUTPUT: R10.2 R6.2 R7.2 R8.2 R9.2  # the board's output
+port OUTPUT: R10.2 R6.2 R7.2 R8.2 R9.2  # the summing node: on the sheet, U2 pin 6, the final amplifier's inverting input, which MAME does not simulate
 
 # ---------------------------------------------------------------------------
 # Pins with nothing attached
 # ---------------------------------------------------------------------------
-nc U32.5 U32.9  # line 868: parked on a rail with C68, R142 -- MAME replaces this circuit with a stand-in
-nc U32.13 U32.11  # line 876: parked on a rail with C65, R139 -- MAME replaces this circuit with a stand-in
-nc U32.1 U32.3  # line 884: parked on a rail with C69, R143 -- MAME replaces this circuit with a stand-in
-nc U31.1 U31.3  # line 892: parked on a rail with C67, R141 -- MAME replaces this circuit with a stand-in
-nc U31.5 U31.9  # line 901: parked on a rail with C66, R140 -- MAME replaces this circuit with a stand-in
 nc U17.1 U17.2 U17.5 U17.6  # line 1207: tied to GND in MAME's "Unconnected inputs" block
 nc U26.1 U26.2 U26.4 U26.5 U26.12 U26.13  # line 1208: tied to GND in MAME's "Unconnected inputs" block
 nc U27.13 U28.1  # line 1209: tied to GND in MAME's "Unconnected inputs" block
 nc U31.11 U31.13  # line 1210: tied to GND in MAME's "Unconnected inputs" block
-nc U32.6  # line 869: MAME's own HINT(NC)
-nc U32.8  # line 870: MAME's own HINT(NC)
-nc U32.12  # line 877: MAME's own HINT(NC)
-nc U32.10  # line 878: MAME's own HINT(NC)
-nc U32.2  # line 885: MAME's own HINT(NC)
-nc U32.4  # line 886: MAME's own HINT(NC)
-nc U31.2  # line 893: MAME's own HINT(NC)
-nc U31.4  # line 894: MAME's own HINT(NC)
-nc U31.6  # line 902: MAME's own HINT(NC)
-nc U31.8  # line 903: MAME's own HINT(NC)
 # Pins the MAME netlist never mentions. On a real board these are unused outputs, or
 # inputs left open or tied in a way MAME did not draw; they are written here so that
 # the checker's coverage test still means something for every other pin.

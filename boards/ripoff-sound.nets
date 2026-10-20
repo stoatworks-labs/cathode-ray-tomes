@@ -41,8 +41,12 @@
 # line 33: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
 # line 40: #define HACK_VOLTAGE_SWITCH 1 -> 0 (simulation hack)
 # line 41: #define HACK_CCA_RESISTANCE 1 -> 0 (simulation hack)
+# line 679: dropped NET_C(GND, IC14.2, IC14.3, IC15.2, IC15.3) -- took IC14.2, IC15.2, IC15.3 out of it: of these the sheet grounds only IC14 pin 3; IC14 pin 2 is the pre-amplifier's summing junction, and IC15's inputs are the final amplifier's
 # line 678: NET_C(GND, IC9.17, IC9.18, IC10.9, IC22.12, IC22.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
-# line 679: NET_C(GND, IC14.2, IC14.3, IC15.2, IC15.3) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   p80: R45 and R49 meet at IC14 pin 2: R45.1 U14.2
+#   p80: IC14 pin 6 drives the final amplifier: U14.6 (FINAL_AMP)
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7)
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
@@ -78,9 +82,36 @@
 # motor-1 and beep voltage triggers use the sheet's 4.7K (MAME's hack is 100 ohms), and
 # the resistances into the CA3080s IC12 and IC6 are the sheet's, not five times them.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the sheet, Schematic Audio Board - Rip Off SD207201 Rev A (doc 3a2cac26e2cb
+# p80, native 300 dpi), with the assembly drawing AE207201 Rev A (p79) and the parts list
+# PL207201 (pp58-60), 2026-10-20: the input buffers IC25 (J4-11/12/13), the shift register
+# IC8 and latch IC9 with R24; the background DAC (IC10, R23, D1, R25-R30, IC19, R76), both
+# background VCOs (IC20, IC21, C30, C31, R77-R82, D6-D11), the level translator Q10
+# (R83-R85) and the counter IC22 with R86-R91 and C32; the laser and torpedo channels (R56,
+# R66, C26-C29, D2-D5, IC16, IC17, R57-R61, R67-R71, Q8, Q9, and IC18 with R62-R65 and
+# R72-R75 into R47, R48 and C21); the explosion (IC1 S2688, R1-R10, C1-C8, IC2, the one-shot
+# IC4, Q1, IC3), beep (IC5, R11-R18, R20-R22, C9-C11, Q2, Q3, IC6) and motor 1 (IC11, IC13,
+# R31-R44, C14-C19, Q4, Q5, IC12) channels; and the summing node (R19, D12/D13, the
+# follower IC7, C12, R45, R49) all agree with MAME pin for pin and value for value, diode
+# and transistor orientation included. The values MAME's hacks change are the sheet's: R11
+# and R40 are 4.7K, R18 is 820K and R36 is 1M on the schematic, the assembly drawing and in
+# the parts list's counts. IC18's taps are not binary-ordered (QC takes the smallest
+# resistor); the sheet draws both halves that way and MAME follows it. MAME differs only at
+# the final-amplifier boundary: R45 and R49 go into IC14 pin 2 and only IC14 pin 3 is
+# grounded (MAME line 679 grounds both inputs of IC14 and IC15); corrected above.
+#
+# Open questions, as printed and not settled:
+# * The parts list gives one 1N5240 where both drawings have three (D1, D12, D13, and note
+#   3 names all three), and three 470-ohm and eight 1K resistors where both drawings have
+#   two and nine; the totals agree and the list names no positions. This file follows the
+#   drawings.
+# * IC4's reset (pin 4) is not drawn; MAME ties it to +5V ("not documented in schematics"),
+#   the only way the one-shot works.
+#
+# The jumpers W1-W8 are taken as fitted, as MAME takes them; R50 is drawn dashed and noted
+# optional, and C13 and C20 are not used (note 6). Not in this file: the final amplifier and
+# regulators (R46, IC15, Q6, Q7, IC23, IC24), which are on the sheet. MAME's comment calls
+# Q6 (2N6292) a PNP; it is an NPN, and the sheet draws it as one.
 
 # part U1 S2688
 # part U2 TL081
@@ -241,10 +272,16 @@ value Q10 2N3904
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C1.2 C10.1 C14.1 C15.1 C17.1 C18.1 C2.1 C26.1 C27.1 C28.1 C29.1 C30.1 C31.1 C6.2 C7.1 C9.1 D1.2 D13.2 D3.2 D5.2 D7.1 D9.1 U1.1 U1.2 U10.7 U11.1 U13.1 U18.7 U19.3 U2.3 U22.7 U25.7 U4.1 U5.1 U8.7 U9.1 U9.10 Q10.E Q8.E Q9.E R16.1 R17.1 R19.1 R21.1 R22.1 R34.1 R35.1 R43.1 R44.1 R47.1 R5.1 R6.1 R60.1 R70.1 R84.1 R9.1 R90.1
+net GND: C1.2 C10.1 C14.1 C15.1 C17.1 C18.1 C2.1 C26.1 C27.1 C28.1 C29.1 C30.1 C31.1 C6.2 C7.1 C9.1 D1.2 D13.2 D3.2 D5.2 D7.1 D9.1 U1.1 U1.2 U10.7 U11.1 U13.1 U14.3 U18.7 U19.3 U2.3 U22.7 U25.7 U4.1 U5.1 U8.7 U9.1 U9.10 Q10.E Q8.E Q9.E R16.1 R17.1 R19.1 R21.1 R22.1 R34.1 R35.1 R43.1 R44.1 R47.1 R5.1 R6.1 R60.1 R70.1 R84.1 R9.1 R90.1
 net +15V: C1.1 U1.4 U12.7 U14.7 U15.7 U16.7 U17.7 U19.7 U2.7 U20.7 U21.7 U3.7 U6.7 U7.7 R23.2
 net +5V: U10.14 U11.4 U11.8 U13.4 U13.8 U18.14 U22.14 U25.14 U4.4 U4.8 U5.4 U5.8 U8.14 U9.20 R11.2 R12.2 R13.2 R24.1 R31.2 R37.2 R40.2 R41.1 R61.2 R7.2 R71.2 R8.2 R85.2
 net -15V: C8.2 U12.4 U14.4 U15.4 U16.4 U17.4 U19.4 U2.4 U20.4 U21.4 U3.4 U6.4 U7.4 R20.1 R42.1
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port FINAL_AMP: U14.6  # IC14 pin 6, into the final amplifier (R46, IC15, Q6, Q7, the volume pot), which MAME does not simulate
+port OUTPUT: U14.2 R45.1 R49.2  # R45 and R49 into IC14 pin 2, the pre-amplifier's summing junction (R46 12K feedback)
 
 # ---------------------------------------------------------------------------
 # Explosion
@@ -316,7 +353,6 @@ wire U22.6 R89.1
 wire R86.2 R87.2 R88.2 R89.2 R90.2 R91.1
 wire C32.1 R91.2
 wire C21.2 C32.2 R49.1
-port OUTPUT: R45.1 R49.2  # to the final amplifier, which MAME does not simulate
 
 # ---------------------------------------------------------------------------
 # Beep
@@ -398,7 +434,6 @@ wire U18.3 R75.1
 # Pins with nothing attached
 # ---------------------------------------------------------------------------
 nc U9.17 U9.18 U10.9 U22.12 U22.13  # line 678: tied to GND in MAME's "Unconnected inputs" block
-nc U14.2 U14.3 U15.2 U15.3  # line 679: tied to GND in MAME's "Unconnected inputs" block
 nc U9.16  # line 685: MAME's own HINT(NC)
 nc U9.19  # line 686: MAME's own HINT(NC)
 nc U10.8  # line 687: MAME's own HINT(NC)
@@ -416,8 +451,8 @@ nc U6.1 U6.8  # NC NC
 nc U7.1 U7.5 U7.8  # NULL NULL NC
 nc U8.12 U8.13  # Q6 Q7
 nc U12.1 U12.8  # NC NC
-nc U14.1 U14.5 U14.6 U14.8  # NULL NULL output NC
-nc U15.1 U15.5 U15.6 U15.8  # NULL NULL output NC
+nc U14.1 U14.5 U14.8  # NULL NULL NC
+nc U15.1 U15.2 U15.3 U15.5 U15.6 U15.8  # NULL - + NULL output NC
 nc U16.1 U16.5 U16.8  # NULL NULL NC
 nc U17.1 U17.5 U17.8  # NULL NULL NC
 nc U19.1 U19.5 U19.8  # NULL NULL NC
