@@ -2253,7 +2253,7 @@ async function board(slug) {
                title="custom chip, drawn from the inside">${esc(r.value)}</a>`
           : esc(r.value)}</strong></td>
         <td class="q">${r.qty}</td>
-        <td class="refs">${esc(r.refs)}</td></tr>`).join("")
+        <td class="refs">${esc(r.refs).replaceAll(",", ",<wbr>")}</td></tr>`).join("")
       + `<tr><td colspan="3" style="color:var(--ink-3)">${out.length} line items · ${total} devices</td></tr>`;
   }
   document.querySelectorAll("table.bom th").forEach((th) => {

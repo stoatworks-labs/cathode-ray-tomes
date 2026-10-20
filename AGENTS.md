@@ -779,6 +779,9 @@ rules every target gets:
   for this: a net that leaves what the file describes, exempt from the one-pin and
   nothing-drives-it checks. A hand read has a connector instead and should not need one.
 - A value multiplied by a named constant (`RES_K(100) * FRND1`) is written unscaled.
+- A bare value is ohms or farads -- Couriersud writes `RES(R1, 2000)` and `CAP(C5, 330e-12)`
+  -- and is written in a schematic's units, 2K and 330pF, as `RES_K(2)` would be. The first
+  publish of 1942, Coco Loco and Popeye put `10e-6` and `220000` in their bills of materials.
 - A NET_C in a block MAME calls "Unused" or "Unconnected" becomes `nc` -- unless the circuit
   uses the pin, in which case the tie is dropped and logged. On Tank that is thirteen
   pins: the "unused" A7 pins are the crystal oscillator, N4's are the antenna latch.

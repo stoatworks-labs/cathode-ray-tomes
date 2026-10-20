@@ -35,7 +35,7 @@
 # ---------------------------------------------------------------------------
 #
 # Corrected from the TPP2-CPU schematic, sheet 2 of 3 (manual p. 35):
-#   R65: the sheet's value is 5.1K, MAME's 2100 -- the schematic prints 5.1K, and the parts list has R65 among its 5.1K resistors
+#   R65: the sheet's value is 5.1K, MAME's 2.1K -- the schematic prints 5.1K, and the parts list has R65 among its 5.1K resistors
 # line 49: AY_A is not a part -- the AY-3-8910's own output resistance on channel A, which MAME draws as a 1K resistor from +5V (R_AY1_1)
 # line 50: AY_B is not a part -- the AY-3-8910's own output resistance on channel B, which MAME draws as a 1K resistor from +5V (R_AY1_2)
 # line 51: AY_C is not a part -- the AY-3-8910's own output resistance on channel C, which MAME draws as a 1K resistor from +5V (R_AY1_3)
@@ -52,27 +52,27 @@
 # works. D2 (1S1595), a clamp on the AY's supply, is on the sheet and not in MAME.
 
 
-value R51 20000
-value R52 2000
-value R53 2000
-value R55 2000
-value R56 2000
-value R57 30000
-value R58 2000
-value R59 2000
-value R60 30000
-value R61 120000
-value R62 510000
+value R51 20K
+value R52 2K
+value R53 2K
+value R55 2K
+value R56 2K
+value R57 30K
+value R58 2K
+value R59 2K
+value R60 30K
+value R61 120K
+value R62 510K
 value R63 100
-value R64 510000
+value R64 510K
 value R65 5.1K
 value R66 330
 value R67 51
-value C4 0.047e-6
-value C5 330e-12
-value C6 330e-12
-value C7 3.3e-6
-value C40 680e-12
+value C4 0.047uF
+value C5 330pF
+value C6 330pF
+value C7 3.3uF
+value C40 680pF
 value Q8 2SC1815
 value Q9 2SA1015
 

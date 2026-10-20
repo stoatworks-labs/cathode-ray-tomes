@@ -565,9 +565,36 @@ UNIT = {"RES_K": (1e3, "K"), "RES_M": (1e6, "M"), "RES_R": (1, ""),
         "CAP_U": (1e-6, "uF"), "CAP_N": (1e-9, "nF"), "CAP_P": (1e-12, "pF")}
 
 
-def value(expr, defines):
+def si(num, kind):
+    """A bare number -- ohms or farads, as Couriersud writes RES(R1, 2000) and
+    CAP(C5, 330e-12) -- in the units a schematic prints: 2K, 330pF. A written
+    exponent of e-6, e-9 or e-12 keeps its mantissa (0.047e-6 is 0.047uF, not
+    47nF); anything else takes the largest unit it is at least one of."""
+    try:
+        x = float(num)
+    except ValueError:
+        return num
+    trim = lambda v: f"{v:.6g}"
+    if kind == "C":
+        m = re.fullmatch(r"([\d.]+)[eE]-(6|9|12)", num)
+        if m:
+            return m.group(1) + {"6": "uF", "9": "nF", "12": "pF"}[m.group(2)]
+        if not x:
+            return num
+        for scale, unit in ((1e-6, "uF"), (1e-9, "nF"), (1e-12, "pF")):
+            if x >= scale * 0.9999:
+                return trim(x / scale) + unit
+        return trim(x / 1e-12) + "pF"
+    for scale, unit in ((1e6, "M"), (1e3, "K")):
+        if x >= scale:
+            return trim(x / scale) + unit
+    return num
+
+
+def value(expr, defines, kind=None):
     """(printed value, [constants it was scaled by]). Printed in the unit
-    MAME's own macro used, which is the unit the schematic printed."""
+    MAME's own macro used, which is the unit the schematic printed; a bare
+    number, which is in ohms or farads, goes through si()."""
     expr = expr.strip()
     m = re.fullmatch(r"(RES_K|RES_M|RES_R|CAP_U|CAP_N|CAP_P)\(\s*([\d.eE+-]+)\s*"
                      r"(?:\+\s*([A-Za-z_]\w*)\s*)?\)(.*)", expr)
@@ -586,7 +613,7 @@ def value(expr, defines):
         num, rest = m.group(1), m.group(2).strip()
         if rest:
             scaled = re.findall(r"[A-Za-z_]\w*", rest) or [rest]
-        return num, scaled
+        return (si(num, kind) if kind else num), scaled
     return expr, ["?"]
 
 
@@ -607,8 +634,8 @@ def classify(c, defines):
     """Device for a declaration call, or None."""
     name, args = c.name, c.args
     if name in ("RES", "CAP", "POT", "POT2"):
-        v, scaled = value(args[1], defines) if len(args) > 1 else ("", [])
         kind = {"RES": "R", "CAP": "C"}.get(name, "POT")
+        v, scaled = value(args[1], defines, kind) if len(args) > 1 else ("", [])
         return Device(args[0], kind, None, v, c.line, c.comment, c.section, name), scaled
     if name in ("DIODE", "ZDIODE", "LED") or re.fullmatch(r"D_\w+", name):
         part = args[1].strip('"') if len(args) > 1 else name[2:]

@@ -155,11 +155,12 @@ def prepare(slug, target, results):
     # compared with the sheet.
     spec["singleSource"] = False
 
-    # Parts for the bill of materials: every part the netlist names.
+    # Parts for the bill of materials: every part the netlist names. Not P by
+    # designator: Coco Loco's P1 is its volume pot, and a connector has no value.
     parts = {}
     for ref, c in netlist["components"].items():
         label = c.get("part") or c.get("value") or ""
-        if label and not re.fullmatch(r"(J|P|TP)\d+", ref):
+        if label and not re.fullmatch(r"(J|TP)\d+", ref):
             parts[ref] = label
     spec["parts"] = dict(sorted(parts.items(), key=lambda kv: M.nat(kv[0])))
 
