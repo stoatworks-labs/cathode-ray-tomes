@@ -28,7 +28,7 @@ def compose_status(spec):
 RAW = "https://raw.githubusercontent.com/stoatworks-labs/cathode-ray-tomes/main"
 
 
-def kicanvas_sources(slug, root_file):
+def kicanvas_sources(slug, root_file, folder=None):
     """The sheet files the in-page schematic viewer loads, root first.
 
     The viewer (KiCanvas, vendored under web/vendor/kicanvas/) reads the KiCad
@@ -38,11 +38,15 @@ def kicanvas_sources(slug, root_file):
     rather than shipped as assets: the 43 jtcores boards alone are ~460 sheet
     files and ~150 MB, and the deploy is a couple of thousand files from the
     Workers Assets cap. They load only when a reader opens the viewer.
+
+    `folder` is the project's path under the repository when it is not
+    kicad/<slug> -- the custom chips live in kicad/chips/<slug>.
     """
     from import_jtcores import hierarchy
-    d = os.path.join(ROOT, "kicad", slug)
+    folder = folder or f"kicad/{slug}"
+    d = os.path.join(ROOT, folder)
     files = hierarchy(d, root_file)
-    return {"base": f"{RAW}/kicad/{slug}/", "files": files,
+    return {"base": f"{RAW}/{folder}/", "files": files,
             "bytes": sum(os.path.getsize(os.path.join(d, f)) for f in files)}
 
 

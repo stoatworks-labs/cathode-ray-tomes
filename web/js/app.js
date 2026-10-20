@@ -1810,6 +1810,8 @@ async function chipPage(slug) {
     ck.extra.length ? `pin${ck.extra.length > 1 ? "s" : ""} ${esc(ck.extra.join(", "))} that this drawing does not have` : "",
   ].filter(Boolean);
   const boardName = new Map((c.boards || []).map((b) => [b.slug, b.name]));
+  // The board page's interactive viewer, given the chip's own sheets.
+  const viewed = { redrawn: { kicanvas: c.kicanvas } };
 
   app.innerHTML = `
     <h1>${esc(c.name)} — custom chip</h1>
@@ -1889,6 +1891,7 @@ async function chipPage(slug) {
        ${c.inside.nets} nets on ${sheets.length} sheet${sheets.length === 1 ? "" : "s"}, in one PDF,
        each sheet opening at its own page. Drawn with ${libs.map(([l, n]) =>
        `${n} from <code>${esc(l)}</code>`).join(", ")}.</p>
+    ${viewerBlock(viewed)}
     <div class="rows">${sheets.map((s) => `
       <a class="row" href="${esc(c.pdf)}#page=${s.page}" target="_blank" rel="noopener">
         <span class="nm">${esc(s.title === "Top sheet" ? "Top sheet — the package" : s.title)}</span>
@@ -1904,6 +1907,8 @@ async function chipPage(slug) {
     ${(c.notes || []).length ? `<h2>From the drawing's own notes</h2>
     <p class="sub">Verbatim, as the sheets print them.</p>
     ${c.notes.map((n) => `<div class="panel drawnote"><pre>${sig(n.text)}</pre></div>`).join("")}` : ""}`;
+  const kvopen = document.getElementById("kvopen");
+  if (kvopen) kvopen.onclick = () => openViewer(viewed);
 }
 
 /* ---------- board: schematic + BOM ---------- */

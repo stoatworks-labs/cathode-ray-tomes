@@ -21,9 +21,11 @@ in a part value, a layout label or the layout's legend.
 
   python3 tools/build_assets.py --chips-only     # web/data/customchip{s.json,/}
 """
-import glob, json, os, re, shutil
+import glob, json, os, re, shutil, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+from publish_board import kicanvas_sources  # noqa: E402
 OUT = os.path.join(ROOT, "web", "data")
 
 
@@ -124,6 +126,11 @@ def publish(out=OUT):
             continue
         rec = json.load(open(rp))
         on_boards, on_layouts, machines = where_used(entry, boards, layouts, names)
+        # The in-page viewer reads the copied sheets from GitHub, like a board's
+        # (publish_board.kicanvas_sources): nothing more ships with the deploy.
+        folder = f"kicad/chips/{slug}"
+        pro = [f for f in os.listdir(os.path.join(ROOT, folder)) if f.endswith(".kicad_pro")]
+        rec["kicanvas"] = kicanvas_sources(slug, pro[0][:-len(".kicad_pro")] + ".kicad_sch", folder)
         full = {"slug": slug, "name": entry["name"], "maker": entry["maker"],
                 "markings": entry["markings"], "summary": entry.get("summary", ""),
                 "conflicts": entry.get("conflicts", []), **{k: v for k, v in rec.items() if k != "slug"},

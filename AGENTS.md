@@ -930,7 +930,10 @@ Same rules as the jtcores boards: the sheets are copied byte for byte (`--verify
 with jtcores' LICENSE and a NOTICE.md; authors are the commit history, aliases folded; one PDF
 per chip, not an SVG a sheet -- 27 files under `web/` for all thirteen, a PDF and a record each
 and the index. Everything under `kicad/chips/`, `data/customchips/`, `web/chips/` and
-`web/data/customchip/` is GPL-3.0, and the page says so above everything else.
+`web/data/customchip/` is GPL-3.0, and the page says so above everything else. The page
+also opens the sheets in the board pages' KiCanvas viewer, read from `kicad/chips/<slug>/`
+on GitHub at `main` (`custom_chips.py` writes `kicanvas` with `publish_board.kicanvas_sources`),
+so the viewer section below applies: it shows nothing until the chip is pushed.
 
 **Which boards carry a chip is worked out at publish time, not import time**, because it
 changes whenever a board is published. A chip is found by its markings as a whole word

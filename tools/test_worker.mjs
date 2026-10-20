@@ -271,8 +271,10 @@ CONTENT.push([
     && /^[0-9a-f]{40}$/.test(body.origin?.commit) && !!body.origin?.source
     && body.pins.length === body.package.pins
     && body.inside.sheets.length > 1 && body.inside.sheets.every((s) => s.page > 0)
-    && body.boards.some((b) => b.slug === "twin-16-gx687" && b.refs.some((r) => r.ref === "B_C11")),
-  "a chip carries its licence, credits, pinout, sheets and the boards it is on",
+    && body.boards.some((b) => b.slug === "twin-16-gx687" && b.refs.some((r) => r.ref === "B_C11"))
+    && body.kicanvas?.files?.[0] === "007781.kicad_sch"
+    && body.kicanvas.base.endsWith("/main/kicad/chips/007781/"),
+  "a chip carries its licence, credits, pinout, sheets, viewer sources and boards",
 ]);
 // No board here carries the Capcom customs, so the only way to Pang and Last
 // Duel is through the sketches of their boards in MAME's notes.
