@@ -19,6 +19,8 @@ versioned and published together.
   web/data/wiring.json          cabinet connector standards (data/wiring/library.json)
   web/data/layouts.json         index of the PCB layouts read from MAME's driver notes
   web/data/layout/<dir>.json    those layouts, one file per MAME source directory
+  web/data/customchips.json     index of the custom chips drawn from the inside (jtcores)
+  web/data/customchip/<slug>.json  one chip: pinout, sheets, notes, and what carries it
 """
 import json, os, shutil, glob, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +28,7 @@ from build_drawings import apply_flags  # noqa: E402
 from page_tables import apply_tables, load as load_tables  # noqa: E402
 import mame_data  # noqa: E402
 import wiring_data  # noqa: E402
+import custom_chips  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "web", "data")
@@ -120,6 +123,10 @@ def publish_boards_only():
     # own signal lookup, and the board page searches it beside the chips.
     for p in glob.glob(os.path.join(ROOT, "data", "signals", "*.json")):
         copy(p, os.path.join(OUT, "signals", os.path.basename(p))); n += 1
+    # Which boards carry each custom chip is read off the chip lookups just
+    # copied, so a board published without this would be missing from its
+    # chips' pages until someone remembered --chips-only.
+    files, _ = custom_chips.publish(); n += files
     print(f"{n} board asset(s) refreshed in web/data/ — the corpus index was "
           f"left untouched")
 
@@ -272,7 +279,17 @@ def publish_layouts_only():
           f"the corpus index was left untouched")
 
 
+def publish_chips_only():
+    """Publish just the custom chips (tools/custom_chips.py). Same reasoning
+    as the other targeted publishers."""
+    files, total = custom_chips.publish()
+    print(f"{files} custom chip file(s), {total / 1e3:.0f} KB, refreshed in web/data/ -- "
+          f"the corpus index was left untouched")
+
+
 def main():
+    if "--chips-only" in sys.argv:
+        return publish_chips_only()
     if "--boards-only" in sys.argv:
         return publish_boards_only()
     if "--mame-only" in sys.argv:
@@ -380,6 +397,10 @@ def main():
         total += copy(p, os.path.join(OUT, "rommap", os.path.basename(p))); files += 1
 
     n, size = publish_layouts()
+    files += n; total += size
+    # After the boards and layouts: which of them carry each chip is decided
+    # from what was just written.
+    n, size = custom_chips.publish()
     files += n; total += size
     # Wiring pages are found in the rendered documents, so they can only be
     # linked from the machine pages once those are written -- the last step.

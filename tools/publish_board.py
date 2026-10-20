@@ -25,18 +25,12 @@ def compose_status(spec):
     return " ".join(x for x in (spec.get("revision"), spec.get("coverage")) if x)
 
 
-def publish_imported(slug, spec, web):
-    """Export an imported schematic -- one this repository did not draw.
+def export_sheets(sch, pdf):
+    """Plot a schematic's whole hierarchy into one PDF; returns its sheets.
 
-    A jtcores board runs to a dozen sheets or more and there are forty of them,
-    so the page gets one PDF and a list of its sheets, each linked to its page,
-    rather than an SVG a sheet: the deploy is within a few thousand files of the
-    Workers Assets cap. The sheet on each page is read back off the PDF's own
+    Each sheet comes with the page it opens at, read back off the PDF's own
     title block, so the list cannot drift from the order KiCad plots in.
     """
-    sch = os.path.join(ROOT, "kicad", slug, spec["kicadRoot"])
-    pdf = os.path.join(web, "schematic.pdf")
-    shutil.rmtree(os.path.join(web, "schematic"), ignore_errors=True)
     subprocess.run([KICAD_CLI, "sch", "export", "pdf", "-o", pdf, sch], check=True, capture_output=True)
     text = subprocess.run(["pdftotext", "-layout", pdf, "-"], check=True, capture_output=True,
                           text=True).stdout
@@ -48,6 +42,20 @@ def publish_imported(slug, spec, web):
         path = m.group(1) if m else ""
         title = " / ".join(x for x in path.strip("/").split("/") if x) or "Top sheet"
         sheets.append({"title": title, "page": i})
+    return sheets
+
+
+def publish_imported(slug, spec, web):
+    """Export an imported schematic -- one this repository did not draw.
+
+    A jtcores board runs to a dozen sheets or more and there are forty of them,
+    so the page gets one PDF and a list of its sheets, each linked to its page,
+    rather than an SVG a sheet: the deploy is within a few thousand files of the
+    Workers Assets cap.
+    """
+    sch = os.path.join(ROOT, "kicad", slug, spec["kicadRoot"])
+    shutil.rmtree(os.path.join(web, "schematic"), ignore_errors=True)
+    sheets = export_sheets(sch, os.path.join(web, "schematic.pdf"))
     return {"pdf": f"/boards/{slug}/schematic.pdf", "sheets": sheets,
             "project": spec["origin"]["source"],
             "netlist": f"{REPO}/blob/main/boards/{slug}.netlist.json"}

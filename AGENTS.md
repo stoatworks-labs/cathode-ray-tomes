@@ -905,8 +905,82 @@ Traps, all hit once:
   board publishes one PDF with its sheet list (each linked to its page, read back off the
   PDF's own title block) rather than an SVG a sheet: three files a board.
 - **Custom chips are not boards.** jtcores also redraws the insides of Konami's gate
-  arrays (Twin 16's 007779-007787), Capcom's DL-series and Konami's 052535. They are
-  listed under `skipped` in the manifest: valuable for a dead custom, but a different asset.
+  arrays (Twin 16's 007779-007787), Capcom's DL-series and Konami's 052535. They are a
+  different asset with their own importer and pages -- see the next section -- and must
+  never be imported as a board.
+
+## Custom chips from jtcores: the inside of a part
+
+A dead custom is one of the commonest faults on a late-1980s board and the part cannot be
+bought. jtcores redraws thirteen of them from the inside, and each gets a page at
+`/chip/<slug>` (list at `/chips`): what it does, its pinout with directions, every board and
+machine here that carries it, and the drawing as one PDF with a sheet list.
+
+    data/jtcores.json  `chips`      the manifest: slug, jtcores dir, name, maker, markings,
+                                    summary (what it does, read off the sheet's notes and
+                                    sheet names), conflicts (where the drawing disagrees
+                                    with itself)
+    tools/import_custom_chips.py    --jt <checkout>: copy, verify, PDF, pinout, cross-checks
+                                    -> kicad/chips/<slug>/, data/customchips/<slug>.json,
+                                       web/chips/<slug>.pdf
+    tools/custom_chips.py           where each is used -> web/data/customchip{s.json,/}
+    python3 tools/build_assets.py --chips-only     (--boards-only and a full build run it too)
+
+Same rules as the jtcores boards: the sheets are copied byte for byte (`--verify` checks),
+with jtcores' LICENSE and a NOTICE.md; authors are the commit history, aliases folded; one PDF
+per chip, not an SVG a sheet -- 27 files under `web/` for all thirteen, a PDF and a record each
+and the index. Everything under `kicad/chips/`, `data/customchips/`, `web/chips/` and
+`web/data/customchip/` is GPL-3.0, and the page says so above everything else.
+
+**Which boards carry a chip is worked out at publish time, not import time**, because it
+changes whenever a board is published. A chip is found by its markings as a whole word
+(hyphens optional) in a board's chip lookup, and in the labels and legends of the PCB
+layouts read from MAME's notes. That second route is the only way the Capcom chips reach a
+machine -- no board here carries them, but the Guru's sketches of Pang (`mitchell.cpp`) and
+Last Duel (`lastduel.cpp`) name them. A layout tied to no set (`driver`/`file` scope, like
+`tmnt.cpp`'s) is listed on the chip page and names no machine, the rule the layout pages use.
+
+**The chip symbol in these projects is drawn from inside the die.** Its pin types say which
+way a signal crosses the pad into the core, so a pin the chip drives is an `input` on it. Read
+straight, every pinout would be backwards. The page takes directions from the board drawings
+where a board here carries the part (they draw it from outside), and turns the inside symbol
+round where none does. Both are checked against the circuit itself -- a pad whose net some
+cell drives is an output, one that only feeds cell inputs is an input -- which depends on
+neither symbol. At e7b11263 the three agree on every pin where all say input or output: 681
+for the turned-round symbols, including all 170 of the Capcom chips' (drawn later and in a
+different symbol library, so the convention could not be assumed), and 501 for the board
+drawings. The importer prints the count; a page marks any pin where they part.
+
+**Each board drawing's symbol is compared with the chip's own, pin by pin.** Names agree
+almost everywhere; what differs is mostly the active-low bar. Those are worth having on the
+page rather than smoothing over, because they are disputes about polarity: the chip drawing
+of the 007782 has `SYLD` at pin 25, both Twin 16 boards `~SYLD`; Final Round's drawing writes
+the 007779's `~SYLD` and the 007782's `~ORAD` without bars. The 052535 is named differently
+on seven of the ten boards (`BK`, `AO`, `VSS` for `~BLANK`, `OUT`, `GND`) and pins 2-7 are
+left unnamed on Final Round's -- the same pins, not a conflict.
+
+**The sheets' notes are carried verbatim, and two of them name the wrong chip.** The notes
+about the silicon (whose die photo, which gate-array family, how many cells) and the
+drawing's own account of what the chip does are copied to the page as written. The 007785's
+call it "the 007786" twice, and the 007787's gate-array note does the same; the reasons each
+is taken to describe its own chip (title block, symbol, cell library, and the 007786's own
+note giving it a different array) are logged as conflicts in the manifest and shown on the
+page, not corrected in the text.
+
+Traps:
+
+- **`/api/chip/<x>` is taken** -- it is the MAME device index (`chips.json`) and answers 200
+  for any name. The custom chips are `/api/customchips` and `/api/customchip/<slug>`, and
+  `web/data/chips/` is the per-board chip lookup. Three things called "chips"; read the path.
+- **Exporting opens the project, and kicad-cli writes a `.kicad_prl` into it.** The importer
+  exports the netlist and PDF from a scratch copy, so the copy under `kicad/chips/` is never
+  touched; `--verify` proves it.
+- **jtcores' `sym-lib-table` is a symlink into its `modules/`**, dangling in a sparse checkout.
+  It is skipped, as the board import skips it; the symbols are embedded in every sheet.
+- **A sparse, blobless clone is enough** and is a few MB: `git clone --filter=blob:none
+  --no-checkout --sparse https://github.com/jotego/jtcores.git`, `sparse-checkout set
+  cores/twin16/sch cores/pang/sch cores/grad3/sch`, check out the pinned commit. `git log`
+  for the authors works on it.
 
 ## Boards from DICE: an emulator's netlist, read as one
 
@@ -1174,6 +1248,15 @@ convention and legitimately uses G.
   those copies. Not checked: anything in them against a manual or a board -- they are
   jtcores' readings, published as such -- or how complete each is beyond what its sheet
   names say (five are flagged partial).
+- Custom chips: every copied sheet under `kicad/chips/` matches upstream at the pinned commit
+  (`import_custom_chips.py --verify`); every pin direction on the thirteen pages agrees with
+  the circuit behind its pad wherever both say input or output (681 pins), as do the board
+  drawings' (501); the pinouts were compared name by name with every board drawing here that
+  carries the part. The pages were looked at in a browser at desktop width in both themes and
+  at phone width (no sideways scroll), with the links from the Twin 16 board, Pang's machine
+  page and its MAME layout. Not checked: anything in a chip drawing against a real chip, a
+  datasheet or a decap of our own -- they are jtcores' readings of someone's die photo, and
+  the summaries on the pages say only what the drawings' notes and sheet names say.
 - DICE boards: every CONNECTION in the 16 games is read, every wired pin of a part KiCad has
   a symbol for exists on it, Crash 'n Score agrees with its hand-read map at 36 of 38
   positions, and Pong at 65 of 66 and on all three hand-traced nets that join pins. Not checked: that DICE's circuit is the board's -- it is an emulator's, and its

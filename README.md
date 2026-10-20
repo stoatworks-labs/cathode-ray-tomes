@@ -60,7 +60,8 @@ drives the whole design: text has to be recovered by OCR, and diagrams have to b
 src/            Cloudflare Worker (API + asset serving)
 web/            Static front-end: browse, reader, schematic + BOM viewers
 tools/          Ingestion, indexing, search and vectorisation pipeline
-kicad/          KiCad conversions, one directory per board (jtcores' are GPL-3.0)
+kicad/          KiCad conversions, one directory per board (jtcores' are GPL-3.0);
+                kicad/chips/ holds jtcores' custom-chip redraws, also GPL-3.0
 data/           Generated indexes (machines, docs, chips, postings)
 cache/          Local ingest cache: PDFs, page images, OCR text (gitignored)
 ```
@@ -266,6 +267,13 @@ drawings are theirs and GPL-3.0. `kicad/<slug>/` holds each one unchanged, with 
 and a notice saying who drew it and what was added here, and everything made from it — the
 board view, the netlist, the chip lookup and the bill of materials — is under the same
 licence. The board page says whose drawing it is.
+
+jtcores also redraws thirteen custom chips from the inside: nine Konami gate arrays from the
+Twin 16 boards, three Capcom DL-series chips from Pang, and Konami's 052535 video DAC, most of
+them cell by cell off a photograph of the die. A dead custom is a common fault and the part
+cannot be bought, so each has a page of its own (`/chip/<part>`): what it does, every pin and
+which way it points, the boards and machines here that carry it, and the drawing itself. They
+are in `kicad/chips/<slug>/`, unchanged and GPL-3.0 like the boards.
 
 Sixteen of the CPU-less games of the Pong era — Pong itself, Breakout, Space Race, Stunt Cycle,
 Jet Fighter, Rebound and the rest — get their connectivity from [DICE](https://github.com/mittonk/dice-libretro),

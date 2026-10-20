@@ -378,6 +378,19 @@ async function handleApi(url, env, request) {
     return json((await index(env, request, "boards")) || []);
   }
 
+  // /api/customchips and /api/customchip/<slug> -- custom chips redrawn from
+  // the inside (jtcores, GPL-3.0): pinout, sheets, and the boards, machines and
+  // MAME layouts that carry each. Not /api/chip/, which is the MAME device
+  // index and answers for any name at all.
+  if (p === "customchips") {
+    return json((await index(env, request, "customchips")) || []);
+  }
+  const cc = p.match(/^customchip\/([a-z0-9-]{1,40})$/);
+  if (cc) {
+    const rec = await asset(env, request, `/data/customchip/${cc[1]}.json`);
+    return rec ? json(rec) : notFound("no such custom chip");
+  }
+
   // /api/wiring — the cabinet connector standards a machine page's generated
   // wiring view is drawn from. The per-game part rides on /api/machine/<slug>.
   if (p === "wiring") {
@@ -413,6 +426,8 @@ const PAGE_ROUTES = [
     idx.some((r) => r.machine === decodeURIComponent(id))],
   [/^\/layout\/(.+)$/, "layouts", (idx, id) =>
     idx.some((l) => l.id === decodeURIComponent(id))],
+  [/^\/chip\/(.+)$/, "customchips", (idx, id) =>
+    idx.some((c) => c.slug === decodeURIComponent(id))],
 ];
 
 async function servePage(url, env, request) {

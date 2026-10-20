@@ -77,6 +77,12 @@ const CASES = [
   ["/api/layout/capcom/1942/1",       200, "one PCB layout"],
   ["/api/layout/capcom/1942/99",      404, "unknown PCB layout"],
   ["/api/layout/capcom/1942",         404, "a layout needs its number"],
+  ["/api/customchips",                200, "custom chip index"],
+  ["/api/customchip/007781",          200, "one custom chip"],
+  ["/api/customchip/dl-050-115v",     200, "a custom chip no board here carries"],
+  ["/api/customchip/nosuchchip",      404, "unknown custom chip"],
+  ["/api/customchip/x%2F..%2Fboards", 404, "a chip slug cannot climb out"],
+  ["/api/chip/zilog z80",             200, "the MAME device index is still there"],
   ["/api/stats",                      200, "stats"],
   ["/api/machines?kind=console",      200, "console filter"],
   ["/pdf/d282ad622596",               302, "healthy document redirects upstream"],
@@ -100,6 +106,10 @@ const CASES = [
   ["/layouts",                        200, "a route that names nothing"],
   ["/layout/capcom/1942/1",           200, "known PCB layout page"],
   ["/layout/capcom/1942/99",          404, "unknown PCB layout page"],
+  ["/chip/007781",                    200, "known custom chip page"],
+  ["/chip/dl-020f-108u",              200, "known custom chip page"],
+  ["/chip/007790",                    404, "unknown custom chip page"],
+  ["/chips",                          200, "a route that names nothing"],
   ["/search",                         200, "a route that names nothing"],
   ["/boards",                         200, "a route that names nothing"],
   ["/about",                          200, "a route that names nothing"],
@@ -233,6 +243,53 @@ CONTENT.push([
   "a driver's list is a summary, without the art",
 ]);
 
+// A custom chip is someone else's drawing too, published under the GPL, and
+// its page has to say whose and on what terms. Every chip the manifest lists
+// must be published -- a chip that failed to import is otherwise just absent.
+const manifest = JSON.parse(readFileSync(join(ROOT, "data", "jtcores.json"), "utf8"));
+const chipSlugs = (manifest.chips || []).map((c) => c.slug);
+CONTENT.push([
+  "/api/customchips",
+  (body) => chipSlugs.length > 0 && chipSlugs.every((s) => body.some((c) => c.slug === s))
+    && body.every((c) => c.license === "GPL-3.0" && c.authors.length > 0 && c.pins > 0),
+  `all ${chipSlugs.length} chips in data/jtcores.json, each with licence and authors`,
+]);
+CONTENT.push([
+  "/api/customchip/007781",
+  (body) => body.license === "GPL-3.0" && body.origin?.authors?.length > 0
+    && /^[0-9a-f]{40}$/.test(body.origin?.commit) && !!body.origin?.source
+    && body.pins.length === body.package.pins
+    && body.inside.sheets.length > 1 && body.inside.sheets.every((s) => s.page > 0)
+    && body.boards.some((b) => b.slug === "twin-16-gx687" && b.refs.some((r) => r.ref === "B_C11")),
+  "a chip carries its licence, credits, pinout, sheets and the boards it is on",
+]);
+// No board here carries the Capcom customs, so the only way to Pang and Last
+// Duel is through the sketches of their boards in MAME's notes.
+CONTENT.push([
+  "/api/customchip/dl-010d-103",
+  (body) => body.boards.length === 0 && body.layouts.length > 0
+    && ["pang", "lastduel"].every((m) => body.machines.some(([s]) => s === m)),
+  "a chip on no board here reaches its machines through MAME's layouts",
+]);
+// A sketch tied to no set describes a driver's hardware, not a machine's.
+CONTENT.push([
+  "/api/customchip/052535",
+  (body) => body.layouts.some((l) => l.scope === "driver")
+    && body.machines.every(([s]) => body.boards.some((b) => b.machines.includes(s))
+      || body.layouts.some((l) => ["set", "title"].includes(l.scope) && l.slugs.includes(s))),
+  "a driver-wide sketch is listed but names no machine",
+]);
+// The board page links a designator to a chip from the index; the index and
+// the board's own chip lookup have to agree about what is at it.
+const chipIndex = JSON.parse(readFileSync(join(WEB, "data", "customchips.json"), "utf8"));
+const onTwin16 = chipIndex.filter((c) => c.boards.some((b) => b.slug === "twin-16-gx687"));
+CONTENT.push([
+  "/api/chips/twin-16-gx687",
+  (body) => onTwin16.length >= 9 && onTwin16.every((c) =>
+    c.boards.find((b) => b.slug === "twin-16-gx687").refs.every((r) => body[r]?.part === c.markings[0])),
+  `the index's ${onTwin16.length} chips on Twin 16 sit where its chip lookup says`,
+]);
+
 for (const [path, ok, why] of CONTENT) {
   let pass = false, note = "";
   try {
@@ -259,7 +316,11 @@ for (const [path, ok, why] of CONTENT) {
 // whether they render well.
 // The wiring view's warning and its not-placed list are what stop a generated
 // diagram being taken for a traced one; they get the same guard.
-const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines", "l.licence", "l.copyright", "PARTIAL_NOTE", "w.miss", "Generated, not read."];
+const APP_READS = ["b.conflicts", "b.notes", "v.note", "b.origin.authors", "b.license", "b.machines", "l.licence", "l.copyright", "PARTIAL_NOTE", "w.miss", "Generated, not read.",
+  // A chip page's credit and licence, its logged conflicts, and the links that
+  // bring a reader to it from a board, a machine and a layout.
+  "listOf(o.authors)", "c.license", "c.conflicts", "customsOn(list, slug)",
+  "(c.machines || []).includes(slug)", "customs.has(d.label)"];
 const appJs = await (await worker.fetch(
   new Request("https://cathode-ray-tomes.com/js/app.js"), env, {})).text();
 for (const field of APP_READS) {
@@ -269,6 +330,17 @@ for (const field of APP_READS) {
     + `${"/js/app.js".padEnd(34)} reads ${field}`);
 }
 
-const total = CASES.length + CONTENT.length + APP_READS.length;
+// The stub, like Cloudflare, answers a missing file with index.html and a 200,
+// so a missing PDF passes a status check. Read the bytes.
+const PDFS = chipIndex.map((c) => `/chips/${c.slug}.pdf`);
+for (const path of PDFS) {
+  const res = await worker.fetch(new Request(`https://cathode-ray-tomes.com${path}`), env, {});
+  const head = Buffer.from(await res.arrayBuffer()).subarray(0, 5).toString("latin1");
+  const pass = res.status === 200 && head === "%PDF-";
+  if (!pass) failures++;
+  console.log(`${pass ? "ok  " : "FAIL"} ${"".padEnd(14)} pdf      ${path.padEnd(34)} is a PDF`);
+}
+
+const total = CASES.length + CONTENT.length + APP_READS.length + PDFS.length;
 console.log(failures ? `\n${failures} failing` : `\nall ${total} pass`);
 process.exit(failures ? 1 : 0);
