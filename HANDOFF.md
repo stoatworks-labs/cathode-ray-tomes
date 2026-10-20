@@ -201,9 +201,12 @@ never be interleaved by it, but the next person to run `--all` should read the d
 rather than trust that. The same is true of `_tidy_row` in `ocrlib.py`: it changes what
 a `tr` block looks like for every future ingest, raster path included.
 
-**`tools/check_pages.py` is the control that was missing.** It currently reports two
-one-cell table rows (the PS3 BD-drive and PSP-2000 unit legends), which clear when those
-two documents are next ingested. Everything else it looks for is clean.
+**`tools/check_pages.py` is the control that was missing.** It reported two one-cell
+table rows (the PS3 BD-drive and PSP-2000 unit legends) until 2026-10-20, when those two
+pages were re-extracted and republished (`tools/republish_pages.py`); both now draw as a
+real three-cell row and the check exits 0. Still open from the same work: PS3 BD-drive
+page 29 would band into a 62-row table on a re-ingest and has not been published, and
+`band_rows` has not been run over the other 21 vector manuals.
 
 **The shared checkout's cache is not the published corpus.** `cache/text/` in
 `~/Projects/publishing/cathode-ray-tomes` holds 4,119 documents, of which 1,684 are an

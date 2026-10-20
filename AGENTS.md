@@ -1415,6 +1415,20 @@ convention and legitimately uses G.
   and printed `⚠ text does not decode`, and the document shipped anyway and stayed
   shipped. `tools/check_pages.py` reads what is actually in `web/data/` and exits
   non-zero; run it before a deploy.
+- **Fixing an extraction rule does not fix a published document.** `check_pages.py` failed
+  on `one-cell-row` for six weeks over two PlayStation parts-list legends, and the commit
+  that looked guilty (f5ea0ec8) was not: those two documents carried the same block before
+  and after it. The cause was `build_blocks` collapsing a `tr`'s column gaps, fixed in
+  8521ba88 two days later, in an ingest nobody re-ran on those two. Look at the date a
+  document was *built* against the date the rule changed before reading the rule. The
+  vector PDFs are not kept (`cache/gamingdoc/`, 11 MB for these two, is gitignored and
+  re-fetched with a plain GET of the survey URL and `survey_gamingdoc.py`'s User-Agent), and `tools/republish_pages.py <id> <pages>`
+  merges just those pages of a fresh `ingest_vector.py --doc <id> --no-svg --no-images`
+  into the published document. Prefer it to a full re-ingest when a rule added since has
+  also changed other pages: PS3 BD-drive page 29 now bands into a 62-row table from the
+  same `band_rows` that a re-ingest would apply, and wants its scan published with it.
+  The tool refuses a page whose word count changed, because the postings were built from
+  the old text.
 - **Reference-designator collisions.** Atari labels ICs by board grid position (`A2`, `C1`,
   `H7`). Used directly as KiCad refdes, `C1`–`C9` and `D1`–`D9` collide with capacitors and
   diodes, and `batch_delete_schematic_components` then deletes *both*. ICs are therefore
