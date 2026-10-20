@@ -31,7 +31,7 @@ sys.path.insert(0, os.path.join(ROOT, "tools"))
 import build_board_nets as checker                     # noqa: E402
 import mame_netlist as M                               # noqa: E402
 from import_jtcores import footprint_for, layout       # noqa: E402
-from mame_targets import TARGETS                       # noqa: E402
+from mame_targets import TARGETS, UNCHECKED            # noqa: E402
 
 REPO = "https://github.com/stoatworks-labs/cathode-ray-tomes"
 MAME = "https://github.com/mamedev/mame"
@@ -70,14 +70,14 @@ def flat(text):
 
 
 def read_notes(notes):
-    """(notes, conflicts) from a target's notes. An "Open question(s) ...:"
-    paragraph is the questions -- its bullets, or what follows the colon --
-    and a bullet that starts "Open question." is one; the rest are notes."""
+    """(notes, conflicts) from a target's notes. An "Open question(s) ...:" or
+    "Open, ...:" paragraph is the questions -- its bullets, or what follows the
+    colon -- and a bullet that starts "Open question." is one; the rest are notes."""
     out, questions = [], []
     for note in notes:
         for para in paragraphs(note):
             head = para.split("\n", 1)[0]
-            if re.match(r"open questions?\b", head, re.I):
+            if re.match(r"open(?: questions?\b|,)", head, re.I) and ":" in para:
                 bullets = re.split(r"\n\s*\*\s+", "\n" + para.split(":", 1)[1])
                 inline = bullets[0].strip()
                 if inline:
@@ -163,6 +163,10 @@ def prepare(slug, target, results):
             parts[ref] = label
     spec["parts"] = dict(sorted(parts.items(), key=lambda kv: M.nat(kv[0])))
 
+    # A target says it was not compared by carrying the UNCHECKED note. Not a
+    # search for "compared with": "Not compared with the sheet" matches that too.
+    checked = UNCHECKED not in sub_cfg.get("notes", [])
+
     # Status: counts, then what the target says, then what the view is.
     n_pins = sum(len(n["pins"]) for n in netlist["nets"].values())
     n_ic = len(spec["ics"])
@@ -170,6 +174,9 @@ def prepare(slug, target, results):
              f"over {n_pins} pins. ")
     cover += sub_cfg["board"].get("coverage", "").replace(
         " See the .nets file for what was undone and what MAME leaves out.", "")
+    if not checked:
+        cover += (" Not compared with a sheet: it is MAME's reading as MAME has it, and the "
+                  "notes say why.")
     if not n_ic:
         cover += (" It has no ICs, so there is no board view: the netlist and the bill of "
                   "materials carry it.")
@@ -201,7 +208,6 @@ def prepare(slug, target, results):
     # nothing about where it belongs.
     section = {d: v.most_common(1)[0][0] for d, v in res["mentions"].items() if v}
     fixed = {f[1][0]: f[0].split(" -- ", 1)[-1] for f in res.get("fixes", [])}
-    checked = any("ompared with" in n for n in sub_cfg.get("notes", []))
     chips, key_of = {}, {}
     for name, d in sorted(res["devices"].items(), key=lambda kv: M.nat(des.get(kv[0], ""))):
         if name not in des:

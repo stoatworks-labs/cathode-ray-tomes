@@ -5,9 +5,9 @@
  "machine": "cocoloco",
  "drawing": "Coco Loco schematic, which this site does not hold -- via MAME's netlist",
  "revision": "Coco Loco, sound: the AY-3-8910's three channels through 4.7K resistors into a 5K volume pot, and through 10uF to the LM383 amplifier.",
- "coverage": "Converted from MAME's netlist, up to the LM383 power amplifier's input; the amplifier is not in MAME.",
- "singleSource": true,
- "netsTraced": false,
+ "coverage": "0 ICs, 4 other parts and 7 nets over 11 pins. Converted from MAME's netlist, up to the LM383 power amplifier's input; the amplifier is not in MAME. Not compared with a sheet: it is MAME's reading as MAME has it, and the notes say why. It has no ICs, so there is no board view: the netlist and the bill of materials carry it.",
+ "singleSource": false,
+ "netsTraced": true,
  "netsConverted": "mame",
  "slug": "cocoloco-sound",
  "ics": {},
@@ -18,5 +18,39 @@
   "netlist": "cocoloco",
   "licence": "CC0-1.0",
   "copyright": "Couriersud"
+ },
+ "footprints": {},
+ "place": {},
+ "size": {
+  "w": 128.0,
+  "h": 19.0
+ },
+ "refPrefix": "U",
+ "license": "CC0-1.0",
+ "origin": {
+  "project": "MAME",
+  "url": "https://github.com/mamedev/mame/blob/f34f02505e32c1993c6a782b6814232cbfc74e36/src/mame/misc/nl_cocoloco.cpp",
+  "commit": "f34f02505e32c1993c6a782b6814232cbfc74e36",
+  "tag": "mame0289",
+  "path": "src/mame/misc/nl_cocoloco.cpp",
+  "netlist": "cocoloco",
+  "authors": [
+   "Couriersud"
+  ],
+  "license": "CC0-1.0",
+  "copyright": "Couriersud",
+  "licenseUrl": "/licenses/CC0-1.0.txt",
+  "credit": "netlist written by",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/boards/cocoloco-sound.nets",
+  "sourceLabel": "The conversion, every change from MAME's file logged",
+  "what": "The netlist is MAME's -- written to simulate this board, from its schematics -- converted here into the board's own nets, with MAME's simulation stand-ins undone and, where this site holds the schematic, checked and corrected against it. The board view, chip lookup and bill of materials are made from it.",
+  "imported": "2026-10-20"
+ },
+ "partial": true,
+ "parts": {
+  "C1": "10e-6",
+  "R1": "4700",
+  "R2": "4700",
+  "R3": "4700"
  }
 }

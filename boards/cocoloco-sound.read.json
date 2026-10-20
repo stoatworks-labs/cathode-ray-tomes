@@ -1,0 +1,9 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/misc/nl_cocoloco.cpp (NETLIST_START(cocoloco), CC0-1.0, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/cocoloco-sound.nets.",
+  "MAME's file also has a C2 (0.1uF from the amplifier's input to ground) inside '#if 0', so neither MAME nor this file has it; whether the board does is not on anything the site holds. P1 is set to half way in MAME (PARAM(P1.DIAL, 0.5)), which says nothing about the board.",
+  "Not compared with the sheet: the site holds no Coco Loco document at all (read 2026-10-20).",
+  "Not compared with the sheet. MAME's designators, values and pin numbers are taken as MAME has them; the checker shows the netlist is internally consistent (every pin exists, no two outputs fight, nothing floats), which is not the same as matching the board."
+ ],
+ "conflicts": []
+}

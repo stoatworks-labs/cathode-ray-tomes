@@ -544,8 +544,8 @@ async function machine(slug) {
       If you have a manual, a schematic or a wiring diagram for it, <a href="/submit">send it in</a>.</div>` : ""}
 
     ${kbs.length ? `<div class="note"><b>${kbs.length > 1 ? `${kbs.length} board maps` : "Board map"} available.</b>
-      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} a KiCad
-      project with a bill of materials and ${kbs.some((b) => b.redrawn || b.sheet)
+      ${kbs.length > 1 ? "This machine's boards have" : "This board has"} ${kbs.every((b) => b.devices)
+        ? "a KiCad project with a bill of materials" : "a bill of materials"} and ${kbs.some((b) => b.redrawn || b.sheet)
         ? "a schematic" : "its netlist"} —
       ${kbs.map((b) => `<a href="/board/${esc(b.slug)}">${esc(b.name)}</a>${b.origin
         ? ` (${esc(originCredit(b))}, ${esc(b.license || "")})` : ""}`).join(" · ")}.</div>` : ""}

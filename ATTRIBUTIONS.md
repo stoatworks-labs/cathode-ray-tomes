@@ -20,7 +20,7 @@ The corpus: arcade service manuals, schematics and drawing packages, every one a
 
 <https://www.mamedev.org/>
 
-Machine hardware metadata (CPUs, displays, inputs, DIP switches) derives from MAME, by way of ArcadeRTFM's machines.json. The 1,469 ROM maps in data/rommap/ are built from the board positions MAME records in its romset filenames, and the board maps are checked against MAME. 30 board pages -- Tank's two boards and 28 sound circuits, from Armor Attack and Star Castle to Popeye, Kid Niki and Sega System 16B -- take their connectivity from MAME's netlists, converted by tools/mame_netlist.py at mame0289: its simulation stand-ins undone, its hacks dropped and, where the site holds the schematic, checked and corrected against it, with every change logged in boards/<slug>.nets. Only netlists MAME licenses CC0-1.0 or BSD-3-Clause are taken. 24 are CC0-1.0, by Aaron Giles, Colin Douglas Howell, Couriersud, Ricardo Bittencourt, Ryan Holtz, Vas Crabb and beta-tester. 6 are BSD-3-Clause: Tank, Destroyer and Tank Battalion copyright Ryan Holtz, Popeye copyright Couriersud, and Kid Niki copyright Andrew Gardner and Couriersud. Each board page names the file, the commit, its copyright holders and its licence, and links the licence's text under web/licenses/; the board view, netlist, chip and signal lookups and bill of materials made from each carry the same terms.
+Machine hardware metadata (CPUs, displays, inputs, DIP switches) derives from MAME, by way of ArcadeRTFM's machines.json. The 1,469 ROM maps in data/rommap/ are built from the board positions MAME records in its romset filenames, and the board maps are checked against MAME. 33 board pages -- Tank's two boards and 31 sound circuits, from Armor Attack and Star Castle to Popeye, Kid Niki, Sega System 16B, 1942 and Dribbling -- take their connectivity from MAME's netlists, converted by tools/mame_netlist.py at mame0289: its simulation stand-ins undone, its hacks dropped and, where the site holds the schematic, checked and corrected against it, with every change logged in boards/<slug>.nets. Only netlists MAME licenses CC0-1.0 or BSD-3-Clause are taken. 26 are CC0-1.0, by Aaron Giles, Colin Douglas Howell, Couriersud, Enzo Lombardi, Ricardo Bittencourt, Ryan Holtz, Vas Crabb and beta-tester. 7 are BSD-3-Clause: Tank, Destroyer and Tank Battalion copyright Ryan Holtz, Popeye and 1942 copyright Couriersud, and Kid Niki copyright Andrew Gardner and Couriersud. Each board page names the file, the commit, its copyright holders and its licence, and links the licence's text under web/licenses/; the board view, netlist, chip and signal lookups and bill of materials made from each carry the same terms.
 
 ### GamingDoc
 
@@ -32,7 +32,7 @@ All 43 of its documents, 2,772 pages, are on the site: console and handheld serv
 
 <https://github.com/openscopeproject/InteractiveHtmlBom>
 
-The 137 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions and the jtcores, DICE and MAME imports, and each page carries its viewer code together with Split.js, lz-string and PEP.
+The 138 board viewers under web/boards/ (*-ibom.html) are its generated output from the KiCad conversions and the jtcores, DICE and MAME imports, and each page carries its viewer code together with Split.js, lz-string and PEP.
 
 ### jtcores — Jose Tejada (jotego) and contributors
 

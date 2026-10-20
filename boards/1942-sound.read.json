@@ -1,0 +1,8 @@
+{
+ "notes": [
+  "Converted from MAME's src/mame/capcom/nl_1942.cpp (NETLIST_START(1942), BSD-3-Clause, Couriersud) at mame0289 by tools/mame_netlist.py. Every change from MAME's file -- the simulation stand-ins undone, the hacks dropped, the corrections from the sheet -- is logged at the top of boards/1942-sound.nets.",
+  "Compared with the MAIN AMP. sheet, 84100-01A-2 4/8 (doc 27d4fd762a04, PDF p. 4; the scan is legible throughout), and sheet 3/8 for where the PSG lines come from, on 2026-10-20: every net and value in this file agrees. The channels are 2PSGC through R13, CC7 and R2; 2PSGB R15, CC8, R3; 2PSGA R11, CC9, R4; 1PSGC R12, CC10, R5; 1PSGB R14, CC11, R6; 1PSGA R16, CC12, R7 -- '10K x 6', '10uF/16V x 6', '220K x 6' -- into VR (2K, pin 1 the mix, 2 the wiper, 3 ground), CC6 10uF to A1 pin 1, R1 100K from there to pin 5, and CC3 220uF from pin 5 to ground. On sheet 3/8 the PSG lines leave the AY-3-8910s' analogue outputs (C on pin 38, B on 3, A on 4) with nothing between them and this sheet. On every electrolytic here the + end is MAME's pin 1 except CC6, whose + end faces the amplifier (pin 2).",
+  "On the sheet and not in MAME: the MB3731 at A1 -- CC5 10uF on pin 4, pins 3, 7 and the tab to ground, CC1 and CC2 (100uF) bootstrapping pins 12-10 and 9-8, the bridged outputs 10 and 8 to edge pins 6/F and 5/E with C1-C3 (0.15uF Mylar, '154 x 3') -- and its +12V on pin 11, with C4 0.1uF and CC4 470uF, from edge pins 3/C and 4/D."
+ ],
+ "conflicts": []
+}

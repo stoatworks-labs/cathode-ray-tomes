@@ -1058,21 +1058,24 @@ Traps:
   The site's Tank Battalion manual has no PCB schematic at all, and its only Cheeky Mouse
   sheet is the main board; both conversions are unchecked for that reason, and say so.
 
-**On the site (2026-10-20), all 30.** `tools/publish_mame.py` takes a converted board the rest
+**On the site (2026-10-20), all 33.** `tools/publish_mame.py` takes a converted board the rest
 of the way, and the usual three steps follow it:
 
     tools/publish_mame.py [slug ...]     footprints, layout, licence, origin, parts, the lookups
-    tools/build_board.py <slug>          KiCad's Python; skip the two with no ICs (Gun Fight, Popeye)
+    tools/build_board.py <slug>          KiCad's Python; skip the four with no ICs (Gun Fight,
+                                         Popeye, 1942, Coco Loco)
     tools/publish_board.py <slug>        then build_assets.py --boards-only once
 
 What it writes: a DIP sized from each part's pinout and a nominal layout (Tank's own grid; in
 designator order where a board numbers its ICs, which the status line says); `license` and
 `origin` from the `.nets` header -- the file at its commit, its copyright holders,
 `licenseUrl`; `parts` for the bill of materials; `boards/<slug>.read.json`, the target's notes
-with each "Open question(s) ...:" paragraph and "Open question." bullet as the page's
-conflicts; and the chip and signal lookups. Rerun it after `mame_netlist.py`: `write()`
-carries the published fields forward, but the coverage line, read file and lookups are this
-script's.
+with each "Open question(s) ...:" or "Open, ...:" paragraph and "Open question." bullet as
+the page's conflicts; and the chip and signal lookups. Rerun it after `mame_netlist.py`:
+`write()` carries the published fields forward, but the coverage line, read file and lookups
+are this script's. Republishing a board whose `.kicad_pcb` was not rebuilt still rewrites its
+iBOM: the only change is `metadata.date`, the file's mtime, so restore the page rather than
+commit it.
 
 - **The licence note follows `b.license`.** BSD-3-Clause prints `origin.copyright` and the
   condition that the notice travel with the work; CC0 says it is dedicated to the public
@@ -1082,6 +1085,11 @@ script's.
 - **`singleSource` is false on these.** The site's warning means a parts list OCR'd once; a
   conversion's notes say what it was compared with, and the chip lookup says "checked
   against the sheet" where it was.
+- **A board was compared unless its target carries the `UNCHECKED` note** (six do: Cheeky
+  Mouse, Coco Loco, Gun Fight, System 16B, Space Fury, Tank Battalion), and the status line
+  then says "Not compared with a sheet". Never test the notes for "compared with": "Not
+  compared with the sheet" contains it, and the first publish told four of those boards'
+  chip lookups they had been checked.
 - **A chip's section is the MAME section whose statements name it most often**, not the
   first net that touches it -- that is usually a shared clock or bus, and put Tank's K10
   under Horizontal Timing. Sheet corrections have no section of their own, so Tank's `add`
@@ -1579,7 +1587,9 @@ convention and legitimately uses G.
   five '4,2uF' capacitors, kick B's +12 (inferred from A's), which of the board's two +12V
   rails the kicks use, the A7/A8/B8 designators (the grid convention, not a reading), and
   anything beyond the sound section of the sheet. The reading was one pass by one reader.
-- None of the MAME conversions is redrawn in KiCad or published; they are netlists only.
+- None of the MAME conversions is redrawn in KiCad. All 33 are published as a netlist, a
+  bill of materials and, where a board has ICs, a board view whose spacing is nominal --
+  grid positions where the board names them, designator order where it numbers its ICs.
 - **The MAME PCB layouts are a parser's reading of hand-drawn ASCII.** About fifteen were
   read against their source by eye while the parser was built, and `check_pages.py` proves
   each label sits where the page says; neither proves a label is a part or that a kind is
