@@ -824,9 +824,41 @@ are worth keeping in mind for any further work on Tank:
 
 **Compared with the sheet beyond Tank:** Barrier (the whole board -- every net and value
 MAME has agrees, with one open question: the sheet draws U8's output onto the summing line,
-which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2).
-The other twelve sound boards are MAME's reading, internally consistent and unchecked, and
-their files say so.
+which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2);
+then, 2026-10-20, every other sound board whose manual is on the site -- all but Space Fury,
+which has none. Each target's notes say what was read, what agrees, and what was not
+compared. The finding: MAME's circuits agree with the sheets almost everywhere, part for
+part and value for value, and where a manual's sheet disagrees with MAME (Speed Freak's
+most of all) its own parts list, theory text and troubleshooting timings mostly side with
+MAME. What the comparison changed:
+
+- **The final-amplifier boundary, on nearly every board.** MAME stops at the summing node,
+  grounds the resistor that leads on into the amplifier it does not simulate, and ties that
+  amplifier's inputs off as unused. On the sheets the resistor goes to the op-amp's
+  inverting input and only the other input is grounded: Sundance R64/IC20, Tail Gunner
+  R70/IC19, Rip Off R45/IC14, Starhawk R22 to 4C, Frogs R90 (U13's feedback resistor), Astro
+  Blaster U7 (pins 12-14 the summing amplifier, 5-7 the mute comparator MAME models as a
+  function). Corrected the way Barrier's R19 was, with the amplifier's output as a port.
+- **Ideal clocks put back.** Eliminator's five and Astro Blaster's four slow clocks are
+  CD4069/CD4011 RC oscillators on the sheets, on exactly the gates MAME parks, and Boxing
+  Bugs' and Solar Quest's Y1 is a crystal; restored like Tank's oscillator, so those nets
+  are no longer ports.
+- **Wiring MAME leaves open or gets wrong:** Frogs' Q15 base on R47's wiper and its six
+  mixer pots wired as rheostats; Tail Gunner's and Speed Freak's start-lamp outputs; Boxing
+  Bugs' U25 pin 5 (an output MAME grounds, by a typo for U2.5), U58 pin 7, U2's spare inputs
+  and the shaft encoder's U20 pins; Eliminator's U5/U13 are NE555s and Solar Quest's U44/U46
+  CA3080As. Armor Attack and Rip Off needed nothing beyond the boundary.
+
+Open questions are logged and not settled -- the sharpest are Tail Gunner's IC1, which the
+sheet and MAME both wire as positive feedback (the manual's own gain figure and Sundance's
+identical circuit say the inputs are swapped), Starhawk's C21 (printed 22uF, 0.22uF in MAME
+and "PCB verified"), and which branch Speed Freak's R21/C20 filter sits on.
+
+Two mechanisms came out of this. A correction naming a lone pin (an `add` with one term and
+a `name`) makes it a port and takes it out of MAME's unused ties: the way to say a pin goes
+to circuitry MAME leaves out -- a lamp, the shaft encoder, the output stage -- instead of
+calling it unconnected. And `drop-line` undos are not logged in the .nets header, so a
+target that uses them says why in `undo_notes`.
 
 **What does not convert, and why** (survey in the shared notes, `mame-netlist-survey.md`):
 
@@ -1203,8 +1235,13 @@ convention and legitimately uses G.
 - **The MAME conversions are MAME's reading, not ours,** except where a sheet was read.
   Verified: all sixteen pass `build_board_nets.py` with no problems; Tank's four sheets were
   read in full and every disagreement found is corrected and logged; Barrier was compared
-  net for net and Star Castle's sheet 2 net for net. Not verified: the other twelve sound
-  boards against their sheets; Tank's cable contacts where the two boards' sheets disagree
+  net for net and Star Castle's sheet 2 net for net; and the other eleven sound boards with
+  a manual on the site were compared with their sheets (and parts lists, where the manual
+  has one) on 2026-10-20 -- one reader per board, every correction checked by eye against
+  the reader's crop before it was applied. Not verified: Space Fury, which has no manual on
+  the site; what each of those eleven boards' notes lists as not compared or open (Speed
+  Freak's sheet is unreliable enough that most of its differences are left to MAME); Tank's
+  cable contacts where the two boards' sheets disagree
   (VLD1 and /FIRE1); the MFC6040 pinout against a Motorola data sheet (it is read off four
   places on Tank's two boards, which agree); the 8277's pinout (MAME's, marked "FIXME" there);
   and whether Tank's two 25c/50c switches are one part. The sheet readings themselves were

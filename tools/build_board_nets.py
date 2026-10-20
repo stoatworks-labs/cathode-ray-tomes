@@ -68,6 +68,7 @@ KICAD = {
     "74S20": "74xx:74LS20", "74H08": "74xx:74LS08",
     "TL081": "Amplifier_Operational:TL081", "TL082": "Amplifier_Operational:TL082",
     "TL084": "Amplifier_Operational:TL084", "CA3080": "Amplifier_Operational:CA3080",
+    "CA3080A": "Amplifier_Operational:CA3080",
     "LM741": "Amplifier_Operational:LM741", "UA741": "Amplifier_Operational:LM741",
     "LM555": "Timer:NE555P", "NE555": "Timer:NE555P", "NE556": "Timer:NE556",
     "LM556": "Timer:NE556", "CD4011": "4xxx:4011", "CD4017": "4xxx:4017",

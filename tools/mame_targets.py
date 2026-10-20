@@ -484,6 +484,28 @@ TANK = dict(
     ],
 )
 
+# Eliminator's clocks, which MAME runs as ideal clocks with the oscillator's R and C parked:
+# (MAME's first line, its CLOCK, the CD4069, its pins (in, out, in, out), R, C, where the
+# clock goes, the sheet that draws it).
+ELIM_OSC = [
+    (864, "_200HZACLK", "U32", ("5", "6", "9", "8"), "R142", "C68", "R137.1", 8),
+    (872, "_200HZBCLK", "U32", ("13", "12", "11", "10"), "R139", "C65", "R138.1", 8),
+    (880, "_10HZCLK", "U32", ("1", "2", "3", "4"), "R143", "C69", "R144.2", 8),
+    (888, "_50HZCLK", "U31", ("1", "2", "3", "4"), "R141", "C67", "R134.1", 8),
+    (897, "_100HZCLK", "U31", ("5", "6", "9", "8"), "R140", "C66", "R135.1", 7),
+]
+
+
+def oscillator(u, pins, r, c, out, sht):
+    """A two-inverter RC oscillator as the sheet draws it: R from the first inverter's output
+    back to its input, C from that input to the second inverter's output, the clock."""
+    i1, o1, i2, o2 = pins
+    why = f"sheet {sht}: a CD4069 RC oscillator, which MAME replaces with an ideal clock"
+    return [sheet(why, f"{u}.{o1}", f"{u}.{i2}", f"{r}.1"),
+            sheet(why, f"{u}.{i1}", f"{r}.2", f"{c}.1"),
+            sheet(why, f"{u}.{o2}", f"{c}.2", out)]
+
+
 TARGETS = {
     "tank": TANK,
 
@@ -536,49 +558,257 @@ deliberate:
         "Cinematronics audio board for Armor Attack: tank treads (566 VCO), shells, explosions, "
         "a CA3080 mixer.",
         "src/mame/cinematronics/nl_armora.cpp", "armora", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
+        compared="compared with the sheets (72-11141-02 rev A, pp84-86)",
+        ports={"OUTPUT": "IC26's output, to J1-8 and the coin-door volume pot, whose wiper "
+                         "returns to the final amplifier IC24, which MAME does not simulate"},
         notes=["""\
 MAME's file says 'Entire schematic needs a verification pass'. With HLE_TANK_VCO off the
 tread VCO is MAME's own description of the board's circuit; it uses Q1, which MAME
 declares only in a comment ('not used' -- by the stand-in), so the declaration is
-restored.""", UNCHECKED]),
+restored.""", """\
+Compared with the audio board sheets 1-3, 72-11141-02 rev A (doc 94be099bc6ca pp84-86,
+native 300 dpi), the assembly drawing 72-11141-01 (p87) and the parts list 38-11141-01
+(pp57-59), 2026-10-20: the input buffers IC1 and IC27, the shift register IC2 and latch
+IC3 (OUT 0+ to OUT 7+ on J2-11 to J2-16, MAME's port names), the tank motor (IC6 with
+R2, R3, C11, C12; IC8 loaded from TS0+-TS3+; IC9, IC10, IC11; R6, R7, C13, C14), the tread
+squeak (IC13, the 7406 IC7, the low-leakage switches Q14-Q19 and R95-R109 on sheet 2,
+R14-R23, C18, C19) with the 566 VCO IC15 (R11, C15-C17) and the converter Q1, R4, R12, R13,
+D5, D8 exactly as MAME's HLE_TANK_VCO-off branch has them, the noise source (IC17, C20,
+C21, R26, IC18), all five envelope switches and CA3080 channels (Q2-Q11, R27-R83, R94,
+C22-C34, IC19-IC22), the beep 555 IC23 (R81-R83, C35-C37) and the summing follower IC25
+with C43, R91 and the SJ amplifier IC26 (R90, R92) all agree with MAME pin for pin and
+value for value, transistor and diode orientation included. The parts list agrees with
+every IC, transistor (Q1 is a 2N3904), diode and capacitor; C28, which MAME's file could
+not place, is one of six 0.1uF bypass capacitors on -15V. Nothing needed correcting.
+
+Open question, as printed and not settled:
+* The parts list gives 111 resistors where both drawings place 109: it carries an 82K and
+  a second 910K that neither the sheets nor the assembly drawing have (R82 is 8.2K on
+  both; at 82K IC23 would not oscillate). Its 2.7K and 4.7K counts (13 and 8) are also
+  swapped against both drawings (8 and 13). This file follows the drawings.
+
+Not in this file: the final amplifier (IC24, Q12, Q13, R24, R25, R84-R89, C38-C42, the
+volume pot R93) and the regulators IC4/IC5, which are on sheets 1 and 3 with the values
+MAME's comments give."""]),
     "boxingb-sound": sound(
         "Boxing Bugs", "Cinematronics", "1981", "boxingb", "the Boxing Bugs manual (doc 4cc749f9b585)",
         "Cinematronics audio board for Boxing Bugs: music, chirps, cannon and bounce VCOs, a "
         "CA3080 mixer.",
         "src/mame/cinematronics/nl_boxingb.cpp", "boxingb", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
-        notes=["MAME's file calls this netlist 'WIP'.", UNCHECKED]),
+        compared="compared with the sheets (72-11516-00 rev X14, pp94-99)",
+        undo=[dict(line=786, text="NET_C(U25.5, GND)", action="drop",
+                   why="a typo for U2.5, the 74S04 input MAME's HLE branch borrows (its line "
+                       "781); sheet 6 draws U25 pin 5 (1Q) unconnected, as MAME's own HINT at "
+                       "line 1602 says"),
+              dict(line=1160, text="NET_C(U58.7, GND)", action="nc",
+                   why="sheet 3 draws U58 pin 7 (DIS) unconnected; MAME's own comment says "
+                       "'not connected'")]
+             + [dict(line=n, text=t, action="drop-line",
+                     why="MAME's ideal clock standing in for the crystal Y1")
+                for n, t in ((438, "CLOCK(Y1"), (439, "Y1.GND"), (440, "Y1.VCC"))],
+        undo_notes=["lines 438-440: MAME's CLOCK(Y1) and its supply ties are dropped; Y1 is the "
+                    "crystal the sheet draws"],
+        add_parts=[part("Y1", "Y", "20MHz", "sheet 6: the crystal of the U2 oscillator, which "
+                                            "MAME declares as an ideal clock")],
+        add=[sheet("sheet 6: U2's three spare inputs tied together to ground",
+                   "GND", "U2.5", "U2.9", "U2.11"),
+             sheet("sheet 5: U20 pin 6 is WC1+, to the shaft encoder", "U20.6", name="WC1_P"),
+             sheet("sheet 5: U20 pin 4 is WC2+, to the shaft encoder", "U20.4", name="WC2_P"),
+             sheet("sheet 5: Q29's collector into U20 pin 5", "U20.5", name="Q29_COLLECTOR"),
+             sheet("sheet 5: Q30's collector into U20 pin 3", "U20.3", name="Q30_COLLECTOR")],
+        ports={"OUTPUT": "U54's output, to J1-8 and the coin-door volume pot, whose wiper "
+                         "returns on J1-3 to the final amplifier, which MAME does not simulate",
+               **{p: "the shaft encoder on sheet 5, which MAME does not emulate"
+                  for p in ("WC1_P", "WC2_P", "Q29_COLLECTOR", "Q30_COLLECTOR")}},
+        notes=["MAME's file calls this netlist 'WIP'.", """\
+Compared with the audio board schematic 72-11516-00 "Audio Board 'BB'" rev X14, sheets 1-6
+(doc 4cc749f9b585 pp94-99, native 300 dpi), 2026-10-20: all 55 ICs' types; the input
+conditioning from J2 (OUTPUT 0-4 and 7 on J2-11 to J2-16, through D25-D30, U50, U40, U30,
+R177/R180/R181 and C67/C69/C70) and the serial latches U49/U39 into U48, U38 and U47; the
+crystal oscillator, U23, U13/U9/U29 and the divide-by-eleven music clock U43/U24/U33/U44;
+the noise register U1, U11, U12, U32, U35; every sound channel -- bell, chirping birds,
+dying bug, egg cracking, beetle on screen, bounce, cannon, loud and soft explosions, bug
+pushing -- with its 566s, 555s and CA3080s; the music generator U46/U36/U37, U25, U34,
+U15, U35, U45 and its CA3080 U67 with Q31-Q34; and the summing amplifier U54 with the CS
+follower U55 all agree with MAME pin for pin and value for value (R9-R209, C11-C75),
+transistor and diode orientation included. The manual has no audio board parts list.
+Corrected from the sheet, none of it in a sound path: U25 pin 5 is unconnected and U2's
+spare inputs 5, 9 and 11 are grounded (MAME's line 786 ties "U25.5" to ground, a typo for
+U2.5); U58's discharge pin 7 is unconnected, not grounded; Y1 is a 20 MHz crystal, not an
+ideal clock; and U20 pins 3-6 are the shaft encoder's (sheet 5), not bare pins.
+
+Open questions, as printed and not settled:
+* The sheet labels U36's LOAD (pin 9) "MLOAD+", where U46 and U37 beside it read
+  "MLOAD-". MAME uses MLOAD- on purpose ("schems say MLOAD_P, but solarq says MLOAD_M"),
+  the theory text (p35) says all three counters load on M Load-, and on MLOAD+ the middle
+  four bits of the divider could never count. This file follows MAME.
+* The theory text (p33) takes the beetle oscillator's output from U20-4; the sheet and
+  MAME take it from pin 2, and sheet 5 gives U20 3/4 to the shaft encoder.
+
+Drafting slips where MAME follows the part, not the label: U1's second half is labelled
+clock 12, CLR 13 (the 74LS393 is the other way round); U9's second half K 10, CLR 11; the
+dying bug's 39K is labelled R31 (it is R37 by position, as MAME has it); R196 is labelled
+R96. Not in this file: the shaft encoder (sheet 5, which also carries U6, a 74LS74 MAME's
+list of omitted parts leaves out), the regulators (U69 7815 and U68 7915 on the sheet,
+the other way round in MAME's comments) and +2.2V reference, and the final amplifier."""]),
     "ripoff-sound": sound(
         "Rip Off", "Cinematronics", "1980", "ripoff", "the Rip Off manual (doc 3a2cac26e2cb)",
         "Cinematronics audio board for Rip Off: laser, torpedo, motor and beep, two background "
         "VCOs, a CA3080 mixer.",
         "src/mame/cinematronics/nl_ripoff.cpp", "ripoff", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
+        compared="compared with the sheet (SD207201 Rev A, p80)",
+        undo=[dict(line=679, text="NET_C(GND, IC14.2, IC14.3, IC15.2, IC15.3)", action="remove",
+                   terms=["IC14.2", "IC15.2", "IC15.3"],
+                   why="of these the sheet grounds only IC14 pin 3; IC14 pin 2 is the "
+                       "pre-amplifier's summing junction, and IC15's inputs are the final "
+                       "amplifier's")],
+        add=[sheet("p80: R45 and R49 meet at IC14 pin 2", "R45.1", "IC14.2"),
+             sheet("p80: IC14 pin 6 drives the final amplifier", "IC14.6", name="FINAL_AMP")],
+        ports={"OUTPUT": "R45 and R49 into IC14 pin 2, the pre-amplifier's summing junction "
+                         "(R46 12K feedback)",
+               "FINAL_AMP": "IC14 pin 6, into the final amplifier (R46, IC15, Q6, Q7, the "
+                            "volume pot), which MAME does not simulate"},
         notes=["""\
 MAME's two hacks here are value changes and both are undone by their switches: the
 motor-1 and beep voltage triggers use the sheet's 4.7K (MAME's hack is 100 ohms), and
-the resistances into the CA3080s IC12 and IC6 are the sheet's, not five times them.""",
-               UNCHECKED]),
+the resistances into the CA3080s IC12 and IC6 are the sheet's, not five times them.""", """\
+Compared with the sheet, Schematic Audio Board - Rip Off SD207201 Rev A (doc 3a2cac26e2cb
+p80, native 300 dpi), with the assembly drawing AE207201 Rev A (p79) and the parts list
+PL207201 (pp58-60), 2026-10-20: the input buffers IC25 (J4-11/12/13), the shift register
+IC8 and latch IC9 with R24; the background DAC (IC10, R23, D1, R25-R30, IC19, R76), both
+background VCOs (IC20, IC21, C30, C31, R77-R82, D6-D11), the level translator Q10
+(R83-R85) and the counter IC22 with R86-R91 and C32; the laser and torpedo channels (R56,
+R66, C26-C29, D2-D5, IC16, IC17, R57-R61, R67-R71, Q8, Q9, and IC18 with R62-R65 and
+R72-R75 into R47, R48 and C21); the explosion (IC1 S2688, R1-R10, C1-C8, IC2, the one-shot
+IC4, Q1, IC3), beep (IC5, R11-R18, R20-R22, C9-C11, Q2, Q3, IC6) and motor 1 (IC11, IC13,
+R31-R44, C14-C19, Q4, Q5, IC12) channels; and the summing node (R19, D12/D13, the
+follower IC7, C12, R45, R49) all agree with MAME pin for pin and value for value, diode
+and transistor orientation included. The values MAME's hacks change are the sheet's: R11
+and R40 are 4.7K, R18 is 820K and R36 is 1M on the schematic, the assembly drawing and in
+the parts list's counts. IC18's taps are not binary-ordered (QC takes the smallest
+resistor); the sheet draws both halves that way and MAME follows it. MAME differs only at
+the final-amplifier boundary: R45 and R49 go into IC14 pin 2 and only IC14 pin 3 is
+grounded (MAME line 679 grounds both inputs of IC14 and IC15); corrected above.
+
+Open questions, as printed and not settled:
+* The parts list gives one 1N5240 where both drawings have three (D1, D12, D13, and note
+  3 names all three), and three 470-ohm and eight 1K resistors where both drawings have
+  two and nine; the totals agree and the list names no positions. This file follows the
+  drawings.
+* IC4's reset (pin 4) is not drawn; MAME ties it to +5V ("not documented in schematics"),
+  the only way the one-shot works.
+
+The jumpers W1-W8 are taken as fitted, as MAME takes them; R50 is drawn dashed and noted
+optional, and C13 and C20 are not used (note 6). Not in this file: the final amplifier and
+regulators (R46, IC15, Q6, Q7, IC23, IC24), which are on the sheet. MAME's comment calls
+Q6 (2N6292) a PNP; it is an NPN, and the sheet draws it as one."""]),
     "solarq-sound": sound(
         "Solar Quest", "Cinematronics", "1981", "solarq", "the Solar Quest manual (doc 289dbfe65fee)",
         "Cinematronics audio board for Solar Quest: music, capture and photon VCOs, a fire "
         "network of TL081s and CA3080s.",
         "src/mame/cinematronics/nl_solarq.cpp", "solarq", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
-        notes=[UNCHECKED]),
+        compared="compared with the sheets (72-11366 rev B, pp97-99, and rev A, pp90-92)",
+        undo=[dict(line=n, text=t, action="drop-line",
+                   why="MAME's ideal clock standing in for the crystal Y1")
+              for n, t in ((317, "CLOCK(Y1"), (318, "Y1.GND"), (319, "Y1.VCC"))],
+        undo_notes=["lines 317-319: MAME's CLOCK(Y1) and its supply ties are dropped; Y1 is the "
+                    "crystal the sheet draws"],
+        add_parts=[part("Y1", "Y", "20MHz", "sheet 2: the crystal of the U24 oscillator, which "
+                                            "MAME declares as an ideal clock; parts list item 92")],
+        fix_parts={u: ("CA3080A", "sheet 2 and the parts list (item 22, 'IC (Special)', qty "
+                                  "2): the fire network's two CA3080s are the A grade")
+                   for u in ("U44", "U46")},
+        ports={"OUTPUT": "U50's output, to J1-8 and the coin-door volume pot R152, whose wiper "
+                         "returns on J1-3 to the final amplifier U51, which MAME does not "
+                         "simulate"},
+        notes=["""\
+Compared with the audio board schematic 72-11366 "Solar Quest Audio" rev B, sheets 1-3
+(doc 289dbfe65fee pp97-99, native 300 dpi), with the rev A printing (pp90-92) for faint
+values, and the audio parts list (pp65-67), 2026-10-20: all 50 ICs' types; the inputs from
+J2 (OUTPUT 0, 1, 4 and 7 on J2-11, -12, -15 and -16, as the CPU board's J4 table on p80
+gives them) through the 7414s U1/U2 into the shift registers U3/U4 and the latches U5, U6
+and U7; the music divider U8-U10 with its latch gating U19-U23; the clock chain (U24, U25,
+the divide-by-eleven U26/U15, U27); the nuke generator (U13, U14, the divide-by-191
+U11/U12, U15-U18); the noise register U28-U31 with U18, U24 and U32; every channel --
+loud and soft explosion, thrust, capture (Q11-Q13, U42 566, U21), photon (U35, Q7-Q10,
+U36-U41), fire (Q14/Q15, U43-U47) and the three music envelopes (Q16-Q21) into U48 -- and
+the CS follower U49 and summing amplifier U50 all agree with MAME pin for pin and value for
+value (R1-R164, C1-C31), transistor and diode orientation included. The parts list agrees
+with every IC, resistor, capacitor, diode and transistor quantity, except R155 in the final
+amplifier. Corrected from the sheet, none of it in a sound path: Y1 is a 20 MHz crystal, not
+an ideal clock, and U44 and U46 are CA3080As (the parts list's 'special' grade, same
+pinout), not plain CA3080s. The two printings differ only in labels.
+
+Open questions, as printed and not settled:
+* The theory text's sound check table (p33) puts Capture on U7 pin 9 and Fire on pin 12;
+  both printings of the sheet, and MAME, have FIRE- on 9 and CAPTURE- on 12. This file
+  follows the sheet.
+* R155 in the final amplifier is printed 150K; the parts list has no 150K and two 150-ohm
+  resistors. Not in this file.
+
+Drafting slips where MAME follows the part, not the label: U10's pins 9 and 7 are labelled
+ENP and LOAD inside the box (the signals on them, MLOAD- and MEN+, are right); rev B's sheet
+2 prints U18 as "-S86" (LS86 on rev A, on sheet 1 and in the parts list). MAME grounds U2
+pins 8 and 10, which are 7414 outputs, and leaves the inputs 9 and 11 open -- the sheet's
+note 6 says all four are unused, and this file has all four nc. Not in this file: the final
+amplifier (U51, Q22, Q23, R152-R160, C32-C36, D9, D10), the regulators U52/U53 with D1-D4
+and C37-C43, and the unnumbered decoupling capacitors."""]),
     "speedfrk-sound": sound(
         "Speed Freak", "Vectorbeam", "1979", "speedfrk", "the Speed Freak manual (doc a9a0d255b9db)",
         "Vectorbeam audio board for Speed Freak: the engine sound, all TTL counters and shift "
         "registers into one TL081.",
         "src/mame/cinematronics/nl_speedfrk.cpp", "speedfrk", CINEMATRONICS,
+        compared="compared with the sheet (Figure A-14 Audio PCB Logic, p73)",
+        undo=[dict(line=295, text="NET_C(R13.2, GND)", action="port", name="LAMP",
+                   why="the sheet takes the 150-ohm collector resistor on to the START LIGHT "
+                       "LED in the start switch, whose other side is +5V (Figure A-12: LED to "
+                       "J2-9, +5 to J2-12); MAME grounds it as a load")],
         ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
         notes=["""\
 MAME's file calls the manual's schematics 'utterly terrible' and credits corrected
 schematics from Brian Tarachi and connections verified by Frank Palazzolo, so this
 reading has had more checking than most -- and may differ from the manual's sheet
 where the manual is wrong. With HLE_CLOCK_GENERATOR off the 2 MHz clock is MAME's U10
-pin 6 (an alias in the real-circuit branch).""", UNCHECKED]),
+pin 6 (an alias in the real-circuit branch).""", """\
+Compared with the sheet, Figure A-14 Audio PCB Logic (doc a9a0d255b9db p73, 600 dpi; no
+title block or revision), the parts list 30-10554-01 Rev. 4 (pp53-54) and the theory and
+troubleshooting text (pp25, 37), 2026-10-20: the J4 inputs (O0-O4 and O7 on J4-11, 12, 6,
+14, 15, 16, the logic PCB's clock on J4-2), the TL081 clock receiver U3 (R27, R28, CR3),
+the 2 MHz oscillator U10 (R30, R31, C12, C13), the U5/U4 tripler (preset 9), the shift
+register U13/U14 into the modulo-N counters U15/U9/U8 and the latch U12, the crash gates
+U11 with R16-R19 bit for bit, the noise generator U20/U24/U19, the horn flip-flops U17 with
+U23, the tire-squeal 555 U22 (R44-R46, C17, C23) and its gate, and the motor counter U7
+(R22-R24) all agree with MAME pin for pin and value for value, and every value in this file
+is in the parts list except 3.3K (R21) and 3.9K (R19), which the sheet prints and the list
+lacks. Where the sheet and MAME differ, MAME is the one the rest of the manual supports: U23
+is printed 74LS136 (it is a 74LS163); U24's pins 1 and 12 are swapped on the sheet; two of
+U19's XORs are drawn as ANDs; U4's and U18's clocks and U5B's Q-bar are misnumbered; R29 is
+printed 22K and R25/R26 4.7K where the parts list has 2.2K and 18K and no 22K; and the
+sheet's U18 outputs disagree with the troubleshooting timings (2.2 ms and 3.0 ms at U17
+pins 3 and 5), which fit MAME's pins 8, 10 and 11 exactly. Corrected from the sheet: MAME
+grounds R13 as a stand-in, and on the sheet it goes to the START LIGHT LED in the start
+switch (+5V on its other side), so LAMP is now a port.
+
+Open questions, as printed and not settled:
+* The sheet puts R21 and C20 on the crash DAC's branch (U11, through an unvalued resistor)
+  and takes the motor counter U7's resistors straight to the output; MAME has it the other
+  way round, U7 through C20 and R21 and the DAC through R20 (all marked 'PCB verified').
+  This file follows MAME.
+* The sheet draws U3 pin 4 to an unlabelled supply arrow, not ground, and the clamp diode
+  on U3's output suggests the board's -15V; MAME grounds it.
+* The sheet shorts U2 pin 6 onto O1 at the AND gate's input; MAME's reading (U12 enabled by
+  the gated O1, U6 pin 5 from U2 pin 6) is the one the theory and troubleshooting text
+  support. U6 pin 4 comes from raw O0 on the sheet, from U2 pin 2 in MAME -- the same level.
+* The troubleshooting text calls the lamp transistor Q4 and the board photo (p41) points to
+  Q1-Q4; MAME calls it Q3, the name the amplifier sheet gives its bias transistor. This file
+  keeps MAME's Q3.
+
+The manual's own designators collide elsewhere (its R16-R18 at the TL081, regulators
+labelled U8/U9 beside counters U8/U9); MAME's look like the board's. Not compared: U23's
+preset and U4/U23's ENT, which the sheet does not draw (MAME's "need to verify" ties are
+what the text needs); R20's value, which it does not print; and the amplifier and
+regulators (Figure A-14, p74), which MAME leaves out and whose values agree with MAME's
+commented-out lines."""]),
     "starcas-sound": sound(
         "Star Castle", "Cinematronics", "1980", "starcas", "the Star Castle manual (doc 7f01a2f3c820)",
         "Cinematronics audio board for Star Castle: background and laser VCOs (566), shield, "
@@ -606,32 +836,142 @@ sound 555s beyond their values (R112-R119, which agree)."""]),
         "src/mame/cinematronics/nl_starhawk.cpp", "starhawk", CINEMATRONICS,
         loads={"RDUMMY": "a 100K to ground on the 556's output, which MAME's file says the "
                          "board leaves unconnected"},
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
+        compared="compared with the sheet (2-30008 Rev X3, p43)",
+        undo=[dict(line=436, text="NET_C(R22.2, GND)", action="port", name="R22_TO_4C",
+                   why="the sheet takes R22 to 4C pin 2, the final amplifier's inverting input "
+                       "(R23 and the pot R25 as feedback), which MAME does not simulate; MAME "
+                       "grounds it instead")],
+        ports={"OUTPUT": "3A pin 13 (the TL182's 2D), through R22 into the final amplifier"},
         notes=["""\
 This board's designators are column-and-row grid positions (IC5D, IC4A ...), written
-U5D, U4A here. MAME's file credits Jay Gallagher with verifying the PCB components.""",
-               UNCHECKED]),
+U5D, U4A here. MAME's file credits Jay Gallagher with verifying the PCB components.""", """\
+Compared with the sheet, Schematic, Audio Board (Star Hawk) 2-30008 Rev X3, 1-9-79 (doc
+87193443ac92 p43; a 300 dpi 1-bit scan read from the native image at 2-6x; the manual has
+no parts list), 2026-10-20: every IC's type and position; the J2 inputs (J2-11 explosion,
+J2-12 and J2-13 lazers, J2-14 K on/off, J2-15 master on/off, J2-16 K exit -- MAME's OUT_0-4
+and OUT_7 in that order) with the 74LS04 6C and 7406 7C; the noise generator (6D, the
+74LS164s 8C/8D/9C/9D, 9E, 10C/10D/10E, R1-R15, C7-C15, CR1, CR2, 6B and the CA3080 6A's
+inputs); the explosion one-shot and Q1 (R5, R7, R16, R17, C5, C6, C17); the killer-ship
+ramp, the 5D wobble oscillator and the ship VCO (R26-R38, CR3-CR6, C9, C20, C27, 4B, 5A,
+5B); both lazer VCOs with their 74LS393 counters, 74S287 PROMs (the counter-to-PROM wiring
+read on 4E; 7E's tap numbers are illegible but wired the same) and DACs (R39-R60, C22-C26,
+CR7-CR10, Q4, Q5); and the TL182 3A with the summing node (6A pin 6, R19, C26, 3A pin 14,
+3A pin 1 into 4A) all agree with MAME pin for pin and value for value, diode and transistor
+orientation included. 5D pin 5 is not drawn, so RDUMMY stands in for an open output. MAME
+differs only at the final amplifier: R22 goes into 4C pin 2, its inverting input, where
+MAME grounds it (line 436); corrected above.
+
+Open questions, as printed and not settled:
+* C21 (5D's timing capacitor, the ship-wobble rate) is printed "22 TANT 35V", 22uF. MAME
+  uses 0.22uF, marked "PCB verified", and keeps the sheet's 22uF behind its SLOW_SHIP_WOBBLE
+  debug switch (about 0.6 Hz against 60 Hz). This file follows MAME's board.
+* R6 (the explosion one-shot's timing resistor) is lettered "190K" against MAME's 150K;
+  190K is not a stock value and the print may be a slip. This file follows MAME.
+
+Labels that read wrongly on this scan but are MAME's designators by position: CR6 (reads
+like CR8), C26 (C28), R46 (R48). Not in this file: the final amplifier (4C, Q2, Q3, R20,
+R21, R23-R25, C16, C18, C19) and the regulators 2C and 2D, which are on the sheet with the
+values MAME's comments give."""]),
     "sundance-sound": sound(
         "Sundance", "Cinematronics", "1979", "sundance", "the Sundance manual (doc 7130101e6e69)",
         "Cinematronics audio board for Sundance: pings and bongs (555s), a whoosh, a wideband "
         "noise generator, CA3080 mixing.",
         "src/mame/cinematronics/nl_sundance.cpp", "sundance", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
+        compared="compared with the sheet (SD203200, p20)",
+        undo=[dict(line=472, text="NET_C(R64.2, GND)", action="drop",
+                   why="the sheet takes R64 on to IC20 pin 2, the final amplifier's summing "
+                       "junction (with C32 and R75); MAME grounds it instead"),
+              dict(line=479, text="NET_C(GND, IC20.2, IC20.3)", action="remove", terms=["IC20.2"],
+                   why="the sheet grounds IC20 pin 3 only; pin 2 is the final amplifier's "
+                       "summing junction")],
+        add=[sheet("p20: R64 into IC20 pin 2", "R64.2", "IC20.2"),
+             sheet("p20: IC20 pin 6 drives the output stage", "IC20.6", name="FINAL_AMP")],
+        ports={"OUTPUT": "the summing line SN, on to R64 and the final amplifier IC20",
+               "FINAL_AMP": "IC20 pin 6 into the output stage (C32-C34, R65-R67, Q7, Q9, the "
+                            "volume pot R76), which MAME does not simulate"},
         notes=["""\
 The wideband noise generator here is MAME's description of the real circuit (the
 HLE_NOISE_GEN branch off). MAME has never run that branch -- it simulates the noise with
-a random source -- so it is the least-checked part of this file.""", UNCHECKED]),
+a random source -- but it agrees with the sheet part for part (below).""", """\
+Compared with the sheet, Audio Board Schematic (Sundance) SD203200 (doc 7130101e6e69 p20,
+600 dpi), and the values printed on the assembly drawing (p21; the manual has no audio
+parts list), 2026-10-20: the noise generator (D1 1N5240, R1, R3-R10, C1-C5, IC1-IC3 and
+the D2/D3 limiter), the whoosh (IC11, the four LM3900 sections of IC4, Q1-Q3, R11-R23,
+R34-R42, R47, R48, C6, C13-C15, C21, IC12), the explosion (IC7, Q4, R24-R33, C7-C12, IC8,
+IC10), the hatch, the two pings and the bong (IC13's four tri-state enables with R49,
+Q5/Q6/Q8/Q10, R50-R63, R68-R74, R77, R78, C22-C31, C35-C39, IC9 and IC14-IC19) and all six
+CA3080 outputs on the SN line all agree with MAME pin for pin and value for value, every
+IC type and every transistor and diode orientation included. MAME differs only where the
+sheet goes on into the final amplifier, which it does not simulate: IC20 pin 3 is grounded
+rather than unconnected, and R64 goes into IC20 pin 2 rather than to ground (MAME lines
+479 and 472); both are corrected above.
+
+Open questions, as printed and not settled:
+* The sheet labels J2-11 "O5"; MAME calls it OUT_0. The CPU board's latch F2 (p13) has no
+  O5 to give -- its Q5 is R_COIN -- and it brings out O0-O4 and O7, as do the
+  troubleshooting text ("F-2 pins 4, 5, 6, 7, 9 & 12") and MAME's input mask. This file
+  keeps OUT_0; the harness between the boards is not drawn in the manual.
+* R66 in the final amplifier is 2.2K on the sheet and the assembly drawing; MAME's
+  commented-out line has 22K. It is not in this file.
+
+Not in this file: the final amplifier (IC20's feedback and output stage) and the
+regulators IC5/IC6, which are on the sheet."""]),
     "tailg-sound": sound(
         "Tailgunner", "Cinematronics", "1979", "tailg", "the Tail Gunner manual (doc 22a6fb78dd5a)",
         "Cinematronics audio board for Tailgunner: hyperspace and laser VCOs, explosion, a "
         "wideband noise generator.",
         "src/mame/cinematronics/nl_tailg.cpp", "tailg", CINEMATRONICS,
-        ports={"OUTPUT": "to the final amplifier, which MAME does not simulate"},
+        compared="compared with the sheet (SD205202 sheet 1, p55)",
+        undo=[dict(line=670, text="NET_C(R70.2, GND)", action="drop",
+                   why="the sheet takes R70 on to IC19 pin 2, the final amplifier's summing "
+                       "junction (C34, R74 and the pot R75 as feedback); MAME grounds it instead"),
+              dict(line=676, text="NET_C(GND, IC19.2, IC19.3)", action="remove", terms=["IC19.2"],
+                   why="the sheet grounds IC19 pin 3 only; pin 2 is the final amplifier's "
+                       "summing junction")],
+        add=[sheet("p55: R70 into IC19 pin 2", "R70.2", "IC19.2"),
+             sheet("p55: IC19 pin 6 drives the output stage", "IC19.6", name="FINAL_AMP"),
+             sheet("p55: IC23 pin 11 (Q6) leaves the board at J3-9, 'TO START BUTTON LIGHT'",
+                   "IC23.11", name="START_LIGHT")],
+        ports={"OUTPUT": "the summing line, on to R70 and the final amplifier IC19",
+               "FINAL_AMP": "IC19 pin 6 into the output stage (R71-R73, Q6, Q7), which MAME "
+                            "does not simulate",
+               "START_LIGHT": "J3-9, to the start button lamp (latch bit Q6)"},
         notes=["""\
 Two MAME changes are undone by their switches: the diodes D8/D9 on the 74LS123's
 Rext/Cext pins are back (MAME snips them for speed), and the pull-ups MAME adds to the
 74LS125 outputs are gone. The hyperspace VCO's real circuit uses Q1, which MAME declares
-only in a comment ('not used' -- by the stand-in); the declaration is restored.""", UNCHECKED]),
+only in a comment ('not used' -- by the stand-in); the declaration is restored.""", """\
+Compared with sheet 1 of the audio board, Schematic Audio Board - Tailgunner SD205202 (doc
+22a6fb78dd5a p55, 600 dpi), and the parts list PL205202 (pp41-43), 2026-10-20: the trigger
+port IC23 with its J4 inputs (O0-O4 on J4-11 to J4-15) and its six used outputs; the noise
+generator (D1, IC1-IC3, but see below); the explosion (IC9, IC10, IC12, Q3), rumble (IC6,
+Q4) and shield (IC4, Q5, IC13, the 555s IC16 and IC17 with their RC ladders); the shield
+bounce (IC14, IC15, IC18, IC12, Q8, IC22); the hyperspace and laser VCOs (IC7/Q1,
+IC11/Q2) with the 74LS393 IC8 and its taps R17-R20 and R35-R38; and the summing line into
+R70 all agree with MAME pin for pin and value for value, diode and transistor orientation
+included, and every value MAME has (R1-R70, R76-R84, C1-C33, C41-C44) agrees with the parts
+list. The three MAME changes this file undoes are what the sheet draws: D8 and D9 on the
+74LS123's pins 15 and 7, no pull-ups on the 74LS125 outputs (pins 3 and 6), and the
+hyperspace VCO built from IC7 and Q1 into IC5 pin 1. Corrected from the sheet: IC23 pin 11
+(Q6), which MAME leaves unconnected, goes to J3-9 "TO START BUTTON LIGHT"; and R70 goes
+into IC19 pin 2, the final amplifier's inverting input, rather than to ground, with IC19
+pin 3 grounded (MAME lines 670 and 676).
+
+Open question, as printed and not settled:
+* The sheet draws the noise amplifier IC1 with C3/R2 on pin 2 (-) and R4/C4 on pin 3 (+),
+  and MAME copies it (its lines 325 and 328, in the branch it never runs). As drawn R4 is
+  positive feedback and the op-amp would latch; the manual's own text (p24) gives IC1 a
+  gain of 1000, which is 1 + R4/R3 only with R4 on the inverting input; and Sundance's
+  sheet SD203200, the same circuit by the same drafter, draws C3 into pin 3 and the
+  feedback into pin 2. This file follows the sheet. Not checked against a board.
+
+Slips in the parts list that change nothing here: item 32 gives R22 as 22K (R22 is 1K on
+the sheet and in item 24; the 22K is the final amplifier's R72), and items 14 and 18 garble
+C45-C49. The theory text says Q5 for the rumble transistor (the sheet: Q4) and Q1 for the
+laser squarer (Q2). IC1's printed type is unreadable on this scan; the parts list gives
+TL081. Not in this file: sheet 2 (p65, the joystick circuitry on the same board, IC24-IC28),
+and the final amplifier and regulators (R71-R75, C34-C40, Q6, Q7, IC20, IC21), whose values
+agree with MAME's commented-out lines."""]),
 
     # -----------------------------------------------------------------------
     # Sega / Gremlin (Aaron Giles, CC0-1.0)
@@ -642,29 +982,154 @@ only in a comment ('not used' -- by the stand-in); the declaration is restored."
         "sounds from CD4000-series timing, 555s and TL084 filters.",
         "src/mame/sega/nl_astrob.cpp", "astrob", SEGA,
         defines={"ENABLE_SONAR_ALT": 0},
-        ports={"OUTPUT": "the board's output, after the mute"},
+        compared="compared with the sheets (800-3122 rev B sheets 7-8, pp57-58)",
+        undo=[dict(line=n, text=t, action="drop-line",
+                   why="MAME's ideal clock and the oscillator parts it parks in its place")
+              for n, t in ((863, "CLOCK(OSC1"), (864, "OSC1.GND"), (865, "OSC1.VCC"),
+                           (866, "OSC1.Q"), (867, "NET_C(R18.1"),
+                           (884, "CLOCK(OSC2"), (885, "OSC2.GND"), (886, "OSC2.VCC"),
+                           (887, "OSC2.Q"), (889, "NET_C(R46.1"),
+                           (1098, "CLOCK(OSC3"), (1099, "OSC3.GND"), (1100, "OSC3.VCC"),
+                           (1101, "OSC3.Q"), (1102, "NET_C(R22.1"),
+                           (1154, "CLOCK(OSC4"), (1155, "OSC4.GND"), (1156, "OSC4.VCC"),
+                           (1157, "OSC4.Q"), (1158, "NET_C(R80.1"))]
+             + [dict(line=n, text=t, action="drop-line",
+                     why="MAME's mute function, standing in for the output stage")
+                for n, t in ((1048, "AFUNC(MUTEFUNC"), (1049, "MUTEFUNC.A0"),
+                             (1050, "MUTEFUNC.A1"), (1051, "ALIAS(OUTPUT, MUTEFUNC.Q)"))]
+             + [dict(line=1197, text="NET_C(GND, U7.5, U7.6, U7.12, U7.13)", action="remove",
+                     terms=["U7.5", "U7.6", "U7.13"],
+                     why="the sheet grounds U7 pin 12 only; pin 13 is the summing node and pins "
+                         "5 and 6 the mute comparator's inputs, in the output stage MAME does "
+                         "not simulate")],
+        undo_notes=["""\
+lines 863-1158: MAME's four ideal clocks (OSC1-OSC4), the oscillator parts it parks on GND
+in their place and their supply ties are dropped; the CD4011 oscillators are put back from
+the sheets ("Corrected from the sheet", above).
+lines 1048-1051: MAME's mute is a function (AFUNC) on the summing node; on the sheet it is
+the comparator U7B driving the 2N4093 switch Q4 on the output, which MAME does not
+simulate. The function is dropped, and U7's output-stage pins are ports."""],
+        add=[sheet("sheet 7: OSC1, a CD4011 RC oscillator", "U9.5", "U9.6", "R18.2", "C3.1"),
+             sheet("sheet 7: OSC1, a CD4011 RC oscillator", "U9.4", "U9.1", "U9.2", "R18.1"),
+             sheet("sheet 7: OSC1, a CD4011 RC oscillator", "U9.3", "C3.2", "U3.14"),
+             sheet("sheet 7: OSC2, a CD4011 RC oscillator", "U9.10", "U9.12", "U9.13", "R46.1",
+                   "U4.4"),
+             sheet("sheet 7: OSC2, a CD4011 RC oscillator", "R46.2", "U9.8", "U9.9", "C20.2"),
+             sheet("sheet 7: OSC2, a CD4011 RC oscillator", "U9.11", "C20.1"),
+             sheet("sheet 8: OSC3, a CD4011 RC oscillator", "U11.12", "U11.13", "R22.2", "C5.1"),
+             sheet("sheet 8: OSC3, a CD4011 RC oscillator", "U11.11", "U11.8", "U11.9", "R22.1"),
+             sheet("sheet 8: OSC3, a CD4011 RC oscillator", "U11.10", "C5.2", "U12.2"),
+             sheet("sheet 8: OSC4, a CD4011 RC oscillator", "U10.8", "U10.9", "R80.2", "C35.1"),
+             sheet("sheet 8: OSC4, a CD4011 RC oscillator", "U10.10", "U10.12", "U10.13",
+                   "R80.1"),
+             sheet("sheet 8: OSC4, a CD4011 RC oscillator", "U10.11", "C35.2", "R79.1"),
+             sheet("sheet 7: the summing bus goes straight to U7 pin 13", "U7.13", "C55.2",
+                   name="OUTPUT"),
+             sheet("sheet 7: U7 pin 14, the summing amplifier's output", "U7.14", name="U7_OUT"),
+             sheet("sheet 7: U7 pin 5, the mute comparator's reference", "U7.5", name="MUTE_REF"),
+             sheet("sheet 7: U7 pin 6, the mute comparator's input", "U7.6", name="MUTE_IN"),
+             sheet("sheet 7: U7 pin 7, the mute comparator's output", "U7.7", name="MUTE_GATE")],
+        ports={"OUTPUT": "the summing bus, into U7 pin 13, the inverting input of the summing "
+                         "amplifier U7D (R144 22K from pin 14), which MAME does not simulate",
+               "U7_OUT": "U7 pin 14, through C58 and the 2N4093 mute switch Q4 to P1-1 (AUDIO "
+                         "OUTPUT); R144 back to pin 13, R143 from P1-3 (EXT INPUT)",
+               "MUTE_REF": "the R115/R116/R117 divider on U7 pin 5",
+               "MUTE_IN": "MUTE (U32 pin 5) through R123 1K, with R124 100K to GND",
+               "MUTE_GATE": "U7 pin 7 through D13 to Q4's gate"},
         notes=["""\
 Undone beyond the switches: twenty resistors in the sonar circuit that MAME multiplies by
 1.001-1.049 (its comment: the circuit 'relies on subtle part differences') are written
 at their nominal value; and ENABLE_SONAR_ALT, which adds four 1M
-resistors to a 0.1V source to start the oscillators, is off. The four slow oscillators
-MAME runs as ideal clocks (OSC1-OSC4) are ports, and the timing parts it parks on a rail
-in their place are listed above. The mute is an AFUNC in MAME, so the output is a port
-fed from it.""", UNCHECKED]),
+resistors to a 0.1V source to start the oscillators, is off.""", """\
+Compared with the sound board sheets, Astro Blaster Sound 800-3122 rev B sheets 7 and 8 of
+8 (doc 7c9390526e01 pp57-58, the 300 dpi scan read at up to 5x), and with its parts list
+(pp33, 35-36), 2026-10-20. Every resistor and capacitor value in MAME's file (R1-R186,
+C1-C82) and every IC, diode and transistor type agrees with the parts list, quantities
+included; the sonar resistors MAME scales are the list's nominal values. The sheets agree
+with MAME net for net and pin for pin, diode and transistor orientation included, in the
+latch outputs and their 7406/7407 buffers (U26, U29-U31); the four sonar oscillators (U1,
+U2) and their trigger (U11, D2, Q1-Q3, U7A); both lasers (U25, U24/U19, U20/U14, the
+real VCO branch); refill (U3, U4, U5, Q7) and attack, rate reset and warp (U21, U15,
+D14-D23, U16B); explosions (U27, U21, U8, Q6, U16A/C) and astroids (U16D, Q5, U7C); the
+four invaders (U22, U23/U18/Q8, U13/U12, U17, U37/U28/U38) and bonus (U10, U6); and the
+summing bus (R98-R103, R118-R122, C55).
+
+Corrected from the sheets: the four oscillators MAME runs as ideal clocks are CD4011 RC
+oscillators (U9 with R18/C3 and R46/C20, U11 with R22/C5, U10 with R80/C35), on exactly
+the gates MAME parks, and they are put back. MAME's "unconnected" U7 pins are the output
+stage: pin 12 is grounded, pin 13 is the summing node (now joined to it), and pins 5-7
+are the mute comparator, which with Q4 is what MAME's mute function stands in for.
+
+Open questions, as printed and not settled:
+* The sonar trigger's 1K (MAME's R117) is printed "R119 1K". The same sheet prints R119
+  470K in the mixer and an R117 1K in the mute circuit, and the parts list's 1K entry
+  carries an R19 that neither sheet prints, so it is probably R19. This file keeps MAME's
+  R117, which names a different resistor on the board.
+* Q5 and Q6 (2N4093): the sheet labels S on the signal node and D on ground. MAME swaps
+  them on purpose ("D and S swapped on schematics???"). This file follows MAME.
+* The attack capacitor is printed "C69 .05uf", a second C69 beside the explosion's 4.7uF
+  C69. MAME's C67 is what the parts list's counts allow.
+
+Sheet misprints, MAME right: U2's first output is printed "4", and U38's supply pin "5".
+Not in this file: the rest of the output stage (U7D's feedback, C58, Q4, D13, R115-R117,
+R123, R124, R135, R141-R144, C48, P1), the port decoder and latches U32-U36, and the
+power decoupling."""]),
     "elim-sound": sound(
         "Eliminator", "Gremlin", "1981", "elim2", "the Eliminator manual (doc cff008c00810)",
         "Sega G-80 Eliminator sound board: background, skitter, two torpedo and explosion "
         "sounds, CA3080 VCAs. Zektor uses the same board; this is the Eliminator wiring.",
         "src/mame/sega/nl_elim.cpp", "elim", SEGA,
         defines={"VARIANT_ELIMINATOR": 0, "VARIANT_ZEKTOR": 1, "SOUND_VARIANT": 0},
+        compared="compared with the sheets (800-3174 rev B sheets 7-8, pp65-68)",
         not_parts={f"R_PSG_{i}": "a 1K from +5V standing in for one output of the sound chip "
-                                 "(PSG) MAME emulates separately" for i in (1, 2, 3)},
-        ports={"OUTPUT": "the board's output"},
+                                 "(PSG) MAME emulates separately; on the sheet U30's three "
+                                 "outputs (pins 1, 4, 5) are tied straight onto R133" for i in (1, 2, 3)},
+        fix_parts={u: ("NE555", "the sheet (800-3174 sheet 7) and parts list item 25 print "
+                                "NE555; MAME's LM555 is the same timer")
+                   for u in ("U5", "U13")},
+        undo=[dict(line=n + i, text=t, action="drop-line",
+                   why="MAME's ideal clock and the oscillator parts it parks in its place")
+              for n, clk, u, p, r, *_ in ELIM_OSC
+              for i, t in enumerate((f"CLOCK({clk}", f"{clk}.VCC", f"{clk}.GND", f"{clk}.Q",
+                                     f"NET_C({r}.1", f"HINT({u}.{p[1]}", f"HINT({u}.{p[3]}"))],
+        undo_notes=["""\
+lines 864-903: MAME's five ideal clocks (_200HZA, _200HZB, _10HZ, _50HZ, _100HZ), the
+oscillator parts it parks on GND in their place, and its HINT(NC)s on the inverter
+outputs, are dropped; the oscillators are put back from the sheet ("Corrected from the
+sheet", above)."""],
+        add=[a for _, _, *osc in ELIM_OSC for a in oscillator(*osc)],
+        ports={"OUTPUT": "the summing node: on the sheet, U2 pin 6, the final amplifier's "
+                         "inverting input, which MAME does not simulate"},
         notes=["""\
-The 200 Hz, 100 Hz, 50 Hz and 10 Hz clocks are ideal clocks in MAME (CLOCK), whatever
-generates them on the board; their nets are ports, and the timing parts MAME parks on a
-rail in their place are listed above. The PSG's three outputs arrive through resistors
-MAME invents (R_PSG_1-3), so that summing node is a port.""", UNCHECKED]),
+Compared with the Sound Board drawing 800-3174 rev B, sheets 7 and 8 of 8 (doc
+cff008c00810 pp65-68, each sheet printed in two halves), and its parts list (pp30-35),
+2026-10-20. Every passive value in this file agrees with the parts list -- 188 parts, none
+different -- and the list shows that R24 and C42, which MAME's file queries, do not exist.
+All values are the Eliminator ones in MAME's variant table (R79 2M is fitted), and no
+Zektor part or jumper is drawn. The latch bit assignment (U34 74LS374 for the HI port, U35
+for the LO port, D0 unused on the LO side), the 7406/7407 buffers, the noise source (U4,
+U3) and sum buffer U12, the thrust, skitter, enemy ship and background channels (U10, U11,
+U5, U1, U13, U15, U16, U25), the PSG input U29, explosions 1-3, fireball and bounce (U6-U9,
+U14, the CD4011 one-shots U17-U19), the torpedo VCOs and counters (U20-U23) and the summing
+resistors R6-R10 all agree with MAME pin for pin and value for value, transistor and diode
+orientation included; R36 does feed torpedo 2's D6, as with DISABLE_TORPEDO2_NOISE off.
+
+The 200 Hz A/B, 10 Hz, 50 Hz and 100 Hz clocks, which MAME runs as ideal clocks, are
+CD4069 RC oscillators on the sheet (U32 and U31 with R139-R143 and C65-C69), on exactly the
+pins MAME parks, with the values MAME's comment gives; they are put back here. U5 and U13
+are printed NE555 (MAME: LM555, the same part). The PSG's three outputs (U30 pins 1, 4, 5)
+are tied straight onto R133 680 ohm; R_PSG_1-3 are only MAME's model of the chip, so that
+node stays a port.
+
+Open questions, as printed and not settled: this scan drops two short line segments --
+Q3's base lead (sheet 7, zone C3) and U19 pin 4 into its second gate (sheet 8, zone D6) --
+where MAME's reading is the only one the drawing allows; the identical one-shots elsewhere
+on sheet 8 draw the line. MAME's is kept.
+
+Not in this file: the CPU interface (U30 AY-3-8912, U33-U41), the final amplifier and mute
+(U2, Q1, R1-R5, R11-R13, C1, C4) and the bypass capacitors, which are on the sheets with
+the values MAME's comments give. R3 is not part of the final amplifier's gain network, as
+MAME's comment says: it brings contact 3 onto the summing node."""]),
     "frogs-sound": sound(
         "Frogs", "Gremlin", "1978", "frogs", "the Frogs manual (doc a2ffd17fee9b)",
         "Gremlin Frogs sound board: hop, jump, zip, splash, buzz, boing and croak from 555s "
@@ -674,8 +1139,45 @@ MAME invents (R_PSG_1-3), so that summing node is a port.""", UNCHECKED]),
                       "file says the netlist 'doesn't like unconnected 555 outputs'",
                "RU15": "a 100K to ground on a 555 output the board leaves unconnected -- MAME's "
                        "file says the netlist 'doesn't like unconnected 555 outputs'"},
-        ports={"OUTPUT": "the board's output"},
-        notes=[UNCHECKED]),
+        compared="compared with the sheet (821-0002 Rev A sheet 5, p50)",
+        undo=[dict(line=552, text="NET_C(R90.2, GND)", action="port", name="U13_OUT",
+                   why="the sheet takes R90 to U13 pin 6: it is the feedback resistor of the "
+                       "741 summing amplifier U13, which MAME leaves out as the final amp")],
+        add=[sheet("p50 (zone A6): R47's wiper is drawn on Q15's base; MAME connects neither",
+                   "R47.2", "Q15.B"),
+             sheet("p50 (zone B4): each mixer pot's wiper is tied to its bus end, a rheostat; "
+                   "MAME leaves the wipers open",
+                   "R91.2", "R92.2", "R93.2", "R94.2", "R95.2", "R96.2", "R90.1")],
+        ports={"OUTPUT": "the summing bus: on the sheet, U13 pin 2, the inverting input of the "
+                         "741 summing amplifier U13, which MAME does not simulate",
+               "U13_OUT": "on the sheet, U13 pin 6, which drives C58 to AUDIO OUT (contacts "
+                          "26/17)"},
+        notes=["""\
+Compared with the sheet, Schematic Frogs Sound Board 821-0002 Rev A sheet 5 of 6 (doc
+a2ffd17fee9b p50, 600 dpi), and with the board's parts list, 821-0002 sheets 1-4 (pp44-47),
+2026-10-20: every IC type (U1 MM5837, the ten NE555s, the eight LM741s), every transistor
+type and all 163 resistor and capacitor values agree with the parts list, and the six
+channels -- the input inverters Q1-Q6 (FLY driving Q1's emitter), the trigger 555s U2-U7,
+HOP (D2, R31, R32, Q9, Q10, U10), JUMP (the U11 band-pass, Q21 and the Q19/Q20 pair, U19,
+U20, U16), TONGUE/ZIP (U4, Q11-Q13, U15), CAPTURE (U3 holding U9's reset, D4, Q17, Q18, U8),
+SPLASH (Q14, U1's noise through D5/D1, U14) and FLY (U7 resetting U12, Q7, D6, U17, D8/D9,
+U18) -- agree with MAME pin for pin and value for value, diode and transistor orientation
+included. The sheet calls HOP's 33K a second R22; the parts list calls it R32, as MAME
+does. U4 and U15 pin 3 are drawn unconnected, so RU4 and RU15 are MAME's loads, not parts.
+Three differences, all corrected above:
+
+* Q15's base is on R47's wiper (zone A6). MAME connects neither, so in its netlist both
+  float.
+* The six mixer pots R91-R96 have their wipers tied to the summing bus: they are rheostats.
+  MAME leaves the wipers open.
+* R90 56K is the feedback resistor of U13, the 741 summing amplifier that drives C58 to the
+  AUDIO OUT contacts (26/17). MAME leaves U13 out as the final amp and grounds R90; here
+  R90 goes on to U13 pin 6, a port, and OUTPUT is U13's inverting input.
+
+Weakly read: the top strip of JUMP (R33, Q8, C44, Q16, R57, R58, R70, R71) is faint on the
+scan; it agrees with MAME where legible, and its values are the parts list's. Not in this
+file: U13 with R60, C34, C35 and C58, and the supply bypasses C1/C2, which are on the
+sheet."""]),
     "spacfury-sound": sound(
         "Space Fury", "Sega", "1981", "spacfury", "the Space Fury manual, which this site does not "
         "hold (its Space Fury documents are memos and a monitor note)",

@@ -35,6 +35,7 @@
 # ---------------------------------------------------------------------------
 # line 28: #define HLE_CLOCK_GENERATOR 1 -> 0 (high-level stand-in for a real circuit)
 # line 29: #define HLE_CLOCK_INPUT 1 -> 0 (high-level stand-in for a real circuit)
+# line 295: dropped NET_C(R13.2, GND) -- the sheet takes the 150-ohm collector resistor on to the START LIGHT LED in the start switch, whose other side is +5V (Figure A-12: LED to J2-9, +5 to J2-12); MAME grounds it as a load
 # line 418: MAME ties U10.2 off as unused, but the circuit uses them -- the tie is dropped
 # line 419: MAME ties U10.4 off as unused, but the circuit uses them -- the tie is dropped
 # line 420: MAME ties U10.6 off as unused, but the circuit uses them -- the tie is dropped
@@ -79,9 +80,45 @@
 # where the manual is wrong. With HLE_CLOCK_GENERATOR off the 2 MHz clock is MAME's U10
 # pin 6 (an alias in the real-circuit branch).
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the sheet, Figure A-14 Audio PCB Logic (doc a9a0d255b9db p73, 600 dpi; no
+# title block or revision), the parts list 30-10554-01 Rev. 4 (pp53-54) and the theory and
+# troubleshooting text (pp25, 37), 2026-10-20: the J4 inputs (O0-O4 and O7 on J4-11, 12, 6,
+# 14, 15, 16, the logic PCB's clock on J4-2), the TL081 clock receiver U3 (R27, R28, CR3),
+# the 2 MHz oscillator U10 (R30, R31, C12, C13), the U5/U4 tripler (preset 9), the shift
+# register U13/U14 into the modulo-N counters U15/U9/U8 and the latch U12, the crash gates
+# U11 with R16-R19 bit for bit, the noise generator U20/U24/U19, the horn flip-flops U17 with
+# U23, the tire-squeal 555 U22 (R44-R46, C17, C23) and its gate, and the motor counter U7
+# (R22-R24) all agree with MAME pin for pin and value for value, and every value in this file
+# is in the parts list except 3.3K (R21) and 3.9K (R19), which the sheet prints and the list
+# lacks. Where the sheet and MAME differ, MAME is the one the rest of the manual supports: U23
+# is printed 74LS136 (it is a 74LS163); U24's pins 1 and 12 are swapped on the sheet; two of
+# U19's XORs are drawn as ANDs; U4's and U18's clocks and U5B's Q-bar are misnumbered; R29 is
+# printed 22K and R25/R26 4.7K where the parts list has 2.2K and 18K and no 22K; and the
+# sheet's U18 outputs disagree with the troubleshooting timings (2.2 ms and 3.0 ms at U17
+# pins 3 and 5), which fit MAME's pins 8, 10 and 11 exactly. Corrected from the sheet: MAME
+# grounds R13 as a stand-in, and on the sheet it goes to the START LIGHT LED in the start
+# switch (+5V on its other side), so LAMP is now a port.
+#
+# Open questions, as printed and not settled:
+# * The sheet puts R21 and C20 on the crash DAC's branch (U11, through an unvalued resistor)
+#   and takes the motor counter U7's resistors straight to the output; MAME has it the other
+#   way round, U7 through C20 and R21 and the DAC through R20 (all marked 'PCB verified').
+#   This file follows MAME.
+# * The sheet draws U3 pin 4 to an unlabelled supply arrow, not ground, and the clamp diode
+#   on U3's output suggests the board's -15V; MAME grounds it.
+# * The sheet shorts U2 pin 6 onto O1 at the AND gate's input; MAME's reading (U12 enabled by
+#   the gated O1, U6 pin 5 from U2 pin 6) is the one the theory and troubleshooting text
+#   support. U6 pin 4 comes from raw O0 on the sheet, from U2 pin 2 in MAME -- the same level.
+# * The troubleshooting text calls the lamp transistor Q4 and the board photo (p41) points to
+#   Q1-Q4; MAME calls it Q3, the name the amplifier sheet gives its bias transistor. This file
+#   keeps MAME's Q3.
+#
+# The manual's own designators collide elsewhere (its R16-R18 at the TL081, regulators
+# labelled U8/U9 beside counters U8/U9); MAME's look like the board's. Not compared: U23's
+# preset and U4/U23's ENT, which the sheet does not draw (MAME's "need to verify" ties are
+# what the text needs); R20's value, which it does not print; and the amplifier and
+# regulators (Figure A-14, p74), which MAME leaves out and whose values agree with MAME's
+# commented-out lines.
 
 # part U2 74LS04
 # part U3 TL081
@@ -149,7 +186,7 @@ value Q3 2N3904
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C17.1 C20.1 C23.1 CR3.2 Q3.E R13.2 R27.1 U10.7 U11.7 U12.12 U13.7 U14.7 U15.8 U17.7 U18.12 U18.2 U18.7 U19.7 U2.7 U20.7 U22.1 U23.4 U23.6 U23.8 U24.7 U3.4 U4.4 U4.5 U4.8 U5.4 U5.7 U6.7 U7.3 U7.4 U7.6 U7.8 U8.8 U9.8
+net GND: C17.1 C20.1 C23.1 CR3.2 Q3.E R27.1 U10.7 U11.7 U12.12 U13.7 U14.7 U15.8 U17.7 U18.12 U18.2 U18.7 U19.7 U2.7 U20.7 U22.1 U23.4 U23.6 U23.8 U24.7 U3.4 U4.4 U4.5 U4.8 U5.4 U5.7 U6.7 U7.3 U7.4 U7.6 U7.8 U8.8 U9.8
 net +5V: R28.2 R32.1 R33.1 R34.2 R36.2 R37.2 R38.2 R39.2 R40.1 R41.2 R42.2 R43.2 R45.2 U10.14 U11.14 U12.5 U13.14 U14.14 U15.16 U17.14 U18.14 U19.14 U2.14 U20.14 U22.4 U22.8 U23.16 U24.14 U3.7 U4.1 U4.10 U4.16 U4.3 U5.14 U6.14 U7.16 U8.16 U9.16
 
 # ---------------------------------------------------------------------------
@@ -187,6 +224,7 @@ wire U12.13 U12.4 U2.5 U6.12 U6.8
 wire R14.2 U2.6 U6.5
 wire Q3.B R14.1
 wire Q3.C R13.1
+port LAMP: R13.2  # the sheet takes the 150-ohm collector resistor on to the START LIGHT LED in the start switch, whose other side is +5V (Figure A-12: LED to J2-9, +5 to J2-12); MAME grounds it as a load
 wire U19.11 U20.1
 wire R42.1 U15.1 U15.7 U20.9
 wire U19.3 U20.2

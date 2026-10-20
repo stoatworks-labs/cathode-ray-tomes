@@ -34,6 +34,11 @@
 # ---------------------------------------------------------------------------
 # line 24: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
 # line 25: #define UNDERCLOCK_NOISE_GEN 1 -> 0 (a part run slower than the board runs it)
+# line 552: dropped NET_C(R90.2, GND) -- the sheet takes R90 to U13 pin 6: it is the feedback resistor of the 741 summing amplifier U13, which MAME leaves out as the final amp
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   p50 (zone A6): R47's wiper is drawn on Q15's base; MAME connects neither: R47.2 Q15.B
+#   p50 (zone B4): each mixer pot's wiper is tied to its bus end, a rheostat; MAME leaves the wipers open: R91.2 R92.2 R93.2 R94.2 R95.2 R96.2 R90.1
 # line 370: RU4 is not a part -- a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
 # line 380: RU15 is not a part -- a 100K to ground on a 555 output the board leaves unconnected -- MAME's file says the netlist 'doesn't like unconnected 555 outputs'
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_SOUND_0), TTL_INPUT(I_SOUND_1), TTL_INPUT(I_SOUND_2), TTL_INPUT(I_SOUND_3), TTL_INPUT(I_SOUND_4), TTL_INPUT(I_SOUND_5), TTL_INPUT(I_SOUND_6), TTL_INPUT(I_SOUND_7)
@@ -47,9 +52,31 @@
 #   line 232: CAP(C58, CAP_U(0.1))    -- final amp
 #   line 297: LM741_DIP(U13)          // Op. Amp. -- final amp
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the sheet, Schematic Frogs Sound Board 821-0002 Rev A sheet 5 of 6 (doc
+# a2ffd17fee9b p50, 600 dpi), and with the board's parts list, 821-0002 sheets 1-4 (pp44-47),
+# 2026-10-20: every IC type (U1 MM5837, the ten NE555s, the eight LM741s), every transistor
+# type and all 163 resistor and capacitor values agree with the parts list, and the six
+# channels -- the input inverters Q1-Q6 (FLY driving Q1's emitter), the trigger 555s U2-U7,
+# HOP (D2, R31, R32, Q9, Q10, U10), JUMP (the U11 band-pass, Q21 and the Q19/Q20 pair, U19,
+# U20, U16), TONGUE/ZIP (U4, Q11-Q13, U15), CAPTURE (U3 holding U9's reset, D4, Q17, Q18, U8),
+# SPLASH (Q14, U1's noise through D5/D1, U14) and FLY (U7 resetting U12, Q7, D6, U17, D8/D9,
+# U18) -- agree with MAME pin for pin and value for value, diode and transistor orientation
+# included. The sheet calls HOP's 33K a second R22; the parts list calls it R32, as MAME
+# does. U4 and U15 pin 3 are drawn unconnected, so RU4 and RU15 are MAME's loads, not parts.
+# Three differences, all corrected above:
+#
+# * Q15's base is on R47's wiper (zone A6). MAME connects neither, so in its netlist both
+#   float.
+# * The six mixer pots R91-R96 have their wipers tied to the summing bus: they are rheostats.
+#   MAME leaves the wipers open.
+# * R90 56K is the feedback resistor of U13, the 741 summing amplifier that drives C58 to the
+#   AUDIO OUT contacts (26/17). MAME leaves U13 out as the final amp and grounds R90; here
+#   R90 goes on to U13 pin 6, a port, and OUTPUT is U13's inverting input.
+#
+# Weakly read: the top strip of JUMP (R33, Q8, C44, Q16, R57, R58, R70, R71) is faint on the
+# scan; it agrees with MAME where legible, and its values are the parts list's. Not in this
+# file: U13 with R60, C34, C35 and C58, and the supply bypasses C1/C2, which are on the
+# sheet.
 
 # part U1 MM5837
 # part U2 NE555
@@ -268,9 +295,15 @@ value Q21 2N4401
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C11.1 C12.1 C13.1 C14.1 C15.1 C16.1 C17.1 C18.1 C19.1 C20.1 C21.1 C23.2 C24.1 C26.1 C27.2 C28.1 C3.1 C30.2 C33.1 C36.1 C37.1 C38.1 C4.2 C41.1 C42.1 C43.1 C48.1 C49.1 C5.2 C52.1 C53.1 C55.1 C56.1 C59.1 C6.1 C60.1 C61.1 C63.1 C64.1 C66.2 C67.1 C68.1 C69.1 C7.1 C70.1 C71.1 C74.1 C8.2 D7.2 Q14.E Q17.B Q19.B Q2.E Q3.E Q4.E Q5.E Q6.E Q7.E Q8.B Q9.B R10.1 R11.1 R2.1 R34.1 R38.1 R4.1 R51.1 R52.1 R54.1 R6.1 R62.1 R63.1 R65.1 R66.1 R72.1 R74.1 R75.1 R77.1 R8.1 R84.1 R86.1 R88.1 R90.2 U1.1 U10.3 U11.3 U12.1 U15.1 U16.3 U18.3 U19.1 U2.1 U3.1 U4.1 U5.1 U6.1 U7.1 U8.3 U9.1
+net GND: C11.1 C12.1 C13.1 C14.1 C15.1 C16.1 C17.1 C18.1 C19.1 C20.1 C21.1 C23.2 C24.1 C26.1 C27.2 C28.1 C3.1 C30.2 C33.1 C36.1 C37.1 C38.1 C4.2 C41.1 C42.1 C43.1 C48.1 C49.1 C5.2 C52.1 C53.1 C55.1 C56.1 C59.1 C6.1 C60.1 C61.1 C63.1 C64.1 C66.2 C67.1 C68.1 C69.1 C7.1 C70.1 C71.1 C74.1 C8.2 D7.2 Q14.E Q17.B Q19.B Q2.E Q3.E Q4.E Q5.E Q6.E Q7.E Q8.B Q9.B R10.1 R11.1 R2.1 R34.1 R38.1 R4.1 R51.1 R52.1 R54.1 R6.1 R62.1 R63.1 R65.1 R66.1 R72.1 R74.1 R75.1 R77.1 R8.1 R84.1 R86.1 R88.1 U1.1 U10.3 U11.3 U12.1 U15.1 U16.3 U18.3 U19.1 U2.1 U3.1 U4.1 U5.1 U6.1 U7.1 U8.3 U9.1
 net +12V: C17.2 C18.2 C20.2 C25.1 C28.2 C33.2 C36.2 C38.2 C42.2 C48.2 C55.2 C59.2 C61.2 C63.2 C67.2 C68.2 C69.2 C70.2 C74.2 Q11.C Q15.E R12.2 R14.2 R15.2 R16.2 R17.2 R18.2 R19.2 R20.2 R21.2 R22.2 R23.2 R24.2 R28.2 R35.2 R41.2 R42.2 R44.2 R47.3 R68.2 R76.2 R78.2 R87.2 U1.4 U10.7 U11.7 U12.8 U14.7 U15.4 U15.8 U16.7 U17.7 U18.7 U19.4 U19.8 U2.4 U2.8 U20.7 U3.4 U3.8 U4.4 U4.8 U5.4 U5.8 U6.4 U6.8 U7.8 U8.7 U9.8
 net -12V: C21.2 C26.2 C37.2 C43.2 C56.2 C60.2 C64.2 C71.2 R26.1 R43.1 R58.1 R64.1 R67.1 R70.2 R71.1 U1.2 U10.4 U11.4 U14.4 U16.4 U17.4 U18.4 U20.4 U8.4
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port OUTPUT: R90.1 R91.2 R91.3 R92.2 R92.3 R93.2 R93.3 R94.2 R94.3 R95.2 R95.3 R96.2 R96.3  # the summing bus: on the sheet, U13 pin 2, the inverting input of the 741 summing amplifier U13, which MAME does not simulate
+wire Q15.B R47.2
 
 # ---------------------------------------------------------------------------
 # JUMP
@@ -415,7 +448,7 @@ label BUZZZ: R81.2 R96.1 U18.6
 # Mixer
 # ---------------------------------------------------------------------------
 label ZIP: C50.2 R93.1
-port OUTPUT: R90.1 R91.3 R92.3 R93.3 R94.3 R95.3 R96.3  # the board's output
+port U13_OUT: R90.2  # the sheet takes R90 to U13 pin 6: it is the feedback resistor of the 741 summing amplifier U13, which MAME leaves out as the final amp
 
 # ---------------------------------------------------------------------------
 # Pins with nothing attached
