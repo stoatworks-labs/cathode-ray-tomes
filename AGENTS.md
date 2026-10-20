@@ -950,6 +950,33 @@ undo DICE's shortcuts or it publishes them as wiring:
   it agrees with DICE (a 7493, the ball-speed counter) against the hand map's 7433. That is
   logged on the Pong board, not settled: the map changes when the drawing is re-read.
 
+## The interactive schematic viewer
+
+Every board with a KiCad schematic -- the 43 jtcores boards and the two redrawn here --
+gets "Open the interactive schematic" on its page: KiCanvas (MIT, Alethea Flowers),
+vendored as one file at `web/vendor/kicanvas/kicanvas.js` with its LICENSE.md, reading the
+sheets themselves so a reader can pan, zoom, move between sheets and click a part or a net.
+The PDF stays beside it as the fallback.
+
+- **The sheets are not deploy assets.** They load from `raw.githubusercontent.com` (this
+  repository is public and that host sends `Access-Control-Allow-Origin: *`), at `main`.
+  Shipping them would cost ~470 files against the Workers Assets cap and ~150 MB. The
+  consequence: a board's viewer shows what is on `main` on GitHub, so it works only once
+  the board is pushed, and a local dev server shows the pushed sheets, not your edits.
+- **Nothing loads until the reader asks.** CP System III is 5 MB of sheets across 20 files.
+  The button states the sheet count and size; the script itself is fetched on first click.
+- **The sheet list is data**: `redrawn.kicanvas` = `{base, files, bytes}` in the registry,
+  the root first and every sheet the hierarchy reaches (`import_jtcores.hierarchy`, which
+  follows both KiCad 6's `"Sheet file"` and later `"Sheetfile"`). `publish_board.py` writes
+  it; `publish_board.py all --sources-only` refreshes it everywhere without rebuilding
+  board views or PDFs. Filenames are URL-encoded per segment -- Final Round has
+  `GFX-Fixed layer.kicad_sch`.
+- KiCanvas asks for a `$$:0:$$` URL relative to the page and gets a 404. It is harmless and
+  every sheet still loads; do not chase it as a missing sheet.
+- Checked in a browser on Gradius III, Final Round, CP System III (all 20 sheets) and the
+  Battlezone Math Box (KiCad 10 files written through Konnect, custom Am2901 symbols), and
+  at 375 px wide.
+
 ## Structure detection
 
 `tools/ocrlib.py` is the shared brain: one tesseract pass emits both plain text and a TSV

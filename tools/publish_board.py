@@ -25,6 +25,27 @@ def compose_status(spec):
     return " ".join(x for x in (spec.get("revision"), spec.get("coverage")) if x)
 
 
+RAW = "https://raw.githubusercontent.com/stoatworks-labs/cathode-ray-tomes/main"
+
+
+def kicanvas_sources(slug, root_file):
+    """The sheet files the in-page schematic viewer loads, root first.
+
+    The viewer (KiCanvas, vendored under web/vendor/kicanvas/) reads the KiCad
+    sheets themselves, so a board's schematic can be panned, zoomed and
+    clicked rather than paged through as a PDF. The sheets are fetched from
+    GitHub's raw host, which serves this public repository with CORS open,
+    rather than shipped as assets: the 43 jtcores boards alone are ~460 sheet
+    files and ~150 MB, and the deploy is a couple of thousand files from the
+    Workers Assets cap. They load only when a reader opens the viewer.
+    """
+    from import_jtcores import hierarchy
+    d = os.path.join(ROOT, "kicad", slug)
+    files = hierarchy(d, root_file)
+    return {"base": f"{RAW}/kicad/{slug}/", "files": files,
+            "bytes": sum(os.path.getsize(os.path.join(d, f)) for f in files)}
+
+
 def publish_imported(slug, spec, web):
     """Export an imported schematic -- one this repository did not draw.
 
@@ -50,7 +71,8 @@ def publish_imported(slug, spec, web):
         sheets.append({"title": title, "page": i})
     return {"pdf": f"/boards/{slug}/schematic.pdf", "sheets": sheets,
             "project": spec["origin"]["source"],
-            "netlist": f"{REPO}/blob/main/boards/{slug}.netlist.json"}
+            "netlist": f"{REPO}/blob/main/boards/{slug}.netlist.json",
+            "kicanvas": kicanvas_sources(slug, spec["kicadRoot"])}
 
 
 def publish_schematic(slug, web):
@@ -97,14 +119,33 @@ def publish_schematic(slug, web):
     sheets.sort(key=lambda s: s.pop("order"))
     return {"pdf": f"/boards/{slug}/schematic.pdf", "sheets": sheets,
             "project": f"{REPO}/tree/main/kicad/{slug}",
-            "netlist": f"{REPO}/blob/main/boards/{slug}.nets"}
+            "netlist": f"{REPO}/blob/main/boards/{slug}.nets",
+            "kicanvas": kicanvas_sources(slug, slug + ".kicad_sch")}
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("slug")
     ap.add_argument("--machine", help="machine slug this board belongs to")
+    ap.add_argument("--sources-only", action="store_true",
+                    help="only refresh the viewer's sheet list (slug, or 'all' boards with a "
+                         "schematic), without regenerating the board view or the PDF")
     a = ap.parse_args()
+
+    if a.sources_only:
+        bp = os.path.join(ROOT, "data", "boards.json")
+        boards = json.load(open(bp))
+        n = 0
+        for b in boards:
+            if not b.get("redrawn") or (a.slug != "all" and b["slug"] != a.slug):
+                continue
+            spec = json.load(open(os.path.join(ROOT, "boards", b["slug"] + ".json")))
+            b["redrawn"]["kicanvas"] = kicanvas_sources(
+                b["slug"], spec.get("kicadRoot") or b["slug"] + ".kicad_sch")
+            n += 1
+        json.dump(boards, open(bp, "w"), indent=1)
+        print(f"viewer sources refreshed on {n} board(s)")
+        return
 
     spec = json.load(open(os.path.join(ROOT, "boards", a.slug + ".json")))
     web = os.path.join(ROOT, "web", "boards", a.slug)

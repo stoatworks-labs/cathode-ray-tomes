@@ -1709,6 +1709,57 @@ async function layoutPage(id) {
 
 /* ---------- board: schematic + BOM ---------- */
 
+/* The interactive schematic. KiCanvas (MIT, vendored under /vendor/kicanvas/)
+   reads the KiCad sheets themselves, so a board can be panned, zoomed and
+   clicked instead of paged through as a PDF. The sheets come from GitHub's raw
+   host, not this deploy -- shipping them as assets would cost ~470 files the
+   Workers Assets cap does not have -- and nothing is fetched until the reader
+   asks: CP System III is 5 MB of sheets, which is not a page-load cost. */
+function viewerBlock(b) {
+  const k = b.redrawn && b.redrawn.kicanvas;
+  if (!k || !(k.files || []).length) return "";
+  const mb = k.bytes ? ` · ${(k.bytes / 1e6).toFixed(1)} MB` : "";
+  return `<div class="kvbox" id="kvbox">
+      <button id="kvopen" class="kvopen">Open the interactive schematic</button>
+      <span class="meta">${k.files.length} sheet${k.files.length === 1 ? "" : "s"}${mb}, loaded
+        from GitHub — pan, zoom, and click a part or a net</span>
+    </div>`;
+}
+let viewerScript = null;
+function loadViewer() {
+  if (!viewerScript) viewerScript = new Promise((ok, fail) => {
+    const s = document.createElement("script");
+    s.type = "module";
+    s.src = "/vendor/kicanvas/kicanvas.js";
+    s.onload = ok;
+    s.onerror = () => { viewerScript = null; fail(new Error("viewer did not load")); };
+    document.head.appendChild(s);
+  });
+  return viewerScript;
+}
+async function openViewer(b) {
+  const box = document.getElementById("kvbox");
+  const k = b.redrawn.kicanvas;
+  box.innerHTML = '<div class="empty">Loading the viewer…</div>';
+  try {
+    await loadViewer();
+  } catch (e) {
+    box.innerHTML = `<div class="note warn">The interactive viewer could not be loaded.
+      The sheets are still here as a PDF below.</div>`;
+    return;
+  }
+  const embed = document.createElement("kicanvas-embed");
+  embed.setAttribute("controls", "full");
+  embed.setAttribute("controlslist", "nodownload");
+  for (const f of k.files) {
+    const src = document.createElement("kicanvas-source");
+    src.setAttribute("src", k.base + f.split("/").map(encodeURIComponent).join("/"));
+    embed.appendChild(src);
+  }
+  box.innerHTML = "";
+  box.appendChild(embed);
+}
+
 /* Say which sheet this is, and say plainly what the reader is looking at. A
    traced sheet stays sharp at any zoom; a scan does not, and pretending
    otherwise wastes the reader's time when they zoom in and find mush. */
@@ -1767,6 +1818,7 @@ async function board(slug) {
     <p class="sub">The drawing as ${esc(b.origin.project)} publishes it: ${b.redrawn.sheets.length}
        sheet${b.redrawn.sheets.length === 1 ? "" : "s"} in one PDF, each opening at its own page.
        Nothing in it has been checked against a manual or a board here.</p>
+    ${viewerBlock(b)}
     <div class="rows">${b.redrawn.sheets.map((s) => `
       <a class="row" href="${esc(b.redrawn.pdf)}#page=${s.page}" target="_blank" rel="noopener">
         <span class="nm">${esc(s.title)}</span>
@@ -1794,6 +1846,7 @@ async function board(slug) {
        a signal is followed by its label rather than by a wire. Signals the drawing leaves unnamed
        are named after the pin that drives them: <code>E4-6</code> is pin 6 of the chip at E4.
        It is a reading, not the original — when the two disagree, the scan below wins.</p>
+    ${viewerBlock(b)}
     <div class="rows">${b.redrawn.sheets.map((s) => `
       <a class="row" href="${esc(s.svg)}" target="_blank" rel="noopener">
         <span class="nm">${esc(s.title)}</span>
@@ -1854,6 +1907,9 @@ async function board(slug) {
   }).catch(() => {});
 
   /* chip lookup — "what is at C4, and what does it do?" */
+  const kvopen = document.getElementById("kvopen");
+  if (kvopen) kvopen.onclick = () => openViewer(b);
+
   const chipq = document.getElementById("chipq");
   if (chipq) {
     let idx = null, sig = null;

@@ -267,6 +267,10 @@ and a notice saying who drew it and what was added here, and everything made fro
 board view, the netlist, the chip lookup and the bill of materials — is under the same
 licence. The board page says whose drawing it is.
 
+Every board with a KiCad schematic can be opened in the page itself, through
+[KiCanvas](https://kicanvas.org): pan, zoom, step between sheets, click a chip or a net. The
+sheets come straight from this repository on GitHub, so nothing extra ships with the site.
+
 Sixteen of the CPU-less games of the Pong era — Pong itself, Breakout, Space Race, Stunt Cycle,
 Jet Fighter, Rebound and the rest — get their connectivity from [DICE](https://github.com/mittonk/dice-libretro),
 the emulator that runs them by simulating every chip. Its netlists are GPL-3.0 as well. They are
