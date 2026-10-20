@@ -27,7 +27,7 @@ const worker = (await import(join(ROOT, "src", "index.js"))).default;
 const MIME = {
   ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css",
   ".json": "application/json", ".webp": "image/webp", ".png": "image/png",
-  ".svg": "image/svg+xml", ".csv": "text/csv", ".txt": "text/plain",
+  ".svg": "image/svg+xml", ".csv": "text/csv", ".txt": "text/plain", ".pdf": "application/pdf",
   ".webmanifest": "application/manifest+json",
 };
 

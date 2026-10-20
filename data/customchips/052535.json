@@ -1,0 +1,364 @@
+{
+ "slug": "052535",
+ "role": "Konami custom 5-bit Video DAC",
+ "package": {
+  "pins": 9,
+  "symbol": "ga_konami:052535_internal"
+ },
+ "pins": [
+  {
+   "n": "1",
+   "name": "VCC",
+   "dir": "power",
+   "from": "board",
+   "drive": ""
+  },
+  {
+   "n": "2",
+   "name": "D4",
+   "dir": "in",
+   "from": "inside",
+   "drive": ""
+  },
+  {
+   "n": "3",
+   "name": "D3",
+   "dir": "in",
+   "from": "inside",
+   "drive": ""
+  },
+  {
+   "n": "4",
+   "name": "D2",
+   "dir": "in",
+   "from": "inside",
+   "drive": ""
+  },
+  {
+   "n": "5",
+   "name": "D1",
+   "dir": "in",
+   "from": "inside",
+   "drive": ""
+  },
+  {
+   "n": "6",
+   "name": "D0",
+   "dir": "in",
+   "from": "inside",
+   "drive": ""
+  },
+  {
+   "n": "7",
+   "name": "~{BLANK}",
+   "dir": "in",
+   "from": "inside",
+   "drive": "in"
+  },
+  {
+   "n": "8",
+   "name": "OUT",
+   "dir": "out",
+   "from": "board",
+   "drive": ""
+  },
+  {
+   "n": "9",
+   "name": "GND",
+   "dir": "power",
+   "from": "board",
+   "drive": ""
+  }
+ ],
+ "pinCheck": [
+  {
+   "board": "dragon-ball-z",
+   "refs": [
+    "U33",
+    "U63",
+    "U134"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "asterix-konami",
+   "refs": [
+    "U11",
+    "U12",
+    "U13"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "gradius-iii-gx945",
+   "refs": [
+    "S5",
+    "S6",
+    "S7"
+   ],
+   "same": 9,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "parodius-da",
+   "refs": [
+    "S1",
+    "S2",
+    "S3"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "premier-soccer",
+   "refs": [
+    "R12",
+    "R13",
+    "R14"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "rollergames",
+   "refs": [
+    "S2",
+    "S3",
+    "S4"
+   ],
+   "same": 9,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "surprise-attack",
+   "refs": [
+    "S1",
+    "S2",
+    "S3"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "final-round-gx870",
+   "refs": [
+    "S1",
+    "S2",
+    "S3"
+   ],
+   "same": 3,
+   "overbar": [],
+   "unnamed": 6,
+   "differ": [],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "simpsons-konami",
+   "refs": [
+    "BB8",
+    "BG8",
+    "BR8"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  },
+  {
+   "board": "x-men-pwb353018a",
+   "refs": [
+    "BB9",
+    "BG9",
+    "BR9"
+   ],
+   "same": 6,
+   "overbar": [],
+   "unnamed": 0,
+   "differ": [
+    [
+     "7",
+     "~{BLANK}",
+     "BK"
+    ],
+    [
+     "8",
+     "OUT",
+     "AO"
+    ],
+    [
+     "9",
+     "GND",
+     "VSS"
+    ]
+   ],
+   "missing": [],
+   "extra": []
+  }
+ ],
+ "inside": {
+  "parts": 14,
+  "libraries": {
+   "Device": 13,
+   "Transistor_BJT": 1
+  },
+  "nets": 10,
+  "named": 9,
+  "sheets": [
+   {
+    "title": "Top sheet",
+    "page": 1
+   }
+  ]
+ },
+ "notes": [
+  {
+   "kind": "silicon",
+   "text": "The schematics were created from a image by Caius on\njammaarcade.net. The resistor values were discovered\nby simulating the circuit and doing measurements on a\nreal IC. The resistor values are not totally certain\nbut should be close enough."
+  }
+ ],
+ "readFrom": "an image by Caius on jammaarcade.net",
+ "pdf": "/chips/052535.pdf",
+ "license": "GPL-3.0",
+ "origin": {
+  "project": "jtcores",
+  "url": "https://github.com/jotego/jtcores/tree/e7b11263b04978790d4a3b9dd7e188b2dc976e4b/cores/grad3/sch/052535",
+  "commit": "e7b11263b04978790d4a3b9dd7e188b2dc976e4b",
+  "path": "cores/grad3/sch/052535",
+  "authors": [
+   "Ulf Skutnabba"
+  ],
+  "license": "GPL-3.0",
+  "licenseUrl": "https://github.com/stoatworks-labs/cathode-ray-tomes/blob/main/kicad/chips/052535/LICENSE",
+  "source": "https://github.com/stoatworks-labs/cathode-ray-tomes/tree/main/kicad/chips/052535",
+  "imported": "2026-10-20"
+ }
+}

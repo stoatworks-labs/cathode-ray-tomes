@@ -39,7 +39,13 @@
 # line 38: #define HLE_NOISE_CONVERT 1 -> 0 (high-level stand-in for a real circuit)
 # line 39: #define ENABLE_FRONTIERS 1 -> 0 (solver partitioning only)
 # line 1249: NET_C(GND, U2.8, U2.10, U22.2, U22.3, U22.5, U22.6, U24.3, U27.8, U27.9, U27.10, U27.11) -> nc -- tied to GND in MAME's "Unconnected inputs" block
-# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7), CLOCK(Y1)
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   U44: the sheet's part is CA3080A, MAME's CA3080 -- sheet 2 and the parts list (item 22, 'IC (Special)', qty 2): the fire network's two CA3080s are the A grade
+#   U46: the sheet's part is CA3080A, MAME's CA3080 -- sheet 2 and the parts list (item 22, 'IC (Special)', qty 2): the fire network's two CA3080s are the A grade
+#   parts the sheet draws that MAME does not have: Y1 20MHz
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7)
+# lines 317-319: MAME's CLOCK(Y1) and its supply ties are dropped; Y1 is the crystal the sheet draws
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
 #   line 124: RES(R55, xx)           -- deleted
@@ -79,9 +85,37 @@
 #   line 522: TTL_7815_DIP(U52)       // +15V Regulator -- part of voltage converter (not emulated)
 #   line 523: TTL_7915_DIP(U53)       // -15V Regulator -- part of voltage converter (not emulated)
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the audio board schematic 72-11366 "Solar Quest Audio" rev B, sheets 1-3
+# (doc 289dbfe65fee pp97-99, native 300 dpi), with the rev A printing (pp90-92) for faint
+# values, and the audio parts list (pp65-67), 2026-10-20: all 50 ICs' types; the inputs from
+# J2 (OUTPUT 0, 1, 4 and 7 on J2-11, -12, -15 and -16, as the CPU board's J4 table on p80
+# gives them) through the 7414s U1/U2 into the shift registers U3/U4 and the latches U5, U6
+# and U7; the music divider U8-U10 with its latch gating U19-U23; the clock chain (U24, U25,
+# the divide-by-eleven U26/U15, U27); the nuke generator (U13, U14, the divide-by-191
+# U11/U12, U15-U18); the noise register U28-U31 with U18, U24 and U32; every channel --
+# loud and soft explosion, thrust, capture (Q11-Q13, U42 566, U21), photon (U35, Q7-Q10,
+# U36-U41), fire (Q14/Q15, U43-U47) and the three music envelopes (Q16-Q21) into U48 -- and
+# the CS follower U49 and summing amplifier U50 all agree with MAME pin for pin and value for
+# value (R1-R164, C1-C31), transistor and diode orientation included. The parts list agrees
+# with every IC, resistor, capacitor, diode and transistor quantity, except R155 in the final
+# amplifier. Corrected from the sheet, none of it in a sound path: Y1 is a 20 MHz crystal, not
+# an ideal clock, and U44 and U46 are CA3080As (the parts list's 'special' grade, same
+# pinout), not plain CA3080s. The two printings differ only in labels.
+#
+# Open questions, as printed and not settled:
+# * The theory text's sound check table (p33) puts Capture on U7 pin 9 and Fire on pin 12;
+#   both printings of the sheet, and MAME, have FIRE- on 9 and CAPTURE- on 12. This file
+#   follows the sheet.
+# * R155 in the final amplifier is printed 150K; the parts list has no 150K and two 150-ohm
+#   resistors. Not in this file.
+#
+# Drafting slips where MAME follows the part, not the label: U10's pins 9 and 7 are labelled
+# ENP and LOAD inside the box (the signals on them, MLOAD- and MEN+, are right); rev B's sheet
+# 2 prints U18 as "-S86" (LS86 on rev A, on sheet 1 and in the parts list). MAME grounds U2
+# pins 8 and 10, which are 7414 outputs, and leaves the inputs 9 and 11 open -- the sheet's
+# note 6 says all four are unused, and this file has all four nc. Not in this file: the final
+# amplifier (U51, Q22, Q23, R152-R160, C32-C36, D9, D10), the regulators U52/U53 with D1-D4
+# and C37-C43, and the unnumbered decoupling capacitors.
 
 # part U1 7414
 # part U2 7414
@@ -126,9 +160,9 @@
 # part U41 CA3080
 # part U42 LM566
 # part U43 TL081
-# part U44 CA3080
+# part U44 CA3080A
 # part U45 TL081
-# part U46 CA3080
+# part U46 CA3080A
 # part U47 TL081
 # part U48 CA3080
 # part U49 TL081
@@ -341,6 +375,7 @@ value Q18 2N3906
 value Q19 2N3906
 value Q20 2N3906
 value Q21 2N3906
+value Y1 20MHz
 
 # ---------------------------------------------------------------------------
 # Supplies
@@ -455,8 +490,8 @@ wire U14.11 U2.12
 # Page 2, top-left (clock)
 # ---------------------------------------------------------------------------
 wire C4.1 R9.1 U24.5
-port Y1: R9.2 U24.6  # in MAME: CLOCK(Y1)
-port Y1: R10.1 U24.1  # in MAME: CLOCK(Y1)
+wire R9.2 U24.6 Y1.1
+wire R10.1 U24.1 Y1.2
 wire C4.2 R10.2 U24.13 U24.2
 wire U24.12 U25.1
 label HIC_P: R3.2 U15.4 U25.10 U25.11 U25.12 U25.2 U25.3 U25.4 U26.1 U26.10 U26.3 U26.5 U26.7 U27.1 U27.13 U27.4
@@ -633,7 +668,7 @@ wire C17.1 Q10.C R81.1
 wire R81.2 U41.5
 wire C31.1 U49.2 U49.6
 wire C31.2 R150.1
-port OUTPUT: R151.2 U50.6  # to the final amplifier, which MAME does not simulate
+port OUTPUT: R151.2 U50.6  # U50's output, to J1-8 and the coin-door volume pot R152, whose wiper returns on J1-3 to the final amplifier U51, which MAME does not simulate
 
 # ---------------------------------------------------------------------------
 # Pins with nothing attached

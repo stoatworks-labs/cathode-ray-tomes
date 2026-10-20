@@ -868,8 +868,10 @@ def convert(slug, cfg):
 
     # A pin MAME ties off as unused while its own netlist (or a correction)
     # connects it: the tie is the mistake, so drop it rather than call the
-    # pin unconnected.
+    # pin unconnected. A correction naming a lone pin (a port to circuitry
+    # MAME leaves out) counts as connecting it.
     joined = {t for m in groups.values() if len(m) > 1 for t in m}
+    joined |= {resolve(t, sheet=True) for a in cfg.get("add", []) for t in a["terms"]}
     used_ties = []
     for i, (c, pins, why) in enumerate(made_nc):
         keep = [p for p in pins if p not in joined]
@@ -1237,7 +1239,7 @@ def write(res, out_path, board_path):
         for name, d in by_des:
             if d.kind == kind and name not in r["parked"]:
                 extra = [f"MAME: {name}"] if des[name] != name else []
-                if VALUE_NOTE.search(d.comment or ""):
+                if d.macro != "sheet" and VALUE_NOTE.search(d.comment or ""):
                     # What MAME says about a value travels with it (Tank Battalion's R46:
                     # "Possible schematic or scan-quality error: Schematic says 47K").
                     extra.append(f"MAME's comment: {d.comment.strip()!r}")

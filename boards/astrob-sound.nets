@@ -57,17 +57,28 @@
 # line 270: R93 written as 330K, without the FRND18 MAME multiplies it by
 # line 271: R94 written as 10K, without the FRND19 MAME multiplies it by
 # line 272: R95 written as 68K, without the FRND20 MAME multiplies it by
-# line 867: NET_C(R18.1, R18.2, C3.1, C3.2, U9.1, U9.2, U9.5, U9.6, GND) -> nc -- parked on a rail with C3, R18 -- MAME replaces this circuit with a stand-in
-# line 889: NET_C(R46.1, R46.2, C20.1, C20.2, U9.8, U9.9, GND) -> nc -- parked on a rail with C20, R46 -- MAME replaces this circuit with a stand-in
-# line 1102: NET_C(R22.1, R22.2, C5.1, C5.2, U11.8, U11.9, U11.12, U11.13, GND) -> nc -- parked on a rail with C5, R22 -- MAME replaces this circuit with a stand-in
-# line 1158: NET_C(R80.1, R80.2, C35.1, C35.2, U10.8, U10.9, U10.12, U10.13, GND) -> nc -- parked on a rail with C35, R80 -- MAME replaces this circuit with a stand-in
-# line 1197: NET_C(GND, U7.5, U7.6, U7.12, U7.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 1197: dropped NET_C(GND, U7.5, U7.6, U7.12, U7.13) -- took U7.5, U7.6, U7.13 out of it: the sheet grounds U7 pin 12 only; pin 13 is the summing node and pins 5 and 6 the mute comparator's inputs, in the output stage MAME does not simulate
 # line 1198: NET_C(GND, U26.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 1199: NET_C(GND, U29.1, U29.3, U29.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 1200: NET_C(GND, U30.1, U30.11) -> nc -- tied to GND in MAME's "Unconnected inputs" block
-# Parked by MAME, both ends on a rail, because a stand-in replaces their circuit; on
-# the board, not in this file: C3 0.1uF, C5 0.1uF, C20 0.1uF, C35 0.1uF, R18 2.7M, R22 470K, R46 470K, R80 1M
-# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_LO_D0), TTL_INPUT(I_LO_D1), TTL_INPUT(I_LO_D2), TTL_INPUT(I_LO_D3), TTL_INPUT(I_LO_D4), TTL_INPUT(I_LO_D5), TTL_INPUT(I_LO_D6), TTL_INPUT(I_LO_D7), TTL_INPUT(I_HI_D0), TTL_INPUT(I_HI_D1), TTL_INPUT(I_HI_D2), TTL_INPUT(I_HI_D3), TTL_INPUT(I_HI_D4), TTL_INPUT(I_HI_D5), TTL_INPUT(I_HI_D6), TTL_INPUT(I_HI_D7), CLOCK(OSC1), CLOCK(OSC2), AFUNC(MUTEFUNC), CLOCK(OSC3), CLOCK(OSC4)
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   sheet 7: OSC1, a CD4011 RC oscillator: U9.5 U9.6 R18.2 C3.1; U9.4 U9.1 U9.2 R18.1; U9.3 C3.2 U3.14
+#   sheet 7: OSC2, a CD4011 RC oscillator: U9.10 U9.12 U9.13 R46.1 U4.4; R46.2 U9.8 U9.9 C20.2; U9.11 C20.1
+#   sheet 8: OSC3, a CD4011 RC oscillator: U11.12 U11.13 R22.2 C5.1; U11.11 U11.8 U11.9 R22.1; U11.10 C5.2 U12.2
+#   sheet 8: OSC4, a CD4011 RC oscillator: U10.8 U10.9 R80.2 C35.1; U10.10 U10.12 U10.13 R80.1; U10.11 C35.2 R79.1
+#   sheet 7: the summing bus goes straight to U7 pin 13: U7.13 C55.2 (OUTPUT)
+#   sheet 7: U7 pin 14, the summing amplifier's output: U7.14 (U7_OUT)
+#   sheet 7: U7 pin 5, the mute comparator's reference: U7.5 (MUTE_REF)
+#   sheet 7: U7 pin 6, the mute comparator's input: U7.6 (MUTE_IN)
+#   sheet 7: U7 pin 7, the mute comparator's output: U7.7 (MUTE_GATE)
+# Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_LO_D0), TTL_INPUT(I_LO_D1), TTL_INPUT(I_LO_D2), TTL_INPUT(I_LO_D3), TTL_INPUT(I_LO_D4), TTL_INPUT(I_LO_D5), TTL_INPUT(I_LO_D6), TTL_INPUT(I_LO_D7), TTL_INPUT(I_HI_D0), TTL_INPUT(I_HI_D1), TTL_INPUT(I_HI_D2), TTL_INPUT(I_HI_D3), TTL_INPUT(I_HI_D4), TTL_INPUT(I_HI_D5), TTL_INPUT(I_HI_D6), TTL_INPUT(I_HI_D7)
+# lines 863-1158: MAME's four ideal clocks (OSC1-OSC4), the oscillator parts it parks on GND
+# in their place and their supply ties are dropped; the CD4011 oscillators are put back from
+# the sheets ("Corrected from the sheet", above).
+# lines 1048-1051: MAME's mute is a function (AFUNC) on the summing node; on the sheet it is
+# the comparator U7B driving the 2N4093 switch Q4 on the output, which MAME does not
+# simulate. The function is dropped, and U7's output-stage pins are ports.
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
 #   line 196: RES(R19, RES_K(1))
@@ -108,14 +119,41 @@
 # Undone beyond the switches: twenty resistors in the sonar circuit that MAME multiplies by
 # 1.001-1.049 (its comment: the circuit 'relies on subtle part differences') are written
 # at their nominal value; and ENABLE_SONAR_ALT, which adds four 1M
-# resistors to a 0.1V source to start the oscillators, is off. The four slow oscillators
-# MAME runs as ideal clocks (OSC1-OSC4) are ports, and the timing parts it parks on a rail
-# in their place are listed above. The mute is an AFUNC in MAME, so the output is a port
-# fed from it.
+# resistors to a 0.1V source to start the oscillators, is off.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the sound board sheets, Astro Blaster Sound 800-3122 rev B sheets 7 and 8 of
+# 8 (doc 7c9390526e01 pp57-58, the 300 dpi scan read at up to 5x), and with its parts list
+# (pp33, 35-36), 2026-10-20. Every resistor and capacitor value in MAME's file (R1-R186,
+# C1-C82) and every IC, diode and transistor type agrees with the parts list, quantities
+# included; the sonar resistors MAME scales are the list's nominal values. The sheets agree
+# with MAME net for net and pin for pin, diode and transistor orientation included, in the
+# latch outputs and their 7406/7407 buffers (U26, U29-U31); the four sonar oscillators (U1,
+# U2) and their trigger (U11, D2, Q1-Q3, U7A); both lasers (U25, U24/U19, U20/U14, the
+# real VCO branch); refill (U3, U4, U5, Q7) and attack, rate reset and warp (U21, U15,
+# D14-D23, U16B); explosions (U27, U21, U8, Q6, U16A/C) and astroids (U16D, Q5, U7C); the
+# four invaders (U22, U23/U18/Q8, U13/U12, U17, U37/U28/U38) and bonus (U10, U6); and the
+# summing bus (R98-R103, R118-R122, C55).
+#
+# Corrected from the sheets: the four oscillators MAME runs as ideal clocks are CD4011 RC
+# oscillators (U9 with R18/C3 and R46/C20, U11 with R22/C5, U10 with R80/C35), on exactly
+# the gates MAME parks, and they are put back. MAME's "unconnected" U7 pins are the output
+# stage: pin 12 is grounded, pin 13 is the summing node (now joined to it), and pins 5-7
+# are the mute comparator, which with Q4 is what MAME's mute function stands in for.
+#
+# Open questions, as printed and not settled:
+# * The sonar trigger's 1K (MAME's R117) is printed "R119 1K". The same sheet prints R119
+#   470K in the mixer and an R117 1K in the mute circuit, and the parts list's 1K entry
+#   carries an R19 that neither sheet prints, so it is probably R19. This file keeps MAME's
+#   R117, which names a different resistor on the board.
+# * Q5 and Q6 (2N4093): the sheet labels S on the signal node and D on ground. MAME swaps
+#   them on purpose ("D and S swapped on schematics???"). This file follows MAME.
+# * The attack capacitor is printed "C69 .05uf", a second C69 beside the explosion's 4.7uF
+#   C69. MAME's C67 is what the parts list's counts allow.
+#
+# Sheet misprints, MAME right: U2's first output is printed "4", and U38's supply pin "5".
+# Not in this file: the rest of the output stage (U7D's feedback, C58, Q4, D13, R115-R117,
+# R123, R124, R135, R141-R144, C48, P1), the port decoder and latches U32-U36, and the
+# power decoupling.
 
 # part U1 TL084
 # part U2 TL084
@@ -168,8 +206,10 @@ value R14 47K
 value R15 220K
 value R16 10K
 value R17 10K
+value R18 2.7M
 value R20 1M
 value R21 100K
+value R22 470K
 value R23 100K
 value R24 2.2M
 value R25 10K
@@ -193,6 +233,7 @@ value R42 100K
 value R43 470K
 value R44 1M
 value R45 100K
+value R46 470K
 value R47 10K
 value R48 82K
 value R49 39K
@@ -226,6 +267,7 @@ value R76 22K
 value R77 330K
 value R78 1K
 value R79 150K
+value R80 1M
 value R81 10K
 value R82 100K
 value R83 1K
@@ -325,7 +367,9 @@ value R185 1M
 value R186 1K
 value C1 0.01uF
 value C2 0.01uF
+value C3 0.1uF
 value C4 0.05uF
+value C5 0.1uF
 value C6 10uF
 value C7 0.1uF
 value C8 0.1uF
@@ -336,6 +380,7 @@ value C16 0.01uF
 value C17 0.01uF
 value C18 0.022uF
 value C19 0.05uF
+value C20 0.1uF
 value C21 0.33uF
 value C22 0.33uF
 value C23 0.01uF
@@ -348,6 +393,7 @@ value C31 0.0047uF
 value C32 0.05uF
 value C33 10uF
 value C34 10uF
+value C35 0.1uF
 value C36 0.0022uF
 value C37 0.1uF
 value C38 0.1uF
@@ -427,10 +473,31 @@ value Q10 2N4403
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C15.2 C18.1 C23.1 C26.1 C27.2 C28.1 C31.1 C32.1 C33.2 C36.1 C37.1 C38.1 C39.1 C53.1 C56.2 C57.1 C59.1 C6.2 C62.2 C65.1 C68.1 C69.2 C7.1 C71.1 C77.1 C80.2 D25.2 D26.2 D27.2 Q10.C Q2.B Q5.S Q6.S Q7.C Q9.C R110.1 R114.2 R151.1 R163.1 R165.1 R182.1 R2.1 R27.1 R37.1 R56.1 R63.1 R92.1 U1.10 U1.12 U1.3 U1.5 U10.7 U11.7 U12.7 U13.1 U14.7 U15.13 U15.8 U17.1 U18.1 U19.7 U2.10 U2.12 U2.3 U2.5 U20.1 U21.7 U22.10 U22.12 U22.3 U22.5 U23.1 U24.1 U25.7 U26.7 U27.7 U28.7 U29.7 U3.13 U3.8 U30.7 U31.7 U37.1 U38.1 U4.1 U5.1 U6.1 U8.1 U9.7
+net GND: C15.2 C18.1 C23.1 C26.1 C27.2 C28.1 C31.1 C32.1 C33.2 C36.1 C37.1 C38.1 C39.1 C53.1 C56.2 C57.1 C59.1 C6.2 C62.2 C65.1 C68.1 C69.2 C7.1 C71.1 C77.1 C80.2 D25.2 D26.2 D27.2 Q10.C Q2.B Q5.S Q6.S Q7.C Q9.C R110.1 R114.2 R151.1 R163.1 R165.1 R182.1 R2.1 R27.1 R37.1 R56.1 R63.1 R92.1 U1.10 U1.12 U1.3 U1.5 U10.7 U11.7 U12.7 U13.1 U14.7 U15.13 U15.8 U17.1 U18.1 U19.7 U2.10 U2.12 U2.3 U2.5 U20.1 U21.7 U22.10 U22.12 U22.3 U22.5 U23.1 U24.1 U25.7 U26.7 U27.7 U28.7 U29.7 U3.13 U3.8 U30.7 U31.7 U37.1 U38.1 U4.1 U5.1 U6.1 U7.12 U8.1 U9.7
 net +12V: C15.1 C27.1 C33.1 C34.1 C47.1 C56.1 C6.1 C62.1 R106.2 R108.1 R109.1 R134.2 R138.2 R139.2 R145.2 R146.2 R147.2 R148.2 R149.2 R162.2 R166.2 R169.2 R17.2 R170.2 R171.2 R185.2 R20.2 R21.2 R23.2 R41.2 R44.2 R45.2 R51.2 R59.2 R60.2 R67.2 R70.2 R73.2 R74.2 R77.2 R81.2 R83.2 R84.2 R85.2 R88.2 R89.2 R96.2 R97.2 U1.4 U10.14 U11.14 U12.14 U13.8 U14.14 U15.16 U16.4 U17.8 U18.8 U19.14 U2.4 U20.8 U21.14 U22.4 U23.8 U24.8 U25.14 U27.14 U28.14 U3.16 U37.4 U37.8 U38.8 U4.8 U5.8 U6.4 U6.8 U7.4 U8.4 U9.14
 net +5V: U26.14 U29.14 U30.14 U31.14
 net -12V: R111.1 R112.1 U1.11 U16.11 U2.11 U22.11 U7.11 U8.2
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port MUTE_GATE: U7.7  # U7 pin 7 through D13 to Q4's gate
+port MUTE_IN: U7.6  # MUTE (U32 pin 5) through R123 1K, with R124 100K to GND
+port MUTE_REF: U7.5  # the R115/R116/R117 divider on U7 pin 5
+port U7_OUT: U7.14  # U7 pin 14, through C58 and the 2N4093 mute switch Q4 to P1-1 (AUDIO OUTPUT); R144 back to pin 13, R143 from P1-3 (EXT INPUT)
+port OUTPUT: C55.2 R102.2 R103.2 R118.2 R119.2 R120.2 R121.2 R122.2 U7.13  # the summing bus, into U7 pin 13, the inverting input of the summing amplifier U7D (R144 22K from pin 14), which MAME does not simulate
+wire C35.2 R79.1 U10.11
+wire R80.1 U10.10 U10.12 U10.13
+wire C35.1 R80.2 U10.8 U10.9
+wire C5.2 U11.10 U12.2
+wire R22.1 U11.11 U11.8 U11.9
+wire C5.1 R22.2 U11.12 U11.13
+wire C20.1 U5.4 U9.11
+wire C20.2 R46.2 U9.8 U9.9
+wire R46.1 U4.4 U9.10 U9.12 U9.13
+wire C3.2 U3.14 U9.3
+wire R18.1 U9.1 U9.2 U9.4
+wire C3.1 R18.2 U9.5 U9.6
 
 # ---------------------------------------------------------------------------
 # 12V used in this circuit.
@@ -531,7 +598,6 @@ wire C51.1 R125.2 R126.2 R127.2 R128.2 R129.2
 # Sheet 7, middle-top (REFILL)
 # ---------------------------------------------------------------------------
 label I_REFILL: R59.1 U29.10 U3.15
-port OSC1: U3.14  # in MAME: CLOCK(OSC1)
 wire R8.1 U3.3
 wire R7.1 U3.2
 wire R9.1 U3.4
@@ -544,8 +610,6 @@ wire R15.1 U3.9
 wire R13.1 U3.11
 wire R10.2 R11.2 R12.2 R13.2 R14.2 R15.2 R16.2 R17.1 R6.2 R7.2 R8.2 R9.2
 wire Q7.B R16.1
-port OSC2: U4.4 U9.12 U9.13  # in MAME: CLOCK(OSC2)
-wire U5.4 U9.11
 wire R67.1 R68.2 U5.7
 wire C26.2 R68.1 U5.2 U5.6
 wire Q7.E U4.5 U5.5
@@ -640,7 +704,6 @@ label EXPLOSIONS: C61.2 R122.1
 label REFILL: C49.2 R119.1
 label LASER_1: C52.2 R102.1
 label LASER_2: C51.2 R103.1
-port MUTEFUNC: C55.2 R102.2 R103.2 R118.2 R119.2 R120.2 R121.2 R122.2  # in MAME: AFUNC(MUTEFUNC)
 
 # ---------------------------------------------------------------------------
 # Sheet 8, middle-top (INVADER_1)
@@ -671,7 +734,6 @@ wire C36.2 R82.1 U13.2 U13.6
 wire R71.2 U13.5
 label I_INVADER_2: R70.1 U13.4 U31.4
 wire U12.1 U13.3
-port OSC3: U12.2  # in MAME: CLOCK(OSC3)
 wire R48.1 U12.12
 wire R49.1 U12.11
 wire R50.1 U12.9
@@ -705,7 +767,6 @@ wire U10.1 U10.2 U10.4
 wire C19.2 D7.1 U10.3
 wire D7.2 R78.1
 wire C34.2 R76.1 R77.1 R78.2
-port OSC4: R79.1  # in MAME: CLOCK(OSC4)
 wire R74.1 R75.2 R79.2 U6.7
 wire C31.2 R75.1 U6.2 U6.6
 wire C32.2 U6.5
@@ -732,11 +793,6 @@ label INVADER_3: R100.1 U17.3
 # ---------------------------------------------------------------------------
 # Pins with nothing attached
 # ---------------------------------------------------------------------------
-nc U9.1 U9.2 U9.5 U9.6  # line 867: parked on a rail with C3, R18 -- MAME replaces this circuit with a stand-in
-nc U9.8 U9.9  # line 889: parked on a rail with C20, R46 -- MAME replaces this circuit with a stand-in
-nc U11.8 U11.9 U11.12 U11.13  # line 1102: parked on a rail with C5, R22 -- MAME replaces this circuit with a stand-in
-nc U10.8 U10.9 U10.12 U10.13  # line 1158: parked on a rail with C35, R80 -- MAME replaces this circuit with a stand-in
-nc U7.5 U7.6 U7.12 U7.13  # line 1197: tied to GND in MAME's "Unconnected inputs" block
 nc U26.13  # line 1198: tied to GND in MAME's "Unconnected inputs" block
 nc U29.1 U29.3 U29.13  # line 1199: tied to GND in MAME's "Unconnected inputs" block
 nc U30.1 U30.11  # line 1200: tied to GND in MAME's "Unconnected inputs" block
@@ -744,11 +800,7 @@ nc U30.1 U30.11  # line 1200: tied to GND in MAME's "Unconnected inputs" block
 # inputs left open or tied in a way MAME did not draw; they are written here so that
 # the checker's coverage test still means something for every other pin.
 nc U3.12  # Cout
-nc U7.7 U7.14  # output output
 nc U8.5 U8.6 U8.7 U8.8  # NC NC NC NC
-nc U9.3 U9.4 U9.10  # output output output
-nc U10.10 U10.11  # output output
-nc U11.10 U11.11  # output output
 nc U12.3 U12.4 U12.5  # Q6 Q5 Q4
 nc U14.3 U14.5  # Q6 Q4
 nc U15.12  # Cout

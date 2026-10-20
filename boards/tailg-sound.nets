@@ -40,9 +40,16 @@
 # line 32: #define HLE_LASER_VCO 1 -> 0 (high-level stand-in for a real circuit)
 # line 33: #define REMOVE_LS123_DIODES 1 -> 0 (parts removed for speed)
 # line 34: #define ADD_LS125_PULLUPS 1 -> 0 (pull-ups the board does not have)
-# line 676: NET_C(GND, IC19.2, IC19.3) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 670: dropped NET_C(R70.2, GND) -- the sheet takes R70 on to IC19 pin 2, the final amplifier's summing junction (C34, R74 and the pot R75 as feedback); MAME grounds it instead
+# line 676: dropped NET_C(GND, IC19.2, IC19.3) -- took IC19.2 out of it: the sheet grounds IC19 pin 3 only; pin 2 is the final amplifier's summing junction
 # line 677: NET_C(GND, IC5.9, IC5.11, IC5.13, IC6.9, IC6.11, IC6.13) -> nc -- tied to GND in MAME's "Unconnected inputs" block
+# line 695: MAME hints U23.11 as unconnected, but its own netlist connects it -- the hint is dropped
 # Declarations MAME comments out but the restored circuit uses, restored: Q1 (line 208), Q2 (line 209)
+#
+# Corrected from the sheet (the notes below say what was read where):
+#   p55: R70 into IC19 pin 2: R70.2 U19.2
+#   p55: IC19 pin 6 drives the output stage: U19.6 (FINAL_AMP)
+#   p55: IC23 pin 11 (Q6) leaves the board at J3-9, 'TO START BUTTON LIGHT': U23.11 (START_LIGHT)
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4)
 #
 # Left out by MAME (commented out at TAG, so not in this file either):
@@ -70,9 +77,37 @@
 # 74LS125 outputs are gone. The hyperspace VCO's real circuit uses Q1, which MAME declares
 # only in a comment ('not used' -- by the stand-in); the declaration is restored.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with sheet 1 of the audio board, Schematic Audio Board - Tailgunner SD205202 (doc
+# 22a6fb78dd5a p55, 600 dpi), and the parts list PL205202 (pp41-43), 2026-10-20: the trigger
+# port IC23 with its J4 inputs (O0-O4 on J4-11 to J4-15) and its six used outputs; the noise
+# generator (D1, IC1-IC3, but see below); the explosion (IC9, IC10, IC12, Q3), rumble (IC6,
+# Q4) and shield (IC4, Q5, IC13, the 555s IC16 and IC17 with their RC ladders); the shield
+# bounce (IC14, IC15, IC18, IC12, Q8, IC22); the hyperspace and laser VCOs (IC7/Q1,
+# IC11/Q2) with the 74LS393 IC8 and its taps R17-R20 and R35-R38; and the summing line into
+# R70 all agree with MAME pin for pin and value for value, diode and transistor orientation
+# included, and every value MAME has (R1-R70, R76-R84, C1-C33, C41-C44) agrees with the parts
+# list. The three MAME changes this file undoes are what the sheet draws: D8 and D9 on the
+# 74LS123's pins 15 and 7, no pull-ups on the 74LS125 outputs (pins 3 and 6), and the
+# hyperspace VCO built from IC7 and Q1 into IC5 pin 1. Corrected from the sheet: IC23 pin 11
+# (Q6), which MAME leaves unconnected, goes to J3-9 "TO START BUTTON LIGHT"; and R70 goes
+# into IC19 pin 2, the final amplifier's inverting input, rather than to ground, with IC19
+# pin 3 grounded (MAME lines 670 and 676).
+#
+# Open question, as printed and not settled:
+# * The sheet draws the noise amplifier IC1 with C3/R2 on pin 2 (-) and R4/C4 on pin 3 (+),
+#   and MAME copies it (its lines 325 and 328, in the branch it never runs). As drawn R4 is
+#   positive feedback and the op-amp would latch; the manual's own text (p24) gives IC1 a
+#   gain of 1000, which is 1 + R4/R3 only with R4 on the inverting input; and Sundance's
+#   sheet SD203200, the same circuit by the same drafter, draws C3 into pin 3 and the
+#   feedback into pin 2. This file follows the sheet. Not checked against a board.
+#
+# Slips in the parts list that change nothing here: item 32 gives R22 as 22K (R22 is 1K on
+# the sheet and in item 24; the 22K is the final amplifier's R72), and items 14 and 18 garble
+# C45-C49. The theory text says Q5 for the rumble transistor (the sheet: Q4) and Q1 for the
+# laser squarer (Q2). IC1's printed type is unreadable on this scan; the parts list gives
+# TL081. Not in this file: sheet 2 (p65, the joystick circuitry on the same board, IC24-IC28),
+# and the final amplifier and regulators (R71-R75, C34-C40, Q6, Q7, IC20, IC21), whose values
+# agree with MAME's commented-out lines.
 
 # part U1 TL081
 # part U2 TL081
@@ -231,10 +266,17 @@ value Q8 2N3906
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C1.1 C13.1 C14.1 C17.1 C18.1 C19.1 C2.1 C20.1 C22.1 C23.1 C24.2 C26.2 C28.2 C29.2 C30.1 C31.1 C5.2 C6.2 C7.1 C9.1 D5.2 D7.2 U12.8 U14.1 U15.1 U16.1 U17.1 U18.12 U18.2 U18.7 U2.3 U23.8 U3.3 U4.2 U4.5 U4.7 U5.7 U6.7 U8.7 U9.3 Q1.E Q2.E R1.1 R15.1 R22.1 R27.1 R28.1 R3.1 R33.1 R41.1 R42.1 R46.1 R48.1 R49.1 R70.2 R77.1 R78.1 R79.1 R82.1
+net GND: C1.1 C13.1 C14.1 C17.1 C18.1 C19.1 C2.1 C20.1 C22.1 C23.1 C24.2 C26.2 C28.2 C29.2 C30.1 C31.1 C5.2 C6.2 C7.1 C9.1 D5.2 D7.2 U12.8 U14.1 U15.1 U16.1 U17.1 U18.12 U18.2 U18.7 U19.3 U2.3 U23.8 U3.3 U4.2 U4.5 U4.7 U5.7 U6.7 U8.7 U9.3 Q1.E Q2.E R1.1 R15.1 R22.1 R27.1 R28.1 R3.1 R33.1 R41.1 R42.1 R46.1 R48.1 R49.1 R77.1 R78.1 R79.1 R82.1
 net +15V: C5.1 U10.7 U11.7 U13.7 U16.4 U16.8 U17.4 U17.8 U19.7 U2.7 U22.7 U3.7 U7.7 U9.7 R5.2 R54.2 R61.1
 net +5V: U12.10 U12.11 U12.16 U12.2 U12.3 U14.4 U14.8 U15.4 U15.8 U18.14 U23.15 U23.16 U4.14 U5.14 U6.14 U8.14 R10.2 R16.2 R34.2 R39.2 R40.2 R45.1 R50.2 R52.2 R80.2 R81.1
 net -15V: C16.2 C44.2 U1.4 U10.4 U11.4 U13.4 U19.4 U2.4 U22.4 U3.4 U7.4 U9.4
+
+# ---------------------------------------------------------------------------
+# Parts
+# ---------------------------------------------------------------------------
+port START_LIGHT: U23.11  # J3-9, to the start button lamp (latch bit Q6)
+port FINAL_AMP: U19.6  # IC19 pin 6 into the output stage (R71-R73, Q6, Q7), which MAME does not simulate
+wire U19.2 R70.2
 
 # ---------------------------------------------------------------------------
 # Main netlist
@@ -265,7 +307,7 @@ wire C11.2 U9.6 R25.2 R26.1
 wire C12.1 R26.2
 wire C12.2 U10.2 R27.2
 wire U10.3 R28.2
-port OUTPUT: C8.2 U10.6 U13.6 U22.6 R70.1  # to the final amplifier, which MAME does not simulate
+port OUTPUT: C8.2 U10.6 U13.6 U22.6 R70.1  # the summing line, on to R70 and the final amplifier IC19
 parallel U10.6 U13.6 U22.6  # transconductance outputs: currents, summed here
 
 # ---------------------------------------------------------------------------
@@ -391,7 +433,6 @@ wire U22.5 R84.2
 # ---------------------------------------------------------------------------
 # Pins with nothing attached
 # ---------------------------------------------------------------------------
-nc U19.2 U19.3  # line 676: tied to GND in MAME's "Unconnected inputs" block
 nc U5.9 U5.11 U5.13 U6.9 U6.11 U6.13  # line 677: tied to GND in MAME's "Unconnected inputs" block
 nc U5.8  # line 683: MAME's own HINT(NC)
 nc U5.10  # line 684: MAME's own HINT(NC)
@@ -405,7 +446,6 @@ nc U18.3  # line 691: MAME's own HINT(NC)
 nc U18.5  # line 692: MAME's own HINT(NC)
 nc U18.9  # line 693: MAME's own HINT(NC)
 nc U18.10  # line 694: MAME's own HINT(NC)
-nc U23.11  # line 695: MAME's own HINT(NC)
 nc U23.12  # line 696: MAME's own HINT(NC)
 # Pins the MAME netlist never mentions. On a real board these are unused outputs, or
 # inputs left open or tied in a way MAME did not draw; they are written here so that
@@ -418,5 +458,5 @@ nc U9.1 U9.5 U9.8  # NULL NULL NC
 nc U10.1 U10.8  # NC NC
 nc U11.1 U11.5 U11.8  # NULL NULL NC
 nc U13.1 U13.8  # NC NC
-nc U19.1 U19.5 U19.6 U19.8  # NULL NULL output NC
+nc U19.1 U19.5 U19.8  # NULL NULL NC
 nc U22.1 U22.8  # NC NC

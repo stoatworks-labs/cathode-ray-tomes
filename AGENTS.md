@@ -886,9 +886,41 @@ are worth keeping in mind for any further work on Tank:
 
 **Compared with the sheet beyond Tank:** Barrier (the whole board -- every net and value
 MAME has agrees, with one open question: the sheet draws U8's output onto the summing line,
-which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2).
-The other twelve sound boards of the first batch are MAME's reading, internally consistent
-and unchecked, and their files say so.
+which would swamp every other sound, and MAME leaves it out) and Star Castle (sheet 2 of 2);
+then, 2026-10-20, every other sound board whose manual is on the site -- all but Space Fury,
+which has none. Each target's notes say what was read, what agrees, and what was not
+compared. The finding: MAME's circuits agree with the sheets almost everywhere, part for
+part and value for value, and where a manual's sheet disagrees with MAME (Speed Freak's
+most of all) its own parts list, theory text and troubleshooting timings mostly side with
+MAME. What the comparison changed:
+
+- **The final-amplifier boundary, on nearly every board.** MAME stops at the summing node,
+  grounds the resistor that leads on into the amplifier it does not simulate, and ties that
+  amplifier's inputs off as unused. On the sheets the resistor goes to the op-amp's
+  inverting input and only the other input is grounded: Sundance R64/IC20, Tail Gunner
+  R70/IC19, Rip Off R45/IC14, Starhawk R22 to 4C, Frogs R90 (U13's feedback resistor), Astro
+  Blaster U7 (pins 12-14 the summing amplifier, 5-7 the mute comparator MAME models as a
+  function). Corrected the way Barrier's R19 was, with the amplifier's output as a port.
+- **Ideal clocks put back.** Eliminator's five and Astro Blaster's four slow clocks are
+  CD4069/CD4011 RC oscillators on the sheets, on exactly the gates MAME parks, and Boxing
+  Bugs' and Solar Quest's Y1 is a crystal; restored like Tank's oscillator, so those nets
+  are no longer ports.
+- **Wiring MAME leaves open or gets wrong:** Frogs' Q15 base on R47's wiper and its six
+  mixer pots wired as rheostats; Tail Gunner's and Speed Freak's start-lamp outputs; Boxing
+  Bugs' U25 pin 5 (an output MAME grounds, by a typo for U2.5), U58 pin 7, U2's spare inputs
+  and the shaft encoder's U20 pins; Eliminator's U5/U13 are NE555s and Solar Quest's U44/U46
+  CA3080As. Armor Attack and Rip Off needed nothing beyond the boundary.
+
+Open questions are logged and not settled -- the sharpest are Tail Gunner's IC1, which the
+sheet and MAME both wire as positive feedback (the manual's own gain figure and Sundance's
+identical circuit say the inputs are swapped), Starhawk's C21 (printed 22uF, 0.22uF in MAME
+and "PCB verified"), and which branch Speed Freak's R21/C20 filter sits on.
+
+Two mechanisms came out of this. A correction naming a lone pin (an `add` with one term and
+a `name`) makes it a port and takes it out of MAME's unused ties: the way to say a pin goes
+to circuitry MAME leaves out -- a lamp, the shaft encoder, the output stage -- instead of
+calling it unconnected. And `drop-line` undos are not logged in the .nets header, so a
+target that uses them says why in `undo_notes`.
 
 **Compared with the sheet in the second batch** (2026-10-20, one reader per board, each
 writing to `compare-<slug>.md` in the shared notes; what each found is in its target's
@@ -1031,8 +1063,85 @@ Traps, all hit once:
   board publishes one PDF with its sheet list (each linked to its page, read back off the
   PDF's own title block) rather than an SVG a sheet: three files a board.
 - **Custom chips are not boards.** jtcores also redraws the insides of Konami's gate
-  arrays (Twin 16's 007779-007787), Capcom's DL-series and Konami's 052535. They are
-  listed under `skipped` in the manifest: valuable for a dead custom, but a different asset.
+  arrays (Twin 16's 007779-007787), Capcom's DL-series and Konami's 052535. They are a
+  different asset with their own importer and pages -- see the next section -- and must
+  never be imported as a board.
+
+## Custom chips from jtcores: the inside of a part
+
+A dead custom is one of the commonest faults on a late-1980s board and the part cannot be
+bought. jtcores redraws thirteen of them from the inside, and each gets a page at
+`/chip/<slug>` (list at `/chips`): what it does, its pinout with directions, every board and
+machine here that carries it, and the drawing as one PDF with a sheet list.
+
+    data/jtcores.json  `chips`      the manifest: slug, jtcores dir, name, maker, markings,
+                                    summary (what it does, read off the sheet's notes and
+                                    sheet names), conflicts (where the drawing disagrees
+                                    with itself)
+    tools/import_custom_chips.py    --jt <checkout>: copy, verify, PDF, pinout, cross-checks
+                                    -> kicad/chips/<slug>/, data/customchips/<slug>.json,
+                                       web/chips/<slug>.pdf
+    tools/custom_chips.py           where each is used -> web/data/customchip{s.json,/}
+    python3 tools/build_assets.py --chips-only     (--boards-only and a full build run it too)
+
+Same rules as the jtcores boards: the sheets are copied byte for byte (`--verify` checks),
+with jtcores' LICENSE and a NOTICE.md; authors are the commit history, aliases folded; one PDF
+per chip, not an SVG a sheet -- 27 files under `web/` for all thirteen, a PDF and a record each
+and the index. Everything under `kicad/chips/`, `data/customchips/`, `web/chips/` and
+`web/data/customchip/` is GPL-3.0, and the page says so above everything else. The page
+also opens the sheets in the board pages' KiCanvas viewer, read from `kicad/chips/<slug>/`
+on GitHub at `main` (`custom_chips.py` writes `kicanvas` with `publish_board.kicanvas_sources`),
+so the viewer section below applies: it shows nothing until the chip is pushed.
+
+**Which boards carry a chip is worked out at publish time, not import time**, because it
+changes whenever a board is published. A chip is found by its markings as a whole word
+(hyphens optional) in a board's chip lookup, and in the labels and legends of the PCB
+layouts read from MAME's notes. That second route is the only way the Capcom chips reach a
+machine -- no board here carries them, but the Guru's sketches of Pang (`mitchell.cpp`) and
+Last Duel (`lastduel.cpp`) name them. A layout tied to no set (`driver`/`file` scope, like
+`tmnt.cpp`'s) is listed on the chip page and names no machine, the rule the layout pages use.
+
+**The chip symbol in these projects is drawn from inside the die.** Its pin types say which
+way a signal crosses the pad into the core, so a pin the chip drives is an `input` on it. Read
+straight, every pinout would be backwards. The page takes directions from the board drawings
+where a board here carries the part (they draw it from outside), and turns the inside symbol
+round where none does. Both are checked against the circuit itself -- a pad whose net some
+cell drives is an output, one that only feeds cell inputs is an input -- which depends on
+neither symbol. At e7b11263 the three agree on every pin where all say input or output: 681
+for the turned-round symbols, including all 170 of the Capcom chips' (drawn later and in a
+different symbol library, so the convention could not be assumed), and 501 for the board
+drawings. The importer prints the count; a page marks any pin where they part.
+
+**Each board drawing's symbol is compared with the chip's own, pin by pin.** Names agree
+almost everywhere; what differs is mostly the active-low bar. Those are worth having on the
+page rather than smoothing over, because they are disputes about polarity: the chip drawing
+of the 007782 has `SYLD` at pin 25, both Twin 16 boards `~SYLD`; Final Round's drawing writes
+the 007779's `~SYLD` and the 007782's `~ORAD` without bars. The 052535 is named differently
+on seven of the ten boards (`BK`, `AO`, `VSS` for `~BLANK`, `OUT`, `GND`) and pins 2-7 are
+left unnamed on Final Round's -- the same pins, not a conflict.
+
+**The sheets' notes are carried verbatim, and two of them name the wrong chip.** The notes
+about the silicon (whose die photo, which gate-array family, how many cells) and the
+drawing's own account of what the chip does are copied to the page as written. The 007785's
+call it "the 007786" twice, and the 007787's gate-array note does the same; the reasons each
+is taken to describe its own chip (title block, symbol, cell library, and the 007786's own
+note giving it a different array) are logged as conflicts in the manifest and shown on the
+page, not corrected in the text.
+
+Traps:
+
+- **`/api/chip/<x>` is taken** -- it is the MAME device index (`chips.json`) and answers 200
+  for any name. The custom chips are `/api/customchips` and `/api/customchip/<slug>`, and
+  `web/data/chips/` is the per-board chip lookup. Three things called "chips"; read the path.
+- **Exporting opens the project, and kicad-cli writes a `.kicad_prl` into it.** The importer
+  exports the netlist and PDF from a scratch copy, so the copy under `kicad/chips/` is never
+  touched; `--verify` proves it.
+- **jtcores' `sym-lib-table` is a symlink into its `modules/`**, dangling in a sparse checkout.
+  It is skipped, as the board import skips it; the symbols are embedded in every sheet.
+- **A sparse, blobless clone is enough** and is a few MB: `git clone --filter=blob:none
+  --no-checkout --sparse https://github.com/jotego/jtcores.git`, `sparse-checkout set
+  cores/twin16/sch cores/pang/sch cores/grad3/sch`, check out the pinned commit. `git log`
+  for the authors works on it.
 
 ## Boards from DICE: an emulator's netlist, read as one
 
@@ -1075,6 +1184,33 @@ undo DICE's shortcuts or it publishes them as wiring:
   MAME-netlist work found only Tank is DIP-level. MAME is the cross-check instead, and on F1
   it agrees with DICE (a 7493, the ball-speed counter) against the hand map's 7433. That is
   logged on the Pong board, not settled: the map changes when the drawing is re-read.
+
+## The interactive schematic viewer
+
+Every board with a KiCad schematic -- the 43 jtcores boards and the two redrawn here --
+gets "Open the interactive schematic" on its page: KiCanvas (MIT, Alethea Flowers),
+vendored as one file at `web/vendor/kicanvas/kicanvas.js` with its LICENSE.md, reading the
+sheets themselves so a reader can pan, zoom, move between sheets and click a part or a net.
+The PDF stays beside it as the fallback.
+
+- **The sheets are not deploy assets.** They load from `raw.githubusercontent.com` (this
+  repository is public and that host sends `Access-Control-Allow-Origin: *`), at `main`.
+  Shipping them would cost ~470 files against the Workers Assets cap and ~150 MB. The
+  consequence: a board's viewer shows what is on `main` on GitHub, so it works only once
+  the board is pushed, and a local dev server shows the pushed sheets, not your edits.
+- **Nothing loads until the reader asks.** CP System III is 5 MB of sheets across 20 files.
+  The button states the sheet count and size; the script itself is fetched on first click.
+- **The sheet list is data**: `redrawn.kicanvas` = `{base, files, bytes}` in the registry,
+  the root first and every sheet the hierarchy reaches (`import_jtcores.hierarchy`, which
+  follows both KiCad 6's `"Sheet file"` and later `"Sheetfile"`). `publish_board.py` writes
+  it; `publish_board.py all --sources-only` refreshes it everywhere without rebuilding
+  board views or PDFs. Filenames are URL-encoded per segment -- Final Round has
+  `GFX-Fixed layer.kicad_sch`.
+- KiCanvas asks for a `$$:0:$$` URL relative to the page and gets a 404. It is harmless and
+  every sheet still loads; do not chase it as a missing sheet.
+- Checked in a browser on Gradius III, Final Round, CP System III (all 20 sheets) and the
+  Battlezone Math Box (KiCad 10 files written through Konnect, custom Am2901 symbols), and
+  at 375 px wide.
 
 ## Structure detection
 
@@ -1300,6 +1436,15 @@ convention and legitimately uses G.
   those copies. Not checked: anything in them against a manual or a board -- they are
   jtcores' readings, published as such -- or how complete each is beyond what its sheet
   names say (five are flagged partial).
+- Custom chips: every copied sheet under `kicad/chips/` matches upstream at the pinned commit
+  (`import_custom_chips.py --verify`); every pin direction on the thirteen pages agrees with
+  the circuit behind its pad wherever both say input or output (681 pins), as do the board
+  drawings' (501); the pinouts were compared name by name with every board drawing here that
+  carries the part. The pages were looked at in a browser at desktop width in both themes and
+  at phone width (no sideways scroll), with the links from the Twin 16 board, Pang's machine
+  page and its MAME layout. Not checked: anything in a chip drawing against a real chip, a
+  datasheet or a decap of our own -- they are jtcores' readings of someone's die photo, and
+  the summaries on the pages say only what the drawings' notes and sheet names say.
 - DICE boards: every CONNECTION in the 16 games is read, every wired pin of a part KiCad has
   a symbol for exists on it, Crash 'n Score agrees with its hand-read map at 36 of 38
   positions, and Pong at 65 of 66 and on all three hand-traced nets that join pins. Not checked: that DICE's circuit is the board's -- it is an emulator's, and its
@@ -1329,8 +1474,13 @@ convention and legitimately uses G.
 - **The MAME conversions are MAME's reading, not ours,** except where a sheet was read.
   Verified: all sixteen pass `build_board_nets.py` with no problems; Tank's four sheets were
   read in full and every disagreement found is corrected and logged; Barrier was compared
-  net for net and Star Castle's sheet 2 net for net. Not verified: the other twelve sound
-  boards against their sheets; Tank's cable contacts where the two boards' sheets disagree
+  net for net and Star Castle's sheet 2 net for net; and the other eleven sound boards with
+  a manual on the site were compared with their sheets (and parts lists, where the manual
+  has one) on 2026-10-20 -- one reader per board, every correction checked by eye against
+  the reader's crop before it was applied. Not verified: Space Fury, which has no manual on
+  the site; what each of those eleven boards' notes lists as not compared or open (Speed
+  Freak's sheet is unreliable enough that most of its differences are left to MAME); Tank's
+  cable contacts where the two boards' sheets disagree
   (VLD1 and /FIRE1); the MFC6040 pinout against a Motorola data sheet (it is read off four
   places on Tank's two boards, which agree); the 8277's pinout (MAME's, marked "FIXME" there);
   and whether Tank's two 25c/50c switches are one part. The sheet readings themselves were

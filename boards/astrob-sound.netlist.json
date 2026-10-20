@@ -34,6 +34,10 @@
    "part": "",
    "value": "0.01uF"
   },
+  "C20": {
+   "part": "",
+   "value": "0.1uF"
+  },
   "C21": {
    "part": "",
    "value": "0.33uF"
@@ -66,6 +70,10 @@
    "part": "",
    "value": "0.05uF"
   },
+  "C3": {
+   "part": "",
+   "value": "0.1uF"
+  },
   "C31": {
    "part": "",
    "value": "0.0047uF"
@@ -81,6 +89,10 @@
   "C34": {
    "part": "",
    "value": "10uF"
+  },
+  "C35": {
+   "part": "",
+   "value": "0.1uF"
   },
   "C36": {
    "part": "",
@@ -117,6 +129,10 @@
   "C49": {
    "part": "",
    "value": "0.05uF"
+  },
+  "C5": {
+   "part": "",
+   "value": "0.1uF"
   },
   "C50": {
    "part": "",
@@ -722,6 +738,10 @@
    "part": "",
    "value": "47K"
   },
+  "R18": {
+   "part": "",
+   "value": "2.7M"
+  },
   "R180": {
    "part": "",
    "value": "47K"
@@ -761,6 +781,10 @@
   "R21": {
    "part": "",
    "value": "100K"
+  },
+  "R22": {
+   "part": "",
+   "value": "470K"
   },
   "R23": {
    "part": "",
@@ -861,6 +885,10 @@
   "R45": {
    "part": "",
    "value": "100K"
+  },
+  "R46": {
+   "part": "",
+   "value": "470K"
   },
   "R47": {
    "part": "",
@@ -1009,6 +1037,10 @@
   "R8": {
    "part": "",
    "value": "18K"
+  },
+  "R80": {
+   "part": "",
+   "value": "1M"
   },
   "R81": {
    "part": "",
@@ -1446,6 +1478,7 @@
     "U4.1",
     "U5.1",
     "U6.1",
+    "U7.12",
     "U8.1",
     "U9.7"
    ],
@@ -1762,16 +1795,25 @@
    "aliases": [],
    "port": true
   },
-  "MUTEFUNC": {
+  "MUTE_GATE": {
    "pins": [
-    "C55.2",
-    "R102.2",
-    "R103.2",
-    "R118.2",
-    "R119.2",
-    "R120.2",
-    "R121.2",
-    "R122.2"
+    "U7.7"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "MUTE_IN": {
+   "pins": [
+    "U7.6"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
+  },
+  "MUTE_REF": {
+   "pins": [
+    "U7.5"
    ],
    "named": "port",
    "aliases": [],
@@ -1884,6 +1926,25 @@
    "named": "auto",
    "aliases": []
   },
+  "Net-(C20-Pad1)": {
+   "pins": [
+    "C20.1",
+    "U5.4",
+    "U9.11"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C20-Pad2)": {
+   "pins": [
+    "C20.2",
+    "R46.2",
+    "U9.8",
+    "U9.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
   "Net-(C21-Pad1)": {
    "pins": [
     "C21.1",
@@ -1973,6 +2034,25 @@
    "named": "auto",
    "aliases": []
   },
+  "Net-(C3-Pad1)": {
+   "pins": [
+    "C3.1",
+    "R18.2",
+    "U9.5",
+    "U9.6"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C3-Pad2)": {
+   "pins": [
+    "C3.2",
+    "U3.14",
+    "U9.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
   "Net-(C31-Pad2)": {
    "pins": [
     "C31.2",
@@ -1997,6 +2077,25 @@
     "R76.1",
     "R77.1",
     "R78.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C35-Pad1)": {
+   "pins": [
+    "C35.1",
+    "R80.2",
+    "U10.8",
+    "U10.9"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C35-Pad2)": {
+   "pins": [
+    "C35.2",
+    "R79.1",
+    "U10.11"
    ],
    "named": "auto",
    "aliases": []
@@ -2095,6 +2194,25 @@
     "Q1.B",
     "R108.2",
     "R117.2"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C5-Pad1)": {
+   "pins": [
+    "C5.1",
+    "R22.2",
+    "U11.12",
+    "U11.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(C5-Pad2)": {
+   "pins": [
+    "C5.2",
+    "U11.10",
+    "U12.2"
    ],
    "named": "auto",
    "aliases": []
@@ -3181,12 +3299,32 @@
    "named": "auto",
    "aliases": []
   },
+  "Net-(R18-Pad1)": {
+   "pins": [
+    "R18.1",
+    "U9.1",
+    "U9.2",
+    "U9.4"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
   "Net-(R184-Pad1)": {
    "pins": [
     "R184.1",
     "U27.12",
     "U27.13",
     "U27.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R22-Pad1)": {
+   "pins": [
+    "R22.1",
+    "U11.11",
+    "U11.8",
+    "U11.9"
    ],
    "named": "auto",
    "aliases": []
@@ -3264,6 +3402,17 @@
    "pins": [
     "R43.2",
     "U4.3"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
+  "Net-(R46-Pad1)": {
+   "pins": [
+    "R46.1",
+    "U4.4",
+    "U9.10",
+    "U9.12",
+    "U9.13"
    ],
    "named": "auto",
    "aliases": []
@@ -3394,6 +3543,16 @@
    "named": "auto",
    "aliases": []
   },
+  "Net-(R80-Pad1)": {
+   "pins": [
+    "R80.1",
+    "U10.10",
+    "U10.12",
+    "U10.13"
+   ],
+   "named": "auto",
+   "aliases": []
+  },
   "Net-(R81-Pad1)": {
    "pins": [
     "R81.1",
@@ -3513,43 +3672,17 @@
    "named": "auto",
    "aliases": []
   },
-  "Net-(U5-Pad4)": {
+  "OUTPUT": {
    "pins": [
-    "U5.4",
-    "U9.11"
-   ],
-   "named": "auto",
-   "aliases": []
-  },
-  "OSC1": {
-   "pins": [
-    "U3.14"
-   ],
-   "named": "port",
-   "aliases": [],
-   "port": true
-  },
-  "OSC2": {
-   "pins": [
-    "U4.4",
-    "U9.12",
-    "U9.13"
-   ],
-   "named": "port",
-   "aliases": [],
-   "port": true
-  },
-  "OSC3": {
-   "pins": [
-    "U12.2"
-   ],
-   "named": "port",
-   "aliases": [],
-   "port": true
-  },
-  "OSC4": {
-   "pins": [
-    "R79.1"
+    "C55.2",
+    "R102.2",
+    "R103.2",
+    "R118.2",
+    "R119.2",
+    "R120.2",
+    "R121.2",
+    "R122.2",
+    "U7.13"
    ],
    "named": "port",
    "aliases": [],
@@ -3571,6 +3704,14 @@
    ],
    "named": "ours",
    "aliases": []
+  },
+  "U7_OUT": {
+   "pins": [
+    "U7.14"
+   ],
+   "named": "port",
+   "aliases": [],
+   "port": true
   },
   "V": {
    "pins": [
@@ -3598,18 +3739,6 @@
  },
  "signatures": {},
  "nc": [
-  "U10.10",
-  "U10.11",
-  "U10.12",
-  "U10.13",
-  "U10.8",
-  "U10.9",
-  "U11.10",
-  "U11.11",
-  "U11.12",
-  "U11.13",
-  "U11.8",
-  "U11.9",
   "U12.3",
   "U12.4",
   "U12.5",
@@ -3633,24 +3762,9 @@
   "U30.10",
   "U30.11",
   "U30.2",
-  "U7.12",
-  "U7.13",
-  "U7.14",
-  "U7.5",
-  "U7.6",
-  "U7.7",
   "U8.5",
   "U8.6",
   "U8.7",
-  "U8.8",
-  "U9.1",
-  "U9.10",
-  "U9.2",
-  "U9.3",
-  "U9.4",
-  "U9.5",
-  "U9.6",
-  "U9.8",
-  "U9.9"
+  "U8.8"
  ]
 }

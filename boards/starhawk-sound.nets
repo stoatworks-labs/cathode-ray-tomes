@@ -38,6 +38,7 @@
 # line 27: #define HLE_SHIP_VCO 1 -> 0 (high-level stand-in for a real circuit)
 # line 28: #define HLE_LAZER_VCOS 1 -> 0 (high-level stand-in for a real circuit)
 # line 35: #define SLOW_SHIP_WOBBLE 0 -- kept as MAME has it (not a known kind of hack)
+# line 436: dropped NET_C(R22.2, GND) -- the sheet takes R22 to 4C pin 2, the final amplifier's inverting input (R23 and the pot R25 as feedback), which MAME does not simulate; MAME grounds it instead
 # line 601: NET_C(GND, IC5D.8, IC5D.9, IC5D.10, IC5D.12, IC5D.13, IC7C.3, IC7C.5, IC9E.3, IC9E.4, IC9E.5, IC9E.6) -> nc -- tied to GND in MAME's "Unconnected inputs" block
 # line 463: RDUMMY is not a part -- a 100K to ground on the 556's output, which MAME's file says the board leaves unconnected
 # Stand-ins that are not parts (the nets they drive are ports): TTL_INPUT(I_OUT_0), TTL_INPUT(I_OUT_1), TTL_INPUT(I_OUT_2), TTL_INPUT(I_OUT_3), TTL_INPUT(I_OUT_4), TTL_INPUT(I_OUT_7)
@@ -67,9 +68,33 @@
 # This board's designators are column-and-row grid positions (IC5D, IC4A ...), written
 # U5D, U4A here. MAME's file credits Jay Gallagher with verifying the PCB components.
 #
-# Not compared with the sheet. MAME's designators, values and pin numbers are taken as
-# MAME has them; the checker shows the netlist is internally consistent (every pin exists,
-# no two outputs fight, nothing floats), which is not the same as matching the board.
+# Compared with the sheet, Schematic, Audio Board (Star Hawk) 2-30008 Rev X3, 1-9-79 (doc
+# 87193443ac92 p43; a 300 dpi 1-bit scan read from the native image at 2-6x; the manual has
+# no parts list), 2026-10-20: every IC's type and position; the J2 inputs (J2-11 explosion,
+# J2-12 and J2-13 lazers, J2-14 K on/off, J2-15 master on/off, J2-16 K exit -- MAME's OUT_0-4
+# and OUT_7 in that order) with the 74LS04 6C and 7406 7C; the noise generator (6D, the
+# 74LS164s 8C/8D/9C/9D, 9E, 10C/10D/10E, R1-R15, C7-C15, CR1, CR2, 6B and the CA3080 6A's
+# inputs); the explosion one-shot and Q1 (R5, R7, R16, R17, C5, C6, C17); the killer-ship
+# ramp, the 5D wobble oscillator and the ship VCO (R26-R38, CR3-CR6, C9, C20, C27, 4B, 5A,
+# 5B); both lazer VCOs with their 74LS393 counters, 74S287 PROMs (the counter-to-PROM wiring
+# read on 4E; 7E's tap numbers are illegible but wired the same) and DACs (R39-R60, C22-C26,
+# CR7-CR10, Q4, Q5); and the TL182 3A with the summing node (6A pin 6, R19, C26, 3A pin 14,
+# 3A pin 1 into 4A) all agree with MAME pin for pin and value for value, diode and transistor
+# orientation included. 5D pin 5 is not drawn, so RDUMMY stands in for an open output. MAME
+# differs only at the final amplifier: R22 goes into 4C pin 2, its inverting input, where
+# MAME grounds it (line 436); corrected above.
+#
+# Open questions, as printed and not settled:
+# * C21 (5D's timing capacitor, the ship-wobble rate) is printed "22 TANT 35V", 22uF. MAME
+#   uses 0.22uF, marked "PCB verified", and keeps the sheet's 22uF behind its SLOW_SHIP_WOBBLE
+#   debug switch (about 0.6 Hz against 60 Hz). This file follows MAME's board.
+# * R6 (the explosion one-shot's timing resistor) is lettered "190K" against MAME's 150K;
+#   190K is not a stock value and the print may be a slip. This file follows MAME.
+#
+# Labels that read wrongly on this scan but are MAME's designators by position: CR6 (reads
+# like CR8), C26 (C28), R46 (R48). Not in this file: the final amplifier (4C, Q2, Q3, R20,
+# R21, R23-R25, C16, C18, C19) and the regulators 2C and 2D, which are on the sheet with the
+# values MAME's comments give.
 
 # part U3A TL182
 # part U4A TL081
@@ -188,7 +213,7 @@ value Q5 2N3904
 # ---------------------------------------------------------------------------
 # Supplies
 # ---------------------------------------------------------------------------
-net GND: C10.1 C11.1 C20.2 C21.2 C22.1 C23.1 C24.1 C25.1 C5.1 C6.2 C7.1 C8.2 CR10.2 CR8.2 U10C.7 U10D.7 U10E.7 U3A.8 U4A.3 U4E.12 U4E.2 U4E.7 U5A.3 U5B.3 U5D.7 U5E.1 U5E.13 U5E.8 U6B.3 U6C.7 U6D.7 U7C.7 U7E.12 U7E.2 U7E.7 U8C.7 U8D.7 U8E.1 U8E.13 U8E.8 U9C.7 U9D.7 U9E.8 Q4.E Q5.E R14.1 R15.1 R17.1 R22.2 R44.1 R49.1 R56.1 R7.1
+net GND: C10.1 C11.1 C20.2 C21.2 C22.1 C23.1 C24.1 C25.1 C5.1 C6.2 C7.1 C8.2 CR10.2 CR8.2 U10C.7 U10D.7 U10E.7 U3A.8 U4A.3 U4E.12 U4E.2 U4E.7 U5A.3 U5B.3 U5D.7 U5E.1 U5E.13 U5E.8 U6B.3 U6C.7 U6D.7 U7C.7 U7E.12 U7E.2 U7E.7 U8C.7 U8D.7 U8E.1 U8E.13 U8E.8 U9C.7 U9D.7 U9E.8 Q4.E Q5.E R14.1 R15.1 R17.1 R44.1 R49.1 R56.1 R7.1
 net +15V: U3A.6 U4A.7 U4B.7 U5A.7 U5B.7 U5D.14 U5D.4 U6A.7 U6B.7 U6E.7 U6F.7 R26.2 R29.2
 net +5V: U10C.14 U10D.14 U10E.14 U3A.7 U4E.14 U5E.16 U6C.14 U6D.10 U6D.14 U6D.4 U7C.14 U7E.14 U8C.14 U8C.9 U8D.14 U8D.9 U8E.16 U9C.14 U9C.9 U9D.14 U9D.9 U9E.1 U9E.10 U9E.16 U9E.7 U9E.9 R1.2 R27.2 R3.2 R42.2 R50.2 R6.2
 net -15V: C17.2 U3A.9 U4A.4 U4B.4 U5A.4 U5B.4 U6A.4 U6B.4 U6E.4 U6F.4
@@ -263,7 +288,8 @@ wire CR4.1 CR5.2 U4B.3 R35.2
 wire CR4.2 U5B.6 R36.1 R38.2
 wire U5A.2 R36.2 R37.1
 wire CR5.1 U5A.6 R37.2
-port OUTPUT: U3A.13 R22.1  # to the final amplifier, which MAME does not simulate
+port OUTPUT: U3A.13 R22.1  # 3A pin 13 (the TL182's 2D), through R22 into the final amplifier
+port R22_TO_4C: R22.2  # the sheet takes R22 to 4C pin 2, the final amplifier's inverting input (R23 and the pot R25 as feedback), which MAME does not simulate; MAME grounds it instead
 
 # ---------------------------------------------------------------------------
 # K exit
