@@ -9,13 +9,15 @@ versioned and published together.
   web/data/docs.json            document catalogue
   web/data/chips.json           chip -> machines
   web/data/boards.json          KiCad conversions
-  web/data/machine/<slug>.json  per-machine detail
+  web/data/machine/<xx>.json    per-machine detail, bundled by the slug's first
+                                two characters (see bundle())
   web/data/doc/<id>.json        rendered document (blocks + outline)
   web/data/postings/<n>.json    search postings, sharded by leading character
   web/data/parts/<id>.json      parts list recovered from a manual
   web/data/chips/<board>.json   designator -> part, function and revision
   web/data/rommaps.json         index of ROM maps recovered from MAME
-  web/data/rommap/<machine>.json  ROM positions for one machine
+  web/data/rommap/<xx>.json     ROM positions, bundled the same way
+  web/data/diagnostics/<xx>.json  diagnostic sections per machine, bundled
 """
 import json, os, shutil, glob, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -28,6 +30,37 @@ def copy(src, dst):
     os.makedirs(os.path.dirname(dst), exist_ok=True)
     shutil.copyfile(src, dst)
     return os.path.getsize(dst)
+
+
+def shard_of(key):
+    """The bundle a record lives in: its key's first two characters, lower-
+    cased, anything but a letter or digit folded to "_". Mirrored in
+    src/index.js (shardOfKey); the two must agree or every lookup misses."""
+    k = "".join(c if c.isalnum() else "_" for c in key[:2].lower())
+    return k.ljust(2, "_")
+
+
+def bundle(pattern, out_dir):
+    """Write per-record JSON files as bundles keyed by record name.
+
+    Workers Assets caps a deploy at 20,000 files. The per-record directories —
+    7,823 machines, 1,469 ROM maps, 825 diagnostics lists — were three-fifths
+    of that on their own, which left no room for the corpus to grow. Bundled
+    by the first two characters of the key they are a few hundred files, each
+    a few hundred KB at most, cached at the edge like any asset.
+    """
+    shards = {}
+    for p in sorted(glob.glob(pattern)):
+        key = os.path.basename(p)[:-5]
+        shards.setdefault(shard_of(key), {})[key] = json.load(open(p))
+    total = 0
+    for name, recs in shards.items():
+        dst = os.path.join(out_dir, name + ".json")
+        os.makedirs(out_dir, exist_ok=True)
+        with open(dst, "w") as f:
+            json.dump(recs, f, separators=(",", ":"))
+        total += os.path.getsize(dst)
+    return total, len(shards)
 
 def published(path):
     """What the last commit published at web/data/<path>, or None."""
@@ -133,8 +166,9 @@ def main():
         if os.path.exists(p):
             total += copy(p, os.path.join(OUT, name)); files += 1
 
-    for p in glob.glob(os.path.join(ROOT, "data", "machine", "*.json")):
-        total += copy(p, os.path.join(OUT, "machine", os.path.basename(p))); files += 1
+    for name in ("machine", "diagnostics", "rommap"):
+        t, n = bundle(os.path.join(ROOT, "data", name, "*.json"), os.path.join(OUT, name))
+        total += t; files += n
 
     # Drawing pages are decided by tools/build_drawings.py and merged in here
     # rather than written back into cache/text/, which is the ingest's own
@@ -180,9 +214,6 @@ def main():
     for p in glob.glob(os.path.join(ROOT, "data", "signals", "*.json")):
         total += copy(p, os.path.join(OUT, "signals", os.path.basename(p))); files += 1
 
-    for p in glob.glob(os.path.join(ROOT, "data", "diagnostics", "*.json")):
-        total += copy(p, os.path.join(OUT, "diagnostics", os.path.basename(p))); files += 1
-
     for p in glob.glob(os.path.join(ROOT, "data", "signatures", "*.json")):
         total += copy(p, os.path.join(OUT, "signatures", os.path.basename(p))); files += 1
 
@@ -191,9 +222,6 @@ def main():
 
     for p in glob.glob(os.path.join(ROOT, "data", "related", "*.json")):
         total += copy(p, os.path.join(OUT, "related", os.path.basename(p))); files += 1
-
-    for p in glob.glob(os.path.join(ROOT, "data", "rommap", "*.json")):
-        total += copy(p, os.path.join(OUT, "rommap", os.path.basename(p))); files += 1
 
     print(f"{files:,} files, {total/1e6:.1f} MB -> web/data/")
     if files > 19000:

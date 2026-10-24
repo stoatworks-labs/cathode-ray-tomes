@@ -555,7 +555,9 @@ function machineLinks(doc) {
 
 /** The footer credits ArcadeRTFM, which is where all but a handful of the
     scans come from. Anything else says so on the document itself. */
-const SOURCE_NAMES = { gamingdoc: "GamingDoc", console5: "Console5" };
+const SOURCE_NAMES = { gamingdoc: "GamingDoc", console5: "Console5",
+                       archive_org: "the Internet Archive", arcarc: "the Arcade Archive",
+                       segaretro: "Sega Retro" };
 
 function sourceCredit(doc) {
   if (!doc.source || !doc.sourcePage) return "";
@@ -699,7 +701,9 @@ async function reader(id) {
     <p class="sub">
       ${machineLinks(doc)}
       ${doc.type ? esc(doc.type) + " · " : ""}${pages.length} pages${outline.length ? ` · ${outline.length} sections` : ""} ·
-      <a href="/pdf/${id}" target="_blank" rel="noopener">original scan ↗</a>${sourceCredit(doc)}</p>
+      <a href="/pdf/${id}" target="_blank" rel="noopener">original scan ↗</a>${doc.mirror
+        ? ` · <a href="/pdf/${id}?via=archive" target="_blank" rel="noopener"
+             title="The same file, held by the Internet Archive">archive.org copy ↗</a>` : ""}${sourceCredit(doc)}</p>
 
     ${doc.note ? `<div class="note">${esc(doc.note)}</div>` : ""}
 

@@ -7,17 +7,58 @@
    "mfr": "Sony",
    "year": "1994",
    "kind": "console",
-   "cpu": [{"n": "MIPS R3000A", "mhz": 33.8688}, {"n": "MIPS R3051 GTE (coprocessor)"}],
-   "audio": [{"n": "Sony SPU", "mhz": 44.1}],
-   "display": [{"type": "raster", "w": 320, "h": 240, "hz": 59.94}],
+   "cpu": [
+    {
+     "n": "MIPS R3000A",
+     "mhz": 33.8688
+    },
+    {
+     "n": "MIPS R3051 GTE (coprocessor)"
+    }
+   ],
+   "audio": [
+    {
+     "n": "Sony SPU",
+     "mhz": 44.1
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 320,
+     "h": 240,
+     "hz": 59.94
+    }
+   ],
    "boards": [
-    {"rev": "PU-7", "note": "SCPH-1000/1001/1002. Early board; RCA output, no parallel port on later cost-downs."},
-    {"rev": "PU-8", "note": "SCPH-3000/5000 series."},
-    {"rev": "PU-18", "note": "SCPH-5500/5501/5502. The most common revision."},
-    {"rev": "PU-20", "note": "SCPH-5903."},
-    {"rev": "PU-22", "note": "SCPH-7000/7500 series."},
-    {"rev": "PU-23", "note": "SCPH-7500/9000 series."},
-    {"rev": "PM-41", "note": "SCPH-100 (PSone). Single-board redesign."}
+    {
+     "rev": "PU-7",
+     "note": "SCPH-1000/1001/1002. Early board; RCA output, no parallel port on later cost-downs."
+    },
+    {
+     "rev": "PU-8",
+     "note": "SCPH-3000/5000 series."
+    },
+    {
+     "rev": "PU-18",
+     "note": "SCPH-5500/5501/5502. The most common revision."
+    },
+    {
+     "rev": "PU-20",
+     "note": "SCPH-5903."
+    },
+    {
+     "rev": "PU-22",
+     "note": "SCPH-7000/7500 series."
+    },
+    {
+     "rev": "PU-23",
+     "note": "SCPH-7500/9000 series."
+    },
+    {
+     "rev": "PM-41",
+     "note": "SCPH-100 (PSone). Single-board redesign."
+    }
    ]
   },
   {
@@ -26,18 +67,58 @@
    "mfr": "Sony",
    "year": "2000",
    "kind": "console",
-   "cpu": [{"n": "Emotion Engine (MIPS R5900)", "mhz": 294.912},
-           {"n": "IOP (MIPS R3000A)", "mhz": 36.864}],
-   "audio": [{"n": "SPU2"}],
-   "display": [{"type": "raster", "w": 640, "h": 448, "hz": 59.94}],
+   "cpu": [
+    {
+     "n": "Emotion Engine (MIPS R5900)",
+     "mhz": 294.912
+    },
+    {
+     "n": "IOP (MIPS R3000A)",
+     "mhz": 36.864
+    }
+   ],
+   "audio": [
+    {
+     "n": "SPU2"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 640,
+     "h": 448,
+     "hz": 59.94
+    }
+   ],
    "boards": [
-    {"rev": "GH-001", "note": "SCPH-30001 launch board."},
-    {"rev": "GH-003", "note": "SCPH-30000 series."},
-    {"rev": "GH-010", "note": "SCPH-30002D/30003D/30004D. Separate 32 MB and 64 MB RDRAM complements."},
-    {"rev": "GH-012", "note": "SCPH-30000R series."},
-    {"rev": "GH-022", "note": "SCPH-39000 series."},
-    {"rev": "GH-026", "note": "SCPH-50000 series."},
-    {"rev": "GH-035", "note": "SCPH-70000 series (slimline, LCG chassis)."}
+    {
+     "rev": "GH-001",
+     "note": "SCPH-30001 launch board."
+    },
+    {
+     "rev": "GH-003",
+     "note": "SCPH-30000 series."
+    },
+    {
+     "rev": "GH-010",
+     "note": "SCPH-30002D/30003D/30004D. Separate 32 MB and 64 MB RDRAM complements."
+    },
+    {
+     "rev": "GH-012",
+     "note": "SCPH-30000R series."
+    },
+    {
+     "rev": "GH-022",
+     "note": "SCPH-39000 series."
+    },
+    {
+     "rev": "GH-026",
+     "note": "SCPH-50000 series."
+    },
+    {
+     "rev": "GH-035",
+     "note": "SCPH-70000 series (slimline, LCG chassis)."
+    }
    ]
   },
   {
@@ -46,13 +127,38 @@
    "mfr": "Sony",
    "year": "2006",
    "kind": "console",
-   "cpu": [{"n": "Cell Broadband Engine", "mhz": 3200}],
-   "audio": [{"n": "RSX / Cell (software)"}],
-   "display": [{"type": "raster", "w": 1920, "h": 1080, "hz": 60}],
+   "cpu": [
+    {
+     "n": "Cell Broadband Engine",
+     "mhz": 3200
+    }
+   ],
+   "audio": [
+    {
+     "n": "RSX / Cell (software)"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 1920,
+     "h": 1080,
+     "hz": 60
+    }
+   ],
    "boards": [
-    {"rev": "COK-001", "note": "CECHA00/A01. Launch board, hardware PS2 compatibility."},
-    {"rev": "COK-002", "note": "CECHC/CECHE series."},
-    {"rev": "SEM-001", "note": "CECHG series."}
+    {
+     "rev": "COK-001",
+     "note": "CECHA00/A01. Launch board, hardware PS2 compatibility."
+    },
+    {
+     "rev": "COK-002",
+     "note": "CECHC/CECHE series."
+    },
+    {
+     "rev": "SEM-001",
+     "note": "CECHG series."
+    }
    ]
   },
   {
@@ -61,13 +167,37 @@
    "mfr": "Sony",
    "year": "2004",
    "kind": "handheld",
-   "cpu": [{"n": "Allegrex (MIPS R4000)", "mhz": 333}],
-   "audio": [{"n": "Sony Virtual Mobile Engine"}],
-   "display": [{"type": "lcd", "w": 480, "h": 272}],
+   "cpu": [
+    {
+     "n": "Allegrex (MIPS R4000)",
+     "mhz": 333
+    }
+   ],
+   "audio": [
+    {
+     "n": "Sony Virtual Mobile Engine"
+    }
+   ],
+   "display": [
+    {
+     "type": "lcd",
+     "w": 480,
+     "h": 272
+    }
+   ],
    "boards": [
-    {"rev": "TA-085", "note": "PSP-2000 series main board."},
-    {"rev": "HP-142", "note": "PSP-2000 headphone/remote board."},
-    {"rev": "SW-510", "note": "PSP-2000 switch board."}
+    {
+     "rev": "TA-085",
+     "note": "PSP-2000 series main board."
+    },
+    {
+     "rev": "HP-142",
+     "note": "PSP-2000 headphone/remote board."
+    },
+    {
+     "rev": "SW-510",
+     "note": "PSP-2000 switch board."
+    }
    ]
   },
   {
@@ -76,11 +206,37 @@
    "mfr": "Sega",
    "year": "1994",
    "kind": "console",
-   "cpu": [{"n": "Hitachi SH-2", "mhz": 28.6364}, {"n": "Hitachi SH-2 (slave)", "mhz": 28.6364},
-           {"n": "Motorola 68EC000", "mhz": 11.3},
-           {"n": "Hitachi SH-1 (CD block)", "mhz": 20}],
-   "audio": [{"n": "Yamaha YMF292 SCSP"}],
-   "display": [{"type": "raster", "w": 320, "h": 224, "hz": 59.94}],
+   "cpu": [
+    {
+     "n": "Hitachi SH-2",
+     "mhz": 28.6364
+    },
+    {
+     "n": "Hitachi SH-2 (slave)",
+     "mhz": 28.6364
+    },
+    {
+     "n": "Motorola 68EC000",
+     "mhz": 11.3
+    },
+    {
+     "n": "Hitachi SH-1 (CD block)",
+     "mhz": 20
+    }
+   ],
+   "audio": [
+    {
+     "n": "Yamaha YMF292 SCSP"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 320,
+     "h": 224,
+     "hz": 59.94
+    }
+   ],
    "boards": []
   },
   {
@@ -89,13 +245,39 @@
    "mfr": "Sega",
    "year": "1998",
    "kind": "console",
-   "cpu": [{"n": "Hitachi SH-4", "mhz": 200}],
-   "audio": [{"n": "Yamaha AICA (ARM7DI core)", "mhz": 45}],
-   "display": [{"type": "raster", "w": 640, "h": 480, "hz": 59.94}],
+   "cpu": [
+    {
+     "n": "Hitachi SH-4",
+     "mhz": 200
+    }
+   ],
+   "audio": [
+    {
+     "n": "Yamaha AICA (ARM7DI core)",
+     "mhz": 45
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 640,
+     "h": 480,
+     "hz": 59.94
+    }
+   ],
    "boards": [
-    {"rev": "VA0", "note": "Launch board (837-13544)."},
-    {"rev": "VA1", "note": "837-13778. The most common."},
-    {"rev": "VA2.1", "note": "Final cost-reduced revision."}
+    {
+     "rev": "VA0",
+     "note": "Launch board (837-13544)."
+    },
+    {
+     "rev": "VA1",
+     "note": "837-13778. The most common."
+    },
+    {
+     "rev": "VA2.1",
+     "note": "Final cost-reduced revision."
+    }
    ]
   },
   {
@@ -104,9 +286,25 @@
    "mfr": "Atari",
    "year": "1977",
    "kind": "console",
-   "cpu": [{"n": "MOS 6507", "mhz": 1.19}],
-   "audio": [{"n": "TIA (2 channels)"}],
-   "display": [{"type": "raster", "w": 160, "h": 192, "hz": 59.92}],
+   "cpu": [
+    {
+     "n": "MOS 6507",
+     "mhz": 1.19
+    }
+   ],
+   "audio": [
+    {
+     "n": "TIA (2 channels)"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 160,
+     "h": 192,
+     "hz": 59.92
+    }
+   ],
    "boards": []
   },
   {
@@ -115,9 +313,25 @@
    "mfr": "Atari",
    "year": "1982",
    "kind": "console",
-   "cpu": [{"n": "MOS 6502C", "mhz": 1.79}],
-   "audio": [{"n": "POKEY"}],
-   "display": [{"type": "raster", "w": 320, "h": 192, "hz": 59.92}],
+   "cpu": [
+    {
+     "n": "MOS 6502C",
+     "mhz": 1.79
+    }
+   ],
+   "audio": [
+    {
+     "n": "POKEY"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 320,
+     "h": 192,
+     "hz": 59.92
+    }
+   ],
    "boards": []
   },
   {
@@ -126,14 +340,47 @@
    "mfr": "Nintendo",
    "year": "1990",
    "kind": "console",
-   "cpu": [{"n": "Ricoh 5A22 (65C816 core)", "mhz": 3.58}],
-   "audio": [{"n": "Sony SPC700", "mhz": 1.024}, {"n": "Sony S-DSP", "mhz": 32.0}],
-   "display": [{"type": "raster", "w": 256, "h": 224, "hz": 60.09}],
+   "cpu": [
+    {
+     "n": "Ricoh 5A22 (65C816 core)",
+     "mhz": 3.58
+    }
+   ],
+   "audio": [
+    {
+     "n": "Sony SPC700",
+     "mhz": 1.024
+    },
+    {
+     "n": "Sony S-DSP",
+     "mhz": 32.0
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 256,
+     "h": 224,
+     "hz": 60.09
+    }
+   ],
    "boards": [
-    {"rev": "SNS-CPU-GPM-01", "note": "Early US board; separate PPU1/PPU2."},
-    {"rev": "SNS-CPU-RGB-01", "note": "The revision with the RGB-capable PPU pairing."},
-    {"rev": "SNS-CPU-1CHIP-01", "note": "1CHIP-01/02/03. PPUs and CPU combined; the best video output."},
-    {"rev": "SNS-CPU-APU-01", "note": "SNES Jr. / Super Famicom Jr. Cost-reduced, no S-RGB."}
+    {
+     "rev": "SNS-CPU-GPM-01",
+     "note": "Early US board; separate PPU1/PPU2."
+    },
+    {
+     "rev": "SNS-CPU-RGB-01",
+     "note": "The revision with the RGB-capable PPU pairing."
+    },
+    {
+     "rev": "SNS-CPU-1CHIP-01",
+     "note": "1CHIP-01/02/03. PPUs and CPU combined; the best video output."
+    },
+    {
+     "rev": "SNS-CPU-APU-01",
+     "note": "SNES Jr. / Super Famicom Jr. Cost-reduced, no S-RGB."
+    }
    ]
   },
   {
@@ -142,13 +389,38 @@
    "mfr": "Nintendo",
    "year": "1983",
    "kind": "console",
-   "cpu": [{"n": "Ricoh 2A03 (6502 core)", "mhz": 1.79}],
-   "audio": [{"n": "Ricoh 2A03 APU"}],
-   "display": [{"type": "raster", "w": 256, "h": 240, "hz": 60.1}],
+   "cpu": [
+    {
+     "n": "Ricoh 2A03 (6502 core)",
+     "mhz": 1.79
+    }
+   ],
+   "audio": [
+    {
+     "n": "Ricoh 2A03 APU"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 256,
+     "h": 240,
+     "hz": 60.1
+    }
+   ],
    "boards": [
-    {"rev": "NES-CPU-11", "note": "Front-loading NES-001."},
-    {"rev": "HVC-CPU-GPM-02", "note": "Famicom."},
-    {"rev": "AN-303", "note": "Sharp Twin Famicom. Famicom and Disk System in one case."}
+    {
+     "rev": "NES-CPU-11",
+     "note": "Front-loading NES-001."
+    },
+    {
+     "rev": "HVC-CPU-GPM-02",
+     "note": "Famicom."
+    },
+    {
+     "rev": "AN-303",
+     "note": "Sharp Twin Famicom. Famicom and Disk System in one case."
+    }
    ]
   },
   {
@@ -157,9 +429,202 @@
    "mfr": "Nintendo",
    "year": "1998",
    "kind": "handheld",
-   "cpu": [{"n": "Sharp LR35902", "mhz": 8.388}],
-   "audio": [{"n": "Game Boy PSG (4 channels)"}],
-   "display": [{"type": "lcd", "w": 160, "h": 144}],
+   "cpu": [
+    {
+     "n": "Sharp LR35902",
+     "mhz": 8.388
+    }
+   ],
+   "audio": [
+    {
+     "n": "Game Boy PSG (4 channels)"
+    }
+   ],
+   "display": [
+    {
+     "type": "lcd",
+     "w": 160,
+     "h": 144
+    }
+   ],
+   "boards": []
+  },
+  {
+   "slug": "sega-master-system",
+   "name": "Master System",
+   "mfr": "Sega",
+   "year": "1985",
+   "kind": "console",
+   "cpu": [
+    {
+     "n": "Zilog Z80A",
+     "mhz": 3.5795
+    }
+   ],
+   "audio": [
+    {
+     "n": "Texas Instruments SN76489 (in the VDP)"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 256,
+     "h": 192,
+     "hz": 59.92
+    }
+   ],
+   "boards": [
+    {
+     "rev": "Master System",
+     "note": "Mark III-derived, 315-5124 VDP; card slot and cartridge slot."
+    },
+    {
+     "rev": "Master System II",
+     "note": "1990 cost-reduced chassis: no card slot, no reset button, 315-5246 VDP."
+    }
+   ]
+  },
+  {
+   "slug": "sega-game-gear",
+   "name": "Game Gear",
+   "mfr": "Sega",
+   "year": "1990",
+   "kind": "handheld",
+   "cpu": [
+    {
+     "n": "Zilog Z80",
+     "mhz": 3.5795
+    }
+   ],
+   "audio": [
+    {
+     "n": "SN76489-compatible PSG, stereo"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 160,
+     "h": 144,
+     "hz": 59.92
+    }
+   ],
+   "boards": [
+    {
+     "rev": "VA0",
+     "note": "Launch board."
+    },
+    {
+     "rev": "VA1",
+     "note": "1993 revision; the service manual is written against it."
+    }
+   ]
+  },
+  {
+   "slug": "sega-mega-drive",
+   "name": "Mega Drive / Genesis",
+   "mfr": "Sega",
+   "year": "1988",
+   "kind": "console",
+   "cpu": [
+    {
+     "n": "Motorola 68000",
+     "mhz": 7.6705
+    },
+    {
+     "n": "Zilog Z80 (sound)",
+     "mhz": 3.5795
+    }
+   ],
+   "audio": [
+    {
+     "n": "Yamaha YM2612"
+    },
+    {
+     "n": "Texas Instruments SN76489 (in the VDP)"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 320,
+     "h": 224,
+     "hz": 59.92
+    }
+   ],
+   "boards": [
+    {
+     "rev": "VA0–VA7",
+     "note": "Original Mega Drive / Genesis; discrete YM2612."
+    },
+    {
+     "rev": "Mega Drive II / Genesis II VA1–VA4",
+     "note": "1993 cost-reduced chassis; YM2612 integrated into the ASIC from VA1.5 onward."
+    }
+   ]
+  },
+  {
+   "slug": "sega-mega-cd",
+   "name": "Mega CD / Sega CD",
+   "mfr": "Sega",
+   "year": "1991",
+   "kind": "console",
+   "cpu": [
+    {
+     "n": "Motorola 68000",
+     "mhz": 12.5
+    }
+   ],
+   "audio": [
+    {
+     "n": "Ricoh RF5C164 PCM"
+    },
+    {
+     "n": "CD-DA"
+    }
+   ],
+   "display": [],
+   "boards": [
+    {
+     "rev": "Model 1",
+     "note": "Front-loading tray."
+    },
+    {
+     "rev": "Model 2 (Mega CD II / Sega CD II)",
+     "note": "Top-loading; the service manual and its supplement are written against it."
+    }
+   ]
+  },
+  {
+   "slug": "sega-32x",
+   "name": "32X",
+   "mfr": "Sega",
+   "year": "1994",
+   "kind": "console",
+   "cpu": [
+    {
+     "n": "Hitachi SH-2",
+     "mhz": 23.011
+    },
+    {
+     "n": "Hitachi SH-2",
+     "mhz": 23.011
+    }
+   ],
+   "audio": [
+    {
+     "n": "PWM stereo DAC"
+    }
+   ],
+   "display": [
+    {
+     "type": "raster",
+     "w": 320,
+     "h": 224,
+     "hz": 59.92
+    }
+   ],
    "boards": []
   }
  ]

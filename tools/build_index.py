@@ -33,6 +33,8 @@ RAW     = os.path.join(ROOT, "data", "machines.raw.json")
 SYSTEMS = os.path.join(ROOT, "data", "systems.json")
 EXTRA   = os.path.join(ROOT, "data", "extra-docs.json")
 HEALTH  = os.path.join(ROOT, "data", "link-health.json")
+MIRRORS = os.path.join(ROOT, "data", "sources", "archive_org.json")
+IA_META = os.path.join(ROOT, "cache", "archive_org", "meta")
 OUT     = os.path.join(ROOT, "data")
 
 # Doc types that are expected to carry schematic/diagram line art worth vectorising.
@@ -82,7 +84,7 @@ def overlay_docs(slug, name, extra, emitted, out_docs):
                 "machines": list(d["machines"]),
             }
             for k, out in (("source", "source"), ("page", "sourcePage"),
-                           ("ingest", "ingest"), ("note", "note")):
+                           ("ingest", "ingest"), ("note", "note"), ("ocr", "ocr")):
                 if d.get(k):
                     rec[out] = d[k]
             out_docs.append(rec); emitted[did] = rec
@@ -192,6 +194,28 @@ def main():
         if h:
             rec["dead"] = h["state"]
 
+    # The same file on archive.org, where the survey found one. The URL is the
+    # item's own PDF, read from its metadata; an item whose metadata is not
+    # cached yet, or that carries no PDF, gets no mirror rather than a guess.
+    mirrors = {}
+    if os.path.exists(MIRRORS):
+        mirrors = json.load(open(MIRRORS)).get("mirrors") or {}
+    n_mirror = 0
+    for rec in out_docs:
+        m = mirrors.get(rec["id"])
+        if not m:
+            continue
+        mp = os.path.join(IA_META, m["identifier"] + ".json")
+        if not os.path.exists(mp):
+            continue
+        files = json.load(open(mp)).get("files") or []
+        pdfs = [f["name"] for f in files if f["name"].lower().endswith(".pdf")
+                and f.get("format") != "Additional Text PDF"]
+        if pdfs:
+            from urllib.parse import quote
+            rec["mirror"] = f"https://archive.org/download/{m['identifier']}/{quote(pdfs[0])}"
+            n_mirror += 1
+
     # Names for the other machines a shared document covers, so the reader can
     # say "MV-2F · MV-4F" without fetching a record per slug.
     names = {slug: rec["name"] for slug, rec in detail.items()}
@@ -223,6 +247,8 @@ def main():
     if health:
         states = Counter(d.get("dead") for d in out_docs if d.get("dead"))
         print("link health   " + ", ".join(f"{c} {s}" for s, c in states.most_common()))
+    if mirrors:
+        print(f"archive.org   {n_mirror} documents carry a mirror URL")
     if extra_entries:
         print(f"overlay       {len(extra_entries)} document(s) from data/extra-docs.json, "
               f"on {len(extra)} machine(s)")

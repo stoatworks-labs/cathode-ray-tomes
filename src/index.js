@@ -51,6 +51,22 @@ async function asset(env, request, path) {
   }
 }
 
+/**
+ * One record out of a bundle. The per-record files (7,823 machines, 1,469 ROM
+ * maps, 825 diagnostics lists) were three-fifths of the deploy's file count
+ * under a 20,000-file cap, so build_assets.py now writes them as bundles keyed
+ * by the first two characters of the slug — /data/machine/as.json holds every
+ * machine whose slug starts "as". A bundle is a few hundred KB at most and
+ * cached at the edge like any asset.
+ */
+const shardOfKey = (key) =>
+  key.slice(0, 2).toLowerCase().replace(/[^a-z0-9]/g, "_").padEnd(2, "_");
+
+async function record(env, request, dir, key) {
+  const bundle = await asset(env, request, `/data/${dir}/${shardOfKey(key)}.json`);
+  return bundle && Object.prototype.hasOwnProperty.call(bundle, key) ? bundle[key] : null;
+}
+
 /** Hot indexes are read on nearly every request — keep them in the isolate. */
 const memo = new Map();
 async function index(env, request, name) {
@@ -169,7 +185,7 @@ async function handleApi(url, env, request) {
   if (p.startsWith("machine/")) {
     const slug = decodeURIComponent(p.slice("machine/".length));
     if (!/^[a-z0-9][a-z0-9._-]*$/i.test(slug)) return notFound("bad slug");
-    const rec = await asset(env, request, `/data/machine/${slug}.json`);
+    const rec = await record(env, request, "machine", slug);
     return rec ? json(rec) : notFound("unknown machine");
   }
 
@@ -185,9 +201,10 @@ async function handleApi(url, env, request) {
     // machines/machineNames are present only where one manual documents more
     // than one machine, as the MVS service manual does for MV-2F and MV-4F.
     const { title, type, machine, machineName, machines, machineNames,
-            src, source, sourcePage, schematic, note, dead } = meta;
+            src, source, sourcePage, schematic, note, dead, mirror } = meta;
     return json({ ...body, title, type, machine, machineName, machines,
-                  machineNames, src, source, sourcePage, schematic, note, dead });
+                  machineNames, src, source, sourcePage, schematic, note, dead,
+                  mirror: mirror ? true : undefined });
   }
 
   // /api/parts/<docId> — bill of materials recovered from a manual's own
@@ -224,7 +241,7 @@ async function handleApi(url, env, request) {
   if (p.startsWith("diagnostics/")) {
     const slug = decodeURIComponent(p.slice("diagnostics/".length));
     if (!/^[a-z0-9][a-z0-9._-]*$/i.test(slug)) return notFound("bad slug");
-    const rows = await asset(env, request, `/data/diagnostics/${slug}.json`);
+    const rows = await record(env, request, "diagnostics", slug);
     return rows ? json(rows) : json([]);
   }
 
@@ -314,7 +331,7 @@ async function handleApi(url, env, request) {
     // Through asset(), not ASSETS directly: reading the binding raw is what
     // made this the one endpoint the content-type guard did not cover, and it
     // threw on the SPA fallback exactly as the rest used to.
-    const map = await asset(env, request, `/data/rommap/${rm[1]}.json`);
+    const map = await record(env, request, "rommap", rm[1]);
     return map ? json(map) : notFound("no ROM map for this machine");
   }
 
@@ -377,12 +394,19 @@ export default {
       return handleApi(url, env, request);
     }
 
-    // Original scans are not mirrored — send the reader to the source archive.
+    // Original scans are not hosted here. /pdf/<id> sends the reader to the
+    // source archive; where archive.org holds the same file — it does for
+    // 2,065 of the ArcadeRTFM documents, under the same filenames — that copy
+    // stands in when the source has lost the file, and can be asked for
+    // outright with ?via=archive.
     const pdf = url.pathname.match(/^\/pdf\/([a-f0-9]{12})$/);
     if (pdf) {
       const docs = (await index(env, request, "docs")) || [];
       const doc = docs.find((d) => d.id === pdf[1]);
       if (!doc || !doc.src) return notFound("unknown document");
+      if (doc.mirror && (doc.dead || url.searchParams.get("via") === "archive")) {
+        return Response.redirect(doc.mirror, 302);
+      }
       // Redirecting into a known 404 is worse than saying so: the reader ends
       // up on someone else's error page with no idea whose fault it is.
       if (doc.dead === "gone") {

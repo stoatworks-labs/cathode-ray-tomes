@@ -55,6 +55,65 @@ def ocr_page(png, psm="1", lang="eng", timeout=180):
             try: os.unlink(base + ext)
             except OSError: pass
 
+def djvu_pages(xml_path, target_dpi=150):
+    """(plain_text, lines) per page from an archive.org `_djvu.xml`.
+
+    Archive.org OCRs every upload and publishes the result as DjVu XML: one
+    OBJECT per page carrying its DPI, then PAGECOLUMN/REGION/PARAGRAPH/LINE/
+    WORD with a per-word `coords="x1,y2,x2,y1"` and `x-confidence`. That is
+    the same information tesseract's TSV gives, so this returns the same line
+    records ocr_page() does — {b,pa,t,x,y,w,h,c} in the page's own reading
+    order, never re-sorted — with geometry scaled to `target_dpi` so a page
+    scanned at 600 dpi and one at 200 dpi measure alike within a document,
+    which the heading classifier needs.
+
+    Reusing this reading is what makes taking the archive's documents feasible:
+    roughly seventy thousand pages, already read once.
+    """
+    import xml.etree.ElementTree as ET
+    out = []
+    for obj in ET.parse(xml_path).getroot().iter("OBJECT"):
+        dpi = 300
+        for prm in obj.findall("PARAM"):
+            if prm.get("name") == "DPI" and (prm.get("value") or "").isdigit():
+                dpi = int(prm.get("value"))
+        k = target_dpi / dpi
+        lines, words = [], []
+        b = pa = 0
+        for region in obj.iter("REGION"):
+            b += 1
+            for para in region.iter("PARAGRAPH"):
+                pa += 1
+                for line in para.iter("LINE"):
+                    ws = [(w.get("coords", ""), (w.text or "").strip(),
+                           w.get("x-confidence")) for w in line.iter("WORD")]
+                    ws = [w for w in ws if w[1]]
+                    if not ws:
+                        continue
+                    boxes = []
+                    for coords, _, _ in ws:
+                        try:
+                            x1, y2, x2, y1 = [int(float(c)) for c in coords.split(",")[:4]]
+                        except ValueError:
+                            continue
+                        boxes.append((min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2)))
+                    if not boxes:
+                        continue
+                    confs = [float(c) for _, _, c in ws if c not in (None, "")]
+                    text = " ".join(t for _, t, _ in ws)
+                    words.append(text)
+                    lines.append({
+                        "b": b, "pa": pa, "t": text,
+                        "x": int(min(bx[0] for bx in boxes) * k),
+                        "y": int(min(bx[1] for bx in boxes) * k),
+                        "w": int((max(bx[2] for bx in boxes) - min(bx[0] for bx in boxes)) * k),
+                        "h": int(max(bx[3] - bx[1] for bx in boxes) * k),
+                        "c": round(sum(confs) / len(confs), 1) if confs else 85.0,
+                    })
+        out.append((" ".join(words), lines))
+    return out
+
+
 # Lines that are page furniture rather than content.
 NOISE = re.compile(r"^[\s.\-_—·|]*$")
 # "Power Supply . . . 4" / "D. Self-Test Procedure ." -- a contents entry, not a section.

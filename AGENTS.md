@@ -448,6 +448,23 @@ convention and legitimately uses G.
   behind what another session published, and `--apply` writes the flags straight onto
   the published documents so the drawing decisions can change without a full
   `build_assets.py`, which would refuse on the stale index (correctly).
+- **The deploy has a 20,000-file cap, and per-record JSON was three-fifths of it.**
+  `web/data/machine/`, `rommap/` and `diagnostics/` are now bundles keyed by the first
+  two characters of the slug (`machine/as.json` holds every machine starting "as");
+  `build_assets.bundle()` writes them and `record()` in src/index.js reads them. The
+  shard rule is duplicated in both places and they must agree. Page scans are the other
+  big consumer; check `find web -type f | wc -l` before publishing anything that adds
+  files by the thousand.
+- **Documents taken from archive.org are read from the archive's own OCR.** Every item
+  there carries a `_djvu.xml`; `ocrlib.djvu_pages()` turns it into the same line records
+  tesseract's TSV gives, and `ingest.py` uses it when the catalogue record carries an
+  `ocr` URL (set by `take_archive_org.py`). Pages are still rendered for the scans. A
+  page-count mismatch between the XML and the PDF falls back to tesseract rather than
+  misaligning pages.
+- **`data/extra-docs.json` is where every non-ArcadeRTFM document lives**, and the
+  `take_*.py` tools append to it; `tools/sources.py` holds the title-to-machine rule and
+  says why a match was accepted. A document filed by a leading name rather than a whole
+  title carries a note saying so, on the page.
 - **A view that renders once needs an explicit first draw.** `show()` only re-rendered the
   paginated view, so the default document view came up empty until something else
   triggered a redraw.
@@ -528,6 +545,23 @@ and the bindings.
 
 Contact details a submitter leaves end up in the queue repo and its issues. That is the
 reason the queue repo is private, and the form says so where the field is.
+
+## Taking documents from other archives
+
+`docs/EXTERNAL-SOURCES.md` has the surveys and the rights posture of each source. The
+order of operations for taking from one is fixed:
+
+```bash
+python3 tools/take_archive_org.py     # or take_arcarc.py, take_segaretro.py -> extra-docs.json
+python3 tools/build_index.py          # catalogue gains the entries (and archive.org mirrors)
+python3 tools/ingest.py --workers 6   # fetch, render, read (archive OCR where it exists)
+python3 tools/build_search.py && python3 tools/build_doc_stats.py
+python3 tools/build_drawings.py --images && python3 tools/build_assets.py
+node tools/test_worker.mjs
+```
+
+`data/ingest-state.json` and `cache/` live in the shared checkout and are gitignored;
+a worktree needs symlinks to both or the ingest starts the whole corpus again.
 
 ## Deployment — Workers Builds
 

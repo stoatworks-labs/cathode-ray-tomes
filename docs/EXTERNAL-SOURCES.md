@@ -384,6 +384,41 @@ System and Mega Drive service manuals by revision, the Out Run and Hang-On
 schematics. The survey lists the 1,201 service and arcade-system files with
 their URLs and leaves the rest as counts.
 
+### Taken, September 2026
+
+The decision was taken to carry all three, and the archive.org set went in
+first because the archive had already done the expensive part. What went in:
+
+| source | documents | filed how | read how |
+|---|---|---|---|
+| archive.org `arcademanuals` | ARCHIVEORG | title names a machine (1,027 whole, 653 by leading name) | the archive's own DjVu XML OCR |
+| Arcade Archive | ARCARC | filename names a machine; arcade directories only | tesseract |
+| Sega Retro | SEGARETRO | an explicit map from filename to machine or system | tesseract |
+
+`tools/take_*.py` write the entries into `data/extra-docs.json`; `tools/sources.py`
+holds the title-to-machine rule and the reasons a match is accepted. A document filed
+by a leading name rather than a whole title carries a note on its page saying so,
+with the full title, so a wrong filing is visible where it can be fixed. Every
+document credits its source archive on the page and links to the archive's own record
+of it.
+
+Sega Retro's five consoles that had no home — Master System, Game Gear, Mega Drive,
+Mega CD, 32X — were added to `data/systems.json`. Seventeen of its 63 service files
+were left: modern Sega cabinets MAME does not know (Chunithm, Ongeki), the Mega PC and
+LaserActive, joypolis attraction guides, and three arcade titles without a MAME
+machine (Bulletmark, Jet Rocket, Monster Gun, Rifleman, Periscope).
+
+The archive.org mirror map is wired: `/pdf/<id>` sends a reader to the archive's copy
+when the source has lost the file, or when asked with `?via=archive`, and the reader
+offers the copy beside the original. `tools/upload_archive_org.py` is the other
+direction — the documents held here that the archive lacks — and does nothing without
+a flag and the operator's own credentials (`ia configure`).
+
+Rights, restated: archive.org and the Arcade Archive are on the same footing as
+ArcadeRTFM. Sega Retro reserved rights and was taken anyway, deliberately and for its
+service documents alone, with credit and a link on every page; if Sega Retro objects,
+`take_segaretro.py`'s entries are one block in `extra-docs.json` and come out cleanly.
+
 ### What to take next, if anything
 
 In order of value per document: the Sega system service manuals, if Sega

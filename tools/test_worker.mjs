@@ -73,6 +73,8 @@ const CASES = [
   ["/api/machines?kind=console",      200, "console filter"],
   ["/pdf/d282ad622596",               302, "healthy document redirects upstream"],
   ["/pdf/e27163bf0ed2",               410, "source gone: explained, not redirected"],
+  ["/pdf/943469f413c9",               302, "source gone, archive.org has it: redirected there"],
+  ["/pdf/d282ad622596?via=archive",   302, "archive.org copy asked for outright"],
   ["/pdf/000000000000",               404, "unknown document"],
 
   // Page routes. The shell is served either way — the router renders "Page not

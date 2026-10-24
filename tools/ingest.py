@@ -17,7 +17,7 @@ import concurrent.futures as cf
 from threading import Lock
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from ocrlib import (ocr_page, classify_headings, build_outline,
+from ocrlib import (ocr_page, djvu_pages, classify_headings, build_outline,
                     build_blocks, page_text, running_headers)
 
 ROOT  = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -56,9 +56,12 @@ def fetch(url, dest, attempts=4):
     Retries with backoff: a brief loss of connectivity previously failed 847
     documents in one run, all of which were individually fine.
     """
+    # Unquote before quoting: a path stored raw ("Ameri Darts deutsch.pdf")
+    # and one stored encoded ("%28PAL%29") both come out encoded exactly once.
     p = urllib.parse.urlsplit(url)
     safe = urllib.parse.urlunsplit(
-        (p.scheme, p.netloc, urllib.parse.quote(p.path), p.query, p.fragment))
+        (p.scheme, p.netloc, urllib.parse.quote(urllib.parse.unquote(p.path)),
+         p.query, p.fragment))
     req = urllib.request.Request(safe, headers={"User-Agent": UA})
     last = None
     for i in range(attempts):
@@ -129,6 +132,23 @@ def process(doc):
     if not n:
         raise RuntimeError("unreadable pdf")
 
+    # A document taken from archive.org arrives already read: the archive
+    # OCRs every upload and publishes the DjVu XML beside it. That reading is
+    # used in place of a tesseract pass — the same line geometry, from the
+    # same kind of engine, at no cost — and the pages are still rendered,
+    # because the drawing pages are shown as their scans.
+    read = None
+    if doc.get("ocr"):
+        xml = os.path.join(CACHE, "ia", did + "_djvu.xml")
+        os.makedirs(os.path.dirname(xml), exist_ok=True)
+        if not os.path.exists(xml) or os.path.getsize(xml) == 0:
+            fetch(doc["ocr"], xml)
+        read = djvu_pages(xml, READ_DPI)
+        if len(read) != n:
+            # The archive read a different page count than pdfinfo sees:
+            # fall back to reading it ourselves rather than misalign pages.
+            read = None
+
     pages_dir = os.path.join(CACHE, "pages", did)
     text_out  = os.path.join(CACHE, "text", did + ".json")
     os.makedirs(os.path.dirname(text_out), exist_ok=True)
@@ -143,7 +163,11 @@ def process(doc):
         for i, fn in enumerate(pngs, 1):
             src = os.path.join(tmp, fn)
             to_webp(src, os.path.join(pages_dir, f"p{i:04d}.webp"))
-            txt, wc, lines = ocr(src)
+            if read is not None:
+                txt, lines = read[i - 1]
+                wc = len(txt.split())
+            else:
+                txt, wc, lines = ocr(src)
             pages.append({"n": i, "words": wc})
             page_lines.append(lines)
 
@@ -161,6 +185,7 @@ def process(doc):
 
         json.dump({"id": did, "pages": pages, "outline": outline,
                    "meta": {"pageCount": len(pages), "bytes": os.path.getsize(pdf),
+                            "via": "archive.org" if read is not None else "tesseract",
                             "words": sum(p["words"] for p in pages),
                             "blocks": sum(len(p.get("blocks", [])) for p in pages),
                             "sections": len(outline)}},
