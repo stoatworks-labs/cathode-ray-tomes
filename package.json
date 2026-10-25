@@ -15,5 +15,10 @@
   },
   "engines": {
     "node": ">=20"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "^7.30.1"
+    }
   }
 }
